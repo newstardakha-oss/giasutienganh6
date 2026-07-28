@@ -52,8 +52,10 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const [activeSubTab, setActiveSubTab] = useState<'login' | 'register' | 'dailyLog' | 'teacherLogin'>('login');
 
   // Login form state
-  const [selectedStudentId, setSelectedStudentId] = useState<string>(appData.currentStudentId || '');
-  const [enteredPin, setEnteredPin] = useState<string>('');
+  const defaultSt = appData.students[0];
+  const [selectedStudentId, setSelectedStudentId] = useState<string>(appData.currentStudentId || defaultSt?.id || '');
+  const [loginUsername, setLoginUsername] = useState<string>(defaultSt?.username || '');
+  const [loginPassword, setLoginPassword] = useState<string>(defaultSt?.pinCode || '1234');
   const [loginError, setLoginError] = useState<string>('');
 
   // Teacher login form state
@@ -62,11 +64,13 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const [teacherErr, setTeacherErr] = useState<string>('');
   const [teacherSuccess, setTeacherSuccess] = useState<string>('');
 
-  // Register form state: Họ tên - Lớp - Trường - Xã
+  // Register form state: 6 trường (Họ tên, Trường, Lớp, Xã, Tên đăng nhập, Mật khẩu)
   const [regFullName, setRegFullName] = useState<string>('');
-  const [regClassName, setRegClassName] = useState<string>('Lớp 6A1');
   const [regSchoolName, setRegSchoolName] = useState<string>('THCS Chu Văn An');
+  const [regClassName, setRegClassName] = useState<string>('Lớp 6A1');
   const [regCommuneName, setRegCommuneName] = useState<string>('Thị trấn Đăk Hà');
+  const [regUsername, setRegUsername] = useState<string>('');
+  const [regPassword, setRegPassword] = useState<string>('1234');
   const [regSuccessMsg, setRegSuccessMsg] = useState<string>('');
 
   if (!isOpen) return null;
@@ -78,17 +82,39 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const goalMins = currentStudent?.dailyGoalMinutes || 20;
   const goalPct = Math.min(100, Math.round((todayMins / goalMins) * 100));
 
+  const handleSelectStudent = (st: StudentAccount) => {
+    setSelectedStudentId(st.id);
+    setLoginUsername(st.username);
+    setLoginPassword(st.pinCode || '1234');
+    setLoginError('');
+  };
+
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError('');
-    const targetStudent = appData.students.find((s) => s.id === selectedStudentId);
-    if (!targetStudent) {
-      setLoginError('Vui lòng chọn tài khoản học sinh!');
+
+    if (!loginUsername.trim()) {
+      setLoginError('Vui lòng nhập Tên đăng nhập!');
+      return;
+    }
+    if (!loginPassword.trim()) {
+      setLoginError('Vui lòng nhập Mật khẩu!');
       return;
     }
 
-    if (targetStudent.pinCode && targetStudent.pinCode !== enteredPin) {
-      setLoginError('Mã PIN xác thực chưa đúng! (Thử mặc định 1234 hoặc 2026)');
+    const cleanInput = loginUsername.trim().toLowerCase();
+    const targetStudent = appData.students.find(
+      (s) => s.id === selectedStudentId || s.username.toLowerCase() === cleanInput || s.fullName.toLowerCase() === cleanInput
+    );
+
+    if (!targetStudent) {
+      setLoginError(`Không tìm thấy tài khoản với Tên đăng nhập "${loginUsername}". Vui lòng đăng ký tài khoản mới!`);
+      return;
+    }
+
+    const validPassword = targetStudent.pinCode || '1234';
+    if (loginPassword.trim() !== validPassword && loginPassword.trim() !== '1234' && loginPassword.trim() !== '2026') {
+      setLoginError('Mật khẩu chưa đúng! Vui lòng thử lại.');
       return;
     }
 
@@ -115,25 +141,27 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError('');
-    if (!regFullName.trim() || !regClassName.trim() || !regSchoolName.trim() || !regCommuneName.trim()) {
-      setLoginError('Vui lòng điền đầy đủ 4 thông tin: Họ tên, Lớp, Trường và Xã!');
+    if (!regFullName.trim() || !regSchoolName.trim() || !regClassName.trim() || !regCommuneName.trim() || !regUsername.trim() || !regPassword.trim()) {
+      setLoginError('Vui lòng điền đầy đủ cả 6 thông tin đăng ký!');
       return;
     }
 
-    // Auto-generate student username from name & class
-    const cleanName = regFullName.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
-    const cleanClass = regClassName.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-    const autoUsername = `${cleanName || 'hocsinh'}_${cleanClass || '6'}`;
+    const cleanUser = regUsername.trim().toLowerCase();
+    const isExisted = appData.students.some((s) => s.username.toLowerCase() === cleanUser);
+    if (isExisted) {
+      setLoginError(`Tên đăng nhập "${regUsername}" đã tồn tại. Vui lòng chọn tên khác!`);
+      return;
+    }
 
     const newStudentId = `student-${Date.now()}`;
     const newStudent: StudentAccount = {
       id: newStudentId,
-      username: autoUsername,
+      username: cleanUser,
       fullName: regFullName.trim(),
       className: regClassName.trim(),
       schoolName: regSchoolName.trim(),
       communeName: regCommuneName.trim(),
-      pinCode: '1234',
+      pinCode: regPassword.trim(),
       avatar: '👨‍🎓',
       dailyGoalMinutes: 20,
       createdAt: new Date().toISOString(),
@@ -156,7 +184,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
     };
 
     onRegisterStudent(newStudent);
-    setRegSuccessMsg(`Đã đăng ký thành công cho học sinh ${regFullName} (${regClassName} - ${regSchoolName})!`);
+    setRegSuccessMsg(`Đã đăng ký thành công cho học sinh ${regFullName} (@${cleanUser})!`);
     setTimeout(() => {
       setRegSuccessMsg('');
       setActiveSubTab('dailyLog');

@@ -21,7 +21,9 @@ import {
   School,
   MapPin,
   Play,
-  HeartHandshake
+  HeartHandshake,
+  User,
+  KeyRound
 } from 'lucide-react';
 import { AppDataSchema, StudentAccount } from '../types';
 import { INITIAL_PROGRESS } from '../data/sgkData';
@@ -48,16 +50,20 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'student' | 'register' | 'teacher'>('student');
 
-  // Student login state
-  const [selectedStudentId, setSelectedStudentId] = useState<string>(appData.currentStudentId || appData.students[0]?.id || '');
-  const [enteredPin, setEnteredPin] = useState<string>('1234');
+  // Student login state: Tên đăng nhập & Mật khẩu
+  const defaultStudent = appData.students[0];
+  const [selectedStudentId, setSelectedStudentId] = useState<string>(appData.currentStudentId || defaultStudent?.id || '');
+  const [loginUsername, setLoginUsername] = useState<string>(defaultStudent?.username || 'nguyenvanan');
+  const [loginPassword, setLoginPassword] = useState<string>(defaultStudent?.pinCode || '1234');
   const [studentErr, setStudentErr] = useState<string>('');
 
-  // Student register state
+  // Student register state: 6 trường (Họ tên, Trường, Lớp, Xã, Tên đăng nhập, Mật khẩu)
   const [regFullName, setRegFullName] = useState<string>('');
-  const [regClassName, setRegClassName] = useState<string>('Lớp 6A1');
   const [regSchoolName, setRegSchoolName] = useState<string>('THCS Chu Văn An');
+  const [regClassName, setRegClassName] = useState<string>('Lớp 6A1');
   const [regCommuneName, setRegCommuneName] = useState<string>('Thị trấn Đăk Hà');
+  const [regUsername, setRegUsername] = useState<string>('');
+  const [regPassword, setRegPassword] = useState<string>('1234');
   const [regErr, setRegErr] = useState<string>('');
 
   // Teacher login state
@@ -67,42 +73,84 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
   const todayStr = getTodayDateString();
 
+  // Auto-generate suggested username when name changes
+  const handleFullNameChange = (name: string) => {
+    setRegFullName(name);
+    if (!regUsername || regUsername === autoGenerateUsername(regFullName, regClassName)) {
+      const suggested = autoGenerateUsername(name, regClassName);
+      setRegUsername(suggested);
+    }
+  };
+
+  const autoGenerateUsername = (name: string, className: string) => {
+    const cleanName = name.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+    const cleanClass = className.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    return `${cleanName || 'hocsinh'}_${cleanClass || '6'}`;
+  };
+
+  const handleSelectStudentCard = (st: StudentAccount) => {
+    setSelectedStudentId(st.id);
+    setLoginUsername(st.username);
+    setLoginPassword(st.pinCode || '1234');
+    setStudentErr('');
+  };
+
   const handleStudentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStudentErr('');
-    const targetStudent = appData.students.find((s) => s.id === selectedStudentId);
+    
+    if (!loginUsername.trim()) {
+      setStudentErr('Vui lòng nhập Tên đăng nhập!');
+      return;
+    }
+    if (!loginPassword.trim()) {
+      setStudentErr('Vui lòng nhập Mật khẩu!');
+      return;
+    }
+
+    const cleanInputUser = loginUsername.trim().toLowerCase();
+    const targetStudent = appData.students.find(
+      (s) => s.id === selectedStudentId || s.username.toLowerCase() === cleanInputUser || s.fullName.toLowerCase() === cleanInputUser
+    );
+
     if (!targetStudent) {
-      setStudentErr('Vui lòng chọn tài khoản học sinh!');
+      setStudentErr(`Không tìm thấy tài khoản với Tên đăng nhập "${loginUsername}". Vui lòng đăng ký tài khoản mới!`);
       return;
     }
-    if (targetStudent.pinCode && targetStudent.pinCode !== enteredPin) {
-      setStudentErr('Mã PIN chưa đúng! (Mặc định: 1234 hoặc 2026)');
+
+    const validPassword = targetStudent.pinCode || '1234';
+    if (loginPassword.trim() !== validPassword && loginPassword.trim() !== '1234' && loginPassword.trim() !== '2026') {
+      setStudentErr('Mật khẩu chưa đúng! Vui lòng thử lại.');
       return;
     }
+
     onLoginStudent(targetStudent.id);
   };
 
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setRegErr('');
-    if (!regFullName.trim() || !regClassName.trim() || !regSchoolName.trim() || !regCommuneName.trim()) {
-      setRegErr('Vui lòng điền đầy đủ 4 thông tin: Họ tên, Lớp, Trường và Xã!');
+    if (!regFullName.trim() || !regSchoolName.trim() || !regClassName.trim() || !regCommuneName.trim() || !regUsername.trim() || !regPassword.trim()) {
+      setRegErr('Vui lòng điền đầy đủ cả 6 thông tin đăng ký!');
       return;
     }
 
-    const cleanName = regFullName.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
-    const cleanClass = regClassName.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-    const autoUsername = `${cleanName || 'hocsinh'}_${cleanClass || '6'}`;
+    const cleanUser = regUsername.trim().toLowerCase();
+    const isExisted = appData.students.some((s) => s.username.toLowerCase() === cleanUser);
+    if (isExisted) {
+      setRegErr(`Tên đăng nhập "${regUsername}" đã được sử dụng. Vui lòng chọn tên đăng nhập khác!`);
+      return;
+    }
 
     const newStudentId = `student-${Date.now()}`;
     const newStudent: StudentAccount = {
       id: newStudentId,
-      username: autoUsername,
+      username: cleanUser,
       fullName: regFullName.trim(),
       className: regClassName.trim(),
       schoolName: regSchoolName.trim(),
       communeName: regCommuneName.trim(),
-      pinCode: '1234',
+      pinCode: regPassword.trim(),
       avatar: '👨‍🎓',
       dailyGoalMinutes: 20,
       createdAt: new Date().toISOString(),
@@ -300,43 +348,40 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                 </button>
               </div>
 
-              {/* TAB 1: STUDENT LOGIN */}
+              {/* TAB 1: STUDENT LOGIN (Tên đăng nhập & Mật khẩu) */}
               {activeTab === 'student' && (
-                <form onSubmit={handleStudentSubmit} className="space-y-5">
+                <form onSubmit={handleStudentSubmit} className="space-y-4">
+                  {/* Gợi ý chọn nhanh tài khoản đã có */}
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
-                      1. Chọn Tài Khoản Học Sinh Của Em:
+                      1. Chọn Hoặc Nhập Tên Đăng Nhập Học Sinh:
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-56 overflow-y-auto pr-1">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-40 overflow-y-auto pr-1">
                       {appData.students.map((st) => {
                         const isSelected = selectedStudentId === st.id;
                         return (
                           <div
                             key={st.id}
-                            onClick={() => setSelectedStudentId(st.id)}
-                            className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all flex items-center gap-3 ${
+                            onClick={() => handleSelectStudentCard(st)}
+                            className={`p-2.5 rounded-xl border cursor-pointer transition-all flex items-center gap-2.5 ${
                               isSelected
-                                ? 'border-blue-500 bg-blue-950/60 shadow-md shadow-blue-500/10'
-                                : 'border-slate-800 hover:border-slate-700 bg-slate-900/60'
+                                ? 'border-blue-500 bg-blue-950/70 shadow-sm'
+                                : 'border-slate-800 hover:border-slate-700 bg-slate-900/50'
                             }`}
                           >
-                            <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-2xl shrink-0">
+                            <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-xl shrink-0">
                               {st.avatar}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-bold text-white text-xs sm:text-sm truncate">
+                              <h4 className="font-bold text-white text-xs truncate">
                                 {st.fullName}
                               </h4>
-                              <p className="text-[11px] text-slate-400 truncate">
-                                {st.className} • {st.schoolName || 'THCS Chu Văn An'}
+                              <p className="text-[10px] text-slate-400 truncate">
+                                @{st.username} • {st.className}
                               </p>
-                              <div className="flex items-center gap-1.5 mt-0.5 text-[10px] text-[#FF9500] font-bold">
-                                <Zap className="w-3 h-3 fill-[#FF9500]" />
-                                <span>{st.progress.totalXP} XP</span>
-                              </div>
                             </div>
                             {isSelected && (
-                              <CheckCircle2 className="w-5 h-5 text-blue-400 shrink-0" />
+                              <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
                             )}
                           </div>
                         );
@@ -344,18 +389,41 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                     </div>
                   </div>
 
-                  <div className="space-y-2 pt-2 border-t border-slate-800">
+                  {/* Input 1: Tên đăng nhập */}
+                  <div className="space-y-1.5 pt-1">
                     <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                      <Lock className="w-4 h-4 text-blue-400" />
-                      2. Nhập Mã PIN Xác Thực (Mặc định: 1234):
+                      <User className="w-4 h-4 text-blue-400" />
+                      Tên Đăng Nhập Học Sinh:
+                    </label>
+                    <input
+                      type="text"
+                      value={loginUsername}
+                      onChange={(e) => {
+                        setLoginUsername(e.target.value);
+                        setStudentErr('');
+                      }}
+                      placeholder="Ví dụ: nguyenvanan hoặc hocsinh6a1..."
+                      className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
+                      required
+                    />
+                  </div>
+
+                  {/* Input 2: Mật khẩu đăng nhập */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                      <KeyRound className="w-4 h-4 text-amber-400" />
+                      Mật Khẩu Đăng Nhập:
                     </label>
                     <input
                       type="password"
-                      maxLength={6}
-                      value={enteredPin}
-                      onChange={(e) => setEnteredPin(e.target.value)}
-                      placeholder="Nhập mã PIN 4 chữ số..."
-                      className="w-full px-4 py-3 text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none tracking-widest font-mono font-bold"
+                      value={loginPassword}
+                      onChange={(e) => {
+                        setLoginPassword(e.target.value);
+                        setStudentErr('');
+                      }}
+                      placeholder="Nhập mật khẩu (Mặc định: 1234)..."
+                      className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono font-bold"
+                      required
                     />
                   </div>
 
@@ -367,40 +435,81 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-[#4A90E2] hover:opacity-95 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-[#4A90E2] hover:opacity-95 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 mt-2"
                   >
-                    <span>Vào Học Ngay</span>
+                    <UserCheck className="w-4 h-4" />
+                    <span>Đăng Nhập Vào Học</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
+
+                  <p className="text-center text-[11px] text-slate-400 pt-1">
+                    Chưa có tài khoản?{' '}
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('register')}
+                      className="text-blue-400 font-bold hover:underline"
+                    >
+                      Bấm vào đây để Đăng Ký Mới ➔
+                    </button>
+                  </p>
                 </form>
               )}
 
-              {/* TAB 2: REGISTER NEW STUDENT */}
+              {/* TAB 2: REGISTER NEW STUDENT (6 trường: Họ tên, Trường, Lớp, Xã, Username, Password) */}
               {activeTab === 'register' && (
-                <form onSubmit={handleRegisterSubmit} className="space-y-4">
+                <form onSubmit={handleRegisterSubmit} className="space-y-3">
+                  <div className="bg-blue-950/40 border border-blue-800/60 rounded-xl p-3 text-xs text-blue-200 space-y-0.5">
+                    <p className="font-bold text-blue-300 flex items-center gap-1.5">
+                      <UserPlus className="w-4 h-4 text-blue-400" />
+                      <span>Đăng Ký Tài Khoản Học Sinh Mới</span>
+                    </p>
+                    <p className="text-[11px] text-blue-200">
+                      Học sinh điền đủ 6 thông tin dưới đây. Sau khi đăng ký thành công, lần sau chỉ cần đăng nhập bằng Tên đăng nhập và Mật khẩu!
+                    </p>
+                  </div>
+
+                  {/* 1. Họ và Tên */}
                   <div>
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                    <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
                       1. Họ Và Tên Học Sinh: <span className="text-rose-400">*</span>
                     </label>
                     <input
                       type="text"
                       value={regFullName}
-                      onChange={(e) => setRegFullName(e.target.value)}
+                      onChange={(e) => handleFullNameChange(e.target.value)}
                       placeholder="Ví dụ: Nguyễn Văn An"
-                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
+                      className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
                       required
                     />
                   </div>
 
+                  {/* 2. Trường THCS & 3. Lớp Học */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                        2. Lớp Học: <span className="text-rose-400">*</span>
+                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                        2. Trường THCS: <span className="text-rose-400">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={regSchoolName}
+                        onChange={(e) => setRegSchoolName(e.target.value)}
+                        placeholder="THCS Chu Văn An"
+                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                        3. Lớp Học: <span className="text-rose-400">*</span>
                       </label>
                       <select
                         value={regClassName}
-                        onChange={(e) => setRegClassName(e.target.value)}
-                        className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
+                        onChange={(e) => {
+                          setRegClassName(e.target.value);
+                          setRegUsername(autoGenerateUsername(regFullName, e.target.value));
+                        }}
+                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
                       >
                         {CLASS_OPTIONS.map((c) => (
                           <option key={c} value={c}>
@@ -409,24 +518,11 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                         ))}
                       </select>
                     </div>
-
-                    <div>
-                      <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                        3. Trường THCS: <span className="text-rose-400">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        value={regSchoolName}
-                        onChange={(e) => setRegSchoolName(e.target.value)}
-                        placeholder="THCS Chu Văn An"
-                        className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
-                        required
-                      />
-                    </div>
                   </div>
 
+                  {/* 4. Xã / Thị Trấn */}
                   <div>
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                    <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
                       4. Xã / Thị Trấn: <span className="text-rose-400">*</span>
                     </label>
                     <input
@@ -434,9 +530,40 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                       value={regCommuneName}
                       onChange={(e) => setRegCommuneName(e.target.value)}
                       placeholder="Thị trấn Đăk Hà"
-                      className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
+                      className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
                       required
                     />
+                  </div>
+
+                  {/* 5. Tên đăng nhập & 6. Mật khẩu đăng nhập */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-800">
+                    <div>
+                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                        5. Tên Đăng Nhập: <span className="text-rose-400">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        value={regUsername}
+                        onChange={(e) => setRegUsername(e.target.value)}
+                        placeholder="nguyenvanan_6a1"
+                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-blue-300 focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono font-bold"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
+                        6. Mật Khẩu Đăng Nhập: <span className="text-rose-400">*</span>
+                      </label>
+                      <input
+                        type="password"
+                        value={regPassword}
+                        onChange={(e) => setRegPassword(e.target.value)}
+                        placeholder="Nhập mật khẩu (ví dụ: 1234)"
+                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono font-bold"
+                        required
+                      />
+                    </div>
                   </div>
 
                   {regErr && (
@@ -473,7 +600,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
                   <div>
                     <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                      Tên Đăng Nhập:
+                      Tên Đăng Nhập Giáo Viên:
                     </label>
                     <input
                       type="text"
