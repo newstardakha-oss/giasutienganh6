@@ -5,6 +5,7 @@ import { Header } from './components/Header';
 import { ApiKeyModal } from './components/ApiKeyModal';
 import { DataBackupModal } from './components/DataBackupModal';
 import { StudentAuthModal } from './components/StudentAuthModal';
+import { LandingCoverScreen } from './components/LandingCoverScreen';
 import { SocraticTutor } from './components/SocraticTutor';
 import { HomeworkHelper } from './components/HomeworkHelper';
 import { SpeechStudio } from './components/SpeechStudio';
@@ -17,6 +18,7 @@ import { GameArena } from './components/GameArena';
 export default function App() {
   const [appData, setAppData] = useState<AppDataSchema>(() => loadAppData());
   const [activeTab, setActiveTab] = useState<string>('socratic');
+  const [isCoverActive, setIsCoverActive] = useState<boolean>(true);
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState<boolean>(false);
   const [isBackupModalOpen, setIsBackupModalOpen] = useState<boolean>(false);
   const [isStudentAuthModalOpen, setIsStudentAuthModalOpen] = useState<boolean>(false);
@@ -28,7 +30,6 @@ export default function App() {
       fetch('/api/health')
         .then((res) => res.json())
         .then((data) => {
-          // If server does NOT have a key configured, prompt user
           if (!data.hasServerKey && !data.hasEnvApiKey) {
             setIsApiKeyModalOpen(true);
           }
@@ -69,6 +70,7 @@ export default function App() {
           : st
       ),
     }));
+    setIsCoverActive(false);
   };
 
   const handleRegisterStudent = (newStudent: StudentAccount) => {
@@ -79,6 +81,7 @@ export default function App() {
       progress: newStudent.progress,
       sessions: newStudent.sessions,
     }));
+    setIsCoverActive(false);
   };
 
   const handleLogoutStudent = () => {
@@ -86,6 +89,7 @@ export default function App() {
       ...prev,
       currentStudentId: null,
     }));
+    setIsCoverActive(true);
   };
 
   const handleSaveSettings = (newSettings: Partial<AppSettings>) => {
@@ -127,6 +131,8 @@ export default function App() {
         ...prev,
         isTeacherLoggedIn: true,
       }));
+      setIsCoverActive(false);
+      setActiveTab('report');
       return true;
     }
     return false;
@@ -137,6 +143,7 @@ export default function App() {
       ...prev,
       isTeacherLoggedIn: false,
     }));
+    setIsCoverActive(true);
   };
 
   const handleAddStudentByTeacher = (newStudent: StudentAccount) => {
@@ -162,6 +169,23 @@ export default function App() {
     setActiveTab('socratic');
   };
 
+  // Render Landing Cover Screen if active
+  if (isCoverActive) {
+    return (
+      <LandingCoverScreen
+        appData={appData}
+        onLoginStudent={handleLoginStudent}
+        onRegisterStudent={handleRegisterStudent}
+        onTeacherLogin={handleTeacherLogin}
+        onOpenTeacherManagement={() => {
+          setIsCoverActive(false);
+          setActiveTab('report');
+        }}
+        onEnterAsGuest={() => setIsCoverActive(false)}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-['Be_Vietnam_Pro',sans-serif]">
       {/* Header */}
@@ -172,6 +196,7 @@ export default function App() {
         onOpenSettings={() => setIsApiKeyModalOpen(true)}
         onOpenBackupModal={() => setIsBackupModalOpen(true)}
         onOpenStudentAuth={() => setIsStudentAuthModalOpen(true)}
+        onOpenCoverScreen={() => setIsCoverActive(true)}
       />
 
       {/* Main Container */}
@@ -232,7 +257,7 @@ export default function App() {
             🎓 Gia Sư AI Tiếng Anh Lớp 6 - Trợ Lý Học Tập Cá Nhân Hóa
           </p>
           <p className="mt-1">
-            Chương trình chuẩn GDPT mới (Sách Tiếng Anh 6 Global Success - Tập 1 & Tập 2)
+            Chương trình chuẩn GDPT mới (Sách Tiếng Anh 6 Global Success - Tập 1 & Tập 2) • Mrs Nhan - THCS Chu Văn An Đăk Hà
           </p>
         </div>
       </footer>

@@ -33,6 +33,7 @@ interface HeaderProps {
   onOpenSettings: () => void;
   onOpenBackupModal: () => void;
   onOpenStudentAuth: () => void;
+  onOpenCoverScreen?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -42,6 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenSettings,
   onOpenBackupModal,
   onOpenStudentAuth,
+  onOpenCoverScreen,
 }) => {
   const hasCustomKey = Boolean(appData.settings.geminiApiKey);
   const currentStudent = appData.students.find((s) => s.id === appData.currentStudentId);
@@ -80,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Logo */}
           <div
             className="flex items-center gap-3 cursor-pointer group"
-            onClick={() => setActiveTab('socratic')}
+            onClick={() => onOpenCoverScreen ? onOpenCoverScreen() : setActiveTab('socratic')}
           >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4A90E2] to-[#FF9500] flex items-center justify-center text-white shadow-md shadow-blue-500/15 group-hover:scale-105 transition-transform">
               <GraduationCap className="w-6 h-6" />
@@ -97,6 +99,17 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* User Profile & Gamification Badges */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* Button Trang Bìa Đăng Nhập */}
+            {onOpenCoverScreen && (
+              <button
+                onClick={onOpenCoverScreen}
+                className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition-all border border-indigo-200"
+                title="Quay lại Màn hình Trang Bìa Đăng Nhập"
+              >
+                <GraduationCap className="w-3.5 h-3.5 text-indigo-600" />
+                <span>Trang Bìa</span>
+              </button>
+            )}
             {/* User Profile & Role Button */}
             <button
               id="header-student-auth-btn"
