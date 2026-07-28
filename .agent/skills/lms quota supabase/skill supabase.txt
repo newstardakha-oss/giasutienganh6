@@ -1,0 +1,64 @@
+Skill: Hướng Dẫn Kỹ Năng Chuyển Đổi Supabase Project
+IMPORTANT
+
+Đây là hướng dẫn kỹ thuật dành cho Admin để chuyển toàn bộ ứng dụng sang một Supabase Project mới.
+
+1. Chuẩn bị (Prerequisites)
+Bạn cần truy cập vào Supabase Dashboard của project MỚI để lấy thông tin kết nối và Anon Key.
+
+Thông tin cần thiết:
+Project URL: (https://<project-id>.supabase.co)
+Anon Key: (eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...) - Đây là anon key (public), KHÔNG PHẢI service_role key.
+2. Quy Trình Chuyển Đổi (Workflow)
+Bước 1: Cấu hình môi trường (
+.env
+)
+Mở file 
+.env
+ (hoặc tạo .env.local để override) và cập nhật 2 biến sau với thông tin project mới:
+
+env
+VITE_SUPABASE_URL=<NEW_PROJECT_URL>
+VITE_SUPABASE_ANON_KEY=<NEW_ANON_KEY>
+Lưu ý: Sau khi lưu file, bạn BẮT BUỘC phải khởi động lại dev server (npm run dev) để Vite nhận cấu hình mới.
+
+Bước 2: Triển khai Database (Migrations)
+Thay vì chạy từng file migration riêng lẻ, bạn nên sử dụng script tổng hợp để thiết lập toàn bộ cấu trúc database trong một lần chạy duy nhất.
+
+Mở file 
+supabase/setup_all.sql
+ (đã được tạo sẵn trong project này).
+Copy toàn bộ nội dung file.
+Vào Supabase Dashboard > SQL Editor > New Query.
+Paste nội dung script vào và nhấn RUN.
+Kiểm tra thông báo "Success" ở góc dưới.
+(Script này sẽ tạo đầy đủ: profiles, courts, products, bookings, invoices, settings, triggers và RLS policies)
+
+Bước 3: Khởi tạo Admin đầu tiên
+Database mới sẽ hoàn toàn trống, chưa có user nào. Bạn cần tạo thủ công tài khoản Admin đầu tiên để quản lý hệ thống.
+
+Mở ứng dụng (http://localhost:5173 hoặc link deploy).
+Vào trang Đăng ký (Register).
+Tạo tài khoản mới với email và mật khẩu của bạn (VD: admin@example.com, pass: 123456).
+Quay lại Supabase SQL Editor, chạy lệnh sau để thăng cấp user này lên Admin:
+sql
+UPDATE profiles 
+SET role = 'admin', full_name = 'Admin Name' -- Thay tên hiển thị mong muốn
+WHERE id = (
+  SELECT id FROM auth.users 
+  WHERE email = 'admin@example.com' -- Thay đúng email vừa đăng ký
+);
+Bước 4: Kiểm tra & Vận hành (Verification)
+Đăng xuất và đăng nhập lại ứng dụng bằng tài khoản vừa tạo.
+Vào trang Dashboard hoặc Settings.
+Nếu thấy đầy đủ menu quản lý (Sân bãi, Cài đặt, Báo cáo..) thì quá trình chuyển đổi đã hoàn tất thành công. ✅
+3. Các Lệnh Hữu Ích (Commands Ref)
+Tạo script migrate tổng hợp (nếu cần cập nhật schema sau này)
+Nếu bạn thêm các migration mới vào supabase/migrations/, hãy cập nhật lại file setup_all.sql bằng cách nối nội dung file mới vào cuối file setup.
+
+Debug lỗi kết nối
+Nếu app báo lỗi kết nối hoặc không load được dữ liệu:
+
+Kiểm tra lại URL và Anon Key trong .env có thừa khoảng trắng không.
+Đảm bảo đã chạy npm run dev lại sau khi sửa .env.
+Vào Supabase > Database > Tables xem các bảng đã được tạo chưa (nếu chưa -> Rerun step 2).

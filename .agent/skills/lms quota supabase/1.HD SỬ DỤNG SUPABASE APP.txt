@@ -1,0 +1,2 @@
+Lần sau bạn chỉ cần gõ /role-based-supabase-app và mô tả app muốn tạo, Antigravity sẽ theo đúng workflow này để xây dựng có hệ thống!
+Tôi đang triển khai ứng dụng từ github qua vercel, hãy kiểm tra giúp tôi các file vercel.json, index.html có tham chiếu đúng chưa và hướng dẫn tôi khai báo biến môi trường

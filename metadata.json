@@ -1,0 +1,6 @@
+{
+  "name": "Gia Sư AI Tiếng Anh 6",
+  "description": "Trợ lý học tập Tiếng Anh lớp 6 cá nhân hóa theo phương pháp Socratic 5 bước, bám sát SGK Global Success.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

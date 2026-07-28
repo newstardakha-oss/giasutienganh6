@@ -1,0 +1,5 @@
+Auto-save vào localStorage sau mỗi 5s khi state thay đổi (saveSession callback)
+Modal khôi phục phiên khi mở app lại (showRestoreModal + pendingSessionData)
+Hiển thị thời gian lưu cuối (sessionSavedAt)
+Xóa phiên đã lưu (clearSavedSession)
+Khi hết quota: tự động xoay key qua apiKeyManager, nếu hết key thì hiện lỗi
