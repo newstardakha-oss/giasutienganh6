@@ -67,7 +67,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   // Register form state: 6 trường (Họ tên, Trường, Lớp, Xã, Tên đăng nhập, Mật khẩu)
   const [regFullName, setRegFullName] = useState<string>('');
   const [regSchoolName, setRegSchoolName] = useState<string>('THCS Chu Văn An');
-  const [regClassName, setRegClassName] = useState<string>('Lớp 6A1');
+  const [regClassName, setRegClassName] = useState<string>('');
   const [regCommuneName, setRegCommuneName] = useState<string>('Thị trấn Đăk Hà');
   const [regUsername, setRegUsername] = useState<string>('');
   const [regPassword, setRegPassword] = useState<string>('1234');

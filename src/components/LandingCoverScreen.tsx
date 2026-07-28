@@ -60,7 +60,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   // Student register state: 6 trường (Họ tên, Trường, Lớp, Xã, Tên đăng nhập, Mật khẩu)
   const [regFullName, setRegFullName] = useState<string>('');
   const [regSchoolName, setRegSchoolName] = useState<string>('THCS Chu Văn An');
-  const [regClassName, setRegClassName] = useState<string>('Lớp 6A1');
+  const [regClassName, setRegClassName] = useState<string>('');
   const [regCommuneName, setRegCommuneName] = useState<string>('Thị trấn Đăk Hà');
   const [regUsername, setRegUsername] = useState<string>('');
   const [regPassword, setRegPassword] = useState<string>('1234');
@@ -503,20 +503,17 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                       <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
                         3. Lớp Học: <span className="text-rose-400">*</span>
                       </label>
-                      <select
+                      <input
+                        type="text"
                         value={regClassName}
                         onChange={(e) => {
                           setRegClassName(e.target.value);
                           setRegUsername(autoGenerateUsername(regFullName, e.target.value));
                         }}
+                        placeholder="Ví dụ: 6A1, 6A2, 6B..."
                         className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
-                      >
-                        {CLASS_OPTIONS.map((c) => (
-                          <option key={c} value={c}>
-                            {c}
-                          </option>
-                        ))}
-                      </select>
+                        required
+                      />
                     </div>
                   </div>
 
