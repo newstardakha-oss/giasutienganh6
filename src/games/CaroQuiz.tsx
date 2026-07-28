@@ -92,7 +92,18 @@ export const CaroQuiz: React.FC<CaroQuizProps> = ({
     const q = questions[qIndex % questions.length];
     setCurrentQ(q);
     setSelectedOpt(null);
+    setFillInput('');
     setShowResult(false);
+  };
+
+  const [fillInput, setFillInput] = useState<string>('');
+
+  const checkAnswerCorrect = (userAns: string, correctAns: string) => {
+    const normUser = userAns.trim().toLowerCase();
+    const normCorrect = correctAns.trim().toLowerCase();
+    if (normUser === normCorrect) return true;
+    const variants = normCorrect.split(/[/,;]/).map((v) => v.trim());
+    return variants.includes(normUser);
   };
 
   const handleAnswerSubmit = (option: string) => {
@@ -100,7 +111,7 @@ export const CaroQuiz: React.FC<CaroQuizProps> = ({
     setSelectedOpt(option);
     setShowResult(true);
 
-    const correct = option === currentQ.correctAnswer;
+    const correct = checkAnswerCorrect(option, currentQ.correctAnswer);
     setIsCorrect(correct);
 
     if (correct) {
@@ -307,30 +318,56 @@ export const CaroQuiz: React.FC<CaroQuizProps> = ({
               {currentQ.content}
             </h4>
 
-            {/* Options */}
-            <div className="space-y-2.5 mb-4">
-              {currentQ.options?.map((opt, i) => {
-                let btnStyle = 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700';
-                if (showResult) {
-                  if (opt === currentQ.correctAnswer) {
-                    btnStyle = 'bg-emerald-600 text-white border-emerald-500 font-bold';
-                  } else if (opt === selectedOpt) {
-                    btnStyle = 'bg-rose-600 text-white border-rose-500';
+            {/* Options or Fill-in-Blank Input */}
+            {currentQ.options && currentQ.options.length > 0 ? (
+              <div className="space-y-2.5 mb-4">
+                {currentQ.options.map((opt, i) => {
+                  let btnStyle = 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700';
+                  if (showResult) {
+                    if (opt === currentQ.correctAnswer) {
+                      btnStyle = 'bg-emerald-600 text-white border-emerald-500 font-bold';
+                    } else if (opt === selectedOpt) {
+                      btnStyle = 'bg-rose-600 text-white border-rose-500';
+                    }
                   }
-                }
-                return (
-                  <button
-                    key={i}
-                    disabled={showResult}
-                    onClick={() => handleAnswerSubmit(opt)}
-                    className={`w-full p-3.5 rounded-xl border text-left text-sm font-medium transition-all flex items-center justify-between ${btnStyle}`}
-                  >
-                    <span>{opt}</span>
-                    <span className="text-xs opacity-60 font-mono">[{String.fromCharCode(65 + i)}]</span>
-                  </button>
-                );
-              })}
-            </div>
+                  return (
+                    <button
+                      key={i}
+                      disabled={showResult}
+                      onClick={() => handleAnswerSubmit(opt)}
+                      className={`w-full p-3.5 rounded-xl border text-left text-sm font-medium transition-all flex items-center justify-between ${btnStyle}`}
+                    >
+                      <span>{opt}</span>
+                      <span className="text-xs opacity-60 font-mono">[{String.fromCharCode(65 + i)}]</span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="space-y-3 mb-4">
+                <input
+                  type="text"
+                  value={fillInput}
+                  onChange={(e) => setFillInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && fillInput.trim() && !showResult) {
+                      handleAnswerSubmit(fillInput.trim());
+                    }
+                  }}
+                  placeholder="Nhập từ hoặc cụm từ điền vào đây..."
+                  disabled={showResult}
+                  className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white font-semibold text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+                <button
+                  type="button"
+                  disabled={showResult || !fillInput.trim()}
+                  onClick={() => handleAnswerSubmit(fillInput.trim())}
+                  className="w-full py-3 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 text-sm"
+                >
+                  <span>Xác Nhận Đáp Án</span>
+                </button>
+              </div>
+            )}
 
             {/* Explanation Result Feedback */}
             {showResult && (

@@ -38,6 +38,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [fillInput, setFillInput] = useState<string>('');
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [showHint, setShowHint] = useState(false);
@@ -59,12 +60,20 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
   const currentQ = filteredQuestions[currentIndex];
 
+  const checkAnswerCorrect = (userAns: string, correctAns: string) => {
+    const normUser = userAns.trim().toLowerCase();
+    const normCorrect = correctAns.trim().toLowerCase();
+    if (normUser === normCorrect) return true;
+    const variants = normCorrect.split(/[/,;]/).map((v) => v.trim());
+    return variants.includes(normUser);
+  };
+
   const handleSelectOption = (opt: string) => {
     if (isAnswered) return;
     setSelectedOption(opt);
     setIsAnswered(true);
 
-    const isCorrect = opt.trim().toLowerCase() === currentQ.correctAnswer.trim().toLowerCase();
+    const isCorrect = checkAnswerCorrect(opt, currentQ.correctAnswer);
     if (isCorrect) {
       setScore((s) => s + 1);
       // Play web audio success beep
@@ -243,13 +252,13 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
               {currentQ.content}
             </h3>
 
-            {/* Options */}
-            {currentQ.options && (
+            {/* Options or Fill-in-Blank Input */}
+            {currentQ.options && currentQ.options.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {currentQ.options.map((opt, idx) => {
                   const isOptSelected = selectedOption === opt;
                   const isCorrectOpt =
-                    opt.trim().toLowerCase() === currentQ.correctAnswer.trim().toLowerCase();
+                    checkAnswerCorrect(opt, currentQ.correctAnswer);
 
                   let optStyle =
                     'bg-slate-50 border-slate-200 text-slate-800 hover:border-[#4A90E2]/60';
@@ -286,6 +295,45 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
                     </button>
                   );
                 })}
+              </div>
+            ) : (
+              <div className="space-y-3 pt-2">
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={fillInput}
+                    onChange={(e) => setFillInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && fillInput.trim() && !isAnswered) {
+                        handleSelectOption(fillInput.trim());
+                      }
+                    }}
+                    placeholder="Gõ từ hoặc cụm từ điền vào đây..."
+                    disabled={isAnswered}
+                    className="flex-1 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 font-semibold text-sm focus:ring-2 focus:ring-[#4A90E2] focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    disabled={isAnswered || !fillInput.trim()}
+                    onClick={() => handleSelectOption(fillInput.trim())}
+                    className="px-6 py-3 bg-[#4A90E2] hover:bg-blue-600 disabled:opacity-50 text-white font-bold rounded-xl shadow-2xs transition-all text-xs sm:text-sm"
+                  >
+                    Xác Nhận
+                  </button>
+                </div>
+                {isAnswered && (
+                  <div className={`p-3 rounded-xl text-xs font-bold ${
+                    checkAnswerCorrect(fillInput, currentQ.correctAnswer)
+                      ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                      : 'bg-rose-50 text-rose-800 border border-rose-200'
+                  }`}>
+                    {checkAnswerCorrect(fillInput, currentQ.correctAnswer) ? (
+                      <span>✅ Đáp án chính xác: <strong>{currentQ.correctAnswer}</strong></span>
+                    ) : (
+                      <span>❌ Chưa đúng. Đáp án chuẩn là: <strong className="text-emerald-700 font-extrabold">{currentQ.correctAnswer}</strong></span>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>
