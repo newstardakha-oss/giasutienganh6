@@ -6741,6 +6741,1306 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /ˈfɜːnɪtʃə(r)/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-1',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nThat was a great ________.',
+    options: [
+      'idea',
+      'food',
+      'foot',
+      'laugh'
+    ],
+    correctAnswer: 'idea',
+    explanation: 'Từ "idea" (/aɪˈdɪə/) có nghĩa tiếng Việt là "ý tưởng". Ví dụ: Đó là một ý tưởng tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ý tưởng" (n).',
+      'Gợi ý 2: Phiên âm: /aɪˈdɪə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-2',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nI love ________s.',
+    options: [
+      'eye',
+      'drawing',
+      'clever',
+      'picnic'
+    ],
+    correctAnswer: 'picnic',
+    explanation: 'Từ "picnic" (/ˈpɪknɪk/) có nghĩa tiếng Việt là "dã ngoại". Ví dụ: Tôi thích dã ngoại.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "dã ngoại" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpɪknɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-3',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nPlease, pass me the ________s.',
+    options: [
+      'biscuit',
+      'letter',
+      'drawing',
+      'laugh'
+    ],
+    correctAnswer: 'biscuit',
+    explanation: 'Từ "biscuit" (/ˈbɪskɪt/) có nghĩa tiếng Việt là "bánh quy". Ví dụ: Làm ơn đưa giúp tôi những cái bánh quy kia.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bánh quy" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbɪskɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-4',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nIt is my favorite ________.',
+    options: [
+      'violin',
+      'swimming',
+      'magazine',
+      'badminton'
+    ],
+    correctAnswer: 'magazine',
+    explanation: 'Từ "magazine" (/ˌmæɡəˈziːn/) có nghĩa tiếng Việt là "tạp chí". Ví dụ: Đó là tạp chí yêu thích của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tạp chí" (n).',
+      'Gợi ý 2: Phiên âm: /ˌmæɡəˈziːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-5',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nShe is with ________.',
+    options: [
+      'English',
+      'food',
+      'can',
+      'someone'
+    ],
+    correctAnswer: 'someone',
+    explanation: 'Từ "someone" (/ˈsʌmwʌn/) có nghĩa tiếng Việt là "ai đó / người nào đó". Ví dụ: Cô ấy đang ở với ai đó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ai đó / người nào đó" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsʌmwʌn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-6',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nShe has ________ and long black hair.',
+    options: [
+      'present',
+      'summer',
+      'glasses',
+      'meet'
+    ],
+    correctAnswer: 'glasses',
+    explanation: 'Từ "glasses" (/ˈɡlɑːsɪz/) có nghĩa tiếng Việt là "mắt kính". Ví dụ: Cô ấy có kính và mái tóc đen dài.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mắt kính" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡlɑːsɪz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-7',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nThis is my ________ Chau.',
+    options: [
+      'eye',
+      'read',
+      'letter',
+      'friend'
+    ],
+    correctAnswer: 'friend',
+    explanation: 'Từ "friend" (/frend/) có nghĩa tiếng Việt là "bạn". Ví dụ: Đây là bạn của tôi Châu.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bạn" (n).',
+      'Gợi ý 2: Phiên âm: /frend/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-8',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nNice to ________ you.',
+    options: [
+      'classmate',
+      'meet',
+      'can',
+      'laugh'
+    ],
+    correctAnswer: 'meet',
+    explanation: 'Từ "meet" (/miːt/) có nghĩa tiếng Việt là "gặp". Ví dụ: Rất vui được gặp bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "gặp" (v).',
+      'Gợi ý 2: Phiên âm: /miːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-9',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nWould you like to ________?',
+    options: [
+      'sit down',
+      'take photos',
+      'food',
+      'glasses'
+    ],
+    correctAnswer: 'sit down',
+    explanation: 'Từ "sit down" (/sɪt daʊn/) có nghĩa tiếng Việt là "ngồi xuống". Ví dụ: Bạn muốn ngồi xuống không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngồi xuống" (phr.v).',
+      'Gợi ý 2: Phiên âm: /sɪt daʊn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-10',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nWe have lots of ________.',
+    options: [
+      'food',
+      'tall',
+      'class',
+      'someone'
+    ],
+    correctAnswer: 'food',
+    explanation: 'Từ "food" (/fuːd/) có nghĩa tiếng Việt là "thức ăn". Ví dụ: Chúng tôi có rất nhiều thức ăn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thức ăn" (n).',
+      'Gợi ý 2: Phiên âm: /fuːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-11',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nWe are going to the ________.',
+    options: [
+      'garden',
+      'weekend',
+      'hand',
+      'bookshop'
+    ],
+    correctAnswer: 'bookshop',
+    explanation: 'Từ "bookshop" (/ˈbʊkʃɒp/) có nghĩa tiếng Việt là "hiệu sách". Ví dụ: Chúng tôi sẽ đến hiệu sách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hiệu sách" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbʊkʃɒp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-12',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nShe has long hair and big ________s.',
+    options: [
+      'eye',
+      'nose',
+      'funny',
+      'summer'
+    ],
+    correctAnswer: 'eye',
+    explanation: 'Từ "eye" (/aɪ/) có nghĩa tiếng Việt là "mắt". Ví dụ: Cô ấy có mái tóc dài và đôi mắt to.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mắt" (n).',
+      'Gợi ý 2: Phiên âm: /aɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-13',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nHe has two ________s.',
+    options: [
+      'classmate',
+      'arm',
+      'present',
+      'foot'
+    ],
+    correctAnswer: 'arm',
+    explanation: 'Từ "arm" (/ɑːm/) có nghĩa tiếng Việt là "cánh tay". Ví dụ: Anh ta có hai cánh tay.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cánh tay" (n).',
+      'Gợi ý 2: Phiên âm: /ɑːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-14',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nI have a ________.',
+    options: [
+      'weekend',
+      'creative',
+      'foot',
+      'blonde'
+    ],
+    correctAnswer: 'foot',
+    explanation: 'Từ "foot" (/fʊt/) có nghĩa tiếng Việt là "bàn chân". Ví dụ: Tôi có một bàn chân.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bàn chân" (n).',
+      'Gợi ý 2: Phiên âm: /fʊt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-15',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nI have short ________.',
+    options: [
+      'now',
+      'short',
+      'hair',
+      'friendly'
+    ],
+    correctAnswer: 'hair',
+    explanation: 'Từ "hair" (/heə(r)/) có nghĩa tiếng Việt là "tóc". Ví dụ: Tôi có mái tóc ngắn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tóc" (n).',
+      'Gợi ý 2: Phiên âm: /heə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-16',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nI have a big ________.',
+    options: [
+      'nose',
+      'magazine',
+      'present',
+      'blonde'
+    ],
+    correctAnswer: 'nose',
+    explanation: 'Từ "nose" (/nəʊz/) có nghĩa tiếng Việt là "mũi". Ví dụ: Tôi có một cái mũi to.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mũi" (n).',
+      'Gợi ý 2: Phiên âm: /nəʊz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-17',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - GETTING STARTED]\nShe has a small ________.',
+    options: [
+      'hand',
+      'supermarket',
+      'short',
+      'active'
+    ],
+    correctAnswer: 'hand',
+    explanation: 'Từ "hand" (/hænd/) có nghĩa tiếng Việt là "bàn tay". Ví dụ: Cô ấy có một bàn tay nhỏ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bàn tay" (n).',
+      'Gợi ý 2: Phiên âm: /hænd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-18',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nMina is very ________.',
+    options: [
+      'shy',
+      'magazine',
+      'creative',
+      'someone'
+    ],
+    correctAnswer: 'shy',
+    explanation: 'Từ "shy" (/ʃaɪ/) có nghĩa tiếng Việt là "e ngại, xấu hổ". Ví dụ: Mina rất ngại.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "e ngại, xấu hổ" (adj).',
+      'Gợi ý 2: Phiên âm: /ʃaɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-19',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nShe likes ________ pictures.',
+    options: [
+      'drawing',
+      'read',
+      'foot',
+      'like'
+    ],
+    correctAnswer: 'drawing',
+    explanation: 'Từ "drawing" (/ˈdrɔːɪŋ/) có nghĩa tiếng Việt là "bức vẽ, việc vẽ". Ví dụ: Cô ấy thích vẽ tranh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bức vẽ, việc vẽ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdrɔːɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-20',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nShe is ________.',
+    options: [
+      'arm',
+      'creative',
+      'nose',
+      'friendly'
+    ],
+    correctAnswer: 'friendly',
+    explanation: 'Từ "friendly" (/ˈfrendli/) có nghĩa tiếng Việt là "thân thiện". Ví dụ: Cô ấy thân thiện.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thân thiện" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfrendli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-21',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nNam is a ________ person.',
+    options: [
+      'clever',
+      'violin',
+      'active',
+      'letter'
+    ],
+    correctAnswer: 'clever',
+    explanation: 'Từ "clever" (/ˈklevə(r)/) có nghĩa tiếng Việt là "khéo léo, thông minh". Ví dụ: Nam là một người khéo léo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khéo léo, thông minh" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈklevə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-22',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nHe is a ________ boy.',
+    options: [
+      'kind',
+      'English',
+      'badminton',
+      'must'
+    ],
+    correctAnswer: 'kind',
+    explanation: 'Từ "kind" (/kaɪnd/) có nghĩa tiếng Việt là "tốt bụng". Ví dụ: Anh ấy là một cậu bé tốt bụng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tốt bụng" (adj).',
+      'Gợi ý 2: Phiên âm: /kaɪnd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-23',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nI\'m ________.',
+    options: [
+      'weekend',
+      'letter',
+      'creative',
+      'careful'
+    ],
+    correctAnswer: 'creative',
+    explanation: 'Từ "creative" (/kriˈeɪtɪv/) có nghĩa tiếng Việt là "sáng tạo". Ví dụ: Tôi là người sáng tạo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sáng tạo" (adj).',
+      'Gợi ý 2: Phiên âm: /kriˈeɪtɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-24',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nPlease, be ________.',
+    options: [
+      'careful',
+      'club',
+      'food',
+      'eye'
+    ],
+    correctAnswer: 'careful',
+    explanation: 'Từ "careful" (/ˈkeəfl/) có nghĩa tiếng Việt là "cẩn thận". Ví dụ: Xin hãy cẩn thận.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cẩn thận" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈkeəfl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-25',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nMai is ________.',
+    options: [
+      'drawing',
+      'confident',
+      'magazine',
+      'homework'
+    ],
+    correctAnswer: 'confident',
+    explanation: 'Từ "confident" (/ˈkɒnfɪdənt/) có nghĩa tiếng Việt là "tự tin". Ví dụ: Mai tự tin.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tự tin" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈkɒnfɪdənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-26',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 1]\nNam is ________.',
+    options: [
+      'everything',
+      'hard working',
+      'hair',
+      'confident'
+    ],
+    correctAnswer: 'hard working',
+    explanation: 'Từ "hard working" (/ˌhɑːd ˈwɜːkɪŋ/) có nghĩa tiếng Việt là "chăm chỉ". Ví dụ: Nam rất chăm chỉ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chăm chỉ" (adj).',
+      'Gợi ý 2: Phiên âm: /ˌhɑːd ˈwɜːkɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-27',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nMy sister does not make a sandwich at ________.',
+    options: [
+      'must',
+      'magazine',
+      'care',
+      'present'
+    ],
+    correctAnswer: 'present',
+    explanation: 'Từ "present" (/ˈpreznt/) có nghĩa tiếng Việt là "hiện tại". Ví dụ: Em gái tôi hiện tại không làm bánh mì sandwich.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hiện tại" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpreznt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-28',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nI go to the ________ at the moment.',
+    options: [
+      'violin',
+      'glasses',
+      'food',
+      'supermarket'
+    ],
+    correctAnswer: 'supermarket',
+    explanation: 'Từ "supermarket" (/ˈsuːpəmɑːkɪt/) có nghĩa tiếng Việt là "siêu thị". Ví dụ: Tôi đi siêu thị vào lúc này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "siêu thị" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsuːpəmɑːkɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-29',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nNam and Ba eat ________.',
+    options: [
+      'biscuit',
+      'summer',
+      'ice cream',
+      'free time'
+    ],
+    correctAnswer: 'ice cream',
+    explanation: 'Từ "ice cream" (/ˈaɪs kriːm/) có nghĩa tiếng Việt là "kem". Ví dụ: Nam và Ba ăn kem.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kem" (n).',
+      'Gợi ý 2: Phiên âm: /ˈaɪs kriːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-30',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nLan and Trang ________.',
+    options: [
+      'can',
+      'read',
+      'everything',
+      'take photos'
+    ],
+    correctAnswer: 'take photos',
+    explanation: 'Từ "take photos" (/teɪk ˈfəʊtəʊz/) có nghĩa tiếng Việt là "chụp ảnh". Ví dụ: Lan và Trang chụp ảnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chụp ảnh" (phr).',
+      'Gợi ý 2: Phiên âm: /teɪk ˈfəʊtəʊz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-31',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nLan writes a ________.',
+    options: [
+      'supermarket',
+      'letter',
+      'read',
+      'confident'
+    ],
+    correctAnswer: 'letter',
+    explanation: 'Từ "letter" (/ˈletə(r)/) có nghĩa tiếng Việt là "bức thư". Ví dụ: Lan viết thư.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bức thư" (n).',
+      'Gợi ý 2: Phiên âm: /ˈletə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-32',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nDuong plays ________.',
+    options: [
+      'meet',
+      'friendly',
+      'badminton',
+      'classmate'
+    ],
+    correctAnswer: 'badminton',
+    explanation: 'Từ "badminton" (/ˈbædmɪntən/) có nghĩa tiếng Việt là "cầu lông". Ví dụ: Dương chơi cầu lông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cầu lông" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbædmɪntən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-33',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nAre you reading ________?',
+    options: [
+      'someone',
+      'must',
+      'now',
+      'garden'
+    ],
+    correctAnswer: 'now',
+    explanation: 'Từ "now" (/naʊ/) có nghĩa tiếng Việt là "bây giờ". Ví dụ: Bạn có đang đọc bây giờ không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bây giờ" (adv).',
+      'Gợi ý 2: Phiên âm: /naʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-34',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nNam ________s a book.',
+    options: [
+      'comic book',
+      'classmate',
+      'must',
+      'read'
+    ],
+    correctAnswer: 'read',
+    explanation: 'Từ "read" (/riːd/) có nghĩa tiếng Việt là "đọc". Ví dụ: Nam đọc sách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đọc" (v).',
+      'Gợi ý 2: Phiên âm: /riːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-35',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nThey play ________ at the moment.',
+    options: [
+      'football',
+      'club',
+      'friend',
+      'clever'
+    ],
+    correctAnswer: 'football',
+    explanation: 'Từ "football" (/ˈfʊtbɔːl/) có nghĩa tiếng Việt là "bóng đá". Ví dụ: Họ chơi bóng vào lúc này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bóng đá" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfʊtbɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-36',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nIs your friend ________?',
+    options: [
+      'swimming',
+      'bookshop',
+      'meet',
+      'hair'
+    ],
+    correctAnswer: 'swimming',
+    explanation: 'Từ "swimming" (/ˈswɪmɪŋ/) có nghĩa tiếng Việt là "việc bơi lội". Ví dụ: Bạn của bạn có đang bơi không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "việc bơi lội" (n).',
+      'Gợi ý 2: Phiên âm: /ˈswɪmɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-37',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - A CLOSER LOOK 2]\nAre they learning ________?',
+    options: [
+      'like',
+      'bookshop',
+      'parents',
+      'English'
+    ],
+    correctAnswer: 'English',
+    explanation: 'Từ "English" (/ˈɪŋɡlɪʃ/) có nghĩa tiếng Việt là "tiếng Anh". Ví dụ: Họ đang học tiếng Anh?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiếng Anh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɪŋɡlɪʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-38',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - COMMUNICATION]\nIn my ________.',
+    options: [
+      'must',
+      'care',
+      'free time',
+      'kind'
+    ],
+    correctAnswer: 'free time',
+    explanation: 'Từ "free time" (/ˌfriː ˈtaɪm/) có nghĩa tiếng Việt là "thời gian rảnh rỗi". Ví dụ: Trong thời gian rảnh rỗi của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời gian rảnh rỗi" (n).',
+      'Gợi ý 2: Phiên âm: /ˌfriː ˈtaɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-39',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - COMMUNICATION]\nI usually read to them at the ________.',
+    options: [
+      'careful',
+      'nose',
+      'present',
+      'weekend'
+    ],
+    correctAnswer: 'weekend',
+    explanation: 'Từ "weekend" (/ˌwiːkˈend/) có nghĩa tiếng Việt là "cuối tuần". Ví dụ: Tôi thường đọc cho họ nghe vào cuối tuần.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuối tuần" (n).',
+      'Gợi ý 2: Phiên âm: /ˌwiːkˈend/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-40',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - COMMUNICATION]\nI\'m drawing in my ________.',
+    options: [
+      'weekend',
+      'garden',
+      'friendly',
+      'sit down'
+    ],
+    correctAnswer: 'garden',
+    explanation: 'Từ "garden" (/ˈɡɑːdn/) có nghĩa tiếng Việt là "khu vườn". Ví dụ: Tôi đang vẽ trong khu vườn của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu vườn" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡɑːdn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-41',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - COMMUNICATION]\nShe\'s ________ with long black hair.',
+    options: [
+      'comic book',
+      'curly',
+      'basketball',
+      'short'
+    ],
+    correctAnswer: 'short',
+    explanation: 'Từ "short" (/ʃɔːt/) có nghĩa tiếng Việt là "thấp, ngắn". Ví dụ: Cô ấy thấp với mái tóc đen dài.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thấp, ngắn" (adj).',
+      'Gợi ý 2: Phiên âm: /ʃɔːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-42',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - COMMUNICATION]\nI can do my homework without my ________.',
+    options: [
+      'parents',
+      'camp',
+      'club',
+      'summer'
+    ],
+    correctAnswer: 'parents',
+    explanation: 'Từ "parents" (/ˈpeərənts/) có nghĩa tiếng Việt là "bố mẹ". Ví dụ: Tôi có thể làm bài tập về nhà mà không cần bố mẹ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bố mẹ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpeərənts/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-43',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - COMMUNICATION]\nI\'m going to an English ________ now.',
+    options: [
+      'comic book',
+      'club',
+      'football',
+      'bookshop'
+    ],
+    correctAnswer: 'club',
+    explanation: 'Từ "club" (/klʌb/) có nghĩa tiếng Việt là "câu lạc bộ". Ví dụ: Bây giờ tôi sẽ đến một câu lạc bộ tiếng Anh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "câu lạc bộ" (n).',
+      'Gợi ý 2: Phiên âm: /klʌb/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-44',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nPhong\'s reading a ________.',
+    options: [
+      'comic book',
+      'drawing',
+      'someone',
+      'yearbook'
+    ],
+    correctAnswer: 'comic book',
+    explanation: 'Từ "comic book" (/ˈkɒmɪk bʊk/) có nghĩa tiếng Việt là "truyện tranh". Ví dụ: Phong đang đọc truyện tranh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "truyện tranh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkɒmɪk bʊk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-45',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nNhung\'s playing the ________.',
+    options: [
+      'hand',
+      'English',
+      'careful',
+      'violin'
+    ],
+    correctAnswer: 'violin',
+    explanation: 'Từ "violin" (/ˌvaɪəˈlɪn/) có nghĩa tiếng Việt là "đàn vĩ cầm". Ví dụ: Nhung đang chơi vĩ cầm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đàn vĩ cầm" (n).',
+      'Gợi ý 2: Phiên âm: /ˌvaɪəˈlɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-46',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nI ________ go now.',
+    options: [
+      'laugh',
+      'blonde',
+      'must',
+      'drawing'
+    ],
+    correctAnswer: 'must',
+    explanation: 'Từ "must" (/mʌst/) có nghĩa tiếng Việt là "phải". Ví dụ: Tôi phải đi bây giờ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phải" (aux).',
+      'Gợi ý 2: Phiên âm: /mʌst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-47',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nThe children can speak Vietnamese at the ________.',
+    options: [
+      'supermarket',
+      'camp',
+      'food',
+      'careful'
+    ],
+    correctAnswer: 'camp',
+    explanation: 'Từ "camp" (/kæmp/) có nghĩa tiếng Việt là "trại, hội trại". Ví dụ: Các em nhỏ có thể nói tiếng Việt tại trại.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trại, hội trại" (n).',
+      'Gợi ý 2: Phiên âm: /kæmp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-48',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nHe\'s ________ and sporty.',
+    options: [
+      'like',
+      'classmate',
+      'careful',
+      'tall'
+    ],
+    correctAnswer: 'tall',
+    explanation: 'Từ "tall" (/tɔːl/) có nghĩa tiếng Việt là "cao". Ví dụ: Anh ấy cao và thể thao.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cao" (adj).',
+      'Gợi ý 2: Phiên âm: /tɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-49',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nWho is the superb ________ camp for?',
+    options: [
+      'can',
+      'summer',
+      'confident',
+      'violin'
+    ],
+    correctAnswer: 'summer',
+    explanation: 'Từ "summer" (/ˈsʌmə(r)/) có nghĩa tiếng Việt là "mùa hè". Ví dụ: Trại hè tuyệt vời dành cho ai?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mùa hè" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsʌmə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-50',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nWhat ________ people do at summer camp?',
+    options: [
+      'can',
+      'badminton',
+      'sit down',
+      'supermarket'
+    ],
+    correctAnswer: 'can',
+    explanation: 'Từ "can" (/kæn/) có nghĩa tiếng Việt là "có thể". Ví dụ: Mọi người có thể làm gì ở trại hè?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có thể" (v).',
+      'Gợi ý 2: Phiên âm: /kæn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-51',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nWow, ________ here is in English!',
+    options: [
+      'free time',
+      'food',
+      'everything',
+      'eye'
+    ],
+    correctAnswer: 'everything',
+    explanation: 'Từ "everything" (/ˈevriθɪŋ/) có nghĩa tiếng Việt là "mọi thứ". Ví dụ: Chà, mọi thứ ở đây đều bằng tiếng Anh!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mọi thứ" (pronoun).',
+      'Gợi ý 2: Phiên âm: /ˈevriθɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-52',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nHe has ________ hair.',
+    options: [
+      'laugh',
+      'yearbook',
+      'blonde',
+      'drawing'
+    ],
+    correctAnswer: 'blonde',
+    explanation: 'Từ "blonde" (/blɒnd/) có nghĩa tiếng Việt là "vàng (tóc)". Ví dụ: Anh ấy có mái tóc vàng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vàng (tóc)" (adj).',
+      'Gợi ý 2: Phiên âm: /blɒnd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-53',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nHe plays ________ very well.',
+    options: [
+      'bookshop',
+      'basketball',
+      'short',
+      'class'
+    ],
+    correctAnswer: 'basketball',
+    explanation: 'Từ "basketball" (/ˈbɑːskɪtbɔːl/) có nghĩa tiếng Việt là "bóng rổ". Ví dụ: Anh ấy chơi bóng rổ rất giỏi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bóng rổ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbɑːskɪtbɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-54',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nShe has ________ black hair.',
+    options: [
+      'curly',
+      'food',
+      'funny',
+      'supermarket'
+    ],
+    correctAnswer: 'curly',
+    explanation: 'Từ "curly" (/ˈkɜːli/) có nghĩa tiếng Việt là "xoăn". Ví dụ: Cô ấy có mái tóc đen xoăn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "xoăn" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈkɜːli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-55',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nHe\'s ________ and kind.',
+    options: [
+      'living room',
+      'bookshop',
+      'picnic',
+      'funny'
+    ],
+    correctAnswer: 'funny',
+    explanation: 'Từ "funny" (/ˈfʌni/) có nghĩa tiếng Việt là "vui tính". Ví dụ: Anh ấy vui tính và tốt bụng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vui tính" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfʌni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-56',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 1]\nShe isn\'t ________.',
+    options: [
+      'active',
+      'friend',
+      'arm',
+      'ice cream'
+    ],
+    correctAnswer: 'active',
+    explanation: 'Từ "active" (/ˈæktɪv/) có nghĩa tiếng Việt là "năng động". Ví dụ: Cô ấy không năng động.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "năng động" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈæktɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-57',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - SKILLS 2]\nWhy do you ________ him?',
+    options: [
+      'violin',
+      'homework',
+      'careful',
+      'like'
+    ],
+    correctAnswer: 'like',
+    explanation: 'Từ "like" (/laɪk/) có nghĩa tiếng Việt là "thích". Ví dụ: Tại sao bạn thích anh ấy?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thích" (v).',
+      'Gợi ý 2: Phiên âm: /laɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-58',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - LOOKING BACK]\nHe makes everyone ________.',
+    options: [
+      'parents',
+      'supermarket',
+      'laugh',
+      'hard working'
+    ],
+    correctAnswer: 'laugh',
+    explanation: 'Từ "laugh" (/lɑːf/) có nghĩa tiếng Việt là "cười". Ví dụ: Anh ấy làm cho mọi người cười.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cười" (v).',
+      'Gợi ý 2: Phiên âm: /lɑːf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-59',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - LOOKING BACK]\nMy sister always does her homework before ________.',
+    options: [
+      'ice cream',
+      'someone',
+      'laugh',
+      'class'
+    ],
+    correctAnswer: 'class',
+    explanation: 'Từ "class" (/klɑːs/) có nghĩa tiếng Việt là "lớp học, giờ học". Ví dụ: Em gái tôi luôn làm bài tập về nhà trước khi đến lớp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lớp học, giờ học" (n).',
+      'Gợi ý 2: Phiên âm: /klɑːs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-60',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - LOOKING BACK]\nShe helps me with my ________.',
+    options: [
+      'homework',
+      'idea',
+      'comic book',
+      'curly'
+    ],
+    correctAnswer: 'homework',
+    explanation: 'Từ "homework" (/ˈhəʊmwɜːk/) có nghĩa tiếng Việt là "bài tập về nhà". Ví dụ: Cô ấy giúp tôi làm bài tập về nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bài tập về nhà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈhəʊmwɜːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-61',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - LOOKING BACK]\nHe ________s about everybody.',
+    options: [
+      'take photos',
+      'picnic',
+      'food',
+      'care'
+    ],
+    correctAnswer: 'care',
+    explanation: 'Từ "care" (/keə(r)/) có nghĩa tiếng Việt là "quan tâm". Ví dụ: Anh ấy quan tâm đến tất cả mọi người.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quan tâm" (v).',
+      'Gợi ý 2: Phiên âm: /keə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-62',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - LOOKING BACK]\nWho has a round ________?',
+    options: [
+      'take photos',
+      'face',
+      'supermarket',
+      'kind'
+    ],
+    correctAnswer: 'face',
+    explanation: 'Từ "face" (/feɪs/) có nghĩa tiếng Việt là "khuôn mặt". Ví dụ: Ai có khuôn mặt tròn?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khuôn mặt" (n).',
+      'Gợi ý 2: Phiên âm: /feɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-63',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - LOOKING BACK]\nDoes the ________ next to you have long hair?',
+    options: [
+      'violin',
+      'classmate',
+      'English',
+      'like'
+    ],
+    correctAnswer: 'classmate',
+    explanation: 'Từ "classmate" (/ˈklɑːsmeɪt/) có nghĩa tiếng Việt là "bạn cùng lớp". Ví dụ: Bạn học bên cạnh bạn có tóc dài không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bạn cùng lớp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈklɑːsmeɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-64',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - LOOKING BACK]\nHe reads a book in the ________.',
+    options: [
+      'living room',
+      'kind',
+      'classmate',
+      'face'
+    ],
+    correctAnswer: 'living room',
+    explanation: 'Từ "living room" (/ˈlɪvɪŋ ruːm/) có nghĩa tiếng Việt là "phòng khách". Ví dụ: Anh ấy đọc sách trong phòng khách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng khách" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlɪvɪŋ ruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u3-v-65',
+    unitId: 'unit-3',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 3: MY FRIENDS - PROJECT]\nHow to make a class ________?',
+    options: [
+      'someone',
+      'friend',
+      'active',
+      'yearbook'
+    ],
+    correctAnswer: 'yearbook',
+    explanation: 'Từ "yearbook" (/ˈjɪəbʊk/) có nghĩa tiếng Việt là "kỷ yếu". Ví dụ: Làm kỷ yếu lớp như thế nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kỷ yếu" (n).',
+      'Gợi ý 2: Phiên âm: /ˈjɪəbʊk/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
