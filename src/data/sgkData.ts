@@ -17681,6 +17681,926 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /aɪˈdɪə/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-1',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nCan you tell us about the ________s in the show?',
+    options: [
+      'can',
+      'improve',
+      'robot',
+      'internet'
+    ],
+    correctAnswer: 'robot',
+    explanation: 'Từ "robot" (/ˈrəʊbɒt/) có nghĩa tiếng Việt là "người máy, rô-bốt". Ví dụ: Bạn có thể cho chúng tôi biết về các robot trong chương trình không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "người máy, rô-bốt" (n).',
+      'Gợi ý 2: Phiên âm: /ˈrəʊbɒt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-2',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt can ________.',
+    options: [
+      'literature',
+      'daily',
+      'do the dishes',
+      'many'
+    ],
+    correctAnswer: 'do the dishes',
+    explanation: 'Từ "do the dishes" (/duː ðə ˈdɪʃɪz/) có nghĩa tiếng Việt là "rửa chén đĩa". Ví dụ: Nó có thể rửa chén đĩa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rửa chén đĩa" (phr).',
+      'Gợi ý 2: Phiên âm: /duː ðə ˈdɪʃɪz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-3',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt can ________.',
+    options: [
+      'iron clothes',
+      'robot',
+      'sick',
+      'tidy'
+    ],
+    correctAnswer: 'iron clothes',
+    explanation: 'Từ "iron clothes" (/ˈaɪən kləʊðz/) có nghĩa tiếng Việt là "ủi/là quần áo". Ví dụ: Nó có thể ủi quần áo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ủi/là quần áo" (phr).',
+      'Gợi ý 2: Phiên âm: /ˈaɪən kləʊðz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-4',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt looks very ________.',
+    options: [
+      'make',
+      'tall',
+      'useful',
+      'can'
+    ],
+    correctAnswer: 'useful',
+    explanation: 'Từ "useful" (/ˈjuːsfl/) có nghĩa tiếng Việt là "hữu ích". Ví dụ: Nó trông rất hữu ích.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hữu ích" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈjuːsfl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-5',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt can even ________ meals.',
+    options: [
+      'heavy',
+      'company',
+      'electricity',
+      'make'
+    ],
+    correctAnswer: 'make',
+    explanation: 'Từ "make" (/meɪk/) có nghĩa tiếng Việt là "làm, nấu". Ví dụ: Nó thậm chí có thể nấu các bữa ăn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "làm, nấu" (v).',
+      'Gợi ý 2: Phiên âm: /meɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-6',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt can move ________ things.',
+    options: [
+      'strong',
+      'company',
+      'heavy',
+      'sick'
+    ],
+    correctAnswer: 'heavy',
+    explanation: 'Từ "heavy" (/ˈhevi/) có nghĩa tiếng Việt là "nặng, nặng nề". Ví dụ: Nó có thể di chuyển những thứ nặng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nặng, nặng nề" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈhevi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-7',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt can repair broken ________s.',
+    options: [
+      'machine',
+      'tidy',
+      'think',
+      'many'
+    ],
+    correctAnswer: 'machine',
+    explanation: 'Từ "machine" (/məˈʃiːn/) có nghĩa tiếng Việt là "máy móc". Ví dụ: Nó có thể sửa chữa máy móc bị hỏng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "máy móc" (n).',
+      'Gợi ý 2: Phiên âm: /məˈʃiːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-8',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt can help ________ people.',
+    options: [
+      'many',
+      'guard',
+      'sick',
+      'daily'
+    ],
+    correctAnswer: 'sick',
+    explanation: 'Từ "sick" (/sɪk/) có nghĩa tiếng Việt là "bị bệnh, ốm". Ví dụ: Nó có thể giúp đỡ những người bị bệnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bị bệnh, ốm" (adj).',
+      'Gợi ý 2: Phiên âm: /sɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-9',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nHe can ________ a big car.',
+    options: [
+      'human',
+      'company',
+      'interested',
+      'move'
+    ],
+    correctAnswer: 'move',
+    explanation: 'Từ "move" (/muːv/) có nghĩa tiếng Việt là "di chuyển". Ví dụ: Anh ta có thể di chuyển một chiếc xe hơi lớn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "di chuyển" (v).',
+      'Gợi ý 2: Phiên âm: /muːv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-10',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nShifa is very ________.',
+    options: [
+      'move',
+      'improve',
+      'smart',
+      'desert'
+    ],
+    correctAnswer: 'smart',
+    explanation: 'Từ "smart" (/smɑːt/) có nghĩa tiếng Việt là "thông minh". Ví dụ: Shifa rất thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thông minh" (adj).',
+      'Gợi ý 2: Phiên âm: /smɑːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-11',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt ________s me do many household chores.',
+    options: [
+      'subject',
+      'can',
+      'robot',
+      'help'
+    ],
+    correctAnswer: 'help',
+    explanation: 'Từ "help" (/help/) có nghĩa tiếng Việt là "giúp đỡ". Ví dụ: Nó giúp tôi làm nhiều việc nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giúp đỡ" (v).',
+      'Gợi ý 2: Phiên âm: /help/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-12',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - GETTING STARTED]\nIt is so ________.',
+    options: [
+      'tidy',
+      'strong',
+      'help',
+      'robot'
+    ],
+    correctAnswer: 'strong',
+    explanation: 'Từ "strong" (/strɒŋ/) có nghĩa tiếng Việt là "mạnh mẽ, khỏe". Ví dụ: Nó rất mạnh mẽ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mạnh mẽ, khỏe" (adj).',
+      'Gợi ý 2: Phiên âm: /strɒŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-13',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 1]\nMy dad makes ________ meals at weekends.',
+    options: [
+      'agree',
+      'smart',
+      'delicious',
+      'subject'
+    ],
+    correctAnswer: 'delicious',
+    explanation: 'Từ "delicious" (/dɪˈlɪʃəs/) có nghĩa tiếng Việt là "ngon miệng". Ví dụ: Bố tôi làm những bữa ăn ngon vào cuối tuần.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngon miệng" (adj).',
+      'Gợi ý 2: Phiên âm: /dɪˈlɪʃəs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-14',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 1]\nShifa can do many things like ________s.',
+    options: [
+      'think',
+      'strong',
+      'robot',
+      'human'
+    ],
+    correctAnswer: 'human',
+    explanation: 'Từ "human" (/ˈhjuːmən/) có nghĩa tiếng Việt là "con người, thuộc về con người". Ví dụ: Shifa có thể làm nhiều việc giống như con người.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con người, thuộc về con người" (n).',
+      'Gợi ý 2: Phiên âm: /ˈhjuːmən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-15',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 1]\nI can\'t ________ your feelings.',
+    options: [
+      'literature',
+      'rarely',
+      'ask',
+      'understand'
+    ],
+    correctAnswer: 'understand',
+    explanation: 'Từ "understand" (/ˌʌndəˈstænd/) có nghĩa tiếng Việt là "hiểu". Ví dụ: Tôi không thể hiểu được cảm xúc của bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hiểu" (v).',
+      'Gợi ý 2: Phiên âm: /ˌʌndəˈstænd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-16',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 1]\nIt can do the ________.',
+    options: [
+      'fast',
+      'smart',
+      'do the dishes',
+      'housework'
+    ],
+    correctAnswer: 'housework',
+    explanation: 'Từ "housework" (/ˈhaʊswɜːk/) có nghĩa tiếng Việt là "việc nhà". Ví dụ: Nó có thể làm việc nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "việc nhà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈhaʊswɜːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-17',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 1]\nIt can work as a ________.',
+    options: [
+      'guard',
+      'interested',
+      'help',
+      'sick'
+    ],
+    correctAnswer: 'guard',
+    explanation: 'Từ "guard" (/ɡɑːd/) có nghĩa tiếng Việt là "bảo vệ, người gác". Ví dụ: Nó có thể làm công việc của một bảo vệ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bảo vệ, người gác" (n).',
+      'Gợi ý 2: Phiên âm: /ɡɑːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-18',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 2]\nHe is ________.',
+    options: [
+      'tall',
+      'sick',
+      'high',
+      'iron clothes'
+    ],
+    correctAnswer: 'tall',
+    explanation: 'Từ "tall" (/tɔːl/) có nghĩa tiếng Việt là "cao". Ví dụ: Anh ấy cao.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cao" (adj).',
+      'Gợi ý 2: Phiên âm: /tɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-19',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 2]\nWe can ________ it in our bag.',
+    options: [
+      'put',
+      'cheap',
+      'bad',
+      'make'
+    ],
+    correctAnswer: 'put',
+    explanation: 'Từ "put" (/pʊt/) có nghĩa tiếng Việt là "đặt, để". Ví dụ: Chúng ta có thể đặt nó vào trong túi của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đặt, để" (v).',
+      'Gợi ý 2: Phiên âm: /pʊt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-20',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 2]\nIt was ________ in our shop.',
+    options: [
+      'design',
+      'tall',
+      'interested',
+      'cheap'
+    ],
+    correctAnswer: 'cheap',
+    explanation: 'Từ "cheap" (/tʃiːp/) có nghĩa tiếng Việt là "giá rẻ". Ví dụ: Nó có giá rẻ trong cửa hàng của chúng tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giá rẻ" (adj).',
+      'Gợi ý 2: Phiên âm: /tʃiːp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-21',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 2]\nMy brother\'s room is tidier than mine.',
+    options: [
+      'tidy',
+      'bad',
+      'iron clothes',
+      'useful'
+    ],
+    correctAnswer: 'tidy',
+    explanation: 'Từ "tidy" (/ˈtaɪdi/) có nghĩa tiếng Việt là "ngăn nắp, dọn dẹp". Ví dụ: Phòng của anh trai tôi ngăn nắp hơn phòng của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngăn nắp, dọn dẹp" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈtaɪdi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-22',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 2]\nThe ________ is hot.',
+    options: [
+      'understand',
+      'smart',
+      'desert',
+      'tidy'
+    ],
+    correctAnswer: 'desert',
+    explanation: 'Từ "desert" (/ˈdezət/) có nghĩa tiếng Việt là "sa mạc". Ví dụ: Sa mạc rất nóng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sa mạc" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdezət/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-23',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - A CLOSER LOOK 2]\nThe plane is ________.',
+    options: [
+      'delicious',
+      'think',
+      'human',
+      'fast'
+    ],
+    correctAnswer: 'fast',
+    explanation: 'Từ "fast" (/fɑːst/) có nghĩa tiếng Việt là "nhanh". Ví dụ: Máy bay bay rất nhanh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhanh" (adj).',
+      'Gợi ý 2: Phiên âm: /fɑːst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-24',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - COMMUNICATION]\nI ________ with you.',
+    options: [
+      'can',
+      'agree',
+      'high',
+      'improve'
+    ],
+    correctAnswer: 'agree',
+    explanation: 'Từ "agree" (/əˈɡriː/) có nghĩa tiếng Việt là "đồng ý". Ví dụ: Tôi đồng ý với bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đồng ý" (v).',
+      'Gợi ý 2: Phiên âm: /əˈɡriː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-25',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - COMMUNICATION]\nI think robots can help a lot in our ________ life.',
+    options: [
+      'fast',
+      'ceiling',
+      'understand',
+      'daily'
+    ],
+    correctAnswer: 'daily',
+    explanation: 'Từ "daily" (/ˈdeɪli/) có nghĩa tiếng Việt là "hàng ngày". Ví dụ: Tôi nghĩ robot có thể giúp ích rất nhiều cho cuộc sống hàng ngày của chúng ta.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hàng ngày" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈdeɪli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-26',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - COMMUNICATION]\nSome people can use robots to do ________ things.',
+    options: [
+      'bad',
+      'large',
+      'machine',
+      'cheap'
+    ],
+    correctAnswer: 'bad',
+    explanation: 'Từ "bad" (/bæd/) có nghĩa tiếng Việt là "xấu, tồi tệ". Ví dụ: Một số người có thể sử dụng robot để làm những điều xấu.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "xấu, tồi tệ" (adj).',
+      'Gợi ý 2: Phiên âm: /bæd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-27',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - COMMUNICATION]\nI ________ robots can help us with anything.',
+    options: [
+      'think',
+      'make',
+      'draw',
+      'fast'
+    ],
+    correctAnswer: 'think',
+    explanation: 'Từ "think" (/θɪŋk/) có nghĩa tiếng Việt là "nghĩ, suy nghĩ". Ví dụ: Tôi nghĩ robot có thể giúp chúng ta bất cứ việc gì.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nghĩ, suy nghĩ" (v).',
+      'Gợi ý 2: Phiên âm: /θɪŋk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-28',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - COMMUNICATION]\nRobots will use too much ________ in the future.',
+    options: [
+      'cheap',
+      'housework',
+      'electricity',
+      'do the dishes'
+    ],
+    correctAnswer: 'electricity',
+    explanation: 'Từ "electricity" (/ɪˌlekˈtrɪsəti/) có nghĩa tiếng Việt là "điện, điện năng". Ví dụ: Robot sẽ tiêu thụ quá nhiều điện trong tương lai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "điện, điện năng" (n).',
+      'Gợi ý 2: Phiên âm: /ɪˌlekˈtrɪsəti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-29',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - COMMUNICATION]\nToday we ________ our friends.',
+    options: [
+      'choice',
+      'subject',
+      'design',
+      'ask'
+    ],
+    correctAnswer: 'ask',
+    explanation: 'Từ "ask" (/ɑːsk/) có nghĩa tiếng Việt là "hỏi". Ví dụ: Hôm nay chúng tôi hỏi các bạn của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hỏi" (v).',
+      'Gợi ý 2: Phiên âm: /ɑːsk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-30',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - SKILLS 1]\nWhat robots are children ________ in?',
+    options: [
+      'understand',
+      'ceiling',
+      'interested',
+      'can'
+    ],
+    correctAnswer: 'interested',
+    explanation: 'Từ "interested" (/ˈɪntrəstɪd/) có nghĩa tiếng Việt là "hứng thú, quan tâm". Ví dụ: Trẻ em hứng thú với những con robot nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hứng thú, quan tâm" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈɪntrəstɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-31',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - SKILLS 1]\nThere is an ________ robot show in Ha Noi.',
+    options: [
+      'think',
+      'international',
+      'improve',
+      'iron clothes'
+    ],
+    correctAnswer: 'international',
+    explanation: 'Từ "international" (/ˌɪntəˈnæʃnəl/) có nghĩa tiếng Việt là "quốc tế". Ví dụ: Có một triển lãm robot quốc tế tại Hà Nội.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quốc tế" (adj).',
+      'Gợi ý 2: Phiên âm: /ˌɪntəˈnæʃnəl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-32',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - SKILLS 1]\nTeacher robots are the best ________ for children.',
+    options: [
+      'robot',
+      'tidy',
+      'smart',
+      'choice'
+    ],
+    correctAnswer: 'choice',
+    explanation: 'Từ "choice" (/tʃɔɪs/) có nghĩa tiếng Việt là "sự lựa chọn". Ví dụ: Robot giáo viên là sự lựa chọn tốt nhất cho trẻ em.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sự lựa chọn" (n).',
+      'Gợi ý 2: Phiên âm: /tʃɔɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-33',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - SKILLS 1]\nThey can teach them English and ________.',
+    options: [
+      'ask',
+      'international',
+      'understand',
+      'literature'
+    ],
+    correctAnswer: 'literature',
+    explanation: 'Từ "literature" (/ˈlɪtrətʃə(r)/) có nghĩa tiếng Việt là "văn học". Ví dụ: Chúng có thể dạy các em tiếng Anh và văn học.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "văn học" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlɪtrətʃə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-34',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - SKILLS 1]\nThey can also help children ________ their English pronunciation.',
+    options: [
+      'daily',
+      'large',
+      'improve',
+      'understand'
+    ],
+    correctAnswer: 'improve',
+    explanation: 'Từ "improve" (/ɪmˈpruːv/) có nghĩa tiếng Việt là "cải thiện, nâng cao". Ví dụ: Chúng cũng có thể giúp trẻ em cải thiện khả năng phát âm tiếng Anh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cải thiện, nâng cao" (v).',
+      'Gợi ý 2: Phiên âm: /ɪmˈpruːv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-35',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - SKILLS 2]\nRobots can\'t do ________ things today.',
+    options: [
+      'electricity',
+      'internet',
+      'large',
+      'many'
+    ],
+    correctAnswer: 'many',
+    explanation: 'Từ "many" (/ˈmeni/) có nghĩa tiếng Việt là "nhiều". Ví dụ: Ngày nay robot chưa thể làm được nhiều việc.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhiều" (pronoun).',
+      'Gợi ý 2: Phiên âm: /ˈmeni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-36',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - SKILLS 2]\nTeacher robots can teach on the ________.',
+    options: [
+      'electricity',
+      'internet',
+      'sick',
+      'subject'
+    ],
+    correctAnswer: 'internet',
+    explanation: 'Từ "internet" (/ˈɪntənet/) có nghĩa tiếng Việt là "mạng Internet". Ví dụ: Robot giáo viên có thể dạy học trên internet.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mạng Internet" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɪntənet/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-37',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - LOOKING BACK]\nWe ________ go to restaurants.',
+    options: [
+      'rarely',
+      'useful',
+      'subject',
+      'sick'
+    ],
+    correctAnswer: 'rarely',
+    explanation: 'Từ "rarely" (/ˈreəli/) có nghĩa tiếng Việt là "hiếm khi". Ví dụ: Chúng tôi hiếm khi đi đến nhà hàng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hiếm khi" (adv).',
+      'Gợi ý 2: Phiên âm: /ˈreəli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-38',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - LOOKING BACK]\nWelcome to our ________.',
+    options: [
+      'company',
+      'put',
+      'many',
+      'understand'
+    ],
+    correctAnswer: 'company',
+    explanation: 'Từ "company" (/ˈkʌmpəni/) có nghĩa tiếng Việt là "công ty". Ví dụ: Chào mừng đến với công ty của chúng tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "công ty" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkʌmpəni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-39',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - LOOKING BACK]\nIt can even fly to clean the ________s.',
+    options: [
+      'ceiling',
+      'fast',
+      'international',
+      'sick'
+    ],
+    correctAnswer: 'ceiling',
+    explanation: 'Từ "ceiling" (/ˈsiːlɪŋ/) có nghĩa tiếng Việt là "trần nhà". Ví dụ: Nó thậm chí có thể bay để làm sạch trần nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trần nhà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsiːlɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-40',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - LOOKING BACK]\nIt can teach children all school ________s.',
+    options: [
+      'useful',
+      'subject',
+      'help',
+      'daily'
+    ],
+    correctAnswer: 'subject',
+    explanation: 'Từ "subject" (/ˈsʌbdʒɪkt/) có nghĩa tiếng Việt là "môn học". Ví dụ: Nó có thể dạy trẻ em tất cả các môn học ở trường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "môn học" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsʌbdʒɪkt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-41',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - LOOKING BACK]\nWhat are the ________ mountains in the world?',
+    options: [
+      'high',
+      'daily',
+      'internet',
+      'delicious'
+    ],
+    correctAnswer: 'high',
+    explanation: 'Từ "high" (/haɪ/) có nghĩa tiếng Việt là "cao". Ví dụ: Những ngọn núi cao trên thế giới là gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cao" (adj).',
+      'Gợi ý 2: Phiên âm: /haɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-42',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - LOOKING BACK]\nWhat is the ________st lake in Vietnam?',
+    options: [
+      'internet',
+      'large',
+      'iron clothes',
+      'improve'
+    ],
+    correctAnswer: 'large',
+    explanation: 'Từ "large" (/lɑːdʒ/) có nghĩa tiếng Việt là "lớn, rộng lớn". Ví dụ: Hồ lớn nhất ở Việt Nam là gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lớn, rộng lớn" (adj).',
+      'Gợi ý 2: Phiên âm: /lɑːdʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-43',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - LOOKING BACK]\nWhat is the ________st river in the world?',
+    options: [
+      'international',
+      'literature',
+      'do the dishes',
+      'wide'
+    ],
+    correctAnswer: 'wide',
+    explanation: 'Từ "wide" (/waɪd/) có nghĩa tiếng Việt là "rộng". Ví dụ: Con sông rộng nhất trên thế giới là gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rộng" (adj).',
+      'Gợi ý 2: Phiên âm: /waɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-44',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - PROJECT]\nRobot ________ competition.',
+    options: [
+      'tidy',
+      'smart',
+      'cheap',
+      'design'
+    ],
+    correctAnswer: 'design',
+    explanation: 'Từ "design" (/dɪˈzaɪn/) có nghĩa tiếng Việt là "thiết kế, bản thiết kế". Ví dụ: Cuộc thi thiết kế robot.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thiết kế, bản thiết kế" (v).',
+      'Gợi ý 2: Phiên âm: /dɪˈzaɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-45',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - PROJECT]\n________ your robots here.',
+    options: [
+      'strong',
+      'draw',
+      'ask',
+      'agree'
+    ],
+    correctAnswer: 'draw',
+    explanation: 'Từ "draw" (/drɔː/) có nghĩa tiếng Việt là "vẽ". Ví dụ: Vẽ robot của bạn ở đây.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vẽ" (v).',
+      'Gợi ý 2: Phiên âm: /drɔː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u12-v-46',
+    unitId: 'unit-12',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 12: ROBOTS - PROJECT]\nWhat ________ it do?',
+    options: [
+      'many',
+      'can',
+      'help',
+      'iron clothes'
+    ],
+    correctAnswer: 'can',
+    explanation: 'Từ "can" (/kæn/) có nghĩa tiếng Việt là "có thể". Ví dụ: Nó có thể làm được gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có thể" (v).',
+      'Gợi ý 2: Phiên âm: /kæn/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
