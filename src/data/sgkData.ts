@@ -15101,6 +15101,1446 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /ˈreslɪŋ/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-1',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nAre these photos from your ________s?',
+    options: [
+      'boat',
+      'cub',
+      'shoes',
+      'holiday'
+    ],
+    correctAnswer: 'holiday',
+    explanation: 'Từ "holiday" (/ˈhɒlədeɪ/) có nghĩa tiếng Việt là "kỳ nghỉ, ngày nghỉ". Ví dụ: Đây có phải là những bức ảnh từ những ngày nghỉ của bạn không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kỳ nghỉ, ngày nghỉ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈhɒlədeɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-2',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nThis is Sydney, a city in ________.',
+    options: [
+      'Australia',
+      'snow',
+      'city',
+      'building'
+    ],
+    correctAnswer: 'Australia',
+    explanation: 'Từ "Australia" (/ɒsˈtreɪliə/) có nghĩa tiếng Việt là "nước Úc". Ví dụ: Đây là Sydney, một thành phố ở Úc.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nước Úc" (n).',
+      'Gợi ý 2: Phiên âm: /ɒsˈtreɪliə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-3',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nIt is ________.',
+    options: [
+      'photo',
+      'feel',
+      'exciting',
+      'around'
+    ],
+    correctAnswer: 'exciting',
+    explanation: 'Từ "exciting" (/ɪkˈsaɪtɪŋ/) có nghĩa tiếng Việt là "thú vị, sôi động". Ví dụ: Thật là thú vị.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thú vị, sôi động" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪkˈsaɪtɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-4',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nIt\'s so exciting with a lot of ________es.',
+    options: [
+      'beach',
+      'time',
+      'delicious',
+      'bark'
+    ],
+    correctAnswer: 'beach',
+    explanation: 'Từ "beach" (/biːtʃ/) có nghĩa tiếng Việt là "bãi biển". Ví dụ: Thật thú vị với rất nhiều bãi biển.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bãi biển" (n).',
+      'Gợi ý 2: Phiên âm: /biːtʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-5',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nWhat a beautiful ________!',
+    options: [
+      'place',
+      'sea',
+      'map',
+      'Australia'
+    ],
+    correctAnswer: 'place',
+    explanation: 'Từ "place" (/pleɪs/) có nghĩa tiếng Việt là "địa điểm, nơi". Ví dụ: Thật là một nơi tuyệt đẹp!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "địa điểm, nơi" (n).',
+      'Gợi ý 2: Phiên âm: /pleɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-6',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nIts beaches are very ________.',
+    options: [
+      'Swedish',
+      'city',
+      'dress',
+      'clean'
+    ],
+    correctAnswer: 'clean',
+    explanation: 'Từ "clean" (/kliːn/) có nghĩa tiếng Việt là "sạch sẽ". Ví dụ: Các bãi biển của nó rất sạch sẽ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sạch sẽ" (adj).',
+      'Gợi ý 2: Phiên âm: /kliːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-7',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nThis is ________.',
+    options: [
+      'roof',
+      'bicycle',
+      'food',
+      'London'
+    ],
+    correctAnswer: 'London',
+    explanation: 'Từ "London" (/ˈlʌndən/) có nghĩa tiếng Việt là "Luân Đôn". Ví dụ: Đây là Luân Đôn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "Luân Đôn" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlʌndən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-8',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nIs it ________ing?',
+    options: [
+      'dress',
+      'city',
+      'market',
+      'rain'
+    ],
+    correctAnswer: 'rain',
+    explanation: 'Từ "rain" (/reɪn/) có nghĩa tiếng Việt là "mưa, cơn mưa". Ví dụ: Trời đang mưa phải không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mưa, cơn mưa" (n).',
+      'Gợi ý 2: Phiên âm: /reɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-9',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nWhat ________ weather!',
+    options: [
+      'square',
+      'postcard',
+      'bad',
+      'lion'
+    ],
+    correctAnswer: 'bad',
+    explanation: 'Từ "bad" (/bæd/) có nghĩa tiếng Việt là "tồi tệ, xấu". Ví dụ: Thời tiết thật tệ!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tồi tệ, xấu" (adj).',
+      'Gợi ý 2: Phiên âm: /bæd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-10',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nIt rains all the ________.',
+    options: [
+      'time',
+      'city',
+      'fantastic',
+      'pagoda'
+    ],
+    correctAnswer: 'time',
+    explanation: 'Từ "time" (/taɪm/) có nghĩa tiếng Việt là "thời gian". Ví dụ: Lúc nào trời cũng mưa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời gian" (n).',
+      'Gợi ý 2: Phiên âm: /taɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-11',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nCan you ________ Big Ben?',
+    options: [
+      'food',
+      'country',
+      'see',
+      'bell'
+    ],
+    correctAnswer: 'see',
+    explanation: 'Từ "see" (/siː/) có nghĩa tiếng Việt là "nhìn thấy". Ví dụ: Bạn có thấy tháp Big Ben không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhìn thấy" (v).',
+      'Gợi ý 2: Phiên âm: /siː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-12',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nIt is a ________ of London.',
+    options: [
+      'expensive',
+      'landmark',
+      'theatre',
+      'rain'
+    ],
+    correctAnswer: 'landmark',
+    explanation: 'Từ "landmark" (/ˈlændmɑːk/) có nghĩa tiếng Việt là "thắng cảnh, công trình biểu tượng". Ví dụ: Nó là một biểu tượng của London.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thắng cảnh, công trình biểu tượng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlændmɑːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-13',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nThis is Times ________ in New York.',
+    options: [
+      'dress',
+      'snow',
+      'perfect',
+      'square'
+    ],
+    correctAnswer: 'square',
+    explanation: 'Từ "square" (/skweə(r)/) có nghĩa tiếng Việt là "quảng trường". Ví dụ: Đây là Quảng trường Thời đại ở New York.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quảng trường" (n).',
+      'Gợi ý 2: Phiên âm: /skweə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-14',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nIt is ________ but interesting.',
+    options: [
+      'dress',
+      'time',
+      'crowded',
+      'old'
+    ],
+    correctAnswer: 'crowded',
+    explanation: 'Từ "crowded" (/ˈkraʊdɪd/) có nghĩa tiếng Việt là "đông đúc". Ví dụ: Nó đông đúc nhưng thú vị.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đông đúc" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈkraʊdɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-15',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nYou are ________ to visit many places.',
+    options: [
+      'friendly',
+      'tower',
+      'lucky',
+      'present'
+    ],
+    correctAnswer: 'lucky',
+    explanation: 'Từ "lucky" (/ˈlʌki/) có nghĩa tiếng Việt là "may mắn". Ví dụ: Bạn thật may mắn khi được thăm nhiều nơi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "may mắn" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈlʌki/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-16',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - GETTING STARTED]\nHere are some ________s of mine.',
+    options: [
+      'Swedish',
+      'photo',
+      'feel',
+      'old'
+    ],
+    correctAnswer: 'photo',
+    explanation: 'Từ "photo" (/ˈfəʊtəʊ/) có nghĩa tiếng Việt là "bức ảnh". Ví dụ: Đây là một số bức ảnh của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bức ảnh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfəʊtəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-17',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nWhat\'s the weather like in Sydney in ________?',
+    options: [
+      'shoes',
+      'crowded',
+      'summer',
+      'cub'
+    ],
+    correctAnswer: 'summer',
+    explanation: 'Từ "summer" (/ˈsʌmə(r)/) có nghĩa tiếng Việt là "mùa hè". Ví dụ: Thời tiết ở Sydney vào mùa hè như thế nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mùa hè" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsʌmə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-18',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nWe took turns rowing the ________ up the river.',
+    options: [
+      'boat',
+      'friendly',
+      'shoes',
+      'bark'
+    ],
+    correctAnswer: 'boat',
+    explanation: 'Từ "boat" (/bəʊt/) có nghĩa tiếng Việt là "con thuyền". Ví dụ: Chúng tôi thay nhau chèo thuyền ngược sông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con thuyền" (n).',
+      'Gợi ý 2: Phiên âm: /bəʊt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-19',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nIt is ________.',
+    options: [
+      'dry',
+      'time',
+      'stall',
+      'coast'
+    ],
+    correctAnswer: 'dry',
+    explanation: 'Từ "dry" (/draɪ/) có nghĩa tiếng Việt là "khô ráo". Ví dụ: Trời khô ráo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khô ráo" (adj).',
+      'Gợi ý 2: Phiên âm: /draɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-20',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nI love ________.',
+    options: [
+      'food',
+      'paint',
+      'dress',
+      'cub'
+    ],
+    correctAnswer: 'food',
+    explanation: 'Từ "food" (/fuːd/) có nghĩa tiếng Việt là "thức ăn, đồ ăn". Ví dụ: Tôi yêu đồ ăn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thức ăn, đồ ăn" (n).',
+      'Gợi ý 2: Phiên âm: /fuːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-21',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nI ________ that they can tell stories.',
+    options: [
+      'food',
+      'feel',
+      'old',
+      'friend'
+    ],
+    correctAnswer: 'feel',
+    explanation: 'Từ "feel" (/fiːl/) có nghĩa tiếng Việt là "cảm thấy". Ví dụ: Tôi cảm thấy rằng họ có thể kể những câu chuyện.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cảm thấy" (v).',
+      'Gợi ý 2: Phiên âm: /fiːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-22',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nIt\'s very ________.',
+    options: [
+      'old',
+      'cub',
+      'holiday',
+      'country'
+    ],
+    correctAnswer: 'old',
+    explanation: 'Từ "old" (/əʊld/) có nghĩa tiếng Việt là "cũ, cổ kính". Ví dụ: Nó rất cổ kính.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cũ, cổ kính" (adj).',
+      'Gợi ý 2: Phiên âm: /əʊld/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-23',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nThe people in the city are nice and ________.',
+    options: [
+      'stall',
+      'bark',
+      'helpful',
+      'country'
+    ],
+    correctAnswer: 'helpful',
+    explanation: 'Từ "helpful" (/ˈhelpfl/) có nghĩa tiếng Việt là "hay giúp đỡ, hữu ích". Ví dụ: Người dân trong thành phố rất tốt bụng và hay giúp đỡ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hay giúp đỡ, hữu ích" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈhelpfl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-24',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nHanoi is ________ for its street food.',
+    options: [
+      'famous',
+      'dress',
+      'exciting',
+      'snow'
+    ],
+    correctAnswer: 'famous',
+    explanation: 'Từ "famous" (/ˈfeɪməs/) có nghĩa tiếng Việt là "nổi tiếng". Ví dụ: Hà Nội nổi tiếng với đồ ăn đường phố.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nổi tiếng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfeɪməs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-25',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nThe ________ is crowded at the weekend.',
+    options: [
+      'friend',
+      'town',
+      'weather',
+      'lucky'
+    ],
+    correctAnswer: 'town',
+    explanation: 'Từ "town" (/taʊn/) có nghĩa tiếng Việt là "thị trấn". Ví dụ: Thị trấn đông đúc vào cuối tuần.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thị trấn" (n).',
+      'Gợi ý 2: Phiên âm: /taʊn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-26',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nThere is lots of ________.',
+    options: [
+      'journey',
+      'snow',
+      'bell',
+      'map'
+    ],
+    correctAnswer: 'snow',
+    explanation: 'Từ "snow" (/snəʊ/) có nghĩa tiếng Việt là "tuyết". Ví dụ: Có rất nhiều tuyết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tuyết" (n).',
+      'Gợi ý 2: Phiên âm: /snəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-27',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nIt is very ________.',
+    options: [
+      'clean',
+      'shoes',
+      'cold',
+      'square'
+    ],
+    correctAnswer: 'cold',
+    explanation: 'Từ "cold" (/kəʊld/) có nghĩa tiếng Việt là "lạnh". Ví dụ: Trời rất lạnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lạnh" (adj).',
+      'Gợi ý 2: Phiên âm: /kəʊld/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-28',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nIt is very cold at the ________.',
+    options: [
+      'expensive',
+      'feel',
+      'pagoda',
+      'cartoon'
+    ],
+    correctAnswer: 'pagoda',
+    explanation: 'Từ "pagoda" (/pəˈɡəʊdə/) có nghĩa tiếng Việt là "ngôi chùa". Ví dụ: Ở chùa rất lạnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngôi chùa" (n).',
+      'Gợi ý 2: Phiên âm: /pəˈɡəʊdə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-29',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 1]\nHe\'s running ________ the house.',
+    options: [
+      'around',
+      'clean',
+      'city',
+      'sky'
+    ],
+    correctAnswer: 'around',
+    explanation: 'Từ "around" (/əˈraʊnd/) có nghĩa tiếng Việt là "xung quanh". Ví dụ: Anh ấy đang chạy quanh nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "xung quanh" (prep).',
+      'Gợi ý 2: Phiên âm: /əˈraʊnd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-30',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nThey cannot find their city ________ anyway.',
+    options: [
+      'map',
+      'pagoda',
+      'bark',
+      'bell'
+    ],
+    correctAnswer: 'map',
+    explanation: 'Từ "map" (/mæp/) có nghĩa tiếng Việt là "bản đồ". Ví dụ: Họ không thể tìm thấy bản đồ thành phố của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bản đồ" (n).',
+      'Gợi ý 2: Phiên âm: /mæp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-31',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nI love ________s.',
+    options: [
+      'dry',
+      'photo',
+      'cartoon',
+      'visitor'
+    ],
+    correctAnswer: 'cartoon',
+    explanation: 'Từ "cartoon" (/kɑːˈtuːn/) có nghĩa tiếng Việt là "phim hoạt hình". Ví dụ: Tôi yêu phim hoạt hình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phim hoạt hình" (n).',
+      'Gợi ý 2: Phiên âm: /kɑːˈtuːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-32',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nMy ________ cartoon is Dragon Ball.',
+    options: [
+      'favourite',
+      'map',
+      'rain',
+      'holiday'
+    ],
+    correctAnswer: 'favourite',
+    explanation: 'Từ "favourite" (/ˈfeɪvərɪt/) có nghĩa tiếng Việt là "yêu thích". Ví dụ: Phim hoạt hình yêu thích của tôi là Bảy viên ngọc rồng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "yêu thích" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfeɪvərɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-33',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nThe ________ has three cubs.',
+    options: [
+      'lion',
+      'roof',
+      'present',
+      'park'
+    ],
+    correctAnswer: 'lion',
+    explanation: 'Từ "lion" (/ˈlaɪən/) có nghĩa tiếng Việt là "con sư tử". Ví dụ: Sư tử mẹ có ba con sư tử con.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con sư tử" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlaɪən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-34',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nThe ________s are playing under the big tree.',
+    options: [
+      'park',
+      'capital',
+      'narrow',
+      'cub'
+    ],
+    correctAnswer: 'cub',
+    explanation: 'Từ "cub" (/kʌb/) có nghĩa tiếng Việt là "thú con (sư tử, hổ...)". Ví dụ: Những chú sư tử con đang chơi đùa dưới gốc cây lớn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thú con (sư tử, hổ...)" (n).',
+      'Gợi ý 2: Phiên âm: /kʌb/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-35',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nDo you know my ________ Anna?',
+    options: [
+      'friend',
+      'old',
+      'summer',
+      'famous'
+    ],
+    correctAnswer: 'friend',
+    explanation: 'Từ "friend" (/frend/) có nghĩa tiếng Việt là "người bạn". Ví dụ: Bạn có biết bạn tôi Anna không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "người bạn" (n).',
+      'Gợi ý 2: Phiên âm: /frend/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-36',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nMy house is close to the ________.',
+    options: [
+      'park',
+      'sea',
+      'roof',
+      'snow'
+    ],
+    correctAnswer: 'park',
+    explanation: 'Từ "park" (/pɑːk/) có nghĩa tiếng Việt là "công viên". Ví dụ: Nhà tôi ở gần công viên.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "công viên" (n).',
+      'Gợi ý 2: Phiên âm: /pɑːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-37',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nMy country is famous for ________.',
+    options: [
+      'chocolate',
+      'bicycle',
+      'paint',
+      'time'
+    ],
+    correctAnswer: 'chocolate',
+    explanation: 'Từ "chocolate" (/ˈtʃɒklət/) có nghĩa tiếng Việt là "sô-cô-la". Ví dụ: Đất nước tôi nổi tiếng về sô-cô-la.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sô-cô-la" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtʃɒklət/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-38',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nShe doesn\'t like her new ________.',
+    options: [
+      'sunny',
+      'chocolate',
+      'dress',
+      'helpful'
+    ],
+    correctAnswer: 'dress',
+    explanation: 'Từ "dress" (/dres/) có nghĩa tiếng Việt là "cái váy". Ví dụ: Cô ấy không thích chiếc váy mới của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái váy" (n).',
+      'Gợi ý 2: Phiên âm: /dres/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-39',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nHe is riding his ________.',
+    options: [
+      'roof',
+      'fantastic',
+      'bicycle',
+      'pagoda'
+    ],
+    correctAnswer: 'bicycle',
+    explanation: 'Từ "bicycle" (/ˈbaɪsɪkl/) có nghĩa tiếng Việt là "xe đạp". Ví dụ: Anh ấy đang đi xe đạp của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "xe đạp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbaɪsɪkl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-40',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nThe cat is playing with its ________.',
+    options: [
+      'around',
+      'ball',
+      'crowded',
+      'fantastic'
+    ],
+    correctAnswer: 'ball',
+    explanation: 'Từ "ball" (/bɔːl/) có nghĩa tiếng Việt là "quả bóng". Ví dụ: Con mèo đang chơi với quả bóng của nó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quả bóng" (n).',
+      'Gợi ý 2: Phiên âm: /bɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-41',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nThey are ________ing their room pink.',
+    options: [
+      'paint',
+      'stall',
+      'helmet',
+      'theatre'
+    ],
+    correctAnswer: 'paint',
+    explanation: 'Từ "paint" (/peɪnt/) có nghĩa tiếng Việt là "sơn, vẽ". Ví dụ: Họ đang sơn phòng của mình màu hồng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sơn, vẽ" (v).',
+      'Gợi ý 2: Phiên âm: /peɪnt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-42',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nThis is a ________ for you.',
+    options: [
+      'present',
+      'coast',
+      'lucky',
+      'map'
+    ],
+    correctAnswer: 'present',
+    explanation: 'Từ "present" (/ˈpreznt/) có nghĩa tiếng Việt là "món quà". Ví dụ: Đây là một món quà dành cho bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "món quà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpreznt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-43',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nMy father has new ________.',
+    options: [
+      'shoes',
+      'tower',
+      'pagoda',
+      'exciting'
+    ],
+    correctAnswer: 'shoes',
+    explanation: 'Từ "shoes" (/ʃuːz/) có nghĩa tiếng Việt là "đôi giày". Ví dụ: Bố tôi có đôi giày mới.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đôi giày" (n).',
+      'Gợi ý 2: Phiên âm: /ʃuːz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-44',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nAll of its big cities are along the ________.',
+    options: [
+      'tower',
+      'coast',
+      'feel',
+      'landmark'
+    ],
+    correctAnswer: 'coast',
+    explanation: 'Từ "coast" (/kəʊst/) có nghĩa tiếng Việt là "bờ biển". Ví dụ: Tất cả các thành phố lớn của nó đều nằm dọc bờ biển.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bờ biển" (n).',
+      'Gợi ý 2: Phiên âm: /kəʊst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-45',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nAustralia is a strange ________.',
+    options: [
+      'lion',
+      'dry',
+      'summer',
+      'country'
+    ],
+    correctAnswer: 'country',
+    explanation: 'Từ "country" (/ˈkʌntri/) có nghĩa tiếng Việt là "đất nước, quốc gia". Ví dụ: Úc là một đất nước kỳ lạ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đất nước, quốc gia" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkʌntri/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-46',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - A CLOSER LOOK 2]\nOur street is short and ________.',
+    options: [
+      'narrow',
+      'photo',
+      'friendly',
+      'roof'
+    ],
+    correctAnswer: 'narrow',
+    explanation: 'Từ "narrow" (/ˈnærəʊ/) có nghĩa tiếng Việt là "hẹp, chật hẹp". Ví dụ: Con đường của chúng tôi ngắn và hẹp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hẹp, chật hẹp" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈnærəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-47',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nEvery year, millions of ________s climb to its top.',
+    options: [
+      'lion',
+      'favourite',
+      'perfect',
+      'visitor'
+    ],
+    correctAnswer: 'visitor',
+    explanation: 'Từ "visitor" (/ˈvɪzɪtə(r)/) có nghĩa tiếng Việt là "du khách, khách tham quan". Ví dụ: Mỗi năm, hàng triệu du khách leo lên đỉnh của nó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "du khách, khách tham quan" (n).',
+      'Gợi ý 2: Phiên âm: /ˈvɪzɪtə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-48',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nWhat a nice ________!',
+    options: [
+      'bell',
+      'pagoda',
+      'around',
+      'city'
+    ],
+    correctAnswer: 'city',
+    explanation: 'Từ "city" (/ˈsɪti/) có nghĩa tiếng Việt là "thành phố". Ví dụ: Thật là một thành phố đẹp!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thành phố" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsɪti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-49',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nWhat a clear ________!',
+    options: [
+      'boat',
+      'summer',
+      'Australia',
+      'sky'
+    ],
+    correctAnswer: 'sky',
+    explanation: 'Từ "sky" (/skaɪ/) có nghĩa tiếng Việt là "bầu trời". Ví dụ: Bầu trời quang đãng làm sao!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bầu trời" (n).',
+      'Gợi ý 2: Phiên âm: /skaɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-50',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nWhat tall ________s!',
+    options: [
+      'visitor',
+      'shoes',
+      'building',
+      'friend'
+    ],
+    correctAnswer: 'building',
+    explanation: 'Từ "building" (/ˈbɪldɪŋ/) có nghĩa tiếng Việt là "tòa nhà". Ví dụ: Những tòa nhà cao tầng làm sao!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tòa nhà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbɪldɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-51',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nThe dog is so ________.',
+    options: [
+      'expensive',
+      'building',
+      'summer',
+      'friendly'
+    ],
+    correctAnswer: 'friendly',
+    explanation: 'Từ "friendly" (/ˈfrendli/) có nghĩa tiếng Việt là "thân thiện". Ví dụ: Con chó rất thân thiện.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thân thiện" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfrendli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-52',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nIt never ________s.',
+    options: [
+      'bark',
+      'Swedish',
+      'helpful',
+      'summer'
+    ],
+    correctAnswer: 'bark',
+    explanation: 'Từ "bark" (/bɑːk/) có nghĩa tiếng Việt là "sủa". Ví dụ: Nó không bao giờ sủa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sủa" (v).',
+      'Gợi ý 2: Phiên âm: /bɑːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-53',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nThe people of Quang Nam are proud of their ________ town.',
+    options: [
+      'beach',
+      'place',
+      'Swedish',
+      'ancient'
+    ],
+    correctAnswer: 'ancient',
+    explanation: 'Từ "ancient" (/ˈeɪnʃənt/) có nghĩa tiếng Việt là "cổ kính, cổ xưa". Ví dụ: Người dân Quảng Nam tự hào về phố cổ của họ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cổ kính, cổ xưa" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈeɪnʃənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-54',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nThis is my ________.',
+    options: [
+      'sky',
+      'capital',
+      'postcard',
+      'pagoda'
+    ],
+    correctAnswer: 'capital',
+    explanation: 'Từ "capital" (/ˈkæpɪtl/) có nghĩa tiếng Việt là "thủ đô". Ví dụ: Đây là thủ đô của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thủ đô" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkæpɪtl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-55',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nThis ________ is on the bank.',
+    options: [
+      'tower',
+      'roof',
+      'holiday',
+      'chocolate'
+    ],
+    correctAnswer: 'tower',
+    explanation: 'Từ "tower" (/ˈtaʊə(r)/) có nghĩa tiếng Việt là "ngọn tháp". Ví dụ: Ngọn tháp này nằm trên bờ sông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngọn tháp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtaʊə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-56',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nThere is a big clock and a ________.',
+    options: [
+      'expensive',
+      'narrow',
+      'coast',
+      'bell'
+    ],
+    correctAnswer: 'bell',
+    explanation: 'Từ "bell" (/bel/) có nghĩa tiếng Việt là "cái chuông". Ví dụ: Có một chiếc đồng hồ lớn và một cái chuông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái chuông" (n).',
+      'Gợi ý 2: Phiên âm: /bel/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-57',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nIt is a ________.',
+    options: [
+      'friendly',
+      'cartoon',
+      'sunny',
+      'theatre'
+    ],
+    correctAnswer: 'theatre',
+    explanation: 'Từ "theatre" (/ˈθɪətə(r)/) có nghĩa tiếng Việt là "nhà hát". Ví dụ: Đó là một nhà hát.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà hát" (n).',
+      'Gợi ý 2: Phiên âm: /ˈθɪətə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-58',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - COMMUNICATION]\nIts ________s are white and look like shells.',
+    options: [
+      'Swedish',
+      'stall',
+      'cub',
+      'roof'
+    ],
+    correctAnswer: 'roof',
+    explanation: 'Từ "roof" (/ruːf/) có nghĩa tiếng Việt là "mái nhà". Ví dụ: Mái nhà của nó màu trắng và trông giống như những chiếc vỏ sò.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mái nhà" (n).',
+      'Gợi ý 2: Phiên âm: /ruːf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-59',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 1]\nWhen do people write a ________?',
+    options: [
+      'postcard',
+      'around',
+      'helmet',
+      'tower'
+    ],
+    correctAnswer: 'postcard',
+    explanation: 'Từ "postcard" (/ˈpəʊstkɑːd/) có nghĩa tiếng Việt là "bưu thiếp". Ví dụ: Khi nào mọi người viết bưu thiếp?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bưu thiếp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpəʊstkɑːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-60',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 1]\nGuests can see ________ art in the hotel.',
+    options: [
+      'Swedish',
+      'roof',
+      'summer',
+      'helpful'
+    ],
+    correctAnswer: 'Swedish',
+    explanation: 'Từ "Swedish" (/ˈswiːdɪʃ/) có nghĩa tiếng Việt là "thuộc Thụy Điển". Ví dụ: Du khách có thể ngắm nghệ thuật Thụy Điển trong khách sạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thuộc Thụy Điển" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈswiːdɪʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-61',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 1]\nStockholm is ________.',
+    options: [
+      'capital',
+      'fantastic',
+      'helpful',
+      'see'
+    ],
+    correctAnswer: 'fantastic',
+    explanation: 'Từ "fantastic" (/fænˈtæstɪk/) có nghĩa tiếng Việt là "tuyệt vời". Ví dụ: Stockholm thật tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tuyệt vời" (adj).',
+      'Gợi ý 2: Phiên âm: /fænˈtæstɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-62',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 1]\nIts weather is ________.',
+    options: [
+      'snow',
+      'clean',
+      'London',
+      'perfect'
+    ],
+    correctAnswer: 'perfect',
+    explanation: 'Từ "perfect" (/ˈpɜːfɪkt/) có nghĩa tiếng Việt là "hoàn hảo". Ví dụ: Thời tiết ở đó thật hoàn hảo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hoàn hảo" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈpɜːfɪkt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-63',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 1]\nIt has a ________ and a gym.',
+    options: [
+      'country',
+      'tower',
+      'landmark',
+      'swimming pool'
+    ],
+    correctAnswer: 'swimming pool',
+    explanation: 'Từ "swimming pool" (/ˈswɪmɪŋ puːl/) có nghĩa tiếng Việt là "hồ bơi". Ví dụ: Nó có một hồ bơi và một phòng tập thể dục.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hồ bơi" (n).',
+      'Gợi ý 2: Phiên âm: /ˈswɪmɪŋ puːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-64',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 1]\nIt offers a ________ breakfast.',
+    options: [
+      'summer',
+      'old',
+      'delicious',
+      'bicycle'
+    ],
+    correctAnswer: 'delicious',
+    explanation: 'Từ "delicious" (/dɪˈlɪʃəs/) có nghĩa tiếng Việt là "ngon miệng". Ví dụ: Nó phục vụ một bữa sáng rất ngon.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngon miệng" (adj).',
+      'Gợi ý 2: Phiên âm: /dɪˈlɪʃəs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-65',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 1]\nMy parents wore their ________s.',
+    options: [
+      'photo',
+      'bicycle',
+      'helmet',
+      'lucky'
+    ],
+    correctAnswer: 'helmet',
+    explanation: 'Từ "helmet" (/ˈhelmɪt/) có nghĩa tiếng Việt là "mũ bảo hiểm". Ví dụ: Bố mẹ tôi đã đội mũ bảo hiểm của họ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mũ bảo hiểm" (n).',
+      'Gợi ý 2: Phiên âm: /ˈhelmɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-66',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 2]\nThai people are at a ________.',
+    options: [
+      'beach',
+      'market',
+      'cold',
+      'stall'
+    ],
+    correctAnswer: 'market',
+    explanation: 'Từ "market" (/ˈmɑːkɪt/) có nghĩa tiếng Việt là "khu chợ". Ví dụ: Người Thái đang ở một khu chợ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu chợ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈmɑːkɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-67',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 2]\nThings at Chatuchak market are not ________.',
+    options: [
+      'expensive',
+      'friend',
+      'shoes',
+      'food'
+    ],
+    correctAnswer: 'expensive',
+    explanation: 'Từ "expensive" (/ɪkˈspensɪv/) có nghĩa tiếng Việt là "đắt đỏ". Ví dụ: Hàng hóa ở chợ Chatuchak không đắt.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đắt đỏ" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪkˈspensɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-68',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 2]\nThe floating market is on the river, not the ________.',
+    options: [
+      'feel',
+      'ancient',
+      'bicycle',
+      'sea'
+    ],
+    correctAnswer: 'sea',
+    explanation: 'Từ "sea" (/siː/) có nghĩa tiếng Việt là "biển". Ví dụ: Chợ nổi ở trên sông, không phải trên biển.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "biển" (n).',
+      'Gợi ý 2: Phiên âm: /siː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-69',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - SKILLS 2]\nYou can find food ________s all around Bangkok.',
+    options: [
+      'stall',
+      'sea',
+      'summer',
+      'favourite'
+    ],
+    correctAnswer: 'stall',
+    explanation: 'Từ "stall" (/stɔːl/) có nghĩa tiếng Việt là "quầy hàng, gian hàng". Ví dụ: Bạn có thể tìm thấy các quầy thức ăn khắp Bangkok.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quầy hàng, gian hàng" (n).',
+      'Gợi ý 2: Phiên âm: /stɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-70',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - LOOKING BACK]\nThe weather is ________.',
+    options: [
+      'shoes',
+      'sunny',
+      'exciting',
+      'tower'
+    ],
+    correctAnswer: 'sunny',
+    explanation: 'Từ "sunny" (/ˈsʌni/) có nghĩa tiếng Việt là "có nắng, nắng". Ví dụ: Trời nắng đẹp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có nắng, nắng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈsʌni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-71',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - PROJECT]\nMy ________ around the world.',
+    options: [
+      'journey',
+      'famous',
+      'cub',
+      'delicious'
+    ],
+    correctAnswer: 'journey',
+    explanation: 'Từ "journey" (/ˈdʒɜːni/) có nghĩa tiếng Việt là "hành trình, chuyến đi". Ví dụ: Hành trình vòng quanh thế giới của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hành trình, chuyến đi" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdʒɜːni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u9-v-72',
+    unitId: 'unit-9',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 9: CITIES OF THE WORLD - PROJECT]\nWhat is the ________ like there?',
+    options: [
+      'old',
+      'weather',
+      'around',
+      'bark'
+    ],
+    correctAnswer: 'weather',
+    explanation: 'Từ "weather" (/ˈweðə(r)/) có nghĩa tiếng Việt là "thời tiết". Ví dụ: Thời tiết ở đó thế nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời tiết" (n).',
+      'Gợi ý 2: Phiên âm: /ˈweðə(r)/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
