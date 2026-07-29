@@ -16541,6 +16541,1146 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /ˈweðə(r)/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-1',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nWe are going on a ________ tomorrow.',
+    options: [
+      'temple',
+      'instead of',
+      'picnic',
+      'waste'
+    ],
+    correctAnswer: 'picnic',
+    explanation: 'Từ "picnic" (/ˈpɪknɪk/) có nghĩa tiếng Việt là "chuyến dã ngoại". Ví dụ: Chúng ta sẽ đi dã ngoại vào ngày mai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chuyến dã ngoại" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpɪknɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-2',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nWhat are you doing at the ________?',
+    options: [
+      'bag',
+      'president',
+      'plastic',
+      'supermarket'
+    ],
+    correctAnswer: 'supermarket',
+    explanation: 'Từ "supermarket" (/ˈsuːpəmɑːkɪt/) có nghĩa tiếng Việt là "siêu thị". Ví dụ: Bạn đang làm gì ở siêu thị?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "siêu thị" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsuːpəmɑːkɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-3',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nI\'m buying some ________s.',
+    options: [
+      'classmate',
+      'egg',
+      'waste',
+      'save'
+    ],
+    correctAnswer: 'egg',
+    explanation: 'Từ "egg" (/eɡ/) có nghĩa tiếng Việt là "quả trứng". Ví dụ: Tôi đang mua một ít trứng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quả trứng" (n).',
+      'Gợi ý 2: Phiên âm: /eɡ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-4',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nIt is a ________ shopping bag.',
+    options: [
+      'reusable',
+      'plastic',
+      'idea',
+      'food'
+    ],
+    correctAnswer: 'reusable',
+    explanation: 'Từ "reusable" (/ˌriːˈjuːzəbl/) có nghĩa tiếng Việt là "có thể tái sử dụng". Ví dụ: Nó là một chiếc túi mua sắm có thể tái sử dụng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có thể tái sử dụng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˌriːˈjuːzəbl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-5',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nIt\'s better than a ________ one.',
+    options: [
+      'environment',
+      'material',
+      'plastic',
+      'instead of'
+    ],
+    correctAnswer: 'plastic',
+    explanation: 'Từ "plastic" (/ˈplæstɪk/) có nghĩa tiếng Việt là "nhựa, bằng nhựa". Ví dụ: Nó tốt hơn một chiếc túi nhựa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhựa, bằng nhựa" (n).',
+      'Gợi ý 2: Phiên âm: /ˈplæstɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-6',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nWe all use this kind of ________.',
+    options: [
+      'die',
+      'fresh',
+      'classroom',
+      'bag'
+    ],
+    correctAnswer: 'bag',
+    explanation: 'Từ "bag" (/bæɡ/) có nghĩa tiếng Việt là "cái túi". Ví dụ: Tất cả chúng tôi đều dùng loại túi này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái túi" (n).',
+      'Gợi ý 2: Phiên âm: /bæɡ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-7',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nI will ________ one for my mom.',
+    options: [
+      'cycling',
+      'will',
+      'less',
+      'buy'
+    ],
+    correctAnswer: 'buy',
+    explanation: 'Từ "buy" (/baɪ/) có nghĩa tiếng Việt là "mua". Ví dụ: Tôi sẽ mua một cái cho mẹ tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mua" (v).',
+      'Gợi ý 2: Phiên âm: /baɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-8',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\n________ is good for health.',
+    options: [
+      'cycling',
+      'dirty',
+      'environment',
+      'plant'
+    ],
+    correctAnswer: 'cycling',
+    explanation: 'Từ "cycling" (/ˈsaɪklɪŋ/) có nghĩa tiếng Việt là "việc đi xe đạp". Ví dụ: Đi xe đạp rất tốt cho sức khỏe.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "việc đi xe đạp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsaɪklɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-9',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nThe ________ will be cleaner.',
+    options: [
+      'classroom',
+      'air',
+      'cycling',
+      'bin'
+    ],
+    correctAnswer: 'air',
+    explanation: 'Từ "air" (/eə(r)/) có nghĩa tiếng Việt là "không khí". Ví dụ: Không khí sẽ sạch hơn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "không khí" (n).',
+      'Gợi ý 2: Phiên âm: /eə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-10',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nThey will help the ________.',
+    options: [
+      'flood',
+      'environment',
+      'waste',
+      'fresh'
+    ],
+    correctAnswer: 'environment',
+    explanation: 'Từ "environment" (/ɪnˈvaɪrənmənt/) có nghĩa tiếng Việt là "môi trường". Ví dụ: Chúng sẽ giúp ích cho môi trường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "môi trường" (n).',
+      'Gợi ý 2: Phiên âm: /ɪnˈvaɪrənmənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-11',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nDo you ________ trees?',
+    options: [
+      'plant',
+      'picnic',
+      'waste',
+      'classroom'
+    ],
+    correctAnswer: 'plant',
+    explanation: 'Từ "plant" (/plɑːnt/) có nghĩa tiếng Việt là "trồng (cây), cây cối". Ví dụ: Bạn có trồng cây không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trồng (cây), cây cối" (v).',
+      'Gợi ý 2: Phiên âm: /plɑːnt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-12',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - GETTING STARTED]\nDo you pick up ________?',
+    options: [
+      'temple',
+      'rubbish',
+      'idea',
+      'throw'
+    ],
+    correctAnswer: 'rubbish',
+    explanation: 'Từ "rubbish" (/ˈrʌbɪʃ/) có nghĩa tiếng Việt là "rác rưởi". Ví dụ: Bạn có nhặt rác không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rác rưởi" (n).',
+      'Gợi ý 2: Phiên âm: /ˈrʌbɪʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-13',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 1]\nWe create new products from used ________s.',
+    options: [
+      'hungry',
+      'cough',
+      'cycling',
+      'material'
+    ],
+    correctAnswer: 'material',
+    explanation: 'Từ "material" (/məˈtɪəriəl/) có nghĩa tiếng Việt là "chất liệu, vật liệu". Ví dụ: Chúng tôi tạo ra những sản phẩm mới từ vật liệu đã qua sử dụng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chất liệu, vật liệu" (n).',
+      'Gợi ý 2: Phiên âm: /məˈtɪəriəl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-14',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 1]\nWe need to use ________ of something.',
+    options: [
+      'idea',
+      'less',
+      'town',
+      'food'
+    ],
+    correctAnswer: 'less',
+    explanation: 'Từ "less" (/les/) có nghĩa tiếng Việt là "ít hơn". Ví dụ: Chúng ta cần sử dụng ít thứ gì đó lại.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ít hơn" (adv).',
+      'Gợi ý 2: Phiên âm: /les/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-15',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 1]\nIt\'ll help the ________.',
+    options: [
+      'Earth',
+      'fresh',
+      'paper',
+      'garden'
+    ],
+    correctAnswer: 'Earth',
+    explanation: 'Từ "Earth" (/ɜːθ/) có nghĩa tiếng Việt là "Trái Đất". Ví dụ: Nó sẽ giúp ích cho Trái Đất.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "Trái Đất" (n).',
+      'Gợi ý 2: Phiên âm: /ɜːθ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-16',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 1]\nThe students are planting trees in the ________.',
+    options: [
+      'plastic',
+      'garden',
+      'fish',
+      'cough'
+    ],
+    correctAnswer: 'garden',
+    explanation: 'Từ "garden" (/ˈɡɑːdn/) có nghĩa tiếng Việt là "khu vườn". Ví dụ: Các học sinh đang trồng cây trong vườn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu vườn" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡɑːdn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-17',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 1]\nIs it better to use a ________ bag?',
+    options: [
+      'cycling',
+      'paper',
+      'warm',
+      'instead of'
+    ],
+    correctAnswer: 'paper',
+    explanation: 'Từ "paper" (/ˈpeɪpə(r)/) có nghĩa tiếng Việt là "giấy". Ví dụ: Sử dụng túi giấy có tốt hơn không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giấy" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpeɪpə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-18',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 1]\nWe are happy to ________ to school.',
+    options: [
+      'walk',
+      'rubbish',
+      'classroom',
+      'healthy'
+    ],
+    correctAnswer: 'walk',
+    explanation: 'Từ "walk" (/wɔːk/) có nghĩa tiếng Việt là "đi bộ". Ví dụ: Chúng tôi rất vui khi được đi bộ đến trường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đi bộ" (v).',
+      'Gợi ý 2: Phiên âm: /wɔːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-19',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nThe air is ________.',
+    options: [
+      'paper',
+      'fresh',
+      'picnic',
+      'dirty'
+    ],
+    correctAnswer: 'dirty',
+    explanation: 'Từ "dirty" (/ˈdɜːti/) có nghĩa tiếng Việt là "bẩn thỉu, ô nhiễm". Ví dụ: Không khí bị ô nhiễm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bẩn thỉu, ô nhiễm" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈdɜːti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-20',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nMy father is a ________.',
+    options: [
+      'water',
+      'doctor',
+      'tip',
+      'tired'
+    ],
+    correctAnswer: 'doctor',
+    explanation: 'Từ "doctor" (/ˈdɒktə(r)/) có nghĩa tiếng Việt là "bác sĩ". Ví dụ: Bố tôi là bác sĩ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bác sĩ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdɒktə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-21',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nThe Sun keeps the Earth ________.',
+    options: [
+      'food',
+      'picnic',
+      'voice',
+      'warm'
+    ],
+    correctAnswer: 'warm',
+    explanation: 'Từ "warm" (/wɔːm/) có nghĩa tiếng Việt là "ấm áp". Ví dụ: Mặt Trời giữ cho Trái Đất ấm áp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ấm áp" (adj).',
+      'Gợi ý 2: Phiên âm: /wɔːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-22',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nA ________ is an intelligent animal.',
+    options: [
+      'dolphin',
+      'water',
+      'cough',
+      'save'
+    ],
+    correctAnswer: 'dolphin',
+    explanation: 'Từ "dolphin" (/ˈdɒlfɪn/) có nghĩa tiếng Việt là "cá heo". Ví dụ: Cá heo là một loài động vật thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cá heo" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdɒlfɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-23',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nThe air is not ________.',
+    options: [
+      'president',
+      'water',
+      'bag',
+      'fresh'
+    ],
+    correctAnswer: 'fresh',
+    explanation: 'Từ "fresh" (/freʃ/) có nghĩa tiếng Việt là "trong lành, tươi mới". Ví dụ: Không khí không trong lành.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trong lành, tươi mới" (adj).',
+      'Gợi ý 2: Phiên âm: /freʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-24',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nPeople ________ because of pollution.',
+    options: [
+      'plastic',
+      'cough',
+      'idea',
+      'fresh'
+    ],
+    correctAnswer: 'cough',
+    explanation: 'Từ "cough" (/kɒf/) có nghĩa tiếng Việt là "ho". Ví dụ: Mọi người ho vì ô nhiễm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ho" (v).',
+      'Gợi ý 2: Phiên âm: /kɒf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-25',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nThe ________ is dirty.',
+    options: [
+      'fish',
+      'water',
+      'food',
+      'less'
+    ],
+    correctAnswer: 'water',
+    explanation: 'Từ "water" (/ˈwɔːtə(r)/) có nghĩa tiếng Việt là "nước". Ví dụ: Nước bị ô nhiễm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nước" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwɔːtə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-26',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nI see a lot of ________ die.',
+    options: [
+      'fish',
+      'reusable',
+      'forest',
+      'waste'
+    ],
+    correctAnswer: 'fish',
+    explanation: 'Từ "fish" (/fɪʃ/) có nghĩa tiếng Việt là "con cá". Ví dụ: Tôi thấy rất nhiều cá chết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con cá" (n).',
+      'Gợi ý 2: Phiên âm: /fɪʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-27',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nWe cut down trees in the ________.',
+    options: [
+      'flood',
+      'forest',
+      'die',
+      'bin'
+    ],
+    correctAnswer: 'forest',
+    explanation: 'Từ "forest" (/ˈfɒrɪst/) có nghĩa tiếng Việt là "khu rừng". Ví dụ: Chúng ta chặt cây trong rừng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu rừng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfɒrɪst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-28',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nThere are more ________s.',
+    options: [
+      'flood',
+      'paper',
+      'save',
+      'organise'
+    ],
+    correctAnswer: 'flood',
+    explanation: 'Từ "flood" (/flʌd/) có nghĩa tiếng Việt là "lũ lụt". Ví dụ: Có nhiều trận lũ lụt hơn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lũ lụt" (n).',
+      'Gợi ý 2: Phiên âm: /flʌd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-29',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nThere is too much ________.',
+    options: [
+      'president',
+      'healthy',
+      'water',
+      'noise'
+    ],
+    correctAnswer: 'noise',
+    explanation: 'Từ "noise" (/nɔɪz/) có nghĩa tiếng Việt là "tiếng ồn". Ví dụ: Có quá nhiều tiếng ồn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiếng ồn" (n).',
+      'Gợi ý 2: Phiên âm: /nɔɪz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-30',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nIf ________ recycle more...',
+    options: [
+      'paper',
+      'warm',
+      'organise',
+      'we'
+    ],
+    correctAnswer: 'we',
+    explanation: 'Từ "we" (/wiː/) có nghĩa tiếng Việt là "chúng ta, chúng tôi". Ví dụ: Nếu chúng ta tái chế nhiều hơn...',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chúng ta, chúng tôi" (pronoun).',
+      'Gợi ý 2: Phiên âm: /wiː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-31',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nWe ________ a lot of trees.',
+    options: [
+      'warm',
+      'healthy',
+      'air',
+      'save'
+    ],
+    correctAnswer: 'save',
+    explanation: 'Từ "save" (/seɪv/) có nghĩa tiếng Việt là "tiết kiệm, cứu". Ví dụ: Chúng ta cứu/tiết kiệm được rất nhiều cây cối.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiết kiệm, cứu" (v).',
+      'Gợi ý 2: Phiên âm: /seɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-32',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - A CLOSER LOOK 2]\nIf we do not ________ so much paper...',
+    options: [
+      'creative',
+      'classmate',
+      'tip',
+      'waste'
+    ],
+    correctAnswer: 'waste',
+    explanation: 'Từ "waste" (/weɪst/) có nghĩa tiếng Việt là "lãng phí, rác thải". Ví dụ: Nếu chúng ta không lãng phí quá nhiều giấy...',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lãng phí, rác thải" (v).',
+      'Gợi ý 2: Phiên âm: /weɪst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-33',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - COMMUNICATION]\nYou are giving the goldfish too much ________.',
+    options: [
+      'president',
+      'bag',
+      'food',
+      'plastic'
+    ],
+    correctAnswer: 'food',
+    explanation: 'Từ "food" (/fuːd/) có nghĩa tiếng Việt là "thức ăn". Ví dụ: Bạn đang cho cá vàng ăn quá nhiều thức ăn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thức ăn" (n).',
+      'Gợi ý 2: Phiên âm: /fuːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-34',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - COMMUNICATION]\nThey will ________.',
+    options: [
+      'die',
+      'interview',
+      'we',
+      'egg'
+    ],
+    correctAnswer: 'die',
+    explanation: 'Từ "die" (/daɪ/) có nghĩa tiếng Việt là "chết". Ví dụ: Chúng sẽ chết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chết" (v).',
+      'Gợi ý 2: Phiên âm: /daɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-35',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nWhat is the ________ about?',
+    options: [
+      'interview',
+      'air',
+      'doctor',
+      'will'
+    ],
+    correctAnswer: 'interview',
+    explanation: 'Từ "interview" (/ˈɪntəvjuː/) có nghĩa tiếng Việt là "cuộc phỏng vấn". Ví dụ: Cuộc phỏng vấn nói về cái gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc phỏng vấn" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɪntəvjuː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-36',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nWhat will they put in every ________?',
+    options: [
+      'material',
+      'waste',
+      'president',
+      'classroom'
+    ],
+    correctAnswer: 'classroom',
+    explanation: 'Từ "classroom" (/ˈklɑːsruːm/) có nghĩa tiếng Việt là "lớp học". Ví dụ: Họ sẽ đặt những gì trong mỗi lớp học?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lớp học" (n).',
+      'Gợi ý 2: Phiên âm: /ˈklɑːsruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-37',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nWhat can they do with their old ________s?',
+    options: [
+      'cycling',
+      'uniform',
+      'plastic',
+      'reusable'
+    ],
+    correctAnswer: 'uniform',
+    explanation: 'Từ "uniform" (/ˈjuːnɪfɔːm/) có nghĩa tiếng Việt là "đồng phục". Ví dụ: Họ có thể làm gì với đồng phục cũ của mình?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đồng phục" (n).',
+      'Gợi ý 2: Phiên âm: /ˈjuːnɪfɔːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-38',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nWhat do they do ________ buying new books?',
+    options: [
+      'artist',
+      'paper',
+      'warm',
+      'instead of'
+    ],
+    correctAnswer: 'instead of',
+    explanation: 'Từ "instead of" (/ɪnˈsted əv/) có nghĩa tiếng Việt là "thay vì". Ví dụ: Họ làm gì thay vì mua sách mới?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thay vì" (prep).',
+      'Gợi ý 2: Phiên âm: /ɪnˈsted əv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-39',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nCan you share with us some ________s to make your school greener?',
+    options: [
+      'tip',
+      'air',
+      'voice',
+      'noise'
+    ],
+    correctAnswer: 'tip',
+    explanation: 'Từ "tip" (/tɪp/) có nghĩa tiếng Việt là "lời khuyên, mẹo". Ví dụ: Bạn có thể chia sẻ một số mẹo để làm trường học xanh hơn không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lời khuyên, mẹo" (n).',
+      'Gợi ý 2: Phiên âm: /tɪp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-40',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nWe put recycling ________s in every classroom.',
+    options: [
+      'bin',
+      'hungry',
+      'creative',
+      'egg'
+    ],
+    correctAnswer: 'bin',
+    explanation: 'Từ "bin" (/bɪn/) có nghĩa tiếng Việt là "thùng rác". Ví dụ: Chúng tôi đặt các thùng rác tái chế ở mỗi lớp học.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thùng rác" (n).',
+      'Gợi ý 2: Phiên âm: /bɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-41',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nWe ________ them with our friends or give them to charity.',
+    options: [
+      'exchange',
+      'dirty',
+      'airport',
+      'bag'
+    ],
+    correctAnswer: 'exchange',
+    explanation: 'Từ "exchange" (/ɪksˈtʃeɪndʒ/) có nghĩa tiếng Việt là "trao đổi". Ví dụ: Chúng tôi trao đổi chúng với bạn bè hoặc tặng cho tổ chức từ thiện.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trao đổi" (v).',
+      'Gợi ý 2: Phiên âm: /ɪksˈtʃeɪndʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-42',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 1]\nWe don\'t ________ them away.',
+    options: [
+      'paper',
+      'waste',
+      'town',
+      'throw'
+    ],
+    correctAnswer: 'throw',
+    explanation: 'Từ "throw" (/θrəʊ/) có nghĩa tiếng Việt là "ném, vứt". Ví dụ: Chúng tôi không vứt bỏ chúng đi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ném, vứt" (v).',
+      'Gợi ý 2: Phiên âm: /θrəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-43',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 2]\nAre you ________?',
+    options: [
+      'uniform',
+      'creative',
+      'idea',
+      'environment'
+    ],
+    correctAnswer: 'creative',
+    explanation: 'Từ "creative" (/kriˈeɪtɪv/) có nghĩa tiếng Việt là "sáng tạo". Ví dụ: Bạn có sáng tạo không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sáng tạo" (adj).',
+      'Gợi ý 2: Phiên âm: /kriˈeɪtɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-44',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 2]\nWhat will you do if you become our ________?',
+    options: [
+      'less',
+      'president',
+      'fish',
+      'town'
+    ],
+    correctAnswer: 'president',
+    explanation: 'Từ "president" (/ˈprezɪdənt/) có nghĩa tiếng Việt là "chủ tịch, tổng thống". Ví dụ: Bạn sẽ làm gì nếu trở thành chủ tịch của chúng tôi?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chủ tịch, tổng thống" (n).',
+      'Gợi ý 2: Phiên âm: /ˈprezɪdənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-45',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 2]\nRaise your ________ and become our president.',
+    options: [
+      'voice',
+      'bag',
+      'will',
+      'we'
+    ],
+    correctAnswer: 'voice',
+    explanation: 'Từ "voice" (/vɔɪs/) có nghĩa tiếng Việt là "tiếng nói, giọng nói". Ví dụ: Hãy cất cao tiếng nói và trở thành chủ tịch của chúng tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiếng nói, giọng nói" (n).',
+      'Gợi ý 2: Phiên âm: /vɔɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-46',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 2]\nI will ________ some book fairs.',
+    options: [
+      'organise',
+      'die',
+      'supermarket',
+      'waste'
+    ],
+    correctAnswer: 'organise',
+    explanation: 'Từ "organise" (/ˈɔːɡənaɪz/) có nghĩa tiếng Việt là "tổ chức". Ví dụ: Tôi sẽ tổ chức một số hội chợ sách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tổ chức" (v).',
+      'Gợi ý 2: Phiên âm: /ˈɔːɡənaɪz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-47',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - SKILLS 2]\nMy ________ is clever.',
+    options: [
+      'president',
+      'tip',
+      'classmate',
+      'waste'
+    ],
+    correctAnswer: 'classmate',
+    explanation: 'Từ "classmate" (/ˈklɑːsmeɪt/) có nghĩa tiếng Việt là "bạn cùng lớp". Ví dụ: Bạn cùng lớp của tôi rất thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bạn cùng lớp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈklɑːsmeɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-48',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nI ________ run away.',
+    options: [
+      'will',
+      'bag',
+      'Earth',
+      'dirty'
+    ],
+    correctAnswer: 'will',
+    explanation: 'Từ "will" (/wɪl/) có nghĩa tiếng Việt là "sẽ". Ví dụ: Tôi sẽ chạy đi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sẽ" (aux).',
+      'Gợi ý 2: Phiên âm: /wɪl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-49',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nDoes your ________ have a gallery?',
+    options: [
+      'picnic',
+      'classroom',
+      'dolphin',
+      'town'
+    ],
+    correctAnswer: 'town',
+    explanation: 'Từ "town" (/taʊn/) có nghĩa tiếng Việt là "thị trấn". Ví dụ: Thị trấn của bạn có phòng trưng bày không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thị trấn" (n).',
+      'Gợi ý 2: Phiên âm: /taʊn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-50',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nThe Moon is ________ tonight.',
+    options: [
+      'healthy',
+      'bright',
+      'rubbish',
+      'cycling'
+    ],
+    correctAnswer: 'bright',
+    explanation: 'Từ "bright" (/braɪt/) có nghĩa tiếng Việt là "sáng, sáng chói". Ví dụ: Đêm nay Mặt Trăng thật sáng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sáng, sáng chói" (adj).',
+      'Gợi ý 2: Phiên âm: /braɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-51',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nThere is a big ________ in the town.',
+    options: [
+      'temple',
+      'bag',
+      'classmate',
+      'picnic'
+    ],
+    correctAnswer: 'temple',
+    explanation: 'Từ "temple" (/ˈtempl/) có nghĩa tiếng Việt là "ngôi đền". Ví dụ: Có một ngôi đền lớn trong thị trấn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngôi đền" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtempl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-52',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nShe\'s an ________.',
+    options: [
+      'paper',
+      'creative',
+      'artist',
+      'walk'
+    ],
+    correctAnswer: 'artist',
+    explanation: 'Từ "artist" (/ˈɑːtɪst/) có nghĩa tiếng Việt là "nghệ sĩ, họa sĩ". Ví dụ: Cô ấy là một nghệ sĩ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nghệ sĩ, họa sĩ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɑːtɪst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-53',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nThey built an ________ here.',
+    options: [
+      'airport',
+      'bin',
+      'organise',
+      'noise'
+    ],
+    correctAnswer: 'airport',
+    explanation: 'Từ "airport" (/ˈeəpɔːt/) có nghĩa tiếng Việt là "sân bay". Ví dụ: Họ xây dựng một sân bay ở đây.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sân bay" (n).',
+      'Gợi ý 2: Phiên âm: /ˈeəpɔːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-54',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nWe are ________.',
+    options: [
+      'hungry',
+      'interview',
+      'warm',
+      'bright'
+    ],
+    correctAnswer: 'hungry',
+    explanation: 'Từ "hungry" (/ˈhʌŋɡri/) có nghĩa tiếng Việt là "đói". Ví dụ: Chúng tôi đang đói.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đói" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈhʌŋɡri/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-55',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nWe are ________.',
+    options: [
+      'instead of',
+      'tired',
+      'environment',
+      'food'
+    ],
+    correctAnswer: 'tired',
+    explanation: 'Từ "tired" (/ˈtaɪəd/) có nghĩa tiếng Việt là "mệt mỏi". Ví dụ: Chúng tôi mệt mỏi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mệt mỏi" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈtaɪəd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-56',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - LOOKING BACK]\nWe are ________.',
+    options: [
+      'bright',
+      'save',
+      'hungry',
+      'healthy'
+    ],
+    correctAnswer: 'healthy',
+    explanation: 'Từ "healthy" (/ˈhelθi/) có nghĩa tiếng Việt là "khỏe mạnh". Ví dụ: Chúng tôi khỏe mạnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khỏe mạnh" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈhelθi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u11-v-57',
+    unitId: 'unit-11',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 11: OUR GREENER WORLD - PROJECT]\nYou have creative ________s about reusing old things.',
+    options: [
+      'bright',
+      'we',
+      'idea',
+      'buy'
+    ],
+    correctAnswer: 'idea',
+    explanation: 'Từ "idea" (/aɪˈdɪə/) có nghĩa tiếng Việt là "ý tưởng". Ví dụ: Bạn có những ý tưởng sáng tạo về việc tái sử dụng đồ cũ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ý tưởng" (n).',
+      'Gợi ý 2: Phiên âm: /aɪˈdɪə/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 

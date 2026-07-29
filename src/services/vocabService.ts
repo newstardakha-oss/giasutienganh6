@@ -6,6 +6,7 @@ import unit6VocabRaw from '../data/unit6_vocab.json';
 import unit7VocabRaw from '../data/unit7_vocab.json';
 import unit8VocabRaw from '../data/unit8_vocab.json';
 import unit9VocabRaw from '../data/unit9_vocab.json';
+import unit11VocabRaw from '../data/unit11_vocab.json';
 import { Question } from '../types';
 
 export interface VocabItem {
@@ -28,6 +29,7 @@ export const UNIT6_VOCAB_DATA: VocabItem[] = unit6VocabRaw as VocabItem[];
 export const UNIT7_VOCAB_DATA: VocabItem[] = unit7VocabRaw as VocabItem[];
 export const UNIT8_VOCAB_DATA: VocabItem[] = unit8VocabRaw as VocabItem[];
 export const UNIT9_VOCAB_DATA: VocabItem[] = unit9VocabRaw as VocabItem[];
+export const UNIT11_VOCAB_DATA: VocabItem[] = unit11VocabRaw as VocabItem[];
 
 /**
  * 2. Khởi tạo & Nạp dữ liệu với cơ chế kiểm tra trùng lặp (Seed Data)
@@ -85,13 +87,17 @@ export function seedUnit9Vocab(existingVocab: VocabItem[] = []): VocabItem[] {
   return seedVocabData(UNIT9_VOCAB_DATA, existingVocab);
 }
 
+export function seedUnit11Vocab(existingVocab: VocabItem[] = []): VocabItem[] {
+  return seedVocabData(UNIT11_VOCAB_DATA, existingVocab);
+}
+
 /**
  * 3a. Lấy danh sách từ vựng theo bài học (part) và theo Unit
- * @param unitId "unit-2", "unit-3", "unit-4", "unit-5", "unit-6", "unit-7", "unit-8", "unit-9" (mặc định "unit-9")
+ * @param unitId "unit-2", "unit-3", "unit-4", "unit-5", "unit-6", "unit-7", "unit-8", "unit-9", "unit-11" (mặc định "unit-11")
  * @param part Tên phần bài học (VD: "GETTING STARTED", "A CLOSER LOOK 1", "SKILLS 1"...)
  */
-export function getVocabByPart(part: string, unitId: string = 'unit-9'): VocabItem[] {
-  let sourceList = UNIT9_VOCAB_DATA;
+export function getVocabByPart(part: string, unitId: string = 'unit-11'): VocabItem[] {
+  let sourceList = UNIT11_VOCAB_DATA;
   if (unitId === 'unit-2') sourceList = UNIT2_VOCAB_DATA;
   if (unitId === 'unit-3') sourceList = UNIT3_VOCAB_DATA;
   if (unitId === 'unit-4') sourceList = UNIT4_VOCAB_DATA;
@@ -99,6 +105,7 @@ export function getVocabByPart(part: string, unitId: string = 'unit-9'): VocabIt
   if (unitId === 'unit-6') sourceList = UNIT6_VOCAB_DATA;
   if (unitId === 'unit-7') sourceList = UNIT7_VOCAB_DATA;
   if (unitId === 'unit-8') sourceList = UNIT8_VOCAB_DATA;
+  if (unitId === 'unit-9') sourceList = UNIT9_VOCAB_DATA;
 
   if (!part || part === 'ALL') {
     return sourceList;
@@ -112,10 +119,10 @@ export function getVocabByPart(part: string, unitId: string = 'unit-9'): VocabIt
  * 3b. Lấy ngẫu nhiên N từ vựng cho các Mini-game (Flashcard, Word Search, Quiz)
  * Sử dụng thuật toán xáo trộn Fisher-Yates shuffle chuẩn xác.
  * @param count Số lượng từ vựng cần lấy (mặc định 10)
- * @param unitId "unit-2", "unit-3", "unit-4", "unit-5", "unit-6", "unit-7", "unit-8", "unit-9"
+ * @param unitId "unit-2", "unit-3", "unit-4", "unit-5", "unit-6", "unit-7", "unit-8", "unit-9", "unit-11"
  * @param part (Tùy chọn) Lọc theo phần bài học
  */
-export function getRandomVocabForGames(count: number = 10, unitId: string = 'unit-9', part?: string): VocabItem[] {
+export function getRandomVocabForGames(count: number = 10, unitId: string = 'unit-11', part?: string): VocabItem[] {
   const sourceList = getVocabByPart(part || 'ALL', unitId);
   if (sourceList.length === 0) return [];
 
@@ -131,8 +138,8 @@ export function getRandomVocabForGames(count: number = 10, unitId: string = 'uni
 /**
  * 4. Chuyển đổi dữ liệu VocabItem thành Question object để dùng trong PracticeHub & Mini-Games
  */
-export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-9'): Question {
-  let sourceList = UNIT9_VOCAB_DATA;
+export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-11'): Question {
+  let sourceList = UNIT11_VOCAB_DATA;
   if (unitId === 'unit-2') sourceList = UNIT2_VOCAB_DATA;
   if (unitId === 'unit-3') sourceList = UNIT3_VOCAB_DATA;
   if (unitId === 'unit-4') sourceList = UNIT4_VOCAB_DATA;
@@ -140,6 +147,7 @@ export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-
   if (unitId === 'unit-6') sourceList = UNIT6_VOCAB_DATA;
   if (unitId === 'unit-7') sourceList = UNIT7_VOCAB_DATA;
   if (unitId === 'unit-8') sourceList = UNIT8_VOCAB_DATA;
+  if (unitId === 'unit-9') sourceList = UNIT9_VOCAB_DATA;
 
   const options = [vocab.word];
   const otherWords = sourceList
