@@ -10801,6 +10801,1546 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /ˈlʌɡɪdʒ/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-1',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nDo you come ________?',
+    options: [
+      'sugar',
+      'home',
+      'envelope',
+      'brother'
+    ],
+    correctAnswer: 'home',
+    explanation: 'Từ "home" (/həʊm/) có nghĩa tiếng Việt là "nhà". Ví dụ: Bạn có về nhà không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà" (n).',
+      'Gợi ý 2: Phiên âm: /həʊm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-2',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nWe ________ Tet.',
+    options: [
+      'Switzerland',
+      'have',
+      'wear',
+      'celebrate'
+    ],
+    correctAnswer: 'have',
+    explanation: 'Từ "have" (/hæv/) có nghĩa tiếng Việt là "có". Ví dụ: Chúng tôi có Tết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có" (v).',
+      'Gợi ý 2: Phiên âm: /hæv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-3',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nIt\'s in ________.',
+    options: [
+      'spring',
+      'sweets',
+      'sugar',
+      'January'
+    ],
+    correctAnswer: 'January',
+    explanation: 'Từ "January" (/ˈdʒænjuəri/) có nghĩa tiếng Việt là "tháng Giêng, tháng Một". Ví dụ: Đó là vào tháng Giêng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tháng Giêng, tháng Một" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdʒænjuəri/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-4',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nWe ________ our homes.',
+    options: [
+      'sugar',
+      'housework',
+      'clean',
+      'spring'
+    ],
+    correctAnswer: 'clean',
+    explanation: 'Từ "clean" (/kliːn/) có nghĩa tiếng Việt là "dọn dẹp". Ví dụ: Chúng tôi dọn dẹp nhà cửa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "dọn dẹp" (v).',
+      'Gợi ý 2: Phiên âm: /kliːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-5',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nIs Tet a time for family ________s?',
+    options: [
+      'anything',
+      'brother',
+      'lucky',
+      'gathering'
+    ],
+    correctAnswer: 'gathering',
+    explanation: 'Từ "gathering" (/ˈɡæðərɪŋ/) có nghĩa tiếng Việt là "cuộc sum họp, tụ họp". Ví dụ: Tết có phải là thời gian để sum họp gia đình không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc sum họp, tụ họp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡæðərɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-6',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nIt\'s a happy time for ________.',
+    options: [
+      'cheek',
+      'everybody',
+      'guess',
+      'life'
+    ],
+    correctAnswer: 'everybody',
+    explanation: 'Từ "everybody" (/ˈevribɒdi/) có nghĩa tiếng Việt là "mọi người". Ví dụ: Đó là thời gian hạnh phúc cho tất cả mọi người.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mọi người" (pronoun).',
+      'Gợi ý 2: Phiên âm: /ˈevribɒdi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-7',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nDo those children get lucky ________?',
+    options: [
+      'money',
+      'behave',
+      'coin',
+      'brother'
+    ],
+    correctAnswer: 'money',
+    explanation: 'Từ "money" (/ˈmʌni/) có nghĩa tiếng Việt là "tiền". Ví dụ: Những đứa trẻ đó có nhận được tiền lì xì không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiền" (n).',
+      'Gợi ý 2: Phiên âm: /ˈmʌni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-8',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nThat sounds ________.',
+    options: [
+      'interesting',
+      'succeed',
+      'wear',
+      'sugar'
+    ],
+    correctAnswer: 'interesting',
+    explanation: 'Từ "interesting" (/ˈɪntrəstɪŋ/) có nghĩa tiếng Việt là "thú vị". Ví dụ: Điều đó nghe có vẻ thú vị.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thú vị" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈɪntrəstɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-9',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nIs there ________ special people should do?',
+    options: [
+      'quiet',
+      'anything',
+      'lucky',
+      'permission'
+    ],
+    correctAnswer: 'anything',
+    explanation: 'Từ "anything" (/ˈeniθɪŋ/) có nghĩa tiếng Việt là "bất cứ điều gì". Ví dụ: Có điều gì đặc biệt mà mọi người nên làm không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bất cứ điều gì" (pronoun).',
+      'Gợi ý 2: Phiên âm: /ˈeniθɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-10',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nWe shouldn\'t ________ anything.',
+    options: [
+      'come',
+      'sing',
+      'fruit',
+      'break'
+    ],
+    correctAnswer: 'break',
+    explanation: 'Từ "break" (/breɪk/) có nghĩa tiếng Việt là "làm vỡ, phá vỡ". Ví dụ: Chúng ta không nên làm vỡ bất cứ thứ gì.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "làm vỡ, phá vỡ" (v).',
+      'Gợi ý 2: Phiên âm: /breɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-11',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - GETTING STARTED]\nWhat to eat and ________ during Tet?',
+    options: [
+      'custom',
+      'any',
+      'clean',
+      'wear'
+    ],
+    correctAnswer: 'wear',
+    explanation: 'Từ "wear" (/weə(r)/) có nghĩa tiếng Việt là "mặc". Ví dụ: Ăn gì và mặc gì trong ngày Tết?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mặc" (v).',
+      'Gợi ý 2: Phiên âm: /weə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-12',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nMy mother usually cooks special ________ during Tet.',
+    options: [
+      'food',
+      'sugar',
+      'permission',
+      'January'
+    ],
+    correctAnswer: 'food',
+    explanation: 'Từ "food" (/fuːd/) có nghĩa tiếng Việt là "thức ăn, món ăn". Ví dụ: Mẹ tôi thường nấu những món ăn đặc biệt trong ngày Tết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thức ăn, món ăn" (n).',
+      'Gợi ý 2: Phiên âm: /fuːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-13',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nWe ________ in January or February.',
+    options: [
+      'celebrate',
+      'break',
+      'succeed',
+      'noise'
+    ],
+    correctAnswer: 'celebrate',
+    explanation: 'Từ "celebrate" (/ˈselɪbreɪt/) có nghĩa tiếng Việt là "tổ chức, kỷ niệm". Ví dụ: Chúng tôi tổ chức lễ vào tháng Giêng hoặc tháng Hai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tổ chức, kỷ niệm" (v).',
+      'Gợi ý 2: Phiên âm: /ˈselɪbreɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-14',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nWhat time do the ________s start?',
+    options: [
+      'firework',
+      'relative',
+      'shopping',
+      'envelope'
+    ],
+    correctAnswer: 'firework',
+    explanation: 'Từ "firework" (/ˈfaɪəwɜːk/) có nghĩa tiếng Việt là "pháo hoa". Ví dụ: Mấy giờ pháo hoa bắt đầu?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "pháo hoa" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfaɪəwɜːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-15',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nThey have a lot of antique ________.',
+    options: [
+      'cucumber',
+      'interesting',
+      'sing',
+      'furniture'
+    ],
+    correctAnswer: 'furniture',
+    explanation: 'Từ "furniture" (/ˈfɜːnɪtʃə(r)/) có nghĩa tiếng Việt là "đồ nội thất". Ví dụ: Họ có rất nhiều đồ nội thất cổ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đồ nội thất" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfɜːnɪtʃə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-16',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nWe had great ________ at the beach.',
+    options: [
+      'Switzerland',
+      'shy',
+      'lucky',
+      'fun'
+    ],
+    correctAnswer: 'fun',
+    explanation: 'Từ "fun" (/fʌn/) có nghĩa tiếng Việt là "niềm vui". Ví dụ: Chúng tôi đã có niềm vui lớn ở bãi biển.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "niềm vui" (n).',
+      'Gợi ý 2: Phiên âm: /fʌn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-17',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nI ________ that I was a bit taller.',
+    options: [
+      'fight',
+      'wish',
+      'December',
+      'cucumber'
+    ],
+    correctAnswer: 'wish',
+    explanation: 'Từ "wish" (/wɪʃ/) có nghĩa tiếng Việt là "lời ước, ước". Ví dụ: Tôi ước rằng mình cao hơn một chút.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lời ước, ước" (n).',
+      'Gợi ý 2: Phiên âm: /wɪʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-18',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nI\'m going ________ this afternoon.',
+    options: [
+      'December',
+      'shopping',
+      'thirsty',
+      'lucky'
+    ],
+    correctAnswer: 'shopping',
+    explanation: 'Từ "shopping" (/ˈʃɒpɪŋ/) có nghĩa tiếng Việt là "việc mua sắm". Ví dụ: Chiều nay tôi đi mua sắm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "việc mua sắm" (n).',
+      'Gợi ý 2: Phiên âm: /ˈʃɒpɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-19',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nWe decorate our houses with ________s.',
+    options: [
+      'anything',
+      'fight',
+      'thirsty',
+      'peach flower'
+    ],
+    correctAnswer: 'peach flower',
+    explanation: 'Từ "peach flower" (/piːtʃ ˈflaʊə(r)/) có nghĩa tiếng Việt là "hoa đào". Ví dụ: Chúng tôi trang trí nhà bằng hoa đào.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hoa đào" (n).',
+      'Gợi ý 2: Phiên âm: /piːtʃ ˈflaʊə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-20',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nDo you prefer brown ________ or white ________?',
+    options: [
+      'rice',
+      'year',
+      'sing',
+      'noise'
+    ],
+    correctAnswer: 'rice',
+    explanation: 'Từ "rice" (/raɪs/) có nghĩa tiếng Việt là "gạo, cơm". Ví dụ: Bạn thích gạo lứt hay gạo trắng?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "gạo, cơm" (n).',
+      'Gợi ý 2: Phiên âm: /raɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-21',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\n________ is coming.',
+    options: [
+      'spring',
+      'activity',
+      'housework',
+      'shelf'
+    ],
+    correctAnswer: 'spring',
+    explanation: 'Từ "spring" (/sprɪŋ/) có nghĩa tiếng Việt là "mùa xuân". Ví dụ: Mùa xuân đang đến.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mùa xuân" (n).',
+      'Gợi ý 2: Phiên âm: /sprɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-22',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nTet is coming.',
+    options: [
+      'sing',
+      'shopping',
+      'fun',
+      'come'
+    ],
+    correctAnswer: 'come',
+    explanation: 'Từ "come" (/kʌm/) có nghĩa tiếng Việt là "đến". Ví dụ: Tết đến rồi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đến" (v).',
+      'Gợi ý 2: Phiên âm: /kʌm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-23',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nWe ________ peach flowers.',
+    options: [
+      'shopping',
+      'brother',
+      'furniture',
+      'sell'
+    ],
+    correctAnswer: 'sell',
+    explanation: 'Từ "sell" (/sel/) có nghĩa tiếng Việt là "bán". Ví dụ: Chúng tôi bán hoa đào.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bán" (v).',
+      'Gợi ý 2: Phiên âm: /sel/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-24',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nHer cheeks ________.',
+    options: [
+      'shine',
+      'gathering',
+      'December',
+      'firework'
+    ],
+    correctAnswer: 'shine',
+    explanation: 'Từ "shine" (/ʃaɪn/) có nghĩa tiếng Việt là "tỏa sáng". Ví dụ: Đôi má cô ấy ửng hồng tỏa sáng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tỏa sáng" (v).',
+      'Gợi ý 2: Phiên âm: /ʃaɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-25',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nHer eyes ________.',
+    options: [
+      'smile',
+      'midnight',
+      'decorate',
+      'envelope'
+    ],
+    correctAnswer: 'smile',
+    explanation: 'Từ "smile" (/smaɪl/) có nghĩa tiếng Việt là "nụ cười, mỉm cười". Ví dụ: Đôi mắt cô ấy biết cười.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nụ cười, mỉm cười" (n).',
+      'Gợi ý 2: Phiên âm: /smaɪl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-26',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nHer smile is ________.',
+    options: [
+      'fruit',
+      'behave',
+      'December',
+      'shy'
+    ],
+    correctAnswer: 'shy',
+    explanation: 'Từ "shy" (/ʃaɪ/) có nghĩa tiếng Việt là "bẽn lẽn, ngại ngùng". Ví dụ: Nụ cười của cô ấy thật ngại ngùng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bẽn lẽn, ngại ngùng" (adj).',
+      'Gợi ý 2: Phiên âm: /ʃaɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-27',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nThe tears ran down her ________s.',
+    options: [
+      'cheek',
+      'cheese',
+      'traditional',
+      'sweets'
+    ],
+    correctAnswer: 'cheek',
+    explanation: 'Từ "cheek" (/tʃiːk/) có nghĩa tiếng Việt là "má". Ví dụ: Những giọt nước mắt chảy dài trên má.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "má" (n).',
+      'Gợi ý 2: Phiên âm: /tʃiːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-28',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nAll her close ________s came to the wedding.',
+    options: [
+      'relative',
+      'firework',
+      'have',
+      'noise'
+    ],
+    correctAnswer: 'relative',
+    explanation: 'Từ "relative" (/ˈrelətɪv/) có nghĩa tiếng Việt là "họ hàng, người thân". Ví dụ: Tất cả họ hàng thân thiết của cô ấy đều đến dự đám cưới.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "họ hàng, người thân" (n).',
+      'Gợi ý 2: Phiên âm: /ˈrelətɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-29',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 1]\nWill you ________ me when I\'m in the hospital?',
+    options: [
+      'succeed',
+      'anything',
+      'any',
+      'visit'
+    ],
+    correctAnswer: 'visit',
+    explanation: 'Từ "visit" (/ˈvɪzɪt/) có nghĩa tiếng Việt là "thăm, ghé thăm". Ví dụ: Bạn sẽ đến thăm tôi khi tôi ở trong bệnh viện chứ?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thăm, ghé thăm" (v).',
+      'Gợi ý 2: Phiên âm: /ˈvɪzɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-30',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nYou shouldn\'t come in with your ________ on.',
+    options: [
+      'shelf',
+      'raincoat',
+      'bedroom',
+      'behave'
+    ],
+    correctAnswer: 'raincoat',
+    explanation: 'Từ "raincoat" (/ˈreɪnkəʊt/) có nghĩa tiếng Việt là "áo mưa". Ví dụ: Bạn không nên vào nhà khi vẫn đang mặc áo mưa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "áo mưa" (n).',
+      'Gợi ý 2: Phiên âm: /ˈreɪnkəʊt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-31',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nIt would be best if you kept ________.',
+    options: [
+      'wish',
+      'bread',
+      'bedroom',
+      'quiet'
+    ],
+    correctAnswer: 'quiet',
+    explanation: 'Từ "quiet" (/ˈkwaɪət/) có nghĩa tiếng Việt là "giữ yên lặng". Ví dụ: Tốt nhất là bạn nên giữ yên lặng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giữ yên lặng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈkwaɪət/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-32',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nDo you want to ________ or drink?',
+    options: [
+      'rice',
+      'fun',
+      'run',
+      'eat'
+    ],
+    correctAnswer: 'eat',
+    explanation: 'Từ "eat" (/iːt/) có nghĩa tiếng Việt là "ăn". Ví dụ: Bạn muốn ăn hay uống?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ăn" (v).',
+      'Gợi ý 2: Phiên âm: /iːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-33',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nYou need to ________ before you enter.',
+    options: [
+      'thirsty',
+      'have',
+      'eat',
+      'knock'
+    ],
+    correctAnswer: 'knock',
+    explanation: 'Từ "knock" (/nɒk/) có nghĩa tiếng Việt là "gõ cửa". Ví dụ: Bạn cần gõ cửa trước khi bước vào.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "gõ cửa" (v).',
+      'Gợi ý 2: Phiên âm: /nɒk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-34',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nYou need to help with ________.',
+    options: [
+      'fruit',
+      'any',
+      'housework',
+      'wear'
+    ],
+    correctAnswer: 'housework',
+    explanation: 'Từ "housework" (/ˈhaʊswɜːk/) có nghĩa tiếng Việt là "việc nhà". Ví dụ: Bạn cần giúp đỡ việc nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "việc nhà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈhaʊswɜːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-35',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nThere were children ________ing in the playground.',
+    options: [
+      'any',
+      'fight',
+      'shy',
+      'decorate'
+    ],
+    correctAnswer: 'fight',
+    explanation: 'Từ "fight" (/faɪt/) có nghĩa tiếng Việt là "đánh nhau, cãi nhau". Ví dụ: Có trẻ em đang đánh nhau ở sân chơi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đánh nhau, cãi nhau" (v).',
+      'Gợi ý 2: Phiên âm: /faɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-36',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nWe go out with ________s.',
+    options: [
+      'peach flower',
+      'friend',
+      'anything',
+      'bread'
+    ],
+    correctAnswer: 'friend',
+    explanation: 'Từ "friend" (/frend/) có nghĩa tiếng Việt là "bạn bè". Ví dụ: Chúng tôi đi chơi với bạn bè.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bạn bè" (n).',
+      'Gợi ý 2: Phiên âm: /frend/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-37',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nChildren should ________ well.',
+    options: [
+      'life',
+      'everybody',
+      'throw away',
+      'behave'
+    ],
+    correctAnswer: 'behave',
+    explanation: 'Từ "behave" (/bɪˈheɪv/) có nghĩa tiếng Việt là "cư xử". Ví dụ: Trẻ em nên cư xử tốt.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cư xử" (v).',
+      'Gợi ý 2: Phiên âm: /bɪˈheɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-38',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nChildren shouldn\'t eat lots of ________.',
+    options: [
+      'sweets',
+      'have',
+      'home',
+      'year'
+    ],
+    correctAnswer: 'sweets',
+    explanation: 'Từ "sweets" (/swiːts/) có nghĩa tiếng Việt là "bánh kẹo, đồ ngọt". Ví dụ: Trẻ em không nên ăn quá nhiều đồ ngọt.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bánh kẹo, đồ ngọt" (n).',
+      'Gợi ý 2: Phiên âm: /swiːts/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-39',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nMy mother bought some ________.',
+    options: [
+      'fruit',
+      'throw away',
+      'grandparents',
+      'give'
+    ],
+    correctAnswer: 'fruit',
+    explanation: 'Từ "fruit" (/fruːt/) có nghĩa tiếng Việt là "trái cây, hoa quả". Ví dụ: Mẹ tôi đã mua một số trái cây.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trái cây, hoa quả" (n).',
+      'Gợi ý 2: Phiên âm: /fruːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-40',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nI need ________ milk for the cake.',
+    options: [
+      'fruit',
+      'eat',
+      'December',
+      'some'
+    ],
+    correctAnswer: 'some',
+    explanation: 'Từ "some" (/sʌm/) có nghĩa tiếng Việt là "một vài, một ít". Ví dụ: Tôi cần một ít sữa cho cái bánh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "một vài, một ít" (det).',
+      'Gợi ý 2: Phiên âm: /sʌm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-41',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nI can\'t answer ________ questions.',
+    options: [
+      'have',
+      'any',
+      'relative',
+      'ice cream'
+    ],
+    correctAnswer: 'any',
+    explanation: 'Từ "any" (/ˈeni/) có nghĩa tiếng Việt là "bất kỳ". Ví dụ: Tôi không thể trả lời bất kỳ câu hỏi nào.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bất kỳ" (det).',
+      'Gợi ý 2: Phiên âm: /ˈeni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-42',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nDo you have any ________?',
+    options: [
+      'home',
+      'sugar',
+      'Spain',
+      'break'
+    ],
+    correctAnswer: 'sugar',
+    explanation: 'Từ "sugar" (/ˈʃʊɡə(r)/) có nghĩa tiếng Việt là "đường". Ví dụ: Bạn có tí đường nào không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đường" (n).',
+      'Gợi ý 2: Phiên âm: /ˈʃʊɡə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-43',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nWhat do you need to ________ your room?',
+    options: [
+      'fruit',
+      'gathering',
+      'decorate',
+      'housework'
+    ],
+    correctAnswer: 'decorate',
+    explanation: 'Từ "decorate" (/ˈdekəreɪt/) có nghĩa tiếng Việt là "trang trí". Ví dụ: Bạn cần những gì để trang trí phòng của mình?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trang trí" (v).',
+      'Gợi ý 2: Phiên âm: /ˈdekəreɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-44',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nDo you have ________ for sports?',
+    options: [
+      'bread',
+      'anything',
+      'raincoat',
+      'free time'
+    ],
+    correctAnswer: 'free time',
+    explanation: 'Từ "free time" (/ˌfriː ˈtaɪm/) có nghĩa tiếng Việt là "thời gian rảnh". Ví dụ: Bạn có thời gian rảnh dành cho thể thao không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời gian rảnh" (n).',
+      'Gợi ý 2: Phiên âm: /ˌfriː ˈtaɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-45',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nAre there any interesting activities here during Tet?',
+    options: [
+      'permission',
+      'traditional',
+      'give',
+      'activity'
+    ],
+    correctAnswer: 'activity',
+    explanation: 'Từ "activity" (/ækˈtɪvəti/) có nghĩa tiếng Việt là "hoạt động". Ví dụ: Ở đây có hoạt động nào thú vị trong dịp Tết không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hoạt động" (n).',
+      'Gợi ý 2: Phiên âm: /ækˈtɪvəti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-46',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nWe have some ________ games like running and cooking.',
+    options: [
+      'decorate',
+      'traditional',
+      'sugar',
+      'cucumber'
+    ],
+    correctAnswer: 'traditional',
+    explanation: 'Từ "traditional" (/trəˈdɪʃənl/) có nghĩa tiếng Việt là "truyền thống". Ví dụ: Chúng tôi có một số trò chơi truyền thống như chạy và nấu ăn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "truyền thống" (adj).',
+      'Gợi ý 2: Phiên âm: /trəˈdɪʃənl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-47',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nThere isn\'t any ________.',
+    options: [
+      'visit',
+      'ice cream',
+      'life',
+      'activity'
+    ],
+    correctAnswer: 'ice cream',
+    explanation: 'Từ "ice cream" (/ˈaɪs kriːm/) có nghĩa tiếng Việt là "kem". Ví dụ: Không còn tí kem nào.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kem" (n).',
+      'Gợi ý 2: Phiên âm: /ˈaɪs kriːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-48',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nThere are some ________s.',
+    options: [
+      'envelope',
+      'cucumber',
+      'lucky',
+      'sweets'
+    ],
+    correctAnswer: 'cucumber',
+    explanation: 'Từ "cucumber" (/ˈkjuːkʌmbə(r)/) có nghĩa tiếng Việt là "dưa chuột". Ví dụ: Có một vài quả dưa chuột.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "dưa chuột" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkjuːkʌmbə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-49',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nThere is some ________.',
+    options: [
+      'lucky',
+      'fight',
+      'furniture',
+      'cheese'
+    ],
+    correctAnswer: 'cheese',
+    explanation: 'Từ "cheese" (/tʃiːz/) có nghĩa tiếng Việt là "phô mai". Ví dụ: Có một ít phô mai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phô mai" (n).',
+      'Gợi ý 2: Phiên âm: /tʃiːz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-50',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - A CLOSER LOOK 2]\nThere is some ________.',
+    options: [
+      'bread',
+      'run',
+      'money',
+      'hang'
+    ],
+    correctAnswer: 'bread',
+    explanation: 'Từ "bread" (/bred/) có nghĩa tiếng Việt là "bánh mì". Ví dụ: Có một ít bánh mì.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bánh mì" (n).',
+      'Gợi ý 2: Phiên âm: /bred/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-51',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nI have happy days from January to ________.',
+    options: [
+      'December',
+      'home',
+      'anything',
+      'traditional'
+    ],
+    correctAnswer: 'December',
+    explanation: 'Từ "December" (/dɪˈsembə(r)/) có nghĩa tiếng Việt là "tháng Mười hai". Ví dụ: Tôi có những ngày hạnh phúc từ tháng Giêng đến tháng Mười hai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tháng Mười hai" (n).',
+      'Gợi ý 2: Phiên âm: /dɪˈsembə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-52',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nThis is a ________ full of fun.',
+    options: [
+      'anything',
+      'year',
+      'shopping',
+      'grandparents'
+    ],
+    correctAnswer: 'year',
+    explanation: 'Từ "year" (/jɪə(r)/) có nghĩa tiếng Việt là "năm". Ví dụ: Đây là một năm tràn ngập niềm vui.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "năm" (n).',
+      'Gợi ý 2: Phiên âm: /jɪə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-53',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nMy ________ is full of happy moments.',
+    options: [
+      'life',
+      'lucky',
+      'year',
+      'succeed'
+    ],
+    correctAnswer: 'life',
+    explanation: 'Từ "life" (/laɪf/) có nghĩa tiếng Việt là "cuộc sống". Ví dụ: Cuộc sống của tôi tràn ngập những khoảnh khắc hạnh phúc.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc sống" (n).',
+      'Gợi ý 2: Phiên âm: /laɪf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-54',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nI will ________ in my studies.',
+    options: [
+      'tree house',
+      'shine',
+      'succeed',
+      'gathering'
+    ],
+    correctAnswer: 'succeed',
+    explanation: 'Từ "succeed" (/səkˈsiːd/) có nghĩa tiếng Việt là "thành công". Ví dụ: Tôi sẽ thành công trong việc học của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thành công" (v).',
+      'Gợi ý 2: Phiên âm: /səkˈsiːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-55',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nI want to live in a ________.',
+    options: [
+      'gathering',
+      'hang',
+      'decorate',
+      'tree house'
+    ],
+    correctAnswer: 'tree house',
+    explanation: 'Từ "tree house" (/ˈtriː haʊs/) có nghĩa tiếng Việt là "ngôi nhà trên cây". Ví dụ: Tôi muốn sống trong một ngôi nhà trên cây.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngôi nhà trên cây" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtriː haʊs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-56',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nIn Romania, people throw ________s into a river.',
+    options: [
+      'January',
+      'bedroom',
+      'bread',
+      'coin'
+    ],
+    correctAnswer: 'coin',
+    explanation: 'Từ "coin" (/kɔɪn/) có nghĩa tiếng Việt là "đồng xu". Ví dụ: Ở Romania, người ta ném đồng xu xuống sông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đồng xu" (n).',
+      'Gợi ý 2: Phiên âm: /kɔɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-57',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nThey visited ________ last month.',
+    options: [
+      'raincoat',
+      'run',
+      'spring',
+      'Spain'
+    ],
+    correctAnswer: 'Spain',
+    explanation: 'Từ "Spain" (/speɪn/) có nghĩa tiếng Việt là "Tây Ban Nha". Ví dụ: Họ đã đến thăm Tây Ban Nha vào tháng trước.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "Tây Ban Nha" (n).',
+      'Gợi ý 2: Phiên âm: /speɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-58',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - COMMUNICATION]\nShe\'s from ________.',
+    options: [
+      'rice',
+      'midnight',
+      'Switzerland',
+      'shelf'
+    ],
+    correctAnswer: 'Switzerland',
+    explanation: 'Từ "Switzerland" (/ˈswɪtsələnd/) có nghĩa tiếng Việt là "Thụy Sĩ". Ví dụ: Cô ấy đến từ Thụy Sĩ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "Thụy Sĩ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈswɪtsələnd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-59',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 1]\nWhen the clock strikes ________.',
+    options: [
+      'midnight',
+      'break',
+      'smile',
+      'home'
+    ],
+    correctAnswer: 'midnight',
+    explanation: 'Từ "midnight" (/ˈmɪdnaɪt/) có nghĩa tiếng Việt là "nửa đêm". Ví dụ: Khi đồng hồ điểm nửa đêm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nửa đêm" (n).',
+      'Gợi ý 2: Phiên âm: /ˈmɪdnaɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-60',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 1]\nEverybody cheers and ________s.',
+    options: [
+      'sing',
+      'coin',
+      'any',
+      'sweets'
+    ],
+    correctAnswer: 'sing',
+    explanation: 'Từ "sing" (/sɪŋ/) có nghĩa tiếng Việt là "hát". Ví dụ: Mọi người reo hò và hát hò.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hát" (v).',
+      'Gợi ý 2: Phiên âm: /sɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-61',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 1]\nWe dress beautifully and go to our ________\' houses.',
+    options: [
+      'year',
+      'cheek',
+      'grandparents',
+      'shine'
+    ],
+    correctAnswer: 'grandparents',
+    explanation: 'Từ "grandparents" (/ˈɡrænpeərənts/) có nghĩa tiếng Việt là "ông bà". Ví dụ: Chúng tôi ăn mặc đẹp và đến nhà ông bà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ông bà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡrænpeərənts/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-62',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 1]\nThey ________ us lucky money.',
+    options: [
+      'guess',
+      'give',
+      'shelf',
+      'bread'
+    ],
+    correctAnswer: 'give',
+    explanation: 'Từ "give" (/ɡɪv/) có nghĩa tiếng Việt là "cho, tặng". Ví dụ: Ông bà lì xì cho chúng tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cho, tặng" (v).',
+      'Gợi ý 2: Phiên âm: /ɡɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-63',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 1]\nI learned some ________s about Tet from my parents.',
+    options: [
+      'lucky',
+      'custom',
+      'succeed',
+      'have'
+    ],
+    correctAnswer: 'custom',
+    explanation: 'Từ "custom" (/ˈkʌstəm/) có nghĩa tiếng Việt là "phong tục". Ví dụ: Tôi học được một số phong tục Tết từ cha mẹ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phong tục" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkʌstəm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-64',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 1]\nDogs are ________ animals.',
+    options: [
+      'cheese',
+      'behave',
+      'lucky',
+      'brother'
+    ],
+    correctAnswer: 'lucky',
+    explanation: 'Từ "lucky" (/ˈlʌki/) có nghĩa tiếng Việt là "may mắn". Ví dụ: Chó là loài động vật mang lại may mắn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "may mắn" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈlʌki/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-65',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 2]\nWhat color are the ________s?',
+    options: [
+      'envelope',
+      'spring',
+      'wear',
+      'visit'
+    ],
+    correctAnswer: 'envelope',
+    explanation: 'Từ "envelope" (/ˈenvələʊp/) có nghĩa tiếng Việt là "phong bì". Ví dụ: Những chiếc phong bì có màu gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phong bì" (n).',
+      'Gợi ý 2: Phiên âm: /ˈenvələʊp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-66',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 2]\nWho ________s Banh Chung?',
+    options: [
+      'cucumber',
+      'shy',
+      'cook',
+      'lucky'
+    ],
+    correctAnswer: 'cook',
+    explanation: 'Từ "cook" (/kʊk/) có nghĩa tiếng Việt là "nấu". Ví dụ: Ai nấu Bánh Chưng?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nấu" (v).',
+      'Gợi ý 2: Phiên âm: /kʊk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-67',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - SKILLS 2]\nWhat do they ________ before Tet?',
+    options: [
+      'throw away',
+      'lucky',
+      'permission',
+      'furniture'
+    ],
+    correctAnswer: 'throw away',
+    explanation: 'Từ "throw away" (/θrəʊ əˈweɪ/) có nghĩa tiếng Việt là "vứt bỏ". Ví dụ: Họ vứt bỏ những gì trước Tết?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vứt bỏ" (phr.v).',
+      'Gợi ý 2: Phiên âm: /θrəʊ əˈweɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-68',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - LOOKING BACK]\nI ask for ________ before entering a room.',
+    options: [
+      'firework',
+      'shopping',
+      'year',
+      'permission'
+    ],
+    correctAnswer: 'permission',
+    explanation: 'Từ "permission" (/pəˈmɪʃn/) có nghĩa tiếng Việt là "sự xin phép, sự cho phép". Ví dụ: Tôi xin phép trước khi vào phòng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sự xin phép, sự cho phép" (n).',
+      'Gợi ý 2: Phiên âm: /pəˈmɪʃn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-69',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - LOOKING BACK]\nHe ________s about the house.',
+    options: [
+      'peach flower',
+      'furniture',
+      'envelope',
+      'run'
+    ],
+    correctAnswer: 'run',
+    explanation: 'Từ "run" (/rʌn/) có nghĩa tiếng Việt là "chạy". Ví dụ: Anh ta chạy quanh nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chạy" (v).',
+      'Gợi ý 2: Phiên âm: /rʌn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-70',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - LOOKING BACK]\nShe makes a lot of ________.',
+    options: [
+      'give',
+      'envelope',
+      'activity',
+      'noise'
+    ],
+    correctAnswer: 'noise',
+    explanation: 'Từ "noise" (/nɔɪz/) có nghĩa tiếng Việt là "tiếng ồn". Ví dụ: Cô ấy gây ra rất nhiều tiếng ồn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiếng ồn" (n).',
+      'Gợi ý 2: Phiên âm: /nɔɪz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-71',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - LOOKING BACK]\nShe takes things from a ________.',
+    options: [
+      'shelf',
+      'thirsty',
+      'friend',
+      'give'
+    ],
+    correctAnswer: 'shelf',
+    explanation: 'Từ "shelf" (/ʃelf/) có nghĩa tiếng Việt là "cái kệ, giá sách". Ví dụ: Cô ấy lấy đồ từ trên kệ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái kệ, giá sách" (n).',
+      'Gợi ý 2: Phiên âm: /ʃelf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-72',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - LOOKING BACK]\nShe feels ________.',
+    options: [
+      'custom',
+      'eat',
+      'wish',
+      'thirsty'
+    ],
+    correctAnswer: 'thirsty',
+    explanation: 'Từ "thirsty" (/ˈθɜːsti/) có nghĩa tiếng Việt là "khát nước". Ví dụ: Cô ấy cảm thấy khát nước.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khát nước" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈθɜːsti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-73',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - LOOKING BACK]\nI\'m cleaning my ________.',
+    options: [
+      'guess',
+      'succeed',
+      'traditional',
+      'bedroom'
+    ],
+    correctAnswer: 'bedroom',
+    explanation: 'Từ "bedroom" (/ˈbedruːm/) có nghĩa tiếng Việt là "phòng ngủ". Ví dụ: Tôi đang dọn dẹp phòng ngủ của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng ngủ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbedruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-74',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - LOOKING BACK]\nBy the window are some ________s.',
+    options: [
+      'food',
+      'balloon',
+      'cucumber',
+      'Spain'
+    ],
+    correctAnswer: 'balloon',
+    explanation: 'Từ "balloon" (/bəˈluːn/) có nghĩa tiếng Việt là "quả bóng bay". Ví dụ: Cạnh cửa sổ có vài quả bóng bay.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quả bóng bay" (n).',
+      'Gợi ý 2: Phiên âm: /bəˈluːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-75',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - PROJECT]\nShe ________s it on a tree.',
+    options: [
+      'hang',
+      'lucky',
+      'clean',
+      'come'
+    ],
+    correctAnswer: 'hang',
+    explanation: 'Từ "hang" (/hæŋ/) có nghĩa tiếng Việt là "treo". Ví dụ: Cô ấy treo nó lên cây.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "treo" (v).',
+      'Gợi ý 2: Phiên âm: /hæŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-76',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - PROJECT]\nThe class ________es whose wish it is.',
+    options: [
+      'anything',
+      'guess',
+      'thirsty',
+      'shopping'
+    ],
+    correctAnswer: 'guess',
+    explanation: 'Từ "guess" (/ɡes/) có nghĩa tiếng Việt là "đoán". Ví dụ: Cả lớp đoán xem điều ước đó là của ai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đoán" (v).',
+      'Gợi ý 2: Phiên âm: /ɡes/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u6-v-77',
+    unitId: 'unit-6',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 6: OUR TET HOLIDAY - PROJECT]\nI want to have a ________.',
+    options: [
+      'brother',
+      'custom',
+      'coin',
+      'knock'
+    ],
+    correctAnswer: 'brother',
+    explanation: 'Từ "brother" (/ˈbrʌðə(r)/) có nghĩa tiếng Việt là "anh/em trai". Ví dụ: Tôi muốn có một người em trai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "anh/em trai" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbrʌðə(r)/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
