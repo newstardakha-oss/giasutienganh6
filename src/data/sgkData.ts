@@ -8041,6 +8041,1166 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /ˈjɪəbʊk/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-1',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nPhong ________s in Hoi An.',
+    options: [
+      'countryside',
+      'friendly',
+      'again',
+      'arrive'
+    ],
+    correctAnswer: 'arrive',
+    explanation: 'Từ "arrive" (/əˈraɪv/) có nghĩa tiếng Việt là "đến". Ví dụ: Phong đến Hội An.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đến" (v).',
+      'Gợi ý 2: Phiên âm: /əˈraɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-2',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nI\'m so ________.',
+    options: [
+      'traffic',
+      'peaceful',
+      'lively',
+      'excited'
+    ],
+    correctAnswer: 'excited',
+    explanation: 'Từ "excited" (/ɪkˈsaɪtɪd/) có nghĩa tiếng Việt là "phấn khích". Ví dụ: Tôi rất phấn khích.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phấn khích" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪkˈsaɪtɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-3',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nIt is so ________.',
+    options: [
+      'beautiful',
+      'presents',
+      'left',
+      'map'
+    ],
+    correctAnswer: 'beautiful',
+    explanation: 'Từ "beautiful" (/ˈbjuːtɪfl/) có nghĩa tiếng Việt là "đẹp". Ví dụ: Nó thật là đẹp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đẹp" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈbjuːtɪfl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-4',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nWhere shall we go ________?',
+    options: [
+      'first',
+      'cathedral',
+      'exciting',
+      'modern'
+    ],
+    correctAnswer: 'first',
+    explanation: 'Từ "first" (/fɜːst/) có nghĩa tiếng Việt là "đầu tiên, trước hết". Ví dụ: Chúng ta sẽ đi đâu trước?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đầu tiên, trước hết" (adv).',
+      'Gợi ý 2: Phiên âm: /fɜːst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-5',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nTake the second turning on the ________.',
+    options: [
+      'heavy',
+      'pagoda',
+      'convenient',
+      'left'
+    ],
+    correctAnswer: 'left',
+    explanation: 'Từ "left" (/left/) có nghĩa tiếng Việt là "bên trái". Ví dụ: Đi ở ngã rẽ thứ hai bên trái.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bên trái" (adv).',
+      'Gợi ý 2: Phiên âm: /left/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-6',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nI think we\'re ________.',
+    options: [
+      'beautiful',
+      'noisy',
+      'cathedral',
+      'lost'
+    ],
+    correctAnswer: 'lost',
+    explanation: 'Từ "lost" (/lɒst/) có nghĩa tiếng Việt là "bị lạc". Ví dụ: Tôi nghĩ chúng ta đã bị lạc.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bị lạc" (adj).',
+      'Gợi ý 2: Phiên âm: /lɒst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-7',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nThe girl shows them the ________ to Tan Ky house.',
+    options: [
+      'way',
+      'post office',
+      'beautiful',
+      'arrive'
+    ],
+    correctAnswer: 'way',
+    explanation: 'Từ "way" (/weɪ/) có nghĩa tiếng Việt là "đường đi". Ví dụ: Cô gái chỉ cho họ đường đến nhà Tấn Kỳ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đường đi" (n).',
+      'Gợi ý 2: Phiên âm: /weɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-8',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nPhong ________s to go to Tan Ky house.',
+    options: [
+      'arrive',
+      'tour',
+      'fantastic',
+      'decide'
+    ],
+    correctAnswer: 'decide',
+    explanation: 'Từ "decide" (/dɪˈsaɪd/) có nghĩa tiếng Việt là "quyết định". Ví dụ: Phong quyết định đến nhà Tấn Kỳ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quyết định" (v).',
+      'Gợi ý 2: Phiên âm: /dɪˈsaɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-9',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nIs that the ________?',
+    options: [
+      'railway station',
+      'gym',
+      'start',
+      'cinema'
+    ],
+    correctAnswer: 'gym',
+    explanation: 'Từ "gym" (/dʒɪm/) có nghĩa tiếng Việt là "phòng tập thể dục". Ví dụ: Đó có phải phòng tập gym không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng tập thể dục" (n).',
+      'Gợi ý 2: Phiên âm: /dʒɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-10',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - GETTING STARTED]\nNo, try ________.',
+    options: [
+      'again',
+      'far',
+      'busy',
+      'cathedral'
+    ],
+    correctAnswer: 'again',
+    explanation: 'Từ "again" (/əˈɡen/) có nghĩa tiếng Việt là "lại, thử lại". Ví dụ: Không, thử lại đi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lại, thử lại" (adv).',
+      'Gợi ý 2: Phiên âm: /əˈɡen/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-11',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nIs your ________ quiet?',
+    options: [
+      'lively',
+      'peaceful',
+      'busy',
+      'neighbourhood'
+    ],
+    correctAnswer: 'neighbourhood',
+    explanation: 'Từ "neighbourhood" (/ˈneɪbəhʊd/) có nghĩa tiếng Việt là "khu hàng xóm, khu vực sống". Ví dụ: Khu phố của bạn có yên tĩnh không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu hàng xóm, khu vực sống" (n).',
+      'Gợi ý 2: Phiên âm: /ˈneɪbəhʊd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-12',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nIt\'s ________.',
+    options: [
+      'tour',
+      'post office',
+      'weather',
+      'noisy'
+    ],
+    correctAnswer: 'noisy',
+    explanation: 'Từ "noisy" (/ˈnɔɪzi/) có nghĩa tiếng Việt là "ồn ào". Ví dụ: Thật là ồn ào.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ồn ào" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈnɔɪzi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-13',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nMy city is very ________.',
+    options: [
+      'quiet',
+      'seafood',
+      'pagoda',
+      'food'
+    ],
+    correctAnswer: 'quiet',
+    explanation: 'Từ "quiet" (/ˈkwaɪət/) có nghĩa tiếng Việt là "yên tĩnh". Ví dụ: Thành phố của tôi rất yên tĩnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "yên tĩnh" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈkwaɪət/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-14',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nThe people here are ________.',
+    options: [
+      'peaceful',
+      'outdoor',
+      'central',
+      'busy'
+    ],
+    correctAnswer: 'busy',
+    explanation: 'Từ "busy" (/ˈbɪzi/) có nghĩa tiếng Việt là "bận rộn, nhộn nhịp". Ví dụ: Những người ở đây bận rộn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bận rộn, nhộn nhịp" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈbɪzi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-15',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nIt is a ________ place to live in.',
+    options: [
+      'lively',
+      'street',
+      'dislike',
+      'cathedral'
+    ],
+    correctAnswer: 'lively',
+    explanation: 'Từ "lively" (/ˈlaɪvli/) có nghĩa tiếng Việt là "sống động, nhộn nhịp". Ví dụ: Đó là một nơi sống động để ở.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sống động, nhộn nhịp" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈlaɪvli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-16',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nMy ________ is very pretty.',
+    options: [
+      'city',
+      'village',
+      'dislike',
+      'way'
+    ],
+    correctAnswer: 'village',
+    explanation: 'Từ "village" (/ˈvɪlɪdʒ/) có nghĩa tiếng Việt là "ngôi làng". Ví dụ: Làng tôi rất đẹp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngôi làng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈvɪlɪdʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-17',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nThe people here are ________.',
+    options: [
+      'post office',
+      'big',
+      'wide',
+      'friendly'
+    ],
+    correctAnswer: 'friendly',
+    explanation: 'Từ "friendly" (/ˈfrendli/) có nghĩa tiếng Việt là "thân thiện". Ví dụ: Con người ở đây rất thân thiện.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thân thiện" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfrendli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-18',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nIt is a ________ place to be.',
+    options: [
+      'village',
+      'far',
+      'central',
+      'fantastic'
+    ],
+    correctAnswer: 'fantastic',
+    explanation: 'Từ "fantastic" (/fænˈtæstɪk/) có nghĩa tiếng Việt là "tuyệt vời". Ví dụ: Đó là một nơi tuyệt vời để đến.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tuyệt vời" (adj).',
+      'Gợi ý 2: Phiên âm: /fænˈtæstɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-19',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nThe onerous task of finding a ________ solution.',
+    options: [
+      'busy',
+      'peaceful',
+      'narrow',
+      'start'
+    ],
+    correctAnswer: 'peaceful',
+    explanation: 'Từ "peaceful" (/ˈpiːsfl/) có nghĩa tiếng Việt là "thanh bình, bình yên". Ví dụ: Nhiệm vụ khó khăn là tìm ra một giải pháp hòa bình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thanh bình, bình yên" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈpiːsfl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-20',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nOur local shop has very ________ opening hours.',
+    options: [
+      'noisy',
+      'delicious',
+      'traffic',
+      'convenient'
+    ],
+    correctAnswer: 'convenient',
+    explanation: 'Từ "convenient" (/kənˈviːniənt/) có nghĩa tiếng Việt là "tiện lợi, thuận tiện". Ví dụ: Cửa hàng địa phương của chúng tôi có giờ mở cửa rất thuận tiện.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiện lợi, thuận tiện" (adj).',
+      'Gợi ý 2: Phiên âm: /kənˈviːniənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-21',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nI got a ________ flight at the last minute.',
+    options: [
+      'cheap',
+      'seafood',
+      'pagoda',
+      'friendly'
+    ],
+    correctAnswer: 'cheap',
+    explanation: 'Từ "cheap" (/tʃiːp/) có nghĩa tiếng Việt là "rẻ". Ví dụ: Tôi đã mua được một chuyến bay giá rẻ vào phút cuối.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rẻ" (adj).',
+      'Gợi ý 2: Phiên âm: /tʃiːp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-22',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nMake sure your hands are ________ before you have your dinner.',
+    options: [
+      'clean',
+      'dislike',
+      'busy',
+      'street'
+    ],
+    correctAnswer: 'clean',
+    explanation: 'Từ "clean" (/kliːn/) có nghĩa tiếng Việt là "sạch sẽ". Ví dụ: Đảm bảo tay bạn sạch sẽ trước khi ăn tối.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sạch sẽ" (adj).',
+      'Gợi ý 2: Phiên âm: /kliːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-23',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nThe roof of the ________ was held up by a row of thick stone columns.',
+    options: [
+      'temple',
+      'delicious',
+      'museum',
+      'street'
+    ],
+    correctAnswer: 'temple',
+    explanation: 'Từ "temple" (/ˈtempl/) có nghĩa tiếng Việt là "ngôi đền". Ví dụ: Phần mái của ngôi đền được nâng đỡ bởi một hàng cột đá dày.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngôi đền" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtempl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-24',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nI was woken up by the chimes of the ________ bells.',
+    options: [
+      'railway station',
+      'neighbourhood',
+      'outdoor',
+      'cathedral'
+    ],
+    correctAnswer: 'cathedral',
+    explanation: 'Từ "cathedral" (/kəˈθiːdrəl/) có nghĩa tiếng Việt là "nhà thờ lớn, thánh đường". Ví dụ: Tôi bị đánh thức bởi tiếng chuông nhà thờ lớn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà thờ lớn, thánh đường" (n).',
+      'Gợi ý 2: Phiên âm: /kəˈθiːdrəl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-25',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nA taxi had dropped him and his luggage at the main ________.',
+    options: [
+      'way',
+      'suburbs',
+      'pagoda',
+      'railway station'
+    ],
+    correctAnswer: 'railway station',
+    explanation: 'Từ "railway station" (/ˈreɪlweɪ ˌsteɪʃn/) có nghĩa tiếng Việt là "nhà ga xe lửa". Ví dụ: Một chiếc taxi đã thả anh ta và hành lý tại nhà ga chính.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà ga xe lửa" (n).',
+      'Gợi ý 2: Phiên âm: /ˈreɪlweɪ ˌsteɪʃn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-26',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 1]\nIs there a ________ in your neighbourhood?',
+    options: [
+      'food',
+      'busy',
+      'first',
+      'square'
+    ],
+    correctAnswer: 'square',
+    explanation: 'Từ "square" (/skweə(r)/) có nghĩa tiếng Việt là "quảng trường". Ví dụ: Có quảng trường nào trong khu phố của bạn không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quảng trường" (n).',
+      'Gợi ý 2: Phiên âm: /skweə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-27',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nA house in a city is normally more expensive than a house in the ________.',
+    options: [
+      'big',
+      'gym',
+      'way',
+      'countryside'
+    ],
+    correctAnswer: 'countryside',
+    explanation: 'Từ "countryside" (/ˈkʌntrisaɪd/) có nghĩa tiếng Việt là "vùng nông thôn". Ví dụ: Một ngôi nhà ở thành phố thường đắt hơn một ngôi nhà ở nông thôn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vùng nông thôn" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkʌntrisaɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-28',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nLiving in the countryside is more peaceful than living in a ________.',
+    options: [
+      'peaceful',
+      'city',
+      'food',
+      'temple'
+    ],
+    correctAnswer: 'city',
+    explanation: 'Từ "city" (/ˈsɪti/) có nghĩa tiếng Việt là "thành phố". Ví dụ: Sống ở nông thôn yên bình hơn sống ở thành phố.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thành phố" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsɪti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-29',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nIs living in a city more ________ than living in the countryside?',
+    options: [
+      'big',
+      'outdoor',
+      'suburbs',
+      'exciting'
+    ],
+    correctAnswer: 'exciting',
+    explanation: 'Từ "exciting" (/ɪkˈsaɪtɪŋ/) có nghĩa tiếng Việt là "thú vị, sôi động". Ví dụ: Sống ở thành phố có thú vị hơn sống ở nông thôn không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thú vị, sôi động" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪkˈsaɪtɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-30',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nThe square in Hanoi is ________ger than the square in Hoi An.',
+    options: [
+      'big',
+      'modern',
+      'cathedral',
+      'gym'
+    ],
+    correctAnswer: 'big',
+    explanation: 'Từ "big" (/bɪɡ/) có nghĩa tiếng Việt là "lớn, to". Ví dụ: Quảng trường ở Hà Nội lớn hơn quảng trường ở Hội An.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lớn, to" (adj).',
+      'Gợi ý 2: Phiên âm: /bɪɡ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-31',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nThe ________ is hotter.',
+    options: [
+      'weather',
+      'market',
+      'seafood',
+      'presents'
+    ],
+    correctAnswer: 'weather',
+    explanation: 'Từ "weather" (/ˈweðə(r)/) có nghĩa tiếng Việt là "thời tiết". Ví dụ: Thời tiết nóng hơn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời tiết" (n).',
+      'Gợi ý 2: Phiên âm: /ˈweðə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-32',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nThe streets are wide with less ________.',
+    options: [
+      'post office',
+      'narrow',
+      'left',
+      'traffic'
+    ],
+    correctAnswer: 'traffic',
+    explanation: 'Từ "traffic" (/ˈtræfɪk/) có nghĩa tiếng Việt là "giao thông, xe cộ". Ví dụ: Đường phố rộng rãi, ít xe cộ qua lại.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giao thông, xe cộ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtræfɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-33',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nThe ________ here is delicious.',
+    options: [
+      'neighbourhood',
+      'central',
+      'excited',
+      'seafood'
+    ],
+    correctAnswer: 'seafood',
+    explanation: 'Từ "seafood" (/ˈsiːfuːd/) có nghĩa tiếng Việt là "hải sản". Ví dụ: Hải sản ở đây rất ngon.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hải sản" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsiːfuːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-34',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nThis wine is ________.',
+    options: [
+      'delicious',
+      'wide',
+      'museum',
+      'lively'
+    ],
+    correctAnswer: 'delicious',
+    explanation: 'Từ "delicious" (/dɪˈlɪʃəs/) có nghĩa tiếng Việt là "rất ngon". Ví dụ: Rượu này rất ngon.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rất ngon" (adj).',
+      'Gợi ý 2: Phiên âm: /dɪˈlɪʃəs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-35',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nThe river was deep and ________.',
+    options: [
+      'modern',
+      'street',
+      'wide',
+      'gym'
+    ],
+    correctAnswer: 'wide',
+    explanation: 'Từ "wide" (/waɪd/) có nghĩa tiếng Việt là "rộng". Ví dụ: Dòng sông sâu và rộng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rộng" (adj).',
+      'Gợi ý 2: Phiên âm: /waɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-36',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nBy ten o\'clock the bar was ________.',
+    options: [
+      'crowded',
+      'excited',
+      'neighbourhood',
+      'central'
+    ],
+    correctAnswer: 'crowded',
+    explanation: 'Từ "crowded" (/ˈkraʊdɪd/) có nghĩa tiếng Việt là "đông đúc". Ví dụ: Đến mười giờ quán đã đông khách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đông đúc" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈkraʊdɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-37',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - A CLOSER LOOK 2]\nIs Long Son more ________ than Binh Minh?',
+    options: [
+      'modern',
+      'market',
+      'food',
+      'heavy'
+    ],
+    correctAnswer: 'modern',
+    explanation: 'Từ "modern" (/ˈmɒdn/) có nghĩa tiếng Việt là "hiện đại". Ví dụ: Long Sơn có hiện đại hơn Bình Minh không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hiện đại" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈmɒdn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-38',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nCould you tell me the way to the ________?',
+    options: [
+      'cinema',
+      'first',
+      'cheap',
+      'busy'
+    ],
+    correctAnswer: 'cinema',
+    explanation: 'Từ "cinema" (/ˈsɪnəmə/) có nghĩa tiếng Việt là "rạp chiếu phim". Ví dụ: Bạn có thể cho tôi biết đường đến rạp chiếu phim không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rạp chiếu phim" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsɪnəmə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-39',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nGo along this ________.',
+    options: [
+      'street',
+      'lively',
+      'modern',
+      'fantastic'
+    ],
+    correctAnswer: 'street',
+    explanation: 'Từ "street" (/striːt/) có nghĩa tiếng Việt là "đường phố". Ví dụ: Đi dọc đoạn đường này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đường phố" (n).',
+      'Gợi ý 2: Phiên âm: /striːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-40',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nWhere\'s the ________?',
+    options: [
+      'village',
+      'busy',
+      'post office',
+      'suburbs'
+    ],
+    correctAnswer: 'post office',
+    explanation: 'Từ "post office" (/ˈpəʊst ˌɒfɪs/) có nghĩa tiếng Việt là "bưu điện". Ví dụ: Bưu điện ở đâu?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bưu điện" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpəʊst ˌɒfɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-41',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nTake the first turning on the ________.',
+    options: [
+      'right',
+      'suburbs',
+      'big',
+      'central'
+    ],
+    correctAnswer: 'right',
+    explanation: 'Từ "right" (/raɪt/) có nghĩa tiếng Việt là "bên phải". Ví dụ: Đi ở ngã rẽ đầu tiên bên phải.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bên phải" (adj).',
+      'Gợi ý 2: Phiên âm: /raɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-42',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nLet\'s ________ our tour in Hoi An.',
+    options: [
+      'start',
+      'map',
+      'pagoda',
+      'cinema'
+    ],
+    correctAnswer: 'start',
+    explanation: 'Từ "start" (/stɑːt/) có nghĩa tiếng Việt là "bắt đầu". Ví dụ: Hãy bắt đầu chuyến tham quan của chúng tôi tại Hội An.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bắt đầu" (v).',
+      'Gợi ý 2: Phiên âm: /stɑːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-43',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nA bus took us on a sightseeing ________ of the city.',
+    options: [
+      'noisy',
+      'peaceful',
+      'fantastic',
+      'tour'
+    ],
+    correctAnswer: 'tour',
+    explanation: 'Từ "tour" (/tʊə(r)/) có nghĩa tiếng Việt là "chuyến tham quan". Ví dụ: Xe buýt đưa chúng tôi đi một chuyến tham quan thành phố.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chuyến tham quan" (n).',
+      'Gợi ý 2: Phiên âm: /tʊə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-44',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nFirst, go to the ________.',
+    options: [
+      'decide',
+      'tour',
+      'suburbs',
+      'pagoda'
+    ],
+    correctAnswer: 'pagoda',
+    explanation: 'Từ "pagoda" (/pəˈɡəʊdə/) có nghĩa tiếng Việt là "ngôi chùa". Ví dụ: Đầu tiên, hãy đến chùa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngôi chùa" (n).',
+      'Gợi ý 2: Phiên âm: /pəˈɡəʊdə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-45',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nNext, go to the ________ of Sa Huynh culture.',
+    options: [
+      'decide',
+      'museum',
+      'city',
+      'beautiful'
+    ],
+    correctAnswer: 'museum',
+    explanation: 'Từ "museum" (/mjuˈziːəm/) có nghĩa tiếng Việt là "bảo tàng". Ví dụ: Tiếp theo, đến bảo tàng văn hóa Sa Huỳnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bảo tàng" (n).',
+      'Gợi ý 2: Phiên âm: /mjuˈziːəm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-46',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - COMMUNICATION]\nFinally, go to Hoa Nhap Workshop to buy some ________.',
+    options: [
+      'presents',
+      'traffic',
+      'excited',
+      'far'
+    ],
+    correctAnswer: 'presents',
+    explanation: 'Từ "presents" (/ˈpreznts/) có nghĩa tiếng Việt là "quà tặng". Ví dụ: Cuối cùng, đến Xưởng Hoa Nhập để mua quà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quà tặng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpreznts/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-47',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 1]\nWhy is his neighbourhood great for ________ activities?',
+    options: [
+      'outdoor',
+      'post office',
+      'dislike',
+      'right'
+    ],
+    correctAnswer: 'outdoor',
+    explanation: 'Từ "outdoor" (/ˈaʊtdɔː(r)/) có nghĩa tiếng Việt là "ngoài trời". Ví dụ: Tại sao khu phố của anh ấy là nơi tuyệt vời cho các hoạt động ngoài trời?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngoài trời" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈaʊtdɔː(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-48',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 1]\nWhat are the ________ in his neighbourhood like?',
+    options: [
+      'dislike',
+      'village',
+      'people',
+      'heavy'
+    ],
+    correctAnswer: 'people',
+    explanation: 'Từ "people" (/ˈpiːpl/) có nghĩa tiếng Việt là "con người". Ví dụ: Những người trong khu phố của anh ấy như thế nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con người" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpiːpl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-49',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 1]\nDo you ________ it?',
+    options: [
+      'big',
+      'dislike',
+      'temple',
+      'map'
+    ],
+    correctAnswer: 'dislike',
+    explanation: 'Từ "dislike" (/dɪsˈlaɪk/) có nghĩa tiếng Việt là "không thích". Ví dụ: Bạn không thích nó sao?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "không thích" (v).',
+      'Gợi ý 2: Phiên âm: /dɪsˈlaɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-50',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 1]\nI live in the ________ of Da Nang.',
+    options: [
+      'suburbs',
+      'neighbourhood',
+      'museum',
+      'village'
+    ],
+    correctAnswer: 'suburbs',
+    explanation: 'Từ "suburbs" (/ˈsʌbɜːbz/) có nghĩa tiếng Việt là "vùng ngoại thành". Ví dụ: Tôi sống ở ngoại thành Đà Nẵng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vùng ngoại thành" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsʌbɜːbz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-51',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 1]\nThe people are friendly and the ________ is good.',
+    options: [
+      'weather',
+      'food',
+      'right',
+      'again'
+    ],
+    correctAnswer: 'food',
+    explanation: 'Từ "food" (/fuːd/) có nghĩa tiếng Việt là "thức ăn, đồ ăn". Ví dụ: Con người thân thiện và thức ăn rất ngon.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thức ăn, đồ ăn" (n).',
+      'Gợi ý 2: Phiên âm: /fuːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-52',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 2]\nVy lives in the centre of Ho Chi Minh City.',
+    options: [
+      'left',
+      'central',
+      'pagoda',
+      'food'
+    ],
+    correctAnswer: 'central',
+    explanation: 'Từ "central" (/ˈsentrəl/) có nghĩa tiếng Việt là "trung tâm". Ví dụ: Vy sống ở trung tâm Thành phố Hồ Chí Minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trung tâm" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈsentrəl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-53',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 2]\nThere is a big ________ near her house.',
+    options: [
+      'start',
+      'excited',
+      'market',
+      'exciting'
+    ],
+    correctAnswer: 'market',
+    explanation: 'Từ "market" (/ˈmɑːkɪt/) có nghĩa tiếng Việt là "khu chợ". Ví dụ: Có một cái chợ lớn gần nhà cô ấy.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu chợ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈmɑːkɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-54',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 2]\nThe streets are ________.',
+    options: [
+      'beautiful',
+      'gym',
+      'square',
+      'narrow'
+    ],
+    correctAnswer: 'narrow',
+    explanation: 'Từ "narrow" (/ˈnærəʊ/) có nghĩa tiếng Việt là "chật hẹp". Ví dụ: Đường phố chật hẹp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chật hẹp" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈnærəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-55',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - SKILLS 2]\nThe schools are ________ away.',
+    options: [
+      'cheap',
+      'city',
+      'delicious',
+      'far'
+    ],
+    correctAnswer: 'far',
+    explanation: 'Từ "far" (/fɑː(r)/) có nghĩa tiếng Việt là "xa". Ví dụ: Các trường học ở rất xa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "xa" (adv).',
+      'Gợi ý 2: Phiên âm: /fɑː(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-56',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - LOOKING BACK]\nHe labored up the hill with his ________ load.',
+    options: [
+      'heavy',
+      'post office',
+      'weather',
+      'tour'
+    ],
+    correctAnswer: 'heavy',
+    explanation: 'Từ "heavy" (/ˈhevi/) có nghĩa tiếng Việt là "nặng, nặng nề". Ví dụ: Anh ấy vất vả đi lên đồi với gánh nặng của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nặng, nặng nề" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈhevi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-57',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - LOOKING BACK]\nWe didn\'t expect such a ________ number of people to attend the concert.',
+    options: [
+      'narrow',
+      'market',
+      'beautiful',
+      'large'
+    ],
+    correctAnswer: 'large',
+    explanation: 'Từ "large" (/lɑːdʒ/) có nghĩa tiếng Việt là "lớn, rộng lớn". Ví dụ: Chúng tôi không ngờ có số lượng lớn người tham dự buổi hòa nhạc đến vậy.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lớn, rộng lớn" (adj).',
+      'Gợi ý 2: Phiên âm: /lɑːdʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u4-v-58',
+    unitId: 'unit-4',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 4: MY NEIGHBOURHOOD - PROJECT]\nWe need a large-scale ________ showing all the footpaths that we can walk along.',
+    options: [
+      'traffic',
+      'map',
+      'delicious',
+      'large'
+    ],
+    correctAnswer: 'map',
+    explanation: 'Từ "map" (/mæp/) có nghĩa tiếng Việt là "bản đồ". Ví dụ: Chúng ta cần một bản đồ tỷ lệ lớn hiển thị tất cả đường đi bộ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bản đồ" (n).',
+      'Gợi ý 2: Phiên âm: /mæp/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 

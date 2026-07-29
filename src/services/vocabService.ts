@@ -1,5 +1,6 @@
 import unit2VocabRaw from '../data/unit2_vocab.json';
 import unit3VocabRaw from '../data/unit3_vocab.json';
+import unit4VocabRaw from '../data/unit4_vocab.json';
 import { Question } from '../types';
 
 export interface VocabItem {
@@ -16,6 +17,7 @@ export interface VocabItem {
 // 1. Tải danh sách từ vựng từ tệp JSON
 export const UNIT2_VOCAB_DATA: VocabItem[] = unit2VocabRaw as VocabItem[];
 export const UNIT3_VOCAB_DATA: VocabItem[] = unit3VocabRaw as VocabItem[];
+export const UNIT4_VOCAB_DATA: VocabItem[] = unit4VocabRaw as VocabItem[];
 
 /**
  * 2. Khởi tạo & Nạp dữ liệu với cơ chế kiểm tra trùng lặp (Seed Data)
@@ -49,13 +51,20 @@ export function seedUnit3Vocab(existingVocab: VocabItem[] = []): VocabItem[] {
   return seedVocabData(UNIT3_VOCAB_DATA, existingVocab);
 }
 
+export function seedUnit4Vocab(existingVocab: VocabItem[] = []): VocabItem[] {
+  return seedVocabData(UNIT4_VOCAB_DATA, existingVocab);
+}
+
 /**
  * 3a. Lấy danh sách từ vựng theo bài học (part) và theo Unit
- * @param unitId "unit-2" hoặc "unit-3" (mặc định "unit-3")
+ * @param unitId "unit-2", "unit-3", hoặc "unit-4" (mặc định "unit-4")
  * @param part Tên phần bài học (VD: "GETTING STARTED", "A CLOSER LOOK 1", "SKILLS 1"...)
  */
-export function getVocabByPart(part: string, unitId: string = 'unit-3'): VocabItem[] {
-  const sourceList = unitId === 'unit-2' ? UNIT2_VOCAB_DATA : UNIT3_VOCAB_DATA;
+export function getVocabByPart(part: string, unitId: string = 'unit-4'): VocabItem[] {
+  let sourceList = UNIT4_VOCAB_DATA;
+  if (unitId === 'unit-2') sourceList = UNIT2_VOCAB_DATA;
+  if (unitId === 'unit-3') sourceList = UNIT3_VOCAB_DATA;
+
   if (!part || part === 'ALL') {
     return sourceList;
   }
@@ -68,10 +77,10 @@ export function getVocabByPart(part: string, unitId: string = 'unit-3'): VocabIt
  * 3b. Lấy ngẫu nhiên N từ vựng cho các Mini-game (Flashcard, Word Search, Quiz)
  * Sử dụng thuật toán xáo trộn Fisher-Yates shuffle chuẩn xác.
  * @param count Số lượng từ vựng cần lấy (mặc định 10)
- * @param unitId "unit-2" hoặc "unit-3" (mặc định "unit-3")
+ * @param unitId "unit-2", "unit-3", "unit-4"
  * @param part (Tùy chọn) Lọc theo phần bài học
  */
-export function getRandomVocabForGames(count: number = 10, unitId: string = 'unit-3', part?: string): VocabItem[] {
+export function getRandomVocabForGames(count: number = 10, unitId: string = 'unit-4', part?: string): VocabItem[] {
   const sourceList = getVocabByPart(part || 'ALL', unitId);
   if (sourceList.length === 0) return [];
 
@@ -87,8 +96,11 @@ export function getRandomVocabForGames(count: number = 10, unitId: string = 'uni
 /**
  * 4. Chuyển đổi dữ liệu VocabItem thành Question object để dùng trong PracticeHub & Mini-Games
  */
-export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-3'): Question {
-  const sourceList = unitId === 'unit-2' ? UNIT2_VOCAB_DATA : UNIT3_VOCAB_DATA;
+export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-4'): Question {
+  let sourceList = UNIT4_VOCAB_DATA;
+  if (unitId === 'unit-2') sourceList = UNIT2_VOCAB_DATA;
+  if (unitId === 'unit-3') sourceList = UNIT3_VOCAB_DATA;
+
   const options = [vocab.word];
   const otherWords = sourceList
     .filter((v) => v.word !== vocab.word)
