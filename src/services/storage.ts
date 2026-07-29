@@ -116,9 +116,14 @@ export function loadAppData(): AppDataSchema {
       // Ensure active student progress is synced
       const activeStudent = students.find((s) => s.id === currentStudentId);
 
+      // Merge DEMO_QUESTIONS with custom questions to ensure all newly added SGK questions are loaded
+      const builtInIds = new Set(DEMO_QUESTIONS.map((q) => q.id));
+      const customQuestions = (parsed.questions || []).filter((q: Question) => !builtInIds.has(q.id));
+      const mergedQuestions = [...DEMO_QUESTIONS, ...customQuestions];
+
       return {
         units: SGK_UNITS,
-        questions: parsed.questions?.length ? parsed.questions : DEMO_QUESTIONS,
+        questions: mergedQuestions,
         sessions: activeStudent ? activeStudent.sessions : parsed.sessions || [],
         progress: activeStudent ? activeStudent.progress : parsed.progress || INITIAL_PROGRESS,
         students,
