@@ -12341,6 +12341,1366 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /ˈbrʌðə(r)/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-1',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nWhat\'s on ________?',
+    options: [
+      'today',
+      'weather',
+      'wonderful',
+      'follow'
+    ],
+    correctAnswer: 'today',
+    explanation: 'Từ "today" (/təˈdeɪ/) có nghĩa tiếng Việt là "hôm nay". Ví dụ: Hôm nay có gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hôm nay" (adv).',
+      'Gợi ý 2: Phiên âm: /təˈdeɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-2',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nWhat are you ________ing?',
+    options: [
+      'watch',
+      'love',
+      'childhood',
+      'because'
+    ],
+    correctAnswer: 'watch',
+    explanation: 'Từ "watch" (/wɒtʃ/) có nghĩa tiếng Việt là "xem". Ví dụ: Bạn đang xem gì thế?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "xem" (v).',
+      'Gợi ý 2: Phiên âm: /wɒtʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-3',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nThat music ________ show is very interesting.',
+    options: [
+      'English',
+      'talent',
+      'sugar',
+      'enjoy'
+    ],
+    correctAnswer: 'talent',
+    explanation: 'Từ "talent" (/ˈtælənt/) có nghĩa tiếng Việt là "tài năng". Ví dụ: Buổi biểu diễn tài năng âm nhạc đó rất thú vị.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tài năng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtælənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-4',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nWhat ________ do you often watch?',
+    options: [
+      'love',
+      'attract',
+      'programme',
+      'weekend'
+    ],
+    correctAnswer: 'programme',
+    explanation: 'Từ "programme" (/ˈprəʊɡræm/) có nghĩa tiếng Việt là "chương trình". Ví dụ: Bạn thường xem chương trình gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chương trình" (n).',
+      'Gợi ý 2: Phiên âm: /ˈprəʊɡræm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-5',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nI ________ them.',
+    options: [
+      'will',
+      'information',
+      'love',
+      'Saturday'
+    ],
+    correctAnswer: 'love',
+    explanation: 'Từ "love" (/lʌv/) có nghĩa tiếng Việt là "yêu, thích". Ví dụ: Tôi yêu thích chúng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "yêu, thích" (v).',
+      'Gợi ý 2: Phiên âm: /lʌv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-6',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nThey are ________.',
+    options: [
+      'wonderful',
+      'learn',
+      'often',
+      'room'
+    ],
+    correctAnswer: 'wonderful',
+    explanation: 'Từ "wonderful" (/ˈwʌndəfl/) có nghĩa tiếng Việt là "tuyệt vời". Ví dụ: Chúng thật tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tuyệt vời" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈwʌndəfl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-7',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nI ________ watch them with my little brother.',
+    options: [
+      'decorate',
+      'because',
+      'often',
+      'childhood'
+    ],
+    correctAnswer: 'often',
+    explanation: 'Từ "often" (/ˈɒfn/) có nghĩa tiếng Việt là "thường". Ví dụ: Tôi thường xem chúng với em trai tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thường" (adv).',
+      'Gợi ý 2: Phiên âm: /ˈɒfn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-8',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nHe prefers ________s.',
+    options: [
+      'live',
+      'cartoon',
+      'pet',
+      'depend'
+    ],
+    correctAnswer: 'cartoon',
+    explanation: 'Từ "cartoon" (/kɑːˈtuːn/) có nghĩa tiếng Việt là "phim hoạt hình". Ví dụ: Anh ấy thích phim hoạt hình hơn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phim hoạt hình" (n).',
+      'Gợi ý 2: Phiên âm: /kɑːˈtuːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-9',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nHe loves Jerry the ________.',
+    options: [
+      'mouse',
+      'funny',
+      'information',
+      'street'
+    ],
+    correctAnswer: 'mouse',
+    explanation: 'Từ "mouse" (/maʊs/) có nghĩa tiếng Việt là "con chuột". Ví dụ: Anh ấy yêu thích chú chuột Jerry.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con chuột" (n).',
+      'Gợi ý 2: Phiên âm: /maʊs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-10',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nJerry\'s a ________ character.',
+    options: [
+      'clever',
+      'television',
+      'boring',
+      'football'
+    ],
+    correctAnswer: 'clever',
+    explanation: 'Từ "clever" (/ˈklevə(r)/) có nghĩa tiếng Việt là "thông minh, khéo léo". Ví dụ: Jerry là một nhân vật thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thông minh, khéo léo" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈklevə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-11',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - GETTING STARTED]\nI ________ watch it.',
+    options: [
+      'will',
+      'giraffe',
+      'mouse',
+      'sister'
+    ],
+    correctAnswer: 'will',
+    explanation: 'Từ "will" (/wɪl/) có nghĩa tiếng Việt là "sẽ". Ví dụ: Tôi sẽ xem nó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sẽ" (aux).',
+      'Gợi ý 2: Phiên âm: /wɪl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-12',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nThe most ________ channel for children is Cartoon Network.',
+    options: [
+      'popular',
+      'depend',
+      'weekend',
+      'tonight'
+    ],
+    correctAnswer: 'popular',
+    explanation: 'Từ "popular" (/ˈpɒpjələ(r)/) có nghĩa tiếng Việt là "phổ biến, được yêu thích". Ví dụ: Kênh phổ biến nhất dành cho trẻ em là Cartoon Network.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phổ biến, được yêu thích" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈpɒpjələ(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-13',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nThe film is very ________.',
+    options: [
+      'boring',
+      'tonight',
+      'sport',
+      'viewer'
+    ],
+    correctAnswer: 'boring',
+    explanation: 'Từ "boring" (/ˈbɔːrɪŋ/) có nghĩa tiếng Việt là "nhàm chán". Ví dụ: Bộ phim rất nhàm chán.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhàm chán" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈbɔːrɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-14',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nKitty the cat is very ________.',
+    options: [
+      'clever',
+      'attract',
+      'cute',
+      'boring'
+    ],
+    correctAnswer: 'cute',
+    explanation: 'Từ "cute" (/kjuːt/) có nghĩa tiếng Việt là "dễ thương". Ví dụ: Mèo Kitty rất dễ thương.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "dễ thương" (adj).',
+      'Gợi ý 2: Phiên âm: /kjuːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-15',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nComedies are ________.',
+    options: [
+      'tomorrow',
+      'funny',
+      'weather',
+      'reason'
+    ],
+    correctAnswer: 'funny',
+    explanation: 'Từ "funny" (/ˈfʌni/) có nghĩa tiếng Việt là "vui nhộn, hài hước". Ví dụ: Phim hài rất vui nhộn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vui nhộn, hài hước" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfʌni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-16',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nPeople ________ a lot.',
+    options: [
+      'laugh',
+      'repetition',
+      'pet',
+      'street'
+    ],
+    correctAnswer: 'laugh',
+    explanation: 'Từ "laugh" (/lɑːf/) có nghĩa tiếng Việt là "cười". Ví dụ: Mọi người cười rất nhiều.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cười" (v).',
+      'Gợi ý 2: Phiên âm: /lɑːf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-17',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nWe ________ a lot from Discovery Channel.',
+    options: [
+      'cartoon',
+      'learn',
+      'weekend',
+      'weather'
+    ],
+    correctAnswer: 'learn',
+    explanation: 'Từ "learn" (/lɜːn/) có nghĩa tiếng Việt là "học". Ví dụ: Chúng tôi học hỏi được rất nhiều điều từ kênh Discovery Channel.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "học" (v).',
+      'Gợi ý 2: Phiên âm: /lɜːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-18',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nI prefer Shakespeare\'s comedies to his tragedies.',
+    options: [
+      'comedy',
+      'activity',
+      'Saturday',
+      'street'
+    ],
+    correctAnswer: 'comedy',
+    explanation: 'Từ "comedy" (/ˈkɒmədi/) có nghĩa tiếng Việt là "hài kịch, phim hài". Ví dụ: Tôi thích những vở hài kịch của Shakespeare hơn là bi kịch của ông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hài kịch, phim hài" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkɒmədi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-19',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nMillions of ________s will watch this match.',
+    options: [
+      'wildlife',
+      'viewer',
+      'book',
+      'sugar'
+    ],
+    correctAnswer: 'viewer',
+    explanation: 'Từ "viewer" (/ˈvjuːə(r)/) có nghĩa tiếng Việt là "khán giả xem truyền hình". Ví dụ: Hàng triệu khán giả sẽ theo dõi trận đấu này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khán giả xem truyền hình" (n).',
+      'Gợi ý 2: Phiên âm: /ˈvjuːə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-20',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nPlease exit the ________ by the side doors.',
+    options: [
+      'theatre',
+      'attract',
+      'hour',
+      'reason'
+    ],
+    correctAnswer: 'theatre',
+    explanation: 'Từ "theatre" (/ˈθɪətə(r)/) có nghĩa tiếng Việt là "rạp hát, nhà hát". Ví dụ: Vui lòng rời nhà hát bằng cửa bên.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rạp hát, nhà hát" (n).',
+      'Gợi ý 2: Phiên âm: /ˈθɪətə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-21',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nMy ________ often watches comedies.',
+    options: [
+      'father',
+      'laugh',
+      'English',
+      'stadium'
+    ],
+    correctAnswer: 'father',
+    explanation: 'Từ "father" (/ˈfɑːðə(r)/) có nghĩa tiếng Việt là "bố, cha". Ví dụ: Bố tôi thường xem phim hài.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bố, cha" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfɑːðə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-22',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 1]\nThey are talking about the ________.',
+    options: [
+      'theatre',
+      'intelligent',
+      'weather',
+      'wonderful'
+    ],
+    correctAnswer: 'weather',
+    explanation: 'Từ "weather" (/ˈweðə(r)/) có nghĩa tiếng Việt là "thời tiết". Ví dụ: Họ đang nói về thời tiết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời tiết" (n).',
+      'Gợi ý 2: Phiên âm: /ˈweðə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-23',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nWhat are you doing ________?',
+    options: [
+      'tomorrow',
+      'hour',
+      'early',
+      'activity'
+    ],
+    correctAnswer: 'tomorrow',
+    explanation: 'Từ "tomorrow" (/təˈmɒrəʊ/) có nghĩa tiếng Việt là "ngày mai". Ví dụ: Ngày mai bạn sẽ làm gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngày mai" (adv).',
+      'Gợi ý 2: Phiên âm: /təˈmɒrəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-24',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI\'m going to a book ________.',
+    options: [
+      'talent',
+      'exhibition',
+      'viewer',
+      'tomorrow'
+    ],
+    correctAnswer: 'exhibition',
+    explanation: 'Từ "exhibition" (/ˌeksɪˈbɪʃn/) có nghĩa tiếng Việt là "cuộc triển lãm". Ví dụ: Tôi sẽ đến một cuộc triển lãm sách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc triển lãm" (n).',
+      'Gợi ý 2: Phiên âm: /ˌeksɪˈbɪʃn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-25',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nIt\'s on Van Ho ________.',
+    options: [
+      'street',
+      'wildlife',
+      'sometimes',
+      'theatre'
+    ],
+    correctAnswer: 'street',
+    explanation: 'Từ "street" (/striːt/) có nghĩa tiếng Việt là "đường phố". Ví dụ: Nó ở trên đường Vân Hồ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đường phố" (n).',
+      'Gợi ý 2: Phiên âm: /striːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-26',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nIt ________s.',
+    options: [
+      'depend',
+      'dolphin',
+      'football',
+      'boring'
+    ],
+    correctAnswer: 'depend',
+    explanation: 'Từ "depend" (/dɪˈpend/) có nghĩa tiếng Việt là "tùy thuộc". Ví dụ: Nó còn tùy.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tùy thuộc" (v).',
+      'Gợi ý 2: Phiên âm: /dɪˈpend/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-27',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nHow often do you play ________?',
+    options: [
+      'football',
+      'stadium',
+      'watch',
+      'intelligent'
+    ],
+    correctAnswer: 'football',
+    explanation: 'Từ "football" (/ˈfʊtbɔːl/) có nghĩa tiếng Việt là "bóng đá". Ví dụ: Bạn có thường chơi bóng đá không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bóng đá" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfʊtbɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-28',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nUsually on ________ or Sunday.',
+    options: [
+      'book',
+      'exhibition',
+      'Saturday',
+      'activity'
+    ],
+    correctAnswer: 'Saturday',
+    explanation: 'Từ "Saturday" (/ˈsætədeɪ/) có nghĩa tiếng Việt là "thứ Bảy". Ví dụ: Thường vào thứ Bảy hoặc Chủ Nhật.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thứ Bảy" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsætədeɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-29',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI play in the ________.',
+    options: [
+      'viewer',
+      'yard',
+      'fox',
+      'mouse'
+    ],
+    correctAnswer: 'yard',
+    explanation: 'Từ "yard" (/jɑːd/) có nghĩa tiếng Việt là "cái sân". Ví dụ: Tôi chơi ở trong sân.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái sân" (n).',
+      'Gợi ý 2: Phiên âm: /jɑːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-30',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nThe ________ for the accident was engine failure.',
+    options: [
+      'book',
+      'cartoon',
+      'English',
+      'reason'
+    ],
+    correctAnswer: 'reason',
+    explanation: 'Từ "reason" (/ˈriːzn/) có nghĩa tiếng Việt là "lý do, nguyên nhân". Ví dụ: Lý do của tai nạn là do hỏng động cơ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lý do, nguyên nhân" (n).',
+      'Gợi ý 2: Phiên âm: /ˈriːzn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-31',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nWe hope to avoid a ________ of last year\'s mistake.',
+    options: [
+      'reason',
+      'television',
+      'repetition',
+      'book'
+    ],
+    correctAnswer: 'repetition',
+    explanation: 'Từ "repetition" (/ˌrepəˈtɪʃn/) có nghĩa tiếng Việt là "sự lặp lại". Ví dụ: Chúng tôi hy vọng tránh lặp lại sai lầm của năm ngoái.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sự lặp lại" (n).',
+      'Gợi ý 2: Phiên âm: /ˌrepəˈtɪʃn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-32',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI enjoy ________s.',
+    options: [
+      'real',
+      'room',
+      'will',
+      'sport'
+    ],
+    correctAnswer: 'sport',
+    explanation: 'Từ "sport" (/spɔːt/) có nghĩa tiếng Việt là "thể thao". Ví dụ: Tôi rất thích thể thao.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thể thao" (n).',
+      'Gợi ý 2: Phiên âm: /spɔːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-33',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI spent a lot of time ________.',
+    options: [
+      'depend',
+      'because',
+      'football',
+      'outdoors'
+    ],
+    correctAnswer: 'outdoors',
+    explanation: 'Từ "outdoors" (/ˌaʊtˈdɔːz/) có nghĩa tiếng Việt là "ở ngoài trời". Ví dụ: Tôi đã dành nhiều thời gian ở ngoài trời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ở ngoài trời" (adv).',
+      'Gợi ý 2: Phiên âm: /ˌaʊtˈdɔːz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-34',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI\'m helping ________ the house.',
+    options: [
+      'football',
+      'will',
+      'wildlife',
+      'decorate'
+    ],
+    correctAnswer: 'decorate',
+    explanation: 'Từ "decorate" (/ˈdekəreɪt/) có nghĩa tiếng Việt là "trang trí". Ví dụ: Tôi đang giúp trang trí ngôi nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trang trí" (v).',
+      'Gợi ý 2: Phiên âm: /ˈdekəreɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-35',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nDo you have any ________?',
+    options: [
+      'sugar',
+      'childhood',
+      'book',
+      'today'
+    ],
+    correctAnswer: 'sugar',
+    explanation: 'Từ "sugar" (/ˈʃʊɡə(r)/) có nghĩa tiếng Việt là "đường". Ví dụ: Bạn có tí đường nào không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đường" (n).',
+      'Gợi ý 2: Phiên âm: /ˈʃʊɡə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-36',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nWhat do you need to decorate your ________?',
+    options: [
+      'viewer',
+      'cartoon',
+      'room',
+      'sister'
+    ],
+    correctAnswer: 'room',
+    explanation: 'Từ "room" (/ruːm/) có nghĩa tiếng Việt là "căn phòng". Ví dụ: Bạn cần gì để trang trí phòng mình?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "căn phòng" (n).',
+      'Gợi ý 2: Phiên âm: /ruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-37',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nMy brother is ________ cooking.',
+    options: [
+      'wonderful',
+      'pet',
+      'clever',
+      'busy'
+    ],
+    correctAnswer: 'busy',
+    explanation: 'Từ "busy" (/ˈbɪzi/) có nghĩa tiếng Việt là "bận rộn". Ví dụ: Anh trai tôi đang bận nấu ăn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bận rộn" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈbɪzi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-38',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI like ________s.',
+    options: [
+      'exhibition',
+      'instruction',
+      'sugar',
+      'animal'
+    ],
+    correctAnswer: 'animal',
+    explanation: 'Từ "animal" (/ˈænɪml/) có nghĩa tiếng Việt là "động vật". Ví dụ: Tôi thích động vật.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "động vật" (n).',
+      'Gợi ý 2: Phiên âm: /ˈænɪml/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-39',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI will get up ________ tomorrow.',
+    options: [
+      'early',
+      'will',
+      'book',
+      'cartoon'
+    ],
+    correctAnswer: 'early',
+    explanation: 'Từ "early" (/ˈɜːli/) có nghĩa tiếng Việt là "sớm". Ví dụ: Tôi sẽ dậy sớm vào ngày mai.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sớm" (adv).',
+      'Gợi ý 2: Phiên âm: /ˈɜːli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-40',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\n________ we read books.',
+    options: [
+      'sometimes',
+      'tomorrow',
+      'exhibition',
+      'father'
+    ],
+    correctAnswer: 'sometimes',
+    explanation: 'Từ "sometimes" (/ˈsʌmtaɪmz/) có nghĩa tiếng Việt là "thỉnh thoảng, đôi khi". Ví dụ: Đôi khi chúng tôi đọc sách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thỉnh thoảng, đôi khi" (adv).',
+      'Gợi ý 2: Phiên âm: /ˈsʌmtaɪmz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-41',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nWe love outdoor activities.',
+    options: [
+      'learn',
+      'street',
+      'activity',
+      'book'
+    ],
+    correctAnswer: 'activity',
+    explanation: 'Từ "activity" (/ækˈtɪvəti/) có nghĩa tiếng Việt là "hoạt động". Ví dụ: Chúng tôi yêu thích các hoạt động ngoài trời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hoạt động" (n).',
+      'Gợi ý 2: Phiên âm: /ækˈtɪvəti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-42',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI can be at the ________ on time.',
+    options: [
+      'stadium',
+      'tomorrow',
+      'early',
+      'yard'
+    ],
+    correctAnswer: 'stadium',
+    explanation: 'Từ "stadium" (/ˈsteɪdiəm/) có nghĩa tiếng Việt là "sân vận động". Ví dụ: Tôi có thể đến sân vận động đúng giờ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sân vận động" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsteɪdiəm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-43',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI\'m ________.',
+    options: [
+      'sometimes',
+      'wildlife',
+      'weekend',
+      'tired'
+    ],
+    correctAnswer: 'tired',
+    explanation: 'Từ "tired" (/ˈtaɪəd/) có nghĩa tiếng Việt là "mệt mỏi". Ví dụ: Tôi mệt.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mệt mỏi" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈtaɪəd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-44',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nMy ________ is good at school.',
+    options: [
+      'fox',
+      'sister',
+      'television',
+      'tomorrow'
+    ],
+    correctAnswer: 'sister',
+    explanation: 'Từ "sister" (/ˈsɪstə(r)/) có nghĩa tiếng Việt là "chị/em gái". Ví dụ: Em gái tôi học giỏi ở trường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chị/em gái" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsɪstə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-45',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nWe trained ________.',
+    options: [
+      'hard',
+      'laugh',
+      'programme',
+      'talent'
+    ],
+    correctAnswer: 'hard',
+    explanation: 'Từ "hard" (/hɑːd/) có nghĩa tiếng Việt là "chăm chỉ". Ví dụ: Chúng tôi đã tập luyện chăm chỉ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chăm chỉ" (adv).',
+      'Gợi ý 2: Phiên âm: /hɑːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-46',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI will write him some ________s.',
+    options: [
+      'pet',
+      'street',
+      'decorate',
+      'instruction'
+    ],
+    correctAnswer: 'instruction',
+    explanation: 'Từ "instruction" (/ɪnˈstrʌkʃn/) có nghĩa tiếng Việt là "lời hướng dẫn". Ví dụ: Tôi sẽ viết cho anh ấy một vài hướng dẫn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lời hướng dẫn" (n).',
+      'Gợi ý 2: Phiên âm: /ɪnˈstrʌkʃn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-47',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - A CLOSER LOOK 2]\nI hope he will ________ them.',
+    options: [
+      'follow',
+      'talent',
+      'exhibition',
+      'yard'
+    ],
+    correctAnswer: 'follow',
+    explanation: 'Từ "follow" (/ˈfɒləʊ/) có nghĩa tiếng Việt là "làm theo, theo dõi". Ví dụ: Tôi hy vọng anh ấy sẽ làm theo chúng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "làm theo, theo dõi" (v).',
+      'Gợi ý 2: Phiên âm: /ˈfɒləʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-48',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - COMMUNICATION]\n________ I can see animals in their real life.',
+    options: [
+      'talent',
+      'depend',
+      'because',
+      'sugar'
+    ],
+    correctAnswer: 'because',
+    explanation: 'Từ "because" (/bɪˈkəz/) có nghĩa tiếng Việt là "bởi vì". Ví dụ: Bởi vì tôi có thể nhìn thấy động vật trong cuộc sống thực của chúng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bởi vì" (conj).',
+      'Gợi ý 2: Phiên âm: /bɪˈkəz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-49',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - COMMUNICATION]\nIt\'s ________.',
+    options: [
+      'watch',
+      'educational',
+      'wonderful',
+      'sport'
+    ],
+    correctAnswer: 'educational',
+    explanation: 'Từ "educational" (/ˌedʒuˈkeɪʃənl/) có nghĩa tiếng Việt là "mang tính giáo dục". Ví dụ: Nó mang tính giáo dục.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mang tính giáo dục" (adj).',
+      'Gợi ý 2: Phiên âm: /ˌedʒuˈkeɪʃənl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-50',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - COMMUNICATION]\nIts main character is a clever ________.',
+    options: [
+      'fox',
+      'early',
+      'wonderful',
+      'theatre'
+    ],
+    correctAnswer: 'fox',
+    explanation: 'Từ "fox" (/fɒks/) có nghĩa tiếng Việt là "con cáo". Ví dụ: Nhân vật chính của nó là một con cáo thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con cáo" (n).',
+      'Gợi ý 2: Phiên âm: /fɒks/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-51',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - COMMUNICATION]\nBoth parents and children ________ it.',
+    options: [
+      'watch',
+      'will',
+      'love',
+      'enjoy'
+    ],
+    correctAnswer: 'enjoy',
+    explanation: 'Từ "enjoy" (/ɪnˈdʒɔɪ/) có nghĩa tiếng Việt là "thưởng thức, thích thú". Ví dụ: Cả bố mẹ và con cái đều thích nó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thưởng thức, thích thú" (v).',
+      'Gợi ý 2: Phiên âm: /ɪnˈdʒɔɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-52',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 1]\nAt the museum, there was a display of local ________.',
+    options: [
+      'laugh',
+      'childhood',
+      'wildlife',
+      'room'
+    ],
+    correctAnswer: 'wildlife',
+    explanation: 'Từ "wildlife" (/ˈwaɪldlaɪf/) có nghĩa tiếng Việt là "cuộc sống hoang dã". Ví dụ: Tại bảo tàng, có triển lãm về động vật hoang dã địa phương.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc sống hoang dã" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwaɪldlaɪf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-53',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 1]\nAnimals in their ________ life.',
+    options: [
+      'real',
+      'tired',
+      'hour',
+      'outdoors'
+    ],
+    correctAnswer: 'real',
+    explanation: 'Từ "real" (/ˈriːəl/) có nghĩa tiếng Việt là "thực tế, thực sự". Ví dụ: Động vật trong cuộc sống thực của chúng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thực tế, thực sự" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈriːəl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-54',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 1]\nThey have several ________s: a dog, two rabbits, and a cat.',
+    options: [
+      'pet',
+      'theatre',
+      'programme',
+      'Saturday'
+    ],
+    correctAnswer: 'pet',
+    explanation: 'Từ "pet" (/pet/) có nghĩa tiếng Việt là "thú cưng, vật nuôi". Ví dụ: Họ có vài con thú cưng: một con chó, hai con thỏ và một con mèo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thú cưng, vật nuôi" (n).',
+      'Gợi ý 2: Phiên âm: /pet/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-55',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 1]\n________s are very intelligent animals.',
+    options: [
+      'sugar',
+      'talent',
+      'educational',
+      'dolphin'
+    ],
+    correctAnswer: 'dolphin',
+    explanation: 'Từ "dolphin" (/ˈdɒlfɪn/) có nghĩa tiếng Việt là "cá heo". Ví dụ: Cá heo là loài động vật rất thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cá heo" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdɒlfɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-56',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 1]\nHe is a highly ________ person.',
+    options: [
+      'intelligent',
+      'exhibition',
+      'sister',
+      'sport'
+    ],
+    correctAnswer: 'intelligent',
+    explanation: 'Từ "intelligent" (/ɪnˈtelɪdʒənt/) có nghĩa tiếng Việt là "thông minh". Ví dụ: Anh ấy là một người rất thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thông minh" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪnˈtelɪdʒənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-57',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 1]\nMy ________ is full of happy memories.',
+    options: [
+      'childhood',
+      'wildlife',
+      'will',
+      'pet'
+    ],
+    correctAnswer: 'childhood',
+    explanation: 'Từ "childhood" (/ˈtʃaɪldhʊd/) có nghĩa tiếng Việt là "thời thơ ấu". Ví dụ: Tuổi thơ của tôi đầy ắp kỷ niệm hạnh phúc.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời thơ ấu" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtʃaɪldhʊd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-58',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 1]\nHow many ________s a day do you watch TV?',
+    options: [
+      'today',
+      'weekend',
+      'sport',
+      'hour'
+    ],
+    correctAnswer: 'hour',
+    explanation: 'Từ "hour" (/ˈaʊə(r)/) có nghĩa tiếng Việt là "giờ, tiếng đồng hồ". Ví dụ: Bạn xem TV bao nhiêu tiếng một ngày?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giờ, tiếng đồng hồ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈaʊə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-59',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - SKILLS 2]\nDo you speak ________?',
+    options: [
+      'weekend',
+      'boring',
+      'English',
+      'programme'
+    ],
+    correctAnswer: 'English',
+    explanation: 'Từ "English" (/ˈɪŋɡlɪʃ/) có nghĩa tiếng Việt là "tiếng Anh". Ví dụ: Bạn có nói tiếng Anh không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiếng Anh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɪŋɡlɪʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-60',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - LOOKING BACK]\nI watch TV more at the ________.',
+    options: [
+      'depend',
+      'weekend',
+      'wildlife',
+      'fox'
+    ],
+    correctAnswer: 'weekend',
+    explanation: 'Từ "weekend" (/ˌwiːkˈend/) có nghĩa tiếng Việt là "cuối tuần". Ví dụ: Tôi xem TV nhiều hơn vào cuối tuần.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuối tuần" (n).',
+      'Gợi ý 2: Phiên âm: /ˌwiːkˈend/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-61',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - LOOKING BACK]\nIt ________s many viewers.',
+    options: [
+      'viewer',
+      'comedy',
+      'pet',
+      'attract'
+    ],
+    correctAnswer: 'attract',
+    explanation: 'Từ "attract" (/əˈtrækt/) có nghĩa tiếng Việt là "thu hút". Ví dụ: Nó thu hút nhiều người xem.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thu hút" (v).',
+      'Gợi ý 2: Phiên âm: /əˈtrækt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-62',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - LOOKING BACK]\nThe programme shows tigers and ________s in nature.',
+    options: [
+      'will',
+      'giraffe',
+      'boring',
+      'today'
+    ],
+    correctAnswer: 'giraffe',
+    explanation: 'Từ "giraffe" (/dʒəˈrɑːf/) có nghĩa tiếng Việt là "hươu cao cổ". Ví dụ: Chương trình chiếu về hổ và hươu cao cổ trong tự nhiên.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hươu cao cổ" (n).',
+      'Gợi ý 2: Phiên âm: /dʒəˈrɑːf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-63',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - LOOKING BACK]\nI have a lot of homework ________.',
+    options: [
+      'tonight',
+      'stadium',
+      'attract',
+      'fox'
+    ],
+    correctAnswer: 'tonight',
+    explanation: 'Từ "tonight" (/təˈnaɪt/) có nghĩa tiếng Việt là "tối nay". Ví dụ: Tôi có nhiều bài tập về nhà tối nay.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tối nay" (adv).',
+      'Gợi ý 2: Phiên âm: /təˈnaɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-64',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - LOOKING BACK]\nBBC One is a British ________.',
+    options: [
+      'channel',
+      'educational',
+      'stadium',
+      'outdoors'
+    ],
+    correctAnswer: 'channel',
+    explanation: 'Từ "channel" (/ˈtʃænl/) có nghĩa tiếng Việt là "kênh truyền hình". Ví dụ: BBC One là một kênh truyền hình của Anh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kênh truyền hình" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtʃænl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-65',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - PROJECT]\nWhere do you prefer to get ________ from?',
+    options: [
+      'today',
+      'sister',
+      'follow',
+      'information'
+    ],
+    correctAnswer: 'information',
+    explanation: 'Từ "information" (/ˌɪnfəˈmeɪʃn/) có nghĩa tiếng Việt là "thông tin". Ví dụ: Bạn thích lấy thông tin từ đâu hơn?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thông tin" (n).',
+      'Gợi ý 2: Phiên âm: /ˌɪnfəˈmeɪʃn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-66',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - PROJECT]\nDo you think you can ________ without TV?',
+    options: [
+      'live',
+      'tomorrow',
+      'television',
+      'early'
+    ],
+    correctAnswer: 'live',
+    explanation: 'Từ "live" (/lɪv/) có nghĩa tiếng Việt là "sống". Ví dụ: Bạn có nghĩ mình có thể sống mà không có TV không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sống" (v).',
+      'Gợi ý 2: Phiên âm: /lɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-67',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - PROJECT]\nCould you turn the ________ down?',
+    options: [
+      'depend',
+      'tomorrow',
+      'television',
+      'father'
+    ],
+    correctAnswer: 'television',
+    explanation: 'Từ "television" (/ˈtelɪvɪʒn/) có nghĩa tiếng Việt là "tivi, truyền hình". Ví dụ: Bạn có thể vặn nhỏ tivi xuống được không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tivi, truyền hình" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtelɪvɪʒn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u7-v-68',
+    unitId: 'unit-7',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 7: TELEVISION - PROJECT]\nI want to read ________s.',
+    options: [
+      'book',
+      'sugar',
+      'football',
+      'tonight'
+    ],
+    correctAnswer: 'book',
+    explanation: 'Từ "book" (/bʊk/) có nghĩa tiếng Việt là "sách". Ví dụ: Tôi muốn đọc sách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sách" (n).',
+      'Gợi ý 2: Phiên âm: /bʊk/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
