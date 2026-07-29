@@ -9201,6 +9201,1606 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /mæp/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-1',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nHello, welcome to our ________ club.',
+    options: [
+      'backpack',
+      'famous',
+      'plaster',
+      'geography'
+    ],
+    correctAnswer: 'geography',
+    explanation: 'Từ "geography" (/dʒiˈɒɡrəfi/) có nghĩa tiếng Việt là "địa lý". Ví dụ: Xin chào, chào mừng đến với câu lạc bộ địa lý của chúng tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "địa lý" (n).',
+      'Gợi ý 2: Phiên âm: /dʒiˈɒɡrəfi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-2',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nWe are just starting ________.',
+    options: [
+      'explore',
+      'know',
+      'forest',
+      'now'
+    ],
+    correctAnswer: 'now',
+    explanation: 'Từ "now" (/naʊ/) có nghĩa tiếng Việt là "bây giờ". Ví dụ: Chúng tôi chỉ mới bắt đầu bây giờ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bây giờ" (adv).',
+      'Gợi ý 2: Phiên âm: /naʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-3',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\n________ you must always be on time.',
+    options: [
+      'remember',
+      'hotel',
+      'now',
+      'picnic'
+    ],
+    correctAnswer: 'remember',
+    explanation: 'Từ "remember" (/rɪˈmembə(r)/) có nghĩa tiếng Việt là "nhớ". Ví dụ: Hãy nhớ rằng bạn phải luôn luôn đúng giờ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhớ" (v).',
+      'Gợi ý 2: Phiên âm: /rɪˈmembə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-4',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nToday I\'m going to talk about some natural ________s of Vietnam.',
+    options: [
+      'geography',
+      'sunscreen',
+      'wonder',
+      'cold'
+    ],
+    correctAnswer: 'wonder',
+    explanation: 'Từ "wonder" (/ˈwʌndə(r)/) có nghĩa tiếng Việt là "kỳ quan". Ví dụ: Hôm nay tôi sẽ nói về một số kỳ quan thiên nhiên của Việt Nam.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kỳ quan" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwʌndə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-5',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nWhat\'s that in the first ________?',
+    options: [
+      'holiday',
+      'furniture',
+      'picture',
+      'boat'
+    ],
+    correctAnswer: 'picture',
+    explanation: 'Từ "picture" (/ˈpɪktʃə(r)/) có nghĩa tiếng Việt là "bức ảnh". Ví dụ: Đó là gì trong hình ảnh đầu tiên?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bức ảnh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpɪktʃə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-6',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nIt looks ________.',
+    options: [
+      'hat',
+      'amazing',
+      'question',
+      'clothes'
+    ],
+    correctAnswer: 'amazing',
+    explanation: 'Từ "amazing" (/əˈmeɪzɪŋ/) có nghĩa tiếng Việt là "tuyệt vời, kinh ngạc". Ví dụ: Nó trông thật tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tuyệt vời, kinh ngạc" (adj).',
+      'Gợi ý 2: Phiên âm: /əˈmeɪzɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-7',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nIt has many ________s.',
+    options: [
+      'island',
+      'compass',
+      'furniture',
+      'summer'
+    ],
+    correctAnswer: 'island',
+    explanation: 'Từ "island" (/ˈaɪlənd/) có nghĩa tiếng Việt là "hòn đảo". Ví dụ: Nó có nhiều hòn đảo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hòn đảo" (n).',
+      'Gợi ý 2: Phiên âm: /ˈaɪlənd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-8',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nThe ________ is wonderful.',
+    options: [
+      'scenery',
+      'understand',
+      'now',
+      'Australia'
+    ],
+    correctAnswer: 'scenery',
+    explanation: 'Từ "scenery" (/ˈsiːnəri/) có nghĩa tiếng Việt là "phong cảnh". Ví dụ: Phong cảnh thật tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phong cảnh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsiːnəri/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-9',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nThis picture shows a ________ island.',
+    options: [
+      'large',
+      'waterfall',
+      'head',
+      'hotel'
+    ],
+    correctAnswer: 'large',
+    explanation: 'Từ "large" (/lɑːdʒ/) có nghĩa tiếng Việt là "lớn". Ví dụ: Bức ảnh này cho thấy một hòn đảo lớn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lớn" (adj).',
+      'Gợi ý 2: Phiên âm: /lɑːdʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-10',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nThey are ________s.',
+    options: [
+      'sugar',
+      'rock',
+      'question',
+      'cold'
+    ],
+    correctAnswer: 'rock',
+    explanation: 'Từ "rock" (/rɒk/) có nghĩa tiếng Việt là "tảng đá". Ví dụ: Chúng là những tảng đá.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tảng đá" (n).',
+      'Gợi ý 2: Phiên âm: /rɒk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-11',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nHa Long Bay is ________ and the nature is wonderful.',
+    options: [
+      'charming',
+      'question',
+      'truth',
+      'special'
+    ],
+    correctAnswer: 'charming',
+    explanation: 'Từ "charming" (/ˈtʃɑːmɪŋ/) có nghĩa tiếng Việt là "hữu tình, quyến rũ". Ví dụ: Vịnh Hạ Long thật hữu tình và thiên nhiên kỳ thú.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hữu tình, quyến rũ" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈtʃɑːmɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-12',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nWhich of the following wonders is a ________?',
+    options: [
+      'Australia',
+      'fridge',
+      'know',
+      'cave'
+    ],
+    correctAnswer: 'cave',
+    explanation: 'Từ "cave" (/keɪv/) có nghĩa tiếng Việt là "hang động". Ví dụ: Kỳ quan nào sau đây là hang động?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hang động" (n).',
+      'Gợi ý 2: Phiên âm: /keɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-13',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nWhich ________ is in Cao Bang?',
+    options: [
+      'Australia',
+      'deep',
+      'sunscreen',
+      'waterfall'
+    ],
+    correctAnswer: 'waterfall',
+    explanation: 'Từ "waterfall" (/ˈwɔːtəfɔːl/) có nghĩa tiếng Việt là "thác nước". Ví dụ: Thác nước nào ở Cao Bằng?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thác nước" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwɔːtəfɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-14',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nWe sailed slowly down the ________.',
+    options: [
+      'river',
+      'island',
+      'empty',
+      'deep'
+    ],
+    correctAnswer: 'river',
+    explanation: 'Từ "river" (/ˈrɪvə(r)/) có nghĩa tiếng Việt là "dòng sông". Ví dụ: Chúng tôi đi thuyền từ từ xuống sông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "dòng sông" (n).',
+      'Gợi ý 2: Phiên âm: /ˈrɪvə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-15',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nThe children got lost in the ________.',
+    options: [
+      'desert',
+      'overnight',
+      'natural',
+      'forest'
+    ],
+    correctAnswer: 'forest',
+    explanation: 'Từ "forest" (/ˈfɒrɪst/) có nghĩa tiếng Việt là "khu rừng". Ví dụ: Những đứa trẻ bị lạc trong rừng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu rừng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfɒrɪst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-16',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nThey were lost in the ________ for nine days.',
+    options: [
+      'waterfall',
+      'forest',
+      'kite',
+      'desert'
+    ],
+    correctAnswer: 'desert',
+    explanation: 'Từ "desert" (/ˈdezət/) có nghĩa tiếng Việt là "sa mạc". Ví dụ: Họ đã bị lạc trong sa mạc chín ngày.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sa mạc" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdezət/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-17',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nThe Matterhorn is one of the biggest ________s in Europe.',
+    options: [
+      'forest',
+      'hurt',
+      'mountain',
+      'island'
+    ],
+    correctAnswer: 'mountain',
+    explanation: 'Từ "mountain" (/ˈmaʊntən/) có nghĩa tiếng Việt là "ngọn núi". Ví dụ: Matterhorn là một trong những ngọn núi lớn nhất ở Châu Âu.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngọn núi" (n).',
+      'Gợi ý 2: Phiên âm: /ˈmaʊntən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-18',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - GETTING STARTED]\nWe spent the day on the ________.',
+    options: [
+      'famous',
+      'beach',
+      'amazing',
+      'sure'
+    ],
+    correctAnswer: 'beach',
+    explanation: 'Từ "beach" (/biːtʃ/) có nghĩa tiếng Việt là "bãi biển". Ví dụ: Chúng tôi đã dành cả ngày trên bãi biển.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bãi biển" (n).',
+      'Gợi ý 2: Phiên âm: /biːtʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-19',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nWe\'re ________.',
+    options: [
+      'museum',
+      'item',
+      'lesson',
+      'lost'
+    ],
+    correctAnswer: 'lost',
+    explanation: 'Từ "lost" (/lɒst/) có nghĩa tiếng Việt là "bị lạc". Ví dụ: Chúng tôi bị lạc rồi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bị lạc" (adj).',
+      'Gợi ý 2: Phiên âm: /lɒst/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-20',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nIt is a ________ day.',
+    options: [
+      'time',
+      'picture',
+      'overnight',
+      'sunny'
+    ],
+    correctAnswer: 'sunny',
+    explanation: 'Từ "sunny" (/ˈsʌni/) có nghĩa tiếng Việt là "có nắng, nắng". Ví dụ: Đó là một ngày nắng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có nắng, nắng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈsʌni/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-21',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nI need to put on some ________.',
+    options: [
+      'sunscreen',
+      'lost',
+      'geography',
+      'understand'
+    ],
+    correctAnswer: 'sunscreen',
+    explanation: 'Từ "sunscreen" (/ˈsʌnskriːn/) có nghĩa tiếng Việt là "kem chống nắng". Ví dụ: Tôi cần bôi một ít kem chống nắng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kem chống nắng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsʌnskriːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-22',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nWhen you go camping ________.',
+    options: [
+      'cave',
+      'overnight',
+      'camping site',
+      'amazing'
+    ],
+    correctAnswer: 'overnight',
+    explanation: 'Từ "overnight" (/ˌəʊvəˈnaɪt/) có nghĩa tiếng Việt là "qua đêm". Ví dụ: Khi bạn đi cắm trại qua đêm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "qua đêm" (adj).',
+      'Gợi ý 2: Phiên âm: /ˌəʊvəˈnaɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-23',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nMy foot ________s.',
+    options: [
+      'T-shirt',
+      'Australia',
+      'picnic',
+      'hurt'
+    ],
+    correctAnswer: 'hurt',
+    explanation: 'Từ "hurt" (/hɜːt/) có nghĩa tiếng Việt là "làm đau, bị đau". Ví dụ: Bàn chân của tôi bị đau.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "làm đau, bị đau" (v).',
+      'Gợi ý 2: Phiên âm: /hɜːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-24',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nI need to put on a ________.',
+    options: [
+      'deep',
+      'island',
+      'plaster',
+      'charming'
+    ],
+    correctAnswer: 'plaster',
+    explanation: 'Từ "plaster" (/ˈplɑːstə(r)/) có nghĩa tiếng Việt là "băng cá nhân". Ví dụ: Tôi cần phải dán băng cá nhân.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "băng cá nhân" (n).',
+      'Gợi ý 2: Phiên âm: /ˈplɑːstə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-25',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nCould you pass me the ________ please?',
+    options: [
+      'charming',
+      'arrive',
+      'summer',
+      'scissors'
+    ],
+    correctAnswer: 'scissors',
+    explanation: 'Từ "scissors" (/ˈsɪzəz/) có nghĩa tiếng Việt là "cái kéo". Ví dụ: Bạn có thể đưa cho tôi cái kéo được không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái kéo" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsɪzəz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-26',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nIt\'s a frame ________ with a belt and padded shoulder straps.',
+    options: [
+      'furniture',
+      'time',
+      'shoe',
+      'backpack'
+    ],
+    correctAnswer: 'backpack',
+    explanation: 'Từ "backpack" (/ˈbækpæk/) có nghĩa tiếng Việt là "ba lô". Ví dụ: Đó là một chiếc ba lô khung có dây đai và dây đeo vai đệm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ba lô" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbækpæk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-27',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nThe discussion went beyond the ________ of my brain.',
+    options: [
+      'beach',
+      'luggage',
+      'wonder',
+      'compass'
+    ],
+    correctAnswer: 'compass',
+    explanation: 'Từ "compass" (/ˈkʌmpəs/) có nghĩa tiếng Việt là "la bàn". Ví dụ: Cuộc thảo luận đã vượt ra ngoài phạm vi bộ não của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "la bàn" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkʌmpəs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-28',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nHe can get his ________.',
+    options: [
+      'special',
+      'waterfall',
+      'sleeping bag',
+      'boat'
+    ],
+    correctAnswer: 'sleeping bag',
+    explanation: 'Từ "sleeping bag" (/ˈsliːpɪŋ bæɡ/) có nghĩa tiếng Việt là "túi ngủ". Ví dụ: Anh ấy có thể lấy túi ngủ của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "túi ngủ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsliːpɪŋ bæɡ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-29',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nWhere is my ________?',
+    options: [
+      'T-shirt',
+      'desert',
+      'hat',
+      'snow'
+    ],
+    correctAnswer: 'hat',
+    explanation: 'Từ "hat" (/hæt/) có nghĩa tiếng Việt là "cái mũ". Ví dụ: Cái mũ của tôi ở đâu?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái mũ" (n).',
+      'Gợi ý 2: Phiên âm: /hæt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-30',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nIt is on your ________.',
+    options: [
+      'famous',
+      'head',
+      'guide',
+      'now'
+    ],
+    correctAnswer: 'head',
+    explanation: 'Từ "head" (/hed/) có nghĩa tiếng Việt là "cái đầu". Ví dụ: Nó ở trên đầu bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cái đầu" (n).',
+      'Gợi ý 2: Phiên âm: /hed/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-31',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nWhere do they stay on their ________?',
+    options: [
+      'holiday',
+      'natural',
+      'compass',
+      'fridge'
+    ],
+    correctAnswer: 'holiday',
+    explanation: 'Từ "holiday" (/ˈhɒlədeɪ/) có nghĩa tiếng Việt là "kỳ nghỉ". Ví dụ: Họ ở đâu vào kỳ nghỉ của họ?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kỳ nghỉ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈhɒlədeɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-32',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nI need some ________ for my cat.',
+    options: [
+      'meat',
+      'understand',
+      'now',
+      'amazing'
+    ],
+    correctAnswer: 'meat',
+    explanation: 'Từ "meat" (/miːt/) có nghĩa tiếng Việt là "thịt". Ví dụ: Tôi cần một ít thịt cho con mèo của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thịt" (n).',
+      'Gợi ý 2: Phiên âm: /miːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-33',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nThe Sahara is a very ________ desert.',
+    options: [
+      'seafood',
+      'overnight',
+      'guide',
+      'hot'
+    ],
+    correctAnswer: 'hot',
+    explanation: 'Từ "hot" (/hɒt/) có nghĩa tiếng Việt là "nóng". Ví dụ: Sahara là một sa mạc rất nóng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nóng" (adj).',
+      'Gợi ý 2: Phiên âm: /hɒt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-34',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nI want to ________ the island by boat.',
+    options: [
+      'explore',
+      'special',
+      'alone',
+      'arrive'
+    ],
+    correctAnswer: 'explore',
+    explanation: 'Từ "explore" (/ɪkˈsplɔː(r)/) có nghĩa tiếng Việt là "khám phá". Ví dụ: Tôi muốn khám phá hòn đảo bằng thuyền.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khám phá" (v).',
+      'Gợi ý 2: Phiên âm: /ɪkˈsplɔː(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-35',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nWe took turns to row the ________ up the river.',
+    options: [
+      'plaster',
+      'special',
+      'amazing',
+      'boat'
+    ],
+    correctAnswer: 'boat',
+    explanation: 'Từ "boat" (/bəʊt/) có nghĩa tiếng Việt là "con thuyền". Ví dụ: Chúng tôi thay nhau chèo thuyền ngược dòng sông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con thuyền" (n).',
+      'Gợi ý 2: Phiên âm: /bəʊt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-36',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 1]\nHe has written a fully comprehensive ________ to Rome.',
+    options: [
+      'Australia',
+      'arrive',
+      'hat',
+      'guide'
+    ],
+    correctAnswer: 'guide',
+    explanation: 'Từ "guide" (/ɡaɪd/) có nghĩa tiếng Việt là "hướng dẫn, cẩm nang". Ví dụ: Anh ấy đã viết một cuốn cẩm nang hướng dẫn đầy đủ về Rome.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hướng dẫn, cẩm nang" (n).',
+      'Gợi ý 2: Phiên âm: /ɡaɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-37',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nThe children are very tired after a ________ of fun.',
+    options: [
+      'day',
+      'question',
+      'plaster',
+      'hurry up'
+    ],
+    correctAnswer: 'day',
+    explanation: 'Từ "day" (/deɪ/) có nghĩa tiếng Việt là "ngày". Ví dụ: Các con rất mệt sau một ngày vui chơi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngày" (n).',
+      'Gợi ý 2: Phiên âm: /deɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-38',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nThe ________ is deep.',
+    options: [
+      'charming',
+      'water',
+      'deep',
+      'head'
+    ],
+    correctAnswer: 'water',
+    explanation: 'Từ "water" (/ˈwɔːtə(r)/) có nghĩa tiếng Việt là "nước". Ví dụ: Nước rất sâu.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nước" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwɔːtə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-39',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nThe hole is so ________ you can\'t see the bottom.',
+    options: [
+      'natural',
+      'landscape',
+      'holiday',
+      'deep'
+    ],
+    correctAnswer: 'deep',
+    explanation: 'Từ "deep" (/diːp/) có nghĩa tiếng Việt là "sâu". Ví dụ: Cái hố sâu đến mức bạn không thể nhìn thấy đáy.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sâu" (adj).',
+      'Gợi ý 2: Phiên âm: /diːp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-40',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nMy mother uses real ________ in the cake she bakes.',
+    options: [
+      'time',
+      'understand',
+      'butter',
+      'clothes'
+    ],
+    correctAnswer: 'butter',
+    explanation: 'Từ "butter" (/ˈbʌtə(r)/) có nghĩa tiếng Việt là "bơ". Ví dụ: Mẹ tôi dùng bơ thật trong chiếc bánh bà nướng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bơ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbʌtə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-41',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nRemember to bring the necessary ________s.',
+    options: [
+      'item',
+      'picnic',
+      'remember',
+      'area'
+    ],
+    correctAnswer: 'item',
+    explanation: 'Từ "item" (/ˈaɪtəm/) có nghĩa tiếng Việt là "vật dụng, món đồ". Ví dụ: Nhớ mang theo những vật dụng cần thiết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vật dụng, món đồ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈaɪtəm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-42',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nHow about meeting in the canteen for some ________?',
+    options: [
+      'tea',
+      'seafood',
+      'famous',
+      'sunny'
+    ],
+    correctAnswer: 'tea',
+    explanation: 'Từ "tea" (/tiː/) có nghĩa tiếng Việt là "trà". Ví dụ: Gặp nhau ở căng tin uống trà thì sao?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trà" (n).',
+      'Gợi ý 2: Phiên âm: /tiː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-43',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nI have a few ________s to ask you.',
+    options: [
+      'question',
+      'beach',
+      'deep',
+      'clothes'
+    ],
+    correctAnswer: 'question',
+    explanation: 'Từ "question" (/ˈkwestʃən/) có nghĩa tiếng Việt là "câu hỏi". Ví dụ: Tôi có một vài câu hỏi muốn hỏi bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "câu hỏi" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkwestʃən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-44',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\n________ is very nice.',
+    options: [
+      'Australia',
+      'meat',
+      'sure',
+      'special'
+    ],
+    correctAnswer: 'Australia',
+    explanation: 'Từ "Australia" (/ɒsˈtreɪliə/) có nghĩa tiếng Việt là "nước Úc". Ví dụ: Nước Úc thật đẹp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nước Úc" (n).',
+      'Gợi ý 2: Phiên âm: /ɒsˈtreɪliə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-45',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nIt has many ________ wonders.',
+    options: [
+      'know',
+      'shoe',
+      'natural',
+      'truth'
+    ],
+    correctAnswer: 'natural',
+    explanation: 'Từ "natural" (/ˈnætʃrəl/) có nghĩa tiếng Việt là "thuộc về thiên nhiên". Ví dụ: Nó có nhiều kỳ quan thiên nhiên.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thuộc về thiên nhiên" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈnætʃrəl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-46',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nThis is a difficult ________.',
+    options: [
+      'practice',
+      'lesson',
+      'overnight',
+      'forest'
+    ],
+    correctAnswer: 'lesson',
+    explanation: 'Từ "lesson" (/ˈlesn/) có nghĩa tiếng Việt là "bài học". Ví dụ: Đây là một bài học khó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bài học" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlesn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-47',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nYou can ________ it.',
+    options: [
+      'understand',
+      'truth',
+      'wonder',
+      'guide'
+    ],
+    correctAnswer: 'understand',
+    explanation: 'Từ "understand" (/ˌʌndəˈstænd/) có nghĩa tiếng Việt là "hiểu". Ví dụ: Bạn có thể hiểu nó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hiểu" (v).',
+      'Gợi ý 2: Phiên âm: /ˌʌndəˈstænd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-48',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nIt is a very dry ________.',
+    options: [
+      'now',
+      'area',
+      'waterproof',
+      'tea'
+    ],
+    correctAnswer: 'area',
+    explanation: 'Từ "area" (/ˈeəriə/) có nghĩa tiếng Việt là "khu vực, vùng". Ví dụ: Đó là một khu vực rất khô hạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu vực, vùng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈeəriə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-49',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nThere isn\'t rain in ________.',
+    options: [
+      'truth',
+      'now',
+      'summer',
+      'day'
+    ],
+    correctAnswer: 'summer',
+    explanation: 'Từ "summer" (/ˈsʌmə(r)/) có nghĩa tiếng Việt là "mùa hè". Ví dụ: Không có mưa vào mùa hè.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mùa hè" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsʌmə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-50',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nWe must ________.',
+    options: [
+      'sunny',
+      'famous',
+      'hurry up',
+      'summer'
+    ],
+    correctAnswer: 'hurry up',
+    explanation: 'Từ "hurry up" (/ˈhʌri ʌp/) có nghĩa tiếng Việt là "nhanh lên". Ví dụ: Chúng ta phải nhanh lên.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhanh lên" (phr.v).',
+      'Gợi ý 2: Phiên âm: /ˈhʌri ʌp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-51',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nIt\'s ________.',
+    options: [
+      'empty',
+      'hurt',
+      'mountain',
+      'clothes'
+    ],
+    correctAnswer: 'empty',
+    explanation: 'Từ "empty" (/ˈempti/) có nghĩa tiếng Việt là "trống rỗng". Ví dụ: Nó trống rỗng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trống rỗng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈempti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-52',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nThere isn\'t milk in the ________.',
+    options: [
+      'cold',
+      'waterproof',
+      'fridge',
+      'wonder'
+    ],
+    correctAnswer: 'fridge',
+    explanation: 'Từ "fridge" (/frɪdʒ/) có nghĩa tiếng Việt là "tủ lạnh". Ví dụ: Không có sữa trong tủ lạnh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tủ lạnh" (n).',
+      'Gợi ý 2: Phiên âm: /frɪdʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-53',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nHow much ________ do you need for your tea, Mum?',
+    options: [
+      'sugar',
+      'river',
+      'day',
+      'tea'
+    ],
+    correctAnswer: 'sugar',
+    explanation: 'Từ "sugar" (/ˈʃʊɡə(r)/) có nghĩa tiếng Việt là "đường". Ví dụ: Mẹ cần bao nhiêu đường cho trà?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đường" (n).',
+      'Gợi ý 2: Phiên âm: /ˈʃʊɡə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-54',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nWe need to buy some new ________ for the house.',
+    options: [
+      'sugar',
+      'furniture',
+      'amazing',
+      'tea'
+    ],
+    correctAnswer: 'furniture',
+    explanation: 'Từ "furniture" (/ˈfɜːnɪtʃə(r)/) có nghĩa tiếng Việt là "đồ nội thất". Ví dụ: Chúng tôi cần mua một số đồ nội thất mới cho ngôi nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đồ nội thất" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfɜːnɪtʃə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-55',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nYou must leave the ________ room before 12 o\'clock.',
+    options: [
+      'hot',
+      'necessary',
+      'sure',
+      'hotel'
+    ],
+    correctAnswer: 'hotel',
+    explanation: 'Từ "hotel" (/həʊˈtel/) có nghĩa tiếng Việt là "khách sạn". Ví dụ: Bạn phải rời phòng khách sạn trước 12 giờ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khách sạn" (n).',
+      'Gợi ý 2: Phiên âm: /həʊˈtel/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-56',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nYou make a lot of noise in the ________.',
+    options: [
+      'museum',
+      'holiday',
+      'river',
+      'forest'
+    ],
+    correctAnswer: 'museum',
+    explanation: 'Từ "museum" (/mjuˈziːəm/) có nghĩa tiếng Việt là "bảo tàng". Ví dụ: Bạn gây ra nhiều tiếng ồn trong bảo tàng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bảo tàng" (n).',
+      'Gợi ý 2: Phiên âm: /mjuˈziːəm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-57',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nMy mom says you always tell the ________.',
+    options: [
+      'truth',
+      'Australia',
+      'head',
+      'seafood'
+    ],
+    correctAnswer: 'truth',
+    explanation: 'Từ "truth" (/truːθ/) có nghĩa tiếng Việt là "sự thật". Ví dụ: Mẹ tôi nói bạn luôn nói sự thật.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sự thật" (n).',
+      'Gợi ý 2: Phiên âm: /truːθ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-58',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nYou know you shouldn\'t go to bed with your ________s on.',
+    options: [
+      'waterproof',
+      'shoe',
+      'necessary',
+      'amazing'
+    ],
+    correctAnswer: 'shoe',
+    explanation: 'Từ "shoe" (/ʃuː/) có nghĩa tiếng Việt là "chiếc giày". Ví dụ: Bạn biết bạn không nên đi ngủ khi vẫn mang giày.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chiếc giày" (n).',
+      'Gợi ý 2: Phiên âm: /ʃuː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-59',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nI need to ________ more.',
+    options: [
+      'river',
+      'remember',
+      'area',
+      'practice'
+    ],
+    correctAnswer: 'practice',
+    explanation: 'Từ "practice" (/ˈpræktɪs/) có nghĩa tiếng Việt là "rèn luyện, thực hành". Ví dụ: Tôi cần thực hành nhiều hơn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "rèn luyện, thực hành" (v).',
+      'Gợi ý 2: Phiên âm: /ˈpræktɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-60',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - A CLOSER LOOK 2]\nWe must ________ on time.',
+    options: [
+      'cave',
+      'shoe',
+      'arrive',
+      'famous'
+    ],
+    correctAnswer: 'arrive',
+    explanation: 'Từ "arrive" (/əˈraɪv/) có nghĩa tiếng Việt là "đến nơi". Ví dụ: Chúng ta phải đến đúng giờ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đến nơi" (v).',
+      'Gợi ý 2: Phiên âm: /əˈraɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-61',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nLet\'s go for a ________ this Sunday.',
+    options: [
+      'alone',
+      'mountain',
+      'wonder',
+      'picnic'
+    ],
+    correctAnswer: 'picnic',
+    explanation: 'Từ "picnic" (/ˈpɪknɪk/) có nghĩa tiếng Việt là "chuyến dã ngoại". Ví dụ: Chủ nhật tuần này hãy đi dã ngoại nhé.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chuyến dã ngoại" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpɪknɪk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-62',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nWhat ________ can we meet?',
+    options: [
+      'know',
+      'mountain',
+      'time',
+      'landscape'
+    ],
+    correctAnswer: 'time',
+    explanation: 'Từ "time" (/taɪm/) có nghĩa tiếng Việt là "thời gian, giờ". Ví dụ: Mấy giờ chúng ta có thể gặp nhau?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời gian, giờ" (n).',
+      'Gợi ý 2: Phiên âm: /taɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-63',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\n________. I can meet you at that time.',
+    options: [
+      'sure',
+      'famous',
+      'river',
+      'cave'
+    ],
+    correctAnswer: 'sure',
+    explanation: 'Từ "sure" (/ʃʊə(r)/) có nghĩa tiếng Việt là "chắc chắn". Ví dụ: Chắc chắn rồi. Tôi có thể gặp bạn vào giờ đó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chắc chắn" (adj).',
+      'Gợi ý 2: Phiên âm: /ʃʊə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-64',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nI think you must bring a ________ coat.',
+    options: [
+      'waterproof',
+      'overnight',
+      'hotel',
+      'camping site'
+    ],
+    correctAnswer: 'waterproof',
+    explanation: 'Từ "waterproof" (/ˈwɔːtəpruːf/) có nghĩa tiếng Việt là "không thấm nước". Ví dụ: Tôi nghĩ bạn phải mang theo một chiếc áo khoác chống thấm nước.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "không thấm nước" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈwɔːtəpruːf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-65',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nIt is ________ and rainy there.',
+    options: [
+      'cold',
+      'famous',
+      'world',
+      'tea'
+    ],
+    correctAnswer: 'cold',
+    explanation: 'Từ "cold" (/kəʊld/) có nghĩa tiếng Việt là "lạnh". Ví dụ: Ở đó lạnh và có mưa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lạnh" (adj).',
+      'Gợi ý 2: Phiên âm: /kəʊld/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-66',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nIt is very ________.',
+    options: [
+      'special',
+      'desert',
+      'now',
+      'wonder'
+    ],
+    correctAnswer: 'special',
+    explanation: 'Từ "special" (/ˈspeʃl/) có nghĩa tiếng Việt là "đặc biệt". Ví dụ: Nó rất đặc biệt.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đặc biệt" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈspeʃl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-67',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nIt has the ________\'s highest mountain.',
+    options: [
+      'charming',
+      'area',
+      'beach',
+      'world'
+    ],
+    correctAnswer: 'world',
+    explanation: 'Từ "world" (/wɜːld/) có nghĩa tiếng Việt là "thế giới". Ví dụ: Nó có ngọn núi cao nhất thế giới.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thế giới" (n).',
+      'Gợi ý 2: Phiên âm: /wɜːld/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-68',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nYou mustn\'t travel ________.',
+    options: [
+      'lost',
+      'know',
+      'hotel',
+      'alone'
+    ],
+    correctAnswer: 'alone',
+    explanation: 'Từ "alone" (/əˈləʊn/) có nghĩa tiếng Việt là "một mình". Ví dụ: Bạn không được đi du lịch một mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "một mình" (adj).',
+      'Gợi ý 2: Phiên âm: /əˈləʊn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-69',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nYou must bring only the ________ things.',
+    options: [
+      'river',
+      'necessary',
+      'mountain',
+      'hot'
+    ],
+    correctAnswer: 'necessary',
+    explanation: 'Từ "necessary" (/ˈnesəsəri/) có nghĩa tiếng Việt là "cần thiết". Ví dụ: Bạn chỉ nên mang theo những thứ cần thiết.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cần thiết" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈnesəsəri/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-70',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nYou must bring the right ________ too.',
+    options: [
+      'clothes',
+      'compass',
+      'butter',
+      'landscape'
+    ],
+    correctAnswer: 'clothes',
+    explanation: 'Từ "clothes" (/kləʊðz/) có nghĩa tiếng Việt là "quần áo". Ví dụ: Bạn cũng phải mang theo quần áo phù hợp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quần áo" (n).',
+      'Gợi ý 2: Phiên âm: /kləʊðz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-71',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nDon\'t bring shorts and ________s.',
+    options: [
+      'shoe',
+      'T-shirt',
+      'summer',
+      'forest'
+    ],
+    correctAnswer: 'T-shirt',
+    explanation: 'Từ "T-shirt" (/ˈtiː ʃɜːt/) có nghĩa tiếng Việt là "áo phông". Ví dụ: Đừng mang theo quần đùi và áo phông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "áo phông" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtiː ʃɜːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-72',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - COMMUNICATION]\nAlways go in a ________.',
+    options: [
+      'area',
+      'charming',
+      'question',
+      'group'
+    ],
+    correctAnswer: 'group',
+    explanation: 'Từ "group" (/ɡruːp/) có nghĩa tiếng Việt là "nhóm". Ví dụ: Luôn đi theo nhóm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhóm" (n).',
+      'Gợi ý 2: Phiên âm: /ɡruːp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-73',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - SKILLS 1]\nThere you can enjoy great ________.',
+    options: [
+      'lesson',
+      'seafood',
+      'holiday',
+      'time'
+    ],
+    correctAnswer: 'seafood',
+    explanation: 'Từ "seafood" (/ˈsiːfuːd/) có nghĩa tiếng Việt là "hải sản". Ví dụ: Ở đó bạn có thể thưởng thức hải sản tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hải sản" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsiːfuːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-74',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - SKILLS 1]\nMui Ne is popular for its amazing ________s.',
+    options: [
+      'rock',
+      'lesson',
+      'landscape',
+      'waterfall'
+    ],
+    correctAnswer: 'landscape',
+    explanation: 'Từ "landscape" (/ˈlænskeɪp/) có nghĩa tiếng Việt là "cảnh quan, phong cảnh". Ví dụ: Mũi Né nổi tiếng với những cảnh quan tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cảnh quan, phong cảnh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlænskeɪp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-75',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - SKILLS 1]\nYou can also fly ________s.',
+    options: [
+      'seafood',
+      'kite',
+      'waterfall',
+      'clothes'
+    ],
+    correctAnswer: 'kite',
+    explanation: 'Từ "kite" (/kaɪt/) có nghĩa tiếng Việt là "con diều". Ví dụ: Bạn cũng có thể thả diều.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con diều" (n).',
+      'Gợi ý 2: Phiên âm: /kaɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-76',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - SKILLS 1]\nHa Long Bay is ________ for its beauty.',
+    options: [
+      'famous',
+      'Australia',
+      'butter',
+      'head'
+    ],
+    correctAnswer: 'famous',
+    explanation: 'Từ "famous" (/ˈfeɪməs/) có nghĩa tiếng Việt là "nổi tiếng". Ví dụ: Vịnh Hạ Long nổi tiếng vì vẻ đẹp của nó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nổi tiếng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfeɪməs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-77',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - SKILLS 2]\nWhat do you ________ about Phu Quoc Island?',
+    options: [
+      'know',
+      'desert',
+      'hotel',
+      'guide'
+    ],
+    correctAnswer: 'know',
+    explanation: 'Từ "know" (/nəʊ/) có nghĩa tiếng Việt là "biết". Ví dụ: Bạn biết gì về đảo Phú Quốc?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "biết" (v).',
+      'Gợi ý 2: Phiên âm: /nəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-78',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - LOOKING BACK]\nThere are some wonderful ________s in our area.',
+    options: [
+      'camping site',
+      'holiday',
+      'group',
+      'know'
+    ],
+    correctAnswer: 'camping site',
+    explanation: 'Từ "camping site" (/ˈkæmpɪŋ saɪt/) có nghĩa tiếng Việt là "khu cắm trại". Ví dụ: Có một số địa điểm cắm trại tuyệt vời trong khu vực của chúng tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khu cắm trại" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkæmpɪŋ saɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-79',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - LOOKING BACK]\nThere is so much ________ on the road.',
+    options: [
+      'picture',
+      'snow',
+      'day',
+      'backpack'
+    ],
+    correctAnswer: 'snow',
+    explanation: 'Từ "snow" (/snəʊ/) có nghĩa tiếng Việt là "tuyết". Ví dụ: Có rất nhiều tuyết trên đường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tuyết" (n).',
+      'Gợi ý 2: Phiên âm: /snəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u5-v-80',
+    unitId: 'unit-5',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 5: NATURAL WONDERS OF VIET NAM - PROJECT]\nDon\'t take too much ________ on your trip.',
+    options: [
+      'butter',
+      'waterproof',
+      'luggage',
+      'mountain'
+    ],
+    correctAnswer: 'luggage',
+    explanation: 'Từ "luggage" (/ˈlʌɡɪdʒ/) có nghĩa tiếng Việt là "hành lý". Ví dụ: Đừng mang theo quá nhiều hành lý trong chuyến đi của bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hành lý" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlʌɡɪdʒ/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
