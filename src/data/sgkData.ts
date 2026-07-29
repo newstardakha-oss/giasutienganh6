@@ -5521,6 +5521,1226 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: lift.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-1',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nHis ________ looks so big.',
+    options: [
+      'clock',
+      'bathroom',
+      'room',
+      'sister'
+    ],
+    correctAnswer: 'room',
+    explanation: 'Từ "room" (/ruːm/) có nghĩa tiếng Việt là "phòng". Ví dụ: Phòng của anh ấy trông thật lớn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng" (n).',
+      'Gợi ý 2: Phiên âm: /ruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-2',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nShe is my ________.',
+    options: [
+      'wardrobe',
+      'bookshelf',
+      'sister',
+      'grandmother'
+    ],
+    correctAnswer: 'sister',
+    explanation: 'Từ "sister" (/ˈsɪstə(r)/) có nghĩa tiếng Việt là "em gái, chị gái". Ví dụ: Cô ấy là em gái của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "em gái, chị gái" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsɪstə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-3',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nIs there a TV ________ you?',
+    options: [
+      'behind',
+      'grandmother',
+      'window',
+      'sofa'
+    ],
+    correctAnswer: 'behind',
+    explanation: 'Từ "behind" (/bɪˈhaɪnd/) có nghĩa tiếng Việt là "phía sau". Ví dụ: Có TV phía sau bạn không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phía sau" (prep).',
+      'Gợi ý 2: Phiên âm: /bɪˈhaɪnd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-4',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\n________ do you live, Mi?',
+    options: [
+      'where',
+      'under',
+      'room',
+      'department store'
+    ],
+    correctAnswer: 'where',
+    explanation: 'Từ "where" (/weə(r)/) có nghĩa tiếng Việt là "ở đâu". Ví dụ: Mi sống ở đâu vậy?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ở đâu" (adv).',
+      'Gợi ý 2: Phiên âm: /weə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-5',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nI ________ near here.',
+    options: [
+      'hall',
+      'live',
+      'behind',
+      'window'
+    ],
+    correctAnswer: 'live',
+    explanation: 'Từ "live" (/lɪv/) có nghĩa tiếng Việt là "sống". Ví dụ: Tôi sống gần đây.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sống" (v).',
+      'Gợi ý 2: Phiên âm: /lɪv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-6',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nI live in a ________.',
+    options: [
+      'mum',
+      'small',
+      'middle',
+      'townhouse'
+    ],
+    correctAnswer: 'townhouse',
+    explanation: 'Từ "townhouse" (/ˈtaʊn.haʊs/) có nghĩa tiếng Việt là "căn nhà phố". Ví dụ: Tôi sống trong một căn nhà phố.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "căn nhà phố" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtaʊn.haʊs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-7',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nMy ________ and younger brother.',
+    options: [
+      'flat',
+      'decorate',
+      'parents',
+      'bedroom'
+    ],
+    correctAnswer: 'parents',
+    explanation: 'Từ "parents" (/ˈpeərənts/) có nghĩa tiếng Việt là "bố mẹ". Ví dụ: Bố mẹ và em trai tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bố mẹ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpeərənts/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-8',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nWe are moving to a ________ next month!',
+    options: [
+      'flat',
+      'aunt',
+      'chest of drawers',
+      'uncle'
+    ],
+    correctAnswer: 'flat',
+    explanation: 'Từ "flat" (/flæt/) có nghĩa tiếng Việt là "căn hộ". Ví dụ: Chúng tôi sẽ chuyển sang một căn hộ vào tháng tới!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "căn hộ" (n).',
+      'Gợi ý 2: Phiên âm: /flæt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-9',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nMy ________ lives near there.',
+    options: [
+      'grandfather',
+      'wall',
+      'live',
+      'aunt'
+    ],
+    correctAnswer: 'aunt',
+    explanation: 'Từ "aunt" (/ɑːnt/) có nghĩa tiếng Việt là "dì, cô, bác gái". Ví dụ: Dì tôi sống gần đó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "dì, cô, bác gái" (n).',
+      'Gợi ý 2: Phiên âm: /ɑːnt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-10',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nI can play with my ________.',
+    options: [
+      'cousin',
+      'lamp',
+      'wall',
+      'kitchen'
+    ],
+    correctAnswer: 'cousin',
+    explanation: 'Từ "cousin" (/ˈkʌzn/) có nghĩa tiếng Việt là "anh chị em họ". Ví dụ: Tôi có thể chơi với anh họ của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "anh chị em họ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkʌzn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-11',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nThere is a ________.',
+    options: [
+      'brother',
+      'uncle',
+      'middle',
+      'living room'
+    ],
+    correctAnswer: 'living room',
+    explanation: 'Từ "living room" (/ˈlɪvɪŋ ruːm/) có nghĩa tiếng Việt là "phòng khách". Ví dụ: Đây là một phòng khách.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng khách" (n).',
+      'Gợi ý 2: Phiên âm: /ˈlɪvɪŋ ruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-12',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nThere\'s a ________.',
+    options: [
+      'picture',
+      'school bag',
+      'lamp',
+      'bedroom'
+    ],
+    correctAnswer: 'bedroom',
+    explanation: 'Từ "bedroom" (/ˈbedruːm/) có nghĩa tiếng Việt là "phòng ngủ". Ví dụ: Có một phòng ngủ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng ngủ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbedruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-13',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nThere\'s a ________.',
+    options: [
+      'hotel',
+      'kitchen',
+      'flat',
+      'behind'
+    ],
+    correctAnswer: 'kitchen',
+    explanation: 'Từ "kitchen" (/ˈkɪtʃɪn/) có nghĩa tiếng Việt là "phòng bếp". Ví dụ: Có một phòng bếp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng bếp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkɪtʃɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-14',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nThere are two ________s.',
+    options: [
+      'buy',
+      'bathroom',
+      'hall',
+      'fridge'
+    ],
+    correctAnswer: 'bathroom',
+    explanation: 'Từ "bathroom" (/ˈbɑːθruːm/) có nghĩa tiếng Việt là "phòng tắm". Ví dụ: Có hai phòng tắm.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng tắm" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbɑːθruːm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-15',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nWhere did you ________ them?',
+    options: [
+      'wall',
+      'townhouse',
+      'brother',
+      'buy'
+    ],
+    correctAnswer: 'buy',
+    explanation: 'Từ "buy" (/baɪ/) có nghĩa tiếng Việt là "mua". Ví dụ: Bạn mua chúng ở đâu vậy?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mua" (v).',
+      'Gợi ý 2: Phiên âm: /baɪ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-16',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nIn the department store near our ________.',
+    options: [
+      'mum',
+      'in front of',
+      'buy',
+      'house'
+    ],
+    correctAnswer: 'house',
+    explanation: 'Từ "house" (/haʊs/) có nghĩa tiếng Việt là "nhà". Ví dụ: Trong cửa hàng bách hóa gần nhà của chúng tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà" (n).',
+      'Gợi ý 2: Phiên âm: /haʊs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-17',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - GETTING STARTED]\nDon\'t forget we need two ________s for my bedroom.',
+    options: [
+      'townhouse',
+      'picture',
+      'hotel',
+      'lamp'
+    ],
+    correctAnswer: 'lamp',
+    explanation: 'Từ "lamp" (/læmp/) có nghĩa tiếng Việt là "đèn". Ví dụ: Đừng quên chúng ta cần hai chiếc đèn cho phòng ngủ của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đèn" (n).',
+      'Gợi ý 2: Phiên âm: /læmp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-18',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nMy room has two ________s.',
+    options: [
+      'middle',
+      'kitchen',
+      'sink',
+      'fridge'
+    ],
+    correctAnswer: 'sink',
+    explanation: 'Từ "sink" (/sɪŋk/) có nghĩa tiếng Việt là "bồn rửa". Ví dụ: Phòng của tôi có hai bồn rửa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bồn rửa" (n).',
+      'Gợi ý 2: Phiên âm: /sɪŋk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-19',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nI have a ________ in my kitchen.',
+    options: [
+      'dishwasher',
+      'window',
+      'toilet',
+      'kitchen'
+    ],
+    correctAnswer: 'dishwasher',
+    explanation: 'Từ "dishwasher" (/ˈdɪʃwɒʃə(r)/) có nghĩa tiếng Việt là "máy rửa bát". Ví dụ: Tôi có một máy rửa bát trong nhà bếp của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "máy rửa bát" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdɪʃwɒʃə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-20',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nI have one ________ in my room.',
+    options: [
+      'house',
+      'bowl',
+      'chest of drawers',
+      'television'
+    ],
+    correctAnswer: 'chest of drawers',
+    explanation: 'Từ "chest of drawers" (/ˌtʃest əv ˈdrɔːz/) có nghĩa tiếng Việt là "tủ có nhiều ngăn kéo". Ví dụ: Tôi có một tủ ngăn kéo trong phòng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tủ có nhiều ngăn kéo" (n).',
+      'Gợi ý 2: Phiên âm: /ˌtʃest əv ˈdrɔːz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-21',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nI have a ________ in my living room.',
+    options: [
+      'fridge',
+      'family',
+      'under',
+      'room'
+    ],
+    correctAnswer: 'fridge',
+    explanation: 'Từ "fridge" (/frɪdʒ/) có nghĩa tiếng Việt là "tủ lạnh". Ví dụ: Tôi có một tủ lạnh trong phòng khách của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tủ lạnh" (n).',
+      'Gợi ý 2: Phiên âm: /frɪdʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-22',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nI have a ________ in my living room.',
+    options: [
+      'picture',
+      'where',
+      'people',
+      'living room'
+    ],
+    correctAnswer: 'picture',
+    explanation: 'Từ "picture" (/ˈpɪktʃə(r)/) có nghĩa tiếng Việt là "bức tranh". Ví dụ: Tôi có một bức tranh trong phòng khách của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bức tranh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpɪktʃə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-23',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nThere is a meeting room down the ________ from my office.',
+    options: [
+      'hall',
+      'clock',
+      'desk',
+      'people'
+    ],
+    correctAnswer: 'hall',
+    explanation: 'Từ "hall" (/hɔːl/) có nghĩa tiếng Việt là "hành lang, sảnh". Ví dụ: Có một phòng họp ở cuối hành lang từ văn phòng của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hành lang, sảnh" (n).',
+      'Gợi ý 2: Phiên âm: /hɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-24',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nI have one ________ in my bathroom.',
+    options: [
+      'toilet',
+      'wardrobe',
+      'where',
+      'who'
+    ],
+    correctAnswer: 'toilet',
+    explanation: 'Từ "toilet" (/ˈtɔɪlət/) có nghĩa tiếng Việt là "nhà vệ sinh, bồn cầu". Ví dụ: Tôi có một nhà vệ sinh trong phòng tắm của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà vệ sinh, bồn cầu" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtɔɪlət/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-25',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nMy house has two ________s.',
+    options: [
+      'house',
+      'television',
+      'grandmother',
+      'sofa'
+    ],
+    correctAnswer: 'sofa',
+    explanation: 'Từ "sofa" (/ˈsəʊfə/) có nghĩa tiếng Việt là "ghế sofa". Ví dụ: Nhà tôi có hai chiếc ghế sofa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ghế sofa" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsəʊfə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-26',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nI have a sofa and a ________.',
+    options: [
+      'townhouse',
+      'television',
+      'hotel',
+      'room'
+    ],
+    correctAnswer: 'television',
+    explanation: 'Từ "television" (/ˈtelɪvɪʒn/) có nghĩa tiếng Việt là "tivi, truyền hình". Ví dụ: Tôi có một chiếc ghế sofa và một chiếc tivi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tivi, truyền hình" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtelɪvɪʒn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-27',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nMy ________\'s house is in Hanoi.',
+    options: [
+      'aunt',
+      'chest of drawers',
+      'school bag',
+      'grandmother'
+    ],
+    correctAnswer: 'grandmother',
+    explanation: 'Từ "grandmother" (/ˈɡrænmʌðə(r)/) có nghĩa tiếng Việt là "bà". Ví dụ: Nhà bà tôi ở Hà Nội.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bà" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡrænmʌðə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-28',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nThis is my sister\'s ________.',
+    options: [
+      'desk',
+      'kitchen',
+      'middle',
+      'department store'
+    ],
+    correctAnswer: 'desk',
+    explanation: 'Từ "desk" (/desk/) có nghĩa tiếng Việt là "bàn làm việc, bàn học". Ví dụ: Đây là bàn của em gái tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bàn làm việc, bàn học" (n).',
+      'Gợi ý 2: Phiên âm: /desk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-29',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nMy cousin\'s dad is my ________.',
+    options: [
+      'buy',
+      'aunt',
+      'brother',
+      'uncle'
+    ],
+    correctAnswer: 'uncle',
+    explanation: 'Từ "uncle" (/ˈʌŋkl/) có nghĩa tiếng Việt là "chú, bác, cậu". Ví dụ: Bố của anh họ tôi là chú của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chú, bác, cậu" (n).',
+      'Gợi ý 2: Phiên âm: /ˈʌŋkl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-30',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nNam\'s house is ________.',
+    options: [
+      'small',
+      'bedroom',
+      'dishwasher',
+      'who'
+    ],
+    correctAnswer: 'small',
+    explanation: 'Từ "small" (/smɔːl/) có nghĩa tiếng Việt là "nhỏ". Ví dụ: Nhà của Nam nhỏ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhỏ" (adj).',
+      'Gợi ý 2: Phiên âm: /smɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-31',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\n________, are you home?',
+    options: [
+      'chopsticks',
+      'family',
+      'shark',
+      'mum'
+    ],
+    correctAnswer: 'mum',
+    explanation: 'Từ "mum" (/mʌm/) có nghĩa tiếng Việt là "mẹ". Ví dụ: Mẹ, mẹ có nhà không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "mẹ" (n).',
+      'Gợi ý 2: Phiên âm: /mʌm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-32',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nI have bought these new bowls and ________.',
+    options: [
+      'bedroom',
+      'chopsticks',
+      'computer',
+      'family'
+    ],
+    correctAnswer: 'chopsticks',
+    explanation: 'Từ "chopsticks" (/ˈtʃɒpstɪks/) có nghĩa tiếng Việt là "đôi đũa". Ví dụ: Tôi đã mua những chiếc bát và đôi đũa mới này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đôi đũa" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtʃɒpstɪks/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-33',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nMy house has a lot of ________s.',
+    options: [
+      'kitchen',
+      'fridge',
+      'bowl',
+      'middle'
+    ],
+    correctAnswer: 'bowl',
+    explanation: 'Từ "bowl" (/bəʊl/) có nghĩa tiếng Việt là "bát, chén". Ví dụ: Nhà tôi có rất nhiều bát.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bát, chén" (n).',
+      'Gợi ý 2: Phiên âm: /bəʊl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-34',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nThe dog is ________ the chair.',
+    options: [
+      'draw',
+      'school bag',
+      'desk',
+      'on'
+    ],
+    correctAnswer: 'on',
+    explanation: 'Từ "on" (/ɒn/) có nghĩa tiếng Việt là "ở trên". Ví dụ: Con chó đang ở trên ghế.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ở trên" (prep).',
+      'Gợi ý 2: Phiên âm: /ɒn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-35',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nThe dog is ________ the house.',
+    options: [
+      'in front of',
+      'picture',
+      'behind',
+      'townhouse'
+    ],
+    correctAnswer: 'in front of',
+    explanation: 'Từ "in front of" (/ɪn frʌnt əv/) có nghĩa tiếng Việt là "ở phía trước". Ví dụ: Con chó ở trước nhà.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ở phía trước" (prep).',
+      'Gợi ý 2: Phiên âm: /ɪn frʌnt əv/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-36',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nThe cat is ________ the lamp and chair.',
+    options: [
+      'bowl',
+      'television',
+      'lamp',
+      'between'
+    ],
+    correctAnswer: 'between',
+    explanation: 'Từ "between" (/bɪˈtwiːn/) có nghĩa tiếng Việt là "ở giữa". Ví dụ: Con mèo ở giữa đèn và ghế.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ở giữa" (prep).',
+      'Gợi ý 2: Phiên âm: /bɪˈtwiːn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-37',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - A CLOSER LOOK 1]\nThe cat is ________ the lamp.',
+    options: [
+      'furniture',
+      'behind',
+      'on',
+      'under'
+    ],
+    correctAnswer: 'under',
+    explanation: 'Từ "under" (/ˈʌndə(r)/) có nghĩa tiếng Việt là "ở dưới". Ví dụ: Con mèo ở dưới ngọn đèn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ở dưới" (prep).',
+      'Gợi ý 2: Phiên âm: /ˈʌndə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-38',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nHow about putting a picture on the ________?',
+    options: [
+      'where',
+      'furniture',
+      'wall',
+      'television'
+    ],
+    correctAnswer: 'wall',
+    explanation: 'Từ "wall" (/wɔːl/) có nghĩa tiếng Việt là "tường". Ví dụ: Hay là treo một bức tranh lên tường?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tường" (n).',
+      'Gợi ý 2: Phiên âm: /wɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-39',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nLet\'s go to the ________ to buy one.',
+    options: [
+      'bowl',
+      'department store',
+      'kitchen',
+      'townhouse'
+    ],
+    correctAnswer: 'department store',
+    explanation: 'Từ "department store" (/dɪˈpɑːtmənt stɔː(r)/) có nghĩa tiếng Việt là "cửa hàng bách hóa". Ví dụ: Hãy đến cửa hàng bách hóa để mua một cái.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cửa hàng bách hóa" (n).',
+      'Gợi ý 2: Phiên âm: /dɪˈpɑːtmənt stɔː(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-40',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nThe ________ is on the table.',
+    options: [
+      'living room',
+      'behind',
+      'aunt',
+      'school bag'
+    ],
+    correctAnswer: 'school bag',
+    explanation: 'Từ "school bag" (/ˈskuːl bæɡ/) có nghĩa tiếng Việt là "cặp học sinh". Ví dụ: Cái cặp ở trên bàn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cặp học sinh" (n).',
+      'Gợi ý 2: Phiên âm: /ˈskuːl bæɡ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-41',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nThe picture is between the ________s.',
+    options: [
+      'clock',
+      'room',
+      'department store',
+      'bookshelf'
+    ],
+    correctAnswer: 'clock',
+    explanation: 'Từ "clock" (/klɒk/) có nghĩa tiếng Việt là "đồng hồ". Ví dụ: Bức tranh nằm giữa những chiếc đồng hồ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đồng hồ" (n).',
+      'Gợi ý 2: Phiên âm: /klɒk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-42',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nThe cat is in front of the ________.',
+    options: [
+      'window',
+      'computer',
+      'uncle',
+      'desk'
+    ],
+    correctAnswer: 'computer',
+    explanation: 'Từ "computer" (/kəmˈpjuːtə(r)/) có nghĩa tiếng Việt là "máy tính". Ví dụ: Con mèo đang ở phía trước máy tính.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "máy tính" (n).',
+      'Gợi ý 2: Phiên âm: /kəmˈpjuːtə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-43',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nThe cap is under the ________.',
+    options: [
+      'school bag',
+      'uncle',
+      'kitchen',
+      'pillow'
+    ],
+    correctAnswer: 'pillow',
+    explanation: 'Từ "pillow" (/ˈpɪləʊ/) có nghĩa tiếng Việt là "gối". Ví dụ: Cái mũ đang ở dưới gối.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "gối" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpɪləʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-44',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nThere is a big ________ in this room.',
+    options: [
+      'window',
+      'on',
+      'pillow',
+      'picture'
+    ],
+    correctAnswer: 'window',
+    explanation: 'Từ "window" (/ˈwɪndəʊ/) có nghĩa tiếng Việt là "cửa sổ". Ví dụ: Có một cửa sổ lớn trong phòng này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cửa sổ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwɪndəʊ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-45',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nA table in the ________ of the room.',
+    options: [
+      'chopsticks',
+      'bookshelf',
+      'grandmother',
+      'middle'
+    ],
+    correctAnswer: 'middle',
+    explanation: 'Từ "middle" (/ˈmɪdl/) có nghĩa tiếng Việt là "ở giữa". Ví dụ: Một cái bàn ở giữa phòng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ở giữa" (n).',
+      'Gợi ý 2: Phiên âm: /ˈmɪdl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-46',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - COMMUNICATION]\nThere are two ________ photos on the wall.',
+    options: [
+      'shark',
+      'family',
+      'grandfather',
+      'pillow'
+    ],
+    correctAnswer: 'family',
+    explanation: 'Từ "family" (/ˈfæməli/) có nghĩa tiếng Việt là "gia đình". Ví dụ: Có hai bức ảnh gia đình trên tường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "gia đình" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfæməli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-47',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - SKILLS 1]\nIs it an email or a ________?',
+    options: [
+      'letter',
+      'middle',
+      'sofa',
+      'brother'
+    ],
+    correctAnswer: 'letter',
+    explanation: 'Từ "letter" (/ˈletə(r)/) có nghĩa tiếng Việt là "bức thư". Ví dụ: Đó là một email hay một bức thư?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bức thư" (n).',
+      'Gợi ý 2: Phiên âm: /ˈletə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-48',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - SKILLS 1]\n________ is Nick in Da Lat with?',
+    options: [
+      'lamp',
+      'room',
+      'where',
+      'who'
+    ],
+    correctAnswer: 'who',
+    explanation: 'Từ "who" (/huː/) có nghĩa tiếng Việt là "ai". Ví dụ: Nick ở Đà Lạt với ai?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ai" (pronoun).',
+      'Gợi ý 2: Phiên âm: /huː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-49',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - SKILLS 1]\nHow many rooms are there in the ________?',
+    options: [
+      'dishwasher',
+      'room',
+      'furniture',
+      'hotel'
+    ],
+    correctAnswer: 'hotel',
+    explanation: 'Từ "hotel" (/həʊˈtel/) có nghĩa tiếng Việt là "khách sạn". Ví dụ: Có bao nhiêu phòng trong khách sạn?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "khách sạn" (n).',
+      'Gợi ý 2: Phiên âm: /həʊˈtel/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-50',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - SKILLS 1]\nI ________ my bag under the bed.',
+    options: [
+      'put',
+      'furniture',
+      'wall',
+      'buy'
+    ],
+    correctAnswer: 'put',
+    explanation: 'Từ "put" (/pʊt/) có nghĩa tiếng Việt là "để, đặt". Ví dụ: Tôi để túi dưới gầm giường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "để, đặt" (v).',
+      'Gợi ý 2: Phiên âm: /pʊt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-51',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - SKILLS 1]\nThere\'s a ________.',
+    options: [
+      'wardrobe',
+      'living room',
+      'grandmother',
+      'fridge'
+    ],
+    correctAnswer: 'wardrobe',
+    explanation: 'Từ "wardrobe" (/ˈwɔːdrəʊb/) có nghĩa tiếng Việt là "tủ quần áo". Ví dụ: Có một tủ quần áo.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tủ quần áo" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwɔːdrəʊb/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-52',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - SKILLS 1]\nThere\'s a big ________ at the door.',
+    options: [
+      'clock',
+      'television',
+      'shark',
+      'decorate'
+    ],
+    correctAnswer: 'shark',
+    explanation: 'Từ "shark" (/ʃɑːk/) có nghĩa tiếng Việt là "cá mập". Ví dụ: Có một con cá mập lớn ở cửa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cá mập" (n).',
+      'Gợi ý 2: Phiên âm: /ʃɑːk/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-53',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - SKILLS 2]\nThere are four ________ in my family.',
+    options: [
+      'people',
+      'decorate',
+      'grandmother',
+      'pillow'
+    ],
+    correctAnswer: 'people',
+    explanation: 'Từ "people" (/ˈpiːpl/) có nghĩa tiếng Việt là "người". Ví dụ: Có bốn người trong gia đình tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "người" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpiːpl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-54',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - LOOKING BACK]\nMy ________ has a TV.',
+    options: [
+      'window',
+      'brother',
+      'television',
+      'computer'
+    ],
+    correctAnswer: 'brother',
+    explanation: 'Từ "brother" (/ˈbrʌðə(r)/) có nghĩa tiếng Việt là "anh trai, em trai". Ví dụ: Anh trai tôi có một cái TV.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "anh trai, em trai" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbrʌðə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-55',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - LOOKING BACK]\nShe has a big ________.',
+    options: [
+      'bookshelf',
+      'desk',
+      'sink',
+      'townhouse'
+    ],
+    correctAnswer: 'bookshelf',
+    explanation: 'Từ "bookshelf" (/ˈbʊkʃelf/) có nghĩa tiếng Việt là "giá sách". Ví dụ: Cô ấy có một cái giá sách lớn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giá sách" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbʊkʃelf/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-56',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - LOOKING BACK]\nMy ________ likes the kitchen the best.',
+    options: [
+      'shark',
+      'desk',
+      'fridge',
+      'grandfather'
+    ],
+    correctAnswer: 'grandfather',
+    explanation: 'Từ "grandfather" (/ˈɡrænfɑːðə(r)/) có nghĩa tiếng Việt là "ông". Ví dụ: Ông tôi thích nhất là nhà bếp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ông" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡrænfɑːðə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-57',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - LOOKING BACK]\nMy aunt has a ________ Vy.',
+    options: [
+      'grandfather',
+      'window',
+      'chopsticks',
+      'daughter'
+    ],
+    correctAnswer: 'daughter',
+    explanation: 'Từ "daughter" (/ˈdɔːtə(r)/) có nghĩa tiếng Việt là "con gái". Ví dụ: Dì tôi có một cô con gái tên Vy.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con gái" (n).',
+      'Gợi ý 2: Phiên âm: /ˈdɔːtə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-58',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - PROJECT]\n________ your own strange house.',
+    options: [
+      'draw',
+      'wall',
+      'where',
+      'put'
+    ],
+    correctAnswer: 'draw',
+    explanation: 'Từ "draw" (/drɔː/) có nghĩa tiếng Việt là "vẽ". Ví dụ: Hãy vẽ ngôi nhà kỳ lạ của riêng bạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "vẽ" (v).',
+      'Gợi ý 2: Phiên âm: /drɔː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-59',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - PROJECT]\nHe has some very ________ ideas about women!',
+    options: [
+      'strange',
+      'uncle',
+      'school bag',
+      'television'
+    ],
+    correctAnswer: 'strange',
+    explanation: 'Từ "strange" (/streɪndʒ/) có nghĩa tiếng Việt là "kỳ lạ". Ví dụ: Anh ấy có một số ý tưởng rất lạ về phụ nữ!',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kỳ lạ" (adj).',
+      'Gợi ý 2: Phiên âm: /streɪndʒ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-60',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - PROJECT]\nThey ________ the wedding car with ribbons and flowers.',
+    options: [
+      'decorate',
+      'wardrobe',
+      'department store',
+      'lamp'
+    ],
+    correctAnswer: 'decorate',
+    explanation: 'Từ "decorate" (/ˈdekəreɪt/) có nghĩa tiếng Việt là "trang trí". Ví dụ: Họ trang trí xe cưới bằng ruy băng và hoa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trang trí" (v).',
+      'Gợi ý 2: Phiên âm: /ˈdekəreɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u2-v-61',
+    unitId: 'unit-2',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 2: MY HOME - PROJECT]\nThey have a lot of antique ________.',
+    options: [
+      'room',
+      'furniture',
+      'family',
+      'clock'
+    ],
+    correctAnswer: 'furniture',
+    explanation: 'Từ "furniture" (/ˈfɜːnɪtʃə(r)/) có nghĩa tiếng Việt là "đồ nội thất". Ví dụ: Họ có rất nhiều đồ nội thất cổ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đồ nội thất" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfɜːnɪtʃə(r)/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
