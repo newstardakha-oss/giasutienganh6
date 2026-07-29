@@ -23,21 +23,10 @@ export default function App() {
   const [isBackupModalOpen, setIsBackupModalOpen] = useState<boolean>(false);
   const [isStudentAuthModalOpen, setIsStudentAuthModalOpen] = useState<boolean>(false);
 
-  // Check server health on startup: Only open ApiKeyModal if NEITHER server key NOR client custom key exists
+  // Server handles API key pooling transparently. Students enter directly without popups.
   useEffect(() => {
-    const customKey = localStorage.getItem('gemini_api_key') || appData.settings.geminiApiKey;
-    if (!customKey) {
-      fetch('/api/health')
-        .then((res) => res.json())
-        .then((data) => {
-          if (!data.hasServerKey && !data.hasEnvApiKey) {
-            setIsApiKeyModalOpen(true);
-          }
-        })
-        .catch(() => {
-          // If fetch fails, don't block student unless explicitly opened
-        });
-    }
+    // Check server health silently without blocking students
+    fetch('/api/health').catch(() => {});
   }, []);
 
   // Sync appData changes to localStorage

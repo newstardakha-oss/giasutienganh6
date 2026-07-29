@@ -210,16 +210,18 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="text-slate-600">{appData.progress.totalXP} XP</span>
             </div>
 
-            {/* Settings Button */}
-            <button
-              id="header-api-settings-btn"
-              onClick={onOpenSettings}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all border border-slate-200 shadow-2xs"
-              title="Cài đặt API Key & Cấu hình AI"
-            >
-              <Settings className="w-3.5 h-3.5 text-slate-600" />
-              <span className="hidden sm:inline">Cài Đặt AI</span>
-            </button>
+            {/* Settings Button (Teacher Only) */}
+            {appData.isTeacherLoggedIn && (
+              <button
+                id="header-api-settings-btn"
+                onClick={onOpenSettings}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-800 text-xs font-bold transition-all border border-purple-200 shadow-2xs"
+                title="Cấu hình AI dành cho Giáo viên"
+              >
+                <Settings className="w-3.5 h-3.5 text-purple-600" />
+                <span className="hidden sm:inline">Cấu Đặt AI</span>
+              </button>
+            )}
 
             {/* Backup / Restore Button */}
             <button

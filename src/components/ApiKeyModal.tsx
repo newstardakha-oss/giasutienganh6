@@ -78,7 +78,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
           {/* API Key Input */}
           <div>
             <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-              Gemini API Key (Tùy chọn)
+              Gemini API Key (Tùy chọn dành cho Giáo viên / Admin)
             </label>
             <div className="relative">
               <input
@@ -86,7 +86,7 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
                 type={showPassword ? 'text' : 'password'}
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
-                placeholder="Dán API Key (Ví dụ: AIzaSy...)"
+                placeholder="Dán API Key riêng nếu muốn (Mặc định dùng Key Server)"
                 className="w-full px-4 py-2.5 pr-10 text-sm rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
               />
               <button
@@ -99,26 +99,17 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
             </div>
           </div>
 
-          {/* Instructions & Red Notice for API Keys */}
-          <div className="bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 rounded-2xl p-3.5 text-xs text-red-800 dark:text-red-300 space-y-1.5">
-            <div className="flex items-center gap-1.5 font-bold text-red-600 dark:text-red-400 text-sm">
-              <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>Lấy API key để sử dụng app (Miễn phí 100%)</span>
+          {/* Green Reassuring Notice for Keyless Access */}
+          <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-3.5 text-xs text-emerald-900 dark:text-emerald-300 space-y-1.5">
+            <div className="flex items-center gap-1.5 font-bold text-emerald-700 dark:text-emerald-400 text-sm">
+              <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
+              <span>Hệ Thống AI Key Máy Chủ Đã Sẵn Sàng!</span>
             </div>
             <p className="leading-relaxed">
-              Nhấp vào nút bên dưới để mở Google AI Studio, đăng nhập tài khoản Google bất kỳ và nhấn <strong>Create API Key</strong>:
+              Máy chủ đã tích hợp sẵn <strong>AI Key dùng chung của Nhà trường</strong>. Học sinh hoàn toàn <strong>không cần nhập API key</strong> khi vào học!
             </p>
-            <a
-              href="https://aistudio.google.com/app/apikey"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98] mt-1"
-            >
-              <span>TRUY CẬP GOOGLE AI STUDIO LẤY API KEY</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
             <p className="text-[11px] opacity-90 italic">
-              💡 Mẹo: Khi dùng hết lượt free (Lỗi 429 Quota), bạn chỉ cần dùng 1 Gmail khác để tạo key mới dán vào dùng tiếp!
+              💡 Ô nhập key phía trên chỉ dành cho Giáo viên hoặc Quản trị viên muốn sử dụng Key cá nhân riêng.
             </p>
           </div>
 
