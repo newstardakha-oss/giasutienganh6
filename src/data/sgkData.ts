@@ -13701,6 +13701,1406 @@ export const DEMO_QUESTIONS: Question[] = [
       'Gợi ý 2: Phiên âm: /bʊk/.'
     ],
     difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-1',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nThis ________ is big.',
+    options: [
+      'restaurant',
+      'gym',
+      'congratulations',
+      'idea'
+    ],
+    correctAnswer: 'gym',
+    explanation: 'Từ "gym" (/dʒɪm/) có nghĩa tiếng Việt là "phòng tập thể dục". Ví dụ: Phòng tập thể dục này lớn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "phòng tập thể dục" (n).',
+      'Gợi ý 2: Phiên âm: /dʒɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-2',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nThe ________ is great.',
+    options: [
+      'equipment',
+      'congratulations',
+      'footballer',
+      'free time'
+    ],
+    correctAnswer: 'equipment',
+    explanation: 'Từ "equipment" (/ɪˈkwɪpmənt/) có nghĩa tiếng Việt là "thiết bị, dụng cụ". Ví dụ: Các thiết bị thật tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thiết bị, dụng cụ" (n).',
+      'Gợi ý 2: Phiên âm: /ɪˈkwɪpmənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-3',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nWhat ________ do you do?',
+    options: [
+      'sports',
+      'racket',
+      'win',
+      'often'
+    ],
+    correctAnswer: 'sports',
+    explanation: 'Từ "sports" (/spɔːts/) có nghĩa tiếng Việt là "các môn thể thao". Ví dụ: Bạn chơi môn thể thao nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "các môn thể thao" (n).',
+      'Gợi ý 2: Phiên âm: /spɔːts/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-4',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI do ________.',
+    options: [
+      'karate',
+      'badminton',
+      'touch',
+      'museum'
+    ],
+    correctAnswer: 'karate',
+    explanation: 'Từ "karate" (/kəˈrɑːti/) có nghĩa tiếng Việt là "võ karate". Ví dụ: Tôi tập võ karate.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "võ karate" (n).',
+      'Gợi ý 2: Phiên âm: /kəˈrɑːti/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-5',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI play ________.',
+    options: [
+      'racket',
+      'boat',
+      'skipping rope',
+      'table tennis'
+    ],
+    correctAnswer: 'table tennis',
+    explanation: 'Từ "table tennis" (/ˈteɪbl ˈtenɪs/) có nghĩa tiếng Việt là "bóng bàn". Ví dụ: Tôi chơi bóng bàn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bóng bàn" (n).',
+      'Gợi ý 2: Phiên âm: /ˈteɪbl ˈtenɪs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-6',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI won.',
+    options: [
+      'win',
+      'can',
+      'marathon',
+      'call'
+    ],
+    correctAnswer: 'win',
+    explanation: 'Từ "win" (/wɪn/) có nghĩa tiếng Việt là "chiến thắng". Ví dụ: Tôi đã thắng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chiến thắng" (v).',
+      'Gợi ý 2: Phiên âm: /wɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-7',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI\'m not ________ at sports.',
+    options: [
+      'museum',
+      'amazing',
+      'win',
+      'good'
+    ],
+    correctAnswer: 'good',
+    explanation: 'Từ "good" (/ɡʊd/) có nghĩa tiếng Việt là "giỏi, tốt". Ví dụ: Tôi không giỏi thể thao.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giỏi, tốt" (adj).',
+      'Gợi ý 2: Phiên âm: /ɡʊd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-8',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI have an ________.',
+    options: [
+      'idea',
+      'wrestling',
+      'meet',
+      'boat'
+    ],
+    correctAnswer: 'idea',
+    explanation: 'Từ "idea" (/aɪˈdɪə/) có nghĩa tiếng Việt là "ý tưởng, ý kiến". Ví dụ: Tôi có ý này.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ý tưởng, ý kiến" (n).',
+      'Gợi ý 2: Phiên âm: /aɪˈdɪə/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-9',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nYou can go to the karate ________.',
+    options: [
+      'champion',
+      'passenger',
+      'game',
+      'club'
+    ],
+    correctAnswer: 'club',
+    explanation: 'Từ "club" (/klʌb/) có nghĩa tiếng Việt là "câu lạc bộ". Ví dụ: Bạn có thể đến câu lạc bộ karate.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "câu lạc bộ" (n).',
+      'Gợi ý 2: Phiên âm: /klʌb/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-10',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nBut you ________ learn.',
+    options: [
+      'museum',
+      'can',
+      'sleep',
+      'often'
+    ],
+    correctAnswer: 'can',
+    explanation: 'Từ "can" (/kæn/) có nghĩa tiếng Việt là "có thể". Ví dụ: Nhưng bạn có thể học hỏi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có thể" (v).',
+      'Gợi ý 2: Phiên âm: /kæn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-11',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI will ________ you there at 10 a.m. on Sunday.',
+    options: [
+      'equipment',
+      'newspaper',
+      'contest',
+      'meet'
+    ],
+    correctAnswer: 'meet',
+    explanation: 'Từ "meet" (/miːt/) có nghĩa tiếng Việt là "gặp". Ví dụ: Tôi sẽ gặp bạn ở đó lúc 10 giờ sáng Chủ nhật.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "gặp" (v).',
+      'Gợi ý 2: Phiên âm: /miːt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-12',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nIt\'s a ________ club.',
+    options: [
+      'break time',
+      'gym',
+      'newspaper',
+      'super fit'
+    ],
+    correctAnswer: 'super fit',
+    explanation: 'Từ "super fit" (/ˈsuːpə fɪt/) có nghĩa tiếng Việt là "siêu khỏe khoắn, vừa vặn". Ví dụ: Đó là một câu lạc bộ siêu khỏe khoắn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "siêu khỏe khoắn, vừa vặn" (phr).',
+      'Gợi ý 2: Phiên âm: /ˈsuːpə fɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-13',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nCan you ________?',
+    options: [
+      'swim',
+      'goal',
+      'important',
+      'amazing'
+    ],
+    correctAnswer: 'swim',
+    explanation: 'Từ "swim" (/swɪm/) có nghĩa tiếng Việt là "bơi". Ví dụ: Bạn có biết bơi không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bơi" (v).',
+      'Gợi ý 2: Phiên âm: /swɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-14',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nDo you play ________ every day?',
+    options: [
+      'outdoors',
+      'racket',
+      'winner',
+      'noise'
+    ],
+    correctAnswer: 'outdoors',
+    explanation: 'Từ "outdoors" (/ˌaʊtˈdɔːz/) có nghĩa tiếng Việt là "ngoài trời". Ví dụ: Bạn có chơi ngoài trời mỗi ngày không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngoài trời" (adv).',
+      'Gợi ý 2: Phiên âm: /ˌaʊtˈdɔːz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-15',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nDo you usually do morning ________?',
+    options: [
+      'career',
+      'exercise',
+      'grandpa',
+      'competition'
+    ],
+    correctAnswer: 'exercise',
+    explanation: 'Từ "exercise" (/ˈeksəsaɪz/) có nghĩa tiếng Việt là "tập thể dục". Ví dụ: Bạn có thường tập thể dục buổi sáng không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tập thể dục" (n).',
+      'Gợi ý 2: Phiên âm: /ˈeksəsaɪz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-16',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nWhat do you usually do at ________ at school?',
+    options: [
+      'career',
+      'amazing',
+      'break time',
+      'super fit'
+    ],
+    correctAnswer: 'break time',
+    explanation: 'Từ "break time" (/ˈbreɪk taɪm/) có nghĩa tiếng Việt là "giờ giải lao". Ví dụ: Bạn thường làm gì vào giờ giải lao ở trường?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "giờ giải lao" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbreɪk taɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-17',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI play in the ________.',
+    options: [
+      'goal',
+      'football',
+      'sleep',
+      'schoolyard'
+    ],
+    correctAnswer: 'schoolyard',
+    explanation: 'Từ "schoolyard" (/ˈskuːljɑːd/) có nghĩa tiếng Việt là "sân trường". Ví dụ: Tôi chơi trong sân trường.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sân trường" (n).',
+      'Gợi ý 2: Phiên âm: /ˈskuːljɑːd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-18',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nWhat do you think of sports and ________s?',
+    options: [
+      'game',
+      'competition',
+      'windy',
+      'good'
+    ],
+    correctAnswer: 'game',
+    explanation: 'Từ "game" (/ɡeɪm/) có nghĩa tiếng Việt là "trò chơi". Ví dụ: Bạn nghĩ gì về thể thao và trò chơi?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trò chơi" (n).',
+      'Gợi ý 2: Phiên âm: /ɡeɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-19',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI play ________.',
+    options: [
+      'football',
+      'swim',
+      'bicycle',
+      'volleyball'
+    ],
+    correctAnswer: 'volleyball',
+    explanation: 'Từ "volleyball" (/ˈvɒlibɔːl/) có nghĩa tiếng Việt là "bóng chuyền". Ví dụ: Tôi chơi bóng chuyền.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bóng chuyền" (n).',
+      'Gợi ý 2: Phiên âm: /ˈvɒlibɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-20',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI don\'t like to play ________.',
+    options: [
+      'chess',
+      'win',
+      'volleyball',
+      'competition'
+    ],
+    correctAnswer: 'chess',
+    explanation: 'Từ "chess" (/tʃes/) có nghĩa tiếng Việt là "cờ". Ví dụ: Tôi không thích chơi cờ.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cờ" (n).',
+      'Gợi ý 2: Phiên âm: /tʃes/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-21',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - GETTING STARTED]\nI like ________.',
+    options: [
+      'aerobics',
+      'score',
+      'free time',
+      'schoolyard'
+    ],
+    correctAnswer: 'aerobics',
+    explanation: 'Từ "aerobics" (/eəˈrəʊbɪks/) có nghĩa tiếng Việt là "thể dục nhịp điệu". Ví dụ: Tôi thích thể dục nhịp điệu.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thể dục nhịp điệu" (n).',
+      'Gợi ý 2: Phiên âm: /eəˈrəʊbɪks/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-22',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nShe won ________ sports competitions.',
+    options: [
+      'table tennis',
+      'marathon',
+      'international',
+      'amazing'
+    ],
+    correctAnswer: 'international',
+    explanation: 'Từ "international" (/ˌɪntəˈnæʃnəl/) có nghĩa tiếng Việt là "quốc tế". Ví dụ: Cô ấy đã vô địch các giải thể thao quốc tế.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quốc tế" (adj).',
+      'Gợi ý 2: Phiên âm: /ˌɪntəˈnæʃnəl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-23',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nHe became a ________ tennis player.',
+    options: [
+      'world',
+      'bicycle',
+      'break time',
+      'football'
+    ],
+    correctAnswer: 'world',
+    explanation: 'Từ "world" (/wɜːld/) có nghĩa tiếng Việt là "thế giới". Ví dụ: Anh ấy đã trở thành vận động viên quần vợt thế giới.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thế giới" (n).',
+      'Gợi ý 2: Phiên âm: /wɜːld/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-24',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\n________ for jobs is intense.',
+    options: [
+      'competition',
+      'important',
+      'grandpa',
+      'world'
+    ],
+    correctAnswer: 'competition',
+    explanation: 'Từ "competition" (/ˌkɒmpəˈtɪʃn/) có nghĩa tiếng Việt là "cuộc tranh tài, cuộc thi". Ví dụ: Cạnh tranh về việc làm rất khốc liệt.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc tranh tài, cuộc thi" (n).',
+      'Gợi ý 2: Phiên âm: /ˌkɒmpəˈtɪʃn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-25',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nShe is the world ________ for the third year in succession.',
+    options: [
+      'champion',
+      'famous',
+      'gym',
+      'weekend'
+    ],
+    correctAnswer: 'champion',
+    explanation: 'Từ "champion" (/ˈtʃæmpiən/) có nghĩa tiếng Việt là "nhà vô địch". Ví dụ: Cô là nhà vô địch thế giới năm thứ ba liên tiếp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà vô địch" (n).',
+      'Gợi ý 2: Phiên âm: /ˈtʃæmpiən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-26',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nShe\'s won a lot of beauty ________s.',
+    options: [
+      'boat',
+      'swim',
+      'outdoors',
+      'contest'
+    ],
+    correctAnswer: 'contest',
+    explanation: 'Từ "contest" (/ˈkɒntest/) có nghĩa tiếng Việt là "cuộc thi". Ví dụ: Cô ấy đã chiến thắng rất nhiều cuộc thi sắc đẹp.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc thi" (n).',
+      'Gợi ý 2: Phiên âm: /ˈkɒntest/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-27',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nThere\'ll be a prize for the ________.',
+    options: [
+      'contest',
+      'wrestling',
+      'famous',
+      'winner'
+    ],
+    correctAnswer: 'winner',
+    explanation: 'Từ "winner" (/ˈwɪnə(r)/) có nghĩa tiếng Việt là "người chiến thắng". Ví dụ: Sẽ có một giải thưởng cho người chiến thắng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "người chiến thắng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈwɪnə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-28',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nHe holds his tennis ________ firmly.',
+    options: [
+      'racket',
+      'loudly',
+      'chess',
+      'restaurant'
+    ],
+    correctAnswer: 'racket',
+    explanation: 'Từ "racket" (/ˈrækɪt/) có nghĩa tiếng Việt là "cây vợt". Ví dụ: Anh ta cầm chặt chiếc vợt tennis của mình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cây vợt" (n).',
+      'Gợi ý 2: Phiên âm: /ˈrækɪt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-29',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nWe won the ________.',
+    options: [
+      'club',
+      'match',
+      'player',
+      'tidy up'
+    ],
+    correctAnswer: 'match',
+    explanation: 'Từ "match" (/mætʃ/) có nghĩa tiếng Việt là "trận đấu". Ví dụ: Chúng tôi đã thắng trận đấu.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trận đấu" (n).',
+      'Gợi ý 2: Phiên âm: /mætʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-30',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nI have two pairs of ________.',
+    options: [
+      'international',
+      'exercise',
+      'goggles',
+      'passenger'
+    ],
+    correctAnswer: 'goggles',
+    explanation: 'Từ "goggles" (/ˈɡɒɡlz/) có nghĩa tiếng Việt là "kính bơi, kính bảo hộ". Ví dụ: Tôi có hai chiếc kính bơi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kính bơi, kính bảo hộ" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡɒɡlz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-31',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nWe took turns rowing the ________ up the river.',
+    options: [
+      'call',
+      'touch',
+      'boat',
+      'marathon'
+    ],
+    correctAnswer: 'boat',
+    explanation: 'Từ "boat" (/bəʊt/) có nghĩa tiếng Việt là "con thuyền". Ví dụ: Chúng tôi thay nhau chèo thuyền ngược dòng sông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "con thuyền" (n).',
+      'Gợi ý 2: Phiên âm: /bəʊt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-32',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nMy ________ is old.',
+    options: [
+      'loudly',
+      'grandpa',
+      'gum',
+      'newspaper'
+    ],
+    correctAnswer: 'grandpa',
+    explanation: 'Từ "grandpa" (/ˈɡrænpɑː/) có nghĩa tiếng Việt là "ông (nội/ngoại)". Ví dụ: Ông tôi đã già.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ông (nội/ngoại)" (n).',
+      'Gợi ý 2: Phiên âm: /ˈɡrænpɑː/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-33',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nI play ________.',
+    options: [
+      'player',
+      'sports',
+      'gym',
+      'badminton'
+    ],
+    correctAnswer: 'badminton',
+    explanation: 'Từ "badminton" (/ˈbædmɪntən/) có nghĩa tiếng Việt là "cầu lông". Ví dụ: Tôi chơi cầu lông.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cầu lông" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbædmɪntən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-34',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 1]\nI ride my ________.',
+    options: [
+      'contest',
+      'amazing',
+      'noise',
+      'bicycle'
+    ],
+    correctAnswer: 'bicycle',
+    explanation: 'Từ "bicycle" (/ˈbaɪsɪkl/) có nghĩa tiếng Việt là "xe đạp". Ví dụ: Tôi đi xe đạp của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "xe đạp" (n).',
+      'Gợi ý 2: Phiên âm: /ˈbaɪsɪkl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-35',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nDid you have a nice ________?',
+    options: [
+      'weekend',
+      'grandpa',
+      'super fit',
+      'career'
+    ],
+    correctAnswer: 'weekend',
+    explanation: 'Từ "weekend" (/ˌwiːkˈend/) có nghĩa tiếng Việt là "cuối tuần". Ví dụ: Bạn đã có một cuối tuần vui vẻ chứ?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuối tuần" (n).',
+      'Gợi ý 2: Phiên âm: /ˌwiːkˈend/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-36',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nI go ________ with my dad.',
+    options: [
+      'fishing',
+      'goggles',
+      'aerobics',
+      'club'
+    ],
+    correctAnswer: 'fishing',
+    explanation: 'Từ "fishing" (/ˈfɪʃɪŋ/) có nghĩa tiếng Việt là "việc câu cá". Ví dụ: Tôi đi câu cá với bố tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "việc câu cá" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfɪʃɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-37',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nI visit the ________ with my family.',
+    options: [
+      'free time',
+      'boat',
+      'museum',
+      'special'
+    ],
+    correctAnswer: 'museum',
+    explanation: 'Từ "museum" (/mjuˈziːəm/) có nghĩa tiếng Việt là "bảo tàng". Ví dụ: Tôi đến thăm bảo tàng với gia đình.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bảo tàng" (n).',
+      'Gợi ý 2: Phiên âm: /mjuˈziːəm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-38',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nThen we eat at my favorite ________.',
+    options: [
+      'grandpa',
+      'restaurant',
+      'equipment',
+      'international'
+    ],
+    correctAnswer: 'restaurant',
+    explanation: 'Từ "restaurant" (/ˈrestrɒnt/) có nghĩa tiếng Việt là "nhà hàng". Ví dụ: Sau đó, chúng tôi ăn ở nhà hàng yêu thích của tôi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nhà hàng" (n).',
+      'Gợi ý 2: Phiên âm: /ˈrestrɒnt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-39',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nDid you watch ________ last Sunday?',
+    options: [
+      'football',
+      'super fit',
+      'passenger',
+      'schoolyard'
+    ],
+    correctAnswer: 'football',
+    explanation: 'Từ "football" (/ˈfʊtbɔːl/) có nghĩa tiếng Việt là "bóng đá". Ví dụ: Chủ nhật tuần trước bạn có xem bóng đá không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bóng đá" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfʊtbɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-40',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nMy favorite team ________d a fantastic goal.',
+    options: [
+      'career',
+      'amazing',
+      'score',
+      'player'
+    ],
+    correctAnswer: 'score',
+    explanation: 'Từ "score" (/skɔː(r)/) có nghĩa tiếng Việt là "ghi bàn, điểm số". Ví dụ: Đội bóng yêu thích của tôi đã ghi một bàn thắng tuyệt vời.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ghi bàn, điểm số" (v).',
+      'Gợi ý 2: Phiên âm: /skɔː(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-41',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nI was ________.',
+    options: [
+      'exhausted',
+      'football',
+      'player',
+      'gym'
+    ],
+    correctAnswer: 'exhausted',
+    explanation: 'Từ "exhausted" (/ɪɡˈzɔːstɪd/) có nghĩa tiếng Việt là "kiệt sức". Ví dụ: Tôi đã kiệt sức.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kiệt sức" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪɡˈzɔːstɪd/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-42',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nDid you ________ well last night?',
+    options: [
+      'passenger',
+      'football',
+      'meet',
+      'sleep'
+    ],
+    correctAnswer: 'sleep',
+    explanation: 'Từ "sleep" (/sliːp/) có nghĩa tiếng Việt là "ngủ, giấc ngủ". Ví dụ: Tối qua bạn ngủ ngon không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngủ, giấc ngủ" (v).',
+      'Gợi ý 2: Phiên âm: /sliːp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-43',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nIt\'s chewing ________.',
+    options: [
+      'windy',
+      'match',
+      'gum',
+      'stadium'
+    ],
+    correctAnswer: 'gum',
+    explanation: 'Từ "gum" (/ɡʌm/) có nghĩa tiếng Việt là "kẹo cao su". Ví dụ: Đó là kẹo cao su.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kẹo cao su" (n).',
+      'Gợi ý 2: Phiên âm: /ɡʌm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-44',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nIt\'s ________ outside.',
+    options: [
+      'international',
+      'goggles',
+      'exhausted',
+      'windy'
+    ],
+    correctAnswer: 'windy',
+    explanation: 'Từ "windy" (/ˈwɪndi/) có nghĩa tiếng Việt là "có gió". Ví dụ: Ngoài trời có gió.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "có gió" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈwɪndi/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-45',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\n________ your room.',
+    options: [
+      'tidy up',
+      'restaurant',
+      'international',
+      'gym'
+    ],
+    correctAnswer: 'tidy up',
+    explanation: 'Từ "tidy up" (/ˈtaɪdi ʌp/) có nghĩa tiếng Việt là "dọn dẹp". Ví dụ: Dọn dẹp phòng của bạn đi.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "dọn dẹp" (phr.v).',
+      'Gợi ý 2: Phiên âm: /ˈtaɪdi ʌp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-46',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nDon\'t speak ________.',
+    options: [
+      'club',
+      'exhausted',
+      'game',
+      'loudly'
+    ],
+    correctAnswer: 'loudly',
+    explanation: 'Từ "loudly" (/ˈlaʊdli/) có nghĩa tiếng Việt là "lớn tiếng, ầm ĩ". Ví dụ: Đừng nói lớn tiếng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lớn tiếng, ầm ĩ" (adv).',
+      'Gợi ý 2: Phiên âm: /ˈlaʊdli/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-47',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - A CLOSER LOOK 2]\nThere is a ________.',
+    options: [
+      'can',
+      'contest',
+      'intelligent',
+      'fire'
+    ],
+    correctAnswer: 'fire',
+    explanation: 'Từ "fire" (/ˈfaɪə(r)/) có nghĩa tiếng Việt là "ngọn lửa, đám cháy". Ví dụ: Có lửa.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "ngọn lửa, đám cháy" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfaɪə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-48',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - COMMUNICATION]\nDo you play sports in your ________?',
+    options: [
+      'fishing',
+      'contest',
+      'free time',
+      'skipping rope'
+    ],
+    correctAnswer: 'free time',
+    explanation: 'Từ "free time" (/ˌfriː ˈtaɪm/) có nghĩa tiếng Việt là "thời gian rảnh". Ví dụ: Bạn có chơi thể thao trong thời gian rảnh không?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thời gian rảnh" (n).',
+      'Gợi ý 2: Phiên âm: /ˌfriː ˈtaɪm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-49',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - COMMUNICATION]\nHow ________ do you play them?',
+    options: [
+      'competition',
+      'famous',
+      'club',
+      'often'
+    ],
+    correctAnswer: 'often',
+    explanation: 'Từ "often" (/ˈɒfn/) có nghĩa tiếng Việt là "thường xuyên". Ví dụ: Bạn chơi chúng thường xuyên như thế nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thường xuyên" (adv).',
+      'Gợi ý 2: Phiên âm: /ˈɒfn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-50',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - COMMUNICATION]\nDid you ________ any clubs?',
+    options: [
+      'amazing',
+      'noise',
+      'bear',
+      'join'
+    ],
+    correctAnswer: 'join',
+    explanation: 'Từ "join" (/dʒɔɪn/) có nghĩa tiếng Việt là "tham gia". Ví dụ: Bạn đã tham gia câu lạc bộ nào chưa?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tham gia" (v).',
+      'Gợi ý 2: Phiên âm: /dʒɔɪn/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-51',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - COMMUNICATION]\n________! You won.',
+    options: [
+      'congratulations',
+      'goggles',
+      'grandpa',
+      'score'
+    ],
+    correctAnswer: 'congratulations',
+    explanation: 'Từ "congratulations" (/kənˌɡrætʃuˈleɪʃnz/) có nghĩa tiếng Việt là "lời chúc mừng". Ví dụ: Xin chúc mừng! Bạn đã thắng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "lời chúc mừng" (n).',
+      'Gợi ý 2: Phiên âm: /kənˌɡrætʃuˈleɪʃnz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-52',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - COMMUNICATION]\nHow many ________s are there in a football match?',
+    options: [
+      'player',
+      'fire',
+      'gym',
+      'grandpa'
+    ],
+    correctAnswer: 'player',
+    explanation: 'Từ "player" (/ˈpleɪə(r)/) có nghĩa tiếng Việt là "người chơi, vận động viên". Ví dụ: Có bao nhiêu người chơi trong một trận đấu bóng đá?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "người chơi, vận động viên" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpleɪə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-53',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - COMMUNICATION]\nHow long is a ________?',
+    options: [
+      'table tennis',
+      'important',
+      'marathon',
+      'noise'
+    ],
+    correctAnswer: 'marathon',
+    explanation: 'Từ "marathon" (/ˈmærəθən/) có nghĩa tiếng Việt là "cuộc chạy ma-ra-tông". Ví dụ: Cuộc chạy ma-ra-tông dài bao nhiêu?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cuộc chạy ma-ra-tông" (n).',
+      'Gợi ý 2: Phiên âm: /ˈmærəθən/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-54',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 1]\nWhen were you born?',
+    options: [
+      'champion',
+      'grandpa',
+      'famous',
+      'bear'
+    ],
+    correctAnswer: 'bear',
+    explanation: 'Từ "bear" (/beə(r)/) có nghĩa tiếng Việt là "sinh ra". Ví dụ: Bạn sinh ra khi nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sinh ra" (v).',
+      'Gợi ý 2: Phiên âm: /beə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-55',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 1]\nHow many ________s did he score in total?',
+    options: [
+      'goal',
+      'bicycle',
+      'amazing',
+      'score'
+    ],
+    correctAnswer: 'goal',
+    explanation: 'Từ "goal" (/ɡəʊl/) có nghĩa tiếng Việt là "bàn thắng, khung thành". Ví dụ: Anh ấy đã ghi tổng cộng bao nhiêu bàn thắng?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "bàn thắng, khung thành" (n).',
+      'Gợi ý 2: Phiên âm: /ɡəʊl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-56',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 1]\nWhat do people ________ him?',
+    options: [
+      'amazing',
+      'equipment',
+      'call',
+      'international'
+    ],
+    correctAnswer: 'call',
+    explanation: 'Từ "call" (/kɔːl/) có nghĩa tiếng Việt là "gọi, đặt tên". Ví dụ: Mọi người gọi anh ấy là gì?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "gọi, đặt tên" (v).',
+      'Gợi ý 2: Phiên âm: /kɔːl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-57',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 1]\nWhat is ________ about him?',
+    options: [
+      'special',
+      'break time',
+      'grandpa',
+      'volleyball'
+    ],
+    correctAnswer: 'special',
+    explanation: 'Từ "special" (/ˈspeʃl/) có nghĩa tiếng Việt là "đặc biệt". Ví dụ: Điều gì đặc biệt ở anh ấy?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "đặc biệt" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈspeʃl/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-58',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 1]\nHe\'s the best ________ of all time.',
+    options: [
+      'footballer',
+      'famous',
+      'contest',
+      'competition'
+    ],
+    correctAnswer: 'footballer',
+    explanation: 'Từ "footballer" (/ˈfʊtbɔːlə(r)/) có nghĩa tiếng Việt là "cầu thủ bóng đá". Ví dụ: Anh ấy là cầu thủ bóng đá xuất sắc nhất mọi thời đại.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "cầu thủ bóng đá" (n).',
+      'Gợi ý 2: Phiên âm: /ˈfʊtbɔːlə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-59',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 1]\nWhen did he begin his ________?',
+    options: [
+      'player',
+      'club',
+      'museum',
+      'career'
+    ],
+    correctAnswer: 'career',
+    explanation: 'Từ "career" (/kəˈrɪə(r)/) có nghĩa tiếng Việt là "sự nghiệp". Ví dụ: Anh ấy bắt đầu sự nghiệp khi nào?',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sự nghiệp" (n).',
+      'Gợi ý 2: Phiên âm: /kəˈrɪə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-60',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 1]\nWow, that\'s ________.',
+    options: [
+      'boat',
+      'marathon',
+      'winner',
+      'amazing'
+    ],
+    correctAnswer: 'amazing',
+    explanation: 'Từ "amazing" (/əˈmeɪzɪŋ/) có nghĩa tiếng Việt là "kinh ngạc, tuyệt vời". Ví dụ: Ồ, thật kinh ngạc.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "kinh ngạc, tuyệt vời" (adj).',
+      'Gợi ý 2: Phiên âm: /əˈmeɪzɪŋ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-61',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 2]\nHe is ________.',
+    options: [
+      'can',
+      'famous',
+      'match',
+      'table tennis'
+    ],
+    correctAnswer: 'famous',
+    explanation: 'Từ "famous" (/ˈfeɪməs/) có nghĩa tiếng Việt là "nổi tiếng". Ví dụ: Anh ấy nổi tiếng.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "nổi tiếng" (adj).',
+      'Gợi ý 2: Phiên âm: /ˈfeɪməs/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-62',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - SKILLS 2]\nTwo ________ trains were involved in the accident.',
+    options: [
+      'fire',
+      'volleyball',
+      'amazing',
+      'passenger'
+    ],
+    correctAnswer: 'passenger',
+    explanation: 'Từ "passenger" (/ˈpæsɪndʒə(r)/) có nghĩa tiếng Việt là "hành khách". Ví dụ: Hai đoàn tàu chở khách liên quan đến vụ tai nạn.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "hành khách" (n).',
+      'Gợi ý 2: Phiên âm: /ˈpæsɪndʒə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-63',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - LOOKING BACK]\nYour friends are making a lot of ________.',
+    options: [
+      'football',
+      'sleep',
+      'weekend',
+      'noise'
+    ],
+    correctAnswer: 'noise',
+    explanation: 'Từ "noise" (/nɔɪz/) có nghĩa tiếng Việt là "tiếng ồn". Ví dụ: Bạn bè của bạn đang gây ồn ào.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tiếng ồn" (n).',
+      'Gợi ý 2: Phiên âm: /nɔɪz/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-64',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - LOOKING BACK]\nMy teacher says that he is an ________ student.',
+    options: [
+      'intelligent',
+      'game',
+      'fire',
+      'newspaper'
+    ],
+    correctAnswer: 'intelligent',
+    explanation: 'Từ "intelligent" (/ɪnˈtelɪdʒənt/) có nghĩa tiếng Việt là "thông minh". Ví dụ: Giáo viên của tôi nói rằng cậu ấy là một học sinh thông minh.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "thông minh" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪnˈtelɪdʒənt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-65',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - LOOKING BACK]\nYour mother tells you not to ________ the dog.',
+    options: [
+      'touch',
+      'aerobics',
+      'game',
+      'meet'
+    ],
+    correctAnswer: 'touch',
+    explanation: 'Từ "touch" (/tʌtʃ/) có nghĩa tiếng Việt là "chạm, sờ". Ví dụ: Mẹ bạn bảo bạn không được chạm vào con chó.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "chạm, sờ" (v).',
+      'Gợi ý 2: Phiên âm: /tʌtʃ/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-66',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - LOOKING BACK]\nSports are very ________ in our lives.',
+    options: [
+      'table tennis',
+      'match',
+      'important',
+      'game'
+    ],
+    correctAnswer: 'important',
+    explanation: 'Từ "important" (/ɪmˈpɔːtnt/) có nghĩa tiếng Việt là "quan trọng". Ví dụ: Thể thao rất quan trọng trong cuộc sống của chúng ta.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "quan trọng" (adj).',
+      'Gợi ý 2: Phiên âm: /ɪmˈpɔːtnt/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-67',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - LOOKING BACK]\nThousands of fans packed into the ________ to watch the match.',
+    options: [
+      'can',
+      'football',
+      'winner',
+      'stadium'
+    ],
+    correctAnswer: 'stadium',
+    explanation: 'Từ "stadium" (/ˈsteɪdiəm/) có nghĩa tiếng Việt là "sân vận động". Ví dụ: Hàng nghìn cổ động viên đã chật kín sân vận động để theo dõi trận đấu.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "sân vận động" (n).',
+      'Gợi ý 2: Phiên âm: /ˈsteɪdiəm/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-68',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - LOOKING BACK]\nWhen you open a ________...',
+    options: [
+      'newspaper',
+      'competition',
+      'idea',
+      'noise'
+    ],
+    correctAnswer: 'newspaper',
+    explanation: 'Từ "newspaper" (/ˈnjuːzpeɪpə(r)/) có nghĩa tiếng Việt là "tờ báo". Ví dụ: Khi bạn mở một tờ báo...',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "tờ báo" (n).',
+      'Gợi ý 2: Phiên âm: /ˈnjuːzpeɪpə(r)/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-69',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - PROJECT]\nI play ________.',
+    options: [
+      'fishing',
+      'skipping rope',
+      'meet',
+      'super fit'
+    ],
+    correctAnswer: 'skipping rope',
+    explanation: 'Từ "skipping rope" (/ˈskɪpɪŋ rəʊp/) có nghĩa tiếng Việt là "trò nhảy dây, dây nhảy". Ví dụ: Tôi chơi trò nhảy dây.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "trò nhảy dây, dây nhảy" (n).',
+      'Gợi ý 2: Phiên âm: /ˈskɪpɪŋ rəʊp/.'
+    ],
+    difficulty: 'Dễ'
+  },
+  {
+    id: 'q-u8-v-70',
+    unitId: 'unit-8',
+    skill: 'Vocabulary',
+    type: 'fill-in-blank',
+    content: '📌 [UNIT 8: SPORTS AND GAMES - PROJECT]\nI didn\'t like ________.',
+    options: [
+      'fishing',
+      'schoolyard',
+      'can',
+      'wrestling'
+    ],
+    correctAnswer: 'wrestling',
+    explanation: 'Từ "wrestling" (/ˈreslɪŋ/) có nghĩa tiếng Việt là "môn đấu vật". Ví dụ: Tôi không thích môn đấu vật.',
+    hints: [
+      'Gợi ý 1: Nghĩa của từ là "môn đấu vật" (n).',
+      'Gợi ý 2: Phiên âm: /ˈreslɪŋ/.'
+    ],
+    difficulty: 'Dễ'
   }
 ];
 
