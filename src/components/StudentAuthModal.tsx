@@ -141,15 +141,26 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const handleRegisterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoginError('');
-    if (!regFullName.trim() || !regSchoolName.trim() || !regClassName.trim() || !regCommuneName.trim() || !regUsername.trim() || !regPassword.trim()) {
-      setLoginError('Vui lòng điền đầy đủ cả 6 thông tin đăng ký!');
+
+    // Auto-generate username from fullName and className
+    const autoGenUsername = () => {
+      const cleanName = regFullName.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+      const cleanClass = regClassName.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+      return `${cleanName || 'hocsinh'}_${cleanClass || '6'}`;
+    };
+
+    const usernameToUse = autoGenUsername();
+    const passwordToUse = '1234'; // Default PIN code
+
+    if (!regFullName.trim() || !regSchoolName.trim() || !regClassName.trim() || !regCommuneName.trim()) {
+      setLoginError('Vui lòng điền đầy đủ cả 4 thông tin đăng ký!');
       return;
     }
 
-    const cleanUser = regUsername.trim().toLowerCase();
+    const cleanUser = usernameToUse.toLowerCase();
     const isExisted = appData.students.some((s) => s.username.toLowerCase() === cleanUser);
     if (isExisted) {
-      setLoginError(`Tên đăng nhập "${regUsername}" đã tồn tại. Vui lòng chọn tên khác!`);
+      setLoginError(`Tên đăng nhập "@${usernameToUse}" tự động đã tồn tại. Vui lòng điều chỉnh lại Họ tên hoặc Lớp học!`);
       return;
     }
 
@@ -161,7 +172,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
       className: regClassName.trim(),
       schoolName: regSchoolName.trim(),
       communeName: regCommuneName.trim(),
-      pinCode: regPassword.trim(),
+      pinCode: passwordToUse,
       avatar: '👨‍🎓',
       dailyGoalMinutes: 20,
       createdAt: new Date().toISOString(),
