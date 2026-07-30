@@ -210,18 +210,14 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="text-slate-600">{appData.progress.totalXP} XP</span>
             </div>
 
-            {/* Settings (API Key) Button - Always visible for all users according to LỆNH.md */}
+            {/* Settings Button (Chỉ mở khi cần cấu hình nâng cao) */}
             <button
               id="header-api-settings-btn"
               onClick={onOpenSettings}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-bold transition-all border border-amber-300 shadow-2xs cursor-pointer"
-              title="Cấu hình AI & API Key"
+              className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors border border-slate-200 cursor-pointer"
+              title="Cấu hình hệ thống AI"
             >
-              <Key className="w-3.5 h-3.5 text-[#FF9500]" />
-              <span className="hidden sm:inline">API Key</span>
-              <span className="text-[10px] text-rose-600 font-bold underline hidden md:inline ml-1">
-                Lấy API key để sử dụng app
-              </span>
+              <Settings className="w-4 h-4 text-slate-600" />
             </button>
 
             {/* Backup / Restore Button */}
