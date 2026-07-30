@@ -994,25 +994,25 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Top Banner & Unit Selector */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl p-6 text-white shadow-md border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* Top Banner & Unit Selector Vibrant Pastel */}
+      <div className="neu-card-purple p-6 text-slate-900 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold mb-2">
-            <BookOpen className="w-4 h-4 text-[#38BDF8]" />
-            Reading Mastery Game • 12 Bài Đọc SGK + Câu Hỏi True/False & Trả Lời Ngắn
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full badge-pastel-blue text-xs font-extrabold mb-2">
+            <BookOpen className="w-4 h-4 text-sky-600" />
+            <span>Reading Mastery Game 🎮 • 12 Bài Đọc SGK + True/False 🎯</span>
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight">
-            {currentUnitData.topicTitle}
+          <h2 className="text-2xl font-extrabold text-purple-950 tracking-tight">
+            {currentUnitData.topicTitle} 📖
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">
-            Đọc bài văn chuẩn SGK, luyện nghe AI, trắc nghiệm MCQs, True/False & tự điền câu trả lời ngắn.
+          <p className="text-xs sm:text-sm text-purple-700 font-bold mt-1">
+            Đọc bài văn chuẩn SGK, luyện nghe AI, trắc nghiệm MCQs, True/False & tự điền câu trả lời ngắn! 🌟
           </p>
         </div>
 
         <div className="flex items-center gap-3 self-start md:self-auto flex-wrap">
           {/* Select Unit 1 to 12 Dropdown */}
-          <div className="flex items-center gap-2 bg-white/10 p-2 rounded-xl border border-white/15">
-            <span className="text-xs font-bold text-slate-300">Chọn Bài:</span>
+          <div className="flex items-center gap-2 neu-card-blue p-2 border border-sky-300">
+            <span className="text-xs font-extrabold text-sky-800">Chọn Bài:</span>
             <select
               value={selectedUnitIdx}
               onChange={(e) => {
@@ -1025,7 +1025,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
                 setShortInputs({});
                 setActiveSubTab('passage');
               }}
-              className="bg-slate-900 text-white font-bold text-xs px-3 py-1.5 rounded-lg border border-slate-700 focus:outline-none"
+              className="bg-sky-50 text-sky-900 font-extrabold text-xs px-3 py-1.5 rounded-lg border border-sky-300 focus:outline-none"
             >
               {UNIT_READINGS.map((u, idx) => (
                 <option key={u.unitId} value={idx}>
@@ -1035,17 +1035,17 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
             </select>
           </div>
 
-          <div className="px-4 py-2 rounded-xl bg-white/10 border border-white/10 text-center">
-            <span className="text-[10px] uppercase font-bold text-slate-400 block">Tổng Điểm</span>
-            <span className="text-xl font-extrabold text-[#FF9500]">{score} XP</span>
+          <div className="px-4 py-2 rounded-2xl neu-card-yellow border-2 border-amber-300 text-center">
+            <span className="text-[10px] uppercase font-extrabold text-amber-700 block">Tổng Điểm ⚡</span>
+            <span className="text-xl font-extrabold text-amber-800">{score} XP</span>
           </div>
 
           {onBackToPractice && (
             <button
               onClick={onBackToPractice}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition-all cursor-pointer"
+              className="px-4 py-2.5 rounded-2xl neu-btn text-slate-700 font-extrabold text-xs transition-all cursor-pointer hover:scale-105"
             >
-              Quay Lại Kho Bài Tập
+              Quay Lại Kho Bài Tập ↩️
             </button>
           )}
         </div>

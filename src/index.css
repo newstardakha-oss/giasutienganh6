@@ -4,120 +4,188 @@
 @layer base {
   body {
     font-family: 'Be Vietnam Pro', 'Outfit', sans-serif;
-    background-color: #eef4fb;
+    background-color: #f5f3ff;
     color: #1e293b;
   }
 }
 
-/* Custom Neumorphism UI Styles for Grade 6 Gamified App */
+/* Vibrant Pastel & Playful Neumorphic UI Design System */
 
 .neu-bg {
-  background-color: #eef4fb;
+  background-color: #f5f3ff;
 }
 
-/* Flat Soft Raised Card */
+/* Soft Pastel Raised Cards */
 .neu-card {
-  background: #eef4fb;
-  box-shadow: 8px 8px 18px #cbd9eb, -8px -8px 18px #ffffff;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: #f5f3ff;
+  box-shadow: 8px 8px 20px #d8d4f0, -8px -8px 20px #ffffff;
+  border-radius: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.neu-card-blue {
+  background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+  box-shadow: 6px 6px 16px #cbd5e1, -6px -6px 16px #ffffff;
+  border: 2px solid #bae6fd;
+  border-radius: 1.5rem;
+}
+
+.neu-card-pink {
+  background: linear-gradient(135deg, #ffe4e6, #fff1f2);
+  box-shadow: 6px 6px 16px #e2e8f0, -6px -6px 16px #ffffff;
+  border: 2px solid #fecdd3;
+  border-radius: 1.5rem;
+}
+
+.neu-card-mint {
+  background: linear-gradient(135deg, #dcfce7, #f0fdf4);
+  box-shadow: 6px 6px 16px #cbd5e1, -6px -6px 16px #ffffff;
+  border: 2px solid #a7f3d0;
+  border-radius: 1.5rem;
+}
+
+.neu-card-purple {
+  background: linear-gradient(135deg, #f3e8ff, #faf5ff);
+  box-shadow: 6px 6px 16px #d8d4f0, -6px -6px 16px #ffffff;
+  border: 2px solid #e9d5ff;
+  border-radius: 1.5rem;
+}
+
+.neu-card-yellow {
+  background: linear-gradient(135deg, #fef3c7, #fffbeb);
+  box-shadow: 6px 6px 16px #cbd5e1, -6px -6px 16px #ffffff;
+  border: 2px solid #fde68a;
+  border-radius: 1.5rem;
+}
+
+.neu-card-orange {
+  background: linear-gradient(135deg, #ffedd5, #fff7ed);
+  box-shadow: 6px 6px 16px #cbd5e1, -6px -6px 16px #ffffff;
+  border: 2px solid #fed7aa;
+  border-radius: 1.5rem;
 }
 
 /* Inset / Pressed Slot */
 .neu-inset {
-  background: #eef4fb;
-  box-shadow: inset 4px 4px 8px #c6d6e9, inset -4px -4px 8px #ffffff;
-  border-radius: 1rem;
+  background: #ede9fe;
+  box-shadow: inset 4px 4px 8px #ddd6fe, inset -4px -4px 8px #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-/* Neumorphic Button */
+/* Playful Neumorphic Button */
 .neu-btn {
-  background: #eef4fb;
-  box-shadow: 6px 6px 14px #cbd9eb, -6px -6px 14px #ffffff;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #f5f3ff;
+  box-shadow: 6px 6px 14px #d8d4f0, -6px -6px 14px #ffffff;
+  border-radius: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 }
 
 .neu-btn:hover {
-  box-shadow: 8px 8px 18px #b9cbdf, -8px -8px 18px #ffffff;
-  transform: translateY(-2px);
+  box-shadow: 8px 8px 20px #c9c3e9, -8px -8px 20px #ffffff;
+  transform: translateY(-3px) scale(1.02);
 }
 
 .neu-btn:active {
-  box-shadow: inset 3px 3px 6px #c6d6e9, inset -3px -3px 6px #ffffff;
-  transform: translateY(1px);
+  box-shadow: inset 3px 3px 6px #d8d4f0, inset -3px -3px 6px #ffffff;
+  transform: translateY(1px) scale(0.98);
 }
 
-/* Gradient Primary Neumorphic Button (Blue) */
+/* Gradient Primary Neumorphic Button (Vibrant Pastel Blue & Indigo) */
 .neu-btn-primary {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
   color: #ffffff;
-  box-shadow: 6px 6px 14px #bccee3, -6px -6px 14px #ffffff;
-  border-radius: 0.9rem;
-  transition: all 0.2s ease;
+  box-shadow: 6px 6px 16px #c4b5fd, -6px -6px 16px #ffffff;
+  border-radius: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 }
 
 .neu-btn-primary:hover {
-  box-shadow: 8px 8px 18px #b0c4de, -8px -8px 18px #ffffff;
-  transform: translateY(-2px);
-  filter: brightness(1.05);
+  box-shadow: 8px 8px 22px #a78bfa, -8px -8px 22px #ffffff;
+  transform: translateY(-3px) scale(1.03);
 }
 
 .neu-btn-primary:active {
-  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transform: translateY(1px);
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.25);
+  transform: translateY(1px) scale(0.98);
 }
 
-/* Gradient Success Neumorphic Button (Emerald) */
+/* Gradient Success Neumorphic Button (Vibrant Pastel Mint & Emerald) */
 .neu-btn-success {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #34d399, #059669);
   color: #ffffff;
-  box-shadow: 6px 6px 14px #bccee3, -6px -6px 14px #ffffff;
-  border-radius: 0.9rem;
-  transition: all 0.2s ease;
+  box-shadow: 6px 6px 16px #a7f3d0, -6px -6px 16px #ffffff;
+  border-radius: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 }
 
 .neu-btn-success:hover {
-  box-shadow: 8px 8px 18px #b0c4de, -8px -8px 18px #ffffff;
-  transform: translateY(-2px);
+  box-shadow: 8px 8px 22px #6ee7b7, -8px -8px 22px #ffffff;
+  transform: translateY(-3px) scale(1.03);
 }
 
-/* Gradient Gold Neumorphic Badge */
-.neu-badge-gold {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #ffffff;
-  box-shadow: 4px 4px 10px #c6d6e9, -4px -4px 10px #ffffff;
-  border-radius: 9999px;
+/* Playful Badge Colors */
+.badge-pastel-pink {
+  background-color: #ffe4e6;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
 }
 
-/* Soft Glow Effects */
-.glow-blue {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+.badge-pastel-blue {
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
 }
 
-.glow-gold {
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+.badge-pastel-mint {
+  background-color: #dcfce7;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.badge-pastel-yellow {
+  background-color: #fef3c7;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+
+.badge-pastel-purple {
+  background-color: #f3e8ff;
+  color: #7c3aed;
+  border: 1px solid #e9d5ff;
+}
+
+/* Fun Floating Animation */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+.animate-float {
+  animation: floatSlow 3s ease-in-out infinite;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #eef4fb;
+  background: #f5f3ff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd9eb;
+  background: #c4b5fd;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #8b5cf6;
 }

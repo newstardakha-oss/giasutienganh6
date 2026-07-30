@@ -77,38 +77,38 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#eef4fb] border-b border-slate-200/60 shadow-sm transition-colors">
+    <header className="sticky top-0 z-40 bg-[#f5f3ff] border-b border-purple-100 shadow-sm transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo Neumorphic */}
+          {/* Logo Vibrant Pastel */}
           <div
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => onOpenCoverScreen ? onOpenCoverScreen() : setActiveTab('socratic')}
           >
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3b82f6] to-[#6366f1] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-all border border-white/40">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#38bdf8] via-[#818cf8] to-[#f472b6] flex items-center justify-center text-white shadow-md shadow-purple-500/20 group-hover:scale-110 group-hover:rotate-3 transition-all border-2 border-white">
               <GraduationCap className="w-7 h-7" />
             </div>
             <div>
-              <h1 className="font-extrabold text-xl leading-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500 bg-clip-text text-transparent">
-                Gia Sư AI Lớp 6
+              <h1 className="font-extrabold text-xl leading-tight bg-gradient-to-r from-sky-500 via-indigo-500 to-pink-500 bg-clip-text text-transparent flex items-center gap-1.5">
+                Gia Sư AI Lớp 6 🌟
               </h1>
-              <p className="text-[11px] text-slate-500 font-bold tracking-tight">
-                Global Success • Soft Neumorphism 3D
+              <p className="text-[11px] text-purple-600 font-bold tracking-tight">
+                Global Success • Vibrant Pastel & Playful Icons 🎨
               </p>
             </div>
           </div>
 
-          {/* User Profile & Gamification Badges (Neumorphic Style) */}
+          {/* User Profile & Gamification Badges */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Button Trang Bìa Đăng Nhập */}
+            {/* Button Trang Bìa */}
             {onOpenCoverScreen && (
               <button
                 onClick={onOpenCoverScreen}
-                className="hidden lg:flex items-center gap-1.5 px-3.5 py-2 rounded-xl neu-btn text-indigo-700 text-xs font-extrabold transition-all"
+                className="hidden lg:flex items-center gap-1.5 px-3.5 py-2 rounded-2xl neu-card-purple text-purple-800 text-xs font-extrabold transition-all hover:scale-105"
                 title="Quay lại Màn hình Trang Bìa Đăng Nhập"
               >
-                <GraduationCap className="w-4 h-4 text-indigo-600" />
-                <span>Trang Bìa</span>
+                <GraduationCap className="w-4 h-4 text-purple-600" />
+                <span>Trang Bìa 🚀</span>
               </button>
             )}
 
@@ -116,13 +116,13 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="header-student-auth-btn"
               onClick={onOpenStudentAuth}
-              className={`flex items-center gap-2.5 px-3.5 py-2 rounded-2xl border text-xs font-extrabold transition-all neu-btn ${
+              className={`flex items-center gap-2.5 px-3.5 py-2 rounded-2xl border text-xs font-extrabold transition-all neu-btn hover:scale-105 ${
                 appData.isTeacherLoggedIn
-                  ? 'bg-purple-50 text-purple-900 border-purple-200'
-                  : 'bg-blue-50 text-blue-900 border-blue-200'
+                  ? 'bg-purple-100 text-purple-900 border-purple-300'
+                  : 'bg-sky-100 text-sky-900 border-sky-300'
               }`}
             >
-              <span className="text-xl leading-none">
+              <span className="text-xl leading-none animate-bounce">
                 {appData.isTeacherLoggedIn
                   ? '👩‍🏫'
                   : currentStudent
@@ -139,20 +139,20 @@ export const Header: React.FC<HeaderProps> = ({
                 </span>
                 <span
                   className={`block text-[10px] font-bold ${
-                    appData.isTeacherLoggedIn ? 'text-purple-600' : 'text-blue-600'
+                    appData.isTeacherLoggedIn ? 'text-purple-600' : 'text-sky-600'
                   }`}
                 >
                   {appData.isTeacherLoggedIn
-                    ? 'Giáo Viên Quản Lý'
+                    ? 'Giáo Viên Quản Lý 👑'
                     : currentStudent
-                    ? currentStudent.className
-                    : 'Học Sinh Lớp 6'}
+                    ? `${currentStudent.className} 🎒`
+                    : 'Học Sinh Lớp 6 🎒'}
                 </span>
               </div>
               {appData.isTeacherLoggedIn ? (
                 <ShieldCheck className="w-4 h-4 text-purple-600 ml-0.5 shrink-0" />
               ) : (
-                <UserCheck className="w-3.5 h-3.5 text-blue-600 ml-0.5 shrink-0" />
+                <UserCheck className="w-3.5 h-3.5 text-sky-600 ml-0.5 shrink-0" />
               )}
             </button>
 
@@ -160,63 +160,63 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="relative">
               <button
                 onClick={() => setShowExportMenu(!showExportMenu)}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl neu-btn text-slate-700 text-xs font-extrabold transition-all"
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl neu-card-mint text-emerald-800 text-xs font-extrabold transition-all hover:scale-105"
               >
-                <Download className="w-4 h-4 text-indigo-600" />
-                <span className="hidden sm:inline">Xuất File</span>
+                <Download className="w-4 h-4 text-emerald-600" />
+                <span className="hidden sm:inline">Xuất File 📥</span>
               </button>
 
               {showExportMenu && (
-                <div className="absolute right-0 mt-2 w-56 neu-card p-2 z-50 animate-in fade-in zoom-in-95">
-                  <div className="px-3 py-2 text-[11px] font-extrabold text-slate-400 border-b border-slate-200/60">
-                    BỘ CÔNG CỤ XUẤT TÀI LIỆU
+                <div className="absolute right-0 mt-2 w-56 neu-card p-2 z-50 animate-in fade-in zoom-in-95 border-2 border-emerald-200">
+                  <div className="px-3 py-2 text-[11px] font-extrabold text-emerald-700 border-b border-emerald-100">
+                    BỘ CÔNG CỤ XUẤT TÀI LIỆU 📄
                   </div>
                   <button
                     onClick={handleExportDocx}
-                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
+                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-sky-100 hover:text-sky-700 rounded-xl flex items-center gap-2.5 transition-colors"
                   >
-                    <FileText className="w-4 h-4 text-blue-500" />
-                    <span>Xuất Đề Thi Word (.docx)</span>
+                    <FileText className="w-4 h-4 text-sky-500" />
+                    <span>Xuất Word (.docx) 📝</span>
                   </button>
                   <button
                     onClick={handleExportPptx}
-                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
+                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-amber-100 hover:text-amber-700 rounded-xl flex items-center gap-2.5 transition-colors"
                   >
                     <Presentation className="w-4 h-4 text-amber-500" />
-                    <span>Xuất Slide PowerPoint (.pptx)</span>
+                    <span>Xuất PowerPoint (.pptx) 📊</span>
                   </button>
                   <button
                     onClick={handleExportMoodle}
-                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
+                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-emerald-100 hover:text-emerald-700 rounded-xl flex items-center gap-2.5 transition-colors"
                   >
                     <FileCode className="w-4 h-4 text-emerald-500" />
-                    <span>Xuất Moodle GIFT Format</span>
+                    <span>Xuất Moodle GIFT 🎯</span>
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Streak Neumorphic */}
-            <div className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl neu-inset text-slate-700 text-xs font-bold">
-              <Flame className="w-4 h-4 text-amber-500 fill-amber-500" />
-              <span className="font-extrabold text-amber-600">{appData.progress.streakDays}</span>
-              <span className="hidden sm:inline text-slate-500">ngày</span>
+            {/* Streak Vibrant Pastel */}
+            <div className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl neu-card-orange text-amber-900 text-xs font-bold">
+              <Flame className="w-4 h-4 text-amber-500 fill-amber-500 animate-bounce" />
+              <span className="font-extrabold text-amber-700">{appData.progress.streakDays}</span>
+              <span className="hidden sm:inline text-amber-800">ngày 🔥</span>
             </div>
 
-            {/* Level & XP Neumorphic */}
-            <div className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-2xl neu-inset text-slate-700 text-xs font-bold">
-              <Award className="w-4 h-4 text-blue-600" />
-              <span className="font-extrabold text-blue-600">Lv.{appData.progress.level}</span>
-              <span className="text-slate-300">|</span>
+            {/* Level & XP Vibrant Pastel */}
+            <div className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-2xl neu-card-blue text-sky-900 text-xs font-bold">
+              <Award className="w-4 h-4 text-sky-600" />
+              <span className="font-extrabold text-sky-700">Lv.{appData.progress.level} 🦄</span>
+              <span className="text-sky-300">|</span>
               <Zap className="w-4 h-4 text-amber-500 fill-amber-500" />
-              <span className="font-extrabold text-slate-700">{appData.progress.totalXP} XP</span>
+              <span className="font-extrabold text-amber-700">{appData.progress.totalXP} XP ⚡</span>
             </div>
 
             {/* Settings Button */}
             <button
               id="header-api-settings-btn"
               onClick={onOpenSettings}
-              className="p-2.5 rounded-xl neu-btn text-slate-600 transition-colors"
+              className="p-2.5 rounded-2xl neu-btn text-slate-600 hover:scale-105 transition-all"
               title="Cấu hình hệ thống AI"
             >
               <Settings className="w-4 h-4 text-slate-600" />
@@ -227,16 +227,26 @@ export const Header: React.FC<HeaderProps> = ({
               id="header-backup-btn"
               onClick={onOpenBackupModal}
               title="Sao lưu / Khôi phục dữ liệu"
-              className="p-2.5 rounded-xl neu-btn text-slate-600 transition-colors"
+              className="p-2.5 rounded-2xl neu-btn text-slate-600 hover:scale-105 transition-all"
             >
               <HardDriveUpload className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Navigation Tab Bar Neumorphic */}
-        <nav className="flex items-center gap-2 overflow-x-auto py-2.5 scrollbar-none border-t border-slate-200/60">
-          {navItems.map((item) => {
+        {/* Navigation Tab Bar Vibrant Pastel Icons */}
+        <nav className="flex items-center gap-2 overflow-x-auto py-2.5 scrollbar-none border-t border-purple-100">
+          {[
+            { id: 'socratic', label: 'Gia Sư Socratic 💡', icon: GraduationCap, activeClass: 'neu-btn-primary' },
+            { id: 'homework', label: 'Giải Bài Tập 🎒', icon: Sparkles, activeClass: 'neu-btn-primary' },
+            { id: 'speech', label: 'Phát Âm AI 🎧', icon: Mic, activeClass: 'neu-btn-primary' },
+            { id: 'writing', label: 'Chấm Bài Viết ✏️', icon: FileEdit, activeClass: 'neu-btn-primary' },
+            { id: 'reading-game', label: 'Game Đọc Hiểu 🎮', icon: BookOpen, activeClass: 'neu-btn-success' },
+            { id: 'practice', label: 'Kho Bài Tập 🧩', icon: BookOpen, activeClass: 'neu-btn-primary' },
+            { id: 'arena', label: 'Đấu Tri Thức 🏆', icon: Swords, activeClass: 'neu-btn-primary' },
+            { id: 'upload', label: 'Tải SGK 📁', icon: Upload, activeClass: 'neu-btn-primary' },
+            { id: 'report', label: 'Báo Cáo Phụ Huynh 📊', icon: BarChart3, activeClass: 'neu-btn-primary' },
+          ].map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
@@ -244,13 +254,13 @@ export const Header: React.FC<HeaderProps> = ({
                 key={item.id}
                 id={`nav-tab-${item.id}`}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all ${
                   isActive
-                    ? 'neu-btn-primary font-extrabold shadow-md'
-                    : 'neu-btn text-slate-600 hover:text-blue-600'
+                    ? `${item.activeClass} text-white shadow-md scale-105`
+                    : 'neu-btn text-slate-700 hover:text-indigo-600'
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />
+                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-purple-500'}`} />
                 <span>{item.label}</span>
               </button>
             );

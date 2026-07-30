@@ -162,25 +162,27 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Title & Filters */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-6 text-white shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Title & Filters Vibrant Pastel */}
+      <div className="neu-card-purple p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold mb-2">
-            <BookOpen className="w-4 h-4 text-[#FF9500]" />
-            Kho Bài Tập Gamified Tương Tác
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-pastel-yellow text-xs font-extrabold mb-2">
+            <BookOpen className="w-4 h-4 text-amber-600" />
+            <span>Kho Bài Tập Tương Tác Gamified 🧩</span>
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight">Luyện Tập 4 Kỹ Năng & Ngữ Pháp SGK Lớp 6</h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">
-            Trắc nghiệm phản xạ, giải thích chi tiết và tích lũy điểm thưởng XP.
+          <h2 className="text-2xl font-extrabold text-purple-950 tracking-tight flex items-center gap-2">
+            <span>Luyện Tập 4 Kỹ Năng & Ngữ Pháp SGK Lớp 6</span> 🌟
+          </h2>
+          <p className="text-xs sm:text-sm text-purple-700 font-bold mt-1">
+            Trắc nghiệm phản xạ, giải thích chi tiết tiếng Việt và tích lũy điểm thưởng XP! 🚀
           </p>
         </div>
 
-        {/* Timer Widget */}
-        <div className="bg-white/10 backdrop-blur-md px-4 py-3 rounded-xl border border-white/15 flex items-center gap-3">
-          <Clock className="w-5 h-5 text-[#FF9500]" />
+        {/* Timer Widget Vibrant Pastel */}
+        <div className="neu-card-yellow px-4 py-3 border-2 border-amber-300 flex items-center gap-3">
+          <Clock className="w-6 h-6 text-amber-600 animate-pulse" />
           <div>
-            <span className="text-[10px] text-slate-300 block uppercase font-bold">Thời Gian Bài Làm</span>
-            <span className="text-base font-mono font-extrabold tracking-wider text-white">
+            <span className="text-[10px] text-amber-700 block uppercase font-extrabold">Thời Gian Bài Làm ⏱️</span>
+            <span className="text-lg font-mono font-extrabold tracking-wider text-amber-900">
               {formatTimer(seconds)}
             </span>
           </div>
