@@ -561,19 +561,16 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
-                    2. Lớp Học: <span className="text-rose-500">*</span>
+                    2. Lớp: <span className="text-rose-500">*</span>
                   </label>
-                  <select
+                  <input
+                    type="text"
                     value={regClassName}
                     onChange={(e) => setRegClassName(e.target.value)}
+                    placeholder="Ví dụ: Lớp 6A1"
                     className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none font-semibold"
-                  >
-                    {CLASS_OPTIONS.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
+                    required
+                  />
                 </div>
 
                 <div>
