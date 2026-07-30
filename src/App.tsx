@@ -245,9 +245,6 @@ export default function App() {
         </div>
 
         {activeTab === 'socratic' && <SocraticTutor units={appData.units} />}
-        {activeTab === 'homework' && (
-          <HomeworkHelper questions={appData.questions} units={appData.units} />
-        )}
         {activeTab === 'speech' && <SpeechStudio units={appData.units} />}
         {activeTab === 'writing' && (
           <WritingGrader

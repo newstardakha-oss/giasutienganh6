@@ -238,7 +238,6 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="flex items-center gap-2 overflow-x-auto py-2.5 scrollbar-none border-t border-purple-100">
           {[
             { id: 'socratic', label: 'Gia Sư Socratic 💡', icon: GraduationCap, activeClass: 'neu-btn-primary' },
-            { id: 'homework', label: 'Giải Bài Tập 🎒', icon: Sparkles, activeClass: 'neu-btn-primary' },
             { id: 'speech', label: 'Phát Âm AI 🎧', icon: Mic, activeClass: 'neu-btn-primary' },
             { id: 'writing', label: 'Chấm Bài Viết ✏️', icon: FileEdit, activeClass: 'neu-btn-primary' },
             { id: 'reading-game', label: 'Game Đọc Hiểu 🎮', icon: BookOpen, activeClass: 'neu-btn-success' },
