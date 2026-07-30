@@ -153,7 +153,7 @@ export function getOfflineWritingFeedback(
   // Overall score formula
   const overallScore = Math.round((grammarScore * 0.4 + vocabScore * 0.3 + structureScore * 0.3) * 10) / 10;
 
-  let band = 'Khá';
+  let band: WritingFeedback['band'] = 'Khá';
   if (overallScore >= 9.0) band = 'Xuất sắc';
   else if (overallScore >= 8.0) band = 'Giỏi';
   else if (overallScore >= 6.5) band = 'Khá';
@@ -237,7 +237,7 @@ export function getOfflineSpeechEvaluation(recognizedText: string, targetText: s
   const accuracyRatio = targetWords.length > 0 ? matchCount / targetWords.length : 1;
   const score = Math.round(Math.max(60, Math.min(100, accuracyRatio * 100)));
 
-  let accuracyGrade = 'Tốt';
+  let accuracyGrade: PronunciationEvaluation['accuracyGrade'] = 'Tốt';
   if (score >= 90) accuracyGrade = 'Hoàn hảo';
   else if (score >= 75) accuracyGrade = 'Tốt';
   else if (score >= 60) accuracyGrade = 'Khá';

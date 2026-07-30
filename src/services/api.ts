@@ -144,6 +144,37 @@ export async function gradeWritingEssay(
 }
 
 /**
+ * Scans handwritten essay image using Gemini OCR
+ */
+export async function scanHandwrittenEssay(
+  imageBase64: string,
+  mimeType: string = 'image/jpeg'
+): Promise<string> {
+  try {
+    const model = getSelectedModel();
+    const response = await fetch('/api/gemini/ocr-writing', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({
+        imageBase64,
+        mimeType,
+        model,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`OCR API returned status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.text || '';
+  } catch (err) {
+    console.warn('OCR error during scanHandwrittenEssay:', err);
+    throw err;
+  }
+}
+
+/**
  * Calls Speech & Pronunciation Evaluator API with graceful offline fallback
  */
 export async function evaluateSpeechPronunciation(

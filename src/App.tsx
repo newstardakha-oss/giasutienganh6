@@ -195,7 +195,15 @@ export default function App() {
           <HomeworkHelper questions={appData.questions} units={appData.units} />
         )}
         {activeTab === 'speech' && <SpeechStudio units={appData.units} />}
-        {activeTab === 'writing' && <WritingGrader units={appData.units} />}
+        {activeTab === 'writing' && (
+          <WritingGrader
+            units={appData.units}
+            onSessionCompleted={handleSessionCompleted}
+            currentStudentName={
+              appData.students.find((s) => s.id === appData.currentStudentId)?.fullName
+            }
+          />
+        )}
         {activeTab === 'practice' && (
           <PracticeHub
             questions={appData.questions}

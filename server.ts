@@ -16,7 +16,15 @@ const PORT = 3000;
 
 app.use(express.json({ limit: '10mb' }));
 
-const DEFAULT_MODELS = ['gemini-3.6-flash', 'gemini-3.1-flash-lite', 'gemini-3.1-pro-preview', 'gemini-2.5-flash'];
+const DEFAULT_MODELS = [
+  'gemini-2.5-flash',
+  'gemini-3.6-flash',
+  'gemini-3.1-flash-lite',
+  'gemini-3-flash-preview',
+  'gemini-2.5-flash-lite',
+  'gemini-3.1-pro-preview',
+  'gemini-2.5-pro',
+];
 
 /**
  * Get available API keys from env (single key or comma-separated pool)
@@ -322,6 +330,47 @@ BẮT BUỘC TRẢ VỀ ĐÚNG ĐỊNH DẠNG JSON SCHEMA NÀY (Không thêm mar
     res.json(jsonResult);
   } catch (err: any) {
     res.json(getOfflineWritingFeedback(req.body.essayText || '', req.body.topicPrompt || '', req.body.targetUnit || 'unit-1'));
+  }
+});
+
+// ==========================================
+// 4b. OCR Handwritten Essay Scan Endpoint
+// ==========================================
+app.post('/api/gemini/ocr-writing', async (req, res) => {
+  try {
+    const { imageBase64, mimeType } = req.body;
+    if (!imageBase64) {
+      return res.status(400).json({ error: 'Thiếu dữ liệu hình ảnh' });
+    }
+
+    const cleanBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+
+    const resultText = await generateWithFallback(req, async (ai, modelName) => {
+      const response = await ai.models.generateContent({
+        model: modelName,
+        contents: [
+          {
+            role: 'user',
+            parts: [
+              {
+                inlineData: {
+                  mimeType: mimeType || 'image/jpeg',
+                  data: cleanBase64,
+                },
+              },
+              {
+                text: 'Hãy đọc và chép lại chính xác toàn bộ văn bản Tiếng Anh trong bức ảnh bài làm viết tay này. Trả về duy nhất đoạn văn tiếng Anh vừa nhận diện được, không thêm bất kỳ văn bản hay nhận xét nào khác.',
+              },
+            ],
+          },
+        ],
+      });
+      return response.text;
+    });
+
+    res.json({ text: resultText || '' });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message || 'Không thể quét hình ảnh' });
   }
 });
 

@@ -497,8 +497,8 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                 <input
                   type="password"
                   maxLength={6}
-                  value={enteredPin}
-                  onChange={(e) => setEnteredPin(e.target.value)}
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
                   placeholder="Nhập mã PIN 4 chữ số..."
                   className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none tracking-widest font-mono"
                 />
