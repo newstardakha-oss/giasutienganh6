@@ -99,17 +99,28 @@ export const ApiKeyModal: React.FC<ApiKeyModalProps> = ({
             </div>
           </div>
 
-          {/* Green Reassuring Notice for Keyless Access */}
+          {/* Green Reassuring Notice for Keyless Access & Link to Get Key */}
           <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-2xl p-3.5 text-xs text-emerald-900 dark:text-emerald-300 space-y-1.5">
-            <div className="flex items-center gap-1.5 font-bold text-emerald-700 dark:text-emerald-400 text-sm">
-              <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
-              <span>Hệ Thống AI Key Máy Chủ Đã Sẵn Sàng!</span>
+            <div className="flex items-center justify-between gap-1.5 font-bold text-emerald-700 dark:text-emerald-400 text-sm">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
+                <span>Hệ Thống AI Máy Chủ Đã Sẵn Sàng!</span>
+              </div>
+              <a
+                href="https://aistudio.google.com/api-keys"
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs text-rose-600 hover:text-rose-700 font-bold underline flex items-center gap-1"
+              >
+                <span>Lấy API Key Miễn Phí</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
             <p className="leading-relaxed">
-              Máy chủ đã tích hợp sẵn <strong>AI Key dùng chung của Nhà trường</strong>. Học sinh hoàn toàn <strong>không cần nhập API key</strong> khi vào học!
+              Hệ thống đã tích hợp sẵn <strong>AI Key dùng chung của máy chủ</strong> và <strong>Bộ trợ lý offline</strong>. Học sinh hoàn toàn <strong>không bắt buộc nhập API key</strong> khi vào học!
             </p>
             <p className="text-[11px] opacity-90 italic">
-              💡 Ô nhập key phía trên chỉ dành cho Giáo viên hoặc Quản trị viên muốn sử dụng Key cá nhân riêng.
+              💡 Nếu hết quota key dùng chung hoặc muốn dùng key riêng của Gmail cá nhân, em/thầy cô có thể lấy key tại <a href="https://aistudio.google.com/api-keys" target="_blank" rel="noreferrer" className="underline font-bold text-blue-600">aistudio.google.com/api-keys</a> và dán vào đây.
             </p>
           </div>
 
