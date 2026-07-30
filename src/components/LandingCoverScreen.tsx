@@ -417,28 +417,24 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
                 <div>
                   <label className="text-xs font-extrabold text-purple-900 block mb-1">
-                    2. Lớp Học: *
+                    2. Lớp: *
                   </label>
                   <div className="relative">
                     <School className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
-                    <select
+                    <input
+                      type="text"
                       required
                       value={regClassName}
                       onChange={(e) => {
-                        setRegClassName(e.target.value);
+                        const val = e.target.value;
+                        setRegClassName(val);
                         if (regFullName) {
-                          setRegUsername(autoGenerateUsername(regFullName, e.target.value));
+                          setRegUsername(autoGenerateUsername(regFullName, val));
                         }
                       }}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
-                    >
-                      <option value="">-- Chọn Lớp --</option>
-                      {CLASS_OPTIONS.map((cls) => (
-                        <option key={cls} value={cls}>
-                          {cls}
-                        </option>
-                      ))}
-                    </select>
+                      placeholder="Ví dụ: Lớp 6A1"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 placeholder-slate-400 focus:outline-none"
+                    />
                   </div>
                 </div>
 
