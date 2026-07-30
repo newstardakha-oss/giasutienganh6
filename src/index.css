@@ -2,10 +2,14 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
     font-family: 'Be Vietnam Pro', 'Outfit', sans-serif;
     background-color: #f5f3ff;
     color: #1e293b;
+    touch-action: manipulation;
   }
 }
 
