@@ -54,6 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'homework', label: 'Giải Bài Tập', icon: Sparkles },
     { id: 'speech', label: 'Phát Âm & Giao Tiếp', icon: Mic },
     { id: 'writing', label: 'Chấm Bài Viết', icon: FileEdit },
+    { id: 'reading-game', label: 'Game Đọc Hiểu', icon: BookOpen },
     { id: 'practice', label: 'Kho Bài Tập', icon: BookOpen },
     { id: 'arena', label: 'Đấu Tri Thức', icon: Swords },
     { id: 'upload', label: 'Tải Tài Liệu SGK', icon: Upload },

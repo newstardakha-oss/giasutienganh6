@@ -20,12 +20,14 @@ interface PracticeHubProps {
   questions: Question[];
   units: SgkUnit[];
   onSessionCompleted: (session: StudySession) => void;
+  onOpenReadingGame?: () => void;
 }
 
 export const PracticeHub: React.FC<PracticeHubProps> = ({
   questions,
   units,
   onSessionCompleted,
+  onOpenReadingGame,
 }) => {
   const [selectedUnitId, setSelectedUnitId] = useState<string>('unit-1');
   const [selectedSkill, setSelectedSkill] = useState<SkillType | 'All'>('All');
@@ -225,6 +227,35 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
           ))}
         </div>
       </div>
+
+      {/* Featured Interactive Reading Game Banner */}
+      {onOpenReadingGame && (selectedSkill === 'Reading' || selectedSkill === 'All') && (
+        <div className="bg-gradient-to-r from-indigo-900 via-slate-900 to-blue-900 rounded-2xl p-5 text-white shadow-md border border-indigo-700/50 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#38BDF8] to-[#4A90E2] flex items-center justify-center text-white text-2xl shrink-0 shadow-md">
+              📖
+            </div>
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-950/60 px-2 py-0.5 rounded-full border border-sky-800">
+                Tương Tác Cao • Skills 1 Reading
+              </span>
+              <h3 className="text-base font-extrabold mt-1 text-white">
+                READING MASTERY GAME: SLEEP - Vệ Sinh Giấc Ngủ & Sức Khỏe
+              </h3>
+              <p className="text-xs text-slate-300">
+                Nghe giọng đọc AI từng câu, học 10 từ vựng IPA, ghép cụm từ & giải 10 câu đọc hiểu có trích dẫn.
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={onOpenReadingGame}
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#38BDF8] to-[#4A90E2] hover:from-sky-400 hover:to-blue-500 text-white font-extrabold text-xs shadow-md transition-all whitespace-nowrap cursor-pointer shrink-0"
+          >
+            Chơi Game Đọc Hiểu Ngay ➔
+          </button>
+        </div>
+      )}
 
       {/* Main Practice Area */}
       {!isFinished && currentQ ? (

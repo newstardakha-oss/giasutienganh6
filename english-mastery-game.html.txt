@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>READING – ENGLISH MASTERY GAME (SLEEP)</title>
+    <style>
+        :root {
+            --primary-color: #1e88e5;
+            --primary-dark: #1565c0;
+            --secondary-color: #43a047;
+            --secondary-dark: #2e7d32;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-light: #7f8c8d;
+            --error-color: #e53935;
+            --warning-color: #fb8c00;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* HEADER & DASHBOARD */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p.subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.85;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.3);
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--secondary-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* NAV BUTTONS */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: var(--transition);
+            touch-action: manipulation;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary { background-color: #6c757d; }
+        .btn-secondary:hover { background-color: #5a6268; }
+
+        .btn-success { background-color: var(--secondary-color); }
+        .btn-success:hover { background-color: var(--secondary-dark); }
+
+        .btn-danger { background-color: var(--error-color); }
+        .btn-danger:hover { background-color: #c62828; }
+
+        .btn-warning { background-color: var(--warning-color); color: #fff; }
+        .btn-warning:hover { background-color: #ef6c00; }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* SECTIONS & CARDS */
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .section-card.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eef2f5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* HOME TASK GRID */
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .task-card {
+            background-color: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .task-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+
+        .task-card h3 {
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .task-card p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .task-status {
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
+        .status-not-started { background-color: #e2e8f0; color: #4a5568; }
+        .status-completed { background-color: #c6f6d5; color: #22543d; }
+
+        /* SPEECH PANEL */
+        .speech-panel {
+            background-color: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .speech-controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            align-items: center;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        select, input[type="range"] {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e0;
+            width: 100%;
+            background-color: white;
+            font-size: 0.9rem;
+        }
+
+        .quick-speed-btns {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .btn-sm {
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            min-height: 32px;
+            flex: 1;
+        }
+
+        /* READING PASSAGE */
+        .reading-text {
+            background-color: #fafbfc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-word {
+            background-color: #fff59d;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .highlight-word:hover {
+            background-color: #ffee58;
+            color: var(--primary-dark);
+        }
+
+        .audio-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            background: #edf2f7;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* VOCABULARY CARD */
+        .vocab-card-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .vocab-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .vocab-word {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            font-weight: bold;
+        }
+
+        .vocab-ipa {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .vocab-sentence {
+            font-style: italic;
+            background-color: #f7fafc;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        @media (min-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .option-btn {
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-color);
+            background-color: #ebf8ff;
+        }
+
+        .option-btn.correct {
+            background-color: #c6f6d5 !important;
+            border-color: var(--secondary-color) !important;
+            color: #22543d;
+            font-weight: bold;
+        }
+
+        .option-btn.incorrect {
+            background-color: #fed7d7 !important;
+            border-color: var(--error-color) !important;
+            color: #9b2c2c;
+        }
+
+        .feedback-box {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .feedback-box.show { display: block; }
+        .feedback-box.correct { background-color: #e6fffa; color: #234e52; border: 1px solid #b2f5ea; }
+        .feedback-box.incorrect { background-color: #fff5f5; color: #742a2a; border: 1px solid #feb2b2; }
+
+        /* MATCHING PAIRS */
+        .match-pair-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .match-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .match-item {
+            background: #fff;
+            border: 2px solid #cbd5e0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .match-item.selected {
+            border-color: var(--primary-color);
+            background-color: #ebf8ff;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .match-item.matched {
+            border-color: var(--secondary-color);
+            background-color: #c6f6d5;
+            color: #22543d;
+            cursor: default;
+        }
+
+        /* SENTENCE BUILDING */
+        .scrambled-box, .target-box {
+            min-height: 60px;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 15px;
+            background-color: #f7fafc;
+        }
+
+        .word-chip {
+            background-color: white;
+            border: 1px solid #cbd5e0;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .word-chip:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .writing-input {
+            width: 100%;
+            min-height: 80px;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        .modal-card p {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.4rem; }
+            .section-card { padding: 15px; }
+            .btn { width: 100%; }
+            .nav-bar { flex-direction: column; }
+            .match-pair-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER & SCOREBOARD -->
+        <header>
+            <h1>READING – ENGLISH MASTERY GAME</h1>
+            <p class="subtitle">Học toàn bộ bài · Thuộc từ · Ghép cụm · Viết câu · Đọc hiểu</p>
+            
+            <div class="dashboard-stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-score">0</span>
+                    <span class="stat-label">TỔNG ĐIỂM</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-completed">0/5</span>
+                    <span class="stat-label">ĐÃ HOÀN THÀNH</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-progress">0%</span>
+                    <span class="stat-label">TIẾN ĐỘ</span>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="main-progress-bar"></div>
+            </div>
+        </header>
+
+        <!-- NAVIGATION BAR -->
+        <div class="nav-bar">
+            <button class="btn btn-outline" onclick="showSection('sec-home')">🏠 Trang chủ</button>
+            <button class="btn btn-outline" onclick="showSection('sec-reading')">📖 Bài đọc</button>
+            <button class="btn btn-outline" onclick="showSection('sec-vocab')">🔤 Từ vựng</button>
+            <button class="btn btn-outline" onclick="showSection('sec-matching')">🧩 Ghép cụm</button>
+            <button class="btn btn-outline" onclick="showSection('sec-writing')">✍️ Viết câu</button>
+            <button class="btn btn-outline" onclick="showSection('sec-quiz')">❓ Đọc hiểu</button>
+            <button class="btn btn-success" onclick="showSection('sec-results')">🏆 Kết quả</button>
+            <button class="btn btn-danger" onclick="confirmResetProgress()">🔄 Xóa tiến độ</button>
+        </div>
+
+        <!-- SPEECH SETTINGS PANEL -->
+        <div class="speech-panel">
+            <div class="speech-controls-grid">
+                <div class="form-group">
+                    <label for="voice-select">🔊 Giọng đọc tiếng Anh:</label>
+                    <select id="voice-select" onchange="changeVoice()"></select>
+                </div>
+                <div class="form-group">
+                    <label for="speed-slider">⚡ Tốc độ đọc: <span id="speed-label">0.8×</span></label>
+                    <input type="range" id="speed-slider" min="0.5" max="1.2" step="0.05" value="0.8" oninput="updateSpeed(this.value)">
+                    <div class="quick-speed-btns">
+                        <button class="btn btn-secondary btn-sm" onclick="setSpeed(0.6)">0.6×</button>
+                        <button class="btn btn-secondary btn-sm" onclick="setSpeed(0.7)">0.7×</button>
+                        <button class="btn btn-secondary btn-sm" onclick="setSpeed(0.8)">0.8×</button>
+                        <button class="btn btn-secondary btn-sm" onclick="setSpeed(1.0)">1.0×</button>
+                    </div>
+                </div>
+                <div class="form-group" style="flex-direction: row; align-items: center; gap: 8px; margin-top: 15px;">
+                    <input type="checkbox" id="phrase-pause-chk" onchange="togglePhrasePause(this.checked)" style="width: auto;">
+                    <label for="phrase-pause-chk" style="cursor: pointer;">Ngắt nhẹ theo cụm (Dấu phẩy)</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 1: TRANG CHỦ -->
+        <div id="sec-home" class="section-card active">
+            <div class="section-title">
+                <span>Nhiệm Vụ Học Tập</span>
+            </div>
+            <div class="task-grid" id="task-grid-container">
+                <!-- Dynamically generated task cards -->
+            </div>
+        </div>
+
+        <!-- PHẦN 2: BÀI ĐỌC -->
+        <div id="sec-reading" class="section-card">
+            <div class="section-title">
+                <span>Reading Passage: Sleep Hygiene & Health</span>
+            </div>
+            <div class="reading-text" id="reading-passage-text">
+                <p>A <span class="highlight-word" onclick="speakText('good night’s sleep')">good night’s sleep</span> is just as important as regular exercise and a healthy diet. Research shows that poor sleep has immediate negative effects on your hormones, exercise performance, and brain function. To <span class="highlight-word" onclick="speakText('improve sleep quality')">improve sleep quality</span>, you should maintain a consistent sleep schedule by going to bed and waking up at the same time every day.</p>
+                <br>
+                <p>Furthermore, you should <span class="highlight-word" onclick="speakText('reduce blue light exposure')">reduce blue light exposure</span> in the evening. Devices like smartphones and computers emit large amounts of blue light, which tricks your brain into thinking it’s still daytime and reduces hormones like melatonin, which help you relax and get <span class="highlight-word" onclick="speakText('deep sleep')">deep sleep</span>.</p>
+                <br>
+                <p>Additionally, avoid consuming <span class="highlight-word" onclick="speakText('caffeine late in the day')">caffeine late in the day</span> as it can stay elevated in your blood for 6–8 hours. Finally, try to <span class="highlight-word" onclick="speakText('shorten daytime naps')">shorten daytime naps</span> because long or irregular napping during the day can confuse your internal clock and cause <span class="highlight-word" onclick="speakText('insomnia')">insomnia</span> at night.</p>
+            </div>
+            <div class="audio-controls">
+                <button class="btn btn-success" onclick="playFullReading()">▶️ Nghe toàn bài</button>
+                <button class="btn btn-warning" onclick="pauseAudio()">⏸️ Tạm dừng</button>
+                <button class="btn btn-secondary" onclick="resumeAudio()">▶️ Tiếp tục</button>
+                <button class="btn btn-danger" onclick="stopAudio()">⏹️ Dừng</button>
+                <button class="btn btn-outline" onclick="finishReadingTask()">✅ Đã đọc xong (+10 điểm)</button>
+            </div>
+        </div>
+
+        <!-- PHẦN 4: THUỘC TỪ VỰNG -->
+        <div id="sec-vocab" class="section-card">
+            <div class="section-title">
+                <span>Học Từ Vựng Trọng Tâm</span>
+                <span id="vocab-counter" style="font-size: 0.9rem; color: var(--text-light);">1/10</span>
+            </div>
+            <div class="vocab-card-container">
+                <div class="vocab-card" id="vocab-card-display">
+                    <!-- Dynamic Vocab Content -->
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: space-between; margin-top: 15px;">
+                    <button class="btn btn-secondary" id="btn-prev-vocab" onclick="navigateVocab(-1)">⬅️ Từ trước</button>
+                    <button class="btn btn-secondary" id="btn-next-vocab" onclick="navigateVocab(1)">Từ tiếp ➡️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 5: GHÉP CỤM TỪ -->
+        <div id="sec-matching" class="section-card">
+            <div class="section-title">
+                <span>Luyện Ghép Cụm Từ (Collocations)</span>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <button class="btn btn-outline" onclick="loadMatchingType(1)">Dạng 1: Điền Từ</button>
+                <button class="btn btn-outline" onclick="loadMatchingType(2)">Dạng 2: Nối Cụm</button>
+                <button class="btn btn-outline" onclick="loadMatchingType(3)">Dạng 3: Đồng Nghĩa</button>
+            </div>
+            <div id="matching-game-area">
+                <!-- Dynamic Content for Matching -->
+            </div>
+        </div>
+
+        <!-- PHẦN 6: LUYỆN VIẾT CÂU -->
+        <div id="sec-writing" class="section-card">
+            <div class="section-title">
+                <span>Luyện Viết Câu</span>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <button class="btn btn-outline" onclick="switchWritingMode('scramble')">A. Sắp Xếp Cụm Từ</button>
+                <button class="btn btn-outline" onclick="switchWritingMode('guided')">B. Viết Câu Theo Từ Cho Sẵn</button>
+            </div>
+
+            <!-- MODE A: SCRAMBLE -->
+            <div id="writing-scramble-area">
+                <p style="margin-bottom: 10px; font-weight: 600;">Bấm vào các cụm từ bên dưới để ghép thành câu hoàn chỉnh:</p>
+                <div class="target-box" id="scramble-target-box"></div>
+                <div class="scrambled-box" id="scramble-source-box"></div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn btn-secondary" onclick="undoLastWord()">↩️ Hoàn tác</button>
+                    <button class="btn btn-warning" onclick="resetScrambleSentence()">🔄 Làm lại</button>
+                    <button class="btn btn-success" onclick="checkScrambleSentence()">✔️ Kiểm tra</button>
+                    <button class="btn btn-outline" onclick="listenScrambleSentence()">🔊 Nghe câu</button>
+                </div>
+                <div id="scramble-feedback" class="feedback-box"></div>
+                <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                    <button class="btn btn-secondary" onclick="navigateScramble(-1)">⬅️ Câu trước</button>
+                    <button class="btn btn-secondary" onclick="navigateScramble(1)">Câu tiếp ➡️</button>
+                </div>
+            </div>
+
+            <!-- MODE B: GUIDED WRITING -->
+            <div id="writing-guided-area" style="display: none;">
+                <div id="guided-writing-container">
+                    <!-- Dynamic Content -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 7: ĐỌC HIỂU -->
+        <div id="sec-quiz" class="section-card">
+            <div class="section-title">
+                <span>Câu Hỏi Đọc Hiểu</span>
+                <span id="quiz-counter" style="font-size: 0.9rem; color: var(--text-light);">1/10</span>
+            </div>
+            <div id="quiz-container">
+                <!-- Dynamic Quiz Content -->
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button class="btn btn-secondary" onclick="navigateQuiz(-1)">⬅️ Câu trước</button>
+                <button class="btn btn-secondary" onclick="navigateQuiz(1)">Câu tiếp ➡️</button>
+            </div>
+        </div>
+
+        <!-- PHẦN 8: KẾT QUẢ -->
+        <div id="sec-results" class="section-card">
+            <div class="section-title">
+                <span>Báo Cáo Kết Quả Học Tập</span>
+            </div>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 id="final-score-text" style="font-size: 2.5rem; color: var(--primary-dark);">0/100</h2>
+                <p id="final-eval-text" style="font-size: 1.1rem; font-weight: bold; margin-top: 10px;"></p>
+            </div>
+            <div id="results-breakdown" style="margin-bottom: 20px;">
+                <!-- Detailed breakdown table/list -->
+            </div>
+            <div id="wrong-items-review" style="margin-bottom: 20px; text-align: left;">
+                <!-- Review incorrect items -->
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="window.print()">🖨️ In kết quả</button>
+                <button class="btn btn-warning" onclick="resetProgressData()">🔄 Học lại từ đầu</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL KHÔI PHỤC TIẾN ĐỘ -->
+    <div class="modal-overlay" id="resume-modal">
+        <div class="modal-card">
+            <h3>Chào mừng bạn quay trở lại!</h3>
+            <p>Hệ thống ghi nhận bạn đã có tiến độ học tập từ trước. Bạn có muốn tiếp tục không?</p>
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="resumePreviousSession()">Tiếp tục học</button>
+                <button class="btn btn-secondary" onclick="startFreshSession()">Học lại từ đầu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* GLOBAL STATE & DATA STRUCTURES */
+        const STORAGE_KEY = "ENGLISH_MASTERY_GAME_SLEEP_STATE";
+
+        let gameState = {
+            score: 0,
+            completedTasks: {
+                reading: false,
+                vocab: false,
+                matching: false,
+                writing: false,
+                quiz: false
+            },
+            speechRate: 0.8,
+            selectedVoiceURI: "",
+            phrasePause: false,
+            vocabIndex: 0,
+            quizIndex: 0,
+            scrambleIndex: 0,
+            guidedScores: {},
+            answeredVocab: {},
+            answeredQuiz: {},
+            scrambleAttempts: {},
+            wrongVocabIds: [],
+            wrongQuizIds: [],
+            guidedAnswers: {}
+        };
+
+        const readingPassageTextFull = `A good night’s sleep is just as important as regular exercise and a healthy diet. Research shows that poor sleep has immediate negative effects on your hormones, exercise performance, and brain function. To improve sleep quality, you should maintain a consistent sleep schedule by going to bed and waking up at the same time every day. Furthermore, you should reduce blue light exposure in the evening. Devices like smartphones and computers emit large amounts of blue light, which tricks your brain into thinking it’s still daytime and reduces hormones like melatonin, which help you relax and get deep sleep. Additionally, avoid consuming caffeine late in the day as it can stay elevated in your blood for 6–8 hours. Finally, try to shorten daytime naps because long or irregular napping during the day can confuse your internal clock and cause insomnia at night.`;
+
+        const vocabData = [
+            { id: "v1", word: "quality", ipa: "/ˈkwɒl.ə.ti/", meaning: "chất lượng", sentence: "A good night’s sleep improves your sleep quality.", options: ["chất lượng", "số lượng", "thời gian", "cảm giác"], correct: 0, explanation: "'Quality' nghĩa là chất lượng (đặc tính, độ tốt của cái gì)." },
+            { id: "v2", word: "consistent", ipa: "/kənˈsɪs.tənt/", meaning: "nhất quán, đều đặn", sentence: "You should maintain a consistent sleep schedule.", options: ["thay đổi liên tục", "nhất quán, đều đặn", "ngắn hạn", "bất ngờ"], correct: 1, explanation: "'Consistent' nghĩa là nhất quán, giữ nguyên không thay đổi." },
+            { id: "v3", word: "exposure", ipa: "/ɪkˈspəʊ.ʒər/", meaning: "sự tiếp xúc", sentence: "Reduce blue light exposure in the evening.", options: ["sự tiếp xúc", "sự né tránh", "sự phát tán", "sự bảo vệ"], correct: 0, explanation: "'Exposure' nghĩa là hành động tiếp xúc với yếu tố nào đó." },
+            { id: "v4", word: "melatonin", ipa: "/ˌmel.əˈtəʊ.nɪn/", meaning: "hoc-mon điều hòa giấc ngủ", sentence: "Blue light reduces hormones like melatonin.", options: ["hoc-mon tăng trưởng", "hoc-mon điều hòa giấc ngủ", "chất gây căng thẳng", "vitamin C"], correct: 1, explanation: "'Melatonin' là hoc-mon giúp cơ thể thư giãn và đi vào giấc ngủ." },
+            { id: "v5", word: "elevated", ipa: "/ˈel.ɪ.veɪ.tɪd/", meaning: "tăng cao, duy trì mức cao", sentence: "Caffeine can stay elevated in your blood for hours.", options: ["giảm bớt", "tăng cao, ở mức cao", "biến mất", "hòa tan"], correct: 1, explanation: "'Elevated' nghĩa là ở mức độ cao hơn bình thường." },
+            { id: "v6", word: "insomnia", ipa: "/ɪnˈsɒm.ni.ə/", meaning: "chứng mất ngủ", sentence: "Irregular napping can cause insomnia at night.", options: ["giấc ngủ trưa", "chứng mất ngủ", "chế độ ăn uống", "sự mệt mỏi"], correct: 1, explanation: "'Insomnia' chỉ tình trạng khó ngủ hoặc mất ngủ mãn tính." },
+            { id: "v7", word: "internal clock", ipa: "/ɪnˈtɜː.nəl klɒk/", meaning: "đồng hồ sinh học", sentence: "Long naps can confuse your internal clock.", options: ["đồng hồ báo thức", "đồng hồ sinh học", "lịch làm việc", "thời gian biểu"], correct: 1, explanation: "'Internal clock' là nhịp sinh học tự nhiên bên trong cơ thể." },
+            { id: "v8", word: "reduce", ipa: "/rɪˈdʒuːs/", meaning: "giảm bớt", sentence: "You should reduce blue light exposure.", options: ["tăng cường", "giảm bớt", "giữ nguyên", "bắt đầu"], correct: 1, explanation: "'Reduce' làm nhỏ đi hoặc giảm bớt số lượng/mức độ." },
+            { id: "v9", word: "shorten", ipa: "/ˈʃɔː.tən/", meaning: "rút ngắn", sentence: "Try to shorten daytime naps.", options: ["kéo dài", "rút ngắn", "hủy bỏ", "tăng lên"], correct: 1, explanation: "'Shorten' nghĩa là làm cho ngắn lại về thời gian hoặc chiều dài." },
+            { id: "v10", word: "consume", ipa: "/kənˈsjuːm/", meaning: "tiêu thụ, ăn/uống", sentence: "Avoid consuming caffeine late in the day.", options: ["tiêu thụ, ăn/uống", "mua sắm", "sản xuất", "vứt bỏ"], correct: 0, explanation: "'Consume' nghĩa là dùng, ăn hoặc uống chất gì đó." }
+        ];
+
+        const matchingData = {
+            type1: [
+                { id: "m1", text: "_____ sleep quality and duration", options: ["improve", "consume", "shorten", "emit"], correct: "improve" },
+                { id: "m2", text: "_____ blue light exposure", options: ["reduce", "increase", "elevate", "shorten"], correct: "reduce" },
+                { id: "m3", text: "_____ daytime naps", options: ["shorten", "confuse", "emit", "maintain"], correct: "shorten" },
+                { id: "m4", text: "_____ caffeine late in the day", options: ["consume", "improve", "shorten", "maintain"], correct: "consume" }
+            ],
+            type2: [
+                { left: "improve", right: "sleep quality" },
+                { left: "reduce", right: "blue light exposure" },
+                { left: "shorten", right: "daytime naps" },
+                { left: "consume", right: "caffeine late" }
+            ],
+            type3: [
+                { phrase: "get a good night’s sleep", synonym: "sleep better at night" },
+                { phrase: "consistent sleep schedule", synonym: "same sleep time daily" },
+                { phrase: "shorten naps", synonym: "reduce daytime sleep" }
+            ]
+        };
+
+        const scrambleData = [
+            { id: "s1", chunks: ["A good night’s sleep", "is just as important as", "regular exercise", "and a healthy diet."], full: "A good night’s sleep is just as important as regular exercise and a healthy diet." },
+            { id: "s2", chunks: ["You should maintain", "a consistent sleep schedule", "by going to bed", "at the same time."], full: "You should maintain a consistent sleep schedule by going to bed at the same time." },
+            { id: "s3", chunks: ["Avoid consuming caffeine", "late in the day", "to prevent insomnia", "at night."], full: "Avoid consuming caffeine late in the day to prevent insomnia at night." }
+        ];
+
+        const guidedWritingData = [
+            { id: "g1", prompt: "Viết câu khuyên nên duy trì lịch ngủ đều đặn (Dùng cụm: 'maintain a consistent sleep schedule')", required: "maintain a consistent sleep schedule" },
+            { id: "g2", prompt: "Viết câu về việc giảm tiếp xúc ánh sáng xanh vào buổi tối (Dùng cụm: 'reduce blue light exposure')", required: "reduce blue light exposure" },
+            { id: "g3", prompt: "Viết câu về việc tránh uống caffeine muộn trong ngày (Dùng cụm: 'consume caffeine')", required: "consume caffeine" }
+        ];
+
+        const quizData = [
+            { id: "q1", question: "What is the main idea of the reading passage?", options: ["How caffeine affects health", "The importance of good sleep and tips to improve it", "Why blue light is harmful", "How daytime naps cause insomnia"], correct: 1, explanation: "Bài đọc tổng quát về tầm quan trọng của giấc ngủ và đưa ra các lời khuyên để ngủ ngon hơn.", quote: "A good night’s sleep is just as important as regular exercise..." },
+            { id: "q2", question: "According to the passage, poor sleep has immediate negative effects on:", options: ["Your eyesight and skin", "Hormones, exercise performance, and brain function", "Heart rate and blood pressure", "Weight and height"], correct: 1, explanation: "Thông tin chi tiết ở ngay câu thứ 2 của bài.", quote: "poor sleep has immediate negative effects on your hormones, exercise performance, and brain function." },
+            { id: "q3", question: "The word 'consistent' in paragraph 1 is closest in meaning to:", options: ["Changing", "Regular/Unvarying", "Short", "Late"], correct: 1, explanation: "'Consistent' nghĩa là đều đặn, không đổi.", quote: "maintain a consistent sleep schedule" },
+            { id: "q4", question: "Why is blue light exposure in the evening harmful?", options: ["It damages your eyes directly", "It tricks the brain and reduces melatonin production", "It causes high blood pressure", "It makes you feel hungry"], correct: 1, explanation: "Ánh sáng xanh đánh lừa não bộ là ban ngày và làm giảm melatonin.", quote: "tricks your brain into thinking it’s still daytime and reduces hormones like melatonin" },
+            { id: "q5", question: "How long can caffeine stay elevated in your blood?", options: ["1–2 hours", "3–4 hours", "6–8 hours", "12 hours"], correct: 2, explanation: "Thông tin cụ thể về caffeine trong máu.", quote: "stay elevated in your blood for 6–8 hours." },
+            { id: "q6", question: "What does the pronoun 'it' in paragraph 3 refer to?", options: ["Melatonin", "Blue light", "Caffeine", "Sleep"], correct: 2, explanation: "Từ 'it' thay thế cho caffeine ở vế trước.", quote: "avoid consuming caffeine late in the day as it can stay elevated..." },
+            { id: "q7", question: "Why should you shorten daytime naps?", options: ["Because naps are completely unhealthy", "To avoid confusing your internal clock and causing insomnia", "To save time for exercise", "To increase brain function"], correct: 1, explanation: "Ngủ trưa dài làm xáo trộn đồng hồ sinh học.", quote: "confuse your internal clock and cause insomnia at night." },
+            { id: "q8", question: "Which of the following is NOT recommended in the text?", options: ["Going to bed at the same time", "Taking long naps in the afternoon", "Reducing smartphone use in the evening", "Avoiding caffeine late in the day"], correct: 1, explanation: "Bài đọc khuyên 'shorten daytime naps' chứ không khuyên ngủ trưa dài.", quote: "try to shorten daytime naps" },
+            { id: "q9", question: "What can be inferred about melatonin?", options: ["It is a chemical produced by smartphones", "It helps the body relax and sleep better", "It is found in caffeine", "It increases during the day"], correct: 1, explanation: "Hoc-mon melatonin giúp thư giãn và đi vào giấc ngủ sâu.", quote: "reduces hormones like melatonin, which help you relax and get deep sleep." },
+            { id: "q10", question: "What is the best title for this passage?", options: ["The Dangers of Caffeine", "Smartphones and Blue Light", "Healthy Sleep Habits for Better Life", "How to Exercise Properly"], correct: 2, explanation: "Tiêu đề bao quát nhất toàn bộ nội dung lời khuyên sức khỏe giấc ngủ.", quote: "To improve sleep quality..." }
+        ];
+
+        /* SPEECH SYNTHESIS SYSTEM */
+        let synth = window.speechSynthesis;
+        let voices = [];
+
+        function initVoices() {
+            if (!synth) return;
+            voices = synth.getVoices();
+            const voiceSelect = document.getElementById("voice-select");
+            voiceSelect.innerHTML = "";
+
+            if (voices.length === 0) {
+                voiceSelect.innerHTML = "<option>Đang tải danh sách giọng đọc...</option>";
+                return;
+            }
+
+            const enVoices = voices.filter(v => v.lang.startsWith("en"));
+            const displayVoices = enVoices.length > 0 ? enVoices : voices;
+
+            displayVoices.forEach(voice => {
+                const option = document.createElement("option");
+                option.textContent = `${voice.name} (${voice.lang})`;
+                option.value = voice.voiceURI;
+                if (gameState.selectedVoiceURI && voice.voiceURI === gameState.selectedVoiceURI) {
+                    option.selected = true;
+                }
+                voiceSelect.appendChild(option);
+            });
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = initVoices;
+        }
+
+        function updateSpeed(val) {
+            gameState.speechRate = parseFloat(val);
+            document.getElementById("speed-label").innerText = gameState.speechRate.toFixed(2) + "×";
+            saveGameState();
+        }
+
+        function setSpeed(val) {
+            document.getElementById("speed-slider").value = val;
+            updateSpeed(val);
+        }
+
+        function changeVoice() {
+            const select = document.getElementById("voice-select");
+            gameState.selectedVoiceURI = select.value;
+            saveGameState();
+        }
+
+        function togglePhrasePause(val) {
+            gameState.phrasePause = val;
+            saveGameState();
+        }
+
+        function speakText(text) {
+            if (!synth) return;
+            synth.cancel();
+
+            if (gameState.phrasePause && text.includes(",")) {
+                const parts = text.split(/([,;.])/);
+                let delay = 0;
+                for (let i = 0; i < parts.length; i += 2) {
+                    const chunk = parts[i];
+                    if (chunk && chunk.trim().length > 0) {
+                        setTimeout(() => {
+                            let utt = new SpeechSynthesisUtterance(chunk);
+                            applyVoiceSettings(utt);
+                            synth.speak(utt);
+                        }, delay);
+                        delay += (chunk.length * 60) + 300;
+                    }
+                }
+            } else {
+                let utterance = new SpeechSynthesisUtterance(text);
+                applyVoiceSettings(utterance);
+                synth.speak(utterance);
+            }
+        }
+
+        function applyVoiceSettings(utterance) {
+            utterance.rate = gameState.speechRate || 0.8;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            if (gameState.selectedVoiceURI) {
+                const v = voices.find(item => item.voiceURI === gameState.selectedVoiceURI);
+                if (v) utterance.voice = v;
+            }
+        }
+
+        function pauseAudio() { if (synth) synth.pause(); }
+        function resumeAudio() { if (synth) synth.resume(); }
+        function stopAudio() { if (synth) synth.cancel(); }
+
+        function playFullReading() {
+            speakText(readingPassageTextFull);
+        }
+
+        /* FISHER-YATES SHUFFLE ALGORITHM */
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        /* NAVIGATION */
+        function showSection(sectionId) {
+            stopAudio();
+            document.querySelectorAll(".section-card").forEach(sec => sec.classList.remove("active"));
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add("active");
+            }
+
+            if (sectionId === 'sec-home') renderHomeScreen();
+            if (sectionId === 'sec-vocab') renderVocabCard();
+            if (sectionId === 'sec-matching') loadMatchingType(1);
+            if (sectionId === 'sec-writing') switchWritingMode('scramble');
+            if (sectionId === 'sec-quiz') renderQuizQuestion();
+            if (sectionId === 'sec-results') renderResultsScreen();
+        }
+
+        /* HOME TASK GRID */
+        function renderHomeScreen() {
+            const container = document.getElementById("task-grid-container");
+            const tasks = [
+                { id: 'reading', title: '1. Học toàn bộ bài', desc: 'Đọc và nghe toàn bộ văn bản về vệ sinh giấc ngủ.', sec: 'sec-reading' },
+                { id: 'vocab', title: '2. Thuộc từ vựng', desc: 'Học 10 từ vựng cốt lõi kèm phiên âm, ví dụ và bài tập.', sec: 'sec-vocab' },
+                { id: 'matching', title: '3. Ghép cụm từ', desc: 'Luyện tập các cụm từ (collocations) chuẩn xác.', sec: 'sec-matching' },
+                { id: 'writing', title: '4. Luyện viết câu', desc: 'Ghép cụm từ thành câu và viết câu hoàn chỉnh.', sec: 'sec-writing' },
+                { id: 'quiz', title: '5. Đọc hiểu', desc: 'Trả lời 10 câu hỏi kiểm tra kỹ năng đọc hiểu.', sec: 'sec-quiz' }
+            ];
+
+            container.innerHTML = tasks.map(t => {
+                const isDone = gameState.completedTasks[t.id];
+                const statusClass = isDone ? 'status-completed' : 'status-not-started';
+                const statusText = isDone ? 'Đã hoàn thành' : 'Chưa hoàn thành';
+                return `
+                    <div class="task-card">
+                        <div>
+                            <h3>${t.title}</h3>
+                            <p>${t.desc}</p>
+                        </div>
+                        <div>
+                            <span class="task-status ${statusClass}">${statusText}</span>
+                            <button class="btn btn-outline" style="width:100%" onclick="showSection('${t.sec}')">Bắt đầu</button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            updateDashboardUI();
+        }
+
+        function finishReadingTask() {
+            if (!gameState.completedTasks.reading) {
+                gameState.completedTasks.reading = true;
+                addScore(10);
+                alert("Chúc mừng! Bạn đã hoàn thành phần đọc toàn bài và nhận được +10 điểm.");
+                renderHomeScreen();
+            } else {
+                alert("Bạn đã hoàn thành phần đọc này trước đó rồi!");
+            }
+        }
+
+        /* VOCABULARY TASK */
+        function renderVocabCard() {
+            const item = vocabData[gameState.vocabIndex];
+            document.getElementById("vocab-counter").innerText = `${gameState.vocabIndex + 1}/${vocabData.length}`;
+            
+            const card = document.getElementById("vocab-card-display");
+            const isAnswered = gameState.answeredVocab[item.id] !== undefined;
+
+            let optionsHTML = item.options.map((opt, idx) => {
+                let btnClass = "option-btn";
+                if (isAnswered) {
+                    if (idx === item.correct) btnClass += " correct";
+                    else if (gameState.answeredVocab[item.id] === idx) btnClass += " incorrect";
+                }
+                return `<button class="${btnClass}" onclick="handleVocabAnswer('${item.id}', ${idx})" ${isAnswered ? 'disabled' : ''}>${String.fromCharCode(65 + idx)}. ${opt}</button>`;
+            }).join("");
+
+            card.innerHTML = `
+                <div class="vocab-word">${item.word}</div>
+                <div class="vocab-ipa">${item.ipa}</div>
+                <button class="btn btn-secondary btn-sm" onclick="speakText('${item.word}')">🔊 Nghe phát âm</button>
+                <div class="vocab-sentence">"${item.sentence}"</div>
+                <button class="btn btn-secondary btn-sm" onclick="speakText('${item.sentence.replace(/'/g, "\\'")}')">🔊 Nghe câu gốc</button>
+                <div class="options-grid">${optionsHTML}</div>
+                <div id="vocab-feedback" class="feedback-box ${isAnswered ? 'show ' + (gameState.answeredVocab[item.id] === item.correct ? 'correct' : 'incorrect') : ''}">
+                    ${isAnswered ? (gameState.answeredVocab[item.id] === item.correct ? ' Chính xác! Hãy đọc to từ này 3 lần.' : ' Sai rồi. ' + item.explanation) : ''}
+                </div>
+            `;
+        }
+
+        function handleVocabAnswer(id, chosenIdx) {
+            if (gameState.answeredVocab[id] !== undefined) return;
+
+            const item = vocabData.find(v => v.id === id);
+            gameState.answeredVocab[id] = chosenIdx;
+
+            if (chosenIdx === item.correct) {
+                addScore(3);
+            } else {
+                if (!gameState.wrongVocabIds.includes(id)) {
+                    gameState.wrongVocabIds.push(id);
+                }
+            }
+
+            if (Object.keys(gameState.answeredVocab).length === vocabData.length) {
+                gameState.completedTasks.vocab = true;
+            }
+
+            saveGameState();
+            renderVocabCard();
+        }
+
+        function navigateVocab(dir) {
+            gameState.vocabIndex += dir;
+            if (gameState.vocabIndex < 0) gameState.vocabIndex = 0;
+            if (gameState.vocabIndex >= vocabData.length) gameState.vocabIndex = vocabData.length - 1;
+            renderVocabCard();
+        }
+
+        /* MATCHING TASK */
+        let selectedMatchLeft = null;
+        let selectedMatchRight = null;
+
+        function loadMatchingType(type) {
+            const area = document.getElementById("matching-game-area");
+            if (type === 1) {
+                let html = matchingData.type1.map((m, idx) => `
+                    <div style="background:#fff; padding:15px; border-radius:8px; margin-bottom:10px; border:1px solid #e2e8f0;">
+                        <p style="font-weight:bold; margin-bottom:8px;">${idx + 1}. ${m.text}</p>
+                        <div class="options-grid">
+                            ${m.options.map(opt => `<button class="option-btn" onclick="checkMatchingType1(this, '${m.correct}', '${opt}')">${opt}</button>`).join('')}
+                        </div>
+                    </div>
+                `).join("");
+                area.innerHTML = html;
+            } else if (type === 2) {
+                const shuffledRights = shuffleArray(matchingData.type2.map(i => i.right));
+                let html = `
+                    <p style="margin-bottom:10px;">Bấm chọn 1 từ ở cột Trái, sau đó chọn cụm tương ứng ở cột Phải:</p>
+                    <div class="match-pair-grid">
+                        <div class="match-column" id="match-col-left">
+                            ${matchingData.type2.map(i => `<div class="match-item" data-val="${i.left}" onclick="selectMatchItem(this, 'left')">${i.left}</div>`).join('')}
+                        </div>
+                        <div class="match-column" id="match-col-right">
+                            ${shuffledRights.map(r => `<div class="match-item" data-val="${r}" onclick="selectMatchItem(this, 'right')">${r}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+                area.innerHTML = html;
+            } else if (type === 3) {
+                let html = matchingData.type3.map(m => `
+                    <div style="background:#fff; padding:15px; border-radius:8px; margin-bottom:10px;">
+                        <p><strong>Cụm từ:</strong> "${m.phrase}"</p>
+                        <p style="color:var(--secondary-dark);">➔ <strong>Đồng nghĩa:</strong> "${m.synonym}"</p>
+                        <button class="btn btn-secondary btn-sm" onclick="speakText('${m.phrase}')">🔊 Nghe cụm</button>
+                    </div>
+                `).join('');
+                area.innerHTML = html;
+                gameState.completedTasks.matching = true;
+                saveGameState();
+            }
+        }
+
+        function checkMatchingType1(btn, correct, chosen) {
+            if (chosen === correct) {
+                btn.classList.add("correct");
+                addScore(4);
+                speakText(correct);
+            } else {
+                btn.classList.add("incorrect");
+            }
+        }
+
+        function selectMatchItem(el, side) {
+            if (el.classList.contains("matched")) return;
+
+            if (side === 'left') {
+                document.querySelectorAll("#match-col-left .match-item").forEach(i => i.classList.remove("selected"));
+                el.classList.add("selected");
+                selectedMatchLeft = el;
+            } else {
+                document.querySelectorAll("#match-col-right .match-item").forEach(i => i.classList.remove("selected"));
+                el.classList.add("selected");
+                selectedMatchRight = el;
+            }
+
+            if (selectedMatchLeft && selectedMatchRight) {
+                const lVal = selectedMatchLeft.getAttribute("data-val");
+                const rVal = selectedMatchRight.getAttribute("data-val");
+
+                const pair = matchingData.type2.find(p => p.left === lVal);
+                if (pair && pair.right === rVal) {
+                    selectedMatchLeft.classList.remove("selected");
+                    selectedMatchRight.classList.remove("selected");
+                    selectedMatchLeft.classList.add("matched");
+                    selectedMatchRight.classList.add("matched");
+                    addScore(4);
+                    speakText(lVal + " " + rVal);
+                } else {
+                    selectedMatchLeft.classList.remove("selected");
+                    selectedMatchRight.classList.remove("selected");
+                }
+                selectedMatchLeft = null;
+                selectedMatchRight = null;
+            }
+        }
+
+        /* WRITING TASK */
+        let currentScrambleSource = [];
+        let currentScrambleTarget = [];
+
+        function switchWritingMode(mode) {
+            document.getElementById("writing-scramble-area").style.display = mode === 'scramble' ? 'block' : 'none';
+            document.getElementById("writing-guided-area").style.display = mode === 'guided' ? 'block' : 'none';
+
+            if (mode === 'scramble') initScrambleSentence();
+            if (mode === 'guided') initGuidedWriting();
+        }
+
+        function initScrambleSentence() {
+            const data = scrambleData[gameState.scrambleIndex];
+            currentScrambleSource = shuffleArray(data.chunks);
+            currentScrambleTarget = [];
+            renderScrambleUI();
+        }
+
+        function renderScrambleUI() {
+            const sourceBox = document.getElementById("scramble-source-box");
+            const targetBox = document.getElementById("scramble-target-box");
+
+            sourceBox.innerHTML = currentScrambleSource.map((chunk, idx) => 
+                `<div class="word-chip" onclick="moveChunkToTarget(${idx})">${chunk}</div>`
+            ).join("");
+
+            targetBox.innerHTML = currentScrambleTarget.map((chunk, idx) => 
+                `<div class="word-chip" onclick="moveChunkToSource(${idx})">${chunk}</div>`
+            ).join("");
+
+            document.getElementById("scramble-feedback").className = "feedback-box";
+        }
+
+        function moveChunkToTarget(idx) {
+            const chunk = currentScrambleSource.splice(idx, 1)[0];
+            currentScrambleTarget.push(chunk);
+            renderScrambleUI();
+        }
+
+        function moveChunkToSource(idx) {
+            const chunk = currentScrambleTarget.splice(idx, 1)[0];
+            currentScrambleSource.push(chunk);
+            renderScrambleUI();
+        }
+
+        function undoLastWord() {
+            if (currentScrambleTarget.length > 0) {
+                const chunk = currentScrambleTarget.pop();
+                currentScrambleSource.push(chunk);
+                renderScrambleUI();
+            }
+        }
+
+        function resetScrambleSentence() {
+            initScrambleSentence();
+        }
+
+        function checkScrambleSentence() {
+            const data = scrambleData[gameState.scrambleIndex];
+            const userSentence = currentScrambleTarget.join(" ");
+            const feedback = document.getElementById("scramble-feedback");
+
+            if (userSentence === data.full) {
+                feedback.className = "feedback-box show correct";
+                feedback.innerText = "Chính xác! Ghép câu rất tốt.";
+                addScore(5);
+                speakText(userSentence);
+            } else {
+                feedback.className = "feedback-box show incorrect";
+                feedback.innerText = "Chưa chính xác, hãy thử kiểm tra lại thứ tự các cụm!";
+            }
+        }
+
+        function listenScrambleSentence() {
+            const data = scrambleData[gameState.scrambleIndex];
+            speakText(data.full);
+        }
+
+        function navigateScramble(dir) {
+            gameState.scrambleIndex += dir;
+            if (gameState.scrambleIndex < 0) gameState.scrambleIndex = 0;
+            if (gameState.scrambleIndex >= scrambleData.length) gameState.scrambleIndex = scrambleData.length - 1;
+            initScrambleSentence();
+        }
+
+        function initGuidedWriting() {
+            const container = document.getElementById("guided-writing-container");
+            container.innerHTML = guidedWritingData.map((item, idx) => `
+                <div style="background:#fff; padding:15px; border-radius:8px; margin-bottom:15px; border:1px solid #e2e8f0;">
+                    <p style="font-weight:bold; margin-bottom:8px;">${idx + 1}. ${item.prompt}</p>
+                    <textarea id="guided-input-${item.id}" class="writing-input" placeholder="Nhập câu tiếng Anh của bạn tại đây...">${gameState.guidedAnswers[item.id] || ''}</textarea>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-success btn-sm" onclick="checkGuidedWriting('${item.id}', '${item.required}')">✔️ Chấm điểm</button>
+                        <button class="btn btn-secondary btn-sm" onclick="speakText(document.getElementById('guided-input-${item.id}').value)">🔊 Nghe câu đã viết</button>
+                    </div>
+                    <div id="guided-feedback-${item.id}" class="feedback-box"></div>
+                </div>
+            `).join("");
+        }
+
+        function checkGuidedWriting(id, requiredPhrase) {
+            const inputVal = document.getElementById(`guided-input-${id}`).value.trim();
+            const feedback = document.getElementById(`guided-feedback-${id}`);
+            gameState.guidedAnswers[id] = inputVal;
+
+            let currentPoints = 0;
+            let notes = [];
+
+            if (inputVal.length === 0) {
+                feedback.className = "feedback-box show incorrect";
+                feedback.innerText = "Vui lòng nhập câu trả lời!";
+                return;
+            }
+
+            if (inputVal.toLowerCase().includes(requiredPhrase.toLowerCase())) {
+                currentPoints += 2;
+            } else {
+                notes.push(`Thiếu cụm từ bắt buộc: "${requiredPhrase}"`);
+            }
+
+            if (/^[A-Z]/.test(inputVal)) {
+                currentPoints += 1;
+            } else {
+                notes.push("Chữ cái đầu câu phải viết hoa.");
+            }
+
+            if (/[.!?]$/.test(inputVal)) {
+                currentPoints += 1;
+            } else {
+                notes.push("Cuối câu phải có dấu chấm hoặc dấu câu hợp lệ.");
+            }
+
+            if (inputVal.split(/\s+/).length >= 5) {
+                currentPoints += 1;
+            } else {
+                notes.push("Câu cần có ít nhất 5 từ.");
+            }
+
+            if (!gameState.guidedScores[id]) {
+                gameState.guidedScores[id] = currentPoints;
+                addScore(currentPoints);
+            }
+
+            feedback.className = `feedback-box show ${currentPoints >= 4 ? 'correct' : 'incorrect'}`;
+            feedback.innerHTML = `Đạt <strong>${currentPoints}/5 điểm</strong>.<br>` + (notes.length > 0 ? notes.join("<br>") : "Câu viết xuất sắc!");
+            
+            gameState.completedTasks.writing = true;
+            saveGameState();
+        }
+
+        /* QUIZ TASK */
+        function renderQuizQuestion() {
+            const q = quizData[gameState.quizIndex];
+            document.getElementById("quiz-counter").innerText = `${gameState.quizIndex + 1}/${quizData.length}`;
+            const container = document.getElementById("quiz-container");
+            const isAnswered = gameState.answeredQuiz[q.id] !== undefined;
+
+            let optionsHTML = q.options.map((opt, idx) => {
+                let btnClass = "option-btn";
+                if (isAnswered) {
+                    if (idx === q.correct) btnClass += " correct";
+                    else if (gameState.answeredQuiz[q.id] === idx) btnClass += " incorrect";
+                }
+                return `<button class="${btnClass}" onclick="handleQuizAnswer('${q.id}', ${idx})" ${isAnswered ? 'disabled' : ''}>${String.fromCharCode(65 + idx)}. ${opt}</button>`;
+            }).join("");
+
+            container.innerHTML = `
+                <div style="font-size:1.1rem; font-weight:bold; margin-bottom:10px;">${q.question}</div>
+                <button class="btn btn-secondary btn-sm" style="margin-bottom:15px;" onclick="speakText('${q.question.replace(/'/g, "\\'")}')">🔊 Nghe câu hỏi</button>
+                <div class="options-grid">${optionsHTML}</div>
+                <div id="quiz-feedback" class="feedback-box ${isAnswered ? 'show ' + (gameState.answeredQuiz[q.id] === q.correct ? 'correct' : 'incorrect') : ''}">
+                    ${isAnswered ? (gameState.answeredQuiz[q.id] === q.correct ? 'Chính xác!' : 'Chưa đúng. ' + q.explanation + '<br><em>Trích dẫn: "' + q.quote + '"</em>') : ''}
+                </div>
+            `;
+        }
+
+        function handleQuizAnswer(id, chosenIdx) {
+            if (gameState.answeredQuiz[id] !== undefined) return;
+
+            const q = quizData.find(item => item.id === id);
+            gameState.answeredQuiz[id] = chosenIdx;
+
+            if (chosenIdx === q.correct) {
+                addScore(4);
+            } else {
+                if (!gameState.wrongQuizIds.includes(id)) {
+                    gameState.wrongQuizIds.push(id);
+                }
+            }
+
+            if (Object.keys(gameState.answeredQuiz).length === quizData.length) {
+                gameState.completedTasks.quiz = true;
+            }
+
+            saveGameState();
+            renderQuizQuestion();
+        }
+
+        function navigateQuiz(dir) {
+            gameState.quizIndex += dir;
+            if (gameState.quizIndex < 0) gameState.quizIndex = 0;
+            if (gameState.quizIndex >= quizData.length) gameState.quizIndex = quizData.length - 1;
+            renderQuizQuestion();
+        }
+
+        /* RESULTS SECTION */
+        function renderResultsScreen() {
+            const maxScore = 100;
+            const percentage = Math.min(100, Math.round((gameState.score / maxScore) * 100));
+
+            document.getElementById("final-score-text").innerText = `${gameState.score} Điểm (${percentage}%)`;
+
+            const evalText = document.getElementById("final-eval-text");
+            if (percentage >= 80) {
+                evalText.style.color = "var(--secondary-color)";
+                evalText.innerText = "🌟 Đã nắm bài tốt. Hãy đọc lại toàn bài và tự viết một đoạn tóm tắt 5–7 câu.";
+            } else if (percentage >= 60) {
+                evalText.style.color = "var(--warning-color)";
+                evalText.innerText = "👍 Đã hiểu phần lớn nội dung. Cần luyện lại từ và phần viết câu.";
+            } else {
+                evalText.style.color = "var(--error-color)";
+                evalText.innerText = "📚 Cần học lại theo thứ tự: bài đọc ➔ từ vựng ➔ cụm từ ➔ viết câu ➔ đọc hiểu.";
+            }
+
+            const reviewContainer = document.getElementById("wrong-items-review");
+            let wrongHTML = "<h3>Danh sách cần ôn lại:</h3>";
+
+            if (gameState.wrongVocabIds.length > 0) {
+                wrongHTML += "<p><strong>Từ vựng sai:</strong> " + gameState.wrongVocabIds.map(id => vocabData.find(v => v.id === id).word).join(", ") + "</p>";
+            }
+            if (gameState.wrongQuizIds.length > 0) {
+                wrongHTML += "<p><strong>Câu hỏi đọc hiểu sai:</strong> " + gameState.wrongQuizIds.map(id => quizData.find(q => q.id === id).question).join("<br>") + "</p>";
+            }
+
+            if (gameState.wrongVocabIds.length === 0 && gameState.wrongQuizIds.length === 0) {
+                wrongHTML += "<p style='color:var(--secondary-color);'>Không có từ hoặc câu hỏi nào làm sai!</p>";
+            }
+
+            reviewContainer.innerHTML = wrongHTML;
+        }
+
+        /* STATE MANAGEMENT */
+        function addScore(pts) {
+            gameState.score += pts;
+            updateDashboardUI();
+            saveGameState();
+        }
+
+        function updateDashboardUI() {
+            document.getElementById("stat-score").innerText = gameState.score;
+            
+            const completedCount = Object.values(gameState.completedTasks).filter(Boolean).length;
+            document.getElementById("stat-completed").innerText = `${completedCount}/5`;
+
+            const progressPct = Math.round((completedCount / 5) * 100);
+            document.getElementById("stat-progress").innerText = `${progressPct}%`;
+            document.getElementById("main-progress-bar").style.width = `${progressPct}%`;
+        }
+
+        function saveGameState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
+        }
+
+        function loadGameState() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    gameState = JSON.parse(saved);
+                    document.getElementById("speed-slider").value = gameState.speechRate || 0.8;
+                    document.getElementById("speed-label").innerText = (gameState.speechRate || 0.8).toFixed(2) + "×";
+                    document.getElementById("phrase-pause-chk").checked = !!gameState.phrasePause;
+                    updateDashboardUI();
+                } catch (e) {
+                    console.error("Error loading state", e);
+                }
+            }
+        }
+
+        function checkResumeModal() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                document.getElementById("resume-modal").classList.add("active");
+            } else {
+                renderHomeScreen();
+            }
+        }
+
+        function resumePreviousSession() {
+            document.getElementById("resume-modal").classList.remove("active");
+            loadGameState();
+            renderHomeScreen();
+        }
+
+        function startFreshSession() {
+            document.getElementById("resume-modal").classList.remove("active");
+            localStorage.removeItem(STORAGE_KEY);
+            renderHomeScreen();
+        }
+
+        function confirmResetProgress() {
+            if (confirm("Bạn có chắc chắn muốn xóa toàn bộ tiến độ và làm lại từ đầu không?")) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+
+        /* INITIALIZATION */
+        window.addEventListener("DOMContentLoaded", () => {
+            initVoices();
+            checkResumeModal();
+        });
+    </script>
+</body>
+</html>

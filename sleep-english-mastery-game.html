@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>READING – ENGLISH MASTERY GAME: SLEEP & HEALTH (GRADE 6)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --secondary: #06b6d4;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --info: #3b82f6;
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-body: 'Be Vietnam Pro', sans-serif;
+      --font-heading: 'Outfit', sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-glow: 0 0 25px rgba(79, 70, 229, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-body);
+      user-select: none;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    /* Header & Navigation Bar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.25rem;
+      background: linear-gradient(to right, #a5b4fc, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .stat-badge .icon {
+      font-size: 1.1rem;
+    }
+
+    .stat-val {
+      color: var(--accent);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Tabs Navigation */
+    nav.tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--primary), #6366f1);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Tab Sections */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Glass Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #e0e7ff;
+    }
+
+    /* Buttons */
+    .btn {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: white;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(79, 70, 229, 0.45);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: none;
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981, #059669);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-warning {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Section 1: Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .mission-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mission-icon {
+      font-size: 2.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .mission-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .mission-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .progress-bar-bg {
+      background: rgba(255, 255, 255, 0.1);
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-bar-fill {
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* Section 2: Reading Passage & Audio Controller */
+    .audio-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--card-border);
+    }
+
+    .passage-body {
+      font-size: 1.05rem;
+      line-height: 1.95;
+      color: #cbd5e1;
+      text-align: justify;
+    }
+
+    .passage-sentence {
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .passage-sentence:hover {
+      background: rgba(99, 102, 241, 0.2);
+    }
+
+    .passage-sentence.highlight {
+      background: rgba(245, 158, 11, 0.3);
+      color: #ffffff;
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .vocab-hl {
+      color: #38bdf8;
+      font-weight: 700;
+      border-bottom: 1px dashed #38bdf8;
+      cursor: pointer;
+      padding: 0 2px;
+    }
+
+    .vocab-hl:hover {
+      background: rgba(56, 189, 248, 0.2);
+    }
+
+    /* Section 3: Speech Settings Panel */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+    }
+
+    .speed-presets {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Section 4: Vocab Cards & Quiz */
+    .vocab-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .v-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .v-card:hover {
+      border-color: var(--secondary);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .v-word {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .v-ipa {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-style: italic;
+      margin-bottom: 0.35rem;
+    }
+
+    .v-meaning {
+      font-size: 0.9rem;
+      color: #f1f5f9;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .v-example {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* Quiz Option Grid */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .opt-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(99, 102, 241, 0.5);
+    }
+
+    .opt-btn.correct {
+      background: rgba(16, 185, 129, 0.25) !important;
+      border-color: #10b981 !important;
+      color: #34d399 !important;
+    }
+
+    .opt-btn.wrong {
+      background: rgba(239, 68, 68, 0.25) !important;
+      border-color: #ef4444 !important;
+      color: #f87171 !important;
+    }
+
+    /* Feedback Banner */
+    .quiz-feedback {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .quiz-feedback.correct {
+      display: block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #a7f3d0;
+    }
+
+    .quiz-feedback.wrong {
+      display: block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fecaca;
+    }
+
+    /* Section 6: Sentence Reorder Builder */
+    .phrase-chunks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1rem 0;
+      min-height: 50px;
+      padding: 0.75rem;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px dashed var(--card-border);
+      border-radius: var(--radius-md);
+    }
+
+    .chunk-chip {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(6, 182, 212, 0.2));
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #e0e7ff;
+      padding: 0.5rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chunk-chip:hover {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #1e293b;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      max-width: 500px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      header, nav, .btn, .no-print {
+        display: none !important;
+      }
+      .card {
+        background: none !important;
+        border: 1px solid #ccc !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Modal Resume Progress -->
+  <div id="resume-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-icon">🎮</div>
+      <h3 class="modal-title">Tiếp Tục Bài Học?</h3>
+      <p class="modal-desc">Hệ thống tìm thấy tiến độ học tập bài <strong>"SLEEP & HEALTH"</strong> được lưu từ trước. Bạn có muốn tiếp tục làm bài không?</p>
+      <div class="modal-actions">
+        <button id="btn-resume-yes" class="btn btn-success">✅ Tiếp tục bài học</button>
+        <button id="btn-resume-no" class="btn btn-secondary">🔄 Học lại từ đầu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="brand" onclick="switchTab('dashboard')">
+      <div class="brand-icon">🌙</div>
+      <div>
+        <div class="brand-title">READING MASTERY</div>
+        <div class="brand-sub">Tiếng Anh 6 • Unit 12 Skills 1: SLEEP</div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-badge" title="Tổng điểm hiện tại">
+        <span class="icon">⭐</span>
+        <span>Điểm:</span>
+        <span id="header-score" class="stat-val">0</span>
+      </div>
+      <div class="stat-badge" title="Tiến độ hoàn thành">
+        <span class="icon">🎯</span>
+        <span>Hoàn thành:</span>
+        <span id="header-progress" class="stat-val">0%</span>
+      </div>
+      <div class="stat-badge" title="Cấu hình Audio AI">
+        <span class="icon">🔊</span>
+        <span id="header-voice-name">En-US (0.8x)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <main>
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('dashboard')">📊 Trang Chủ</button>
+      <button class="tab-btn" onclick="switchTab('passage')">📖 Bài Đọc SLEEP</button>
+      <button class="tab-btn" onclick="switchTab('speech-settings')">🎙️ Cài Đặt Giọng Đọc</button>
+      <button class="tab-btn" onclick="switchTab('vocab')">🔤 Từ Vựng Trọng Tâm</button>
+      <button class="tab-btn" onclick="switchTab('phrases')">🧩 Ghép Cụm Từ</button>
+      <button class="tab-btn" onclick="switchTab('sentences')">✍️ Luyện Viết Câu</button>
+      <button class="tab-btn" onclick="switchTab('reading-quiz')">❓ Đọc Hiểu (10 Câu)</button>
+      <button class="tab-btn" onclick="switchTab('report')">📈 Báo Cáo Kết Quả</button>
+    </nav>
+
+    <!-- SECTION 1: DASHBOARD -->
+    <section id="tab-dashboard" class="tab-content active">
+      <div class="card">
+        <h2 class="card-title">🚀 Nhiệm Vụ Học Tập "Giấc Ngủ & Sức Khỏe"</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+          Chào mừng bạn đến với Game Đọc Hiểu Tiếng Anh Lớp 6! Hãy hoàn thành từng phần nhiệm vụ dưới đây để tích lũy điểm thưởng và nâng cao kỹ năng Tiếng Anh.
+        </p>
+
+        <div class="dashboard-grid">
+          <!-- Mission 1 -->
+          <div class="mission-card" onclick="switchTab('passage')">
+            <div>
+              <div class="mission-icon">📖</div>
+              <div class="mission-title">1. Đọc Bài Văn SLEEP</div>
+              <div class="mission-desc">Đọc bài văn "The Importance of a Good Night's Sleep" kết hợp nghe giọng đọc chuẩn AI.</div>
+            </div>
+            <div>
+              <div class="progress-bar-bg"><div id="prog-m1" class="progress-bar-fill"></div></div>
+              <button class="btn btn-secondary" style="width: 100%;">Bắt đầu đọc ➔</button>
+            </div>
+          </div>
+
+          <!-- Mission 2 -->
+          <div class="mission-card" onclick="switchTab('vocab')">
+            <div>
+              <div class="mission-icon">🔤</div>
+              <div class="mission-title">2. Thuộc 10 Từ Vựng</div>
+              <div class="mission-desc">Học phát âm IPA, nghĩa từ vựng trọng tâm và thử thách 10 câu trắc nghiệm.</div>
+            </div>
+            <div>
+              <div class="progress-bar-bg"><div id="prog-m2" class="progress-bar-fill"></div></div>
+              <button class="btn btn-secondary" style="width: 100%;">Chinh phục Từ vựng ➔</button>
+            </div>
+          </div>
+
+          <!-- Mission 3 -->
+          <div class="mission-card" onclick="switchTab('phrases')">
+            <div>
+              <div class="mission-icon">🧩</div>
+              <div class="mission-title">3. Ghép Cụm Từ</div>
+              <div class="mission-desc">Luyện tập 3 dạng bài ghép cụm từ, điền từ vào cụm và nối cụm từ đồng nghĩa.</div>
+            </div>
+            <div>
+              <div class="progress-bar-bg"><div id="prog-m3" class="progress-bar-fill"></div></div>
+              <button class="btn btn-secondary" style="width: 100%;">Luyện Cụm Từ ➔</button>
+            </div>
+          </div>
+
+          <!-- Mission 4 -->
+          <div class="mission-card" onclick="switchTab('sentences')">
+            <div>
+              <div class="mission-icon">✍️</div>
+              <div class="mission-title">4. Viết Câu Chuẩn Ngữ Pháp</div>
+              <div class="mission-desc">Sắp xếp các khối từ thành câu hoàn chỉnh & tự tạo câu theo chủ đề sức khỏe.</div>
+            </div>
+            <div>
+              <div class="progress-bar-bg"><div id="prog-m4" class="progress-bar-fill"></div></div>
+              <button class="btn btn-secondary" style="width: 100%;">Luyện Viết Câu ➔</button>
+            </div>
+          </div>
+
+          <!-- Mission 5 -->
+          <div class="mission-card" onclick="switchTab('reading-quiz')">
+            <div>
+              <div class="mission-icon">❓</div>
+              <div class="mission-title">5. Đọc Hiểu 10 Câu</div>
+              <div class="mission-desc">Thử thách 10 câu trắc nghiệm đọc hiểu với 8 dạng câu hỏi và giải thích chi tiết.</div>
+            </div>
+            <div>
+              <div class="progress-bar-bg"><div id="prog-m5" class="progress-bar-fill"></div></div>
+              <button class="btn btn-secondary" style="width: 100%;">Làm Bài Đọc Hiểu ➔</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: READING PASSAGE -->
+    <section id="tab-passage" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">📖 Reading Passage: The Importance of a Good Night's Sleep</h2>
+
+        <!-- Audio Toolbar Controls -->
+        <div class="audio-toolbar">
+          <button id="btn-audio-play" class="btn" onclick="playFullPassage()"><span id="play-icon">▶</span> Phép Đọc Toàn Bài</button>
+          <button class="btn btn-secondary" onclick="pauseAudio()">⏸ Tạm Dừng</button>
+          <button class="btn btn-secondary" onclick="resumeAudio()">▶ Tiếp Tục</button>
+          <button class="btn btn-secondary" onclick="stopAudio()">⏹ Dừng Hẳn</button>
+
+          <div style="margin-left: auto; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
+            <label>Tốc độ:</label>
+            <select id="select-passage-rate" class="form-control" style="width: auto; padding: 0.3rem 0.6rem;" onchange="updateRateFromPassage(this.value)">
+              <option value="0.5">0.5x (Rất chậm)</option>
+              <option value="0.65">0.65x (Chậm)</option>
+              <option value="0.8" selected>0.8x (Chuẩn Lớp 6)</option>
+              <option value="1.0">1.0x (Tự nhiên)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Passage Text Body -->
+        <div id="passage-container" class="passage-body">
+          <!-- Sentence elements dynamically injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SPEECH SETTINGS -->
+    <section id="tab-speech-settings" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">🎙️ Cấu Hình Giọng Đọc AI & Tốc Độ (SpeechSynthesis)</h2>
+
+        <div class="settings-grid">
+          <div>
+            <div class="form-group">
+              <label for="voice-select">Chọn Giọng Đọc Tiếng Anh (En-US / En-GB):</label>
+              <select id="voice-select" class="form-control" onchange="onVoiceChange(this.value)">
+                <option value="">Đang tải danh sách giọng đọc...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Tốc độ đọc (Speech Rate): <span id="rate-val-display" style="color: var(--accent); font-weight: 800;">0.8x</span></label>
+              <input type="range" id="rate-slider" min="0.5" max="1.2" step="0.05" value="0.8" style="width: 100%;" oninput="onRateSliderChange(this.value)" />
+
+              <div class="speed-presets">
+                <button class="btn btn-secondary" style="flex: 1;" onclick="setQuickRate(0.6)">0.6x</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="setQuickRate(0.7)">0.7x</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="setQuickRate(0.8)">0.8x</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="setQuickRate(1.0)">1.0x</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="background: rgba(15, 23, 42, 0.5); border-color: rgba(99, 102, 241, 0.3);">
+              <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: #a5b4fc;">🔊 Thử Nghiệm Giọng Đọc Mẫu</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Nhấp nút dưới đây để kiểm tra âm điệu và tốc độ giọng đọc AI đã chọn:
+              </p>
+              <button class="btn btn-success" onclick="speakText('Sleep plays a very important role in our health and daily life.', true)">
+                ▶ Nghe Thử Câu Mẫu
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: VOCABULARY MASTERY -->
+    <section id="tab-vocab" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">🔤 10 Từ Vựng Trọng Tâm (Key Vocabulary)</h2>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+          Nhấp vào từng thẻ từ vựng để nghe âm chuẩn IPA và xem câu ví dụ trích từ bài đọc.
+        </p>
+
+        <div id="vocab-cards-container" class="vocab-card-grid">
+          <!-- Vocab cards render here -->
+        </div>
+
+        <div class="card" style="background: rgba(15, 23, 42, 0.6); margin-top: 2rem;">
+          <h3 class="card-title">🎯 Thử Thách Trắc Nghiệm Từ Vựng (10 Câu)</h3>
+          <div id="vocab-quiz-container">
+            <!-- Vocab Quiz Question renders here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PHRASE MATCHING -->
+    <section id="tab-phrases" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">🧩 Luyện Tập Cụm Từ (Collocations & Phrases)</h2>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
+          Hoàn thành 3 dạng bài ghép cụm từ xuất hiện trong bài đọc SLEEP.
+        </p>
+
+        <div id="phrase-quiz-container">
+          <!-- Phrase Quiz Question renders here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: SENTENCE BUILDER -->
+    <section id="tab-sentences" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">✍️ Luyện Viết & Sắp Xếp Câu (Sentence Builder)</h2>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
+          Phần 1: Nhấp vào các khối từ để xếp thành câu Tiếng Anh hoàn chỉnh. Phần 2: Viết câu tự luận theo từ gợi ý.
+        </p>
+
+        <div id="sentence-builder-container">
+          <!-- Sentence builder quiz renders here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: READING COMPREHENSION QUIZ -->
+    <section id="tab-reading-quiz" class="tab-content">
+      <div class="card">
+        <h2 class="card-title">❓ Đọc Hiểu 10 Câu (Reading Comprehension)</h2>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
+          Bao phủ 8 dạng bài đọc hiểu: Ý chính, Chi tiết, Từ quy chiếu, Từ vựng theo ngữ cảnh, Suy luận, Đúng/Sai, Mấy giờ/Bao lâu, Thái độ tác giả.
+        </p>
+
+        <div id="reading-quiz-container">
+          <!-- Reading quiz renders here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: REPORT & ANALYTICS -->
+    <section id="tab-report" class="tab-content">
+      <div class="card">
+        <h2 class="card-title" style="justify-content: space-between;">
+          <span>📈 Báo Cáo Kết Quả & Phân Tích Năng Lực</span>
+          <button class="btn btn-secondary no-print" onclick="window.print()">🖨️ In / Xuất Báo Cáo</button>
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <div class="card" style="text-align: center; background: rgba(99, 102, 241, 0.15);">
+            <div style="font-size: 2.5rem; font-weight: 800; color: #a5b4fc;" id="rep-total-score">0</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Tổng Điểm Đạt Được</div>
+          </div>
+
+          <div class="card" style="text-align: center; background: rgba(16, 185, 129, 0.15);">
+            <div style="font-size: 2.5rem; font-weight: 800; color: #34d399;" id="rep-accuracy">0%</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Tỷ Lệ Chính Xác</div>
+          </div>
+
+          <div class="card" style="text-align: center; background: rgba(245, 158, 11, 0.15);">
+            <div style="font-size: 2.5rem; font-weight: 800; color: #fbbf24;" id="rep-rank">Chưa Xếp Loại</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Xếp Loại Học Tập</div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: #e0e7ff;">📊 Chi Tiết Điểm Số Từng Phần:</h3>
+        <div id="rep-breakdown-list" style="margin-bottom: 2rem;">
+          <!-- Breakdown list -->
+        </div>
+
+        <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: #e0e7ff;">💬 Lời Khuyên & Nhận Xét Sư Phạm:</h3>
+        <div id="rep-feedback-box" class="card" style="background: rgba(15, 23, 42, 0.5); font-size: 0.95rem; line-height: 1.6; color: #cbd5e1;">
+          Hãy hoàn thành các bài tập để nhận báo cáo nhận xét chi tiết.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* ============================================================
+       1. DATA STRUCTURES & GLOBAL STATE
+       ============================================================ */
+
+    // Full Reading Passage Sentences (Tiếng Anh 6 - SLEEP & HEALTH)
+    const PASSAGE_SENTENCES = [
+      { id: "s1", text: "Sleep plays a very important role in our health and daily life." },
+      { id: "s2", text: "For Grade 6 students, getting enough sleep every night helps the body grow and stay healthy." },
+      { id: "s3", text: "Experts say that children between 10 and 12 years old need about 9 to 11 hours of sleep each night." },
+      { id: "s4", text: "When you sleep well, your brain has time to rest and process information from school lessons." },
+      { id: "s5", text: "This makes it easier to concentrate, remember vocabulary, and solve difficult math problems the next day." },
+      { id: "s6", text: "On the other hand, lack of sleep makes you feel tired, moody, and easily distracted during classes." },
+      { id: "s7", text: "To have a healthy sleep routine, you should follow simple habits." },
+      { id: "s8", text: "First, go to bed and wake up at the same time every day." },
+      { id: "s9", text: "Second, keep your bedroom quiet, dark, and cool." },
+      { id: "s10", text: "Third, avoid drinking sugary drinks or eating heavy meals before bedtime." },
+      { id: "s11", text: "Finally, turn off smartphones, tablets, and TV screens at least 30 minutes before sleeping because screen light can disrupt your natural sleep cycle." },
+      { id: "s12", text: "Good sleep hygiene brings energy, happiness, and academic success to every student!" }
+    ];
+
+    // 10 Key Vocabulary Items
+    const VOCAB_DATA = [
+      { id: "v1", word: "health", ipa: "/helθ/", meaning: "sức khỏe", example: "Sleep plays an important role in our health.", dist: ["bệnh tật", "thói quen", "trí nhớ"] },
+      { id: "v2", word: "concentrate", ipa: "/ˈkɒnsəntreɪt/", meaning: "tập trung", example: "Sleeping well helps students concentrate in class.", dist: ["xao nhãng", "xử lý", "xáo trộn"] },
+      { id: "v3", word: "routine", ipa: "/ruːˈtiːn/", meaning: "thói quen hàng ngày", example: "You should have a healthy sleep routine.", dist: ["chuyên gia", "bài học", "môi trường"] },
+      { id: "v4", word: "disrupt", ipa: "/dɪsˈrʌpt/", meaning: "làm gián đoạn / xáo trộn", example: "Screen light can disrupt your sleep cycle.", dist: ["phát triển", "tập trung", "giúp đỡ"] },
+      { id: "v5", word: "hygiene", ipa: "/ˈhaɪdʒiːn/", meaning: "vệ sinh (giấc ngủ)", example: "Good sleep hygiene brings energy and happiness.", dist: ["học tập", "cá tính", "thức ăn"] },
+      { id: "v6", word: "distracted", ipa: "/dɪˈstræktɪd/", meaning: "bị xao nhãng / mất tập trung", example: "Lack of sleep makes students easily distracted.", dist: ["khỏe mạnh", "thông minh", "vui vẻ"] },
+      { id: "v7", word: "academic", ipa: "/ˌækəˈdemɪk/", meaning: "thuộc học tập / học thuật", example: "Sleep hygiene brings academic success.", dist: ["thể thao", "giải trí", "thiên nhiên"] },
+      { id: "v8", word: "expert", ipa: "/ˈekspɜːt/", meaning: "chuyên gia", example: "Experts say children need 9 to 11 hours of sleep.", dist: ["học sinh", "bác sĩ", "phụ huynh"] },
+      { id: "v9", word: "moody", ipa: "/ˈmuːdi/", meaning: "dễ cáu kỉnh / u sầu", example: "Lack of sleep makes you feel tired and moody.", dist: ["vui vẻ", "tự tin", "năng động"] },
+      { id: "v10", word: "process", ipa: "/ˈprəʊses/", meaning: "xử lý (thông tin)", example: "Your brain needs time to process information.", dist: ["quên đi", "tạo ra", "học thuộc"] }
+    ];
+
+    // Collocation Quiz Questions (3 Types)
+    const PHRASE_QUIZ_DATA = [
+      {
+        id: "p1",
+        type: "fill",
+        question: "Điền từ đúng để tạo cụm từ có nghĩa: '_______ a healthy sleep routine'",
+        options: ["have", "make", "take", "do"],
+        correct: "have",
+        explanation: "Cụm từ chuẩn trong bài đọc là 'have a healthy sleep routine' (có một thói quen ngủ lành mạnh)."
+      },
+      {
+        id: "p2",
+        type: "fill",
+        question: "Điền từ đúng: '_______ off smartphones before sleeping'",
+        options: ["turn", "get", "put", "take"],
+        correct: "turn",
+        explanation: "Cụm động từ 'turn off' có nghĩa là tắt các thiết bị điện tử."
+      },
+      {
+        id: "p3",
+        type: "match",
+        question: "Ghép nửa cụm từ đúng: 'disrupt your natural _______'",
+        options: ["sleep cycle", "health time", "bed room", "school lesson"],
+        correct: "sleep cycle",
+        explanation: "Cụm từ chuẩn là 'disrupt your natural sleep cycle' (làm xáo trộn chu kỳ ngủ tự nhiên)."
+      },
+      {
+        id: "p4",
+        type: "synonym",
+        question: "Cụm từ nào ĐỒNG NGHĨA với 'getting enough sleep'?",
+        options: ["sleeping 9-11 hours each night", "sleeping late at night", "waking up early", "avoiding bedtime"],
+        correct: "sleeping 9-11 hours each night",
+        explanation: "'Getting enough sleep' có nghĩa là ngủ đủ giấc (9-11 tiếng mỗi đêm cho học sinh lớp 6)."
+      },
+      {
+        id: "p5",
+        type: "fill",
+        question: "Điền từ đúng: 'play an important _______ in our health'",
+        options: ["role", "game", "part", "work"],
+        correct: "role",
+        explanation: "Cụm từ cấu trúc: 'play an important role in...' (đóng vai trò quan trọng trong...)."
+      }
+    ];
+
+    // Sentence Reorder Builder Questions
+    const SENTENCE_BUILDER_DATA = [
+      {
+        id: "s_b1",
+        target: "Sleep plays an important role in our health.",
+        chunks: ["Sleep", "plays", "an important role", "in our health."]
+      },
+      {
+        id: "s_b2",
+        target: "Students need about 9 to 11 hours of sleep.",
+        chunks: ["Students", "need", "about 9 to 11 hours", "of sleep."]
+      },
+      {
+        id: "s_b3",
+        target: "You should turn off phone screens before bedtime.",
+        chunks: ["You should", "turn off", "phone screens", "before bedtime."]
+      }
+    ];
+
+    // 10 Reading Comprehension Questions (8 Types)
+    const READING_QUIZ_DATA = [
+      {
+        id: "rq1",
+        type: "Main Idea",
+        question: "What is the main topic of the reading passage?",
+        options: [
+          "The importance of good sleep for health and study",
+          "How to solve difficult math problems easily",
+          "The history of smartphones and tablets",
+          "Different kinds of bedrooms for students"
+        ],
+        correct: "The importance of good sleep for health and study",
+        explanation: "Ý chính của bài đọc là tầm quan trọng của giấc ngủ đối với sức khỏe và việc học tập của học sinh.",
+        quote: "Sentence 1 & 12: 'Sleep plays a very important role in our health... Good sleep hygiene brings energy, happiness, and academic success...'"
+      },
+      {
+        id: "rq2",
+        type: "Detail",
+        question: "According to experts, how many hours of sleep do 10-12 year old children need each night?",
+        options: ["9 to 11 hours", "6 to 8 hours", "12 to 14 hours", "5 to 7 hours"],
+        correct: "9 to 11 hours",
+        explanation: "Chi tiết trong bài ghi rõ học sinh 10-12 tuổi cần khoảng 9 đến 11 tiếng ngủ mỗi đêm.",
+        quote: "Sentence 3: 'Experts say that children between 10 and 12 years old need about 9 to 11 hours of sleep each night.'"
+      },
+      {
+        id: "rq3",
+        type: "Reference",
+        question: "In sentence 5, what does the word 'This' refer to?",
+        options: [
+          "Having time for the brain to rest and process information",
+          "Playing video games before going to bed",
+          "Waking up late in the morning",
+          "Drinking sugary drinks at night"
+        ],
+        correct: "Having time for the brain to rest and process information",
+        explanation: "'This' ở đầu câu 5 thay thế cho việc bộ não có thời gian nghỉ ngơi và xử lý thông tin được nhắc ở câu 4.",
+        quote: "Sentence 4 & 5: '...your brain has time to rest and process information... This makes it easier to concentrate...'"
+      },
+      {
+        id: "rq4",
+        type: "Contextual Vocab",
+        question: "What does the word 'concentrate' mean in the passage?",
+        options: [
+          "To pay full attention to something",
+          "To sleep very deeply",
+          "To feel tired and moody",
+          "To turn off electronics"
+        ],
+        correct: "To pay full attention to something",
+        explanation: "'Concentrate' nghĩa là tập trung chú ý vào việc học hoặc giải bài tập.",
+        quote: "Sentence 5: 'This makes it easier to concentrate, remember vocabulary...'"
+      },
+      {
+        id: "rq5",
+        type: "Inference",
+        question: "What might happen if a student only sleeps 5 hours a night?",
+        options: [
+          "They will feel tired, moody, and easily distracted in class.",
+          "They will solve math problems much faster.",
+          "They will remember vocabulary better.",
+          "They will get higher test scores automatically."
+        ],
+        correct: "They will feel tired, moody, and easily distracted in class.",
+        explanation: "Suy luận từ bài đọc: Thiếu ngủ (chỉ ngủ 5 tiếng) sẽ khiến học sinh mệt mỏi và xao nhãng.",
+        quote: "Sentence 6: 'On the other hand, lack of sleep makes you feel tired, moody, and easily distracted...'"
+      },
+      {
+        id: "rq6",
+        type: "True / False",
+        question: "Which of the following is NOT recommended before bedtime?",
+        options: [
+          "Drinking sugary drinks or eating heavy meals",
+          "Keeping the bedroom dark and quiet",
+          "Going to bed at a regular time",
+          "Turning off phone screens 30 minutes earlier"
+        ],
+        correct: "Drinking sugary drinks or eating heavy meals",
+        explanation: "Bài đọc khuyên NÊN TRÁNH (avoid) uống nước ngọt hay ăn quá no trước khi ngủ.",
+        quote: "Sentence 10: 'Third, avoid drinking sugary drinks or eating heavy meals before bedtime.'"
+      },
+      {
+        id: "rq7",
+        type: "Detail Time",
+        question: "How long before sleeping should you turn off phone and TV screens?",
+        options: ["At least 30 minutes", "5 minutes", "2 hours", "10 minutes"],
+        correct: "At least 30 minutes",
+        explanation: "Nên tắt màn hình thiết bị điện tử ít nhất 30 phút trước khi đi ngủ.",
+        quote: "Sentence 11: 'Finally, turn off smartphones... at least 30 minutes before sleeping...'"
+      },
+      {
+        id: "rq8",
+        type: "Author Attitude",
+        question: "What is the author's attitude towards sleep hygiene?",
+        options: [
+          "Encouraging and supportive of good sleep habits",
+          "Uninterested and bored",
+          "Negative and doubtful",
+          "Strict and angry"
+        ],
+        correct: "Encouraging and supportive of good sleep habits",
+        explanation: "Tác giả có thái độ khuyến khích, tích cực đối với việc xây dựng thói quen ngủ tốt.",
+        quote: "Sentence 12: 'Good sleep hygiene brings energy, happiness, and academic success to every student!'"
+      },
+      {
+        id: "rq9",
+        type: "Detail",
+        question: "How should your bedroom environment be to help you sleep well?",
+        options: [
+          "Quiet, dark, and cool",
+          "Bright, noisy, and hot",
+          "Full of electronics and TV screens",
+          "Loud with music all night"
+        ],
+        correct: "Quiet, dark, and cool",
+        explanation: "Phòng ngủ cần giữ yên tĩnh, tối và mát mẻ.",
+        quote: "Sentence 9: 'Second, keep your bedroom quiet, dark, and cool.'"
+      },
+      {
+        id: "rq10",
+        type: "Summary",
+        question: "Good sleep hygiene helps students achieve which 3 things?",
+        options: [
+          "Energy, happiness, and academic success",
+          "Money, games, and smartphones",
+          "More homework, stress, and tiredness",
+          "Faster running speed only"
+        ],
+        correct: "Energy, happiness, and academic success",
+        explanation: "Vệ sinh giấc ngủ tốt mang lại năng lượng, niềm vui và thành công trong học tập.",
+        quote: "Sentence 12: 'Good sleep hygiene brings energy, happiness, and academic success...'"
+      }
+    ];
+
+    // Global State Container
+    let state = {
+      speechRate: 0.8,
+      selectedVoiceURI: "",
+      totalScore: 0,
+      breakdownScores: {
+        vocab: 0,
+        phrases: 0,
+        sentences: 0,
+        reading: 0
+      },
+      answeredMap: {}, // id -> boolean / score
+      completedTasks: {},
+      wrongVocabIds: [],
+      wrongQuizIds: []
+    };
+
+    let availableVoices = [];
+    let currentSpeechUtterance = null;
+    let passageSpeakingIndex = -1;
+
+    /* ============================================================
+       2. UTILITIES & ALGORITHMS (Fisher-Yates Shuffle)
+       ============================================================ */
+
+    // Standard Fisher-Yates Shuffle Algorithm
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Save State to LocalStorage
+    function saveState() {
+      localStorage.setItem("sleep_english_game_state", JSON.stringify(state));
+      updateUIStats();
+    }
+
+    // Load State from LocalStorage
+    function loadState() {
+      const saved = localStorage.getItem("sleep_english_game_state");
+      if (saved) {
+        try {
+          state = JSON.parse(saved);
+        } catch (e) {
+          console.error("Failed to parse saved state:", e);
+        }
+      }
+    }
+
+    // Update Top Navigation Bar Stats
+    function updateUIStats() {
+      document.getElementById("header-score").innerText = state.totalScore;
+      
+      const totalItems = 10 + 5 + 3 + 10; // vocab (10), phrases (5), sentences (3), reading (10)
+      const answeredCount = Object.keys(state.answeredMap).length;
+      const pct = Math.min(100, Math.round((answeredCount / totalItems) * 100));
+      
+      document.getElementById("header-progress").innerText = pct + "%";
+
+      // Update Mission Progress Bars
+      document.getElementById("prog-m1").style.width = "100%";
+      document.getElementById("prog-m2").style.width = Math.min(100, Math.round((countCategoryAnswered("v_") / 10) * 100)) + "%";
+      document.getElementById("prog-m3").style.width = Math.min(100, Math.round((countCategoryAnswered("p") / 5) * 100)) + "%";
+      document.getElementById("prog-m4").style.width = Math.min(100, Math.round((countCategoryAnswered("s_b") / 3) * 100)) + "%";
+      document.getElementById("prog-m5").style.width = Math.min(100, Math.round((countCategoryAnswered("rq") / 10) * 100)) + "%";
+
+      updateReportSection();
+    }
+
+    function countCategoryAnswered(prefix) {
+      return Object.keys(state.answeredMap).filter(k => k.startsWith(prefix)).length;
+    }
+
+    /* ============================================================
+       3. SPEECH SYNTHESIS CONTROLLER
+       ============================================================ */
+
+    function initSpeechSynthesis() {
+      if (!('speechSynthesis' in window)) {
+        alert("Rất tiếc! Trình duyệt của bạn không hỗ trợ SpeechSynthesis API.");
+        return;
+      }
+
+      function populateVoices() {
+        const voices = window.speechSynthesis.getVoices();
+        availableVoices = voices.filter(v => v.lang.startsWith("en"));
+
+        const voiceSelect = document.getElementById("voice-select");
+        voiceSelect.innerHTML = "";
+
+        if (availableVoices.length === 0) {
+          voiceSelect.innerHTML = `<option value="">Không tìm thấy giọng Tiếng Anh</option>`;
+          return;
+        }
+
+        availableVoices.forEach((v, index) => {
+          const option = document.createElement("option");
+          option.value = v.voiceURI;
+          option.textContent = `${v.name} (${v.lang}) ${v.default ? ' — Mặc định' : ''}`;
+          if (state.selectedVoiceURI && v.voiceURI === state.selectedVoiceURI) {
+            option.selected = true;
+          } else if (!state.selectedVoiceURI && (v.lang === "en-US" || v.lang === "en-GB")) {
+            option.selected = true;
+            state.selectedVoiceURI = v.voiceURI;
+          }
+          voiceSelect.appendChild(option);
+        });
+
+        updateVoiceNameDisplay();
+      }
+
+      populateVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = populateVoices;
+      }
+    }
+
+    function getSelectedVoice() {
+      if (!state.selectedVoiceURI && availableVoices.length > 0) {
+        return availableVoices[0];
+      }
+      return availableVoices.find(v => v.voiceURI === state.selectedVoiceURI) || availableVoices[0];
+    }
+
+    function speakText(text, cancelPrevious = true, onEndCallback = null) {
+      if (!('speechSynthesis' in window)) return;
+
+      if (cancelPrevious) {
+        window.speechSynthesis.cancel();
+      }
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = parseFloat(state.speechRate) || 0.8;
+      
+      const voice = getSelectedVoice();
+      if (voice) {
+        utterance.voice = voice;
+      }
+
+      utterance.onend = () => {
+        if (onEndCallback) onEndCallback();
+      };
+
+      utterance.onerror = (e) => {
+        console.warn("Speech error:", e);
+      };
+
+      currentSpeechUtterance = utterance;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function pauseAudio() {
+      window.speechSynthesis.pause();
+    }
+
+    function resumeAudio() {
+      window.speechSynthesis.resume();
+    }
+
+    function stopAudio() {
+      window.speechSynthesis.cancel();
+      clearSentenceHighlights();
+    }
+
+    function onVoiceChange(voiceURI) {
+      state.selectedVoiceURI = voiceURI;
+      saveState();
+      updateVoiceNameDisplay();
+    }
+
+    function onRateSliderChange(val) {
+      state.speechRate = parseFloat(val);
+      document.getElementById("rate-val-display").innerText = val + "x";
+      document.getElementById("select-passage-rate").value = val;
+      saveState();
+      updateVoiceNameDisplay();
+    }
+
+    function setQuickRate(rate) {
+      document.getElementById("rate-slider").value = rate;
+      onRateSliderChange(rate);
+    }
+
+    function updateRateFromPassage(val) {
+      setQuickRate(val);
+    }
+
+    function updateVoiceNameDisplay() {
+      const voice = getSelectedVoice();
+      const nameStr = voice ? (voice.lang.includes("US") ? "En-US" : "En-GB") : "En-US";
+      document.getElementById("header-voice-name").innerText = `${nameStr} (${state.speechRate}x)`;
+    }
+
+    /* ============================================================
+       4. TAB NAVIGATION CONTROLLER
+       ============================================================ */
+
+    function switchTab(tabId) {
+      stopAudio();
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(sec => sec.classList.remove("active"));
+
+      const targetBtn = Array.from(document.querySelectorAll(".tab-btn")).find(b => b.getAttribute("onclick").includes(tabId));
+      if (targetBtn) targetBtn.classList.add("active");
+
+      const targetSec = document.getElementById(`tab-${tabId}`);
+      if (targetSec) targetSec.classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ============================================================
+       5. PASSAGE RENDERER & INTERACTIVE AUDIO
+       ============================================================ */
+
+    function renderPassage() {
+      const container = document.getElementById("passage-container");
+      container.innerHTML = "";
+
+      PASSAGE_SENTENCES.forEach((sentenceObj, sIndex) => {
+        const span = document.createElement("span");
+        span.className = "passage-sentence";
+        span.id = `sent-${sentenceObj.id}`;
+        
+        // Highlight keywords inside text
+        let htmlText = sentenceObj.text;
+        VOCAB_DATA.forEach(v => {
+          const regex = new RegExp(`\\b(${v.word})\\b`, 'gi');
+          htmlText = htmlText.replace(regex, `<span class="vocab-hl" onclick="speakVocabWord('${v.word}', event)">$1</span>`);
+        });
+
+        span.innerHTML = htmlText + " ";
+        span.onclick = (e) => {
+          if (!e.target.classList.contains("vocab-hl")) {
+            playSingleSentence(sIndex);
+          }
+        };
+
+        container.appendChild(span);
+      });
+    }
+
+    function clearSentenceHighlights() {
+      document.querySelectorAll(".passage-sentence").forEach(s => s.classList.remove("highlight"));
+    }
+
+    function playSingleSentence(index) {
+      stopAudio();
+      clearSentenceHighlights();
+      
+      const sObj = PASSAGE_SENTENCES[index];
+      if (!sObj) return;
+
+      const element = document.getElementById(`sent-${sObj.id}`);
+      if (element) element.classList.add("highlight");
+
+      speakText(sObj.text, true, () => {
+        if (element) element.classList.remove("highlight");
+      });
+    }
+
+    function playFullPassage() {
+      stopAudio();
+      clearSentenceHighlights();
+      passageSpeakingIndex = 0;
+
+      function speakNext() {
+        if (passageSpeakingIndex >= PASSAGE_SENTENCES.length) {
+          clearSentenceHighlights();
+          document.getElementById("play-icon").innerText = "▶";
+          return;
+        }
+
+        clearSentenceHighlights();
+        const sObj = PASSAGE_SENTENCES[passageSpeakingIndex];
+        const elem = document.getElementById(`sent-${sObj.id}`);
+        if (elem) {
+          elem.classList.add("highlight");
+          elem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        speakText(sObj.text, false, () => {
+          passageSpeakingIndex++;
+          speakNext();
+        });
+      }
+
+      document.getElementById("play-icon").innerText = "⏸";
+      speakNext();
+    }
+
+    function speakVocabWord(word, event) {
+      if (event) event.stopPropagation();
+      speakText(word, true);
+    }
+
+    /* ============================================================
+       6. VOCABULARY SECTION RENDERER & QUIZ
+       ============================================================ */
+
+    let currentVocabQuizIdx = 0;
+    let shuffledVocabData = [];
+
+    function renderVocabSection() {
+      const container = document.getElementById("vocab-cards-container");
+      container.innerHTML = "";
+
+      VOCAB_DATA.forEach(v => {
+        const card = document.createElement("div");
+        card.className = "v-card";
+        card.onclick = () => speakText(`${v.word}. ${v.meaning}`, true);
+
+        card.innerHTML = `
+          <div class="v-word">
+            <span>${v.word}</span>
+            <span style="font-size: 1rem;">🔊</span>
+          </div>
+          <div class="v-ipa">${v.ipa}</div>
+          <div class="v-meaning">${v.meaning}</div>
+          <div class="v-example">"${v.example}"</div>
+        `;
+        container.appendChild(card);
+      });
+
+      shuffledVocabData = shuffleArray(VOCAB_DATA);
+      currentVocabQuizIdx = 0;
+      renderVocabQuizQuestion();
+    }
+
+    function renderVocabQuizQuestion() {
+      const quizContainer = document.getElementById("vocab-quiz-container");
+      if (currentVocabQuizIdx >= shuffledVocabData.length) {
+        quizContainer.innerHTML = `
+          <div style="text-align: center; padding: 1.5rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎉</div>
+            <h4 style="font-size: 1.2rem; font-weight: 700; color: #34d399;">Hoàn Thành Thử Thách Từ Vựng!</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0 1rem 0;">Bạn đã ôn tập xong tất cả 10 từ vựng trọng tâm bài SLEEP.</p>
+            <button class="btn btn-secondary" onclick="renderVocabSection()">🔄 Luyện Tập Lại Từ Đầu</button>
+          </div>
+        `;
+        return;
+      }
+
+      const qData = shuffledVocabData[currentVocabQuizIdx];
+      const qKey = `v_${qData.id}`;
+      const isAnswered = state.answeredMap[qKey] !== undefined;
+
+      // Prepare 4 options (1 correct + 3 distractors) using Fisher-Yates
+      const allOpts = shuffleArray([qData.meaning, ...qData.dist]);
+
+      quizContainer.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--accent);">Câu hỏi ${currentVocabQuizIdx + 1}/10</span>
+          <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="speakText('${qData.word}')">🔊 Nghe phát âm</button>
+        </div>
+
+        <div style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: #ffffff;">
+          Từ vựng "<span style="color: #38bdf8;">${qData.word}</span>" (${qData.ipa}) có nghĩa là gì?
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-bottom: 1rem;">
+          Ví dụ: "${qData.example}"
+        </div>
+
+        <div class="options-grid" id="v-opts-${qData.id}">
+          ${allOpts.map(opt => `
+            <button class="opt-btn ${isAnswered ? (opt === qData.meaning ? 'correct' : '') : ''}" 
+                    ${isAnswered ? 'disabled' : ''} 
+                    onclick="checkVocabAnswer('${qData.id}', '${opt.replace(/'/g, "\\'")}', '${qData.meaning.replace(/'/g, "\\'")}', this)">
+              <span>${opt}</span>
+            </button>
+          `).join('')}
+        </div>
+
+        <div id="v-fb-${qData.id}" class="quiz-feedback ${isAnswered ? (state.answeredMap[qKey] > 0 ? 'correct' : 'wrong') : ''}">
+          ${isAnswered ? (state.answeredMap[qKey] > 0 ? `✅ Chính xác! +10 điểm. Từ <strong>${qData.word}</strong> nghĩa là: ${qData.meaning}.` : `❌ Chưa đúng! Từ <strong>${qData.word}</strong> nghĩa là: <strong>${qData.meaning}</strong>.`) : ''}
+        </div>
+
+        <div style="margin-top: 1rem; text-align: right;">
+          <button class="btn" onclick="nextVocabQuestion()">Câu tiếp theo ➔</button>
+        </div>
+      `;
+    }
+
+    function checkVocabAnswer(id, selectedOpt, correctOpt, btnElem) {
+      const qKey = `v_${id}`;
+      if (state.answeredMap[qKey] !== undefined) return;
+
+      const optsContainer = document.getElementById(`v-opts-${id}`);
+      const fbElem = document.getElementById(`v-fb-${id}`);
+      const isCorrect = selectedOpt === correctOpt;
+
+      if (isCorrect) {
+        btnElem.classList.add("correct");
+        fbElem.className = "quiz-feedback correct";
+        fbElem.innerHTML = `✅ Chính xác! +10 điểm. Từ <strong>${selectedOpt}</strong> là nghĩa đúng.`;
+        
+        // Add score once
+        state.totalScore += 10;
+        state.breakdownScores.vocab += 10;
+        state.answeredMap[qKey] = 10;
+        speakText("Correct! Well done.", true);
+      } else {
+        btnElem.classList.add("wrong");
+        fbElem.className = "quiz-feedback wrong";
+        fbElem.innerHTML = `❌ Chưa đúng! Đáp án chính xác là: <strong>${correctOpt}</strong>.`;
+        
+        // Highlight correct option
+        Array.from(optsContainer.children).forEach(b => {
+          if (b.innerText.includes(correctOpt)) b.classList.add("correct");
+        });
+
+        state.answeredMap[qKey] = 0;
+        state.wrongVocabIds.push(id);
+        speakText("Not quite right.", true);
+      }
+
+      // Disable all option buttons
+      Array.from(optsContainer.children).forEach(b => b.disabled = true);
+      saveState();
+    }
+
+    function nextVocabQuestion() {
+      currentVocabQuizIdx++;
+      renderVocabQuizQuestion();
+    }
+
+    /* ============================================================
+       7. PHRASE MATCHING SECTION
+       ============================================================ */
+
+    let currentPhraseIdx = 0;
+    let shuffledPhraseData = [];
+
+    function renderPhraseSection() {
+      shuffledPhraseData = shuffleArray(PHRASE_QUIZ_DATA);
+      currentPhraseIdx = 0;
+      renderPhraseQuestion();
+    }
+
+    function renderPhraseQuestion() {
+      const container = document.getElementById("phrase-quiz-container");
+      if (currentPhraseIdx >= shuffledPhraseData.length) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 1.5rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎉</div>
+            <h4 style="font-size: 1.2rem; font-weight: 700; color: #34d399;">Hoàn Thành Luyện Tập Cụm Từ!</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0 1rem 0;">Bạn đã làm xong 5 bài tập ghép cụm từ Tiếng Anh.</p>
+            <button class="btn btn-secondary" onclick="renderPhraseSection()">🔄 Ôn Luyện Lại</button>
+          </div>
+        `;
+        return;
+      }
+
+      const qData = shuffledPhraseData[currentPhraseIdx];
+      const qKey = qData.id;
+      const isAnswered = state.answeredMap[qKey] !== undefined;
+
+      const opts = shuffleArray(qData.options);
+
+      container.innerHTML = `
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">
+          Cụm Từ ${currentPhraseIdx + 1}/5
+        </div>
+        <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: #ffffff;">
+          ${qData.question}
+        </div>
+
+        <div class="options-grid" id="p-opts-${qData.id}">
+          ${opts.map(opt => `
+            <button class="opt-btn ${isAnswered ? (opt === qData.correct ? 'correct' : '') : ''}"
+                    ${isAnswered ? 'disabled' : ''}
+                    onclick="checkPhraseAnswer('${qData.id}', '${opt}', '${qData.correct}', this)">
+              <span>${opt}</span>
+            </button>
+          `).join('')}
+        </div>
+
+        <div id="p-fb-${qData.id}" class="quiz-feedback ${isAnswered ? (state.answeredMap[qKey] > 0 ? 'correct' : 'wrong') : ''}">
+          ${isAnswered ? (state.answeredMap[qKey] > 0 ? `✅ Chính xác! +10 điểm.<br>💡 <em>${qData.explanation}</em>` : `❌ Chưa đúng! Đáp án đúng là <strong>${qData.correct}</strong>.<br>💡 <em>${qData.explanation}</em>`) : ''}
+        </div>
+
+        <div style="margin-top: 1rem; text-align: right;">
+          <button class="btn" onclick="nextPhraseQuestion()">Câu tiếp theo ➔</button>
+        </div>
+      `;
+    }
+
+    function checkPhraseAnswer(id, selected, correct, btnElem) {
+      const qKey = id;
+      if (state.answeredMap[qKey] !== undefined) return;
+
+      const qData = PHRASE_QUIZ_DATA.find(p => p.id === id);
+      const optsContainer = document.getElementById(`p-opts-${id}`);
+      const fbElem = document.getElementById(`p-fb-${id}`);
+
+      if (selected === correct) {
+        btnElem.classList.add("correct");
+        fbElem.className = "quiz-feedback correct";
+        fbElem.innerHTML = `✅ Chính xác! +10 điểm.<br>💡 <em>${qData.explanation}</em>`;
+
+        state.totalScore += 10;
+        state.breakdownScores.phrases += 10;
+        state.answeredMap[qKey] = 10;
+        speakText("Great job!", true);
+      } else {
+        btnElem.classList.add("wrong");
+        fbElem.className = "quiz-feedback wrong";
+        fbElem.innerHTML = `❌ Chưa đúng! Đáp án chuẩn là <strong>${correct}</strong>.<br>💡 <em>${qData.explanation}</em>`;
+
+        Array.from(optsContainer.children).forEach(b => {
+          if (b.innerText.includes(correct)) b.classList.add("correct");
+        });
+
+        state.answeredMap[qKey] = 0;
+      }
+
+      Array.from(optsContainer.children).forEach(b => b.disabled = true);
+      saveState();
+    }
+
+    function nextPhraseQuestion() {
+      currentPhraseIdx++;
+      renderPhraseQuestion();
+    }
+
+    /* ============================================================
+       8. SENTENCE BUILDER SECTION
+       ============================================================ */
+
+    let currentSentenceIdx = 0;
+    let selectedChunks = [];
+
+    function renderSentenceSection() {
+      currentSentenceIdx = 0;
+      renderSentenceQuestion();
+    }
+
+    function renderSentenceQuestion() {
+      const container = document.getElementById("sentence-builder-container");
+      if (currentSentenceIdx >= SENTENCE_BUILDER_DATA.length) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 1.5rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎉</div>
+            <h4 style="font-size: 1.2rem; font-weight: 700; color: #34d399;">Hoàn Thành Luyện Sắp Xếp Câu!</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0 1rem 0;">Bạn đã hoàn thành các câu cấu trúc ngữ pháp chuẩn.</p>
+            <button class="btn btn-secondary" onclick="renderSentenceSection()">🔄 Thử Lại</button>
+          </div>
+        `;
+        return;
+      }
+
+      const qData = SENTENCE_BUILDER_DATA[currentSentenceIdx];
+      const qKey = qData.id;
+      const isAnswered = state.answeredMap[qKey] !== undefined;
+
+      selectedChunks = [];
+      const shuffledChunks = shuffleArray(qData.chunks);
+
+      container.innerHTML = `
+        <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem;">
+          Câu ${currentSentenceIdx + 1}/3
+        </div>
+        <div style="font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; color: #ffffff;">
+          Nhấp vào các từ dưới đây theo đúng thứ tự để tạo câu hoàn chỉnh:
+        </div>
+
+        <!-- Selected Chunks Display Box -->
+        <div id="selected-chunks-box" class="phrase-chunks" style="border-style: solid; border-color: var(--primary);">
+          ${isAnswered ? `<span style="color: #34d399; font-weight: 700;">${qData.target}</span>` : '<span style="color: var(--text-muted); font-size: 0.85rem;">Nhấp các khối từ phía dưới...</span>'}
+        </div>
+
+        <!-- Pool of Available Chunks -->
+        <div id="pool-chunks-box" class="phrase-chunks">
+          ${!isAnswered ? shuffledChunks.map(c => `
+            <div class="chunk-chip" onclick="toggleChunk('${c.replace(/'/g, "\\'")}', this)">${c}</div>
+          `).join('') : ''}
+        </div>
+
+        <div id="s-fb-${qData.id}" class="quiz-feedback ${isAnswered ? 'correct' : ''}">
+          ${isAnswered ? `✅ Câu đúng chuẩn: <strong>${qData.target}</strong>` : ''}
+        </div>
+
+        <div style="margin-top: 1rem; display: flex; gap: 0.75rem; justify-content: flex-end;">
+          ${!isAnswered ? `<button class="btn btn-secondary" onclick="resetSentenceChunks()">🔄 Xếp lại</button>` : ''}
+          ${!isAnswered ? `<button class="btn btn-success" onclick="checkSentenceAnswer('${qData.id}')">✔️ Kiểm Tra Câu</button>` : ''}
+          ${isAnswered ? `<button class="btn" onclick="nextSentenceQuestion()">Câu tiếp ➔</button>` : ''}
+        </div>
+      `;
+    }
+
+    function toggleChunk(chunkText, elem) {
+      if (elem.style.display === "none") return;
+
+      selectedChunks.push(chunkText);
+      elem.style.display = "none";
+
+      const box = document.getElementById("selected-chunks-box");
+      box.innerHTML = selectedChunks.map(c => `<span class="chunk-chip" style="background: var(--primary);">${c}</span>`).join(" ");
+    }
+
+    function resetSentenceChunks() {
+      selectedChunks = [];
+      const qData = SENTENCE_BUILDER_DATA[currentSentenceIdx];
+      renderSentenceQuestion();
+    }
+
+    function checkSentenceAnswer(id) {
+      const qKey = id;
+      if (state.answeredMap[qKey] !== undefined) return;
+
+      const qData = SENTENCE_BUILDER_DATA.find(s => s.id === id);
+      const userSentence = selectedChunks.join(" ").trim();
+      const fbElem = document.getElementById(`s-fb-${id}`);
+
+      if (userSentence === qData.target) {
+        fbElem.className = "quiz-feedback correct";
+        fbElem.innerHTML = `✅ Chính xác tuyệt đối! +10 điểm.<br>💬 <strong>${qData.target}</strong>`;
+        
+        state.totalScore += 10;
+        state.breakdownScores.sentences += 10;
+        state.answeredMap[qKey] = 10;
+        speakText(qData.target, true);
+      } else {
+        fbElem.className = "quiz-feedback wrong";
+        fbElem.innerHTML = `❌ Chưa chính xác. Câu đúng chuẩn là:<br>👉 <strong>${qData.target}</strong>`;
+        state.answeredMap[qKey] = 0;
+      }
+
+      saveState();
+      setTimeout(() => renderSentenceQuestion(), 1800);
+    }
+
+    function nextSentenceQuestion() {
+      currentSentenceIdx++;
+      renderSentenceQuestion();
+    }
+
+    /* ============================================================
+       9. READING COMPREHENSION QUIZ SECTION
+       ============================================================ */
+
+    let currentReadingIdx = 0;
+
+    function renderReadingQuizSection() {
+      currentReadingIdx = 0;
+      renderReadingQuestion();
+    }
+
+    function renderReadingQuestion() {
+      const container = document.getElementById("reading-quiz-container");
+      if (currentReadingIdx >= READING_QUIZ_DATA.length) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 1.5rem;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🏆</div>
+            <h4 style="font-size: 1.2rem; font-weight: 700; color: #34d399;">Chúc Mừng! Hoàn Thành 10 Câu Đọc Hiểu!</h4>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0 1rem 0;">Bạn đã hoàn thành trọn bộ bài tập đọc hiểu về Giấc Ngủ & Sức Khỏe.</p>
+            <button class="btn btn-success" onclick="switchTab('report')">📈 Xem Báo Cáo Kết Quả</button>
+          </div>
+        `;
+        return;
+      }
+
+      const qData = READING_QUIZ_DATA[currentReadingIdx];
+      const qKey = qData.id;
+      const isAnswered = state.answeredMap[qKey] !== undefined;
+
+      const opts = shuffleArray(qData.options);
+
+      container.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--secondary);">Câu ${currentReadingIdx + 1}/10 • Dạng bài: ${qData.type}</span>
+          <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="speakText('${qData.question.replace(/'/g, "\\'")}')">🔊 Nghe câu hỏi</button>
+        </div>
+
+        <div style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: #ffffff; line-height: 1.4;">
+          ${qData.question}
+        </div>
+
+        <div class="options-grid" id="rq-opts-${qData.id}">
+          ${opts.map(opt => `
+            <button class="opt-btn ${isAnswered ? (opt === qData.correct ? 'correct' : '') : ''}"
+                    ${isAnswered ? 'disabled' : ''}
+                    onclick="checkReadingAnswer('${qData.id}', '${opt.replace(/'/g, "\\'")}', '${qData.correct.replace(/'/g, "\\'")}', this)">
+              <span>${opt}</span>
+            </button>
+          `).join('')}
+        </div>
+
+        <div id="rq-fb-${qData.id}" class="quiz-feedback ${isAnswered ? (state.answeredMap[qKey] > 0 ? 'correct' : 'wrong') : ''}">
+          ${isAnswered ? (state.answeredMap[qKey] > 0 
+            ? `✅ Chính xác! +10 điểm.<br>💡 <strong>Giải thích:</strong> ${qData.explanation}<br>📌 <em>Trích dẫn: ${qData.quote}</em>` 
+            : `❌ Chưa đúng! Đáp án chính xác là: <strong>${qData.correct}</strong>.<br>💡 <strong>Giải thích:</strong> ${qData.explanation}<br>📌 <em>Trích dẫn: ${qData.quote}</em>`) : ''}
+        </div>
+
+        <div style="margin-top: 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+          <button class="btn btn-secondary" onclick="switchTab('passage')">📖 Xem lại bài đọc</button>
+          <button class="btn" onclick="nextReadingQuestion()">Câu tiếp theo ➔</button>
+        </div>
+      `;
+    }
+
+    function checkReadingAnswer(id, selected, correct, btnElem) {
+      const qKey = id;
+      if (state.answeredMap[qKey] !== undefined) return;
+
+      const qData = READING_QUIZ_DATA.find(r => r.id === id);
+      const optsContainer = document.getElementById(`rq-opts-${id}`);
+      const fbElem = document.getElementById(`rq-fb-${id}`);
+
+      if (selected === correct) {
+        btnElem.classList.add("correct");
+        fbElem.className = "quiz-feedback correct";
+        fbElem.innerHTML = `✅ Chính xác! +10 điểm.<br>💡 <strong>Giải thích:</strong> ${qData.explanation}<br>📌 <em>Trích dẫn: ${qData.quote}</em>`;
+
+        state.totalScore += 10;
+        state.breakdownScores.reading += 10;
+        state.answeredMap[qKey] = 10;
+        speakText("Correct answer!", true);
+      } else {
+        btnElem.classList.add("wrong");
+        fbElem.className = "quiz-feedback wrong";
+        fbElem.innerHTML = `❌ Chưa đúng! Đáp án chuẩn là: <strong>${correct}</strong>.<br>💡 <strong>Giải thích:</strong> ${qData.explanation}<br>📌 <em>Trích dẫn: ${qData.quote}</em>`;
+
+        Array.from(optsContainer.children).forEach(b => {
+          if (b.innerText.includes(correct)) b.classList.add("correct");
+        });
+
+        state.answeredMap[qKey] = 0;
+        state.wrongQuizIds.push(id);
+      }
+
+      Array.from(optsContainer.children).forEach(b => b.disabled = true);
+      saveState();
+    }
+
+    function nextReadingQuestion() {
+      currentReadingIdx++;
+      renderReadingQuestion();
+    }
+
+    /* ============================================================
+       10. REPORT & ANALYTICS SECTION
+       ============================================================ */
+
+    function updateReportSection() {
+      document.getElementById("rep-total-score").innerText = state.totalScore;
+
+      const totalItems = 10 + 5 + 3 + 10;
+      const answeredCount = Object.keys(state.answeredMap).length;
+      const correctCount = Object.values(state.answeredMap).filter(v => v > 0).length;
+
+      const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+      document.getElementById("rep-accuracy").innerText = accuracy + "%";
+
+      let rankStr = "Khá";
+      let rankColor = "#f59e0b";
+      if (accuracy >= 90 && answeredCount >= 15) {
+        rankStr = "Xuất Sắc (Master)";
+        rankColor = "#10b981";
+      } else if (accuracy >= 75 && answeredCount >= 10) {
+        rankStr = "Giỏi (Advanced)";
+        rankColor = "#38bdf8";
+      } else if (accuracy < 50 && answeredCount > 5) {
+        rankStr = "Cần Cố Gắng";
+        rankColor = "#ef4444";
+      }
+      const repRankElem = document.getElementById("rep-rank");
+      repRankElem.innerText = rankStr;
+      repRankElem.style.color = rankColor;
+
+      // Breakdown list
+      const bdList = document.getElementById("rep-breakdown-list");
+      bdList.innerHTML = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          <div class="card" style="background: rgba(255,255,255,0.03);">
+            <div style="font-weight: 700;">🔤 Từ vựng trọng tâm:</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #38bdf8;">${state.breakdownScores.vocab} / 100 điểm</div>
+          </div>
+          <div class="card" style="background: rgba(255,255,255,0.03);">
+            <div style="font-weight: 700;">🧩 Ghép cụm từ:</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #a5b4fc;">${state.breakdownScores.phrases} / 50 điểm</div>
+          </div>
+          <div class="card" style="background: rgba(255,255,255,0.03);">
+            <div style="font-weight: 700;">✍️ Luyện viết câu:</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #f472b6;">${state.breakdownScores.sentences} / 30 điểm</div>
+          </div>
+          <div class="card" style="background: rgba(255,255,255,0.03);">
+            <div style="font-weight: 700;">❓ Bài tập đọc hiểu:</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #34d399;">${state.breakdownScores.reading} / 100 điểm</div>
+          </div>
+        </div>
+      `;
+
+      // Pedagogical Feedback Box
+      const fbBox = document.getElementById("rep-feedback-box");
+      if (answeredCount === 0) {
+        fbBox.innerHTML = `Hãy bắt đầu hoàn thành các bài tập để nhận báo cáo phân tích năng lực chi tiết.`;
+      } else {
+        fbBox.innerHTML = `
+          <p><strong>Báo cáo năng lực đọc hiểu Tiếng Anh 6 (Chủ đề SLEEP & HEALTH):</strong></p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+            <li>Bạn đã trả lời <strong>${answeredCount}/${totalItems}</strong> câu hỏi với tỷ lệ đúng <strong>${accuracy}%</strong>.</li>
+            <li>Vốn từ vựng chủ đề Sức khỏe & Giấc ngủ của bạn đạt <strong>${state.breakdownScores.vocab} điểm</strong>.</li>
+            <li>Khả năng đọc hiểu chi tiết & suy luận đạt <strong>${state.breakdownScores.reading} điểm</strong>.</li>
+            ${state.wrongQuizIds.length > 0 ? `<li style="color: #f87171;">⚠️ Các câu đọc hiểu cần chú ý ôn tập lại: ${state.wrongQuizIds.join(", ")}.</li>` : `<li style="color: #34d399;">🎉 Bạn làm rất tốt các câu hỏi đọc hiểu!</li>`}
+          </ul>
+        `;
+      }
+    }
+
+    /* ============================================================
+       11. INITIALIZATION & LIFECYCLE
+       ============================================================ */
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadState();
+      initSpeechSynthesis();
+
+      renderPassage();
+      renderVocabSection();
+      renderPhraseSection();
+      renderSentenceSection();
+      renderReadingQuizSection();
+
+      updateUIStats();
+
+      // Check if state has existing progress to show Resume Modal
+      if (Object.keys(state.answeredMap).length > 0) {
+        const modal = document.getElementById("resume-modal");
+        modal.classList.add("active");
+
+        document.getElementById("btn-resume-yes").onclick = () => {
+          modal.classList.remove("active");
+        };
+
+        document.getElementById("btn-resume-no").onclick = () => {
+          modal.classList.remove("active");
+          localStorage.removeItem("sleep_english_game_state");
+          state = {
+            speechRate: 0.8,
+            selectedVoiceURI: "",
+            totalScore: 0,
+            breakdownScores: { vocab: 0, phrases: 0, sentences: 0, reading: 0 },
+            answeredMap: {},
+            completedTasks: {},
+            wrongVocabIds: [],
+            wrongQuizIds: []
+          };
+          saveState();
+          location.reload();
+        };
+      }
+    });
+  </script>
+</body>
+</html>

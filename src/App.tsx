@@ -10,6 +10,7 @@ import { SocraticTutor } from './components/SocraticTutor';
 import { HomeworkHelper } from './components/HomeworkHelper';
 import { SpeechStudio } from './components/SpeechStudio';
 import { WritingGrader } from './components/WritingGrader';
+import { ReadingMasteryGame } from './components/ReadingMasteryGame';
 import { PracticeHub } from './components/PracticeHub';
 import { DocParser } from './components/DocParser';
 import { ParentDashboard } from './components/ParentDashboard';
@@ -204,11 +205,19 @@ export default function App() {
             }
           />
         )}
+        {activeTab === 'reading-game' && (
+          <ReadingMasteryGame
+            units={appData.units}
+            onSessionCompleted={handleSessionCompleted}
+            onBackToPractice={() => setActiveTab('practice')}
+          />
+        )}
         {activeTab === 'practice' && (
           <PracticeHub
             questions={appData.questions}
             units={appData.units}
             onSessionCompleted={handleSessionCompleted}
+            onOpenReadingGame={() => setActiveTab('reading-game')}
           />
         )}
         {activeTab === 'arena' && (
