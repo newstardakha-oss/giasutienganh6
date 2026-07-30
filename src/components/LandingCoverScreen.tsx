@@ -5,25 +5,21 @@ import {
   UserPlus,
   ShieldCheck,
   Sparkles,
-  BookOpen,
-  Swords,
-  Mic,
-  FileEdit,
-  BarChart3,
-  Lock,
+  HeartHandshake,
+  User,
+  KeyRound,
+  Play,
+  Users,
   CheckCircle2,
-  ChevronRight,
-  Flame,
-  Zap,
-  Award,
-  ArrowRight,
+  Lock,
   Smile,
   School,
   MapPin,
-  Play,
-  HeartHandshake,
-  User,
-  KeyRound
+  ArrowRight,
+  ChevronRight,
+  Flame,
+  Award,
+  Zap
 } from 'lucide-react';
 import { AppDataSchema, StudentAccount } from '../types';
 import { INITIAL_PROGRESS } from '../data/sgkData';
@@ -48,16 +44,16 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   onOpenTeacherManagement,
   onEnterAsGuest,
 }) => {
-  const [activeTab, setActiveTab] = useState<'student' | 'register' | 'teacher'>('student');
+  const [activeTab, setActiveTab] = useState<'student' | 'register' | 'teacher' | 'parent'>('student');
 
-  // Student login state: Tên đăng nhập & Mật khẩu
+  // Student login state
   const defaultStudent = appData.students[0];
   const [selectedStudentId, setSelectedStudentId] = useState<string>(appData.currentStudentId || defaultStudent?.id || '');
   const [loginUsername, setLoginUsername] = useState<string>(defaultStudent?.username || 'nguyenvanan');
   const [loginPassword, setLoginPassword] = useState<string>(defaultStudent?.pinCode || '1234');
   const [studentErr, setStudentErr] = useState<string>('');
 
-  // Student register state: 6 trường (Họ tên, Trường, Lớp, Xã, Tên đăng nhập, Mật khẩu)
+  // Student register state
   const [regFullName, setRegFullName] = useState<string>('');
   const [regSchoolName, setRegSchoolName] = useState<string>('THCS Chu Văn An');
   const [regClassName, setRegClassName] = useState<string>('');
@@ -71,9 +67,13 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const [teacherPass, setTeacherPass] = useState<string>('teacher2026');
   const [teacherErr, setTeacherErr] = useState<string>('');
 
+  // Parent login state
+  const [parentStudentId, setParentStudentId] = useState<string>(defaultStudent?.id || '');
+  const [parentPin, setParentPin] = useState<string>('1234');
+  const [parentErr, setParentErr] = useState<string>('');
+
   const todayStr = getTodayDateString();
 
-  // Auto-generate suggested username when name changes
   const handleFullNameChange = (name: string) => {
     setRegFullName(name);
     if (!regUsername || regUsername === autoGenerateUsername(regFullName, regClassName)) {
@@ -186,508 +186,531 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
     onOpenTeacherManagement();
   };
 
-  const features = [
-    {
-      icon: GraduationCap,
-      color: 'from-blue-500 to-indigo-600',
-      title: 'Gia Sư AI Socratic 5 Bước',
-      desc: 'Hướng dẫn gợi mở bằng câu hỏi Socratic giúp em tự tư duy giải đáp.',
-    },
-    {
-      icon: Sparkles,
-      color: 'from-[#FF9500] to-amber-600',
-      title: 'Trợ Lý Giải Bài Tập SGK',
-      desc: 'Gợi ý 3 cấp độ thông minh không đưa đáp án sẵn cho câu hỏi SGK Tiếng Anh 6.',
-    },
-    {
-      icon: Mic,
-      color: 'from-emerald-500 to-teal-600',
-      title: 'Phòng Luyện Phát Âm IPA',
-      desc: 'Chấm điểm khẩu hình chuẩn âm IPA và nhận phản hồi chi tiết tức thì.',
-    },
-    {
-      icon: FileEdit,
-      color: 'from-purple-500 to-pink-600',
-      title: 'Chuyên Gia Chấm Bài Viết',
-      desc: 'Chấm điểm 4 tiêu chí chuẩn SGK Global Success kèm sửa lỗi câu văn.',
-    },
-    {
-      icon: Swords,
-      color: 'from-rose-500 to-red-600',
-      title: 'Game Arena Đấu Tri Thức',
-      desc: 'Đấu trắc nghiệm tính giờ tích lũy XP & vượt qua các thử thách leo rank.',
-    },
-    {
-      icon: BarChart3,
-      color: 'from-cyan-500 to-[#4A90E2]',
-      title: 'Báo Cáo Tiến Độ Phụ Huynh',
-      desc: 'Theo dõi điểm danh 7 ngày, chuỗi ngày học liên tục và biểu đồ kỹ năng.',
-    },
-  ];
+  const handleParentSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setParentErr('');
+    const targetStudent = appData.students.find((s) => s.id === parentStudentId);
+    if (!targetStudent) {
+      setParentErr('Vui lòng chọn học sinh cần theo dõi!');
+      return;
+    }
+    if (parentPin.trim() !== '1234' && parentPin.trim() !== (targetStudent.pinCode || '1234')) {
+      setParentErr('Mã xác thực Phụ huynh chưa đúng! (Mặc định: 1234)');
+      return;
+    }
+    // Log into app as the selected student so parent can view progress
+    onLoginStudent(targetStudent.id);
+  };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col justify-between font-['Be_Vietnam_Pro',sans-serif] relative overflow-hidden">
-      {/* Background Glow Overlay */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Top Brand Header */}
-      <header className="relative z-10 border-b border-slate-800/80 bg-slate-950/60 backdrop-blur-md px-4 sm:px-8 py-4">
+    <div className="min-h-screen bg-[#f5f3ff] text-slate-800 flex flex-col justify-between font-['Be_Vietnam_Pro',sans-serif] relative overflow-x-hidden selection:bg-purple-200">
+      
+      {/* Top Cute Pastel Brand Header */}
+      <header className="relative z-10 border-b border-purple-100 bg-white/80 backdrop-blur-md px-4 sm:px-8 py-4 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#4A90E2] via-blue-600 to-[#FF9500] p-0.5 shadow-lg shadow-blue-500/20">
-              <div className="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-white">
-                <GraduationCap className="w-6 h-6 text-[#FF9500]" />
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#38bdf8] via-[#a855f7] to-[#ec4899] p-0.5 shadow-md shadow-purple-500/20 animate-float">
+              <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-white">
+                <GraduationCap className="w-7 h-7 text-purple-600" />
               </div>
             </div>
             <div>
-              <h1 className="font-black text-lg sm:text-xl tracking-tight bg-gradient-to-r from-blue-400 via-indigo-300 to-amber-300 bg-clip-text text-transparent">
-                Gia Sư AI Tiếng Anh Lớp 6
+              <h1 className="font-extrabold text-xl sm:text-2xl tracking-tight bg-gradient-to-r from-sky-500 via-purple-600 to-pink-500 bg-clip-text text-transparent flex items-center gap-2">
+                <span>Gia Sư AI Tiếng Anh Lớp 6</span> 🌟
               </h1>
-              <p className="text-xs text-slate-400 font-semibold flex items-center gap-1.5">
-                <span className="text-[#FF9500]">Global Success</span> • <span className="text-slate-300">Mrs Nhan • THCS Chu Văn An Đăk Hà</span>
+              <p className="text-xs text-purple-600 font-bold flex items-center gap-1.5">
+                <span>Global Success 📖</span> • <span>Biên soạn & Quản lý: Cô Nhạn - THCS Chu Văn An Đăk Hà 🏫</span>
               </p>
             </div>
           </div>
 
           <button
             onClick={onEnterAsGuest}
-            className="px-4 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs border border-slate-700 transition-all flex items-center gap-2 shadow-sm"
+            className="px-4 py-2.5 rounded-2xl neu-card-yellow text-amber-900 font-extrabold text-xs border-2 border-amber-300 transition-all flex items-center gap-2 hover:scale-105 shadow-sm cursor-pointer"
           >
-            <Play className="w-3.5 h-3.5 text-[#FF9500] fill-[#FF9500]" />
-            <span>Học Thử (Khách)</span>
+            <Play className="w-4 h-4 text-amber-600 fill-amber-500" />
+            <span>Học Thử (Khách) 🚀</span>
           </button>
         </div>
       </header>
 
-      {/* Main Content Hero & Auth Section */}
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 flex-1 flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          {/* Left Column: Hero Introduction */}
-          <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 text-xs font-bold shadow-inner">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Chương Trình Chuẩn GDPT Mới • Sách Tiếng Anh 6</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
-              Chào Mừng Các Em Đến Với <br />
-              <span className="bg-gradient-to-r from-[#4A90E2] via-blue-400 to-[#FF9500] bg-clip-text text-transparent">
-                Lớp Học Tiếng Anh 6 AI
-              </span>
-            </h2>
-
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
-              Hệ thống trợ lý học tập cá nhân hóa được biên soạn dành riêng cho học sinh lớp 6. Giúp các em phát triển đều 4 kỹ năng: Nghe, Nói phát âm IPA, Đọc hiểu & Viết đoạn văn chuẩn mực.
-            </p>
-
-            {/* Badges Info */}
-            <div className="grid grid-cols-3 gap-3 max-w-md mx-auto lg:mx-0 pt-2">
-              <div className="p-3 rounded-2xl bg-slate-800/60 border border-slate-700/80 text-center">
-                <span className="block text-xl font-extrabold text-[#FF9500]">12 Units</span>
-                <span className="text-[11px] text-slate-400 font-medium">Toàn bộ SGK T1&T2</span>
-              </div>
-              <div className="p-3 rounded-2xl bg-slate-800/60 border border-slate-700/80 text-center">
-                <span className="block text-xl font-extrabold text-blue-400">5 Bước</span>
-                <span className="text-[11px] text-slate-400 font-medium">Phương Pháp Socratic</span>
-              </div>
-              <div className="p-3 rounded-2xl bg-slate-800/60 border border-slate-700/80 text-center">
-                <span className="block text-xl font-extrabold text-emerald-400">100%</span>
-                <span className="text-[11px] text-slate-400 font-medium">Tích Luỹ XP & Rank</span>
-              </div>
-            </div>
-
-            <div className="pt-2 text-xs text-slate-400 font-medium flex items-center justify-center lg:justify-start gap-2">
-              <HeartHandshake className="w-4 h-4 text-rose-400" />
-              <span>Biên soạn & Quản lý chuyên môn: <strong>Cô Nhạn — Trường THCS Chu Văn An Đăk Hà</strong></span>
-            </div>
+      {/* Main Content Focused 3D Pastel Hero & Auth Box */}
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 flex-1 flex flex-col justify-center items-center">
+        
+        {/* Center Hero Heading */}
+        <div className="text-center max-w-3xl space-y-3 mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-pastel-yellow text-amber-800 text-xs font-extrabold shadow-sm animate-bounce">
+            <Sparkles className="w-4 h-4 text-amber-600" />
+            <span>Chương Trình Chuẩn GDPT Mới • Sách Tiếng Anh 6 Global Success 📚</span>
           </div>
 
-          {/* Right Column: Interactive Login Box */}
-          <div className="lg:col-span-6">
-            <div className="bg-slate-950/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-blue-900/20 backdrop-blur-xl relative overflow-hidden">
-              
-              {/* Tab Selector Header */}
-              <div className="flex border-b border-slate-800 pb-4 gap-2 mb-6">
-                <button
-                  onClick={() => setActiveTab('student')}
-                  className={`flex-1 py-3 px-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border ${
-                    activeTab === 'student'
-                      ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-600/30'
-                      : 'bg-slate-900 text-slate-400 hover:text-slate-200 border-slate-800'
-                  }`}
-                >
-                  <UserCheck className="w-4 h-4" />
-                  <span>Học Sinh Đăng Nhập</span>
-                </button>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-purple-950 leading-tight">
+            Chào Mừng Các Em Đến Với <br />
+            <span className="bg-gradient-to-r from-sky-500 via-purple-600 to-pink-500 bg-clip-text text-transparent drop-shadow-sm">
+              Ứng Dụng Học Tiếng Anh 6 AI 🚀
+            </span>
+          </h2>
+          <p className="text-sm sm:text-base text-purple-800 font-bold max-w-2xl mx-auto">
+            Hệ thống trợ lý học tập cá nhân hóa 3D đỉnh cao dành cho học sinh Lớp 6, thầy cô giáo và phụ huynh đồng hành! 🎒✨
+          </p>
+        </div>
 
-                <button
-                  onClick={() => setActiveTab('register')}
-                  className={`flex-1 py-3 px-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border ${
-                    activeTab === 'register'
-                      ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-600/30'
-                      : 'bg-slate-900 text-slate-400 hover:text-slate-200 border-slate-800'
-                  }`}
-                >
-                  <UserPlus className="w-4 h-4" />
-                  <span>Đăng Ký Mới</span>
-                </button>
+        {/* 3D Soft Neumorphic Pastel Auth Card */}
+        <div className="w-full max-w-2xl neu-card-purple p-6 sm:p-8 shadow-2xl border-4 border-white relative overflow-hidden">
+          
+          {/* 4 Auth Tabs: Student Login, Student Register, Teacher Login, Parent Login */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
+            <button
+              onClick={() => setActiveTab('student')}
+              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+                activeTab === 'student'
+                  ? 'neu-btn-primary text-white shadow-lg scale-105'
+                  : 'neu-btn text-slate-700 hover:text-indigo-600'
+              }`}
+            >
+              <UserCheck className="w-4 h-4" />
+              <span>1. Học Sinh 👨‍🎓</span>
+            </button>
 
-                <button
-                  onClick={() => setActiveTab('teacher')}
-                  className={`py-3 px-3 rounded-2xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 border ${
-                    activeTab === 'teacher'
-                      ? 'bg-purple-600 text-white border-purple-500 shadow-md shadow-purple-600/30'
-                      : 'bg-purple-950/50 text-purple-300 hover:bg-purple-900/50 border-purple-800/80'
-                  }`}
-                  title="Dành Cho Giáo Viên"
-                >
-                  <ShieldCheck className="w-4 h-4 text-purple-300" />
-                  <span className="hidden sm:inline">Giáo Viên</span>
-                </button>
+            <button
+              onClick={() => setActiveTab('register')}
+              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+                activeTab === 'register'
+                  ? 'neu-btn-primary text-white shadow-lg scale-105'
+                  : 'neu-btn text-slate-700 hover:text-indigo-600'
+              }`}
+            >
+              <UserPlus className="w-4 h-4" />
+              <span>2. Đăng Ký 📝</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('teacher')}
+              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+                activeTab === 'teacher'
+                  ? 'neu-btn-primary text-white shadow-lg scale-105'
+                  : 'neu-btn text-slate-700 hover:text-purple-600'
+              }`}
+            >
+              <ShieldCheck className="w-4 h-4" />
+              <span>3. Giáo Viên 👩‍🏫</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('parent')}
+              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+                activeTab === 'parent'
+                  ? 'neu-btn-success text-white shadow-lg scale-105'
+                  : 'neu-btn text-slate-700 hover:text-emerald-600'
+              }`}
+            >
+              <Users className="w-4 h-4" />
+              <span>4. Phụ Huynh 👨‍👩‍👧</span>
+            </button>
+          </div>
+
+          {/* TAB 1: STUDENT LOGIN FORM */}
+          {activeTab === 'student' && (
+            <form onSubmit={handleStudentSubmit} className="space-y-5 animate-in fade-in zoom-in-95 duration-200">
+              <div className="border-b border-purple-200/80 pb-3">
+                <h3 className="font-extrabold text-lg text-purple-950 flex items-center gap-2">
+                  <span>👨‍🎓 Đăng Nhập Học Sinh Lớp 6</span>
+                </h3>
+                <p className="text-xs text-purple-700 font-semibold">
+                  Chọn tên của em trong danh sách hoặc nhập tên đăng nhập bên dưới để vào học:
+                </p>
               </div>
 
-              {/* TAB 1: STUDENT LOGIN (Tên đăng nhập & Mật khẩu) */}
-              {activeTab === 'student' && (
-                <form onSubmit={handleStudentSubmit} className="space-y-4">
-                  {/* Gợi ý chọn nhanh tài khoản đã có */}
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
-                      1. Chọn Hoặc Nhập Tên Đăng Nhập Học Sinh:
-                    </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-40 overflow-y-auto pr-1">
-                      {appData.students.map((st) => {
-                        const isSelected = selectedStudentId === st.id;
-                        return (
-                          <div
-                            key={st.id}
-                            onClick={() => handleSelectStudentCard(st)}
-                            className={`p-2.5 rounded-xl border cursor-pointer transition-all flex items-center gap-2.5 ${
-                              isSelected
-                                ? 'border-blue-500 bg-blue-950/70 shadow-sm'
-                                : 'border-slate-800 hover:border-slate-700 bg-slate-900/50'
-                            }`}
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center text-xl shrink-0">
-                              {st.avatar}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-bold text-white text-xs truncate">
-                                {st.fullName}
-                              </h4>
-                              <p className="text-[10px] text-slate-400 truncate">
-                                @{st.username} • {st.className}
-                              </p>
-                            </div>
-                            {isSelected && (
-                              <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                            )}
+              {/* Quick Select Student Cards */}
+              <div className="space-y-2">
+                <label className="text-xs font-extrabold text-purple-900 block uppercase">
+                  1. Chọn Nhanh Tài Khoản Học Sinh Có Sẵn:
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto pr-1">
+                  {appData.students.map((st) => {
+                    const isSelected = st.id === selectedStudentId;
+                    return (
+                      <div
+                        key={st.id}
+                        onClick={() => handleSelectStudentCard(st)}
+                        className={`p-3 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between ${
+                          isSelected
+                            ? 'neu-card-blue border-sky-400 shadow-md scale-[1.02]'
+                            : 'neu-card hover:border-sky-300'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <span className="text-2xl">{st.avatar}</span>
+                          <div>
+                            <span className="font-extrabold text-xs text-slate-900 block leading-tight">
+                              {st.fullName}
+                            </span>
+                            <span className="text-[10px] text-sky-700 font-bold block">
+                              @{st.username} • {st.className}
+                            </span>
                           </div>
-                        );
-                      })}
-                    </div>
-                  </div>
+                        </div>
+                        {isSelected && <CheckCircle2 className="w-5 h-5 text-sky-600 shrink-0" />}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
 
-                  {/* Input 1: Tên đăng nhập */}
-                  <div className="space-y-1.5 pt-1">
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                      <User className="w-4 h-4 text-blue-400" />
-                      Tên Đăng Nhập Học Sinh:
-                    </label>
+              {/* Username & Password Inputs */}
+              <div className="space-y-3 pt-1">
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    2. Tên Đăng Nhập Học Sinh:
+                  </label>
+                  <div className="relative">
+                    <User className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
                       type="text"
                       value={loginUsername}
-                      onChange={(e) => {
-                        setLoginUsername(e.target.value);
-                        setStudentErr('');
-                      }}
-                      placeholder="Ví dụ: nguyenvanan hoặc hocsinh6a1..."
-                      className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
-                      required
+                      onChange={(e) => setLoginUsername(e.target.value)}
+                      placeholder="Ví dụ: an_6a1"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
                     />
                   </div>
+                </div>
 
-                  {/* Input 2: Mật khẩu đăng nhập */}
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                      <KeyRound className="w-4 h-4 text-amber-400" />
-                      Mật Khẩu Đăng Nhập:
-                    </label>
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    3. Mật Khẩu Đăng Nhập:
+                  </label>
+                  <div className="relative">
+                    <KeyRound className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
                       type="password"
                       value={loginPassword}
-                      onChange={(e) => {
-                        setLoginPassword(e.target.value);
-                        setStudentErr('');
-                      }}
-                      placeholder="Nhập mật khẩu (Mặc định: 1234)..."
-                      className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono font-bold"
-                      required
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                      placeholder="Mật khẩu (Mặc định: 1234)"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-400"
                     />
                   </div>
+                  <span className="text-[11px] text-purple-600 font-semibold mt-1 block">
+                    💡 Mật khẩu mặc định dành cho học sinh: <strong>1234</strong>
+                  </span>
+                </div>
+              </div>
 
-                  {studentErr && (
-                    <p className="text-xs font-bold text-rose-400 bg-rose-950/60 p-3 rounded-xl border border-rose-800">
-                      ⚠️ {studentErr}
-                    </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-[#4A90E2] hover:opacity-95 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 mt-2"
-                  >
-                    <UserCheck className="w-4 h-4" />
-                    <span>Đăng Nhập Vào Học</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-
-                  <p className="text-center text-[11px] text-slate-400 pt-1">
-                    Chưa có tài khoản?{' '}
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab('register')}
-                      className="text-blue-400 font-bold hover:underline"
-                    >
-                      Bấm vào đây để Đăng Ký Mới ➔
-                    </button>
-                  </p>
-                </form>
+              {studentErr && (
+                <div className="p-3 rounded-2xl bg-rose-100 border border-rose-300 text-rose-800 text-xs font-extrabold flex items-center gap-2">
+                  <span>❌</span> <span>{studentErr}</span>
+                </div>
               )}
 
-              {/* TAB 2: REGISTER NEW STUDENT (6 trường: Họ tên, Trường, Lớp, Xã, Username, Password) */}
-              {activeTab === 'register' && (
-                <form onSubmit={handleRegisterSubmit} className="space-y-3">
-                  <div className="bg-blue-950/40 border border-blue-800/60 rounded-xl p-3 text-xs text-blue-200 space-y-0.5">
-                    <p className="font-bold text-blue-300 flex items-center gap-1.5">
-                      <UserPlus className="w-4 h-4 text-blue-400" />
-                      <span>Đăng Ký Tài Khoản Học Sinh Mới</span>
-                    </p>
-                    <p className="text-[11px] text-blue-200">
-                      Học sinh điền đủ 6 thông tin dưới đây. Sau khi đăng ký thành công, lần sau chỉ cần đăng nhập bằng Tên đăng nhập và Mật khẩu!
-                    </p>
-                  </div>
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
+              >
+                <span>🚀 Đăng Nhập Vào Học Ngay</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
 
-                  {/* 1. Họ và Tên */}
-                  <div>
-                    <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                      1. Họ Và Tên Học Sinh: <span className="text-rose-400">*</span>
-                    </label>
+              <div className="text-center pt-1">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('register')}
+                  className="text-xs text-purple-700 hover:text-purple-950 font-extrabold underline cursor-pointer"
+                >
+                  Chưa có tài khoản? Bấm vào đây để Đăng Ký Mới 📝
+                </button>
+              </div>
+            </form>
+          )}
+
+          {/* TAB 2: STUDENT REGISTER FORM */}
+          {activeTab === 'register' && (
+            <form onSubmit={handleRegisterSubmit} className="space-y-4 animate-in fade-in zoom-in-95 duration-200">
+              <div className="border-b border-purple-200/80 pb-3">
+                <h3 className="font-extrabold text-lg text-purple-950 flex items-center gap-2">
+                  <span>📝 Đăng Ký Tài Khoản Học Sinh Mới</span>
+                </h3>
+                <p className="text-xs text-purple-700 font-semibold">
+                  Nhập thông tin cá nhân học sinh Lớp 6 để tạo tài khoản mới:
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    1. Họ và Tên Học Sinh: *
+                  </label>
+                  <div className="relative">
+                    <Smile className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
                       type="text"
+                      required
                       value={regFullName}
                       onChange={(e) => handleFullNameChange(e.target.value)}
                       placeholder="Ví dụ: Nguyễn Văn An"
-                      className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
-                      required
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 placeholder-slate-400 focus:outline-none"
                     />
                   </div>
+                </div>
 
-                  {/* 2. Trường THCS & 3. Lớp Học */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                        2. Trường THCS: <span className="text-rose-400">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        value={regSchoolName}
-                        onChange={(e) => setRegSchoolName(e.target.value)}
-                        placeholder="THCS Chu Văn An"
-                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                        3. Lớp Học: <span className="text-rose-400">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        value={regClassName}
-                        onChange={(e) => {
-                          setRegClassName(e.target.value);
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    2. Lớp Học: *
+                  </label>
+                  <div className="relative">
+                    <School className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
+                    <select
+                      required
+                      value={regClassName}
+                      onChange={(e) => {
+                        setRegClassName(e.target.value);
+                        if (regFullName) {
                           setRegUsername(autoGenerateUsername(regFullName, e.target.value));
-                        }}
-                        placeholder="Ví dụ: 6A1, 6A2, 6B..."
-                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
-                        required
-                      />
-                    </div>
+                        }
+                      }}
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                    >
+                      <option value="">-- Chọn Lớp --</option>
+                      {CLASS_OPTIONS.map((cls) => (
+                        <option key={cls} value={cls}>
+                          {cls}
+                        </option>
+                      ))}
+                    </select>
                   </div>
+                </div>
 
-                  {/* 4. Xã / Thị Trấn */}
-                  <div>
-                    <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                      4. Xã / Thị Trấn: <span className="text-rose-400">*</span>
-                    </label>
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    3. Trường THCS: *
+                  </label>
+                  <div className="relative">
+                    <School className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
                       type="text"
+                      required
+                      value={regSchoolName}
+                      onChange={(e) => setRegSchoolName(e.target.value)}
+                      placeholder="THCS Chu Văn An"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    4. Xã / Thị Trấn: *
+                  </label>
+                  <div className="relative">
+                    <MapPin className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
+                    <input
+                      type="text"
+                      required
                       value={regCommuneName}
                       onChange={(e) => setRegCommuneName(e.target.value)}
                       placeholder="Thị trấn Đăk Hà"
-                      className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-semibold"
-                      required
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
                     />
                   </div>
+                </div>
 
-                  {/* 5. Tên đăng nhập & 6. Mật khẩu đăng nhập */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-800">
-                    <div>
-                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                        5. Tên Đăng Nhập: <span className="text-rose-400">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        value={regUsername}
-                        onChange={(e) => setRegUsername(e.target.value)}
-                        placeholder="nguyenvanan_6a1"
-                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-blue-300 focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono font-bold"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-[11px] font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                        6. Mật Khẩu Đăng Nhập: <span className="text-rose-400">*</span>
-                      </label>
-                      <input
-                        type="password"
-                        value={regPassword}
-                        onChange={(e) => setRegPassword(e.target.value)}
-                        placeholder="Nhập mật khẩu (ví dụ: 1234)"
-                        className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono font-bold"
-                        required
-                      />
-                    </div>
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    5. Tên Đăng Nhập Khuyên Dùng: *
+                  </label>
+                  <div className="relative">
+                    <User className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
+                    <input
+                      type="text"
+                      required
+                      value={regUsername}
+                      onChange={(e) => setRegUsername(e.target.value)}
+                      placeholder="nguyenvanan_6a1"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                    />
                   </div>
+                </div>
 
-                  {regErr && (
-                    <p className="text-xs font-bold text-rose-400 bg-rose-950/60 p-3 rounded-xl border border-rose-800">
-                      ⚠️ {regErr}
-                    </p>
-                  )}
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    6. Mật Khẩu Khởi Tạo: *
+                  </label>
+                  <div className="relative">
+                    <Lock className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
+                    <input
+                      type="password"
+                      required
+                      value={regPassword}
+                      onChange={(e) => setRegPassword(e.target.value)}
+                      placeholder="1234"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:opacity-95 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 mt-2"
-                  >
-                    <UserPlus className="w-4 h-4" />
-                    <span>Hoàn Tất Đăng Ký & Vào Học</span>
-                  </button>
-                </form>
+              {regErr && (
+                <div className="p-3 rounded-2xl bg-rose-100 border border-rose-300 text-rose-800 text-xs font-extrabold flex items-center gap-2">
+                  <span>❌</span> <span>{regErr}</span>
+                </div>
               )}
 
-              {/* TAB 3: TEACHER LOGIN */}
-              {activeTab === 'teacher' && (
-                <form onSubmit={handleTeacherSubmit} className="space-y-4">
-                  <div className="bg-purple-950/50 border border-purple-800/80 rounded-2xl p-4 text-xs text-purple-200 space-y-1">
-                    <p className="font-bold flex items-center gap-1.5 text-purple-300 text-sm">
-                      <ShieldCheck className="w-4 h-4 text-purple-400" />
-                      <span>Xác Thực Giáo Viên Quản Lý Lớp</span>
-                    </p>
-                    <p className="text-purple-300">
-                      Đăng nhập tài khoản Giáo viên để xem báo cáo học sinh, đặt mã PIN và quản lý lớp học.
-                    </p>
-                    <p className="text-[11px] font-mono text-purple-400 pt-1">
-                      🔑 Mặc định: <strong>giaovien6</strong> | Mật khẩu: <strong>teacher2026</strong>
-                    </p>
-                  </div>
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
+              >
+                <span>✨ Hoàn Tất Đăng Ký & Vào Học</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
 
-                  <div>
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                      Tên Đăng Nhập Giáo Viên:
-                    </label>
+              <div className="text-center pt-1">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('student')}
+                  className="text-xs text-purple-700 hover:text-purple-950 font-extrabold underline cursor-pointer"
+                >
+                  Đã có tài khoản? Bấm vào đây để Đăng Nhập 👨‍🎓
+                </button>
+              </div>
+            </form>
+          )}
+
+          {/* TAB 3: TEACHER LOGIN FORM */}
+          {activeTab === 'teacher' && (
+            <form onSubmit={handleTeacherSubmit} className="space-y-4 animate-in fade-in zoom-in-95 duration-200">
+              <div className="border-b border-purple-200/80 pb-3">
+                <h3 className="font-extrabold text-lg text-purple-950 flex items-center gap-2">
+                  <span>👩‍🏫 Đăng Nhập Dành Cho Giáo Viên Quản Lý</span>
+                </h3>
+                <p className="text-xs text-purple-700 font-semibold">
+                  Truy cập bảng điều khiển giáo viên để quản lý lớp học và xuất đề thi:
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    Tên Đăng Nhập Giáo Viên:
+                  </label>
+                  <div className="relative">
+                    <User className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
                       type="text"
                       value={teacherUser}
                       onChange={(e) => setTeacherUser(e.target.value)}
                       placeholder="giaovien6"
-                      className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-purple-500 focus:outline-none font-semibold"
-                      required
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
                     />
                   </div>
+                </div>
 
-                  <div>
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block mb-1">
-                      Mật Khẩu Giáo Viên:
-                    </label>
+                <div>
+                  <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                    Mật Khẩu Giáo Viên:
+                  </label>
+                  <div className="relative">
+                    <Lock className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
                       type="password"
                       value={teacherPass}
                       onChange={(e) => setTeacherPass(e.target.value)}
                       placeholder="teacher2026"
-                      className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-800 bg-slate-900 text-white focus:ring-2 focus:ring-purple-500 focus:outline-none font-mono"
-                      required
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
                     />
                   </div>
+                  <span className="text-[11px] text-purple-600 font-semibold mt-1 block">
+                    💡 Mật khẩu mặc định Giáo viên: <strong>teacher2026</strong>
+                  </span>
+                </div>
+              </div>
 
-                  {teacherErr && (
-                    <p className="text-xs font-bold text-rose-400 bg-rose-950/60 p-3 rounded-xl border border-rose-800">
-                      ⚠️ {teacherErr}
-                    </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-2xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-sm shadow-lg shadow-purple-600/30 transition-all flex items-center justify-center gap-2 mt-2"
-                  >
-                    <ShieldCheck className="w-4 h-4" />
-                    <span>Xác Nhận Đăng Nhập Giáo Viên</span>
-                  </button>
-                </form>
+              {teacherErr && (
+                <div className="p-3 rounded-2xl bg-rose-100 border border-rose-300 text-rose-800 text-xs font-extrabold flex items-center gap-2">
+                  <span>❌</span> <span>{teacherErr}</span>
+                </div>
               )}
 
-            </div>
-          </div>
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
+              >
+                <span>👑 Đăng Nhập Quản Lý Giáo Viên</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+          )}
 
-        </div>
+          {/* TAB 4: PARENT LOGIN FORM */}
+          {activeTab === 'parent' && (
+            <form onSubmit={handleParentSubmit} className="space-y-4 animate-in fade-in zoom-in-95 duration-200">
+              <div className="border-b border-emerald-200 pb-3">
+                <h3 className="font-extrabold text-lg text-emerald-950 flex items-center gap-2">
+                  <span>👨‍👩‍👧 Đăng Nhập Dành Cho Phụ Huynh</span>
+                </h3>
+                <p className="text-xs text-emerald-800 font-semibold">
+                  Theo dõi tiến độ học tập, chuỗi bài hoàn thành và điểm số của con em:
+                </p>
+              </div>
 
-        {/* Feature Cards Showcase */}
-        <div className="mt-16 pt-8 border-t border-slate-800/80">
-          <div className="text-center mb-8">
-            <h3 className="text-xl sm:text-2xl font-extrabold text-white">
-              6 Bộ Công Cụ Học Tập Thông Minh Đạt Chuẩn GDPT Mới
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
-              Phát triển toàn diện kiến thức Ngữ pháp, Từ vựng, Phát âm IPA và Kỹ năng viết Lớp 6
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {features.map((f, i) => {
-              const Icon = f.icon;
-              return (
-                <div
-                  key={i}
-                  className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 transition-all group hover:-translate-y-1"
-                >
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${f.color} flex items-center justify-center text-white mb-3 shadow-md group-hover:scale-110 transition-transform`}>
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-extrabold text-white text-base mb-1">
-                    {f.title}
-                  </h4>
-                  <p className="text-xs text-slate-400 leading-relaxed font-normal">
-                    {f.desc}
-                  </p>
+              <div className="space-y-3">
+                <div>
+                  <label className="text-xs font-extrabold text-emerald-900 block mb-1">
+                    1. Chọn Học Sinh Cần Theo Dõi:
+                  </label>
+                  <select
+                    value={parentStudentId}
+                    onChange={(e) => setParentStudentId(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                  >
+                    {appData.students.map((st) => (
+                      <option key={st.id} value={st.id}>
+                        {st.avatar} {st.fullName} ({st.className} • @{st.username})
+                      </option>
+                    ))}
+                  </select>
                 </div>
-              );
-            })}
-          </div>
+
+                <div>
+                  <label className="text-xs font-extrabold text-emerald-900 block mb-1">
+                    2. Mã Xác Thực Phụ Huynh:
+                  </label>
+                  <div className="relative">
+                    <KeyRound className="w-4 h-4 text-emerald-600 absolute left-3.5 top-3.5" />
+                    <input
+                      type="password"
+                      value={parentPin}
+                      onChange={(e) => setParentPin(e.target.value)}
+                      placeholder="Mã xác thực (Mặc định: 1234)"
+                      className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                    />
+                  </div>
+                  <span className="text-[11px] text-emerald-700 font-semibold mt-1 block">
+                    💡 Mã xác thực mặc định Phụ huynh: <strong>1234</strong>
+                  </span>
+                </div>
+              </div>
+
+              {parentErr && (
+                <div className="p-3 rounded-2xl bg-rose-100 border border-rose-300 text-rose-800 text-xs font-extrabold flex items-center gap-2">
+                  <span>❌</span> <span>{parentErr}</span>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full py-3.5 rounded-2xl neu-btn-success text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
+              >
+                <span>📊 Xem Báo Cáo Tiến Độ Học Tập Của Con</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+          )}
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-slate-800/80 bg-slate-950/80 py-4 text-center text-xs text-slate-400">
+      {/* Footer Minimalist */}
+      <footer className="relative z-10 border-t border-purple-100 bg-white/80 backdrop-blur-md py-4 text-center text-xs text-purple-700 font-extrabold">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="font-semibold">
-            🎓 Gia Sư AI Tiếng Anh Lớp 6 — Smart Tutor Global Success
-          </p>
-          <p className="text-slate-400 font-medium">
-            Biên soạn & Quản lý: <span className="text-amber-400 font-bold">Mrs Nhan</span> • <span className="text-blue-400 font-bold">THCS Chu Văn An</span> • <span className="text-indigo-400 font-bold">Đăk Hà</span>
-          </p>
+          <span>© 2026 Gia Sư AI Tiếng Anh Lớp 6 • Chuẩn Sách SGK Global Success 🌟</span>
+          <span>Phát triển theo phương pháp Socratic & Gamification 🚀</span>
         </div>
       </footer>
     </div>
