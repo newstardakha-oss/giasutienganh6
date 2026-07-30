@@ -10,7 +10,10 @@ import {
   Zap,
   CheckCircle2,
   XCircle,
-  HelpCircle
+  HelpCircle,
+  MessageSquare,
+  CheckSquare,
+  Send
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { SgkUnit, StudySession } from '../types';
@@ -19,6 +22,17 @@ interface ReadingMasteryGameProps {
   units: SgkUnit[];
   onSessionCompleted?: (session: StudySession) => void;
   onBackToPractice?: () => void;
+}
+
+export interface UnitReadingQuestion {
+  id: string;
+  type: 'MCQ' | 'True/False' | 'ShortAnswer';
+  question: string;
+  options?: string[]; // For MCQ and True/False
+  correct: string;
+  acceptableAnswers?: string[]; // For ShortAnswer
+  explanation: string;
+  quote: string;
 }
 
 export interface UnitReadingData {
@@ -40,15 +54,7 @@ export interface UnitReadingData {
     example: string;
     dist: string[];
   }>;
-  questions: Array<{
-    id: string;
-    type: string;
-    question: string;
-    options: string[];
-    correct: string;
-    explanation: string;
-    quote: string;
-  }>;
+  questions: UnitReadingQuestion[];
 }
 
 export const UNIT_READINGS: UnitReadingData[] = [
@@ -85,7 +91,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u1-q1',
-        type: 'Chi tiết (Detail)',
+        type: 'MCQ',
         question: 'Where is Sunrise boarding school located?',
         options: ['In Sydney', 'In Bac Giang', 'In Ha Noi', 'In London'],
         correct: 'In Sydney',
@@ -94,21 +100,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u1-q2',
-        type: 'Chi tiết (Detail)',
-        question: 'How many classes are there at An Son school?',
-        options: ['8 classes', '12 classes', '20 classes', '1,200 classes'],
-        correct: '8 classes',
-        explanation: 'Trường An Sơn ở Bắc Giang chỉ có 8 lớp học.',
-        quote: 'It has only 8 classes.'
+        type: 'True/False',
+        question: 'An Son lower secondary school has 20 classes.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Trường An Sơn ở Bắc Giang chỉ có 8 lớp học (only 8 classes).',
+        quote: 'An Son is a lower secondary school in Bac Giang. It has only 8 classes.'
       },
       {
         id: 'u1-q3',
-        type: 'Chi tiết (Detail)',
-        question: 'What do students at Dream school do in the afternoon?',
-        options: ['They join many interesting clubs', 'They sleep in dorms', 'They go home immediately', 'They do heavy homework'],
-        correct: 'They join many interesting clubs',
-        explanation: 'Vào buổi chiều, học sinh trường Dream tham gia các câu lạc bộ thú vị.',
-        quote: 'In the afternoon, they join many interesting clubs.'
+        type: 'True/False',
+        question: 'Sunrise is a boarding school where students study and live.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Trường nội trú Sunrise là nơi học sinh học tập và sinh sống tại đó.',
+        quote: 'Sunrise is a boarding school in Sydney. Students study and live there.'
+      },
+      {
+        id: 'u1-q4',
+        type: 'ShortAnswer',
+        question: 'What subjects do students at Sunrise study?',
+        correct: 'maths, science and English',
+        acceptableAnswers: ['maths', 'science', 'english', 'maths, science and english'],
+        explanation: 'Học sinh trường Sunrise học các môn toán, khoa học và tiếng Anh.',
+        quote: 'They study subjects like maths, science and English.'
       }
     ]
   },
@@ -144,7 +159,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u2-q1',
-        type: 'Chi tiết (Detail)',
+        type: 'MCQ',
         question: 'How many rooms are there in the Crazy House Hotel?',
         options: ['Ten rooms', 'Eight rooms', 'Twelve rooms', 'Five rooms'],
         correct: 'Ten rooms',
@@ -153,31 +168,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u2-q2',
-        type: 'Chi tiết (Detail)',
-        question: 'Why is Nick’s room named "Tiger Room"?',
-        options: [
-          'Because there is a big tiger on the wall',
-          'Because there is a live tiger inside',
-          'Because Nick loves tigers',
-          'Because it is painted orange'
-        ],
-        correct: 'Because there is a big tiger on the wall',
-        explanation: 'Phòng được gọi là Tiger Room vì có hình con hổ lớn trên tường.',
-        quote: 'It’s called the Tiger Room because there’s a big tiger on the wall.'
+        type: 'True/False',
+        question: 'Nick is staying in the Kangaroo Room.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Nick ở trong phòng con hổ (Tiger Room).',
+        quote: 'I’m staying in the Tiger Room.'
       },
       {
         id: 'u2-q3',
-        type: 'Vị trí (Prepositions)',
-        question: 'Where is the tiger located on the wall?',
-        options: [
-          'Between the bathroom door and the window',
-          'Under the bed',
-          'Next to the wardrobe',
-          'Behind the desk'
-        ],
-        correct: 'Between the bathroom door and the window',
-        explanation: 'Con hổ nằm giữa cửa phòng tắm và cửa sổ.',
-        quote: 'The tiger is between the bathroom door and the window.'
+        type: 'True/False',
+        question: 'There is a big tiger on the wall in Nick’s room.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Có một con hổ lớn trên tường trong phòng Nick.',
+        quote: 'It’s called the Tiger Room because there’s a big tiger on the wall.'
+      },
+      {
+        id: 'u2-q4',
+        type: 'ShortAnswer',
+        question: 'Where did Nick put his bag in the room?',
+        correct: 'under the bed',
+        acceptableAnswers: ['under the bed', 'under bed'],
+        explanation: 'Nick đặt chiếc cặp của mình dưới gầm giường.',
+        quote: 'I put my bag under the bed.'
       }
     ]
   },
@@ -213,7 +227,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u3-q1',
-        type: 'Chi tiết (Detail)',
+        type: 'MCQ',
         question: 'Who asked the students to write emails in English at the camp?',
         options: ['Mr Black', 'Nam’s father', 'Phong', 'Jimmy'],
         correct: 'Mr Black',
@@ -222,31 +236,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u3-q2',
-        type: 'Ngoại hình & Tính cách',
-        question: 'What is Phong like according to Nam?',
-        options: [
-          'He is tall, sporty and plays basketball very well',
-          'He has blonde hair and blue eyes',
-          'He has curly black hair and plays violin',
-          'He likes taking photos'
-        ],
-        correct: 'He is tall, sporty and plays basketball very well',
-        explanation: 'Phong là cậu bạn cao ráo, yêu thể thao và chơi bóng rổ rất giỏi.',
-        quote: 'Phong is the tall boy. He’s sporty and plays basketball very well.'
+        type: 'True/False',
+        question: 'Jimmy has curly black hair.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Jimmy có mái tóc vàng và mắt màu xanh biển (blonde hair and blue eyes).',
+        quote: 'Jimmy has blonde hair and blue eyes.'
       },
       {
         id: 'u3-q3',
-        type: 'Hành động hiện tại (Present Continuous)',
-        question: 'What is Nhung doing right now at the camp?',
-        options: [
-          'She’s playing the violin',
-          'She’s reading a comic book',
-          'She’s taking photos of Nam',
-          'She’s eating lunch'
-        ],
-        correct: 'She’s playing the violin',
-        explanation: 'Nhung đang chơi đàn violin.',
-        quote: '...and Nhung’s playing the violin.'
+        type: 'True/False',
+        question: 'Nhung shared her lunch with Nam today.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Nhung tốt bụng đã chia sẻ bữa ăn trưa với Nam.',
+        quote: 'She’s kind. She shared her lunch with me today.'
+      },
+      {
+        id: 'u3-q4',
+        type: 'ShortAnswer',
+        question: 'What sport does Phong play very well?',
+        correct: 'basketball',
+        acceptableAnswers: ['basketball', 'plays basketball'],
+        explanation: 'Phong chơi môn bóng rổ rất giỏi.',
+        quote: 'He’s sporty and plays basketball very well.'
       }
     ]
   },
@@ -276,7 +289,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u4-q1',
-        type: 'Địa điểm (Location)',
+        type: 'MCQ',
         question: 'Where does Khang live?',
         options: [
           'In the suburbs of Da Nang City',
@@ -290,31 +303,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u4-q2',
-        type: 'Chi tiết (Detail)',
-        question: 'Why is Khang’s neighbourhood great for outdoor activities?',
-        options: [
-          'Because it has beautiful parks, sandy beaches and fine weather',
-          'Because there are many modern buildings',
-          'Because the streets are crowded',
-          'Because it has a computer room'
-        ],
-        correct: 'Because it has beautiful parks, sandy beaches and fine weather',
-        explanation: 'Khu phố tuyệt vời cho hoạt động ngoài trời vì có công viên đẹp, bãi biển cát mịn và thời tiết tốt.',
-        quote: 'It’s great for outdoor activities because it has beautiful parks, sandy beaches and fine weather.'
+        type: 'True/False',
+        question: 'Khang dislikes the beautiful parks and sandy beaches in his neighbourhood.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Khang rất thích các công viên đẹp và bãi biển cát mịn.',
+        quote: 'There are many things I like about my neighbourhood. It’s great for outdoor activities because it has beautiful parks, sandy beaches...'
       },
       {
         id: 'u4-q3',
-        type: 'Ý kiến trái chiều (Dislikes)',
-        question: 'What are the two things Khang dislikes about his neighbourhood?',
-        options: [
-          'Modern buildings/offices and busy/crowded streets',
-          'Friendly people and good food',
-          'Shops, restaurants, and markets',
-          'Sandy beaches and parks'
-        ],
-        correct: 'Modern buildings/offices and busy/crowded streets',
-        explanation: 'Khang không thích 2 điều: nhiều tòa nhà hiện đại và đường phố quá đông đúc.',
-        quote: '...there are two things I dislike about it: there are many modern buildings and offices; and the streets are busy and crowded.'
+        type: 'True/False',
+        question: 'The streets in Khang’s neighbourhood are busy and crowded.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Đường phố nơi Khang sống rất đông đúc và nhộn nhịp.',
+        quote: '...and the streets are busy and crowded.'
+      },
+      {
+        id: 'u4-q4',
+        type: 'ShortAnswer',
+        question: 'In which city does Khang live in the suburbs?',
+        correct: 'Da Nang',
+        acceptableAnswers: ['da nang', 'da nang city', 'danang'],
+        explanation: 'Khang sống ở ngoại ô thành phố Đà Nẵng.',
+        quote: 'I live in the suburbs of Da Nang City.'
       }
     ]
   },
@@ -344,7 +356,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u5-q1',
-        type: 'Địa danh (Location)',
+        type: 'MCQ',
         question: 'Where is Ha Long Bay located?',
         options: ['In Quang Ninh', 'In Da Nang', 'In Phan Thiet', 'In Bac Giang'],
         correct: 'In Quang Ninh',
@@ -353,30 +365,29 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u5-q2',
-        type: 'Chi tiết Mũi Né',
-        question: 'What colours does the sand in Mui Ne have?',
-        options: [
-          'White, yellow, red ...',
-          'Blue, green, black',
-          'Pink and purple',
-          'Only white'
-        ],
-        correct: 'White, yellow, red ...',
-        explanation: 'Cát ở Mũi Né có nhiều màu sắc: trắng, vàng, đỏ...',
+        type: 'True/False',
+        question: 'The sand in Mui Ne only has one colour: white.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Cát ở Mũi Né có nhiều màu sắc khác nhau: trắng, vàng, đỏ...',
         quote: 'The sand has different colours: white, yellow, red ...'
       },
       {
         id: 'u5-q3',
-        type: 'Lời khuyên (Advice)',
-        question: 'What should you remember to bring when visiting Mui Ne Sand Dunes?',
-        options: [
-          'Wear suncream and bring water',
-          'Bring a heavy coat and umbrella',
-          'Bring a comic book and violin',
-          'Wear warm gloves'
-        ],
-        correct: 'Wear suncream and bring water',
-        explanation: 'Bài đọc nhắc nhở nhớ bôi kem chống nắng và mang theo nước uống.',
+        type: 'True/False',
+        question: 'Ha Long Bay is Viet Nam’s best natural wonder.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Vịnh Hạ Long là kỳ quan thiên nhiên tuyệt vời nhất của Việt Nam.',
+        quote: 'Ha Long Bay is Viet Nam’s best natural wonder.'
+      },
+      {
+        id: 'u5-q4',
+        type: 'ShortAnswer',
+        question: 'What item should you wear to protect your skin when visiting Mui Ne Sand Dunes?',
+        correct: 'suncream',
+        acceptableAnswers: ['suncream', 'wear suncream'],
+        explanation: 'Bạn nên bôi kem chống nắng (suncream) để bảo vệ da.',
         quote: 'Remember to wear suncream and bring water.'
       }
     ]
@@ -412,7 +423,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u6-q1',
-        type: 'Địa danh & Lễ hội',
+        type: 'MCQ',
         question: 'Where does Russ go with his parents to welcome the New Year?',
         options: ['Times Square', 'Ha Noi', 'Da Lat', 'Stockholm'],
         correct: 'Times Square',
@@ -421,31 +432,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u6-q2',
-        type: 'Phong tục Việt Nam',
-        question: 'Why do Vietnamese people buy salt at Tet according to Mai?',
-        options: [
-          'To wish for good luck',
-          'To wish for enough food',
-          'Because cats cry like poor',
-          'To give to grandparents'
-        ],
-        correct: 'To wish for good luck',
-        explanation: 'Người Việt mua muối đầu năm để cầu may mắn.',
-        quote: '...and buy salt to wish for good luck.'
+        type: 'True/False',
+        question: 'In Viet Nam, cats are considered lucky animals during Tet.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Ở Việt Nam chó mới là loài vật may mắn, còn mèo thì không.',
+        quote: 'Dogs are lucky animals but cats are not.'
       },
       {
         id: 'u6-q3',
-        type: 'Quan niệm may mắn',
-        question: 'Why are cats NOT considered lucky animals during Tet in Viet Nam?',
-        options: [
-          'Because a cat’s cry sounds like "poor" in Vietnamese',
-          'Because cats eat too much rice',
-          'Because cats bring salt',
-          'Because cats do not like fireworks'
-        ],
-        correct: 'Because a cat’s cry sounds like "poor" in Vietnamese',
-        explanation: 'Mèo không được coi là may mắn vì tiếng kêu "meo meo" nghe giống từ "nghèo" trong tiếng Việt.',
-        quote: 'Dogs are lucky animals but cats are not. A cat\'s cry sounds like "poor" in Vietnamese.'
+        type: 'True/False',
+        question: 'Wu and his family visit their grandparents on New Year’s Day.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Wu và gia đình mặc đẹp và đến nhà ông bà chúc Tết.',
+        quote: 'On New Year\'s Day, we dress beautifully and go to our grandparents\' houses.'
+      },
+      {
+        id: 'u6-q4',
+        type: 'ShortAnswer',
+        question: 'What do Vietnamese people buy at Tet to wish for good luck?',
+        correct: 'salt',
+        acceptableAnswers: ['salt', 'buy salt'],
+        explanation: 'Người Việt mua muối đầu năm với ước nguyện cầu may mắn.',
+        quote: '...and buy salt to wish for good luck.'
       }
     ]
   },
@@ -475,7 +485,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u7-q1',
-        type: 'Lịch trình (Schedule)',
+        type: 'MCQ',
         question: 'What programme is on TV at 9.00?',
         options: [
           'Comedy: The Fox Teacher',
@@ -489,26 +499,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u7-q2',
-        type: 'Chi tiết chương trình',
-        question: 'Which game show can you join to answer questions about pets at 11.00?',
-        options: [
-          'Children are Always Right',
-          'The Pig Race',
-          'The Fox Teacher',
-          'Cuc Phuong Forest'
-        ],
-        correct: 'Children are Always Right',
-        explanation: 'Chương trình Game show lúc 11h00 tên là "Children are Always Right".',
-        quote: '11.00 | Game show: Children are Always Right'
+        type: 'True/False',
+        question: 'The Pig Race is a sports programme broadcasted at 10.30.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Chương trình "The Pig Race" là môn thể thao phát sóng lúc 10h30.',
+        quote: '10.30 | Sports: The Pig Race'
       },
       {
         id: 'u7-q3',
-        type: 'Thời gian phát sóng',
-        question: 'What time does the Science programme about intelligent dolphins start?',
-        options: ['12.15', '8.00', '10.30', '9.00'],
-        correct: '12.15',
-        explanation: 'Chương trình khoa học về cá heo thông minh phát sóng lúc 12h15.',
+        type: 'True/False',
+        question: 'The Dolphins is a comedy show about cartoon animals.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! "The Dolphins" là một chương trình Khoa học (Science).',
         quote: '12.15 | Science: The Dolphins'
+      },
+      {
+        id: 'u7-q4',
+        type: 'ShortAnswer',
+        question: 'What time is the Wildlife programme about Cuc Phuong Forest broadcasted?',
+        correct: '8.00',
+        acceptableAnswers: ['8.00', '8:00', '8'],
+        explanation: 'Chương trình Wildlife Cuc Phuong Forest phát sóng lúc 8h00.',
+        quote: '8.00 | Wildlife: Cuc Phuong Forest'
       }
     ]
   },
@@ -538,7 +552,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u8-q1',
-        type: 'Năm sinh & Quốc gia',
+        type: 'MCQ',
         question: 'When and where was Pelé born?',
         options: [
           'In 1940 in Brazil',
@@ -552,25 +566,29 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u8-q2',
-        type: 'Thành tích (World Cup)',
-        question: 'When did Pelé win his first World Cup?',
-        options: ['In 1958', 'In 1940', 'In 1999', 'At age 15'],
-        correct: 'In 1958',
-        explanation: 'Pelé vô địch World Cup đầu tiên vào năm 1958.',
+        type: 'True/False',
+        question: 'Pelé won his first World Cup in 1958.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Pelé vô địch World Cup đầu tiên vào năm 1958.',
         quote: 'In 1958, he won his first World Cup.'
       },
       {
         id: 'u8-q3',
-        type: 'Danh hiệu (Titles)',
-        question: 'What title did Pelé become in 1999?',
-        options: [
-          'Football Player of the Century',
-          'PE Teacher of the Year',
-          'Santos Football Club Owner',
-          'World Cup Referee'
-        ],
+        type: 'True/False',
+        question: 'Pelé scored 500 goals in total during his career.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Tổng số bàn thắng Pelé đã ghi trong sự nghiệp là 1.281 bàn.',
+        quote: 'Teacher: 1,281 goals in total, I think.'
+      },
+      {
+        id: 'u8-q4',
+        type: 'ShortAnswer',
+        question: 'What famous title became Pelé in 1999?',
         correct: 'Football Player of the Century',
-        explanation: 'Năm 1999, Pelé trở thành "Cầu thủ bóng đá của thế kỷ".',
+        acceptableAnswers: ['football player of the century', 'player of the century'],
+        explanation: 'Năm 1999, ông trở thành Cầu thủ bóng đá của thế kỷ.',
         quote: 'And he became "Football Player of the Century" in 1999.'
       }
     ]
@@ -596,7 +614,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u9-q1',
-        type: 'Địa danh (City)',
+        type: 'MCQ',
         question: 'Which city is Mai writing her letter from?',
         options: ['Stockholm', 'Sydney', 'Da Lat', 'Da Nang'],
         correct: 'Stockholm',
@@ -605,31 +623,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u9-q2',
-        type: 'Hoạt động (Activities)',
-        question: 'How did Mai’s family go to the Old Town?',
-        options: [
-          'They rented three bikes and cycled',
-          'They took a red bus',
-          'They walked on foot',
-          'They drove a car'
-        ],
-        correct: 'They rented three bikes and cycled',
-        explanation: 'Gia đình Mai thuê 3 chiếc xe đạp và đạp xe đến Phố Cổ.',
+        type: 'True/False',
+        question: 'Mai and her parents rented three bikes to cycle to the Old Town.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Cả nhà Mai đã thuê 3 chiếc xe đạp để đi đến Phố Cổ.',
         quote: 'Yesterday Mum, Dad and I rented three bikes and cycled to the Old Town.'
       },
       {
         id: 'u9-q3',
-        type: 'Văn hóa Thụy Điển',
-        question: 'What is "fika" in Swedish culture according to the text?',
-        options: [
-          'A coffee break in a traditional café',
-          'A kind of bicycle helmet',
-          'A famous painting in Royal Palace',
-          'A swimming pool game'
-        ],
-        correct: 'A coffee break in a traditional café',
-        explanation: '"Fika" trong văn hóa Thụy Điển là giờ nghỉ uống cà phê thư giãn.',
-        quote: 'After that, we had "fika", a coffee break, in a traditional café.'
+        type: 'True/False',
+        question: 'The weather in Stockholm was rainy and stormy all the time.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Thời tiết ở Stockholm rất hoàn hảo, luôn có nắng.',
+        quote: 'Its weather is perfect, sunny all the time!'
+      },
+      {
+        id: 'u9-q4',
+        type: 'ShortAnswer',
+        question: 'What famous place did Mai’s family visit first in the Old Town?',
+        correct: 'Royal Palace',
+        acceptableAnswers: ['royal palace', 'the royal palace'],
+        explanation: 'Gia đình Mai đã ghé thăm Cung điện Hoàng gia (Royal Palace) đầu tiên.',
+        quote: 'We visited the Royal Palace first.'
       }
     ]
   },
@@ -659,7 +676,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u10-q1',
-        type: 'Vị trí nhà (Location)',
+        type: 'MCQ',
         question: 'Where will the author’s future house be built?',
         options: ['On an island', 'In the city center', 'Under the sea', 'In a forest'],
         correct: 'On an island',
@@ -668,31 +685,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u10-q2',
-        type: 'Phương tiện di chuyển',
-        question: 'How will the author fly to school in the future?',
-        options: [
-          'By a helicopter on the roof',
-          'By a flying car',
-          'By riding a bike',
-          'By a smart TV'
-        ],
-        correct: 'By a helicopter on the roof',
-        explanation: 'Tác giả đi học bằng máy bay trực thăng đỗ trên mái nhà.',
+        type: 'True/False',
+        question: 'There will be a helicopter on the roof of the future house.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Trên mái nhà sẽ có một chiếc máy bay trực thăng để đi học.',
         quote: 'There will be a helicopter on the roof. I can fly to school in it.'
       },
       {
         id: 'u10-q3',
-        type: 'Chức năng thiết bị',
-        question: 'What can the super smart TV help the author do?',
-        options: [
-          'Send/receive emails, contact friends on other planets, and buy food',
-          'Clean the floors and wash clothes',
-          'Cook meals and water flowers',
-          'Feed dogs and cats'
-        ],
-        correct: 'Send/receive emails, contact friends on other planets, and buy food',
-        explanation: 'Tivi siêu thông minh giúp gửi/nhận email, liên lạc bạn bè ở hành tinh khác và mua thức ăn.',
-        quote: 'It will help me to send and receive emails, and contact my friends on other planets. It will also help me to buy food...'
+        type: 'True/False',
+        question: 'Robots will do all school homework for the author.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Robot trong nhà chỉ làm việc nhà như lau sàn, nấu ăn, giặt quần áo, tưới cây, cho thú cưng ăn.',
+        quote: 'They will help me to clean the floors, cook meals, wash clothes and water the flowers...'
+      },
+      {
+        id: 'u10-q4',
+        type: 'ShortAnswer',
+        question: 'What facility will be in front of the future house?',
+        correct: 'a swimming pool',
+        acceptableAnswers: ['swimming pool', 'a swimming pool'],
+        explanation: 'Phía trước ngôi nhà sẽ có một bể bơi.',
+        quote: 'There will be a swimming pool in front of the house.'
       }
     ]
   },
@@ -722,7 +738,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u11-q1',
-        type: 'Chi tiết (Tips)',
+        type: 'MCQ',
         question: 'Where do Nam and his classmates put recycling bins?',
         options: [
           'In every classroom',
@@ -736,31 +752,30 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u11-q2',
-        type: 'Tiết kiệm tài nguyên',
-        question: 'Why is borrowing books from the library a good tip?',
-        options: [
-          'Because it saves much paper',
-          'Because books are free to keep forever',
-          'Because students don’t need to read',
-          'Because it makes noise'
-        ],
-        correct: 'Because it saves much paper',
-        explanation: 'Mượn sách ở thư viện giúp tiết kiệm được rất nhiều giấy.',
-        quote: 'Reporter: Great! You can save much paper.'
+        type: 'True/False',
+        question: 'Nam and his friends throw old books away into the trash.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Các bạn đổi sách với bạn bè hoặc đem làm từ thiện chứ không vứt đi.',
+        quote: 'We exchange them with our friends or give them to charity. We don\'t throw them away.'
       },
       {
         id: 'u11-q3',
-        type: 'Mẹo cuối cùng (Final tip)',
-        question: 'What is Nam’s final tip for a greener school?',
-        options: [
-          'Find creative ways to reuse old items before throwing them away',
-          'Buy new uniforms every month',
-          'Drink sugary drinks in plastic cups',
-          'Cut down old trees'
-        ],
-        correct: 'Find creative ways to reuse old items before throwing them away',
-        explanation: 'Mẹo cuối cùng là tìm cách sáng tạo tái sử dụng đồ cũ trước khi bỏ đi.',
-        quote: 'Finally, we usually find creative ways to reuse old items before throwing them away.'
+        type: 'True/False',
+        question: 'Bringing reusable water bottles helps make the school greener.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Mang theo bình nước tái sử dụng giúp hạn chế rác thải nhựa.',
+        quote: 'We bring reusable water bottles to school.'
+      },
+      {
+        id: 'u11-q4',
+        type: 'ShortAnswer',
+        question: 'What do students borrow from the school library to save paper?',
+        correct: 'books',
+        acceptableAnswers: ['books', 'old books'],
+        explanation: 'Học sinh mượn sách ở thư viện thay vì mua mới để tiết kiệm giấy.',
+        quote: 'We borrow books from the school library instead of buying new ones.'
       }
     ]
   },
@@ -790,7 +805,7 @@ export const UNIT_READINGS: UnitReadingData[] = [
     questions: [
       {
         id: 'u12-q1',
-        type: 'Địa điểm (Event Location)',
+        type: 'MCQ',
         question: 'Where is the international robot show taking place?',
         options: ['In Ha Noi', 'In Sydney', 'In Da Nang', 'In Stockholm'],
         correct: 'In Ha Noi',
@@ -799,25 +814,29 @@ export const UNIT_READINGS: UnitReadingData[] = [
       },
       {
         id: 'u12-q2',
-        type: 'Chức năng Teacher Robots',
-        question: 'What can teacher robots do to help children?',
-        options: [
-          'Teach English, maths, literature & improve pronunciation',
-          'Build houses and move heavy things',
-          'Look after sick people in hospitals',
-          'Build space stations on the Moon'
-        ],
-        correct: 'Teach English, maths, literature & improve pronunciation',
-        explanation: 'Robot giáo viên dạy tiếng Anh, Toán, Ngữ văn và cải thiện phát âm.',
-        quote: 'They can teach them English, literature, maths... improve their English pronunciation.'
+        type: 'True/False',
+        question: 'Home robots can build space stations on the Moon.',
+        options: ['True', 'False'],
+        correct: 'False',
+        explanation: 'Sai! Robot vũ trụ (space robots) mới làm nhiệm vụ xây trạm vũ trụ trên Mặt Trăng.',
+        quote: 'space robots can build space stations on the Moon and on planets.'
       },
       {
         id: 'u12-q3',
-        type: 'Phân loại robot chuyên dụng',
-        question: 'Which type of robot can look after sick people?',
-        options: ['Doctor robots', 'Worker robots', 'Space robots', 'Home robots'],
-        correct: 'Doctor robots',
-        explanation: 'Robot bác sĩ (doctor robots) có nhiệm vụ chăm sóc người bệnh.',
+        type: 'True/False',
+        question: 'Teacher robots can help children improve their English pronunciation.',
+        options: ['True', 'False'],
+        correct: 'True',
+        explanation: 'Đúng! Robot giáo viên giúp các em học sinh cải thiện phát âm tiếng Anh.',
+        quote: 'They can also help children to improve their English pronunciation.'
+      },
+      {
+        id: 'u12-q4',
+        type: 'ShortAnswer',
+        question: 'Which type of robots can look after sick people in hospitals?',
+        correct: 'doctor robots',
+        acceptableAnswers: ['doctor robots', 'doctor robot'],
+        explanation: 'Robot bác sĩ (doctor robots) có thể chăm sóc bệnh nhân.',
         quote: 'doctor robots can look after sick people...'
       }
     ]
@@ -841,6 +860,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
 
   const [readingAnswers, setReadingAnswers] = useState<Record<string, string>>({});
   const [readingScored, setReadingScored] = useState<Record<string, boolean>>({});
+  const [shortInputs, setShortInputs] = useState<Record<string, string>>({});
 
   const [score, setScore] = useState<number>(0);
 
@@ -905,18 +925,44 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
     }
   };
 
-  const handleAnswerReading = (qId: string, option: string, correct: string) => {
-    if (readingAnswers[qId]) return;
+  const handleAnswerReading = (q: UnitReadingQuestion, option: string) => {
+    if (readingAnswers[q.id]) return;
 
-    setReadingAnswers((prev) => ({ ...prev, [qId]: option }));
+    setReadingAnswers((prev) => ({ ...prev, [q.id]: option }));
 
-    if (option === correct) {
+    if (option === q.correct) {
       setScore((s) => s + 10);
-      setReadingScored((prev) => ({ ...prev, [qId]: true }));
+      setReadingScored((prev) => ({ ...prev, [q.id]: true }));
       speakText('Correct answer!');
     } else {
-      setReadingScored((prev) => ({ ...prev, [qId]: false }));
+      setReadingScored((prev) => ({ ...prev, [q.id]: false }));
       speakText('Try again!');
+    }
+  };
+
+  const handleSubmitShortAnswer = (q: UnitReadingQuestion) => {
+    const userInput = (shortInputs[q.id] || '').trim();
+    if (!userInput || readingAnswers[q.id]) return;
+
+    setReadingAnswers((prev) => ({ ...prev, [q.id]: userInput }));
+
+    const normUser = userInput.toLowerCase();
+    const normCorrect = q.correct.toLowerCase();
+    const acceptable = (q.acceptableAnswers || []).map((a) => a.toLowerCase());
+
+    const isMatch =
+      normUser === normCorrect ||
+      acceptable.includes(normUser) ||
+      normUser.includes(normCorrect) ||
+      acceptable.some((acc) => normUser.includes(acc));
+
+    if (isMatch) {
+      setScore((s) => s + 10);
+      setReadingScored((prev) => ({ ...prev, [q.id]: true }));
+      speakText('Great answer!');
+    } else {
+      setReadingScored((prev) => ({ ...prev, [q.id]: false }));
+      speakText('Keep learning!');
     }
   };
 
@@ -953,13 +999,13 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold mb-2">
             <BookOpen className="w-4 h-4 text-[#38BDF8]" />
-            Reading Mastery Game • Đủ 12 Bài Đọc SGK Tiếng Anh 6
+            Reading Mastery Game • 12 Bài Đọc SGK + Câu Hỏi True/False & Trả Lời Ngắn
           </div>
           <h2 className="text-2xl font-extrabold tracking-tight">
             {currentUnitData.topicTitle}
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 mt-1">
-            Đọc bài văn chuẩn SGK, luyện phát âm AI, từ vựng IPA & câu hỏi đọc hiểu kèm trích dẫn chi tiết.
+            Đọc bài văn chuẩn SGK, luyện nghe AI, trắc nghiệm MCQs, True/False & tự điền câu trả lời ngắn.
           </p>
         </div>
 
@@ -976,6 +1022,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
                 setVocabScored({});
                 setReadingAnswers({});
                 setReadingScored({});
+                setShortInputs({});
                 setActiveSubTab('passage');
               }}
               className="bg-slate-900 text-white font-bold text-xs px-3 py-1.5 rounded-lg border border-slate-700 focus:outline-none"
@@ -1036,7 +1083,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
               : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
-          ❓ 3. Đọc Hiểu ({currentUnitData.questions.length} Câu)
+          ❓ 3. Đọc Hiểu & True/False ({currentUnitData.questions.length} Câu)
         </button>
 
         <button
@@ -1186,7 +1233,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
         </div>
       )}
 
-      {/* SUB TAB 3: READING QUIZ */}
+      {/* SUB TAB 3: READING QUIZ (MCQ, True/False, Short Answer) */}
       {activeSubTab === 'quiz' && (
         <div className="space-y-4">
           {currentUnitData.questions.map((q, qIdx) => {
@@ -1199,8 +1246,11 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
                 className="bg-white rounded-2xl p-5 shadow-2xs border border-slate-200 space-y-3"
               >
                 <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-xs font-bold text-[#4A90E2]">
-                    Câu {qIdx + 1}/{currentUnitData.questions.length} • Dạng bài: {q.type}
+                  <span className="text-xs font-bold text-[#4A90E2] flex items-center gap-1.5">
+                    {q.type === 'True/False' && <CheckSquare className="w-3.5 h-3.5 text-amber-500" />}
+                    {q.type === 'ShortAnswer' && <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />}
+                    {q.type === 'MCQ' && <HelpCircle className="w-3.5 h-3.5 text-blue-500" />}
+                    Câu {qIdx + 1}/{currentUnitData.questions.length} • Dạng bài: {q.type === 'True/False' ? 'Đúng hay Sai (True/False)' : q.type === 'ShortAnswer' ? 'Trả Lời Câu Hỏi (Short Answer)' : 'Trắc Nghiệm (MCQ)'}
                   </span>
                   <button
                     onClick={() => speakText(q.question)}
@@ -1212,31 +1262,97 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
 
                 <p className="text-sm font-bold text-slate-900">{q.question}</p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {q.options.map((opt, optIdx) => {
-                    const isSelected = readingAnswers[q.id] === opt;
-                    return (
-                      <button
-                        key={optIdx}
-                        disabled={isAnswered}
-                        onClick={() => handleAnswerReading(q.id, opt, q.correct)}
-                        className={`text-left text-xs font-semibold p-3 rounded-xl border transition-all ${
-                          isAnswered
-                            ? opt === q.correct
-                              ? 'bg-emerald-100 border-emerald-400 text-emerald-900'
-                              : isSelected
-                              ? 'bg-rose-100 border-rose-400 text-rose-900'
-                              : 'bg-slate-50 border-slate-200 text-slate-500'
-                            : 'bg-slate-50 hover:bg-blue-50 border-slate-200 text-slate-800'
-                        }`}
-                      >
-                        <span className="font-bold mr-1.5">{String.fromCharCode(65 + optIdx)}.</span>
-                        {opt}
-                      </button>
-                    );
-                  })}
-                </div>
+                {/* DẠNG 1: MCQ (A, B, C, D) */}
+                {q.type === 'MCQ' && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    {(q.options || []).map((opt, optIdx) => {
+                      const isSelected = readingAnswers[q.id] === opt;
+                      return (
+                        <button
+                          key={optIdx}
+                          disabled={isAnswered}
+                          onClick={() => handleAnswerReading(q, opt)}
+                          className={`text-left text-xs font-semibold p-3 rounded-xl border transition-all ${
+                            isAnswered
+                              ? opt === q.correct
+                                ? 'bg-emerald-100 border-emerald-400 text-emerald-900'
+                                : isSelected
+                                ? 'bg-rose-100 border-rose-400 text-rose-900'
+                                : 'bg-slate-50 border-slate-200 text-slate-500'
+                              : 'bg-slate-50 hover:bg-blue-50 border-slate-200 text-slate-800'
+                          }`}
+                        >
+                          <span className="font-bold mr-1.5">{String.fromCharCode(65 + optIdx)}.</span>
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
 
+                {/* DẠNG 2: TRUE / FALSE */}
+                {q.type === 'True/False' && (
+                  <div className="flex items-center gap-3 max-w-md">
+                    {['True', 'False'].map((tfVal) => {
+                      const isSelected = readingAnswers[q.id] === tfVal;
+                      return (
+                        <button
+                          key={tfVal}
+                          disabled={isAnswered}
+                          onClick={() => handleAnswerReading(q, tfVal)}
+                          className={`flex-1 py-3 px-4 rounded-xl border text-xs font-extrabold transition-all cursor-pointer text-center ${
+                            isAnswered
+                              ? tfVal === q.correct
+                                ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm'
+                                : isSelected
+                                ? 'bg-rose-500 text-white border-rose-600 shadow-sm'
+                                : 'bg-slate-100 border-slate-200 text-slate-400'
+                              : tfVal === 'True'
+                              ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border-emerald-200'
+                              : 'bg-rose-50 hover:bg-rose-100 text-rose-800 border-rose-200'
+                          }`}
+                        >
+                          {tfVal === 'True' ? '✅ TRUE (Đúng)' : '❌ FALSE (Sai)'}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* DẠNG 3: SHORT ANSWER (Tự điền câu trả lời) */}
+                {q.type === 'ShortAnswer' && (
+                  <div className="space-y-2">
+                    {!isAnswered ? (
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="text"
+                          value={shortInputs[q.id] || ''}
+                          onChange={(e) =>
+                            setShortInputs((prev) => ({ ...prev, [q.id]: e.target.value }))
+                          }
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleSubmitShortAnswer(q);
+                          }}
+                          placeholder="Nhập câu trả lời bằng tiếng Anh..."
+                          className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:outline-none focus:border-[#4A90E2]"
+                        />
+                        <button
+                          onClick={() => handleSubmitShortAnswer(q)}
+                          className="px-4 py-2.5 rounded-xl bg-[#4A90E2] hover:bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                        >
+                          <Send className="w-3.5 h-3.5" /> Nộp Bài
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700">
+                        <span>Câu trả lời của bạn: </span>
+                        <span className="font-bold text-slate-900">"{readingAnswers[q.id]}"</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* GIẢI THÍCH KHI ĐÃ TRẢ LỜI */}
                 {isAnswered && (
                   <div
                     className={`p-3 rounded-xl text-xs space-y-1 ${
@@ -1246,7 +1362,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
                     }`}
                   >
                     <p className="font-bold">
-                      {isCorrect ? '✅ Đúng rồi! +10 XP' : `❌ Chưa đúng! Đáp án đúng là: ${q.correct}`}
+                      {isCorrect ? '✅ Chính xác! +10 XP' : `❌ Chưa chính xác! Đáp án chuẩn là: "${q.correct}"`}
                     </p>
                     <p className="text-[11px] text-slate-600">💡 {q.explanation}</p>
                     <p className="text-[11px] italic text-slate-500">📌 Trích dẫn: "{q.quote}"</p>
@@ -1297,7 +1413,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
             <div className="p-3 bg-purple-50 rounded-xl border border-purple-200">
               <span className="text-[10px] font-bold text-slate-400 uppercase block">Xếp Loại</span>
               <span className="text-xl font-extrabold text-purple-700">
-                {score >= 50 ? 'Xuất Sắc' : score >= 30 ? 'Giỏi' : 'Khá'}
+                {score >= 60 ? 'Xuất Sắc' : score >= 40 ? 'Giỏi' : 'Khá'}
               </span>
             </div>
           </div>
@@ -1310,6 +1426,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
                 setVocabScored({});
                 setReadingAnswers({});
                 setReadingScored({});
+                setShortInputs({});
                 setActiveSubTab('passage');
               }}
               className="px-5 py-2.5 rounded-xl bg-[#4A90E2] hover:bg-blue-600 text-white font-bold text-xs transition-all cursor-pointer"
@@ -1326,6 +1443,7 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
                   setVocabScored({});
                   setReadingAnswers({});
                   setReadingScored({});
+                  setShortInputs({});
                   setActiveSubTab('passage');
                 }}
                 className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer"
