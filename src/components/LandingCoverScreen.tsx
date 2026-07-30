@@ -219,7 +219,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                 <span>Gia Sư AI Tiếng Anh Lớp 6</span> 🌟
               </h1>
               <p className="text-xs text-purple-600 font-bold flex items-center gap-1.5">
-                <span>Global Success 📖</span> • <span>Biên soạn & Quản lý: Cô Nhạn - THCS Chu Văn An Đăk Hà 🏫</span>
+                <span>Global Success 📖</span> • <span>Created by Mrs.Nhan - THCS Chu Van An Dak Ha 🏫</span>
               </p>
             </div>
           </div>

@@ -313,7 +313,7 @@ export default function App() {
             🎓 Gia Sư AI Tiếng Anh Lớp 6 - Trợ Lý Học Tập Cá Nhân Hóa
           </p>
           <p className="mt-1">
-            Chương trình chuẩn GDPT mới (Sách Tiếng Anh 6 Global Success - Tập 1 & Tập 2) • Mrs Nhan - THCS Chu Văn An Đăk Hà
+            Chương trình chuẩn GDPT mới (Sách Tiếng Anh 6 Global Success - Tập 1 & Tập 2) • Created by Mrs.Nhan - THCS Chu Van An Dak Ha
           </p>
         </div>
       </footer>
