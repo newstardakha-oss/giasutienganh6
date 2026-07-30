@@ -77,51 +77,52 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs transition-colors">
+    <header className="sticky top-0 z-40 bg-[#eef4fb] border-b border-slate-200/60 shadow-sm transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-20">
+          {/* Logo Neumorphic */}
           <div
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => onOpenCoverScreen ? onOpenCoverScreen() : setActiveTab('socratic')}
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4A90E2] to-[#FF9500] flex items-center justify-center text-white shadow-md shadow-blue-500/15 group-hover:scale-105 transition-transform">
-              <GraduationCap className="w-6 h-6" />
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3b82f6] to-[#6366f1] flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-all border border-white/40">
+              <GraduationCap className="w-7 h-7" />
             </div>
             <div>
-              <h1 className="font-extrabold text-lg leading-tight bg-gradient-to-r from-[#4A90E2] to-[#FF9500] bg-clip-text text-transparent">
+              <h1 className="font-extrabold text-xl leading-tight bg-gradient-to-r from-blue-600 via-indigo-600 to-amber-500 bg-clip-text text-transparent">
                 Gia Sư AI Lớp 6
               </h1>
-              <p className="text-[11px] text-slate-400 font-semibold tracking-tight">
-                Global Success • GDPT Mới
+              <p className="text-[11px] text-slate-500 font-bold tracking-tight">
+                Global Success • Soft Neumorphism 3D
               </p>
             </div>
           </div>
 
-          {/* User Profile & Gamification Badges */}
+          {/* User Profile & Gamification Badges (Neumorphic Style) */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Button Trang Bìa Đăng Nhập */}
             {onOpenCoverScreen && (
               <button
                 onClick={onOpenCoverScreen}
-                className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition-all border border-indigo-200"
+                className="hidden lg:flex items-center gap-1.5 px-3.5 py-2 rounded-xl neu-btn text-indigo-700 text-xs font-extrabold transition-all"
                 title="Quay lại Màn hình Trang Bìa Đăng Nhập"
               >
-                <GraduationCap className="w-3.5 h-3.5 text-indigo-600" />
+                <GraduationCap className="w-4 h-4 text-indigo-600" />
                 <span>Trang Bìa</span>
               </button>
             )}
+
             {/* User Profile & Role Button */}
             <button
               id="header-student-auth-btn"
               onClick={onOpenStudentAuth}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all shadow-2xs ${
+              className={`flex items-center gap-2.5 px-3.5 py-2 rounded-2xl border text-xs font-extrabold transition-all neu-btn ${
                 appData.isTeacherLoggedIn
-                  ? 'bg-purple-50 hover:bg-purple-100 text-purple-900 border-purple-300'
-                  : 'bg-blue-50 hover:bg-blue-100 text-blue-900 border-blue-200'
+                  ? 'bg-purple-50 text-purple-900 border-purple-200'
+                  : 'bg-blue-50 text-blue-900 border-blue-200'
               }`}
             >
-              <span className="text-base leading-none">
+              <span className="text-xl leading-none">
                 {appData.isTeacherLoggedIn
                   ? '👩‍🏫'
                   : currentStudent
@@ -137,21 +138,21 @@ export const Header: React.FC<HeaderProps> = ({
                     : 'Đăng Nhập'}
                 </span>
                 <span
-                  className={`block text-[10px] font-semibold ${
-                    appData.isTeacherLoggedIn ? 'text-purple-600 font-bold' : 'text-[#4A90E2]'
+                  className={`block text-[10px] font-bold ${
+                    appData.isTeacherLoggedIn ? 'text-purple-600' : 'text-blue-600'
                   }`}
                 >
                   {appData.isTeacherLoggedIn
                     ? 'Giáo Viên Quản Lý'
                     : currentStudent
                     ? currentStudent.className
-                    : 'Học Sinh'}
+                    : 'Học Sinh Lớp 6'}
                 </span>
               </div>
               {appData.isTeacherLoggedIn ? (
                 <ShieldCheck className="w-4 h-4 text-purple-600 ml-0.5 shrink-0" />
               ) : (
-                <UserCheck className="w-3.5 h-3.5 text-[#4A90E2] ml-0.5 shrink-0" />
+                <UserCheck className="w-3.5 h-3.5 text-blue-600 ml-0.5 shrink-0" />
               )}
             </button>
 
@@ -159,34 +160,34 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="relative">
               <button
                 onClick={() => setShowExportMenu(!showExportMenu)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all border border-slate-200"
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl neu-btn text-slate-700 text-xs font-extrabold transition-all"
               >
-                <Download className="w-3.5 h-3.5 text-indigo-600" />
+                <Download className="w-4 h-4 text-indigo-600" />
                 <span className="hidden sm:inline">Xuất File</span>
               </button>
 
               {showExportMenu && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-slate-200 p-2 z-50 animate-in fade-in zoom-in-95">
-                  <div className="px-3 py-2 text-[11px] font-bold text-slate-400 border-b border-slate-100">
+                <div className="absolute right-0 mt-2 w-56 neu-card p-2 z-50 animate-in fade-in zoom-in-95">
+                  <div className="px-3 py-2 text-[11px] font-extrabold text-slate-400 border-b border-slate-200/60">
                     BỘ CÔNG CỤ XUẤT TÀI LIỆU
                   </div>
                   <button
                     onClick={handleExportDocx}
-                    className="w-full px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
+                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
                   >
                     <FileText className="w-4 h-4 text-blue-500" />
                     <span>Xuất Đề Thi Word (.docx)</span>
                   </button>
                   <button
                     onClick={handleExportPptx}
-                    className="w-full px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
+                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
                   >
                     <Presentation className="w-4 h-4 text-amber-500" />
                     <span>Xuất Slide PowerPoint (.pptx)</span>
                   </button>
                   <button
                     onClick={handleExportMoodle}
-                    className="w-full px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
+                    className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl flex items-center gap-2.5 transition-colors"
                   >
                     <FileCode className="w-4 h-4 text-emerald-500" />
                     <span>Xuất Moodle GIFT Format</span>
@@ -195,27 +196,27 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
 
-            {/* Streak */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-2xs">
-              <Flame className="w-4 h-4 text-[#FF9500] fill-[#FF9500]" />
-              <span className="font-bold text-[#FF9500]">{appData.progress.streakDays}</span>
+            {/* Streak Neumorphic */}
+            <div className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl neu-inset text-slate-700 text-xs font-bold">
+              <Flame className="w-4 h-4 text-amber-500 fill-amber-500" />
+              <span className="font-extrabold text-amber-600">{appData.progress.streakDays}</span>
               <span className="hidden sm:inline text-slate-500">ngày</span>
             </div>
 
-            {/* Level & XP */}
-            <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold shadow-2xs">
-              <Award className="w-4 h-4 text-[#4A90E2]" />
-              <span className="font-bold text-[#4A90E2]">Lv.{appData.progress.level}</span>
+            {/* Level & XP Neumorphic */}
+            <div className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-2xl neu-inset text-slate-700 text-xs font-bold">
+              <Award className="w-4 h-4 text-blue-600" />
+              <span className="font-extrabold text-blue-600">Lv.{appData.progress.level}</span>
               <span className="text-slate-300">|</span>
-              <Zap className="w-3.5 h-3.5 text-[#FF9500] fill-[#FF9500]" />
-              <span className="text-slate-600">{appData.progress.totalXP} XP</span>
+              <Zap className="w-4 h-4 text-amber-500 fill-amber-500" />
+              <span className="font-extrabold text-slate-700">{appData.progress.totalXP} XP</span>
             </div>
 
-            {/* Settings Button (Chỉ mở khi cần cấu hình nâng cao) */}
+            {/* Settings Button */}
             <button
               id="header-api-settings-btn"
               onClick={onOpenSettings}
-              className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors border border-slate-200 cursor-pointer"
+              className="p-2.5 rounded-xl neu-btn text-slate-600 transition-colors"
               title="Cấu hình hệ thống AI"
             >
               <Settings className="w-4 h-4 text-slate-600" />
@@ -226,15 +227,15 @@ export const Header: React.FC<HeaderProps> = ({
               id="header-backup-btn"
               onClick={onOpenBackupModal}
               title="Sao lưu / Khôi phục dữ liệu"
-              className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors border border-slate-200"
+              className="p-2.5 rounded-xl neu-btn text-slate-600 transition-colors"
             >
               <HardDriveUpload className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Navigation Tab Bar */}
-        <nav className="flex items-center gap-1.5 overflow-x-auto py-2 scrollbar-none border-t border-slate-100">
+        {/* Navigation Tab Bar Neumorphic */}
+        <nav className="flex items-center gap-2 overflow-x-auto py-2.5 scrollbar-none border-t border-slate-200/60">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -243,10 +244,10 @@ export const Header: React.FC<HeaderProps> = ({
                 key={item.id}
                 id={`nav-tab-${item.id}`}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-[#4A90E2] text-white shadow-sm font-bold'
-                    : 'text-slate-500 hover:text-[#4A90E2] hover:bg-slate-100/80'
+                    ? 'neu-btn-primary font-extrabold shadow-md'
+                    : 'neu-btn text-slate-600 hover:text-blue-600'
                 }`}
               >
                 <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-400'}`} />

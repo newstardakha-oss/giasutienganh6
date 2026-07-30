@@ -1051,14 +1051,14 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
         </div>
       </div>
 
-      {/* Sub Tabs */}
-      <div className="flex items-center gap-2 bg-white p-2 rounded-2xl border border-slate-200 shadow-2xs overflow-x-auto">
+      {/* Sub Tabs Neumorphic */}
+      <div className="flex items-center gap-2 neu-card p-2.5 overflow-x-auto border border-white/60">
         <button
           onClick={() => setActiveSubTab('passage')}
-          className={`flex-1 py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
             activeSubTab === 'passage'
-              ? 'bg-[#4A90E2] text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              ? 'neu-btn-primary text-white shadow-md'
+              : 'neu-btn text-slate-600 hover:text-blue-600'
           }`}
         >
           📖 1. Bài Đọc & Audio AI
@@ -1066,10 +1066,10 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
 
         <button
           onClick={() => setActiveSubTab('vocab')}
-          className={`flex-1 py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
             activeSubTab === 'vocab'
-              ? 'bg-[#4A90E2] text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              ? 'neu-btn-primary text-white shadow-md'
+              : 'neu-btn text-slate-600 hover:text-blue-600'
           }`}
         >
           🔤 2. Từ Vựng Trọng Tâm ({currentUnitData.vocabList.length} Từ)
@@ -1077,10 +1077,10 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
 
         <button
           onClick={() => setActiveSubTab('quiz')}
-          className={`flex-1 py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
             activeSubTab === 'quiz'
-              ? 'bg-[#4A90E2] text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              ? 'neu-btn-primary text-white shadow-md'
+              : 'neu-btn text-slate-600 hover:text-blue-600'
           }`}
         >
           ❓ 3. Đọc Hiểu & True/False ({currentUnitData.questions.length} Câu)
@@ -1091,10 +1091,10 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
             setActiveSubTab('result');
             handleFinishGame();
           }}
-          className={`flex-1 py-2 px-4 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
             activeSubTab === 'result'
-              ? 'bg-emerald-600 text-white shadow-sm'
-              : 'text-slate-600 hover:bg-slate-100'
+              ? 'neu-btn-success text-white shadow-md'
+              : 'neu-btn text-slate-600 hover:text-emerald-600'
           }`}
         >
           🏆 4. Báo Cáo Kết Quả

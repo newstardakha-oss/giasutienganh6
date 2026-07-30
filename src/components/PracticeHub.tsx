@@ -187,17 +187,17 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
         </div>
       </div>
 
-      {/* Filter Row */}
-      <div className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+      {/* Filter Row Neumorphic */}
+      <div className="neu-card p-4 flex flex-wrap items-center justify-between gap-4 border border-white/60">
         <div className="flex items-center gap-3 flex-wrap">
-          <span className="text-xs font-bold text-slate-700">Bài Học:</span>
+          <span className="text-xs font-extrabold text-slate-700">Chọn Bài Học:</span>
           <select
             value={selectedUnitId}
             onChange={(e) => {
               setSelectedUnitId(e.target.value);
               handleRestart();
             }}
-            className="text-xs font-semibold px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-800"
+            className="text-xs font-extrabold px-4 py-2 rounded-xl neu-inset text-slate-800 focus:outline-none"
           >
             <option value="All">Tất cả bài học (All Units)</option>
             {units.map((u) => (
@@ -208,7 +208,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
           </select>
         </div>
 
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-1">
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-none py-1">
           {['All', 'Grammar', 'Vocabulary', 'Pronunciation', 'Reading', 'Writing'].map((sk) => (
             <button
               key={sk}
@@ -216,10 +216,10 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
                 setSelectedSkill(sk as any);
                 handleRestart();
               }}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+              className={`px-3.5 py-2 rounded-xl text-xs font-extrabold transition-all cursor-pointer ${
                 selectedSkill === sk
-                  ? 'bg-[#4A90E2] text-white shadow-2xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'neu-btn-primary text-white shadow-md'
+                  : 'neu-btn text-slate-600 hover:text-blue-600'
               }`}
             >
               {sk === 'All' ? 'Tất Cả Kỹ Năng' : sk}

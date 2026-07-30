@@ -1,7 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @layer base {
   body {
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: 'Be Vietnam Pro', 'Outfit', sans-serif;
+    background-color: #eef4fb;
+    color: #1e293b;
   }
+}
+
+/* Custom Neumorphism UI Styles for Grade 6 Gamified App */
+
+.neu-bg {
+  background-color: #eef4fb;
+}
+
+/* Flat Soft Raised Card */
+.neu-card {
+  background: #eef4fb;
+  box-shadow: 8px 8px 18px #cbd9eb, -8px -8px 18px #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Inset / Pressed Slot */
+.neu-inset {
+  background: #eef4fb;
+  box-shadow: inset 4px 4px 8px #c6d6e9, inset -4px -4px 8px #ffffff;
+  border-radius: 1rem;
+}
+
+/* Neumorphic Button */
+.neu-btn {
+  background: #eef4fb;
+  box-shadow: 6px 6px 14px #cbd9eb, -6px -6px 14px #ffffff;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.neu-btn:hover {
+  box-shadow: 8px 8px 18px #b9cbdf, -8px -8px 18px #ffffff;
+  transform: translateY(-2px);
+}
+
+.neu-btn:active {
+  box-shadow: inset 3px 3px 6px #c6d6e9, inset -3px -3px 6px #ffffff;
+  transform: translateY(1px);
+}
+
+/* Gradient Primary Neumorphic Button (Blue) */
+.neu-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  box-shadow: 6px 6px 14px #bccee3, -6px -6px 14px #ffffff;
+  border-radius: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.neu-btn-primary:hover {
+  box-shadow: 8px 8px 18px #b0c4de, -8px -8px 18px #ffffff;
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.neu-btn-primary:active {
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+/* Gradient Success Neumorphic Button (Emerald) */
+.neu-btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  box-shadow: 6px 6px 14px #bccee3, -6px -6px 14px #ffffff;
+  border-radius: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.neu-btn-success:hover {
+  box-shadow: 8px 8px 18px #b0c4de, -8px -8px 18px #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Gradient Gold Neumorphic Badge */
+.neu-badge-gold {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  box-shadow: 4px 4px 10px #c6d6e9, -4px -4px 10px #ffffff;
+  border-radius: 9999px;
+}
+
+/* Soft Glow Effects */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #eef4fb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd9eb;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

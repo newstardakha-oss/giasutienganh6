@@ -190,7 +190,58 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 pb-12">
+      <main className="flex-1 pb-12 bg-[#eef4fb]">
+        {/* Personalized Neumorphic Student Greeting Banner */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+          <div className="neu-card p-5 border border-white/60 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-500 to-amber-400 flex items-center justify-center text-3xl shrink-0 shadow-md border-2 border-white">
+                {appData.isTeacherLoggedIn
+                  ? '👩‍🏫'
+                  : appData.students.find((s) => s.id === appData.currentStudentId)?.avatar || '👨‍🎓'}
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-blue-600 bg-blue-100/70 px-2.5 py-0.5 rounded-full border border-blue-200">
+                    {appData.isTeacherLoggedIn ? 'Giáo Viên Quản Lý' : 'Học Sinh Lớp 6'}
+                  </span>
+                  <span className="text-xs font-bold text-amber-600 bg-amber-100/70 px-2.5 py-0.5 rounded-full border border-amber-200">
+                    🔥 Streak: {appData.progress.streakDays} Ngày Chuỗi
+                  </span>
+                </div>
+                <h2 className="text-lg sm:text-xl font-extrabold text-slate-800 mt-1">
+                  Xin chào,{' '}
+                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                    {appData.isTeacherLoggedIn
+                      ? appData.teacherAccount.fullName
+                      : appData.students.find((s) => s.id === appData.currentStudentId)?.fullName || 'Học Sinh Lớp 6'}
+                  </span>
+                  ! 🌟
+                </h2>
+                <p className="text-xs text-slate-500 font-semibold">
+                  Hôm nay em muốn luyện tập kỹ năng Tiếng Anh 6 nào?
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Stats Pill */}
+            <div className="flex items-center gap-3 self-stretch md:self-auto justify-around">
+              <div className="neu-inset px-4 py-2 text-center">
+                <span className="text-[10px] font-extrabold text-slate-400 uppercase block">Cấp Độ</span>
+                <span className="text-base font-extrabold text-blue-600">Lv.{appData.progress.level}</span>
+              </div>
+              <div className="neu-inset px-4 py-2 text-center">
+                <span className="text-[10px] font-extrabold text-slate-400 uppercase block">Điểm XP</span>
+                <span className="text-base font-extrabold text-amber-500">{appData.progress.totalXP} XP</span>
+              </div>
+              <div className="neu-inset px-4 py-2 text-center">
+                <span className="text-[10px] font-extrabold text-slate-400 uppercase block">Bài Đã Hoàn Thành</span>
+                <span className="text-base font-extrabold text-emerald-600">{appData.sessions.length}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {activeTab === 'socratic' && <SocraticTutor units={appData.units} />}
         {activeTab === 'homework' && (
           <HomeworkHelper questions={appData.questions} units={appData.units} />
