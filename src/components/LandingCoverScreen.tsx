@@ -317,51 +317,15 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                   <span>👨‍🎓 Đăng Nhập Học Sinh Lớp 6</span>
                 </h3>
                 <p className="text-xs text-purple-700 font-semibold">
-                  Chọn tên của em trong danh sách hoặc nhập tên đăng nhập bên dưới để vào học:
+                  Nhập Tên đăng nhập và Mật khẩu của em bên dưới để vào học:
                 </p>
-              </div>
-
-              {/* Quick Select Student Cards */}
-              <div className="space-y-2">
-                <label className="text-xs font-extrabold text-purple-900 block uppercase">
-                  1. Chọn Nhanh Tài Khoản Học Sinh Có Sẵn:
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto pr-1">
-                  {appData.students.map((st) => {
-                    const isSelected = st.id === selectedStudentId;
-                    return (
-                      <div
-                        key={st.id}
-                        onClick={() => handleSelectStudentCard(st)}
-                        className={`p-3 rounded-2xl border-2 transition-all cursor-pointer flex items-center justify-between ${
-                          isSelected
-                            ? 'neu-card-blue border-sky-400 shadow-md scale-[1.02]'
-                            : 'neu-card hover:border-sky-300'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-2xl">{st.avatar}</span>
-                          <div>
-                            <span className="font-extrabold text-xs text-slate-900 block leading-tight">
-                              {st.fullName}
-                            </span>
-                            <span className="text-[10px] text-sky-700 font-bold block">
-                              @{st.username} • {st.className}
-                            </span>
-                          </div>
-                        </div>
-                        {isSelected && <CheckCircle2 className="w-5 h-5 text-sky-600 shrink-0" />}
-                      </div>
-                    );
-                  })}
-                </div>
               </div>
 
               {/* Username & Password Inputs */}
               <div className="space-y-3 pt-1">
                 <div>
                   <label className="text-xs font-extrabold text-purple-900 block mb-1">
-                    2. Tên Đăng Nhập Học Sinh:
+                    1. Tên Đăng Nhập Học Sinh:
                   </label>
                   <div className="relative">
                     <User className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
@@ -377,7 +341,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
                 <div>
                   <label className="text-xs font-extrabold text-purple-900 block mb-1">
-                    3. Mật Khẩu Đăng Nhập:
+                    2. Mật Khẩu Đăng Nhập:
                   </label>
                   <div className="relative">
                     <KeyRound className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
