@@ -19,7 +19,8 @@ import {
   Presentation,
   FileCode,
   ShieldCheck,
-  Settings
+  Settings,
+  Home
 } from 'lucide-react';
 import { AppDataSchema } from '../types';
 import { exportQuestionsToDocx } from '../services/docxExport';
@@ -49,17 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   const currentStudent = appData.students.find((s) => s.id === appData.currentStudentId);
   const [showExportMenu, setShowExportMenu] = useState(false);
 
-  const navItems = [
-    { id: 'socratic', label: 'Gia Sư Socratic', icon: GraduationCap },
-    { id: 'homework', label: 'Giải Bài Tập', icon: Sparkles },
-    { id: 'speech', label: 'Phát Âm & Giao Tiếp', icon: Mic },
-    { id: 'writing', label: 'Chấm Bài Viết', icon: FileEdit },
-    { id: 'reading-game', label: 'Game Đọc Hiểu', icon: BookOpen },
-    { id: 'practice', label: 'Kho Bài Tập', icon: BookOpen },
-    { id: 'arena', label: 'Đấu Tri Thức', icon: Swords },
-    { id: 'upload', label: 'Tải Tài Liệu SGK', icon: Upload },
-    { id: 'report', label: 'Báo Cáo Phụ Huynh', icon: BarChart3 },
-  ];
+  // Navigation items are defined inline in the nav bar below
 
   const handleExportDocx = () => {
     exportQuestionsToDocx('De_Kiem_Tra_Tieng_Anh_6', appData.questions.slice(0, 10), appData.units[0]);
@@ -237,14 +228,15 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Navigation Tab Bar Vibrant Pastel Icons */}
         <nav className="flex items-center gap-2 overflow-x-auto py-2.5 scrollbar-none border-t border-purple-100">
           {[
-            { id: 'socratic', label: 'Gia Sư Socratic 💡', icon: GraduationCap, activeClass: 'neu-btn-primary' },
-            { id: 'speech', label: 'Phát Âm AI 🎧', icon: Mic, activeClass: 'neu-btn-primary' },
-            { id: 'writing', label: 'Chấm Bài Viết ✏️', icon: FileEdit, activeClass: 'neu-btn-primary' },
-            { id: 'reading-game', label: 'Game Đọc Hiểu 🎮', icon: BookOpen, activeClass: 'neu-btn-success' },
-            { id: 'practice', label: 'Kho Bài Tập 🧩', icon: BookOpen, activeClass: 'neu-btn-primary' },
+            { id: 'home', label: '🏠 Trang Chủ', icon: Home, activeClass: 'neu-btn-primary' },
+            { id: 'socratic', label: 'Ngữ Pháp 💡', icon: GraduationCap, activeClass: 'neu-btn-primary' },
+            { id: 'speech', label: 'Phát Âm 🎧', icon: Mic, activeClass: 'neu-btn-primary' },
+            { id: 'writing', label: 'Viết ✏️', icon: FileEdit, activeClass: 'neu-btn-primary' },
+            { id: 'reading-game', label: 'Đọc Hiểu 🎮', icon: BookOpen, activeClass: 'neu-btn-success' },
+            { id: 'practice', label: 'Từ Vựng 🧩', icon: BookOpen, activeClass: 'neu-btn-primary' },
             { id: 'arena', label: 'Đấu Tri Thức 🏆', icon: Swords, activeClass: 'neu-btn-primary' },
             { id: 'upload', label: 'Tải SGK 📁', icon: Upload, activeClass: 'neu-btn-primary' },
-            { id: 'report', label: 'Báo Cáo Phụ Huynh 📊', icon: BarChart3, activeClass: 'neu-btn-primary' },
+            { id: 'report', label: 'Báo Cáo 📊', icon: BarChart3, activeClass: 'neu-btn-primary' },
           ].map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;

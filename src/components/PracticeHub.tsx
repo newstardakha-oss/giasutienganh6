@@ -11,10 +11,13 @@ import {
   Zap,
   Volume2,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Layers,
+  Brain
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { Question, SgkUnit, SkillType, StudySession } from '../types';
+import { VocabFlashcard } from './VocabFlashcard';
 
 interface PracticeHubProps {
   questions: Question[];
@@ -30,7 +33,8 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
   onOpenReadingGame,
 }) => {
   const [selectedUnitId, setSelectedUnitId] = useState<string>('unit-1');
-  const [selectedSkill, setSelectedSkill] = useState<SkillType | 'All'>('All');
+  const [selectedSkill, setSelectedSkill] = useState<SkillType | 'All'>('Vocabulary');
+  const [subMode, setSubMode] = useState<'quiz' | 'flashcard'>('quiz');
 
   const filteredQuestions = questions.filter((q) => {
     const matchUnit = selectedUnitId === 'All' || q.unitId === selectedUnitId;
@@ -167,27 +171,48 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-pastel-yellow text-xs font-extrabold mb-2">
             <BookOpen className="w-4 h-4 text-amber-600" />
-            <span>Kho Bài Tập Tương Tác Gamified 🧩</span>
+            <span>Kho Bài Tập & Flashcard Từ Vựng 🧩</span>
           </div>
           <h2 className="text-2xl font-extrabold text-purple-950 tracking-tight flex items-center gap-2">
-            <span>Luyện Tập 4 Kỹ Năng & Ngữ Pháp SGK Lớp 6</span> 🌟
+            <span>Luyện Tập Kỹ Năng & Từ Vựng SGK Lớp 6</span> 🌟
           </h2>
           <p className="text-xs sm:text-sm text-purple-700 font-bold mt-1">
-            Trắc nghiệm phản xạ, giải thích chi tiết tiếng Việt và tích lũy điểm thưởng XP! 🚀
+            Trắc nghiệm phản xạ, flashcard từ vựng và tích lũy điểm thưởng XP! 🚀
           </p>
         </div>
 
-        {/* Timer Widget Vibrant Pastel */}
-        <div className="neu-card-yellow px-4 py-3 border-2 border-amber-300 flex items-center gap-3">
-          <Clock className="w-6 h-6 text-amber-600 animate-pulse" />
-          <div>
-            <span className="text-[10px] text-amber-700 block uppercase font-extrabold">Thời Gian Bài Làm ⏱️</span>
-            <span className="text-lg font-mono font-extrabold tracking-wider text-amber-900">
-              {formatTimer(seconds)}
-            </span>
-          </div>
+        {/* Sub-mode Toggle: Quiz vs Flashcard */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setSubMode('quiz')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all ${
+              subMode === 'quiz'
+                ? 'neu-btn-primary text-white shadow-md scale-105'
+                : 'neu-btn text-slate-600 hover:text-indigo-600'
+            }`}
+          >
+            <Brain className="w-4 h-4" />
+            <span>📝 Quiz Trắc Nghiệm</span>
+          </button>
+          <button
+            onClick={() => setSubMode('flashcard')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all ${
+              subMode === 'flashcard'
+                ? 'neu-btn-primary text-white shadow-md scale-105'
+                : 'neu-btn text-slate-600 hover:text-indigo-600'
+            }`}
+          >
+            <Layers className="w-4 h-4" />
+            <span>🃏 Flashcard Từ Vựng</span>
+          </button>
         </div>
       </div>
+
+      {/* Render Flashcard mode */}
+      {subMode === 'flashcard' ? (
+        <VocabFlashcard units={units} onBack={() => setSubMode('quiz')} />
+      ) : (
+      <>
 
       {/* Filter Row Neumorphic */}
       <div className="neu-card p-4 flex flex-wrap items-center justify-between gap-4 border border-white/60">
@@ -231,7 +256,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
       </div>
 
       {/* Featured Interactive Reading Game Banner */}
-      {onOpenReadingGame && (selectedSkill === 'Reading' || selectedSkill === 'All') && (
+      {onOpenReadingGame && selectedSkill === 'Reading' && (
         <div className="bg-gradient-to-r from-indigo-900 via-slate-900 to-blue-900 rounded-2xl p-5 text-white shadow-md border border-indigo-700/50 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#38BDF8] to-[#4A90E2] flex items-center justify-center text-white text-2xl shrink-0 shadow-md">
@@ -451,6 +476,8 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
         <div className="text-center py-12 text-slate-400 text-xs font-semibold">
           Không tìm thấy câu hỏi phù hợp với bộ lọc hiện tại.
         </div>
+      )}
+      </>
       )}
     </div>
   );

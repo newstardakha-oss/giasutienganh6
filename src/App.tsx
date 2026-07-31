@@ -6,8 +6,8 @@ import { ApiKeyModal } from './components/ApiKeyModal';
 import { DataBackupModal } from './components/DataBackupModal';
 import { StudentAuthModal } from './components/StudentAuthModal';
 import { LandingCoverScreen } from './components/LandingCoverScreen';
+import { HomeScreen } from './components/HomeScreen';
 import { SocraticTutor } from './components/SocraticTutor';
-import { HomeworkHelper } from './components/HomeworkHelper';
 import { SpeechStudio } from './components/SpeechStudio';
 import { WritingGrader } from './components/WritingGrader';
 import { ReadingMasteryGame } from './components/ReadingMasteryGame';
@@ -18,7 +18,7 @@ import { GameArena } from './components/GameArena';
 
 export default function App() {
   const [appData, setAppData] = useState<AppDataSchema>(() => loadAppData());
-  const [activeTab, setActiveTab] = useState<string>('socratic');
+  const [activeTab, setActiveTab] = useState<string>('home');
   const [isCoverActive, setIsCoverActive] = useState<boolean>(true);
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState<boolean>(false);
   const [isBackupModalOpen, setIsBackupModalOpen] = useState<boolean>(false);
@@ -244,6 +244,12 @@ export default function App() {
           </div>
         </div>
 
+        {activeTab === 'home' && (
+          <HomeScreen
+            appData={appData}
+            onSelectSkill={(tabId) => setActiveTab(tabId)}
+          />
+        )}
         {activeTab === 'socratic' && <SocraticTutor units={appData.units} />}
         {activeTab === 'speech' && <SpeechStudio units={appData.units} />}
         {activeTab === 'writing' && (
