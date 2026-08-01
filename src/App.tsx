@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { AppDataSchema, StudySession, Question, AppSettings, StudentAccount } from './types';
-import { loadAppData, saveAppData, addStudySession, recordTimeSpent, updateStudentByTeacher, deleteStudentByTeacher, resetStudentPinByTeacher } from './services/storage';
+import {
+  loadAppData, saveAppData, addStudySession, recordTimeSpent,
+  updateStudentByTeacher, deleteStudentByTeacher, resetStudentPinByTeacher,
+  authenticateTeacher, registerTeacher, getCurrentTeacher, isCurrentTeacherAdmin,
+  createActivationCode, deleteActivationCode, deactivateTeacher, reactivateTeacher,
+  deleteTeacherAccount, updateTeacherClasses, getTeacherStudents, updateTeacherProfile, addCustomClass,
+} from './services/storage';
 import { Header } from './components/Header';
 import { ApiKeyModal } from './components/ApiKeyModal';
 import { DataBackupModal } from './components/DataBackupModal';
@@ -15,6 +21,7 @@ import { PracticeHub } from './components/PracticeHub';
 import { DocParser } from './components/DocParser';
 import { ParentDashboard } from './components/ParentDashboard';
 import { GameArena } from './components/GameArena';
+import { TeacherProfileModal } from './components/TeacherProfileModal';
 
 export default function App() {
   const [appData, setAppData] = useState<AppDataSchema>(() => loadAppData());
@@ -23,6 +30,7 @@ export default function App() {
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState<boolean>(false);
   const [isBackupModalOpen, setIsBackupModalOpen] = useState<boolean>(false);
   const [isStudentAuthModalOpen, setIsStudentAuthModalOpen] = useState<boolean>(false);
+  const [isTeacherProfileModalOpen, setIsTeacherProfileModalOpen] = useState<boolean>(false);
 
   // Server handles API key pooling transparently. Students enter directly without popups.
   useEffect(() => {
@@ -45,6 +53,24 @@ export default function App() {
     return () => clearInterval(timer);
   }, [appData.currentStudentId]);
 
+  // Listen for localStorage quota warnings
+  useEffect(() => {
+    const handleQuotaWarning = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      alert(`⚠️ Bộ nhớ trình duyệt sắp đầy (${detail?.sizeMB?.toFixed(1)}MB / 5MB).\nHãy xuất backup dữ liệu và xoá dữ liệu cũ để tránh mất dữ liệu!`);
+    };
+    const handleQuotaExceeded = () => {
+      alert('❌ Bộ nhớ trình duyệt đã đầy! Dữ liệu mới không thể lưu.\nHãy xuất backup và xoá bớt dữ liệu ngay!');
+    };
+    window.addEventListener('storage-quota-warning', handleQuotaWarning);
+    window.addEventListener('storage-quota-exceeded', handleQuotaExceeded);
+    return () => {
+      window.removeEventListener('storage-quota-warning', handleQuotaWarning);
+      window.removeEventListener('storage-quota-exceeded', handleQuotaExceeded);
+    };
+  }, []);
+
+  // ===== STUDENT AUTH HANDLERS =====
   const handleLoginStudent = (studentId: string) => {
     const targetStudent = appData.students.find((s) => s.id === studentId);
     if (!targetStudent) return;
@@ -82,6 +108,121 @@ export default function App() {
     setIsCoverActive(true);
   };
 
+  // ===== TEACHER AUTH HANDLERS (Multi-Teacher) =====
+  const handleTeacherLogin = (email: string, password: string): boolean => {
+    const teacher = authenticateTeacher(appData, email, password);
+    if (teacher) {
+      setAppData((prev) => ({
+        ...prev,
+        isTeacherLoggedIn: true,
+        currentTeacherId: teacher.id,
+        teachers: prev.teachers.map((t) =>
+          t.id === teacher.id
+            ? { ...t, lastLoginAt: new Date().toISOString() }
+            : t
+        ),
+      }));
+      setIsCoverActive(false);
+      setActiveTab('report');
+      return true;
+    }
+    return false;
+  };
+
+  const handleTeacherRegister = (
+    email: string, fullName: string, schoolName: string,
+    password: string, activationCode: string
+  ): { success: boolean; error?: string } => {
+    const result = registerTeacher(appData, email, fullName, schoolName, password, activationCode);
+    if (result.success) {
+      // Find the newly registered teacher
+      const newTeacher = result.data.teachers.find((t) => t.email.toLowerCase() === email.toLowerCase());
+      setAppData({
+        ...result.data,
+        isTeacherLoggedIn: true,
+        currentTeacherId: newTeacher?.id || null,
+      });
+      setIsCoverActive(false);
+      setActiveTab('report');
+    }
+    return { success: result.success, error: result.error };
+  };
+
+  const handleTeacherLogout = () => {
+    setAppData((prev) => ({
+      ...prev,
+      isTeacherLoggedIn: false,
+      currentTeacherId: null,
+    }));
+    setIsCoverActive(true);
+  };
+
+  // ===== ADMIN: ACTIVATION CODE HANDLERS =====
+  const handleCreateActivationCode = (assignedClasses?: string[]) => {
+    if (!isCurrentTeacherAdmin(appData)) return;
+    setAppData((prev) => createActivationCode(prev, prev.currentTeacherId || '', assignedClasses));
+  };
+
+  const handleDeleteActivationCode = (code: string) => {
+    if (!isCurrentTeacherAdmin(appData)) return;
+    setAppData((prev) => deleteActivationCode(prev, code));
+  };
+
+  // ===== ADMIN: TEACHER MANAGEMENT HANDLERS =====
+  const handleDeactivateTeacher = (teacherId: string) => {
+    if (!isCurrentTeacherAdmin(appData)) return;
+    setAppData((prev) => deactivateTeacher(prev, teacherId));
+  };
+
+  const handleReactivateTeacher = (teacherId: string) => {
+    if (!isCurrentTeacherAdmin(appData)) return;
+    setAppData((prev) => reactivateTeacher(prev, teacherId));
+  };
+
+  const handleDeleteTeacher = (teacherId: string) => {
+    if (!isCurrentTeacherAdmin(appData)) return;
+    setAppData((prev) => deleteTeacherAccount(prev, teacherId));
+  };
+
+  const handleUpdateTeacherClasses = (teacherId: string, classes: string[]) => {
+    if (!isCurrentTeacherAdmin(appData)) return;
+    setAppData((prev) => updateTeacherClasses(prev, teacherId, classes));
+  };
+
+  const handleUpdateTeacherProfile = (updates: { fullName?: string; schoolName?: string; newPassword?: string; oldPassword?: string }): { success: boolean; error?: string } => {
+    if (!appData.currentTeacherId) return { success: false, error: 'Chưa đăng nhập!' };
+    const result = updateTeacherProfile(appData, appData.currentTeacherId, updates);
+    if (result.success) {
+      setAppData(result.data);
+    }
+    return { success: result.success, error: result.error };
+  };
+
+  const handleAddCustomClass = (className: string) => {
+    setAppData((prev) => addCustomClass(prev, className));
+  };
+
+  // ===== STUDENT MANAGEMENT HANDLERS (By Teacher) =====
+  const handleAddStudentByTeacher = (newStudent: StudentAccount) => {
+    setAppData((prev) => ({
+      ...prev,
+      students: [newStudent, ...prev.students],
+    }));
+  };
+
+  const handleUpdateStudentByTeacher = (studentId: string, updatedFields: Partial<StudentAccount>) => {
+    setAppData((prev) => updateStudentByTeacher(prev, studentId, updatedFields));
+  };
+
+  const handleDeleteStudentByTeacher = (studentId: string) => {
+    setAppData((prev) => deleteStudentByTeacher(prev, studentId));
+  };
+
+  const handleResetPinByTeacher = (studentId: string, newPin: string) => {
+    setAppData((prev) => resetStudentPinByTeacher(prev, studentId, newPin));
+  };
+
+  // ===== SETTINGS & MISC =====
   const handleSaveSettings = (newSettings: Partial<AppSettings>) => {
     setAppData((prev) => ({
       ...prev,
@@ -115,49 +256,13 @@ export default function App() {
     }));
   };
 
-  const handleTeacherLogin = (user: string, pass: string): boolean => {
-    if (user === appData.teacherAccount.username && pass === appData.teacherAccount.password) {
-      setAppData((prev) => ({
-        ...prev,
-        isTeacherLoggedIn: true,
-      }));
-      setIsCoverActive(false);
-      setActiveTab('report');
-      return true;
-    }
-    return false;
-  };
-
-  const handleTeacherLogout = () => {
-    setAppData((prev) => ({
-      ...prev,
-      isTeacherLoggedIn: false,
-    }));
-    setIsCoverActive(true);
-  };
-
-  const handleAddStudentByTeacher = (newStudent: StudentAccount) => {
-    setAppData((prev) => ({
-      ...prev,
-      students: [newStudent, ...prev.students],
-    }));
-  };
-
-  const handleUpdateStudentByTeacher = (studentId: string, updatedFields: Partial<StudentAccount>) => {
-    setAppData((prev) => updateStudentByTeacher(prev, studentId, updatedFields));
-  };
-
-  const handleDeleteStudentByTeacher = (studentId: string) => {
-    setAppData((prev) => deleteStudentByTeacher(prev, studentId));
-  };
-
-  const handleResetPinByTeacher = (studentId: string, newPin: string) => {
-    setAppData((prev) => resetStudentPinByTeacher(prev, studentId, newPin));
-  };
-
   const handleReviewTopicClick = (unitId: string) => {
     setActiveTab('socratic');
   };
+
+  // Get current teacher info
+  const currentTeacher = getCurrentTeacher(appData);
+  const isAdmin = isCurrentTeacherAdmin(appData);
 
   // Render Landing Cover Screen if active
   if (isCoverActive) {
@@ -167,6 +272,7 @@ export default function App() {
         onLoginStudent={handleLoginStudent}
         onRegisterStudent={handleRegisterStudent}
         onTeacherLogin={handleTeacherLogin}
+        onTeacherRegister={handleTeacherRegister}
         onOpenTeacherManagement={() => {
           setIsCoverActive(false);
           setActiveTab('report');
@@ -183,6 +289,8 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         appData={appData}
+        currentTeacher={currentTeacher}
+        isAdmin={isAdmin}
         onOpenSettings={() => setIsApiKeyModalOpen(true)}
         onOpenBackupModal={() => setIsBackupModalOpen(true)}
         onOpenStudentAuth={() => setIsStudentAuthModalOpen(true)}
@@ -203,8 +311,10 @@ export default function App() {
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs font-extrabold badge-pastel-purple px-3 py-1 rounded-full flex items-center gap-1">
-                    <span>👑</span>
-                    {appData.isTeacherLoggedIn ? 'Giáo Viên Quản Lý' : 'Học Sinh Lớp 6 Xuất Sắc'}
+                    <span>{appData.isTeacherLoggedIn ? (isAdmin ? '👑' : '👩‍🏫') : '🌟'}</span>
+                    {appData.isTeacherLoggedIn
+                      ? (isAdmin ? 'Quản Lý Admin' : `Giáo Viên — ${currentTeacher?.managedClasses.join(', ') || 'Chưa phân lớp'}`)
+                      : 'Học Sinh Lớp 6 Xuất Sắc'}
                   </span>
                   <span className="text-xs font-extrabold badge-pastel-yellow px-3 py-1 rounded-full flex items-center gap-1">
                     <span>🔥</span>
@@ -215,13 +325,15 @@ export default function App() {
                   <span>Chào mừng,</span>{' '}
                   <span className="bg-gradient-to-r from-sky-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     {appData.isTeacherLoggedIn
-                      ? appData.teacherAccount.fullName
+                      ? (currentTeacher?.fullName || 'Giáo Viên')
                       : appData.students.find((s) => s.id === appData.currentStudentId)?.fullName || 'Học Sinh Lớp 6'}
                   </span>
                   <span>🚀</span>
                 </h2>
                 <p className="text-xs sm:text-sm text-purple-700 font-bold mt-0.5">
-                  Hôm nay em sẵn sàng chinh phục bài học Tiếng Anh 6 nào? 🎨
+                  {appData.isTeacherLoggedIn
+                    ? (isAdmin ? 'Bạn đang quản lý toàn bộ hệ thống giáo viên và học sinh 🏫' : 'Quản lý lớp học và theo dõi tiến độ học sinh 📊')
+                    : 'Hôm nay em sẵn sàng chinh phục bài học Tiếng Anh 6 nào? 🎨'}
                 </p>
               </div>
             </div>
@@ -302,12 +414,23 @@ export default function App() {
         {activeTab === 'report' && (
           <ParentDashboard
             appData={appData}
+            currentTeacher={currentTeacher}
+            isAdmin={isAdmin}
             onReviewTopicClick={handleReviewTopicClick}
             onAddStudent={handleAddStudentByTeacher}
             onUpdateStudent={handleUpdateStudentByTeacher}
             onDeleteStudent={handleDeleteStudentByTeacher}
             onResetPin={handleResetPinByTeacher}
             onOpenAuthModal={() => setIsStudentAuthModalOpen(true)}
+            onCreateActivationCode={handleCreateActivationCode}
+            onDeleteActivationCode={handleDeleteActivationCode}
+            onDeactivateTeacher={handleDeactivateTeacher}
+            onReactivateTeacher={handleReactivateTeacher}
+            onDeleteTeacher={handleDeleteTeacher}
+            onUpdateTeacherClasses={handleUpdateTeacherClasses}
+            onUpdateTeacherProfile={handleUpdateTeacherProfile}
+            onOpenTeacherProfile={() => setIsTeacherProfileModalOpen(true)}
+            onAddCustomClass={handleAddCustomClass}
           />
         )}
       </main>
@@ -329,6 +452,7 @@ export default function App() {
         isOpen={isStudentAuthModalOpen}
         onClose={() => setIsStudentAuthModalOpen(false)}
         appData={appData}
+        currentTeacher={currentTeacher}
         onLoginSuccess={handleLoginStudent}
         onRegisterStudent={handleRegisterStudent}
         onLogout={handleLogoutStudent}
@@ -350,6 +474,15 @@ export default function App() {
         appData={appData}
         onDataRestored={(newData) => setAppData(newData)}
       />
+
+      {currentTeacher && (
+        <TeacherProfileModal
+          isOpen={isTeacherProfileModalOpen}
+          onClose={() => setIsTeacherProfileModalOpen(false)}
+          teacher={currentTeacher}
+          onUpdateProfile={handleUpdateTeacherProfile}
+        />
+      )}
     </div>
   );
 }

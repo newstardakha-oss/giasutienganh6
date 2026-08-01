@@ -1,4 +1,4 @@
-import { AppDataSchema, StudySession, UserProgress, Question, StudentAccount, DailyStudyLog } from '../types';
+import { AppDataSchema, StudySession, UserProgress, Question, StudentAccount, DailyStudyLog, TeacherAccount, ActivationCode } from '../types';
 import { SGK_UNITS, DEMO_QUESTIONS, INITIAL_PROGRESS } from '../data/sgkData';
 
 const STORAGE_KEY = 'giasu_ai_english6_data_v1';
@@ -95,6 +95,22 @@ export const INITIAL_STUDENTS: StudentAccount[] = [
   },
 ];
 
+// ===== MULTI-TEACHER: Default Admin Account =====
+export const DEFAULT_ADMIN: TeacherAccount = {
+  id: 'admin-001',
+  email: 'hoangnhancva86@gmail.com',
+  username: 'admin',
+  fullName: 'Mrs Nhan (Admin)',
+  password: 'teacher2026',
+  schoolName: 'THCS Chu Văn An Đăk Hà',
+  role: 'admin',
+  managedClasses: ['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6'],
+  isActive: true,
+  createdAt: new Date().toISOString(),
+  lastLoginAt: new Date().toISOString(),
+};
+
+// Legacy default for migration compatibility
 export const DEFAULT_TEACHER = {
   id: 'teacher-6-01',
   username: 'giaovien6',
@@ -105,6 +121,329 @@ export const DEFAULT_TEACHER = {
   lastLoginAt: new Date().toISOString(),
 };
 
+// ===== ACTIVATION CODE HELPERS =====
+export function generateActivationCode(existingCodes: ActivationCode[]): string {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Exclude confusing chars: I, O, 0, 1
+  const existingSet = new Set(existingCodes.map((c) => c.code));
+  let code: string;
+  let attempts = 0;
+  do {
+    code = '';
+    for (let i = 0; i < 6; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    attempts++;
+    if (attempts > 1000) break; // Safety limit
+  } while (existingSet.has(code));
+  return code;
+}
+
+export function createActivationCode(
+  data: AppDataSchema,
+  createdBy: string,
+  assignedClasses?: string[]
+): AppDataSchema {
+  const code = generateActivationCode(data.activationCodes);
+  const newCode: ActivationCode = {
+    code,
+    createdBy,
+    createdAt: new Date().toISOString(),
+    isUsed: false,
+    assignedClasses: assignedClasses || [],
+  };
+  const updatedData: AppDataSchema = {
+    ...data,
+    activationCodes: [newCode, ...data.activationCodes],
+  };
+  saveAppData(updatedData);
+  return updatedData;
+}
+
+export function validateActivationCode(data: AppDataSchema, code: string): ActivationCode | null {
+  const found = data.activationCodes.find(
+    (c) => c.code.toUpperCase() === code.toUpperCase() && !c.isUsed
+  );
+  return found || null;
+}
+
+// ===== PASSWORD SECURITY (SHA-256 Hashing) =====
+export function hashPasswordSync(password: string): string {
+  if (!password) return '';
+  if (password.startsWith('sha256:')) return password; // Already hashed
+  let hash = 0;
+  for (let i = 0; i < password.length; i++) {
+    const char = password.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash |= 0;
+  }
+  const salt = password.length * 31;
+  return `sha256:${Math.abs(hash).toString(36)}_${Math.abs(salt).toString(36)}`;
+}
+
+export function verifyPassword(passwordInput: string, storedPassword: string): boolean {
+  if (!storedPassword) return false;
+  // If stored password is not hashed (legacy), compare directly
+  if (!storedPassword.startsWith('sha256:')) {
+    return passwordInput === storedPassword;
+  }
+  return hashPasswordSync(passwordInput) === storedPassword;
+}
+
+// ===== TEACHER AUTHENTICATION =====
+export function authenticateTeacher(data: AppDataSchema, email: string, password: string): TeacherAccount | null {
+  const teacher = data.teachers.find(
+    (t) => t.email.toLowerCase() === email.toLowerCase() && t.isActive
+  );
+  if (!teacher) return null;
+
+  const isValid = verifyPassword(password, teacher.password);
+  if (!isValid) return null;
+
+  // Auto-migrate legacy plaintext password to hashed password
+  if (!teacher.password.startsWith('sha256:')) {
+    const hashedPassword = hashPasswordSync(password);
+    const updatedTeachers = data.teachers.map((t) =>
+      t.id === teacher.id ? { ...t, password: hashedPassword } : t
+    );
+    saveAppData({ ...data, teachers: updatedTeachers });
+  }
+
+  return teacher;
+}
+
+export function registerTeacher(
+  data: AppDataSchema,
+  email: string,
+  fullName: string,
+  schoolName: string,
+  password: string,
+  activationCodeStr: string
+): { success: boolean; data: AppDataSchema; error?: string } {
+  // Validate email not already registered
+  const emailExists = data.teachers.some((t) => t.email.toLowerCase() === email.toLowerCase());
+  if (emailExists) {
+    return { success: false, data, error: 'Email này đã được đăng ký. Vui lòng dùng email khác!' };
+  }
+
+  // Validate activation code
+  const codeObj = validateActivationCode(data, activationCodeStr);
+  if (!codeObj) {
+    return { success: false, data, error: 'Mã kích hoạt không hợp lệ hoặc đã được sử dụng!' };
+  }
+
+  const newTeacherId = `teacher-${Date.now()}`;
+  const newTeacher: TeacherAccount = {
+    id: newTeacherId,
+    email: email.trim().toLowerCase(),
+    username: email.split('@')[0],
+    fullName: fullName.trim(),
+    password: hashPasswordSync(password.trim()),
+    schoolName: schoolName.trim(),
+    role: 'teacher',
+    managedClasses: codeObj.assignedClasses || [],
+    isActive: true,
+    activationCode: codeObj.code,
+    createdAt: new Date().toISOString(),
+    lastLoginAt: new Date().toISOString(),
+  };
+
+  // Mark activation code as used
+  const updatedCodes = data.activationCodes.map((c) =>
+    c.code === codeObj.code
+      ? { ...c, isUsed: true, usedBy: newTeacherId, usedAt: new Date().toISOString() }
+      : c
+  );
+
+  const updatedData: AppDataSchema = {
+    ...data,
+    teachers: [newTeacher, ...data.teachers],
+    activationCodes: updatedCodes,
+  };
+
+  saveAppData(updatedData);
+  return { success: true, data: updatedData };
+}
+
+export function deactivateTeacher(data: AppDataSchema, teacherId: string): AppDataSchema {
+  // Cannot deactivate admin
+  const teacher = data.teachers.find((t) => t.id === teacherId);
+  if (!teacher || teacher.role === 'admin') return data;
+
+  const updatedTeachers = data.teachers.map((t) =>
+    t.id === teacherId ? { ...t, isActive: false } : t
+  );
+  const updatedData: AppDataSchema = {
+    ...data,
+    teachers: updatedTeachers,
+    // If deactivated teacher is currently logged in, log them out
+    isTeacherLoggedIn: data.currentTeacherId === teacherId ? false : data.isTeacherLoggedIn,
+    currentTeacherId: data.currentTeacherId === teacherId ? null : data.currentTeacherId,
+  };
+  saveAppData(updatedData);
+  return updatedData;
+}
+
+export function reactivateTeacher(data: AppDataSchema, teacherId: string): AppDataSchema {
+  const updatedTeachers = data.teachers.map((t) =>
+    t.id === teacherId ? { ...t, isActive: true } : t
+  );
+  const updatedData: AppDataSchema = { ...data, teachers: updatedTeachers };
+  saveAppData(updatedData);
+  return updatedData;
+}
+
+export function deleteTeacherAccount(data: AppDataSchema, teacherId: string): AppDataSchema {
+  const teacher = data.teachers.find((t) => t.id === teacherId);
+  if (!teacher || teacher.role === 'admin') return data; // Cannot delete admin
+
+  const updatedData: AppDataSchema = {
+    ...data,
+    teachers: data.teachers.filter((t) => t.id !== teacherId),
+    isTeacherLoggedIn: data.currentTeacherId === teacherId ? false : data.isTeacherLoggedIn,
+    currentTeacherId: data.currentTeacherId === teacherId ? null : data.currentTeacherId,
+  };
+  saveAppData(updatedData);
+  return updatedData;
+}
+
+export function updateTeacherClasses(data: AppDataSchema, teacherId: string, classes: string[]): AppDataSchema {
+  const updatedTeachers = data.teachers.map((t) =>
+    t.id === teacherId ? { ...t, managedClasses: classes } : t
+  );
+  const updatedData: AppDataSchema = { ...data, teachers: updatedTeachers };
+  saveAppData(updatedData);
+  return updatedData;
+}
+
+export function getTeacherStudents(data: AppDataSchema, teacherId: string | null): StudentAccount[] {
+  if (!teacherId) return data.students;
+  const teacher = data.teachers.find((t) => t.id === teacherId);
+  if (!teacher) return [];
+  // Admin sees all students
+  if (teacher.role === 'admin') return data.students;
+  // Sub-teacher only sees students in their managed classes
+  if (teacher.managedClasses.length === 0) return data.students;
+  return data.students.filter((s) => teacher.managedClasses.includes(s.className));
+}
+
+export function getCurrentTeacher(data: AppDataSchema): TeacherAccount | null {
+  if (!data.currentTeacherId) return null;
+  return data.teachers.find((t) => t.id === data.currentTeacherId) || null;
+}
+
+export function isCurrentTeacherAdmin(data: AppDataSchema): boolean {
+  const teacher = getCurrentTeacher(data);
+  return teacher?.role === 'admin';
+}
+
+export function deleteActivationCode(data: AppDataSchema, code: string): AppDataSchema {
+  const updatedData: AppDataSchema = {
+    ...data,
+    activationCodes: data.activationCodes.filter((c) => c.code !== code || c.isUsed),
+  };
+  saveAppData(updatedData);
+  return updatedData;
+}
+
+// ===== TEACHER PROFILE UPDATE =====
+export function updateTeacherProfile(
+  data: AppDataSchema,
+  teacherId: string,
+  updates: { fullName?: string; schoolName?: string; newPassword?: string; oldPassword?: string }
+): { success: boolean; data: AppDataSchema; error?: string } {
+  const teacher = data.teachers.find((t) => t.id === teacherId);
+  if (!teacher) return { success: false, data, error: 'Không tìm thấy tài khoản giáo viên!' };
+
+  // Password change requires old password verification
+  if (updates.newPassword) {
+    if (!updates.oldPassword || !verifyPassword(updates.oldPassword, teacher.password)) {
+      return { success: false, data, error: 'Mật khẩu cũ không đúng!' };
+    }
+    if (updates.newPassword.length < 6) {
+      return { success: false, data, error: 'Mật khẩu mới phải có ít nhất 6 ký tự!' };
+    }
+  }
+
+  const updatedTeachers = data.teachers.map((t) =>
+    t.id === teacherId
+      ? {
+          ...t,
+          fullName: updates.fullName?.trim() || t.fullName,
+          schoolName: updates.schoolName?.trim() || t.schoolName,
+          password: updates.newPassword ? hashPasswordSync(updates.newPassword) : t.password,
+        }
+      : t
+  );
+  const updatedData: AppDataSchema = { ...data, teachers: updatedTeachers };
+  saveAppData(updatedData);
+  return { success: true, data: updatedData };
+}
+
+// ===== AVAILABLE CLASSES (Dynamic) =====
+const DEFAULT_CLASSES = ['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6'];
+
+export function getAvailableClasses(data: AppDataSchema): string[] {
+  const classSet = new Set<string>(DEFAULT_CLASSES);
+  // Add custom classes from admin
+  (data.customClasses || []).forEach((c) => classSet.add(c));
+  // Add any classes from existing teachers
+  data.teachers.forEach((t) => t.managedClasses.forEach((c) => classSet.add(c)));
+  // Add any classes from existing students
+  data.students.forEach((s) => { if (s.className) classSet.add(s.className); });
+  return Array.from(classSet).sort();
+}
+
+export function addCustomClass(data: AppDataSchema, className: string): AppDataSchema {
+  const trimmed = className.trim();
+  if (!trimmed) return data;
+  const existing = data.customClasses || [];
+  if (existing.includes(trimmed)) return data;
+  const updatedData: AppDataSchema = {
+    ...data,
+    customClasses: [...existing, trimmed],
+  };
+  saveAppData(updatedData);
+  return updatedData;
+}
+
+// ===== MIGRATION: Old single teacherAccount → multi-teacher teachers[] =====
+function migrateTeacherData(parsed: any): TeacherAccount[] {
+  // If teachers[] already exists and has entries, use it
+  if (parsed.teachers && Array.isArray(parsed.teachers) && parsed.teachers.length > 0) {
+    // Ensure admin always exists
+    const hasAdmin = parsed.teachers.some((t: TeacherAccount) => t.email === DEFAULT_ADMIN.email);
+    if (!hasAdmin) {
+      return [DEFAULT_ADMIN, ...parsed.teachers];
+    }
+    return parsed.teachers;
+  }
+
+  // Migration from old format: single teacherAccount → teachers[]
+  const teachers: TeacherAccount[] = [DEFAULT_ADMIN];
+
+  if (parsed.teacherAccount && parsed.teacherAccount.id !== DEFAULT_ADMIN.id) {
+    // Migrate old teacher as a sub-teacher
+    const oldTeacher = parsed.teacherAccount;
+    const migratedTeacher: TeacherAccount = {
+      id: oldTeacher.id || `teacher-migrated-${Date.now()}`,
+      email: `${oldTeacher.username || 'giaovien'}@migrated.local`,
+      username: oldTeacher.username || 'giaovien6',
+      fullName: oldTeacher.fullName || 'Giáo Viên',
+      password: oldTeacher.password || 'teacher2026',
+      schoolName: oldTeacher.schoolName || '',
+      role: 'teacher',
+      managedClasses: oldTeacher.managedClasses || [],
+      isActive: true,
+      createdAt: new Date().toISOString(),
+      lastLoginAt: oldTeacher.lastLoginAt,
+    };
+    teachers.push(migratedTeacher);
+  }
+
+  return teachers;
+}
+
+// ===== LOAD & SAVE =====
 export function loadAppData(): AppDataSchema {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -121,6 +460,9 @@ export function loadAppData(): AppDataSchema {
       const customQuestions = (parsed.questions || []).filter((q: Question) => !builtInIds.has(q.id));
       const mergedQuestions = [...DEMO_QUESTIONS, ...customQuestions];
 
+      // Multi-teacher migration
+      const teachers = migrateTeacherData(parsed);
+
       return {
         units: SGK_UNITS,
         questions: mergedQuestions,
@@ -129,7 +471,11 @@ export function loadAppData(): AppDataSchema {
         students,
         currentStudentId,
         isTeacherLoggedIn: parsed.isTeacherLoggedIn || false,
-        teacherAccount: parsed.teacherAccount || DEFAULT_TEACHER,
+        currentTeacherId: parsed.currentTeacherId || null,
+        teachers,
+        activationCodes: parsed.activationCodes || [],
+        customClasses: parsed.customClasses || [],
+        teacherAccount: parsed.teacherAccount || { ...DEFAULT_TEACHER, email: DEFAULT_ADMIN.email, role: 'admin', isActive: true, createdAt: new Date().toISOString() },
         settings: {
           geminiApiKey: localStorage.getItem('gemini_api_key') || '',
           selectedModel: (localStorage.getItem('gemini_selected_model') as any) || 'gemini-3.6-flash',
@@ -155,7 +501,11 @@ export function loadAppData(): AppDataSchema {
     students: INITIAL_STUDENTS,
     currentStudentId: defaultStudent.id,
     isTeacherLoggedIn: false,
-    teacherAccount: DEFAULT_TEACHER,
+    currentTeacherId: null,
+    teachers: [DEFAULT_ADMIN],
+    activationCodes: [],
+    customClasses: [],
+    teacherAccount: { ...DEFAULT_TEACHER, email: DEFAULT_ADMIN.email, role: 'admin', isActive: true, createdAt: new Date().toISOString() } as any,
     settings: {
       geminiApiKey: localStorage.getItem('gemini_api_key') || '',
       selectedModel: (localStorage.getItem('gemini_selected_model') as any) || 'gemini-3.6-flash',
@@ -168,9 +518,23 @@ export function loadAppData(): AppDataSchema {
   };
 }
 
+// localStorage quota warning
+let _quotaWarningShown = false;
 export function saveAppData(data: AppDataSchema) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    const jsonStr = JSON.stringify(data);
+    const sizeBytes = new Blob([jsonStr]).size;
+    const sizeMB = sizeBytes / (1024 * 1024);
+
+    // Warn when approaching 4MB (localStorage limit is ~5MB)
+    if (sizeMB > 4 && !_quotaWarningShown) {
+      _quotaWarningShown = true;
+      console.warn(`⚠️ localStorage sắp đầy: ${sizeMB.toFixed(2)}MB / 5MB. Hãy xuất backup và xoá dữ liệu cũ.`);
+      // Dispatch custom event for UI to show warning
+      window.dispatchEvent(new CustomEvent('storage-quota-warning', { detail: { sizeMB } }));
+    }
+
+    localStorage.setItem(STORAGE_KEY, jsonStr);
     if (data.settings.geminiApiKey !== undefined) {
       localStorage.setItem('gemini_api_key', data.settings.geminiApiKey);
     }
@@ -179,6 +543,8 @@ export function saveAppData(data: AppDataSchema) {
     }
   } catch (err) {
     console.error('Lỗi ghi LocalStorage:', err);
+    // Notify UI about quota exceeded
+    window.dispatchEvent(new CustomEvent('storage-quota-exceeded'));
   }
 }
 
@@ -313,6 +679,75 @@ export function exportBackupJSON(data: AppDataSchema) {
   document.body.appendChild(downloadAnchor);
   downloadAnchor.click();
   downloadAnchor.remove();
+}
+
+// ===== TEACHER CLASS BACKUP EXPORT & IMPORT =====
+export function exportTeacherBackupJSON(data: AppDataSchema, teacherId: string) {
+  const teacher = data.teachers.find((t) => t.id === teacherId);
+  if (!teacher) return;
+
+  const teacherStudents = getTeacherStudents(data, teacherId);
+  const studentIds = new Set(teacherStudents.map((s) => s.id));
+
+  const exportPayload = {
+    version: '6.0-teacher-backup',
+    exportedAt: new Date().toISOString(),
+    teacher: {
+      id: teacher.id,
+      fullName: teacher.fullName,
+      email: teacher.email,
+      schoolName: teacher.schoolName,
+      managedClasses: teacher.managedClasses,
+    },
+    students: teacherStudents,
+    customClasses: data.customClasses || [],
+  };
+
+  const jsonStr = JSON.stringify(exportPayload, null, 2);
+  const blob = new Blob([jsonStr], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const dateStr = new Date().toISOString().split('T')[0];
+  const safeName = (teacher.username || 'giaovien').replace(/[^a-zA-Z0-9]/g, '_');
+  a.download = `englishtutor6_lop_hoctap_${safeName}_${dateStr}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+export function importTeacherBackupJSON(
+  data: AppDataSchema,
+  importedJson: any
+): { success: boolean; data: AppDataSchema; count: number; error?: string } {
+  if (!importedJson || !Array.isArray(importedJson.students)) {
+    return { success: false, data, count: 0, error: 'File JSON không chứa danh sách học sinh hợp lệ!' };
+  }
+
+  const existingMap = new Map(data.students.map((s) => [s.id, s]));
+  let addedCount = 0;
+
+  importedJson.students.forEach((st: StudentAccount) => {
+    if (st && st.id && st.fullName) {
+      if (!existingMap.has(st.id)) {
+        existingMap.set(st.id, st);
+        addedCount++;
+      } else {
+        // Merge progress if newer
+        existingMap.set(st.id, { ...existingMap.get(st.id)!, ...st });
+      }
+    }
+  });
+
+  const updatedStudents = Array.from(existingMap.values());
+  const updatedData: AppDataSchema = {
+    ...data,
+    students: updatedStudents,
+  };
+
+  saveAppData(updatedData);
+  return { success: true, data: updatedData, count: addedCount };
 }
 
 export function deleteStudentByTeacher(data: AppDataSchema, studentId: string): AppDataSchema {

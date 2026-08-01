@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Download, Upload, X, HardDrive, CheckCircle } from 'lucide-react';
 import { AppDataSchema } from '../types';
-import { exportBackupJSON, saveAppData } from '../services/storage';
+import { exportBackupJSON, saveAppData, exportTeacherBackupJSON, importTeacherBackupJSON } from '../services/storage';
 
 interface DataBackupModalProps {
   isOpen: boolean;
@@ -130,6 +130,38 @@ export const DataBackupModal: React.FC<DataBackupModalProps> = ({
             className="hidden"
           />
         </div>
+
+        {/* Teacher Class Backup Section (if Teacher is logged in) */}
+        {appData.isTeacherLoggedIn && appData.currentTeacherId && (
+          <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
+            <h4 className="text-xs font-extrabold text-purple-700 dark:text-purple-400 uppercase tracking-wider">
+              👩🏫 Sao Lưu Dành Cho Giáo Viên Phụ Trách Lớp
+            </h4>
+
+            <button
+              onClick={() => {
+                exportTeacherBackupJSON(appData, appData.currentTeacherId!);
+                setSuccessMsg('Đã xuất file sao lưu dữ liệu lớp học thành công!');
+                setTimeout(() => setSuccessMsg(''), 3000);
+              }}
+              className="w-full flex items-center justify-between p-3.5 rounded-2xl border border-purple-200 dark:border-purple-900 bg-purple-50 dark:bg-purple-950/40 text-left hover:border-purple-400 transition-all group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-purple-200 dark:bg-purple-900 text-purple-700 dark:text-purple-300 flex items-center justify-center font-bold text-sm">
+                  📚
+                </div>
+                <div>
+                  <h5 className="text-xs font-bold text-purple-950 dark:text-purple-200">
+                    Xuất Dữ Liệu Học Sinh Lớp Phụ Trách
+                  </h5>
+                  <p className="text-[10px] text-purple-600 dark:text-purple-400">
+                    Tải file JSON chứa điểm số và tiến độ riêng của học sinh lớp bạn phụ trách
+                  </p>
+                </div>
+              </div>
+            </button>
+          </div>
+        )}
 
         <div className="mt-6 text-center">
           <button

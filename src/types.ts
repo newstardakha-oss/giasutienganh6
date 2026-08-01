@@ -144,12 +144,27 @@ export interface StudentAccount {
 
 export interface TeacherAccount {
   id: string;
-  username: string; // e.g. "giaovien6"
-  fullName: string; // e.g. "Cô Nguyễn Thị Mai"
-  password: string; // e.g. "teacher2026"
+  email: string; // Email đăng nhập (unique identifier)
+  username: string; // Tên hiển thị ngắn
+  fullName: string; // Họ tên đầy đủ
+  password: string; // Mật khẩu
   schoolName: string;
-  managedClasses: string[]; // e.g. ["Lớp 6A1", "Lớp 6A2", "Lớp 6A3", "Lớp 6A4", "Lớp 6A5", "Lớp 6A6"]
+  role: 'admin' | 'teacher'; // Phân quyền
+  managedClasses: string[]; // Lớp được phân công
+  isActive: boolean; // Trạng thái kích hoạt
+  activationCode?: string; // Mã đã dùng khi đăng ký
+  createdAt: string; // Ngày tạo tài khoản
   lastLoginAt?: string;
+}
+
+export interface ActivationCode {
+  code: string; // Mã kích hoạt 6 ký tự (VD: "ABC123")
+  createdBy: string; // ID teacher tạo mã (admin)
+  createdAt: string; // Ngày tạo
+  usedBy?: string; // ID teacher đã dùng mã
+  usedAt?: string; // Ngày dùng
+  isUsed: boolean; // Đã sử dụng chưa
+  assignedClasses?: string[]; // Lớp gợi ý khi GV đăng ký
 }
 
 export interface AppSettings {
@@ -169,7 +184,11 @@ export interface AppDataSchema {
   students: StudentAccount[];
   currentStudentId: string | null;
   isTeacherLoggedIn: boolean;
-  teacherAccount: TeacherAccount;
+  currentTeacherId: string | null; // ID giáo viên đang đăng nhập
+  teachers: TeacherAccount[]; // Danh sách tất cả giáo viên
+  activationCodes: ActivationCode[]; // Mã kích hoạt đã tạo
+  customClasses?: string[]; // Danh sách lớp tùy chỉnh do Admin thêm
+  teacherAccount: TeacherAccount; // DEPRECATED — kept for migration compatibility
   settings: AppSettings;
   customDocuments: Array<{
     id: string;

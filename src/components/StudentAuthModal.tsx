@@ -19,7 +19,7 @@ import {
   TrendingUp,
   RotateCcw
 } from 'lucide-react';
-import { AppDataSchema, StudentAccount, DailyStudyLog } from '../types';
+import { AppDataSchema, StudentAccount, DailyStudyLog, TeacherAccount } from '../types';
 import { getTodayDateString, getCurrentFormattedTime } from '../services/storage';
 import { INITIAL_PROGRESS } from '../data/sgkData';
 
@@ -27,10 +27,11 @@ interface StudentAuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   appData: AppDataSchema;
+  currentTeacher: TeacherAccount | null;
   onLoginSuccess: (studentId: string) => void;
   onRegisterStudent: (newStudent: StudentAccount) => void;
   onLogout: () => void;
-  onTeacherLogin: (user: string, pass: string) => boolean;
+  onTeacherLogin: (email: string, password: string) => boolean;
   onTeacherLogout: () => void;
   onOpenTeacherManagement: () => void;
 }
@@ -42,6 +43,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   isOpen,
   onClose,
   appData,
+  currentTeacher,
   onLoginSuccess,
   onRegisterStudent,
   onLogout,
@@ -58,9 +60,9 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const [loginPassword, setLoginPassword] = useState<string>(defaultSt?.pinCode || '1234');
   const [loginError, setLoginError] = useState<string>('');
 
-  // Teacher login form state
-  const [teacherUser, setTeacherUser] = useState<string>('giaovien6');
-  const [teacherPass, setTeacherPass] = useState<string>('teacher2026');
+  // Teacher login form state — email-based
+  const [teacherEmail, setTeacherEmail] = useState<string>('');
+  const [teacherPass, setTeacherPass] = useState<string>('');
   const [teacherErr, setTeacherErr] = useState<string>('');
   const [teacherSuccess, setTeacherSuccess] = useState<string>('');
 
@@ -113,7 +115,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
     }
 
     const validPassword = targetStudent.pinCode || '1234';
-    if (loginPassword.trim() !== validPassword && loginPassword.trim() !== '1234' && loginPassword.trim() !== '2026') {
+    if (loginPassword.trim() !== validPassword) {
       setLoginError('Mật khẩu chưa đúng! Vui lòng thử lại.');
       return;
     }
@@ -125,9 +127,9 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const handleTeacherLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setTeacherErr('');
-    const success = onTeacherLogin(teacherUser.trim(), teacherPass.trim());
+    const success = onTeacherLogin(teacherEmail.trim(), teacherPass.trim());
     if (!success) {
-      setTeacherErr('Tên tài khoản hoặc Mật khẩu Giáo viên không đúng! (Mặc định: giaovien6 / teacher2026)');
+      setTeacherErr('Email hoặc Mật khẩu Giáo viên không đúng! Vui lòng kiểm tra lại.');
       return;
     }
     setTeacherSuccess('Đăng nhập Giáo viên thành công! Đang chuyển sang Trung tâm quản lý...');
@@ -697,23 +699,20 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                       <span>Xác Thực Tài Khoản Giáo Viên / Quản Lý</span>
                     </div>
                     <p className="text-purple-700">
-                      Đăng nhập tài khoản Giáo viên để quản lý danh sách học sinh, đặt lại mã PIN và theo dõi báo cáo từng lớp học.
-                    </p>
-                    <p className="text-[11px] font-mono text-purple-600 pt-1">
-                      🔑 Mặc định dùng thử: Tên đăng nhập: <strong>giaovien6</strong> | Mật khẩu: <strong>teacher2026</strong>
+                      Đăng nhập bằng Email Giáo viên để quản lý danh sách học sinh, đặt lại mã PIN và theo dõi báo cáo từng lớp học.
                     </p>
                   </div>
 
                   <div className="space-y-3">
                     <div>
                       <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
-                        Tên Đăng Nhập Giáo Viên:
+                        Email Giáo Viên:
                       </label>
                       <input
-                        type="text"
-                        value={teacherUser}
-                        onChange={(e) => setTeacherUser(e.target.value)}
-                        placeholder="Nhập tên tài khoản..."
+                        type="email"
+                        value={teacherEmail}
+                        onChange={(e) => setTeacherEmail(e.target.value)}
+                        placeholder="Nhập email đăng nhập..."
                         className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-purple-500 focus:outline-none font-semibold"
                         required
                       />

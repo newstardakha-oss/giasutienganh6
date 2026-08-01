@@ -35,28 +35,56 @@ import {
   PolarRadiusAxis,
   Radar
 } from 'recharts';
-import { AppDataSchema, StudentAccount } from '../types';
+import { AppDataSchema, StudentAccount, TeacherAccount } from '../types';
+import { getTeacherStudents, exportTeacherBackupJSON } from '../services/storage';
+import { TeacherManagementPanel } from './TeacherManagementPanel';
 
 interface ParentDashboardProps {
   appData: AppDataSchema;
+  currentTeacher: TeacherAccount | null;
+  isAdmin: boolean;
   onReviewTopicClick: (unitId: string) => void;
   onAddStudent?: (newStudent: StudentAccount) => void;
   onUpdateStudent?: (studentId: string, updatedFields: Partial<StudentAccount>) => void;
   onDeleteStudent?: (studentId: string) => void;
   onResetPin?: (studentId: string, newPin: string) => void;
   onOpenAuthModal?: () => void;
+  // Admin-only teacher management
+  onCreateActivationCode?: (assignedClasses?: string[]) => void;
+  onDeleteActivationCode?: (code: string) => void;
+  onDeactivateTeacher?: (teacherId: string) => void;
+  onReactivateTeacher?: (teacherId: string) => void;
+  onDeleteTeacher?: (teacherId: string) => void;
+  onUpdateTeacherClasses?: (teacherId: string, classes: string[]) => void;
+  onUpdateTeacherProfile?: (updates: { fullName?: string; schoolName?: string; newPassword?: string; oldPassword?: string }) => { success: boolean; error?: string };
+  onOpenTeacherProfile?: () => void;
+  onAddCustomClass?: (className: string) => void;
 }
 
 export const ParentDashboard: React.FC<ParentDashboardProps> = ({
   appData,
+  currentTeacher,
+  isAdmin,
   onReviewTopicClick,
   onAddStudent,
   onUpdateStudent,
   onDeleteStudent,
   onResetPin,
   onOpenAuthModal,
+  onCreateActivationCode,
+  onDeleteActivationCode,
+  onDeactivateTeacher,
+  onReactivateTeacher,
+  onDeleteTeacher,
+  onUpdateTeacherClasses,
+  onUpdateTeacherProfile,
+  onOpenTeacherProfile,
+  onAddCustomClass,
 }) => {
-  const { progress, sessions, units, students, isTeacherLoggedIn, teacherAccount } = appData;
+  const { progress, sessions, units, students, isTeacherLoggedIn } = appData;
+
+  // Dashboard sub-tab: 'students' (default) or 'teachers' (admin only)
+  const [dashboardTab, setDashboardTab] = useState<'students' | 'teachers'>('students');
 
   // Class Filter state
   const [selectedClassFilter, setSelectedClassFilter] = useState<string>('all');
@@ -77,10 +105,18 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     dailyGoalMinutes: 20,
   });
 
-  // Filter students by class
+  // Filter students by class AND by teacher's managed classes
+  const teacherStudents = getTeacherStudents(appData, appData.currentTeacherId);
   const filteredStudents = selectedClassFilter === 'all'
-    ? students
-    : students.filter((s) => s.className === selectedClassFilter);
+    ? teacherStudents
+    : teacherStudents.filter((s) => s.className === selectedClassFilter);
+
+  // Get available classes for this teacher
+  const availableClasses = isTeacherLoggedIn
+    ? (isAdmin
+        ? ['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6']
+        : (currentTeacher?.managedClasses || []))
+    : ['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6'];
 
   // Transform skill mastery for radar chart
   const skillData = Object.entries(progress.skillMastery).map(([skill, mastery]) => ({
@@ -103,7 +139,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     setFormData({
       username: `hocsinh_${Date.now().toString().slice(-4)}`,
       fullName: '',
-      className: selectedClassFilter !== 'all' ? selectedClassFilter : 'Lớp 6A1',
+      className: selectedClassFilter !== 'all' ? selectedClassFilter : (availableClasses[0] || 'Lớp 6A1'),
       pinCode: '1234',
       avatar: '👨‍🎓',
       dailyGoalMinutes: 20,
@@ -202,11 +238,11 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
             {isTeacherLoggedIn ? 'Trung Tâm Quản Lý Lớp Học Dành Cho Giáo Viên' : 'Báo Cáo Tiến Độ Dành Cho Phụ Huynh & Giáo Viên'}
           </div>
           <h2 className="text-2xl font-extrabold tracking-tight">
-            {isTeacherLoggedIn ? `Quản Lý Lớp Học • ${teacherAccount.fullName}` : 'Phân Tích Năng Lực & Lỗ Hổng Kiến Thức Lớp 6'}
+            {isTeacherLoggedIn ? `Quản Lý Lớp Học • ${currentTeacher?.fullName || 'Giáo Viên'}` : 'Phân Tích Năng Lực & Lỗ Hổng Kiến Thức Lớp 6'}
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 mt-1">
             {isTeacherLoggedIn
-              ? `Trường: ${teacherAccount.schoolName} • Phụ trách: ${teacherAccount.managedClasses.join(', ')}`
+              ? `Trường: ${currentTeacher?.schoolName || ''} • ${isAdmin ? 'Admin - Quản lý toàn bộ GV & HS' : `Phụ trách: ${currentTeacher?.managedClasses.join(', ') || 'Chưa phân lớp'}`}`
               : 'Theo dõi chi tiết điểm số 4 kỹ năng, chuỗi học tập và lộ trình ôn tập được AI đề xuất.'}
           </p>
         </div>
@@ -232,33 +268,119 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
         </div>
       </div>
 
+      {/* Admin Tab Toggle: Quản lý HS vs Quản lý GV */}
+      {isAdmin && isTeacherLoggedIn && (
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setDashboardTab('students')}
+            className={`px-5 py-2.5 rounded-2xl font-extrabold text-sm transition-all ${
+              dashboardTab === 'students'
+                ? 'neu-btn-primary text-white shadow-md'
+                : 'neu-btn text-slate-700 hover:text-indigo-600'
+            }`}
+          >
+            👨‍🎓 Quản Lý Học Sinh
+          </button>
+          <button
+            onClick={() => setDashboardTab('teachers')}
+            className={`px-5 py-2.5 rounded-2xl font-extrabold text-sm transition-all ${
+              dashboardTab === 'teachers'
+                ? 'neu-btn-primary text-white shadow-md'
+                : 'neu-btn text-slate-700 hover:text-purple-600'
+            }`}
+          >
+            👑 Quản Lý Giáo Viên & Mã Kích Hoạt
+          </button>
+        </div>
+      )}
+
+      {/* Teacher Management Panel (Admin only) */}
+      {isAdmin && isTeacherLoggedIn && dashboardTab === 'teachers' && (
+        <TeacherManagementPanel
+          appData={appData}
+          onCreateActivationCode={onCreateActivationCode || (() => {})}
+          onDeleteActivationCode={onDeleteActivationCode || (() => {})}
+          onDeactivateTeacher={onDeactivateTeacher || (() => {})}
+          onReactivateTeacher={onReactivateTeacher || (() => {})}
+          onDeleteTeacher={onDeleteTeacher || (() => {})}
+          onUpdateTeacherClasses={onUpdateTeacherClasses || (() => {})}
+          onAddCustomClass={onAddCustomClass}
+        />
+      )}
+
+      {/* Student Management Section - shown when dashboardTab is 'students' or for non-admin teachers */}
+      {(!isAdmin || dashboardTab === 'students') && (
+      <>
       {/* Teacher Status Alert Banner */}
       {isTeacherLoggedIn && (
-        <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-purple-900">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-lg shrink-0">
-              👩‍🏫
+        <div className="bg-purple-50 border border-purple-200 rounded-2xl p-4 space-y-3 text-xs text-purple-900">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center font-bold text-2xl shrink-0 shadow-md">
+                {isAdmin ? '👑' : '👩‍🏫'}
+              </div>
+              <div>
+                <span className="font-extrabold text-sm block text-purple-900">
+                  {currentTeacher?.fullName || 'Giáo Viên'}
+                </span>
+                <span className="text-purple-600 text-[11px] block">
+                  {currentTeacher?.email} • {currentTeacher?.schoolName}
+                </span>
+                <span className="text-purple-500 text-[11px] block">
+                  Phụ trách: {currentTeacher?.managedClasses.length ? currentTeacher.managedClasses.join(', ') : 'Chưa phân lớp'}
+                  {' • '}Tổng: {teacherStudents.length} học sinh
+                </span>
+              </div>
             </div>
-            <div>
-              <span className="font-extrabold text-sm block">
-                Chế độ Giáo Viên Quản Lý Lớp Học đang bật!
-              </span>
-              <span className="text-purple-700 block">
-                Thầy/Cô có toàn quyền Thêm học sinh mới, Sửa thông tin, Đặt lại mã PIN và Xem báo cáo riêng từng Lớp.
-              </span>
-              <span className="inline-flex items-center gap-1.5 mt-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[11px] border border-emerald-200">
-                <span>🟢 API Key Server Pool: Đã kích hoạt (Học sinh học 1-chạm không cần nhập Key)</span>
-              </span>
+
+            <div className="flex flex-wrap items-center gap-2 shrink-0 self-start sm:self-auto">
+              {onOpenTeacherProfile && (
+                <button
+                  onClick={onOpenTeacherProfile}
+                  className="px-3 py-2 rounded-xl bg-white hover:bg-slate-50 text-purple-700 font-bold text-xs shadow-2xs transition-all flex items-center gap-1.5 border border-purple-200"
+                >
+                  <Edit3 className="w-3.5 h-3.5" />
+                  <span>Sửa Hồ Sơ</span>
+                </button>
+              )}
+              <button
+                onClick={() => {
+                  if (appData.currentTeacherId) {
+                    exportTeacherBackupJSON(appData, appData.currentTeacherId);
+                  }
+                }}
+                className="px-3 py-2 rounded-xl bg-purple-100 hover:bg-purple-200 text-purple-800 font-bold text-xs transition-all flex items-center gap-1.5 border border-purple-300"
+                title="Tải về file sao lưu dữ liệu danh sách học sinh & điểm số của lớp"
+              >
+                <span>📥 Xuất Dữ Liệu Lớp</span>
+              </button>
+              <button
+                onClick={handleOpenAddModal}
+                className="px-3 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-2xs transition-all flex items-center gap-1.5"
+              >
+                <UserPlus className="w-4 h-4" />
+                <span>+ Thêm Học Sinh</span>
+              </button>
             </div>
           </div>
 
-          <button
-            onClick={handleOpenAddModal}
-            className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-2xs transition-all flex items-center gap-1.5 shrink-0 self-start sm:self-auto"
-          >
-            <UserPlus className="w-4 h-4" />
-            <span>+ Thêm Học Sinh Mới</span>
-          </button>
+          {/* Quick stats row */}
+          <div className="flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 font-bold text-[11px] border border-blue-200">
+              📚 {availableClasses.length} lớp
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 font-bold text-[11px] border border-indigo-200">
+              👨‍🎓 {teacherStudents.length} học sinh
+            </span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[11px] border border-emerald-200">
+              🟢 Server Pool: Đã kích hoạt
+            </span>
+            {isAdmin && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 font-bold text-[11px] border border-amber-200">
+                👑 Admin • {appData.teachers.length} GV trong hệ thống
+              </span>
+            )}
+          </div>
         </div>
       )}
 
@@ -338,12 +460,9 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                 className="bg-transparent font-extrabold text-[#4A90E2] outline-none cursor-pointer"
               >
                 <option value="all">Tất Cả Các Lớp ({students.length})</option>
-                <option value="Lớp 6A1">Lớp 6A1</option>
-                <option value="Lớp 6A2">Lớp 6A2</option>
-                <option value="Lớp 6A3">Lớp 6A3</option>
-                <option value="Lớp 6A4">Lớp 6A4</option>
-                <option value="Lớp 6A5">Lớp 6A5</option>
-                <option value="Lớp 6A6">Lớp 6A6</option>
+                {availableClasses.map((cls) => (
+                  <option key={cls} value={cls}>{cls}</option>
+                ))}
               </select>
             </div>
 
@@ -664,12 +783,9 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                     onChange={(e) => setFormData({ ...formData, className: e.target.value })}
                     className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50 text-slate-900 font-bold"
                   >
-                    <option value="Lớp 6A1">Lớp 6A1</option>
-                    <option value="Lớp 6A2">Lớp 6A2</option>
-                    <option value="Lớp 6A3">Lớp 6A3</option>
-                    <option value="Lớp 6A4">Lớp 6A4</option>
-                    <option value="Lớp 6A5">Lớp 6A5</option>
-                    <option value="Lớp 6A6">Lớp 6A6</option>
+                    {availableClasses.map((cls) => (
+                      <option key={cls} value={cls}>{cls}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -772,6 +888,8 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
             </form>
           </div>
         </div>
+      )}
+      </>
       )}
     </div>
   );

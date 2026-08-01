@@ -22,7 +22,7 @@ import {
   Settings,
   Home
 } from 'lucide-react';
-import { AppDataSchema } from '../types';
+import { AppDataSchema, TeacherAccount } from '../types';
 import { exportQuestionsToDocx } from '../services/docxExport';
 import { exportUnitToPptx } from '../services/pptxExport';
 import { exportToMoodleGift } from '../services/moodleExport';
@@ -31,6 +31,8 @@ interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   appData: AppDataSchema;
+  currentTeacher: TeacherAccount | null;
+  isAdmin: boolean;
   onOpenSettings: () => void;
   onOpenBackupModal: () => void;
   onOpenStudentAuth: () => void;
@@ -41,6 +43,8 @@ export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
   appData,
+  currentTeacher,
+  isAdmin,
   onOpenSettings,
   onOpenBackupModal,
   onOpenStudentAuth,
@@ -123,7 +127,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="text-left hidden sm:block leading-tight">
                 <span className="block text-slate-900 truncate font-extrabold text-[12px]">
                   {appData.isTeacherLoggedIn
-                    ? appData.teacherAccount.fullName
+                    ? (currentTeacher?.fullName || 'Giáo Viên')
                     : currentStudent
                     ? currentStudent.fullName
                     : 'Đăng Nhập'}
@@ -134,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }`}
                 >
                   {appData.isTeacherLoggedIn
-                    ? 'Giáo Viên Quản Lý 👑'
+                    ? (isAdmin ? 'Quản Lý Admin 👑' : `Giáo Viên 👩‍🏫`)
                     : currentStudent
                     ? `${currentStudent.className} 🎒`
                     : 'Học Sinh Lớp 6 🎒'}

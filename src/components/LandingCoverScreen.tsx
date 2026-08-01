@@ -29,7 +29,8 @@ interface LandingCoverScreenProps {
   appData: AppDataSchema;
   onLoginStudent: (studentId: string) => void;
   onRegisterStudent: (newStudent: StudentAccount) => void;
-  onTeacherLogin: (user: string, pass: string) => boolean;
+  onTeacherLogin: (email: string, password: string) => boolean;
+  onTeacherRegister: (email: string, fullName: string, schoolName: string, password: string, activationCode: string) => { success: boolean; error?: string };
   onOpenTeacherManagement: () => void;
   onEnterAsGuest: () => void;
 }
@@ -41,6 +42,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   onLoginStudent,
   onRegisterStudent,
   onTeacherLogin,
+  onTeacherRegister,
   onOpenTeacherManagement,
   onEnterAsGuest,
 }) => {
@@ -63,9 +65,14 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const [regErr, setRegErr] = useState<string>('');
 
   // Teacher login state
-  const [teacherUser, setTeacherUser] = useState<string>('giaovien6');
-  const [teacherPass, setTeacherPass] = useState<string>('teacher2026');
+  const [teacherMode, setTeacherMode] = useState<'login' | 'register'>('login');
+  const [teacherEmail, setTeacherEmail] = useState<string>('');
+  const [teacherPass, setTeacherPass] = useState<string>('');
+  const [teacherFullName, setTeacherFullName] = useState<string>('');
+  const [teacherSchoolName, setTeacherSchoolName] = useState<string>('');
+  const [teacherActivationCode, setTeacherActivationCode] = useState<string>('');
   const [teacherErr, setTeacherErr] = useState<string>('');
+  const [teacherSuccess, setTeacherSuccess] = useState<string>('');
 
   // Parent login state
   const [parentStudentId, setParentStudentId] = useState<string>(defaultStudent?.id || '');
@@ -119,7 +126,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
     }
 
     const validPassword = targetStudent.pinCode || '1234';
-    if (loginPassword.trim() !== validPassword && loginPassword.trim() !== '1234' && loginPassword.trim() !== '2026') {
+    if (loginPassword.trim() !== validPassword) {
       setStudentErr('Mật khẩu chưa đúng! Vui lòng thử lại.');
       return;
     }
@@ -178,12 +185,32 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const handleTeacherSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setTeacherErr('');
-    const success = onTeacherLogin(teacherUser.trim(), teacherPass.trim());
-    if (!success) {
-      setTeacherErr('Tên đăng nhập hoặc mật khẩu Giáo viên chưa đúng! (Mặc định: giaovien6 / teacher2026)');
-      return;
+    if (teacherMode === 'login') {
+      const success = onTeacherLogin(teacherEmail.trim(), teacherPass.trim());
+      if (!success) {
+        setTeacherErr('Email hoặc mật khẩu Giáo viên chưa đúng!');
+        return;
+      }
+      onOpenTeacherManagement();
+    } else {
+      if (!teacherEmail.trim() || !teacherFullName.trim() || !teacherSchoolName.trim() || !teacherPass.trim() || !teacherActivationCode.trim()) {
+        setTeacherErr('Vui lòng điền đầy đủ thông tin đăng ký!');
+        return;
+      }
+      const { success, error } = onTeacherRegister(
+        teacherEmail.trim(),
+        teacherFullName.trim(),
+        teacherSchoolName.trim(),
+        teacherPass.trim(),
+        teacherActivationCode.trim()
+      );
+      if (!success) {
+        setTeacherErr(error || 'Đăng ký thất bại. Vui lòng kiểm tra lại thông tin.');
+        return;
+      }
+      setTeacherSuccess('✅ Đăng ký thành công! Chuyển sang Bảng Quản Lý Lớp Học...');
+      setTimeout(() => onOpenTeacherManagement(), 1500);
     }
-    onOpenTeacherManagement();
   };
 
   const handleParentSubmit = (e: React.FormEvent) => {
@@ -538,25 +565,61 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
             <form onSubmit={handleTeacherSubmit} className="space-y-4 animate-in fade-in zoom-in-95 duration-200">
               <div className="border-b border-purple-200/80 pb-3">
                 <h3 className="font-extrabold text-lg text-purple-950 flex items-center gap-2">
-                  <span>👩‍🏫 Đăng Nhập Dành Cho Giáo Viên Quản Lý</span>
+                  <span>{teacherMode === 'login' ? '👩‍🏫 Đăng Nhập Dành Cho Giáo Viên Quản Lý' : '✨ Đăng Ký Tài Khoản Giáo Viên Mới'}</span>
                 </h3>
                 <p className="text-xs text-purple-700 font-semibold">
-                  Truy cập bảng điều khiển giáo viên để quản lý lớp học và xuất đề thi:
+                  {teacherMode === 'login' ? 'Truy cập bảng điều khiển giáo viên để quản lý lớp học và xuất đề thi:' : 'Tạo tài khoản giáo viên mới với mã kích hoạt để quản lý lớp học:'}
                 </p>
               </div>
 
               <div className="space-y-3">
+                {teacherMode === 'register' && (
+                  <>
+                    <div>
+                      <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                        Họ và Tên: *
+                      </label>
+                      <div className="relative">
+                        <User className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
+                        <input
+                          type="text"
+                          required
+                          value={teacherFullName}
+                          onChange={(e) => setTeacherFullName(e.target.value)}
+                          className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                        Tên Trường: *
+                      </label>
+                      <div className="relative">
+                        <School className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
+                        <input
+                          type="text"
+                          required
+                          value={teacherSchoolName}
+                          onChange={(e) => setTeacherSchoolName(e.target.value)}
+                          className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+
                 <div>
                   <label className="text-xs font-extrabold text-purple-900 block mb-1">
-                    Tên Đăng Nhập Giáo Viên:
+                    Email:{teacherMode === 'register' ? ' *' : ''}
                   </label>
                   <div className="relative">
                     <User className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
-                      type="text"
-                      value={teacherUser}
-                      onChange={(e) => setTeacherUser(e.target.value)}
-                      placeholder="giaovien6"
+                      type="email"
+                      required={teacherMode === 'register'}
+                      value={teacherEmail}
+                      onChange={(e) => setTeacherEmail(e.target.value)}
+                      placeholder="your.email@gmail.com"
                       className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
                     />
                   </div>
@@ -564,22 +627,40 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
                 <div>
                   <label className="text-xs font-extrabold text-purple-900 block mb-1">
-                    Mật Khẩu Giáo Viên:
+                    Mật khẩu:{teacherMode === 'register' ? ' *' : ''}
                   </label>
                   <div className="relative">
                     <Lock className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
                     <input
                       type="password"
+                      required={teacherMode === 'register'}
                       value={teacherPass}
                       onChange={(e) => setTeacherPass(e.target.value)}
-                      placeholder="teacher2026"
                       className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none"
                     />
                   </div>
-                  <span className="text-[11px] text-purple-600 font-semibold mt-1 block">
-                    💡 Mật khẩu mặc định Giáo viên: <strong>teacher2026</strong>
-                  </span>
                 </div>
+
+                {teacherMode === 'register' && (
+                  <div>
+                    <label className="text-xs font-extrabold text-purple-900 block mb-1">
+                      Mã Kích Hoạt: *
+                    </label>
+                    <div className="relative">
+                      <KeyRound className="w-4 h-4 text-purple-500 absolute left-3.5 top-3.5" />
+                      <input
+                        type="text"
+                        required
+                        maxLength={6}
+                        value={teacherActivationCode}
+                        onChange={(e) => setTeacherActivationCode(e.target.value.toUpperCase())}
+                        placeholder="XXXXXX"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-800 focus:outline-none uppercase"
+                      />
+                    </div>
+                    <p className="text-[10px] text-slate-400 mt-1">💡 Mã kích hoạt gồm 6 ký tự do Admin cấp. Liên hệ quản trị viên nếu chưa có mã.</p>
+                  </div>
+                )}
               </div>
 
               {teacherErr && (
@@ -587,14 +668,32 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                   <span>❌</span> <span>{teacherErr}</span>
                 </div>
               )}
+              {teacherSuccess && (
+                <div className="p-3 rounded-2xl bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-extrabold flex items-center gap-2">
+                  <span>{teacherSuccess}</span>
+                </div>
+              )}
 
               <button
                 type="submit"
                 className="w-full py-3.5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm shadow-xl flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.02]"
               >
-                <span>👑 Đăng Nhập Quản Lý Giáo Viên</span>
+                <span>{teacherMode === 'login' ? '👩‍🏫 Đăng Nhập Giáo Viên' : '✨ Đăng Ký & Kích Hoạt Tài Khoản'}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+
+              <div className="text-center pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTeacherMode(teacherMode === 'login' ? 'register' : 'login');
+                    setTeacherErr('');
+                  }}
+                  className="text-xs text-purple-700 hover:text-purple-950 font-extrabold underline cursor-pointer"
+                >
+                  {teacherMode === 'login' ? 'Chưa có tài khoản? Đăng ký với mã kích hoạt →' : 'Đã có tài khoản? Đăng nhập →'}
+                </button>
+              </div>
             </form>
           )}
 
