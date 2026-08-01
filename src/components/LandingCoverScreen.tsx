@@ -32,7 +32,6 @@ interface LandingCoverScreenProps {
   onTeacherLogin: (email: string, password: string) => boolean;
   onTeacherRegister: (email: string, fullName: string, schoolName: string, password: string, activationCode: string) => { success: boolean; error?: string };
   onOpenTeacherManagement: () => void;
-  onEnterAsGuest: () => void;
 }
 
 const CLASS_OPTIONS = ['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6'];
@@ -44,7 +43,6 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   onTeacherLogin,
   onTeacherRegister,
   onOpenTeacherManagement,
-  onEnterAsGuest,
 }) => {
   const [activeTab, setActiveTab] = useState<'student' | 'register' | 'teacher' | 'parent'>('student');
 
@@ -117,8 +115,8 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
     const cleanInputUser = loginUsername.trim().toLowerCase();
     const targetStudent = appData.students.find(
-      (s) => s.id === selectedStudentId || s.username.toLowerCase() === cleanInputUser || s.fullName.toLowerCase() === cleanInputUser
-    );
+      (s) => s.username.toLowerCase() === cleanInputUser || s.fullName.toLowerCase() === cleanInputUser
+    ) || appData.students.find((s) => s.id === selectedStudentId);
 
     if (!targetStudent) {
       setStudentErr(`Không tìm thấy tài khoản với Tên đăng nhập "${loginUsername}". Vui lòng đăng ký tài khoản mới!`);
@@ -252,11 +250,11 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
           </div>
 
           <button
-            onClick={onEnterAsGuest}
-            className="px-4 py-2.5 rounded-2xl neu-card-yellow text-amber-900 font-extrabold text-xs border-2 border-amber-300 transition-all flex items-center gap-2 hover:scale-105 shadow-sm cursor-pointer"
+            onClick={() => setActiveTab('student')}
+            className="px-4 py-2.5 rounded-2xl neu-card-purple text-purple-900 font-extrabold text-xs border-2 border-purple-300 transition-all flex items-center gap-2 hover:scale-105 shadow-sm cursor-pointer"
           >
-            <Play className="w-4 h-4 text-amber-600 fill-amber-500" />
-            <span>Học Thử (Khách) 🚀</span>
+            <UserCheck className="w-4 h-4 text-purple-600" />
+            <span>🔒 Đăng Nhập Học Sinh</span>
           </button>
         </div>
       </header>

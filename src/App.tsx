@@ -277,7 +277,6 @@ export default function App() {
           setIsCoverActive(false);
           setActiveTab('report');
         }}
-        onEnterAsGuest={() => setIsCoverActive(false)}
       />
     );
   }

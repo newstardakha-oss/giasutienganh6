@@ -106,8 +106,8 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
 
     const cleanInput = loginUsername.trim().toLowerCase();
     const targetStudent = appData.students.find(
-      (s) => s.id === selectedStudentId || s.username.toLowerCase() === cleanInput || s.fullName.toLowerCase() === cleanInput
-    );
+      (s) => s.username.toLowerCase() === cleanInput || s.fullName.toLowerCase() === cleanInput
+    ) || appData.students.find((s) => s.id === selectedStudentId);
 
     if (!targetStudent) {
       setLoginError(`Không tìm thấy tài khoản với Tên đăng nhập "${loginUsername}". Vui lòng đăng ký tài khoản mới!`);
