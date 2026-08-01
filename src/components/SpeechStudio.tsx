@@ -19,35 +19,104 @@ interface SpeechStudioProps {
   units: SgkUnit[];
 }
 
+export interface PronunciationTarget {
+  text: string;
+  ipa: string;
+  focusPhoneme: string;
+}
+
+export const UNIT_PRONUNCIATION_TARGETS: Record<number, PronunciationTarget[]> = {
+  1: [
+    { text: "Students always look smart in their uniforms on Monday.", ipa: "/ɑː/ & /ʌ/", focusPhoneme: "/ɑː/ & /ʌ/" },
+    { text: "My brother has a new compass and calculator for his art class.", ipa: "/aːt/ & /ˈkʌmpəs/", focusPhoneme: "/ɑː/ & /ʌ/" },
+    { text: "They are studying math and history in the classroom on Sunday.", ipa: "/ˈstʌdiɪŋ/ & /ˈklɑːsruːm/", focusPhoneme: "/ɑː/ & /ʌ/" },
+    { text: "We do exercise and study science after lunch.", ipa: "/lʌntʃ/ & /ˈstʌdi/", focusPhoneme: "/ʌ/" },
+  ],
+  2: [
+    { text: "There are two lamps and four sofas in the living room.", ipa: "/læmps/ vs /ˈsəʊfəz/", focusPhoneme: "/s/ & /z/" },
+    { text: "My sister cleans the sinks and puts the chopsticks on the table.", ipa: "/sɪŋks/ vs /tʃɒpstɪks/", focusPhoneme: "/s/ & /z/" },
+    { text: "He has three posters, two desks, and many chairs in his bedroom.", ipa: "/dɛsks/ vs /ˈpəʊstəz/", focusPhoneme: "/s/ & /z/" },
+    { text: "The cats sleep on the rugs next to the wardrobes.", ipa: "/kæts/ vs /ˈwɔːdrəʊbz/", focusPhoneme: "/s/ & /z/" },
+  ],
+  3: [
+    { text: "The boy with blonde hair is playing with a big ball.", ipa: "/bɔɪ/ vs /blɒnd/", focusPhoneme: "/b/ & /p/" },
+    { text: "We are having a picnic in the park with our best friends.", ipa: "/ˈpɪknɪk/ vs /pɑːk/", focusPhoneme: "/b/ & /p/" },
+    { text: "My patient friend Paul is playing the piano at the party.", ipa: "/ˈpeɪʃənt/ vs /pɪˈænəʊ/", focusPhoneme: "/b/ & /p/" },
+    { text: "Peter has brown eyes and a black pony in his photo.", ipa: "/ˈpiːtə/ vs /braʊn/", focusPhoneme: "/b/ & /p/" },
+  ],
+  4: [
+    { text: "The streets in this historic city are clean and peaceful.", ipa: "/hɪˈstɒrɪk/ vs /kliːn/", focusPhoneme: "/iː/ & /ɪ/" },
+    { text: "It is very convenient and cheap to live in this quiet village.", ipa: "/kənˈviːniənt/ vs /tʃiːp/", focusPhoneme: "/iː/ & /ɪ/" },
+    { text: "She lives in a noisy neighbourhood near the city building.", ipa: "/ˈnɔɪzi/ vs /ˈbɪldɪŋ/", focusPhoneme: "/iː/ & /ɪ/" },
+    { text: "We can see a modern art gallery and a big square on this street.", ipa: "/striːt/ vs /ˈgæləri/", focusPhoneme: "/iː/ & /ɪ/" },
+  ],
+  5: [
+    { text: "We visited Ha Long Bay and saw famous islands and caves.", ipa: "/ˈaɪləndz/ vs /keɪvz/", focusPhoneme: "/t/ & /d/" },
+    { text: "Take a plaster and a tent when you go to the forest.", ipa: "/ˈplɑːstə/ vs /tɛnt/", focusPhoneme: "/t/ & /d/" },
+    { text: "The tour guide led us to the deep desert and mountain in Viet Nam.", ipa: "/gaɪd/ vs /ˈdɛzət/", focusPhoneme: "/t/ & /d/" },
+    { text: "Don't forget to pack your waterproof coat and sleeping bag.", ipa: "/ˈwɔːtəpruːf/ vs /kəʊt/", focusPhoneme: "/t/ & /d/" },
+  ],
+  6: [
+    { text: "We should eat banh chung and wish happy New Year at Tet.", ipa: "/ʃʊd/ vs /wɪʃ/", focusPhoneme: "/s/ & /ʃ/" },
+    { text: "She goes shopping for sweet peach blossoms in the spring.", ipa: "/ˈʃɒpɪŋ/ vs /swiːt/", focusPhoneme: "/s/ & /ʃ/" },
+    { text: "We should show our New Year wishes to our grandparents.", ipa: "/ʃəʊ/ vs /ˈwɪʃɪz/", focusPhoneme: "/s/ & /ʃ/" },
+    { text: "Children smile and receive lucky money in red envelopes.", ipa: "/smaɪl/ vs /rɪˈsiːv/", focusPhoneme: "/s/ & /ʃ/" },
+  ],
+  7: [
+    { text: "They think 3D films at the theatre are very exciting.", ipa: "/θɪŋk/ vs /ˈθɪətə/", focusPhoneme: "/θ/ & /ð/" },
+    { text: "The weather forecaster on channel 3 is talking about the earth.", ipa: "/ˈwɛðə/ vs /ɜːθ/", focusPhoneme: "/θ/ & /ð/" },
+    { text: "There are many educational programmes on television this month.", ipa: "/ðɛə/ vs /mʌnθ/", focusPhoneme: "/θ/ & /ð/" },
+    { text: "My brother and I like watching game shows together.", ipa: "/ˈbrʌðə/ vs /təˈgɛðə/", focusPhoneme: "/θ/ & /ð/" },
+  ],
+  8: [
+    { text: "The badminton match yesterday was very exciting for all fans.", ipa: "/ˈmætʃ/ vs /fænz/", focusPhoneme: "/e/ & /æ/" },
+    { text: "They play chess and tennis at the gym every weekend.", ipa: "/tʃɛs/ vs /ˈtɛnɪs/", focusPhoneme: "/e/ & /æ/" },
+    { text: "The champion won the marathon with his new racket.", ipa: "/ˈtʃæmpiən/ vs /ˈrækɪt/", focusPhoneme: "/e/ & /æ/" },
+    { text: "Wear your helmet and goggles before you start the race.", ipa: "/ˈhɛlmɪt/ vs /ˈgɒglz/", focusPhoneme: "/e/ & /æ/" },
+  ],
+  9: [
+    { text: "It is very cold and snowy near the old town tower.", ipa: "/kəʊld/ vs /taʊə/", focusPhoneme: "/əʊ/ & /aʊ/" },
+    { text: "We took a nice photo of the house in the mountain town.", ipa: "/ˈfəʊtəʊ/ vs /haʊs/", focusPhoneme: "/əʊ/ & /aʊ/" },
+    { text: "There are many crowded boats near the coast of the old city.", ipa: "/bəʊts/ vs /kraʊdɪd/", focusPhoneme: "/əʊ/ & /aʊ/" },
+    { text: "Look at that famous palace with a big clock in London.", ipa: "/klɒk/ vs /ˈpælɪs/", focusPhoneme: "/əʊ/ & /aʊ/" },
+  ],
+  10: [
+    { text: "My dream house will have a smart driver robot and automatic trees.", ipa: "/driːm/ vs /triːz/", focusPhoneme: "/dr/ & /tr/" },
+    { text: "She travels by high-speed train to her dream space cottage.", ipa: "/trævlz/ vs /driːm/", focusPhoneme: "/dr/ & /tr/" },
+    { text: "The robot is driving a tractor near the green trees.", ipa: "/ˈdraɪvɪŋ/ vs /ˈtræktə/", focusPhoneme: "/dr/ & /tr/" },
+    { text: "I draw a picture of an electric car and a train on paper.", ipa: "/drɔː/ vs /treɪn/", focusPhoneme: "/dr/ & /tr/" },
+  ],
+  11: [
+    { text: "If we recycle plastic bottles, we will save the environment.", ipa: "/riːˈsaɪkl/ & /ɪnˈvaɪərənmənt/", focusPhoneme: "Sentence Rhythm" },
+    { text: "We should reuse glass jars and plant more green trees.", ipa: "/riːˈjuːz/ & /plɑːnt/", focusPhoneme: "Sentence Rhythm" },
+    { text: "Joining the 3Rs club helps reduce rubbish in our town.", ipa: "/rɪˈdjuːs/ & /ˈrʌbɪʃ/", focusPhoneme: "Sentence Rhythm" },
+    { text: "Turn off the lights when you leave the room to save energy.", ipa: "/laɪts/ & /ˈɛnədʒi/", focusPhoneme: "Sentence Rhythm" },
+  ],
+  12: [
+    { text: "Doctor robots can look after sick people in hospitals.", ipa: "Statement ↘", focusPhoneme: "Falling Intonation ↘" },
+    { text: "Can worker robots repair heavy machines in factories?", ipa: "Yes/No Question ↗", focusPhoneme: "Rising Intonation ↗" },
+    { text: "My smart robot can do the housework, wash dishes, and cook meals.", ipa: "Statement ↘", focusPhoneme: "Falling Intonation ↘" },
+    { text: "What can your home robot do to help your family?", ipa: "Wh-Question ↘", focusPhoneme: "Falling Intonation ↘" },
+  ],
+};
+
 export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units }) => {
   const [selectedUnit, setSelectedUnit] = useState<SgkUnit>(units[0]);
   const [activeTab, setActiveTab] = useState<'phoneme' | 'roleplay'>('phoneme');
 
-  // Phoneme trainer targets for current unit
-  const targetSentences = [
-    {
-      text: `Students always look smart in their uniforms on Monday.`,
-      ipa: `/a:/ & /ʌ/`,
-      focusPhoneme: `/a:/ & /ʌ/`,
-    },
-    {
-      text: `My brother has a new compass and calculator.`,
-      ipa: `/ˈkʌmpəs/`,
-      focusPhoneme: `/ʌ/`,
-    },
-    {
-      text: `There are two lamps and four sofas in the living room.`,
-      ipa: `/læmps/ vs /ˈsəʊfəz/`,
-      focusPhoneme: `/s/ & /z/`,
-    },
-    {
-      text: `We should eat banh chung and wish happy New Year at Tet.`,
-      ipa: `/s/ & /ʃ/`,
-      focusPhoneme: `/ʃ/`,
-    },
-  ];
+  // Dynamic target sentences for currently selected unit
+  const targetSentences = UNIT_PRONUNCIATION_TARGETS[selectedUnit.unitNumber] || UNIT_PRONUNCIATION_TARGETS[1];
+  const [selectedTarget, setSelectedTarget] = useState<PronunciationTarget>(targetSentences[0]);
 
-  const [selectedTarget, setSelectedTarget] = useState(targetSentences[0]);
+  // Sync selectedTarget when selectedUnit changes
+  useEffect(() => {
+    const targets = UNIT_PRONUNCIATION_TARGETS[selectedUnit.unitNumber] || UNIT_PRONUNCIATION_TARGETS[1];
+    if (targets && targets.length > 0) {
+      setSelectedTarget(targets[0]);
+      setEvaluation(null);
+      setRecognizedText('');
+    }
+  }, [selectedUnit.id]);
   const [isRecording, setIsRecording] = useState(false);
   const [recognizedText, setRecognizedText] = useState('');
   const [evaluation, setEvaluation] = useState<PronunciationEvaluation | null>(null);
@@ -179,7 +248,7 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units }) => {
                   const u = units.find((x) => x.id === e.target.value);
                   if (u) setSelectedUnit(u);
                 }}
-                className="text-xs bg-slate-50 border border-slate-200 font-semibold px-2.5 py-1.5 rounded-xl text-slate-800"
+                className="text-xs bg-slate-50 border border-slate-200 font-semibold px-2.5 py-1.5 rounded-xl text-slate-800 focus:ring-2 focus:ring-blue-400 outline-none"
               >
                 {units.map((u) => (
                   <option key={u.id} value={u.id}>
@@ -187,6 +256,19 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units }) => {
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* SGK A Closer Look 1 Pronunciation Focus Badge */}
+            <div className="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 text-xs">
+              <div className="font-bold text-blue-900 flex items-center justify-between">
+                <span>📘 Unit {selectedUnit.unitNumber}: A Closer Look 1</span>
+                <span className="px-2 py-0.5 rounded-md bg-blue-600 text-white font-extrabold text-[10px]">
+                  Pronunciation
+                </span>
+              </div>
+              <p className="text-[#4A90E2] font-semibold mt-1">
+                Âm trọng tâm: <span className="font-extrabold text-blue-900">{selectedUnit.pronunciationIPA}</span>
+              </p>
             </div>
 
             <div className="space-y-2">

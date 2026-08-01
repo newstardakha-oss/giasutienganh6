@@ -117,7 +117,7 @@ export const SGK_UNITS: SgkUnit[] = [
     theme: 'Visions of the Future',
     grammar: ['Future simple: will / won\'t (Thì tương lai đơn)', 'Might for future possibility (Might + V chỉ khả năng xảy ra)'],
     vocabulary: ['appliance, automatic dishwasher, hi-tech, solar energy, space cottage, UFO, wireless TV, smart clock'],
-    pronunciationIPA: 'Stress in 2-syllable words (\'picture, \'robot vs be\'gin, o\'bey)',
+    pronunciationIPA: '/dr/ & /tr/ (dream, drive vs tree, train)',
     skillsSummary: 'Đọc về các loại nhà tương lai (trên đảo, vũ trụ), Bày tỏ sự ngạc nhiên, Viết tả ngôi nhà mơ ước.',
     iconName: 'Bot'
   },
