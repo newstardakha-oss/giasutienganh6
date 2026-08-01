@@ -54,10 +54,9 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const [activeSubTab, setActiveSubTab] = useState<'login' | 'register' | 'dailyLog' | 'teacherLogin'>('login');
 
   // Login form state
-  const defaultSt = appData.students[0];
-  const [selectedStudentId, setSelectedStudentId] = useState<string>(appData.currentStudentId || defaultSt?.id || '');
-  const [loginUsername, setLoginUsername] = useState<string>(defaultSt?.username || '');
-  const [loginPassword, setLoginPassword] = useState<string>(defaultSt?.pinCode || '1234');
+  const [selectedStudentId, setSelectedStudentId] = useState<string>('');
+  const [loginUsername, setLoginUsername] = useState<string>('');
+  const [loginPassword, setLoginPassword] = useState<string>('');
   const [loginError, setLoginError] = useState<string>('');
 
   // Teacher login form state — email-based

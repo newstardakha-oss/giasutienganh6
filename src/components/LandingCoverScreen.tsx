@@ -47,10 +47,9 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const [activeTab, setActiveTab] = useState<'student' | 'register' | 'teacher' | 'parent'>('student');
 
   // Student login state
-  const defaultStudent = appData.students[0];
-  const [selectedStudentId, setSelectedStudentId] = useState<string>(appData.currentStudentId || defaultStudent?.id || '');
-  const [loginUsername, setLoginUsername] = useState<string>(defaultStudent?.username || 'nguyenvanan');
-  const [loginPassword, setLoginPassword] = useState<string>(defaultStudent?.pinCode || '1234');
+  const [selectedStudentId, setSelectedStudentId] = useState<string>('');
+  const [loginUsername, setLoginUsername] = useState<string>('');
+  const [loginPassword, setLoginPassword] = useState<string>('');
   const [studentErr, setStudentErr] = useState<string>('');
 
   // Student register state
@@ -73,8 +72,8 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const [teacherSuccess, setTeacherSuccess] = useState<string>('');
 
   // Parent login state
-  const [parentStudentId, setParentStudentId] = useState<string>(defaultStudent?.id || '');
-  const [parentPin, setParentPin] = useState<string>('1234');
+  const [parentStudentId, setParentStudentId] = useState<string>('');
+  const [parentPin, setParentPin] = useState<string>('');
   const [parentErr, setParentErr] = useState<string>('');
 
   const todayStr = getTodayDateString();
