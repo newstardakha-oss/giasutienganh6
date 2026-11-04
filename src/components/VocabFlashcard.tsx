@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { getAllVocabByUnit, VocabItem } from '../services/vocabService';
 import { SgkUnit } from '../types';
+import { VocabIllustration } from './VocabIllustration';
 import confetti from 'canvas-confetti';
 
 interface VocabFlashcardProps {
@@ -338,12 +339,12 @@ export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({ units, onBack })
                 </span>
               </div>
               
-              <div className="relative w-full max-w-md mx-auto h-[380px] [perspective:1000px] cursor-pointer group"
+              <div className="relative w-full max-w-md mx-auto h-[450px] [perspective:1000px] cursor-pointer group"
                    onClick={() => setIsFlipped(!isFlipped)}>
                 <div className={`w-full h-full duration-500 [transform-style:preserve-3d] ${isFlipped ? '[transform:rotateY(180deg)]' : ''}`}>
                   
                   {/* Front: English */}
-                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] neu-card-blue flex flex-col items-center justify-center p-8 text-center border-b-4 border-blue-200">
+                  <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] neu-card-blue flex flex-col items-center justify-center p-6 text-center border-b-4 border-blue-200">
                     <span className="absolute top-4 right-4 bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded-lg">
                       {filteredVocab[browseIndex].part}
                     </span>
@@ -353,18 +354,29 @@ export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({ units, onBack })
                     >
                       <Volume2 className="w-6 h-6" />
                     </button>
+
+                    <div className="mb-3 mt-4">
+                      <VocabIllustration
+                        word={filteredVocab[browseIndex].word}
+                        meaningVi={filteredVocab[browseIndex].meaning}
+                        imageUrl={filteredVocab[browseIndex].imageUrl}
+                        size="md"
+                      />
+                    </div>
                     
-                    <h3 className="text-4xl md:text-5xl font-black text-gray-800 mb-4 tracking-tight drop-shadow-sm">
+                    <h3 className="text-3xl md:text-4xl font-black text-gray-800 mb-2 tracking-tight drop-shadow-sm">
                       {filteredVocab[browseIndex].word}
                     </h3>
-                    <p className="text-xl text-blue-600 font-medium font-mono bg-white/60 px-4 py-1 rounded-xl">
-                      {filteredVocab[browseIndex].phonetic}
-                    </p>
-                    <span className="mt-4 inline-block bg-white/80 text-gray-600 font-semibold px-4 py-1.5 rounded-full shadow-sm border border-gray-100">
-                      ({filteredVocab[browseIndex].type})
-                    </span>
+                    <div className="flex items-center justify-center gap-2 flex-wrap mb-10">
+                      <p className="text-base text-blue-600 font-medium font-mono bg-white/60 px-3 py-1 rounded-xl">
+                        {filteredVocab[browseIndex].phonetic}
+                      </p>
+                      <span className="inline-block bg-white/80 text-gray-600 font-semibold px-3 py-1 rounded-full shadow-sm border border-gray-100 text-sm">
+                        ({filteredVocab[browseIndex].type})
+                      </span>
+                    </div>
                     
-                    <div className="absolute bottom-6 flex gap-3">
+                    <div className="absolute bottom-5 flex gap-3">
                       <button 
                         onClick={(e) => toggleKnown(e, filteredVocab[browseIndex].id, 'known')}
                         className={`flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold transition-all ${
@@ -392,7 +404,16 @@ export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({ units, onBack })
                   
                   {/* Back: Vietnamese */}
                   <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] neu-card-purple flex flex-col items-center justify-center p-6 md:p-8 text-center overflow-y-auto border-b-4 border-purple-200">
-                    <h3 className="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-purple-200 pb-4 w-full">
+                    <div className="mb-3">
+                      <VocabIllustration
+                        word={filteredVocab[browseIndex].word}
+                        meaningVi={filteredVocab[browseIndex].meaning}
+                        imageUrl={filteredVocab[browseIndex].imageUrl}
+                        size="sm"
+                        allowQuickEdit={false}
+                      />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 border-b-2 border-purple-200 pb-3 w-full">
                       {filteredVocab[browseIndex].meaning}
                     </h3>
                     
@@ -487,11 +508,22 @@ export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({ units, onBack })
                     </span>
                   </div>
                   
-                  <div className="neu-card bg-gradient-to-br from-emerald-50 to-teal-50 p-8 text-center border-2 border-emerald-100">
-                    <span className="text-emerald-600 font-bold uppercase tracking-wider text-sm mb-2 block">
+                  <div className="neu-card bg-gradient-to-br from-emerald-50 to-teal-50 p-6 sm:p-8 text-center border-2 border-emerald-100 flex flex-col items-center">
+                    <span className="text-emerald-600 font-bold uppercase tracking-wider text-sm mb-3 block">
                       Chọn từ tiếng Anh đúng
                     </span>
-                    <h3 className="text-3xl md:text-4xl font-bold text-gray-800 py-4">
+                    {shuffledQuizVocab[quizIndex] && (
+                      <div className="mb-3">
+                        <VocabIllustration
+                          word={shuffledQuizVocab[quizIndex].word}
+                          meaningVi={shuffledQuizVocab[quizIndex].meaning}
+                          imageUrl={shuffledQuizVocab[quizIndex].imageUrl}
+                          size="md"
+                          allowQuickEdit={false}
+                        />
+                      </div>
+                    )}
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-800 py-2">
                       {shuffledQuizVocab[quizIndex]?.meaning}
                     </h3>
                   </div>
@@ -578,15 +610,25 @@ export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({ units, onBack })
                   </div>
 
                   <div className="neu-card bg-white p-8 text-center flex flex-col items-center">
-                    <button 
-                      onClick={() => speak(filteredVocab[dictIndex].word)}
-                      className="w-20 h-20 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-600 flex items-center justify-center mb-6 transition-colors shadow-inner"
-                    >
-                      <Volume2 className="w-10 h-10" />
-                    </button>
+                    <div className="flex items-center gap-4 mb-4">
+                      <VocabIllustration
+                        word={filteredVocab[dictIndex].word}
+                        meaningVi={filteredVocab[dictIndex].meaning}
+                        imageUrl={filteredVocab[dictIndex].imageUrl}
+                        size="md"
+                        allowQuickEdit={false}
+                      />
+                      <button 
+                        onClick={() => speak(filteredVocab[dictIndex].word)}
+                        className="w-16 h-16 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-600 flex items-center justify-center transition-colors shadow-inner shrink-0"
+                        title="Nghe phát âm"
+                      >
+                        <Volume2 className="w-8 h-8" />
+                      </button>
+                    </div>
                     
                     <p className="text-gray-500 font-medium mb-4">
-                      Nhấn loa để nghe và gõ lại từ vựng
+                      Nhìn hình minh họa, nhấn loa để nghe và gõ lại từ vựng
                     </p>
                     
                     {dictAttempts >= 2 && (

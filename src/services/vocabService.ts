@@ -19,6 +19,7 @@ export interface VocabItem {
   example_en: string;
   example_vi: string;
   part: string;
+  imageUrl?: string;
 }
 
 // 1. Tải danh sách từ vựng từ tệp JSON

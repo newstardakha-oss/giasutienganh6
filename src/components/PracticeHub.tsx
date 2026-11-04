@@ -18,6 +18,7 @@ import {
 import confetti from 'canvas-confetti';
 import { Question, SgkUnit, SkillType, StudySession } from '../types';
 import { VocabFlashcard } from './VocabFlashcard';
+import { VocabSrsApp } from '../vocab-srs/components/VocabSrsApp';
 
 interface PracticeHubProps {
   questions: Question[];
@@ -34,7 +35,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 }) => {
   const [selectedUnitId, setSelectedUnitId] = useState<string>('unit-1');
   const [selectedSkill, setSelectedSkill] = useState<SkillType | 'All'>('Vocabulary');
-  const [subMode, setSubMode] = useState<'quiz' | 'flashcard'>('quiz');
+  const [subMode, setSubMode] = useState<'srs' | 'quiz' | 'flashcard'>('srs');
 
   const filteredQuestions = questions.filter((q) => {
     const matchUnit = selectedUnitId === 'All' || q.unitId === selectedUnitId;
@@ -181,11 +182,22 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
           </p>
         </div>
 
-        {/* Sub-mode Toggle: Quiz vs Flashcard */}
-        <div className="flex items-center gap-2">
+        {/* Sub-mode Toggle: SRS vs Quiz vs Flashcard */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={() => setSubMode('srs')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer ${
+              subMode === 'srs'
+                ? 'neu-btn-primary text-white shadow-md scale-105'
+                : 'neu-btn text-slate-600 hover:text-indigo-600'
+            }`}
+          >
+            <Sparkles className="w-4 h-4" />
+            <span>🌟 Học Từ Vựng SRS (3 Thẻ)</span>
+          </button>
           <button
             onClick={() => setSubMode('quiz')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer ${
               subMode === 'quiz'
                 ? 'neu-btn-primary text-white shadow-md scale-105'
                 : 'neu-btn text-slate-600 hover:text-indigo-600'
@@ -196,21 +208,23 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
           </button>
           <button
             onClick={() => setSubMode('flashcard')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer ${
               subMode === 'flashcard'
                 ? 'neu-btn-primary text-white shadow-md scale-105'
                 : 'neu-btn text-slate-600 hover:text-indigo-600'
             }`}
           >
             <Layers className="w-4 h-4" />
-            <span>🃏 Flashcard Từ Vựng</span>
+            <span>🃏 Lật Thẻ Tự Do</span>
           </button>
         </div>
       </div>
 
-      {/* Render Flashcard mode */}
-      {subMode === 'flashcard' ? (
-        <VocabFlashcard units={units} onBack={() => setSubMode('quiz')} />
+      {/* Render SRS mode or Flashcard mode or Quiz mode */}
+      {subMode === 'srs' ? (
+        <VocabSrsApp onSessionCompleted={onSessionCompleted} />
+      ) : subMode === 'flashcard' ? (
+        <VocabFlashcard units={units} onBack={() => setSubMode('srs')} />
       ) : (
       <>
 
