@@ -45,19 +45,34 @@ export function loadVocabSrsData(): VocabSrsStoreData {
         ? parsed.words
         : seedWords;
 
-      // Đảm bảo toàn bộ từ chuẩn của Unit 1 (bao gồm từ mới bổ sung và imageUrl chuẩn) luôn được đồng bộ
+      // Đảm bảo toàn bộ từ chuẩn của Unit 1 (bao gồm 26 từ có imageUrl chuẩn) luôn được đồng bộ
+      const OBSOLETE_WORD_IDS = new Set([
+        'u1-smart',
+        'u1-27',
+        'u1-28',
+        'u1-29',
+        'u1-30',
+        'u1-31',
+        'u1-32',
+      ]);
       const wordMap = new Map<string, Word>();
       seedWords.forEach((sw) => wordMap.set(sw.id, sw));
       existingWords.forEach((w) => {
+        if (OBSOLETE_WORD_IDS.has(w.id)) return;
         const seedMatch = wordMap.get(w.id);
         if (seedMatch) {
+          const cleanExistingImage =
+            w.imageUrl && !w.imageUrl.includes('pollinations.ai') ? w.imageUrl : undefined;
           wordMap.set(w.id, {
-            ...seedMatch,
             ...w,
-            imageUrl: w.imageUrl || seedMatch.imageUrl,
+            ...seedMatch,
+            imageUrl: seedMatch.imageUrl || cleanExistingImage,
           });
         } else {
-          wordMap.set(w.id, w);
+          // Chỉ giữ lại các từ do giáo viên tự thêm ngoài danh sách mẫu
+          const cleanImage =
+            w.imageUrl && !w.imageUrl.includes('pollinations.ai') ? w.imageUrl : undefined;
+          wordMap.set(w.id, { ...w, imageUrl: cleanImage });
         }
       });
 

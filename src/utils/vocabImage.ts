@@ -8,7 +8,22 @@ export function getCustomVocabImagesMap(): Record<string, string> {
   try {
     if (typeof window === 'undefined' || !window.localStorage) return {};
     const raw = window.localStorage.getItem(CUSTOM_VOCAB_IMAGES_KEY);
-    return raw ? JSON.parse(raw) : {};
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Record<string, string>;
+    let cleaned = false;
+    const result: Record<string, string> = {};
+    for (const [k, v] of Object.entries(parsed)) {
+      // Loại bỏ các link AI tạo sinh (pollinations.ai) từng lưu nhầm trong localStorage
+      if (typeof v === 'string' && v.trim() && !v.includes('pollinations.ai')) {
+        result[k] = v.trim();
+      } else {
+        cleaned = true;
+      }
+    }
+    if (cleaned) {
+      window.localStorage.setItem(CUSTOM_VOCAB_IMAGES_KEY, JSON.stringify(result));
+    }
+    return result;
   } catch {
     return {};
   }
@@ -17,7 +32,9 @@ export function getCustomVocabImagesMap(): Record<string, string> {
 export function getCustomVocabImage(word: string): string | undefined {
   if (!word) return undefined;
   const map = getCustomVocabImagesMap();
-  return map[word.toLowerCase().trim()];
+  const val = map[word.toLowerCase().trim()];
+  if (val && val.includes('pollinations.ai')) return undefined;
+  return val;
 }
 
 export function setCustomVocabImage(word: string, imageUrl: string): void {
@@ -83,12 +100,34 @@ export const BUILTIN_VOCAB_IMAGES: Record<string, string> = {
   classroom: './images/vocab/unit1/classroom.jpg',
 };
 
+const BUILTIN_VOCAB_ALIASES: Record<string, string> = {
+  schoolbag: 'school bag',
+  'pencil sharpener': 'sharpener',
+  math: 'maths',
+  mathematics: 'maths',
+  eraser: 'rubber',
+};
+
+export function getBuiltinVocabImage(word: string): string | undefined {
+  if (!word) return undefined;
+  const cleanKey = word.toLowerCase().trim().replace(/\s+/g, ' ');
+  if (BUILTIN_VOCAB_IMAGES[cleanKey]) {
+    return BUILTIN_VOCAB_IMAGES[cleanKey];
+  }
+  const aliasKey = BUILTIN_VOCAB_ALIASES[cleanKey];
+  if (aliasKey && BUILTIN_VOCAB_IMAGES[aliasKey]) {
+    return BUILTIN_VOCAB_IMAGES[aliasKey];
+  }
+  return undefined;
+}
+
 /**
  * Lấy link ảnh ưu tiên:
- * 1. Ảnh tùy chỉnh đã lưu trong kho ảnh chung theo từ (nếu giáo viên tự đổi)
- * 2. imageUrl truyền trực tiếp từ dữ liệu từ vựng
- * 3. Ảnh minh họa chuẩn có sẵn trong kho BUILTIN_VOCAB_IMAGES
- * 4. Ảnh AI tự động sinh theo từ vựng
+ * 1. Ảnh minh họa chuẩn có sẵn trong kho BUILTIN_VOCAB_IMAGES (bộ ảnh cung cấp sẵn)
+ *    trừ khi giáo viên chủ động tải ảnh riêng từ máy (data:image/...)
+ * 2. Ảnh tùy chỉnh đã lưu trong kho ảnh chung theo từ (không phải ảnh AI tự sinh)
+ * 3. imageUrl truyền trực tiếp từ dữ liệu từ vựng (không phải ảnh AI tự sinh)
+ * 4. Ảnh AI tự động sinh theo từ vựng (dành cho các Unit chưa có bộ ảnh riêng)
  */
 export function resolveVocabImageUrl(
   word: string,
@@ -96,15 +135,22 @@ export function resolveVocabImageUrl(
   seedVariant: number = 1
 ): string {
   const savedCustom = getCustomVocabImage(word);
+  const builtinUrl = getBuiltinVocabImage(word);
+
+  // Nếu từ vựng đã có trong bộ ảnh chuẩn cung cấp sẵn, luôn ưu tiên hiển thị bộ ảnh chuẩn
+  // (chỉ cho phép ghi đè nếu giáo viên chủ động tải file ảnh từ máy lên dưới dạng data:image/)
+  if (builtinUrl) {
+    if (savedCustom && savedCustom.startsWith('data:image/')) {
+      return savedCustom;
+    }
+    return builtinUrl;
+  }
+
   if (savedCustom) {
     return savedCustom;
   }
-  if (explicitImageUrl && explicitImageUrl.trim()) {
+  if (explicitImageUrl && explicitImageUrl.trim() && !explicitImageUrl.includes('pollinations.ai')) {
     return explicitImageUrl.trim();
-  }
-  const cleanKey = word.toLowerCase().trim();
-  if (BUILTIN_VOCAB_IMAGES[cleanKey]) {
-    return BUILTIN_VOCAB_IMAGES[cleanKey];
   }
   return buildAutoVocabImageUrl(word, seedVariant);
 }

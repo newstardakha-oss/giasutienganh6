@@ -3,6 +3,7 @@ import { ImagePlus, RefreshCw, Upload, Link2, Check, X, Sparkles, Trash2 } from 
 import {
   resolveVocabImageUrl,
   buildAutoVocabImageUrl,
+  getBuiltinVocabImage,
   getVocabEmoji,
   setCustomVocabImage,
   getCustomVocabImage,
@@ -35,14 +36,23 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
   const [urlInput, setUrlInput] = useState<string>('');
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  const hasBuiltin = Boolean(getBuiltinVocabImage(word));
+  const finalUrl = resolveVocabImageUrl(word, customUrl || imageUrl, seed);
+  const emoji = getVocabEmoji(word, meaningVi);
 
   // Đồng bộ khi đổi từ hoặc có sự kiện cập nhật ảnh
   useEffect(() => {
     const saved = getCustomVocabImage(word);
     setCustomUrl(saved);
-    setImgStatus('loading');
     setIsEditorOpen(false);
-  }, [word, imageUrl]);
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setImgStatus('loaded');
+    } else {
+      setImgStatus('loading');
+    }
+  }, [word, imageUrl, finalUrl]);
 
   useEffect(() => {
     const handleExternalUpdate = (e: Event) => {
@@ -55,9 +65,6 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
     window.addEventListener('vocab-image-updated', handleExternalUpdate);
     return () => window.removeEventListener('vocab-image-updated', handleExternalUpdate);
   }, [word]);
-
-  const finalUrl = resolveVocabImageUrl(word, customUrl || imageUrl, seed);
-  const emoji = getVocabEmoji(word, meaningVi);
 
   const sizeClasses = {
     sm: 'w-24 h-20 rounded-2xl',
@@ -136,10 +143,10 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
   return (
     <div
       className={`relative inline-flex flex-col items-center justify-center select-none ${className}`}
-      onClick={(e) => e.stopPropagation()}
+      onClick={isEditorOpen ? (e) => e.stopPropagation() : undefined}
     >
       <div
-        className={`relative ${sizeClasses} bg-[#FFFDF5] border-2 border-indigo-100/90 shadow-sm overflow-hidden flex items-center justify-center group`}
+        className={`relative ${sizeClasses} bg-[#FFFDF5] border-2 border-indigo-100/90 shadow-sm overflow-hidden flex items-center justify-center group/illus`}
       >
         {/* Emoji & Shimmer hiển thị tức thì trong lúc ảnh đang tải hoặc nếu lỗi mạng */}
         {imgStatus !== 'loaded' && (
@@ -157,9 +164,9 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
 
         {/* Hình ảnh minh họa chính */}
         <img
+          ref={imgRef}
           src={finalUrl}
           alt={word}
-          loading="lazy"
           onLoad={() => setImgStatus('loaded')}
           onError={() => setImgStatus('error')}
           className={`w-full h-full object-contain transition-opacity duration-300 ${
@@ -177,17 +184,9 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
           </span>
         )}
 
-        {/* Nút điều khiển nhanh cho Giáo viên / Học sinh khi rê chuột vào ảnh */}
+        {/* Nút điều khiển nhanh cho Giáo viên khi rê chuột vào ảnh (chỉ hiện khi cho phép chỉnh sửa) */}
         {allowQuickEdit && (
-          <div className="absolute top-1.5 right-1.5 flex items-center gap-1 opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-            <button
-              type="button"
-              onClick={handleRegenerateAi}
-              title="Tạo ảnh AI khác cho từ này"
-              className="p-1.5 rounded-xl bg-white/90 hover:bg-indigo-600 text-indigo-600 hover:text-white border border-indigo-200 shadow-xs transition-all cursor-pointer"
-            >
-              <RefreshCw className="w-3.5 h-3.5" />
-            </button>
+          <div className="absolute top-1.5 right-1.5 flex items-center gap-1 opacity-0 group-hover/illus:opacity-100 transition-opacity">
             <button
               type="button"
               onClick={(e) => {
@@ -224,8 +223,8 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
             </button>
           </div>
 
-          {/* Hàng nút nhanh: Tải file hoặc Tạo lại AI */}
-          <div className="grid grid-cols-2 gap-2">
+          {/* Hàng nút nhanh: Tải file hoặc Tạo lại AI (chỉ hiện nút AI nếu từ chưa có ảnh bộ thẻ chuẩn) */}
+          <div className={hasBuiltin ? 'grid grid-cols-1 gap-2' : 'grid grid-cols-2 gap-2'}>
             <button
               type="button"
               disabled={isUploading}
@@ -236,14 +235,16 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
               <span>{isUploading ? 'Đang nén...' : 'Tải ảnh máy'}</span>
             </button>
 
-            <button
-              type="button"
-              onClick={handleRegenerateAi}
-              className="py-2 px-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-extrabold text-xs inline-flex items-center justify-center gap-1.5 border border-purple-200 cursor-pointer"
-            >
-              <RefreshCw className="w-3.5 h-3.5" />
-              <span>Đổi ảnh AI</span>
-            </button>
+            {!hasBuiltin && (
+              <button
+                type="button"
+                onClick={handleRegenerateAi}
+                className="py-2 px-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-extrabold text-xs inline-flex items-center justify-center gap-1.5 border border-purple-200 cursor-pointer"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Đổi ảnh AI</span>
+              </button>
+            )}
           </div>
 
           <input

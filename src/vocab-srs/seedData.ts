@@ -1,5 +1,6 @@
 import { Word } from './types';
 import { getAllVocabByUnit, VocabItem } from '../services/vocabService';
+import { getBuiltinVocabImage } from '../utils/vocabImage';
 
 export const UNIT_NAMES: Record<string, string> = {
   'unit-1': 'Unit 1 - My New School',
@@ -341,19 +342,6 @@ export const UNIT1_SEED_WORDS: Word[] = [
     imageUrl: './images/vocab/unit1/classroom.jpg',
     unit: 'Unit 1 - My New School',
   },
-
-  // Từ mở rộng trong hội thoại Getting Started
-  {
-    id: 'u1-smart',
-    word: 'smart',
-    ipa: '/smɑːt/',
-    partOfSpeech: 'adj',
-    meaningVi: 'bảnh bao, gọn gàng',
-    definitionEn: 'Looking clean, neat, and tidy in nice clothes.',
-    example: 'You look very smart in your new uniform, Duy!',
-    exampleVi: 'Cậu trông thật bảnh bao trong bộ đồng phục mới đấy, Duy!',
-    unit: 'Unit 1 - My New School',
-  },
 ];
 
 /**
@@ -431,6 +419,7 @@ export function getInitialSeedWords(): Word[] {
     const unitLabel = UNIT_NAMES[unitKey] || `Unit ${u}`;
     const rawItems = getAllVocabByUnit(unitKey).slice(0, 15);
     rawItems.forEach((item, idx) => {
+      const builtinImage = item.imageUrl || getBuiltinVocabImage(item.word);
       allWords.push({
         id: `u${u}-${idx + 1}-${item.word.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
         word: item.word.trim(),
@@ -440,6 +429,7 @@ export function getInitialSeedWords(): Word[] {
         definitionEn: buildSimpleDefinitionEn(item, unitLabel),
         example: item.example_en || `This is an example with ${item.word}.`,
         exampleVi: item.example_vi || '',
+        imageUrl: builtinImage,
         unit: unitLabel,
       });
     });

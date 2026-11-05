@@ -360,7 +360,8 @@ export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({ units, onBack })
                         word={filteredVocab[browseIndex].word}
                         meaningVi={filteredVocab[browseIndex].meaning}
                         imageUrl={filteredVocab[browseIndex].imageUrl}
-                        size="md"
+                        size="lg"
+                        allowQuickEdit={false}
                       />
                     </div>
                     

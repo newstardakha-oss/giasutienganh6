@@ -209,14 +209,6 @@ const UNIT1_VOCAB_INLINE: VocabItem[] = [
   { id: 'u1-24', word: 'gym', phonetic: '/dʒɪm/', type: 'n', meaning: 'phòng thể chất', example_en: 'The boys are playing basketball in the gym.', example_vi: 'Các bạn nam đang chơi bóng rổ trong phòng thể chất.', part: 'School facilities', imageUrl: './images/vocab/unit1/gym.jpg' },
   { id: 'u1-25', word: 'playground', phonetic: '/ˈpleɪ.ɡraʊnd/', type: 'n', meaning: 'sân chơi', example_en: 'Children play games in the playground at break time.', example_vi: 'Học sinh chơi trò chơi ở sân chơi vào giờ ra chơi.', part: 'School facilities', imageUrl: './images/vocab/unit1/playground.jpg' },
   { id: 'u1-26', word: 'classroom', phonetic: '/ˈklɑːs.ruːm/', type: 'n', meaning: 'phòng học', example_en: 'Our classroom is clean and bright.', example_vi: 'Phòng học của chúng tôi sạch sẽ và thoáng đãng.', part: 'School facilities', imageUrl: './images/vocab/unit1/classroom.jpg' },
-
-  // Từ vựng mở rộng trong bài
-  { id: 'u1-27', word: 'smart', phonetic: '/smɑːt/', type: 'adj', meaning: 'bảnh bao, gọn gàng', example_en: 'You look very smart in your new uniform!', example_vi: 'Bạn trông thật bảnh bao trong bộ đồng phục mới!', part: 'Grammar & More' },
-  { id: 'u1-28', word: 'exercise', phonetic: '/ˈek.sər.saɪz/', type: 'n', meaning: 'bài tập', example_en: 'Please do exercise 1 on page 5.', example_vi: 'Hãy làm bài tập 1 ở trang 5.', part: 'Grammar & More' },
-  { id: 'u1-29', word: 'always', phonetic: '/ˈɔːl.weɪz/', type: 'adv', meaning: 'luôn luôn', example_en: 'He always goes to school early.', example_vi: 'Anh ấy luôn đi học sớm.', part: 'Grammar & More' },
-  { id: 'u1-30', word: 'usually', phonetic: '/ˈjuː.ʒu.ə.li/', type: 'adv', meaning: 'thường xuyên', example_en: 'I usually have breakfast at 7.', example_vi: 'Tôi thường ăn sáng lúc 7 giờ.', part: 'Grammar & More' },
-  { id: 'u1-31', word: 'sometimes', phonetic: '/ˈsʌm.taɪmz/', type: 'adv', meaning: 'thỉnh thoảng', example_en: 'Sometimes I walk to school.', example_vi: 'Thỉnh thoảng tôi đi bộ đến trường.', part: 'Grammar & More' },
-  { id: 'u1-32', word: 'never', phonetic: '/ˈnev.ər/', type: 'adv', meaning: 'không bao giờ', example_en: 'I never skip breakfast.', example_vi: 'Tôi không bao giờ bỏ bữa sáng.', part: 'Grammar & More' },
 ];
 
 const UNIT10_VOCAB_INLINE: VocabItem[] = [
