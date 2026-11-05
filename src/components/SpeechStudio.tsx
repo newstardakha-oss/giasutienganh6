@@ -17,6 +17,7 @@ import { evaluateSpeechPronunciation } from '../services/api';
 
 interface SpeechStudioProps {
   units: SgkUnit[];
+  initialUnitId?: string | null;
 }
 
 export interface PronunciationTarget {
@@ -328,8 +329,21 @@ export const UNIT_COMMUNICATION_DIALOGUES: Record<number, DialogueOption[]> = {
   ]
 };
 
-export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units }) => {
-  const [selectedUnit, setSelectedUnit] = useState<SgkUnit>(units[0]);
+export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId }) => {
+  const [selectedUnit, setSelectedUnit] = useState<SgkUnit>(() => {
+    if (initialUnitId) {
+      const found = units.find((u) => u.id === initialUnitId);
+      if (found) return found;
+    }
+    return units[0];
+  });
+
+  useEffect(() => {
+    if (initialUnitId) {
+      const found = units.find((u) => u.id === initialUnitId);
+      if (found) setSelectedUnit(found);
+    }
+  }, [initialUnitId, units]);
   const [activeTab, setActiveTab] = useState<'phoneme' | 'roleplay'>('phoneme');
 
   // Dynamic target sentences for currently selected unit (Phoneme mode)

@@ -1110,6 +1110,8 @@ export function loadAppData(): AppDataSchema {
         customClasses: (parsed.customClasses || []).map((c: string) => normalizeClassName(c)),
         schools: savedSchools,
         customCommunes: parsed.customCommunes || {},
+        classCurrentUnits: parsed.classCurrentUnits || { DEFAULT: 'unit-1' },
+        masteryThresholds: parsed.masteryThresholds || undefined,
         teacherAccount:
           parsed.teacherAccount || {
             ...DEFAULT_TEACHER,
@@ -1152,6 +1154,7 @@ export function loadAppData(): AppDataSchema {
       schoolName: normalizeSchoolName(sc.schoolName),
     })),
     customCommunes: {},
+    classCurrentUnits: { DEFAULT: 'unit-1' },
     teacherAccount: {
       ...DEFAULT_TEACHER,
       email: DEFAULT_ADMIN.email,
@@ -1249,10 +1252,32 @@ export function addStudySession(data: AppDataSchema, session: StudySession): App
           lastActiveTime: timeNowStr,
         };
 
+        const skillLabelMap: Record<string, { label: string; tabId: string }> = {
+          Grammar: { label: 'Ngữ pháp', tabId: 'socratic' },
+          Vocabulary: { label: 'Từ vựng', tabId: 'practice' },
+          Pronunciation: { label: 'Phát âm', tabId: 'speech' },
+          Reading: { label: 'Đọc hiểu', tabId: 'reading-game' },
+          Writing: { label: 'Viết', tabId: 'writing' },
+        };
+        const matchedUnit =
+          data.units.find((u) => u.id === session.unitId) ||
+          data.units[0];
+        const skillMeta = skillLabelMap[session.skill] || skillLabelMap.Grammar;
+
         return {
           ...st,
           progress: updatedProgress,
           sessions: [session, ...st.sessions],
+          lastActiveLesson: {
+            unitId: matchedUnit.id,
+            unitNumber: matchedUnit.unitNumber,
+            unitTitle: matchedUnit.title,
+            skill: session.skill,
+            skillLabel: skillMeta.label,
+            tabId: skillMeta.tabId,
+            progressPercent: updatedUnitProgress[matchedUnit.id] || session.score || 40,
+            updatedAt: new Date().toISOString(),
+          },
           dailyLogs: {
             ...st.dailyLogs,
             [today]: newDailyLog,

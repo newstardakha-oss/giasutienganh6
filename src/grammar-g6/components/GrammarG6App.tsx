@@ -68,6 +68,8 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
         const mappedInitial = toGrammarUnitId(initialUnitId);
         if (mappedInitial && loaded.dataset.units.some((u) => u.id === mappedInitial)) {
           setScreen({ view: 'unit', unitId: mappedInitial, tab: 'theory' });
+        } else {
+          setScreen({ view: 'home' });
         }
       })
       .catch((err) => {

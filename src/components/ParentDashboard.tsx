@@ -35,13 +35,14 @@ import {
   PolarRadiusAxis,
   Radar
 } from 'recharts';
-import { AppDataSchema, StudentAccount, TeacherAccount } from '../types';
+import { AppDataSchema, StudentAccount, TeacherAccount, MasteryThresholdsOverride } from '../types';
 import {
   getTeacherStudents,
   exportTeacherBackupJSON,
   getAvailableClasses,
   normalizeClassName,
 } from '../services/storage';
+import { getMasteryThresholds, DEFAULT_MASTERY_THRESHOLDS } from '../config/masteryThresholds';
 import { TeacherManagementPanel } from './TeacherManagementPanel';
 
 interface ParentDashboardProps {
@@ -64,6 +65,8 @@ interface ParentDashboardProps {
   onUpdateTeacherProfile?: (updates: { fullName?: string; schoolName?: string; newPassword?: string; oldPassword?: string }) => { success: boolean; error?: string };
   onOpenTeacherProfile?: () => void;
   onAddCustomClass?: (className: string) => void;
+  onChangeClassUnit?: (className: string, unitId: string) => void;
+  onUpdateMasteryThresholds?: (nextThresholds: MasteryThresholdsOverride) => void;
 }
 
 export const ParentDashboard: React.FC<ParentDashboardProps> = ({
@@ -85,6 +88,8 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
   onUpdateTeacherProfile,
   onOpenTeacherProfile,
   onAddCustomClass,
+  onChangeClassUnit,
+  onUpdateMasteryThresholds,
 }) => {
   const { progress, sessions, units, students, isTeacherLoggedIn } = appData;
 
@@ -121,6 +126,19 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
 
   // Get available classes dynamically from students in this school
   const availableClasses = getAvailableClasses(appData, appData.currentTeacherId);
+
+  // Teacher settings for Classroom Unit & Mastery Thresholds
+  const activeThresholds = getMasteryThresholds(appData.masteryThresholds);
+  const [targetClassForUnit, setTargetClassForUnit] = useState<string>(availableClasses[0] || '6A1');
+  const currentAssignedUnitId =
+    appData.classCurrentUnits?.[targetClassForUnit] ||
+    appData.classCurrentUnits?.['DEFAULT'] ||
+    'unit-1';
+
+  const [goodMinInput, setGoodMinInput] = useState<number>(activeThresholds.goodMin);
+  const [fairMinInput, setFairMinInput] = useState<number>(activeThresholds.fairMin);
+  const [passMinInput, setPassMinInput] = useState<number>(activeThresholds.passMin);
+  const [thresholdSavedMsg, setThresholdSavedMsg] = useState<string>('');
 
   // Transform skill mastery for radar chart
   const skillData = Object.entries(progress.skillMastery).map(([skill, mastery]) => ({
@@ -385,6 +403,119 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                 👑 Admin • {appData.teachers.length} GV trong hệ thống
               </span>
             )}
+          </div>
+
+          {/* Teacher Controls: 1. Chọn Unit đang học trên lớp & 2. Cấu hình ngưỡng mức độ */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-3 border-t border-purple-200/80">
+            {/* Control 1: Chọn Unit đang học trên lớp cho từng lớp */}
+            <div className="bg-white rounded-xl p-3.5 border border-purple-200 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="font-extrabold text-xs text-purple-950">
+                  📌 Chọn "Unit đang học trên lớp" (hiển thị đầu trang chủ học sinh)
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <select
+                  value={targetClassForUnit}
+                  onChange={(e) => setTargetClassForUnit(e.target.value)}
+                  className="px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-300 text-xs font-extrabold text-slate-900"
+                >
+                  <option value="DEFAULT">Tất cả các lớp</option>
+                  {availableClasses.map((cls) => (
+                    <option key={cls} value={cls}>
+                      Lớp {cls}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={currentAssignedUnitId}
+                  onChange={(e) => {
+                    const newUnitId = e.target.value;
+                    onChangeClassUnit?.(targetClassForUnit, newUnitId);
+                    if (targetClassForUnit === 'DEFAULT') {
+                      availableClasses.forEach((cls) => onChangeClassUnit?.(cls, newUnitId));
+                    }
+                  }}
+                  className="flex-1 min-w-[180px] px-3 py-1.5 rounded-lg bg-indigo-50 border border-indigo-300 text-xs font-extrabold text-indigo-950"
+                >
+                  {units.map((u) => (
+                    <option key={u.id} value={u.id}>
+                      Unit {u.unitNumber}: {u.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Control 2: Cấu hình ngưỡng mức độ (Tốt / Khá / Đạt / Cần cố gắng) */}
+            <div className="bg-white rounded-xl p-3.5 border border-purple-200 space-y-2">
+              <div className="flex items-center justify-between gap-2">
+                <span className="font-extrabold text-xs text-purple-950">
+                  🎯 Ngưỡng mức độ đánh giá (file cấu hình: src/config/masteryThresholds.json)
+                </span>
+                {thresholdSavedMsg && (
+                  <span className="text-[11px] font-extrabold text-emerald-700">{thresholdSavedMsg}</span>
+                )}
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-slate-800">
+                <label className="inline-flex items-center gap-1 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-200">
+                  <span>Tốt ≥</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={100}
+                    value={goodMinInput}
+                    onChange={(e) => setGoodMinInput(Number(e.target.value))}
+                    className="w-12 px-1.5 py-0.5 rounded bg-white border border-emerald-300 text-center font-extrabold"
+                  />
+                  <span>%</span>
+                </label>
+
+                <label className="inline-flex items-center gap-1 bg-sky-50 px-2 py-1 rounded-lg border border-sky-200">
+                  <span>Khá ≥</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={99}
+                    value={fairMinInput}
+                    onChange={(e) => setFairMinInput(Number(e.target.value))}
+                    className="w-12 px-1.5 py-0.5 rounded bg-white border border-sky-300 text-center font-extrabold"
+                  />
+                  <span>%</span>
+                </label>
+
+                <label className="inline-flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-lg border border-amber-200">
+                  <span>Đạt ≥</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={98}
+                    value={passMinInput}
+                    onChange={(e) => setPassMinInput(Number(e.target.value))}
+                    className="w-12 px-1.5 py-0.5 rounded bg-white border border-amber-300 text-center font-extrabold"
+                  />
+                  <span>%</span>
+                </label>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    onUpdateMasteryThresholds?.({
+                      goodMin: goodMinInput,
+                      fairMin: fairMinInput,
+                      passMin: passMinInput,
+                      labels: DEFAULT_MASTERY_THRESHOLDS.labels,
+                    });
+                    setThresholdSavedMsg('Đã lưu!');
+                    setTimeout(() => setThresholdSavedMsg(''), 2000);
+                  }}
+                  className="px-3 py-1 rounded-lg bg-purple-700 hover:bg-purple-800 text-white font-extrabold text-xs cursor-pointer"
+                >
+                  Lưu ngưỡng
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

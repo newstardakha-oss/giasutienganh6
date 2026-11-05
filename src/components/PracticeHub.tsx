@@ -23,6 +23,7 @@ import { VocabSrsApp } from '../vocab-srs/components/VocabSrsApp';
 interface PracticeHubProps {
   questions: Question[];
   units: SgkUnit[];
+  initialUnitId?: string | null;
   onSessionCompleted: (session: StudySession) => void;
   onOpenReadingGame?: () => void;
 }
@@ -30,10 +31,17 @@ interface PracticeHubProps {
 export const PracticeHub: React.FC<PracticeHubProps> = ({
   questions,
   units,
+  initialUnitId,
   onSessionCompleted,
   onOpenReadingGame,
 }) => {
-  const [selectedUnitId, setSelectedUnitId] = useState<string>('unit-1');
+  const [selectedUnitId, setSelectedUnitId] = useState<string>(initialUnitId || 'unit-1');
+
+  useEffect(() => {
+    if (initialUnitId && units.some((u) => u.id === initialUnitId)) {
+      setSelectedUnitId(initialUnitId);
+    }
+  }, [initialUnitId, units]);
   const [selectedSkill, setSelectedSkill] = useState<SkillType | 'All'>('Vocabulary');
   const [subMode, setSubMode] = useState<'srs' | 'quiz' | 'flashcard'>('srs');
 

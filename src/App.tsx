@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { AppDataSchema, StudySession, Question, AppSettings, StudentAccount } from './types';
+import {
+  AppDataSchema,
+  StudySession,
+  Question,
+  AppSettings,
+  StudentAccount,
+  SkillType,
+  MasteryThresholdsOverride,
+} from './types';
 import {
   loadAppData, saveAppData, addStudySession, recordTimeSpent,
   updateStudentByTeacher, deleteStudentByTeacher, resetStudentPinByTeacher,
@@ -29,6 +37,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [grammarSubMode, setGrammarSubMode] = useState<'grammar-g6' | 'socratic'>('grammar-g6');
   const [selectedGrammarUnitId, setSelectedGrammarUnitId] = useState<string | null>(null);
+  const [selectedSkillUnitId, setSelectedSkillUnitId] = useState<string | null>(null);
   const [isCoverActive, setIsCoverActive] = useState<boolean>(true);
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState<boolean>(false);
   const [isBackupModalOpen, setIsBackupModalOpen] = useState<boolean>(false);
@@ -275,8 +284,72 @@ export default function App() {
 
   const handleReviewTopicClick = (unitId: string) => {
     setSelectedGrammarUnitId(unitId);
+    setSelectedSkillUnitId(unitId);
     setGrammarSubMode('grammar-g6');
     setActiveTab('socratic');
+  };
+
+  const handleSelectSkillFromHome = (tabId: string, unitId?: string | null) => {
+    const resolvedUnitId = unitId ?? null;
+    if (tabId === 'socratic') {
+      setGrammarSubMode('grammar-g6');
+      setSelectedGrammarUnitId(resolvedUnitId);
+    }
+    setSelectedSkillUnitId(resolvedUnitId);
+    setActiveTab(tabId);
+
+    // Record lastActiveLesson for "Tiếp tục học" block when student enters a skill
+    const tabSkillMap: Record<string, { skill: SkillType; label: string }> = {
+      socratic: { skill: 'Grammar', label: 'Ngữ pháp' },
+      practice: { skill: 'Vocabulary', label: 'Từ vựng' },
+      speech: { skill: 'Pronunciation', label: 'Phát âm' },
+      'reading-game': { skill: 'Reading', label: 'Đọc hiểu' },
+      writing: { skill: 'Writing', label: 'Viết' },
+    };
+    const mapped = tabSkillMap[tabId];
+    if (mapped && appData.currentStudentId) {
+      const targetUnit =
+        appData.units.find((u) => u.id === resolvedUnitId) ||
+        appData.units[0];
+      const pct = appData.progress.unitProgress?.[targetUnit.id] || 25;
+      setAppData((prev) => ({
+        ...prev,
+        students: prev.students.map((st) =>
+          st.id === prev.currentStudentId
+            ? {
+                ...st,
+                lastActiveLesson: {
+                  unitId: targetUnit.id,
+                  unitNumber: targetUnit.unitNumber,
+                  unitTitle: targetUnit.title,
+                  skill: mapped.skill,
+                  skillLabel: mapped.label,
+                  tabId,
+                  progressPercent: pct,
+                  updatedAt: new Date().toISOString(),
+                },
+              }
+            : st
+        ),
+      }));
+    }
+  };
+
+  const handleChangeClassUnit = (className: string, unitId: string) => {
+    setAppData((prev) => ({
+      ...prev,
+      classCurrentUnits: {
+        ...(prev.classCurrentUnits || {}),
+        [className]: unitId,
+      },
+    }));
+  };
+
+  const handleUpdateMasteryThresholds = (nextThresholds: MasteryThresholdsOverride) => {
+    setAppData((prev) => ({
+      ...prev,
+      masteryThresholds: nextThresholds,
+    }));
   };
 
   // Get current teacher info
@@ -310,7 +383,13 @@ export default function App() {
       {/* Header */}
       <Header
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={(tab) => {
+          if (tab === 'socratic') {
+            setGrammarSubMode('grammar-g6');
+            setSelectedGrammarUnitId(null);
+          }
+          setActiveTab(tab);
+        }}
         appData={appData}
         currentTeacher={currentTeacher}
         isAdmin={isAdmin}
@@ -385,7 +464,8 @@ export default function App() {
         {activeTab === 'home' && (
           <HomeScreen
             appData={appData}
-            onSelectSkill={(tabId) => setActiveTab(tabId)}
+            onSelectSkill={handleSelectSkillFromHome}
+            onChangeClassUnit={handleChangeClassUnit}
           />
         )}
         {activeTab === 'socratic' && (
@@ -407,7 +487,10 @@ export default function App() {
               <div className="flex items-center gap-2 flex-wrap">
                 <button
                   type="button"
-                  onClick={() => setGrammarSubMode('grammar-g6')}
+                  onClick={() => {
+                    setGrammarSubMode('grammar-g6');
+                    setSelectedGrammarUnitId(null);
+                  }}
                   className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer whitespace-nowrap ${
                     grammarSubMode === 'grammar-g6'
                       ? 'bg-white text-[var(--skill-grammar)] shadow-md'
@@ -441,10 +524,13 @@ export default function App() {
             )}
           </div>
         )}
-        {activeTab === 'speech' && <SpeechStudio units={appData.units} />}
+        {activeTab === 'speech' && (
+          <SpeechStudio units={appData.units} initialUnitId={selectedSkillUnitId} />
+        )}
         {activeTab === 'writing' && (
           <WritingGrader
             units={appData.units}
+            initialUnitId={selectedSkillUnitId}
             onSessionCompleted={handleSessionCompleted}
             currentStudentName={
               appData.students.find((s) => s.id === appData.currentStudentId)?.fullName
@@ -454,6 +540,7 @@ export default function App() {
         {activeTab === 'reading-game' && (
           <ReadingMasteryGame
             units={appData.units}
+            initialUnitId={selectedSkillUnitId}
             onSessionCompleted={handleSessionCompleted}
             onBackToPractice={() => setActiveTab('practice')}
           />
@@ -462,6 +549,7 @@ export default function App() {
           <PracticeHub
             questions={appData.questions}
             units={appData.units}
+            initialUnitId={selectedSkillUnitId}
             onSessionCompleted={handleSessionCompleted}
             onOpenReadingGame={() => setActiveTab('reading-game')}
           />
@@ -509,6 +597,8 @@ export default function App() {
             onUpdateTeacherProfile={handleUpdateTeacherProfile}
             onOpenTeacherProfile={() => setIsTeacherProfileModalOpen(true)}
             onAddCustomClass={handleAddCustomClass}
+            onChangeClassUnit={handleChangeClassUnit}
+            onUpdateMasteryThresholds={handleUpdateMasteryThresholds}
           />
         )}
       </main>

@@ -1,0 +1,11 @@
+{
+  "goodMin": 85,
+  "fairMin": 70,
+  "passMin": 50,
+  "labels": {
+    "good": "Tốt",
+    "fair": "Khá",
+    "pass": "Đạt",
+    "needsWork": "Cần cố gắng"
+  }
+}

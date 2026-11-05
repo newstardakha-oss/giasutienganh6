@@ -4,6 +4,29 @@
 
 export type SkillType = 'Listening' | 'Speaking' | 'Reading' | 'Writing' | 'Grammar' | 'Vocabulary' | 'Pronunciation';
 
+export interface LastActiveLesson {
+  unitId: string; // e.g. "unit-1"
+  unitNumber: number; // 1 to 12
+  unitTitle: string; // e.g. "MY NEW SCHOOL"
+  skill: SkillType;
+  skillLabel: string; // e.g. "Ngữ pháp"
+  tabId: string; // e.g. "socratic"
+  progressPercent: number; // 0 - 100
+  updatedAt: string;
+}
+
+export interface MasteryThresholdsOverride {
+  goodMin: number; // Default 85
+  fairMin: number; // Default 70
+  passMin: number; // Default 50
+  labels?: {
+    good: string;
+    fair: string;
+    pass: string;
+    needsWork: string;
+  };
+}
+
 export interface SgkUnit {
   id: string; // e.g. "unit-1"
   unitNumber: number; // 1 to 12
@@ -152,6 +175,7 @@ export interface StudentAccount {
   progress: UserProgress;
   sessions: StudySession[];
   dailyLogs: Record<string, DailyStudyLog>; // key: YYYY-MM-DD
+  lastActiveLesson?: LastActiveLesson;
 }
 
 export interface TeacherAccount {
@@ -204,6 +228,8 @@ export interface AppDataSchema {
   customClasses?: string[]; // Danh sách lớp tùy chỉnh do Admin thêm
   schools?: SchoolEntry[]; // Danh sách trường học đã có trong hệ thống theo Tỉnh/Xã
   customCommunes?: Record<string, string[]>; // Xã/phường bổ sung theo Tỉnh
+  classCurrentUnits?: Record<string, string>; // Unit đang học trên lớp do giáo viên chọn (key: className hoặc "DEFAULT" -> value: unitId)
+  masteryThresholds?: MasteryThresholdsOverride; // Ngưỡng mức độ Tốt/Khá/Đạt/Cần cố gắng do giáo viên cấu hình
   teacherAccount: TeacherAccount; // DEPRECATED — kept for migration compatibility
   settings: AppSettings;
   customDocuments: Array<{

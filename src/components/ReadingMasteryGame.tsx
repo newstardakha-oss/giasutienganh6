@@ -20,6 +20,7 @@ import { SgkUnit, StudySession } from '../types';
 
 interface ReadingMasteryGameProps {
   units: SgkUnit[];
+  initialUnitId?: string | null;
   onSessionCompleted?: (session: StudySession) => void;
   onBackToPractice?: () => void;
 }
@@ -845,10 +846,24 @@ export const UNIT_READINGS: UnitReadingData[] = [
 
 export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
   units,
+  initialUnitId,
   onSessionCompleted,
   onBackToPractice,
 }) => {
-  const [selectedUnitIdx, setSelectedUnitIdx] = useState<number>(0);
+  const [selectedUnitIdx, setSelectedUnitIdx] = useState<number>(() => {
+    if (initialUnitId) {
+      const idx = UNIT_READINGS.findIndex((u) => u.unitId === initialUnitId);
+      if (idx !== -1) return idx;
+    }
+    return 0;
+  });
+
+  React.useEffect(() => {
+    if (initialUnitId) {
+      const idx = UNIT_READINGS.findIndex((u) => u.unitId === initialUnitId);
+      if (idx !== -1) setSelectedUnitIdx(idx);
+    }
+  }, [initialUnitId]);
   const [activeSubTab, setActiveSubTab] = useState<'passage' | 'vocab' | 'quiz' | 'result'>('passage');
   const [speechRate, setSpeechRate] = useState<number>(0.8);
   const [currentPassageIdx, setCurrentPassageIdx] = useState<number>(-1);

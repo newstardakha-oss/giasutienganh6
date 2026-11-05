@@ -27,12 +27,14 @@ import { exportWritingFeedbackToDocx } from '../services/docxExport';
 
 interface WritingGraderProps {
   units: SgkUnit[];
+  initialUnitId?: string | null;
   onSessionCompleted?: (session: StudySession) => void;
   currentStudentName?: string;
 }
 
 export const WritingGrader: React.FC<WritingGraderProps> = ({
   units,
+  initialUnitId,
   onSessionCompleted,
   currentStudentName = 'Học Sinh Lớp 6',
 }) => {
@@ -112,7 +114,23 @@ export const WritingGrader: React.FC<WritingGraderProps> = ({
   ];
 
   const [promptMode, setPromptMode] = useState<'preset' | 'custom'>('preset');
-  const [selectedPrompt, setSelectedPrompt] = useState(writingPrompts[0]);
+  const [selectedPrompt, setSelectedPrompt] = useState(() => {
+    if (initialUnitId) {
+      const found = writingPrompts.find((p) => p.unitId === initialUnitId);
+      if (found) return found;
+    }
+    return writingPrompts[0];
+  });
+
+  React.useEffect(() => {
+    if (initialUnitId) {
+      const found = writingPrompts.find((p) => p.unitId === initialUnitId);
+      if (found) {
+        setPromptMode('preset');
+        setSelectedPrompt(found);
+      }
+    }
+  }, [initialUnitId]);
   const [customTitle, setCustomTitle] = useState('');
   const [customPromptText, setCustomPromptText] = useState('');
 
