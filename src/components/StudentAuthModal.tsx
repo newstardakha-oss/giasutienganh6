@@ -20,7 +20,20 @@ import {
   RotateCcw
 } from 'lucide-react';
 import { AppDataSchema, StudentAccount, DailyStudyLog, TeacherAccount } from '../types';
-import { getTodayDateString, getCurrentFormattedTime } from '../services/storage';
+import {
+  getTodayDateString,
+  getCurrentFormattedTime,
+  verifyStudentPassword,
+  getLoginLockStatus,
+  recordLoginFailure,
+  clearLoginFailures,
+  normalizeFullName,
+  normalizeSchoolName,
+  normalizeClassName,
+  validatePasswordStrength,
+  hashPasswordSync,
+  generateRecoveryCode,
+} from '../services/storage';
 import { INITIAL_PROGRESS } from '../data/sgkData';
 
 interface StudentAuthModalProps {
@@ -86,7 +99,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const handleSelectStudent = (st: StudentAccount) => {
     setSelectedStudentId(st.id);
     setLoginUsername(st.username);
-    setLoginPassword(st.pinCode || '1234');
+    setLoginPassword('');
     setLoginError('');
   };
 
@@ -94,31 +107,46 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
     e.preventDefault();
     setLoginError('');
 
-    if (!loginUsername.trim()) {
-      setLoginError('Vui lòng nhập Tên đăng nhập!');
+    const targetStudent =
+      appData.students.find((s) => s.id === selectedStudentId) ||
+      appData.students.find(
+        (s) =>
+          s.username.toLowerCase() === loginUsername.trim().toLowerCase() ||
+          s.fullName.toLowerCase() === loginUsername.trim().toLowerCase()
+      );
+
+    if (!targetStudent) {
+      setLoginError('Vui lòng chọn hoặc nhập Tên đăng nhập học sinh!');
       return;
     }
+
+    const lockKey = `student:${targetStudent.username.toLowerCase()}`;
+    const lockStatus = getLoginLockStatus(lockKey);
+    if (lockStatus.isLocked) {
+      const mins = Math.floor(lockStatus.remainingSeconds / 60);
+      const secs = lockStatus.remainingSeconds % 60;
+      setLoginError(
+        `Tài khoản tạm khoá 5 phút do nhập sai 5 lần. Vui lòng thử lại sau ${mins} phút ${secs} giây.`
+      );
+      return;
+    }
+
     if (!loginPassword.trim()) {
       setLoginError('Vui lòng nhập Mật khẩu!');
       return;
     }
 
-    const cleanInput = loginUsername.trim().toLowerCase();
-    const targetStudent = appData.students.find(
-      (s) => s.username.toLowerCase() === cleanInput || s.fullName.toLowerCase() === cleanInput
-    ) || appData.students.find((s) => s.id === selectedStudentId);
-
-    if (!targetStudent) {
-      setLoginError(`Không tìm thấy tài khoản với Tên đăng nhập "${loginUsername}". Vui lòng đăng ký tài khoản mới!`);
+    if (!verifyStudentPassword(targetStudent, loginPassword)) {
+      const fail = recordLoginFailure(lockKey);
+      if (fail.isLocked) {
+        setLoginError('Đã nhập sai mật khẩu 5 lần! Tài khoản bị tạm khoá 5 phút.');
+      } else {
+        setLoginError(`Mật khẩu chưa đúng! (Sai ${fail.attempts}/5 lần).`);
+      }
       return;
     }
 
-    const validPassword = targetStudent.pinCode || '1234';
-    if (loginPassword.trim() !== validPassword) {
-      setLoginError('Mật khẩu chưa đúng! Vui lòng thử lại.');
-      return;
-    }
-
+    clearLoginFailures(lockKey);
     onLoginSuccess(targetStudent.id);
     setActiveSubTab('dailyLog');
   };
@@ -143,44 +171,62 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
     e.preventDefault();
     setLoginError('');
 
-    // Auto-generate username from fullName and className
+    const normName = normalizeFullName(regFullName);
+    const normSchool = normalizeSchoolName(regSchoolName);
+    const normClass = normalizeClassName(regClassName, 6);
+
     const autoGenUsername = () => {
-      const cleanName = regFullName.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
-      const cleanClass = regClassName.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-      return `${cleanName || 'hocsinh'}_${cleanClass || '6'}`;
+      const cleanName = normName
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/[^a-z0-9]/g, '');
+      const cleanClass = normClass.toLowerCase().replace(/[^a-z0-9]/g, '');
+      return `${cleanName || 'hocsinh'}_${cleanClass || '6a1'}`;
     };
 
-    const usernameToUse = autoGenUsername();
-    const passwordToUse = '1234'; // Default PIN code
-
-    if (!regFullName.trim() || !regSchoolName.trim() || !regClassName.trim() || !regCommuneName.trim()) {
-      setLoginError('Vui lòng điền đầy đủ cả 4 thông tin đăng ký!');
+    const usernameToUse = (regUsername.trim() || autoGenUsername()).toLowerCase();
+    const strength = validatePasswordStrength(regPassword, usernameToUse);
+    if (!strength.valid) {
+      setLoginError(strength.error || 'Mật khẩu chưa hợp lệ!');
       return;
     }
 
-    const cleanUser = usernameToUse.toLowerCase();
-    const isExisted = appData.students.some((s) => s.username.toLowerCase() === cleanUser);
+    if (!normName || !normSchool || !normClass || !regCommuneName.trim()) {
+      setLoginError('Vui lòng điền đầy đủ thông tin đăng ký!');
+      return;
+    }
+
+    const isExisted = appData.students.some((s) => s.username.toLowerCase() === usernameToUse);
     if (isExisted) {
-      setLoginError(`Tên đăng nhập "@${usernameToUse}" tự động đã tồn tại. Vui lòng điều chỉnh lại Họ tên hoặc Lớp học!`);
+      setLoginError(`Tên đăng nhập "@${usernameToUse}" đã tồn tại. Vui lòng chọn tên đăng nhập khác!`);
       return;
     }
 
+    const hashedPass = hashPasswordSync(regPassword.trim());
+    const recoveryCode = generateRecoveryCode();
     const newStudentId = `student-${Date.now()}`;
     const newStudent: StudentAccount = {
       id: newStudentId,
-      username: cleanUser,
-      fullName: regFullName.trim(),
-      className: regClassName.trim(),
-      schoolName: regSchoolName.trim(),
+      username: usernameToUse,
+      fullName: normName,
+      grade: 6,
+      className: normClass,
+      provinceName: 'Tỉnh Quảng Ngãi',
       communeName: regCommuneName.trim(),
-      pinCode: passwordToUse,
+      schoolName: normSchool,
+      passwordHash: hashedPass,
+      recoveryCodeHash: hashPasswordSync(recoveryCode),
+      parentConsent: true,
+      pinCode: hashedPass,
       avatar: '👨‍🎓',
       dailyGoalMinutes: 20,
       createdAt: new Date().toISOString(),
       lastLoginAt: new Date().toISOString(),
       progress: {
         ...INITIAL_PROGRESS,
-        studentName: regFullName.trim(),
+        studentName: normName,
       },
       sessions: [],
       dailyLogs: {
@@ -196,11 +242,9 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
     };
 
     onRegisterStudent(newStudent);
-    setRegSuccessMsg(`Đã đăng ký thành công cho học sinh ${regFullName} (@${cleanUser})!`);
-    setTimeout(() => {
-      setRegSuccessMsg('');
-      setActiveSubTab('dailyLog');
-    }, 1200);
+    setRegSuccessMsg(
+      `Đăng ký thành công cho ${normName} (@${usernameToUse})! Mã khôi phục 8 ký tự: ${recoveryCode} (Em hãy chép mã này vào vở).`
+    );
   };
 
   // 7-day past calendar generator
@@ -500,19 +544,18 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                 </div>
               </div>
 
-              {/* PIN Code Verification */}
+              {/* Password Verification */}
               <div className="space-y-2 pt-2 border-t border-slate-100">
                 <label className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
                   <Lock className="w-4 h-4 text-[#4A90E2]" />
-                  2. Nhập Mã PIN Xác Thực (Mặc định: 1234 hoặc 2026):
+                  2. Nhập Mật Khẩu Của Em:
                 </label>
                 <input
                   type="password"
-                  maxLength={6}
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
-                  placeholder="Nhập mã PIN 4 chữ số..."
-                  className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none tracking-widest font-mono"
+                  placeholder="Nhập mật khẩu của em..."
+                  className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none"
                 />
               </div>
 

@@ -13,6 +13,7 @@
   --text-primary: #1e293b;
   --text-secondary: #334155;
   --text-muted: #475569; /* >= 6.8:1 contrast on #f5f3ff and #ffffff */
+  --placeholder-color: #475569; /* Darker placeholder for easy reading */
   --border-subtle: #e2e8f0;
   --border-accent: #ddd6fe;
   --shadow-neu-dark: #d8d4f0;
@@ -101,6 +102,7 @@
   --text-primary: #f8fafc;
   --text-secondary: #e2e8f0;
   --text-muted: #cbd5e1;
+  --placeholder-color: #94a3b8;
   --border-subtle: #334155;
   --border-accent: #475569;
   --shadow-neu-dark: #090d16;
@@ -184,6 +186,12 @@
     background-color: var(--bg-page);
     color: var(--text-primary);
     touch-action: manipulation;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--placeholder-color) !important;
+    opacity: 1 !important;
+    font-weight: 600;
   }
 }
 

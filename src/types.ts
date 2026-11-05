@@ -125,14 +125,26 @@ export interface DailyStudyLog {
   lastActiveTime: string; // e.g. "20:45 27/07/2026"
 }
 
+export interface SchoolEntry {
+  provinceName: string;
+  communeName: string;
+  schoolName: string;
+  createdAt?: string;
+}
+
 export interface StudentAccount {
   id: string;
   username: string; // e.g., "hocsinh6a1", "nguyenvanan"
   fullName: string; // e.g., "Nguyễn Văn An"
-  className: string; // e.g., "Lớp 6A1"
+  grade?: number; // e.g., 6
+  className: string; // Normalized e.g., "6A1"
+  provinceName?: string; // Tỉnh/Thành phố (34 tỉnh/thành từ 1/7/2025)
+  communeName?: string; // Xã/Phường (e.g., "Xã Đăk Hà")
   schoolName?: string; // Trường THCS (e.g., "THCS Chu Văn An")
-  communeName?: string; // Xã / Thị trấn (e.g., "Thị trấn Đăk Hà")
-  pinCode?: string; // 4-digit PIN e.g. "1234"
+  passwordHash?: string; // Hashed password (sha256:...)
+  recoveryCodeHash?: string; // Hashed 8-character recovery code
+  parentConsent?: boolean; // Đã hỏi ý kiến bố mẹ/người giám hộ
+  pinCode?: string; // Legacy / hashed password compatibility
   avatar: string; // Emoji avatar or preset
   dailyGoalMinutes: number; // e.g., 20 or 30 minutes
   createdAt: string;
@@ -144,15 +156,17 @@ export interface StudentAccount {
 
 export interface TeacherAccount {
   id: string;
-  email: string; // Email đăng nhập (unique identifier)
+  email: string; // Email hoặc tên đăng nhập (unique identifier)
   username: string; // Tên hiển thị ngắn
   fullName: string; // Họ tên đầy đủ
-  password: string; // Mật khẩu
-  schoolName: string;
+  password: string; // Mật khẩu đã mã hoá (hash)
+  provinceName?: string; // Tỉnh/Thành phố
+  communeName?: string; // Xã/Phường
+  schoolName: string; // Trường THCS chuẩn hoá (e.g., "THCS Chu Văn An")
   role: 'admin' | 'teacher'; // Phân quyền
-  managedClasses: string[]; // Lớp được phân công
+  managedClasses: string[]; // Lớp được phân công (tự động lấy từ học sinh cùng trường nếu rỗng)
   isActive: boolean; // Trạng thái kích hoạt
-  activationCode?: string; // Mã đã dùng khi đăng ký
+  activationCode?: string; // Mã đã dùng khi đăng ký (tuỳ chọn)
   createdAt: string; // Ngày tạo tài khoản
   lastLoginAt?: string;
 }
@@ -188,6 +202,8 @@ export interface AppDataSchema {
   teachers: TeacherAccount[]; // Danh sách tất cả giáo viên
   activationCodes: ActivationCode[]; // Mã kích hoạt đã tạo
   customClasses?: string[]; // Danh sách lớp tùy chỉnh do Admin thêm
+  schools?: SchoolEntry[]; // Danh sách trường học đã có trong hệ thống theo Tỉnh/Xã
+  customCommunes?: Record<string, string[]>; // Xã/phường bổ sung theo Tỉnh
   teacherAccount: TeacherAccount; // DEPRECATED — kept for migration compatibility
   settings: AppSettings;
   customDocuments: Array<{

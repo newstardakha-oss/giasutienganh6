@@ -36,7 +36,12 @@ import {
   Radar
 } from 'recharts';
 import { AppDataSchema, StudentAccount, TeacherAccount } from '../types';
-import { getTeacherStudents, exportTeacherBackupJSON } from '../services/storage';
+import {
+  getTeacherStudents,
+  exportTeacherBackupJSON,
+  getAvailableClasses,
+  normalizeClassName,
+} from '../services/storage';
 import { TeacherManagementPanel } from './TeacherManagementPanel';
 
 interface ParentDashboardProps {
@@ -105,18 +110,17 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     dailyGoalMinutes: 20,
   });
 
-  // Filter students by class AND by teacher's managed classes
+  // Filter students by same school (automatic for teacher) and by selected class
   const teacherStudents = getTeacherStudents(appData, appData.currentTeacherId);
-  const filteredStudents = selectedClassFilter === 'all'
-    ? teacherStudents
-    : teacherStudents.filter((s) => s.className === selectedClassFilter);
+  const filteredStudents =
+    selectedClassFilter === 'all'
+      ? teacherStudents
+      : teacherStudents.filter(
+          (s) => normalizeClassName(s.className) === normalizeClassName(selectedClassFilter)
+        );
 
-  // Get available classes for this teacher
-  const availableClasses = isTeacherLoggedIn
-    ? (isAdmin
-        ? ['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6']
-        : (currentTeacher?.managedClasses || []))
-    : ['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6'];
+  // Get available classes dynamically from students in this school
+  const availableClasses = getAvailableClasses(appData, appData.currentTeacherId);
 
   // Transform skill mastery for radar chart
   const skillData = Object.entries(progress.skillMastery).map(([skill, mastery]) => ({
@@ -324,10 +328,11 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                   {currentTeacher?.fullName || 'Giáo Viên'}
                 </span>
                 <span className="text-purple-600 text-[11px] block">
-                  {currentTeacher?.email} • {currentTeacher?.schoolName}
+                  {currentTeacher?.email} • {currentTeacher?.schoolName}{' '}
+                  {currentTeacher?.communeName ? `(${currentTeacher.communeName}, ${currentTeacher.provinceName || ''})` : ''}
                 </span>
                 <span className="text-purple-500 text-[11px] block">
-                  Phụ trách: {currentTeacher?.managedClasses.length ? currentTeacher.managedClasses.join(', ') : 'Chưa phân lớp'}
+                  Tự động kết nối học sinh cùng trường • Các lớp: {availableClasses.join(', ') || 'Chưa có lớp'}
                   {' • '}Tổng: {teacherStudents.length} học sinh
                 </span>
               </div>
@@ -484,7 +489,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
               <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider">
                 <th className="py-3 px-4">Học Sinh</th>
                 <th className="py-3 px-4">Lớp</th>
-                <th className="py-3 px-4">Mã PIN</th>
+                <th className="py-3 px-4">Trường / Xã</th>
                 <th className="py-3 px-4">Mức Học Hôm Nay</th>
                 <th className="py-3 px-4">XP & Cấp Độ</th>
                 <th className="py-3 px-4">Chuỗi Ngày</th>
@@ -515,8 +520,9 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                       </div>
                     </td>
                     <td className="py-3.5 px-4 font-semibold text-slate-700">{st.className}</td>
-                    <td className="py-3.5 px-4 font-mono font-bold text-slate-600">
-                      {st.pinCode || '1234'}
+                    <td className="py-3.5 px-4 text-[11px] font-semibold text-slate-600">
+                      <span className="block font-bold text-slate-800">{st.schoolName || 'THCS Chu Văn An'}</span>
+                      <span className="block text-[10px] text-slate-500">{st.communeName || 'Xã Đăk Hà'}</span>
                     </td>
                     <td className="py-3.5 px-4">
                       <div className="space-y-1">
@@ -564,9 +570,9 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                           <button
                             onClick={() => {
                               setPinResetStudent(st);
-                              setNewPinValue(st.pinCode || '1234');
+                              setNewPinValue('');
                             }}
-                            title="Đặt lại mã PIN"
+                            title="Đặt lại mật khẩu"
                             className="p-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 transition-colors"
                           >
                             <Key className="w-3.5 h-3.5" />
@@ -845,7 +851,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
               </div>
               <div>
                 <h3 className="font-extrabold text-slate-900 text-sm">
-                  Đặt Lại Mã PIN Học Sinh
+                  Đặt Lại Mật Khẩu Học Sinh
                 </h3>
                 <p className="text-[11px] text-slate-500">
                   {pinResetStudent.fullName} ({pinResetStudent.className})
@@ -856,15 +862,15 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
             <form onSubmit={handleConfirmResetPin} className="space-y-3 pt-2">
               <div>
                 <label className="text-xs font-bold text-slate-700 block mb-1">
-                  Mã PIN Mới (4 chữ số):
+                  Mật Khẩu Mới (tối thiểu 6 ký tự):
                 </label>
                 <input
                   type="text"
-                  maxLength={6}
+                  minLength={6}
                   value={newPinValue}
                   onChange={(e) => setNewPinValue(e.target.value)}
-                  placeholder="e.g. 1234"
-                  className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 font-mono font-bold tracking-widest text-center"
+                  placeholder="Nhập mật khẩu mới (>= 6 ký tự)..."
+                  className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 font-mono font-bold text-center"
                   required
                 />
               </div>
@@ -882,7 +888,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                   className="px-5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs shadow-2xs inline-flex items-center gap-1.5"
                 >
                   <Key className="w-3.5 h-3.5" />
-                  <span>Xác Nhận Đổi PIN</span>
+                  <span>Xác Nhận Đổi Mật Khẩu</span>
                 </button>
               </div>
             </form>

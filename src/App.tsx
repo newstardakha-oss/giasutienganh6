@@ -133,10 +133,24 @@ export default function App() {
   };
 
   const handleTeacherRegister = (
-    email: string, fullName: string, schoolName: string,
-    password: string, activationCode: string
+    email: string,
+    fullName: string,
+    schoolName: string,
+    password: string,
+    activationCode?: string,
+    provinceName?: string,
+    communeName?: string
   ): { success: boolean; error?: string } => {
-    const result = registerTeacher(appData, email, fullName, schoolName, password, activationCode);
+    const result = registerTeacher(
+      appData,
+      email,
+      fullName,
+      schoolName,
+      password,
+      activationCode,
+      provinceName,
+      communeName
+    );
     if (result.success) {
       // Find the newly registered teacher
       const newTeacher = result.data.teachers.find((t) => t.email.toLowerCase() === email.toLowerCase());
@@ -276,10 +290,15 @@ export default function App() {
         appData={appData}
         onLoginStudent={handleLoginStudent}
         onRegisterStudent={handleRegisterStudent}
+        onUpdateAppData={setAppData}
         onTeacherLogin={handleTeacherLogin}
         onTeacherRegister={handleTeacherRegister}
         onOpenTeacherManagement={() => {
           setIsCoverActive(false);
+          setActiveTab('report');
+        }}
+        onParentOpenReport={(studentId) => {
+          handleLoginStudent(studentId);
           setActiveTab('report');
         }}
       />
