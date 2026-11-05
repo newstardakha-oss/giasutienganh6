@@ -4,22 +4,21 @@ import {
   Mic,
   FileEdit,
   BookOpen,
-  Upload,
   BarChart3,
   Flame,
   Zap,
   HardDriveUpload,
-  Award,
-  UserCheck,
   Swords,
   Download,
   FileText,
   Presentation,
   FileCode,
-  ShieldCheck,
   Settings,
   Home,
-  User
+  User,
+  LogOut,
+  LayoutTemplate,
+  ChevronRight
 } from 'lucide-react';
 import { AppDataSchema, TeacherAccount } from '../types';
 import { exportQuestionsToDocx } from '../services/docxExport';
@@ -36,21 +35,20 @@ interface HeaderProps {
   onOpenBackupModal: () => void;
   onOpenStudentAuth: () => void;
   onOpenCoverScreen?: () => void;
+  onLogout?: () => void;
 }
 
 const DESKTOP_NAV_ITEMS = [
-  { id: 'home', label: 'Trang Chủ', emoji: '🏠', icon: Home, activeClass: 'neu-btn-primary' },
-  { id: 'socratic', label: 'Ngữ Pháp', emoji: '💡', icon: GraduationCap, activeClass: 'neu-btn-primary' },
-  { id: 'speech', label: 'Phát Âm', emoji: '🎧', icon: Mic, activeClass: 'neu-btn-primary' },
-  { id: 'writing', label: 'Viết', emoji: '✏️', icon: FileEdit, activeClass: 'neu-btn-primary' },
-  { id: 'reading-game', label: 'Đọc Hiểu', emoji: '🎮', icon: BookOpen, activeClass: 'neu-btn-success' },
-  { id: 'practice', label: 'Từ Vựng', emoji: '🧩', icon: BookOpen, activeClass: 'neu-btn-primary' },
-  { id: 'arena', label: 'Đấu Tri Thức', emoji: '🏆', icon: Swords, activeClass: 'neu-btn-primary' },
-  { id: 'upload', label: 'Tải SGK', emoji: '📁', icon: Upload, activeClass: 'neu-btn-primary' },
-  { id: 'report', label: 'Báo Cáo', emoji: '📊', icon: BarChart3, activeClass: 'neu-btn-primary' },
+  { id: 'home', label: 'Trang chủ', icon: Home, activeClass: 'neu-btn-primary' },
+  { id: 'socratic', label: 'Ngữ pháp', icon: GraduationCap, activeClass: 'neu-btn-primary' },
+  { id: 'practice', label: 'Từ vựng', icon: BookOpen, activeClass: 'neu-btn-primary' },
+  { id: 'speech', label: 'Phát âm', icon: Mic, activeClass: 'neu-btn-primary' },
+  { id: 'reading-game', label: 'Đọc hiểu', icon: BookOpen, activeClass: 'neu-btn-success' },
+  { id: 'writing', label: 'Viết', icon: FileEdit, activeClass: 'neu-btn-primary' },
+  { id: 'arena', label: 'Đấu tri thức', icon: Swords, activeClass: 'neu-btn-primary' },
 ];
 
-const LEARNING_TABS = ['socratic', 'speech', 'writing', 'reading-game', 'practice', 'upload'];
+const LEARNING_TABS = ['socratic', 'practice', 'speech', 'reading-game', 'writing', 'upload'];
 
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
@@ -62,11 +60,14 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenBackupModal,
   onOpenStudentAuth,
   onOpenCoverScreen,
+  onLogout,
 }) => {
   const currentStudent = appData.students.find((s) => s.id === appData.currentStudentId);
-  const [showExportMenu, setShowExportMenu] = useState(false);
+  const [isAvatarMenuOpen, setIsAvatarMenuOpen] = useState(false);
+  const [showExportSubmenu, setShowExportSubmenu] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
-  const [headerHeight, setHeaderHeight] = useState<number>(136);
+  const avatarMenuRef = useRef<HTMLDivElement | null>(null);
+  const [headerHeight, setHeaderHeight] = useState<number>(124);
 
   useEffect(() => {
     const el = headerRef.current;
@@ -88,22 +89,45 @@ export const Header: React.FC<HeaderProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    if (!isAvatarMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (avatarMenuRef.current && !avatarMenuRef.current.contains(e.target as Node)) {
+        setIsAvatarMenuOpen(false);
+        setShowExportSubmenu(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isAvatarMenuOpen]);
+
   const handleExportDocx = () => {
     exportQuestionsToDocx('De_Kiem_Tra_Tieng_Anh_6', appData.questions.slice(0, 10), appData.units[0]);
-    setShowExportMenu(false);
+    setIsAvatarMenuOpen(false);
+    setShowExportSubmenu(false);
   };
 
   const handleExportPptx = () => {
     exportUnitToPptx(appData.units[0]);
-    setShowExportMenu(false);
+    setIsAvatarMenuOpen(false);
+    setShowExportSubmenu(false);
   };
 
   const handleExportMoodle = () => {
     exportToMoodleGift('Ngan_Hang_Cau_Hoi_Tieng_Anh_6', appData.questions);
-    setShowExportMenu(false);
+    setIsAvatarMenuOpen(false);
+    setShowExportSubmenu(false);
   };
 
   const isLearningActive = LEARNING_TABS.includes(activeTab);
+  const displayName = appData.isTeacherLoggedIn
+    ? currentTeacher?.fullName || 'Giáo Viên'
+    : currentStudent?.fullName || 'Học Sinh Lớp 6';
+  const displayRole = appData.isTeacherLoggedIn
+    ? isAdmin
+      ? 'Quản Lý Admin'
+      : 'Giáo Viên'
+    : currentStudent?.className || 'Lớp 6';
 
   return (
     <>
@@ -112,183 +136,221 @@ export const Header: React.FC<HeaderProps> = ({
         className="fixed top-0 left-0 right-0 z-40 bg-[#f5f3ff]/95 backdrop-blur-md border-b border-purple-100 shadow-sm transition-colors"
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
-            {/* Logo */}
-            <div
-              className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group min-w-0 shrink-0"
-              onClick={() => (onOpenCoverScreen ? onOpenCoverScreen() : setActiveTab('socratic'))}
+          <div className="flex items-center justify-between h-14 sm:h-16 gap-2">
+            {/* Trái: Logo + Tên "Gia Sư AI Lớp 6" (chỉ 1 dòng) */}
+            <button
+              type="button"
+              onClick={() => setActiveTab('home')}
+              className="flex items-center gap-2.5 cursor-pointer group min-w-0 shrink-0 text-left"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#38bdf8] via-[#818cf8] to-[#f472b6] flex items-center justify-center text-white shadow-md shadow-purple-500/20 group-hover:scale-105 transition-all border-2 border-white shrink-0">
-                <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7" />
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#38bdf8] via-[#818cf8] to-[#f472b6] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-all border-2 border-white shrink-0">
+                <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <div className="min-w-0">
-                <h1 className="font-extrabold text-base sm:text-xl leading-tight bg-gradient-to-r from-sky-500 via-indigo-500 to-pink-500 bg-clip-text text-transparent flex items-center gap-1 whitespace-nowrap">
-                  <span>Gia Sư AI Lớp 6</span>
-                  <span className="hidden sm:inline">🌟</span>
-                </h1>
-                <p className="text-[11px] text-purple-600 font-bold tracking-tight whitespace-nowrap">
-                  Global Success
-                </p>
-              </div>
-            </div>
+              <span className="font-extrabold text-base sm:text-lg leading-none bg-gradient-to-r from-sky-600 via-indigo-600 to-pink-600 bg-clip-text text-transparent whitespace-nowrap">
+                Gia Sư AI Lớp 6
+              </span>
+            </button>
 
-            {/* User Profile & Gamification Badges */}
-            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-              {/* Button Trang Bìa */}
-              {onOpenCoverScreen && (
-                <button
-                  type="button"
-                  onClick={onOpenCoverScreen}
-                  className="hidden xl:flex items-center gap-1.5 px-3 py-2 rounded-2xl neu-card-purple text-purple-800 text-xs font-extrabold transition-all hover:scale-105 whitespace-nowrap shrink-0"
-                  title="Quay lại Màn hình Trang Bìa Đăng Nhập"
-                >
-                  <GraduationCap className="w-4 h-4 text-purple-600 shrink-0" />
-                  <span className="whitespace-nowrap">Trang Bìa 🚀</span>
-                </button>
-              )}
-
-              {/* User Profile & Role Button */}
-              <button
-                type="button"
-                id="header-student-auth-btn"
-                onClick={onOpenStudentAuth}
-                className={`flex items-center gap-2 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl border text-xs font-extrabold transition-all neu-btn hover:scale-105 whitespace-nowrap shrink-0 ${
-                  appData.isTeacherLoggedIn
-                    ? 'bg-purple-100 text-purple-900 border-purple-300'
-                    : 'bg-sky-100 text-sky-900 border-sky-300'
-                }`}
+            {/* Phải: Chuỗi ngày học (🔥 6), XP/Level gộp chung 1 chip, Avatar người dùng */}
+            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+              {/* 1. Chuỗi ngày học (🔥 6) */}
+              <div
+                className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full neu-card-orange text-amber-900 text-xs font-extrabold whitespace-nowrap shrink-0"
+                title="Chuỗi ngày học liên tiếp"
               >
-                <span className="text-lg sm:text-xl leading-none shrink-0">
-                  {appData.isTeacherLoggedIn
-                    ? '👩‍🏫'
-                    : currentStudent
-                    ? currentStudent.avatar
-                    : '👨‍🎓'}
-                </span>
-                <div className="text-left hidden sm:block leading-tight max-w-[120px] lg:max-w-[150px]">
-                  <span className="block text-slate-900 truncate font-extrabold text-[12px] whitespace-nowrap">
-                    {appData.isTeacherLoggedIn
-                      ? currentTeacher?.fullName || 'Giáo Viên'
-                      : currentStudent
-                      ? currentStudent.fullName
-                      : 'Đăng Nhập'}
-                  </span>
-                  <span
-                    className={`block text-[10px] font-bold truncate whitespace-nowrap ${
-                      appData.isTeacherLoggedIn ? 'text-purple-600' : 'text-sky-600'
-                    }`}
-                  >
-                    {appData.isTeacherLoggedIn
-                      ? isAdmin
-                        ? 'Quản Lý Admin 👑'
-                        : 'Giáo Viên 👩‍🏫'
-                      : currentStudent
-                      ? `${currentStudent.className} 🎒`
-                      : 'Học Sinh Lớp 6 🎒'}
-                  </span>
-                </div>
-                {appData.isTeacherLoggedIn ? (
-                  <ShieldCheck className="w-4 h-4 text-purple-600 shrink-0 hidden sm:block" />
-                ) : (
-                  <UserCheck className="w-3.5 h-3.5 text-sky-600 shrink-0 hidden sm:block" />
-                )}
-              </button>
+                <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500 shrink-0" />
+                <span className="whitespace-nowrap">{appData.progress.streakDays}</span>
+              </div>
 
-              {/* Export Menu Dropdown */}
-              <div className="relative shrink-0">
+              {/* 2. XP / Level gộp chung 1 chip */}
+              <div
+                className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full neu-card-blue text-sky-900 text-xs font-extrabold whitespace-nowrap shrink-0"
+                title="Cấp độ & Điểm kinh nghiệm XP"
+              >
+                <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500 shrink-0" />
+                <span className="text-sky-800 whitespace-nowrap">
+                  Lv.{appData.progress.level}
+                </span>
+                <span className="text-sky-300">·</span>
+                <span className="text-amber-700 whitespace-nowrap">
+                  {appData.progress.totalXP} XP
+                </span>
+              </div>
+
+              {/* 3. Avatar người dùng + Menu Dropdown */}
+              <div ref={avatarMenuRef} className="relative shrink-0">
                 <button
                   type="button"
-                  onClick={() => setShowExportMenu(!showExportMenu)}
-                  className="flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-2xl neu-card-mint text-emerald-800 text-xs font-extrabold transition-all hover:scale-105 whitespace-nowrap shrink-0"
-                  title="Xuất tài liệu"
+                  id="header-student-auth-btn"
+                  onClick={() => {
+                    setIsAvatarMenuOpen((prev) => !prev);
+                    setShowExportSubmenu(false);
+                  }}
+                  aria-expanded={isAvatarMenuOpen}
+                  aria-haspopup="menu"
+                  title={`${displayName} (${displayRole})`}
+                  className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center text-lg sm:text-xl leading-none transition-all cursor-pointer shadow-xs hover:scale-105 ${
+                    appData.isTeacherLoggedIn
+                      ? 'bg-purple-100 border-purple-400'
+                      : 'bg-sky-100 border-sky-400'
+                  }`}
                 >
-                  <Download className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span className="hidden lg:inline whitespace-nowrap">Xuất File 📥</span>
+                  <span>
+                    {appData.isTeacherLoggedIn
+                      ? '👩‍🏫'
+                      : currentStudent
+                      ? currentStudent.avatar
+                      : '👨‍🎓'}
+                  </span>
                 </button>
 
-                {showExportMenu && (
-                  <div className="absolute right-0 mt-2 w-56 neu-card p-2 z-50 animate-in fade-in zoom-in-95 border-2 border-emerald-200">
-                    <div className="px-3 py-2 text-[11px] font-extrabold text-emerald-700 border-b border-emerald-100 whitespace-nowrap">
-                      BỘ CÔNG CỤ XUẤT TÀI LIỆU 📄
+                {isAvatarMenuOpen && (
+                  <div
+                    role="menu"
+                    className="absolute right-0 mt-2 w-56 neu-card bg-white p-2 z-50 border-2 border-purple-200 shadow-xl space-y-1"
+                  >
+                    {/* Thông tin tóm tắt */}
+                    <div className="px-3 py-2 border-b border-purple-100">
+                      <p className="text-xs font-extrabold text-slate-900 truncate whitespace-nowrap">
+                        {displayName}
+                      </p>
+                      <p className="text-[11px] font-bold text-purple-600 truncate whitespace-nowrap">
+                        {displayRole}
+                      </p>
                     </div>
+
+                    {/* 1. Hồ sơ */}
                     <button
                       type="button"
-                      onClick={handleExportDocx}
-                      className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-sky-100 hover:text-sky-700 rounded-xl flex items-center gap-2.5 transition-colors whitespace-nowrap"
+                      role="menuitem"
+                      onClick={() => {
+                        setIsAvatarMenuOpen(false);
+                        onOpenStudentAuth();
+                      }}
+                      className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl flex items-center gap-2.5 transition-colors whitespace-nowrap cursor-pointer"
                     >
-                      <FileText className="w-4 h-4 text-sky-500 shrink-0" />
-                      <span className="whitespace-nowrap">Xuất Word (.docx) 📝</span>
+                      <User className="w-4 h-4 text-indigo-500 shrink-0" />
+                      <span className="whitespace-nowrap">Hồ sơ</span>
                     </button>
+
+                    {/* 2. Cài đặt */}
                     <button
                       type="button"
-                      onClick={handleExportPptx}
-                      className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-amber-100 hover:text-amber-700 rounded-xl flex items-center gap-2.5 transition-colors whitespace-nowrap"
+                      role="menuitem"
+                      onClick={() => {
+                        setIsAvatarMenuOpen(false);
+                        onOpenSettings();
+                      }}
+                      className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-xl flex items-center gap-2.5 transition-colors whitespace-nowrap cursor-pointer"
                     >
-                      <Presentation className="w-4 h-4 text-amber-500 shrink-0" />
-                      <span className="whitespace-nowrap">Xuất PowerPoint (.pptx) 📊</span>
+                      <Settings className="w-4 h-4 text-slate-500 shrink-0" />
+                      <span className="whitespace-nowrap">Cài đặt</span>
                     </button>
+
+                    {/* 3. Xuất file */}
+                    <div>
+                      <button
+                        type="button"
+                        role="menuitem"
+                        onClick={() => setShowExportSubmenu((prev) => !prev)}
+                        className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-xl flex items-center justify-between gap-2 transition-colors whitespace-nowrap cursor-pointer"
+                      >
+                        <span className="flex items-center gap-2.5 whitespace-nowrap">
+                          <Download className="w-4 h-4 text-emerald-600 shrink-0" />
+                          <span className="whitespace-nowrap">Xuất file</span>
+                        </span>
+                        <ChevronRight
+                          className={`w-3.5 h-3.5 text-slate-400 transition-transform ${
+                            showExportSubmenu ? 'rotate-90' : ''
+                          }`}
+                        />
+                      </button>
+
+                      {showExportSubmenu && (
+                        <div className="pl-4 pr-1 py-1 space-y-1 bg-slate-50/80 rounded-xl mt-1">
+                          <button
+                            type="button"
+                            onClick={handleExportDocx}
+                            className="w-full px-2.5 py-1.5 text-[11px] font-bold text-slate-700 hover:bg-sky-100 hover:text-sky-700 rounded-lg flex items-center gap-2 whitespace-nowrap cursor-pointer"
+                          >
+                            <FileText className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                            <span className="whitespace-nowrap">Word (.docx)</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={handleExportPptx}
+                            className="w-full px-2.5 py-1.5 text-[11px] font-bold text-slate-700 hover:bg-amber-100 hover:text-amber-700 rounded-lg flex items-center gap-2 whitespace-nowrap cursor-pointer"
+                          >
+                            <Presentation className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                            <span className="whitespace-nowrap">PowerPoint (.pptx)</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={handleExportMoodle}
+                            className="w-full px-2.5 py-1.5 text-[11px] font-bold text-slate-700 hover:bg-emerald-100 hover:text-emerald-700 rounded-lg flex items-center gap-2 whitespace-nowrap cursor-pointer"
+                          >
+                            <FileCode className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                            <span className="whitespace-nowrap">Moodle GIFT</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsAvatarMenuOpen(false);
+                              setShowExportSubmenu(false);
+                              onOpenBackupModal();
+                            }}
+                            className="w-full px-2.5 py-1.5 text-[11px] font-bold text-slate-700 hover:bg-purple-100 hover:text-purple-700 rounded-lg flex items-center gap-2 whitespace-nowrap cursor-pointer"
+                          >
+                            <HardDriveUpload className="w-3.5 h-3.5 text-purple-500 shrink-0" />
+                            <span className="whitespace-nowrap">Sao lưu / Khôi phục</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* 4. Trang bìa */}
+                    {onOpenCoverScreen && (
+                      <button
+                        type="button"
+                        role="menuitem"
+                        onClick={() => {
+                          setIsAvatarMenuOpen(false);
+                          onOpenCoverScreen();
+                        }}
+                        className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-purple-50 hover:text-purple-700 rounded-xl flex items-center gap-2.5 transition-colors whitespace-nowrap cursor-pointer"
+                      >
+                        <LayoutTemplate className="w-4 h-4 text-purple-500 shrink-0" />
+                        <span className="whitespace-nowrap">Trang bìa</span>
+                      </button>
+                    )}
+
+                    {/* 5. Đăng xuất */}
                     <button
                       type="button"
-                      onClick={handleExportMoodle}
-                      className="w-full px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-emerald-100 hover:text-emerald-700 rounded-xl flex items-center gap-2.5 transition-colors whitespace-nowrap"
+                      role="menuitem"
+                      onClick={() => {
+                        setIsAvatarMenuOpen(false);
+                        if (onLogout) {
+                          onLogout();
+                        } else if (onOpenCoverScreen) {
+                          onOpenCoverScreen();
+                        }
+                      }}
+                      className="w-full px-3 py-2 text-xs font-extrabold text-rose-600 hover:bg-rose-50 rounded-xl flex items-center gap-2.5 transition-colors whitespace-nowrap cursor-pointer"
                     >
-                      <FileCode className="w-4 h-4 text-emerald-500 shrink-0" />
-                      <span className="whitespace-nowrap">Xuất Moodle GIFT 🎯</span>
+                      <LogOut className="w-4 h-4 text-rose-500 shrink-0" />
+                      <span className="whitespace-nowrap">Đăng xuất</span>
                     </button>
                   </div>
                 )}
               </div>
-
-              {/* Streak Pill */}
-              <div className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-2xl neu-card-orange text-amber-900 text-xs font-bold whitespace-nowrap shrink-0">
-                <Flame className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-                <span className="font-extrabold text-amber-700 whitespace-nowrap">
-                  {appData.progress.streakDays}
-                </span>
-                <span className="hidden md:inline text-amber-800 whitespace-nowrap">ngày 🔥</span>
-              </div>
-
-              {/* Level & XP Pill */}
-              <div className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-2xl neu-card-blue text-sky-900 text-xs font-bold whitespace-nowrap shrink-0">
-                <Award className="w-4 h-4 text-sky-600 shrink-0" />
-                <span className="font-extrabold text-sky-700 whitespace-nowrap">
-                  Lv.{appData.progress.level} 🦄
-                </span>
-                <span className="text-sky-300">|</span>
-                <Zap className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-                <span className="font-extrabold text-amber-700 whitespace-nowrap">
-                  {appData.progress.totalXP} XP ⚡
-                </span>
-              </div>
-
-              {/* Settings Button */}
-              <button
-                type="button"
-                id="header-api-settings-btn"
-                onClick={onOpenSettings}
-                className="p-2 sm:p-2.5 rounded-2xl neu-btn text-slate-600 hover:scale-105 transition-all shrink-0"
-                title="Cấu hình hệ thống AI"
-              >
-                <Settings className="w-4 h-4 text-slate-600" />
-              </button>
-
-              {/* Backup / Restore Button */}
-              <button
-                type="button"
-                id="header-backup-btn"
-                onClick={onOpenBackupModal}
-                title="Sao lưu / Khôi phục dữ liệu"
-                className="p-2 sm:p-2.5 rounded-2xl neu-btn text-slate-600 hover:scale-105 transition-all shrink-0"
-              >
-                <HardDriveUpload className="w-4 h-4" />
-              </button>
             </div>
           </div>
 
-          {/* Desktop/Tablet Horizontal Navigation Bar (hidden on mobile < 768px) */}
+          {/* Thanh menu ngang trên máy tính/tablet: Trang chủ, Ngữ pháp, Từ vựng, Phát âm, Đọc hiểu, Viết, Đấu tri thức */}
           <nav
             aria-label="Điều hướng chính"
-            className="hidden md:flex items-center justify-between gap-1 lg:gap-2 py-2 border-t border-purple-100"
+            className="hidden md:flex items-center justify-between gap-1.5 lg:gap-2.5 py-2 border-t border-purple-100"
           >
             {DESKTOP_NAV_ITEMS.map((item) => {
               const Icon = item.icon;
@@ -299,21 +361,18 @@ export const Header: React.FC<HeaderProps> = ({
                   type="button"
                   id={`nav-tab-${item.id}`}
                   onClick={() => setActiveTab(item.id)}
-                  className={`flex-1 flex items-center justify-center gap-1 lg:gap-1.5 px-2 lg:px-3 py-2 rounded-xl text-[11px] lg:text-xs xl:text-sm font-extrabold whitespace-nowrap transition-all min-w-0 ${
+                  className={`flex-1 flex items-center justify-center gap-1.5 px-2.5 lg:px-3.5 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all min-w-0 ${
                     isActive
                       ? `${item.activeClass} text-white shadow-md`
                       : 'neu-btn text-slate-700 hover:text-indigo-600'
                   }`}
                 >
                   <Icon
-                    className={`w-3.5 h-3.5 lg:w-4 lg:h-4 shrink-0 ${
+                    className={`w-4 h-4 shrink-0 ${
                       isActive ? 'text-white' : 'text-purple-500'
                     }`}
                   />
                   <span className="whitespace-nowrap truncate">{item.label}</span>
-                  <span className="hidden xl:inline text-xs leading-none shrink-0">
-                    {item.emoji}
-                  </span>
                 </button>
               );
             })}
@@ -321,14 +380,14 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
 
-      {/* Spacer matching exact sticky/fixed header height so content below is never covered */}
+      {/* Khoảng đệm phía trên nội dung bằng đúng chiều cao header */}
       <div
         aria-hidden="true"
         className="w-full shrink-0"
         style={{ height: `${headerHeight}px` }}
       />
 
-      {/* Mobile Bottom Navigation Bar (5 items: Trang chủ, Học, Đấu trí, Báo cáo, Tôi) */}
+      {/* Thanh điều hướng dưới đáy màn hình trên điện thoại (5 mục: Trang chủ, Học, Đấu trí, Báo cáo, Tôi) */}
       <nav
         aria-label="Điều hướng di động"
         className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-purple-200 shadow-[0_-4px_20px_rgba(99,102,241,0.12)] px-2 py-1.5"

@@ -92,17 +92,9 @@ const SKILL_CARDS: SkillCardData[] = [
 
 const TOOL_CARDS = [
   {
-    id: 'arena',
-    tabId: 'arena',
-    title: 'Đấu Tri Thức',
-    emoji: '⚔️',
-    icon: <Swords className="w-5 h-5" />,
-    description: 'Thi đấu kiến thức',
-  },
-  {
     id: 'upload',
     tabId: 'upload',
-    title: 'Tải SGK',
+    title: 'Tải tài liệu',
     emoji: '📁',
     icon: <Upload className="w-5 h-5" />,
     description: 'Tải tài liệu sách',
@@ -110,7 +102,7 @@ const TOOL_CARDS = [
   {
     id: 'report',
     tabId: 'report',
-    title: 'Báo Cáo',
+    title: 'Báo cáo',
     emoji: '📊',
     icon: <BarChart3 className="w-5 h-5" />,
     description: 'Xem tiến độ học tập',
@@ -221,7 +213,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ appData, onSelectSkill }
         <h3 className="text-sm font-extrabold text-purple-700 uppercase tracking-wide mb-3 flex items-center gap-2">
           <span>🛠️</span> Công Cụ Bổ Sung
         </h3>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {TOOL_CARDS.map((tool) => (
             <button
               key={tool.id}

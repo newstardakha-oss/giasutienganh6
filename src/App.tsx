@@ -299,6 +299,9 @@ export default function App() {
         onOpenBackupModal={() => setIsBackupModalOpen(true)}
         onOpenStudentAuth={() => setIsStudentAuthModalOpen(true)}
         onOpenCoverScreen={() => setIsCoverActive(true)}
+        onLogout={() =>
+          appData.isTeacherLoggedIn ? handleTeacherLogout() : handleLogoutStudent()
+        }
       />
 
       {/* Main Container Vibrant Pastel */}
