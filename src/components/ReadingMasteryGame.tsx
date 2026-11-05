@@ -994,18 +994,18 @@ export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Top Banner & Unit Selector Vibrant Pastel */}
-      <div className="neu-card-purple p-6 text-slate-900 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* Top Banner & Unit Selector (Unified Reading Color & BookOpen Icon) */}
+      <div className="skill-banner-reading p-6 text-white flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full badge-pastel-blue text-xs font-extrabold mb-2">
-            <BookOpen className="w-4 h-4 text-sky-600" />
-            <span>Reading Mastery Game 🎮 • 12 Bài Đọc SGK + True/False 🎯</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
+            <BookOpen className="w-4 h-4 text-white" />
+            <span>Đọc Hiểu Văn Bản • 12 Bài Đọc SGK + True/False</span>
           </div>
-          <h2 className="text-2xl font-extrabold text-purple-950 tracking-tight">
-            {currentUnitData.topicTitle} 📖
+          <h2 className="text-2xl font-extrabold text-white tracking-tight">
+            {currentUnitData.topicTitle}
           </h2>
-          <p className="text-xs sm:text-sm text-purple-700 font-bold mt-1">
-            Đọc bài văn chuẩn SGK, luyện nghe AI, trắc nghiệm MCQs, True/False & tự điền câu trả lời ngắn! 🌟
+          <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
+            Đọc bài văn chuẩn SGK, luyện nghe AI, trắc nghiệm MCQs, True/False & tự điền câu trả lời ngắn
           </p>
         </div>
 

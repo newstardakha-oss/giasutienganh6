@@ -167,18 +167,18 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Title & Filters Vibrant Pastel */}
-      <div className="neu-card-purple p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Title & Filters (Unified Vocabulary Color & Layers Flashcard Icon) */}
+      <div className="skill-banner-vocab p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-pastel-yellow text-xs font-extrabold mb-2">
-            <BookOpen className="w-4 h-4 text-amber-600" />
-            <span>Kho Bài Tập & Flashcard Từ Vựng 🧩</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
+            <Layers className="w-4 h-4 text-white" />
+            <span>Kho Bài Tập & Flashcard Từ Vựng</span>
           </div>
-          <h2 className="text-2xl font-extrabold text-purple-950 tracking-tight flex items-center gap-2">
-            <span>Luyện Tập Kỹ Năng & Từ Vựng SGK Lớp 6</span> 🌟
+          <h2 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+            <span>Luyện Tập Kỹ Năng & Từ Vựng SGK Lớp 6</span>
           </h2>
-          <p className="text-xs sm:text-sm text-purple-700 font-bold mt-1">
-            Trắc nghiệm phản xạ, flashcard từ vựng và tích lũy điểm thưởng XP! 🚀
+          <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
+            Trắc nghiệm phản xạ, flashcard từ vựng và tích lũy điểm thưởng XP
           </p>
         </div>
 
@@ -186,36 +186,36 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setSubMode('srs')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap ${
               subMode === 'srs'
-                ? 'neu-btn-primary text-white shadow-md scale-105'
-                : 'neu-btn text-slate-600 hover:text-indigo-600'
+                ? 'bg-white text-[var(--skill-vocab)] shadow-md'
+                : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
             }`}
           >
-            <Sparkles className="w-4 h-4" />
-            <span>🌟 Học Từ Vựng SRS (3 Thẻ)</span>
+            <Sparkles className="w-4 h-4 shrink-0" />
+            <span>Học Từ Vựng SRS (3 Thẻ)</span>
           </button>
           <button
             onClick={() => setSubMode('quiz')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap ${
               subMode === 'quiz'
-                ? 'neu-btn-primary text-white shadow-md scale-105'
-                : 'neu-btn text-slate-600 hover:text-indigo-600'
+                ? 'bg-white text-[var(--skill-vocab)] shadow-md'
+                : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
             }`}
           >
-            <Brain className="w-4 h-4" />
-            <span>📝 Quiz Trắc Nghiệm</span>
+            <Brain className="w-4 h-4 shrink-0" />
+            <span>Quiz Trắc Nghiệm</span>
           </button>
           <button
             onClick={() => setSubMode('flashcard')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap ${
               subMode === 'flashcard'
-                ? 'neu-btn-primary text-white shadow-md scale-105'
-                : 'neu-btn text-slate-600 hover:text-indigo-600'
+                ? 'bg-white text-[var(--skill-vocab)] shadow-md'
+                : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
             }`}
           >
-            <Layers className="w-4 h-4" />
-            <span>🃏 Lật Thẻ Tự Do</span>
+            <Layers className="w-4 h-4 shrink-0" />
+            <span>Lật Thẻ Tự Do</span>
           </button>
         </div>
       </div>

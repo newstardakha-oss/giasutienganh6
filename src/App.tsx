@@ -304,21 +304,20 @@ export default function App() {
         }
       />
 
-      {/* Main Container Vibrant Pastel */}
-      <main className="flex-1 pb-24 md:pb-12 bg-[#f5f3ff]">
-        {/* Personalized Vibrant Pastel Student Greeting Banner */}
+      {/* Main Container */}
+      <main className="flex-1 pb-24 md:pb-12 bg-[var(--bg-page)]">
+        {/* Student Greeting Banner */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
           <div className="neu-card-purple p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden">
             <div className="flex items-center gap-3.5 sm:gap-4 relative z-10 w-full md:w-auto min-w-0">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-3xl bg-gradient-to-br from-[#38bdf8] via-[#a855f7] to-[#ec4899] flex items-center justify-center text-2xl sm:text-3xl shrink-0 shadow-lg border-2 border-white animate-float">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-3xl bg-indigo-700 flex items-center justify-center text-2xl sm:text-3xl text-white shrink-0 shadow-md border-2 border-white">
                 {appData.isTeacherLoggedIn
                   ? '👩‍🏫'
                   : appData.students.find((s) => s.id === appData.currentStudentId)?.avatar || '👨‍🎓'}
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                  <span className="text-[11px] sm:text-xs font-extrabold badge-pastel-purple px-2.5 sm:px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap max-w-[200px] sm:max-w-xs truncate">
-                    <span className="shrink-0">{appData.isTeacherLoggedIn ? (isAdmin ? '👑' : '👩‍🏫') : '🌟'}</span>
+                  <span className="text-[11px] sm:text-xs font-extrabold badge-pastel-purple px-2.5 sm:px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap max-w-[220px] sm:max-w-xs truncate">
                     <span className="truncate">
                       {appData.isTeacherLoggedIn
                         ? (isAdmin ? 'Quản Lý Admin' : `Giáo Viên — ${currentTeacher?.managedClasses.join(', ') || 'Chưa phân lớp'}`)
@@ -327,39 +326,38 @@ export default function App() {
                   </span>
                   <span className="text-[11px] sm:text-xs font-extrabold badge-pastel-yellow px-2.5 sm:px-3 py-1 rounded-full inline-flex items-center gap-1 whitespace-nowrap shrink-0">
                     <span>🔥</span>
-                    <span>Streak: {appData.progress.streakDays} Ngày</span>
+                    <span>Streak: {appData.progress.streakDays} ngày</span>
                   </span>
                 </div>
-                <h2 className="text-lg sm:text-2xl font-extrabold text-purple-950 mt-1.5 flex items-center gap-1.5 flex-wrap">
+                <h2 className="text-lg sm:text-2xl font-extrabold text-slate-900 mt-1.5 flex items-center gap-1.5 flex-wrap">
                   <span className="whitespace-nowrap">Chào mừng,</span>{' '}
-                  <span className="bg-gradient-to-r from-sky-600 via-purple-600 to-pink-600 bg-clip-text text-transparent truncate max-w-full">
+                  <span className="text-indigo-800 truncate max-w-full">
                     {appData.isTeacherLoggedIn
                       ? (currentTeacher?.fullName || 'Giáo Viên')
                       : appData.students.find((s) => s.id === appData.currentStudentId)?.fullName || 'Học Sinh Lớp 6'}
                   </span>
-                  <span>🚀</span>
                 </h2>
-                <p className="text-xs sm:text-sm text-purple-700 font-bold mt-0.5">
+                <p className="text-xs sm:text-sm text-slate-700 font-bold mt-0.5">
                   {appData.isTeacherLoggedIn
-                    ? (isAdmin ? 'Bạn đang quản lý toàn bộ hệ thống giáo viên và học sinh 🏫' : 'Quản lý lớp học và theo dõi tiến độ học sinh 📊')
-                    : 'Hôm nay em sẵn sàng chinh phục bài học Tiếng Anh 6 nào? 🎨'}
+                    ? (isAdmin ? 'Bạn đang quản lý toàn bộ hệ thống giáo viên và học sinh' : 'Quản lý lớp học và theo dõi tiến độ học sinh')
+                    : 'Hôm nay em sẵn sàng chinh phục bài học Tiếng Anh 6 nào?'}
                 </p>
               </div>
             </div>
 
-            {/* Quick Stats Pills Vibrant Pastel */}
+            {/* Quick Stats Pills */}
             <div className="grid grid-cols-3 gap-2 sm:gap-3 w-full md:w-auto shrink-0 relative z-10">
               <div className="neu-card-blue px-3 sm:px-4 py-2.5 text-center min-w-0 sm:min-w-[92px] whitespace-nowrap">
-                <span className="text-[10px] font-extrabold text-sky-600 uppercase block truncate whitespace-nowrap">Cấp Độ 🦄</span>
-                <span className="text-base sm:text-lg font-extrabold text-sky-800 block truncate whitespace-nowrap">Lv.{appData.progress.level}</span>
+                <span className="text-[10px] font-extrabold text-sky-900 uppercase block truncate whitespace-nowrap">Cấp Độ</span>
+                <span className="text-base sm:text-lg font-extrabold text-sky-950 block truncate whitespace-nowrap">Lv.{appData.progress.level}</span>
               </div>
               <div className="neu-card-yellow px-3 sm:px-4 py-2.5 text-center min-w-0 sm:min-w-[92px] whitespace-nowrap">
-                <span className="text-[10px] font-extrabold text-amber-600 uppercase block truncate whitespace-nowrap">Điểm XP ⚡</span>
-                <span className="text-base sm:text-lg font-extrabold text-amber-800 block truncate whitespace-nowrap">{appData.progress.totalXP} XP</span>
+                <span className="text-[10px] font-extrabold text-amber-900 uppercase block truncate whitespace-nowrap">Điểm XP</span>
+                <span className="text-base sm:text-lg font-extrabold text-amber-950 block truncate whitespace-nowrap">{appData.progress.totalXP} XP</span>
               </div>
               <div className="neu-card-mint px-3 sm:px-4 py-2.5 text-center min-w-0 sm:min-w-[92px] whitespace-nowrap">
-                <span className="text-[10px] font-extrabold text-emerald-600 uppercase block truncate whitespace-nowrap">Đã Xong 🏆</span>
-                <span className="text-base sm:text-lg font-extrabold text-emerald-800 block truncate whitespace-nowrap">{appData.sessions.length}</span>
+                <span className="text-[10px] font-extrabold text-emerald-900 uppercase block truncate whitespace-nowrap">Đã Xong</span>
+                <span className="text-base sm:text-lg font-extrabold text-emerald-950 block truncate whitespace-nowrap">{appData.sessions.length}</span>
               </div>
             </div>
           </div>
@@ -373,17 +371,17 @@ export default function App() {
         )}
         {activeTab === 'socratic' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-            {/* Grammar Mode Switcher Banner */}
-            <div className="neu-card-purple p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            {/* Grammar Mode Switcher Banner (Unified Grammar Color & GraduationCap Icon) */}
+            <div className="skill-banner-grammar p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-pastel-yellow text-xs font-extrabold mb-2">
-                  <span>💡 Học & Luyện Ngữ Pháp Tiếng Anh 6 (Global Success)</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
+                  <span>Ngữ Pháp Tiếng Anh 6 (Global Success)</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-purple-950 tracking-tight">
-                  Ngữ Pháp Trọng Tâm 12 Unit & Gia Sư AI Socratic 🌟
+                <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                  Ngữ Pháp Trọng Tâm 12 Unit & Gia Sư AI Socratic
                 </h2>
-                <p className="text-xs sm:text-sm text-purple-700 font-bold mt-1">
-                  29 chủ điểm lý thuyết, 104 bộ bài tập tương tác 7 dạng & sổ lỗi sai thông minh!
+                <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
+                  29 chủ điểm lý thuyết, 104 bộ bài tập tương tác 7 dạng & sổ lỗi sai thông minh
                 </p>
               </div>
 
@@ -391,24 +389,24 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setGrammarSubMode('grammar-g6')}
-                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer whitespace-nowrap ${
                     grammarSubMode === 'grammar-g6'
-                      ? 'neu-btn-primary text-white shadow-md scale-105'
-                      : 'neu-btn text-slate-600 hover:text-indigo-600'
+                      ? 'bg-white text-[var(--skill-grammar)] shadow-md'
+                      : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
                   }`}
                 >
-                  <span>📚 Bài Học & Bài Tập (12 Unit)</span>
+                  <span>Bài Học & Bài Tập (12 Unit)</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setGrammarSubMode('socratic')}
-                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer whitespace-nowrap ${
                     grammarSubMode === 'socratic'
-                      ? 'neu-btn-primary text-white shadow-md scale-105'
-                      : 'neu-btn text-slate-600 hover:text-indigo-600'
+                      ? 'bg-white text-[var(--skill-grammar)] shadow-md'
+                      : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
                   }`}
                 >
-                  <span>🤖 Gia Sư AI Socratic (Hỏi Đáp)</span>
+                  <span>Gia Sư AI Socratic (Hỏi Đáp)</span>
                 </button>
               </div>
             </div>

@@ -60,19 +60,17 @@ export const GameArena: React.FC<GameArenaProps> = ({
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-      {/* Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-900 via-purple-900 to-slate-900 p-8 border border-indigo-500/30 shadow-2xl text-white">
-        <div className="absolute right-0 top-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -z-0" />
-        
+      {/* Banner (Unified Arena Color & Trophy Icon) */}
+      <div className="relative overflow-hidden skill-banner-arena p-8 text-white">
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs font-semibold border border-indigo-500/40 mb-4">
-            <Sparkles className="w-4 h-4 text-amber-400" />
-            Đấu Trường Tri Thức Tiếng Anh 6
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/20 text-white rounded-full text-xs font-extrabold mb-4">
+            <Trophy className="w-4 h-4 text-amber-300" />
+            <span>Đấu Trường Tri Thức Tiếng Anh 6</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
-            🎮 Trung Tâm Game Học Tập Đối Kháng
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3 text-white">
+            Trung Tâm Game Học Tập Đối Kháng
           </h1>
-          <p className="text-slate-300 text-sm leading-relaxed">
+          <p className="text-white/95 text-sm leading-relaxed font-medium">
             Vừa chơi game kịch tính vừa ôn tập kiến thức SGK Tiếng Anh 6 Global Success. Thách đấu bạn bè hoặc BOT AI ngay!
           </p>
 

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import {
   FileEdit,
+  PenTool,
   Sparkles,
   Award,
   CheckCircle2,
@@ -265,15 +266,15 @@ export const WritingGrader: React.FC<WritingGraderProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Title Header */}
-      <div className="bg-gradient-to-r from-slate-800 via-indigo-950 to-slate-900 rounded-2xl p-6 text-white shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Title Header (Unified Writing Color & Pen Icon) */}
+      <div className="skill-banner-writing p-6 text-white flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold mb-2">
-            <FileEdit className="w-4 h-4 text-[#FF9500]" />
-            Đánh Giá & Chấm Điểm Bài Viết AI Đa Cấp Độ (SGK Tiếng Anh 6)
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
+            <PenTool className="w-4 h-4 text-white" />
+            <span>Đánh Giá & Chấm Điểm Bài Viết AI Đa Cấp Độ (SGK Tiếng Anh 6)</span>
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight">Chấm Bài Văn Tiếng Anh Lớp 6 Chi Tiết</h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">
+          <h2 className="text-2xl font-extrabold tracking-tight text-white">Chấm Bài Văn Tiếng Anh Lớp 6 Chi Tiết</h2>
+          <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
             Chấm theo ma trận SGK • Quét ảnh bài viết tay trong vở • Tự chọn đề cô giáo giao • Xuất file Word báo cáo.
           </p>
         </div>

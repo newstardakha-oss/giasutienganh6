@@ -433,15 +433,15 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units }) => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Banner */}
-      <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-6 text-white shadow-sm flex items-center justify-between">
+      {/* Banner (Unified Pronunciation Color & Mic Icon) */}
+      <div className="skill-banner-pronunciation p-6 text-white flex items-center justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-xs font-semibold mb-2">
-            <Mic className="w-4 h-4 text-[#FF9500]" />
-            Luyện Phát Âm & Giao Tiếp Phản Xạ 2 Chiều
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
+            <Mic className="w-4 h-4 text-white" />
+            <span>Luyện Phát Âm & Giao Tiếp Phản Xạ 2 Chiều</span>
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight">Phòng Luyện Phát Âm Chuẩn IPA Lớp 6</h2>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1">
+          <h2 className="text-2xl font-extrabold tracking-tight text-white">Phòng Luyện Phát Âm Chuẩn IPA Lớp 6</h2>
+          <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
             Nhận diện giọng nói AI, chấm điểm phát âm theo âm tiết IPA & hội thoại Communication SGK Global Success.
           </p>
         </div>

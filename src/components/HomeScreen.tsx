@@ -1,17 +1,15 @@
 import React from 'react';
 import {
   GraduationCap,
-  BookOpen,
+  Layers,
   Mic,
-  FileEdit,
-  Swords,
+  BookOpen,
+  PenTool,
   Upload,
   BarChart3,
   ChevronRight,
-  Sparkles,
   Trophy,
   Target,
-  Headphones
 } from 'lucide-react';
 import { AppDataSchema, SkillType } from '../types';
 
@@ -27,7 +25,6 @@ interface SkillCardData {
   titleEn: string;
   description: string;
   icon: React.ReactNode;
-  emoji: string;
   gradientClass: string;
   skillKey: SkillType;
 }
@@ -39,8 +36,7 @@ const SKILL_CARDS: SkillCardData[] = [
     title: 'Ngữ Pháp',
     titleEn: 'Grammar',
     description: 'Lý thuyết & 104 bộ bài tập ngữ pháp 12 Unit kèm Sổ lỗi sai & Gia sư AI Socratic',
-    icon: <GraduationCap className="w-8 h-8" />,
-    emoji: '🧠',
+    icon: <GraduationCap className="w-7 h-7" />,
     gradientClass: 'skill-card-grammar',
     skillKey: 'Grammar',
   },
@@ -49,9 +45,8 @@ const SKILL_CARDS: SkillCardData[] = [
     tabId: 'practice',
     title: 'Từ Vựng',
     titleEn: 'Vocabulary',
-    description: 'Luyện từ vựng theo từng Unit SGK với flashcards & bài tập thú vị',
-    icon: <BookOpen className="w-8 h-8" />,
-    emoji: '📖',
+    description: 'Luyện từ vựng theo từng Unit SGK với flashcards & bài tập phản xạ',
+    icon: <Layers className="w-7 h-7" />,
     gradientClass: 'skill-card-vocab',
     skillKey: 'Vocabulary',
   },
@@ -60,9 +55,8 @@ const SKILL_CARDS: SkillCardData[] = [
     tabId: 'speech',
     title: 'Phát Âm',
     titleEn: 'Pronunciation',
-    description: 'Luyện phát âm chuẩn với AI — nói và được chấm điểm ngay',
-    icon: <Headphones className="w-8 h-8" />,
-    emoji: '🎧',
+    description: 'Luyện phát âm chuẩn IPA với AI — nói và được chấm điểm ngay',
+    icon: <Mic className="w-7 h-7" />,
     gradientClass: 'skill-card-pronunciation',
     skillKey: 'Pronunciation',
   },
@@ -71,9 +65,8 @@ const SKILL_CARDS: SkillCardData[] = [
     tabId: 'reading-game',
     title: 'Đọc Hiểu',
     titleEn: 'Reading',
-    description: 'Game đọc hiểu hấp dẫn — đọc bài, trả lời câu hỏi, ghi điểm cao',
-    icon: <BookOpen className="w-8 h-8" />,
-    emoji: '📚',
+    description: 'Đọc hiểu văn bản SGK — trả lời câu hỏi trắc nghiệm, ghi điểm cao',
+    icon: <BookOpen className="w-7 h-7" />,
     gradientClass: 'skill-card-reading',
     skillKey: 'Reading',
   },
@@ -82,9 +75,8 @@ const SKILL_CARDS: SkillCardData[] = [
     tabId: 'writing',
     title: 'Viết',
     titleEn: 'Writing',
-    description: 'Viết bài luận và được AI chấm điểm chi tiết, gợi ý sửa lỗi',
-    icon: <FileEdit className="w-8 h-8" />,
-    emoji: '✏️',
+    description: 'Viết đoạn văn theo chủ đề Unit và được AI chấm điểm, gợi ý sửa lỗi',
+    icon: <PenTool className="w-7 h-7" />,
     gradientClass: 'skill-card-writing',
     skillKey: 'Writing',
   },
@@ -95,7 +87,6 @@ const TOOL_CARDS = [
     id: 'upload',
     tabId: 'upload',
     title: 'Tải tài liệu',
-    emoji: '📁',
     icon: <Upload className="w-5 h-5" />,
     description: 'Tải tài liệu sách',
   },
@@ -103,14 +94,12 @@ const TOOL_CARDS = [
     id: 'report',
     tabId: 'report',
     title: 'Báo cáo',
-    emoji: '📊',
     icon: <BarChart3 className="w-5 h-5" />,
     description: 'Xem tiến độ học tập',
   },
 ];
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({ appData, onSelectSkill }) => {
-  const currentStudent = appData.students.find((s) => s.id === appData.currentStudentId);
   const progress = appData.progress;
 
   const getSkillMastery = (skillKey: SkillType): number => {
@@ -133,20 +122,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ appData, onSelectSkill }
       {/* Section Title */}
       <div className="flex items-center justify-between gap-3 pt-2 mt-4 mb-6">
         <div className="min-w-0">
-          <h2 className="text-lg sm:text-2xl font-extrabold text-purple-950 flex items-center gap-2 whitespace-nowrap">
-            <Target className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-500 shrink-0" />
+          <h2 className="text-lg sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2 whitespace-nowrap">
+            <Target className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-700 shrink-0" />
             <span className="truncate">Chọn Kỹ Năng Để Học</span>
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
           </h2>
-          <p className="text-xs sm:text-sm text-purple-600 font-semibold mt-1">
-            5 kỹ năng Tiếng Anh cốt lõi — em muốn luyện kỹ năng nào hôm nay? 🎯
+          <p className="text-xs sm:text-sm text-slate-700 font-semibold mt-1">
+            5 kỹ năng Tiếng Anh cốt lõi — em muốn luyện kỹ năng nào hôm nay?
           </p>
         </div>
         <div className="flex items-center gap-2 neu-card-purple px-3.5 sm:px-4 py-2 shrink-0 whitespace-nowrap">
-          <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 shrink-0" />
+          <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 shrink-0" />
           <div className="text-center whitespace-nowrap">
-            <span className="text-[10px] font-bold text-purple-600 block uppercase whitespace-nowrap">Tổng tiến độ</span>
-            <span className="text-base sm:text-lg font-extrabold text-purple-800 block whitespace-nowrap">{avgMastery}%</span>
+            <span className="text-[10px] font-extrabold text-purple-900 block uppercase whitespace-nowrap">
+              Tổng tiến độ
+            </span>
+            <span className="text-base sm:text-lg font-extrabold text-purple-950 block whitespace-nowrap">
+              {avgMastery}%
+            </span>
           </div>
         </div>
       </div>
@@ -159,19 +151,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ appData, onSelectSkill }
           return (
             <button
               key={card.id}
+              type="button"
               onClick={() => onSelectSkill(card.tabId)}
               className={`skill-card ${card.gradientClass}`}
               style={{ animationDelay: `${index * 80}ms` }}
               aria-label={`Học ${card.title} (${card.titleEn}) — Tiến độ ${mastery}%`}
             >
-              {/* Card Content */}
               <div className="skill-card-inner">
-                {/* Top: Icon + Emoji */}
+                {/* Top: Single Stroke Icon (no duplicate emoji) */}
                 <div className="skill-card-icon-wrapper">
-                  <span className="skill-card-emoji" aria-hidden="true">{card.emoji}</span>
-                  <div className="skill-card-icon">
-                    {card.icon}
-                  </div>
+                  <div className="skill-card-icon">{card.icon}</div>
                 </div>
 
                 {/* Middle: Title + Description */}
@@ -197,10 +186,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ appData, onSelectSkill }
                   </div>
                 </div>
 
-                {/* Arrow indicator */}
-                <div className="skill-card-arrow">
-                  <ChevronRight className="w-5 h-5" />
-                  <span className="text-xs font-bold">Bắt đầu học</span>
+                {/* White CTA Button with Colored Text */}
+                <div className="skill-card-cta">
+                  <span>Bắt đầu học</span>
+                  <ChevronRight className="w-4 h-4 shrink-0" />
                 </div>
               </div>
             </button>
@@ -210,20 +199,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ appData, onSelectSkill }
 
       {/* Tools Section */}
       <div className="mt-8">
-        <h3 className="text-sm font-extrabold text-purple-700 uppercase tracking-wide mb-3 flex items-center gap-2">
-          <span>🛠️</span> Công Cụ Bổ Sung
+        <h3 className="text-sm font-extrabold text-slate-800 uppercase tracking-wide mb-3 flex items-center gap-2">
+          <span>Công Cụ Bổ Sung</span>
         </h3>
         <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {TOOL_CARDS.map((tool) => (
             <button
               key={tool.id}
+              type="button"
               onClick={() => onSelectSkill(tool.tabId)}
               className="tool-card group"
               aria-label={tool.title}
             >
-              <div className="tool-card-icon">
-                <span className="text-xl" aria-hidden="true">{tool.emoji}</span>
-              </div>
+              <div className="tool-card-icon">{tool.icon}</div>
               <span className="tool-card-title">{tool.title}</span>
               <span className="tool-card-desc">{tool.description}</span>
             </button>
