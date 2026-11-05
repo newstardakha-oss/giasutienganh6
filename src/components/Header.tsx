@@ -183,7 +183,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Trái: Logo + Tên "Gia Sư AI Lớp 6" (chỉ 1 dòng) */}
             <button
               type="button"
-              onClick={() => setActiveTab('home')}
+              onClick={() => setActiveTab(appData.isTeacherLoggedIn ? 'report' : 'home')}
               className="flex items-center gap-2.5 cursor-pointer group min-w-0 shrink-0 text-left"
             >
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-all border-2 border-white shrink-0">
@@ -194,31 +194,52 @@ export const Header: React.FC<HeaderProps> = ({
               </span>
             </button>
 
-            {/* Phải: Chuỗi ngày học (🔥 6), XP/Level gộp chung 1 chip, Avatar người dùng */}
+            {/* Phải: Với Học sinh hiện Chuỗi ngày học (🔥 6) + XP/Level + Avatar; Với Giáo viên bỏ XP/Level, hiện nhãn Giáo viên + Avatar */}
             <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-              {/* 1. Chuỗi ngày học (🔥 6) */}
-              <div
-                className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full neu-card-orange text-xs font-extrabold whitespace-nowrap shrink-0"
-                title="Chuỗi ngày học liên tiếp"
-              >
-                <Flame className="w-3.5 h-3.5 text-amber-700 fill-amber-600 shrink-0" />
-                <span className="whitespace-nowrap">{appData.progress.streakDays}</span>
-              </div>
+              {appData.isTeacherLoggedIn ? (
+                <div
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-950 text-xs font-extrabold whitespace-nowrap shrink-0"
+                  title="Tài khoản Giáo viên / Quản trị"
+                >
+                  <span className="whitespace-nowrap">
+                    {isAdmin ? 'Quản trị viên' : 'Giáo viên'}
+                  </span>
+                  {currentTeacher?.schoolName && (
+                    <>
+                      <span aria-hidden="true" className="hidden sm:inline">·</span>
+                      <span className="hidden sm:inline whitespace-nowrap max-w-[180px] truncate">
+                        {currentTeacher.schoolName}
+                      </span>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <>
+                  {/* 1. Chuỗi ngày học (🔥 6) */}
+                  <div
+                    className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full neu-card-orange text-xs font-extrabold whitespace-nowrap shrink-0"
+                    title="Chuỗi ngày học liên tiếp"
+                  >
+                    <Flame className="w-3.5 h-3.5 text-amber-700 fill-amber-600 shrink-0" />
+                    <span className="whitespace-nowrap">{appData.progress.streakDays}</span>
+                  </div>
 
-              {/* 2. XP / Level gộp chung 1 chip */}
-              <div
-                className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full neu-card-blue text-xs font-extrabold whitespace-nowrap shrink-0"
-                title="Cấp độ & Điểm kinh nghiệm XP"
-              >
-                <Zap className="w-3.5 h-3.5 text-amber-700 fill-amber-500 shrink-0" />
-                <span className="whitespace-nowrap">
-                  Lv.{appData.progress.level}
-                </span>
-                <span aria-hidden="true">·</span>
-                <span className="whitespace-nowrap">
-                  {appData.progress.totalXP} XP
-                </span>
-              </div>
+                  {/* 2. XP / Level gộp chung 1 chip */}
+                  <div
+                    className="flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full neu-card-blue text-xs font-extrabold whitespace-nowrap shrink-0"
+                    title="Cấp độ & Điểm kinh nghiệm XP"
+                  >
+                    <Zap className="w-3.5 h-3.5 text-amber-700 fill-amber-500 shrink-0" />
+                    <span className="whitespace-nowrap">
+                      Lv.{appData.progress.level}
+                    </span>
+                    <span aria-hidden="true">·</span>
+                    <span className="whitespace-nowrap">
+                      {appData.progress.totalXP} XP
+                    </span>
+                  </div>
+                </>
+              )}
 
               {/* 3. Avatar người dùng + Menu Dropdown */}
               <div ref={avatarMenuRef} className="relative shrink-0">
@@ -389,35 +410,92 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           </div>
 
-          {/* Thanh menu ngang: Trang chủ, Ngữ pháp, Từ vựng, Phát âm, Đọc hiểu, Viết, Đấu tri thức */}
+          {/* Thanh menu ngang: với Giáo viên hiển thị menu quản lý riêng; với Học sinh hiển thị 7 mục chuẩn */}
           <nav
             aria-label="Điều hướng chính"
             className="hidden md:flex items-center justify-between gap-1.5 lg:gap-2.5 py-2 border-t border-purple-200/70"
           >
-            {DESKTOP_NAV_ITEMS.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeTab === item.id;
-              return (
+            {appData.isTeacherLoggedIn ? (
+              <>
                 <button
-                  key={item.id}
                   type="button"
-                  id={`nav-tab-${item.id}`}
-                  onClick={() => setActiveTab(item.id)}
-                  className={`flex-1 flex items-center justify-center gap-1.5 px-2.5 lg:px-3.5 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all min-w-0 cursor-pointer ${
-                    isActive
-                      ? `${item.activeClass} shadow-md`
+                  onClick={() => setActiveTab('report')}
+                  className={`flex-1 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all min-w-0 cursor-pointer ${
+                    activeTab === 'report' || activeTab === 'home'
+                      ? 'nav-active-home shadow-md'
                       : 'neu-btn text-slate-800 hover:text-indigo-800'
                   }`}
                 >
-                  <Icon
+                  <BarChart3
                     className={`w-4 h-4 shrink-0 ${
-                      isActive ? 'text-white' : item.iconClass
+                      activeTab === 'report' || activeTab === 'home'
+                        ? 'text-white'
+                        : 'nav-icon-home'
                     }`}
                   />
-                  <span className="whitespace-nowrap truncate">{item.label}</span>
+                  <span className="whitespace-nowrap truncate">
+                    Trang Quản Lý Giáo Viên (Lớp, Unit, Báo Cáo & Sổ Lỗi Sai)
+                  </span>
                 </button>
-              );
-            })}
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('upload')}
+                  className={`flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                    activeTab === 'upload'
+                      ? 'nav-active-vocab shadow-md'
+                      : 'neu-btn text-slate-800 hover:text-indigo-800'
+                  }`}
+                >
+                  <HardDriveUpload
+                    className={`w-4 h-4 shrink-0 ${
+                      activeTab === 'upload' ? 'text-white' : 'nav-icon-vocab'
+                    }`}
+                  />
+                  <span className="whitespace-nowrap">Tải Tài Liệu & Tạo Câu Hỏi</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('socratic')}
+                  className={`flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                    activeTab === 'socratic'
+                      ? 'nav-active-grammar shadow-md'
+                      : 'neu-btn text-slate-800 hover:text-indigo-800'
+                  }`}
+                >
+                  <GraduationCap
+                    className={`w-4 h-4 shrink-0 ${
+                      activeTab === 'socratic' ? 'text-white' : 'nav-icon-grammar'
+                    }`}
+                  />
+                  <span className="whitespace-nowrap">Xem Học Liệu Ngữ Pháp 6</span>
+                </button>
+              </>
+            ) : (
+              DESKTOP_NAV_ITEMS.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    id={`nav-tab-${item.id}`}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`flex-1 flex items-center justify-center gap-1.5 px-2.5 lg:px-3.5 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all min-w-0 cursor-pointer ${
+                      isActive
+                        ? `${item.activeClass} shadow-md`
+                        : 'neu-btn text-slate-800 hover:text-indigo-800'
+                    }`}
+                  >
+                    <Icon
+                      className={`w-4 h-4 shrink-0 ${
+                        isActive ? 'text-white' : item.iconClass
+                      }`}
+                    />
+                    <span className="whitespace-nowrap truncate">{item.label}</span>
+                  </button>
+                );
+              })
+            )}
           </nav>
         </div>
       </header>
@@ -429,78 +507,130 @@ export const Header: React.FC<HeaderProps> = ({
         style={{ height: `${headerHeight}px` }}
       />
 
-      {/* Thanh điều hướng dưới đáy màn hình trên điện thoại (5 mục: Trang chủ, Học, Đấu trí, Báo cáo, Tôi) */}
+      {/* Thanh điều hướng dưới đáy màn hình trên điện thoại */}
       <nav
         aria-label="Điều hướng di động"
         className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-4px_20px_rgba(15,23,42,0.1)] px-2 py-1.5"
       >
-        <div className="grid grid-cols-5 gap-1 max-w-md mx-auto">
-          <button
-            type="button"
-            id="mobile-nav-home"
-            onClick={() => setActiveTab('home')}
-            className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
-              activeTab === 'home'
-                ? 'nav-active-home shadow-sm'
-                : 'text-slate-700 hover:text-indigo-800'
-            }`}
-          >
-            <Home className="w-4 h-4 shrink-0" />
-            <span className="whitespace-nowrap">Trang chủ</span>
-          </button>
+        {appData.isTeacherLoggedIn ? (
+          <div className="grid grid-cols-4 gap-1 max-w-md mx-auto">
+            <button
+              type="button"
+              onClick={() => setActiveTab('report')}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
+                activeTab === 'report' || activeTab === 'home'
+                  ? 'nav-active-home shadow-sm'
+                  : 'text-slate-700 hover:text-indigo-800'
+              }`}
+            >
+              <BarChart3 className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Quản lý lớp</span>
+            </button>
 
-          <button
-            type="button"
-            id="mobile-nav-learn"
-            onClick={() => setActiveTab(isLearningActive ? activeTab : 'socratic')}
-            className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
-              isLearningActive
-                ? 'nav-active-grammar shadow-sm'
-                : 'text-slate-700 hover:text-indigo-800'
-            }`}
-          >
-            <GraduationCap className="w-4 h-4 shrink-0" />
-            <span className="whitespace-nowrap">Học</span>
-          </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('upload')}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
+                activeTab === 'upload'
+                  ? 'nav-active-vocab shadow-sm'
+                  : 'text-slate-700 hover:text-indigo-800'
+              }`}
+            >
+              <HardDriveUpload className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Tải tài liệu</span>
+            </button>
 
-          <button
-            type="button"
-            id="mobile-nav-arena"
-            onClick={() => setActiveTab('arena')}
-            className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
-              activeTab === 'arena'
-                ? 'nav-active-arena shadow-sm'
-                : 'text-slate-700 hover:text-indigo-800'
-            }`}
-          >
-            <Trophy className="w-4 h-4 shrink-0" />
-            <span className="whitespace-nowrap">Đấu trí</span>
-          </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('socratic')}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
+                activeTab === 'socratic'
+                  ? 'nav-active-grammar shadow-sm'
+                  : 'text-slate-700 hover:text-indigo-800'
+              }`}
+            >
+              <GraduationCap className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Học liệu</span>
+            </button>
 
-          <button
-            type="button"
-            id="mobile-nav-report"
-            onClick={() => setActiveTab('report')}
-            className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
-              activeTab === 'report'
-                ? 'nav-active-home shadow-sm'
-                : 'text-slate-700 hover:text-indigo-800'
-            }`}
-          >
-            <BarChart3 className="w-4 h-4 shrink-0" />
-            <span className="whitespace-nowrap">Báo cáo</span>
-          </button>
+            <button
+              type="button"
+              onClick={onOpenStudentAuth}
+              className="flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold text-slate-700 hover:text-indigo-800 whitespace-nowrap transition-all"
+            >
+              <User className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Hồ sơ</span>
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-5 gap-1 max-w-md mx-auto">
+            <button
+              type="button"
+              id="mobile-nav-home"
+              onClick={() => setActiveTab('home')}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
+                activeTab === 'home'
+                  ? 'nav-active-home shadow-sm'
+                  : 'text-slate-700 hover:text-indigo-800'
+              }`}
+            >
+              <Home className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Trang chủ</span>
+            </button>
 
-          <button
-            type="button"
-            id="mobile-nav-profile"
-            onClick={onOpenStudentAuth}
-            className="flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold text-slate-700 hover:text-indigo-800 whitespace-nowrap transition-all"
-          >
-            <User className="w-4 h-4 shrink-0" />
-            <span className="whitespace-nowrap">Tôi</span>
-          </button>
-        </div>
+            <button
+              type="button"
+              id="mobile-nav-learn"
+              onClick={() => setActiveTab(isLearningActive ? activeTab : 'socratic')}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
+                isLearningActive
+                  ? 'nav-active-grammar shadow-sm'
+                  : 'text-slate-700 hover:text-indigo-800'
+              }`}
+            >
+              <GraduationCap className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Học</span>
+            </button>
+
+            <button
+              type="button"
+              id="mobile-nav-arena"
+              onClick={() => setActiveTab('arena')}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
+                activeTab === 'arena'
+                  ? 'nav-active-arena shadow-sm'
+                  : 'text-slate-700 hover:text-indigo-800'
+              }`}
+            >
+              <Trophy className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Đấu trí</span>
+            </button>
+
+            <button
+              type="button"
+              id="mobile-nav-report"
+              onClick={() => setActiveTab('report')}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
+                activeTab === 'report'
+                  ? 'nav-active-home shadow-sm'
+                  : 'text-slate-700 hover:text-indigo-800'
+              }`}
+            >
+              <BarChart3 className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Báo cáo</span>
+            </button>
+
+            <button
+              type="button"
+              id="mobile-nav-profile"
+              onClick={onOpenStudentAuth}
+              className="flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold text-slate-700 hover:text-indigo-800 whitespace-nowrap transition-all"
+            >
+              <User className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Tôi</span>
+            </button>
+          </div>
+        )}
       </nav>
     </>
   );

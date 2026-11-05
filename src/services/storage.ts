@@ -1477,5 +1477,12 @@ export function resetStudentPinByTeacher(
   newPin: string
 ): AppDataSchema {
   const hashed = hashPasswordSync(newPin.trim());
-  return updateStudentByTeacher(data, studentId, { pinCode: hashed, passwordHash: hashed });
+  const target = data.students.find((s) => s.id === studentId);
+  if (target) {
+    clearLoginFailures(`student:${target.username.toLowerCase()}`);
+  }
+  return updateStudentByTeacher(data, studentId, {
+    pinCode: hashed,
+    passwordHash: hashed,
+  });
 }
