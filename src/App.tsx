@@ -14,6 +14,7 @@ import { StudentAuthModal } from './components/StudentAuthModal';
 import { LandingCoverScreen } from './components/LandingCoverScreen';
 import { HomeScreen } from './components/HomeScreen';
 import { SocraticTutor } from './components/SocraticTutor';
+import { GrammarG6App } from './grammar-g6/components/GrammarG6App';
 import { SpeechStudio } from './components/SpeechStudio';
 import { WritingGrader } from './components/WritingGrader';
 import { ReadingMasteryGame } from './components/ReadingMasteryGame';
@@ -26,6 +27,8 @@ import { TeacherProfileModal } from './components/TeacherProfileModal';
 export default function App() {
   const [appData, setAppData] = useState<AppDataSchema>(() => loadAppData());
   const [activeTab, setActiveTab] = useState<string>('home');
+  const [grammarSubMode, setGrammarSubMode] = useState<'grammar-g6' | 'socratic'>('grammar-g6');
+  const [selectedGrammarUnitId, setSelectedGrammarUnitId] = useState<string | null>(null);
   const [isCoverActive, setIsCoverActive] = useState<boolean>(true);
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState<boolean>(false);
   const [isBackupModalOpen, setIsBackupModalOpen] = useState<boolean>(false);
@@ -257,6 +260,8 @@ export default function App() {
   };
 
   const handleReviewTopicClick = (unitId: string) => {
+    setSelectedGrammarUnitId(unitId);
+    setGrammarSubMode('grammar-g6');
     setActiveTab('socratic');
   };
 
@@ -361,7 +366,59 @@ export default function App() {
             onSelectSkill={(tabId) => setActiveTab(tabId)}
           />
         )}
-        {activeTab === 'socratic' && <SocraticTutor units={appData.units} />}
+        {activeTab === 'socratic' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            {/* Grammar Mode Switcher Banner */}
+            <div className="neu-card-purple p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-pastel-yellow text-xs font-extrabold mb-2">
+                  <span>💡 Học & Luyện Ngữ Pháp Tiếng Anh 6 (Global Success)</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-purple-950 tracking-tight">
+                  Ngữ Pháp Trọng Tâm 12 Unit & Gia Sư AI Socratic 🌟
+                </h2>
+                <p className="text-xs sm:text-sm text-purple-700 font-bold mt-1">
+                  29 chủ điểm lý thuyết, 104 bộ bài tập tương tác 7 dạng & sổ lỗi sai thông minh!
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => setGrammarSubMode('grammar-g6')}
+                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                    grammarSubMode === 'grammar-g6'
+                      ? 'neu-btn-primary text-white shadow-md scale-105'
+                      : 'neu-btn text-slate-600 hover:text-indigo-600'
+                  }`}
+                >
+                  <span>📚 Bài Học & Bài Tập (12 Unit)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setGrammarSubMode('socratic')}
+                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                    grammarSubMode === 'socratic'
+                      ? 'neu-btn-primary text-white shadow-md scale-105'
+                      : 'neu-btn text-slate-600 hover:text-indigo-600'
+                  }`}
+                >
+                  <span>🤖 Gia Sư AI Socratic (Hỏi Đáp)</span>
+                </button>
+              </div>
+            </div>
+
+            {grammarSubMode === 'grammar-g6' ? (
+              <GrammarG6App
+                currentStudentId={appData.currentStudentId}
+                initialUnitId={selectedGrammarUnitId}
+                onSessionCompleted={handleSessionCompleted}
+              />
+            ) : (
+              <SocraticTutor units={appData.units} />
+            )}
+          </div>
+        )}
         {activeTab === 'speech' && <SpeechStudio units={appData.units} />}
         {activeTab === 'writing' && (
           <WritingGrader

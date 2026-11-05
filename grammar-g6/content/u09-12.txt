@@ -1,0 +1,434 @@
+=== 9 | Cities of the World | Các thành phố trên thế giới
+
+## u9-possessive-adjectives | Possessive Adjectives | Tính từ sở hữu
+### Bảng tính từ sở hữu
+= I → my · you → your · he → his · she → her · it → its · we → our · they → their
+- Tính từ sở hữu luôn đứng TRƯỚC danh từ: my city, her postcard, their hotel.
+- Không dùng a/an/the cùng tính từ sở hữu: my house (không nói "the my house").
+### Chọn theo người/vật sở hữu
+> Tom loves London. His favourite landmark is Big Ben. :: Tom yêu London. Địa danh yêu thích của cậu ấy là Big Ben.
+> Mai and Lan are in Sydney. Their hotel is near the harbour. :: Mai và Lan đang ở Sydney. Khách sạn của họ gần bến cảng.
+> The city is famous for its old buildings. :: Thành phố nổi tiếng với những tòa nhà cổ.
+! its = của nó; it's = it is / it has.
+x The dog is wagging it's tail. => The dog is wagging its tail.
+
+## u9-possessive-pronouns | Possessive Pronouns | Đại từ sở hữu
+### Bảng đại từ sở hữu
+= my → mine · your → yours · his → his · her → hers · our → ours · their → theirs
+- Đại từ sở hữu đứng MỘT MÌNH, không có danh từ theo sau: This map is mine.
+### Phân biệt
+= This is my postcard. ↔ This postcard is mine.
+= That is their hotel. ↔ That hotel is theirs.
+### Câu hỏi Whose
+= Whose + N + is/are + this/these...? → Whose map is this? – It's mine.
+> Whose tickets are these? – They're ours. :: Những vé này của ai? – Của chúng tôi.
+x This book is my. => This book is mine.
+x Hers city is beautiful. => Her city is beautiful.
+x The blue tickets are their's. => The blue tickets are theirs.
+
+@set mcq | Chọn tính từ sở hữu đúng | level=1 | gp=u9-possessive-adjectives
+I love Ha Noi. ___ favourite place is Hoan Kiem Lake. => Mine | *My | Me | I || Trước danh từ → tính từ sở hữu My.
+Tom is from London. ___ city has many famous landmarks. => Him | He | Hers | *His || Tom (nam) → His.
+Lan is visiting Paris with ___ parents. => hers | she | *her | their || Lan (nữ) + danh từ → her.
+We are staying in Sydney. ___ hotel is near the Opera House. => *Our | Ours | Us | Their || We → Our.
+Mai and Nam are tourists. ___ guide is very friendly. => Theirs | *Their | Them | Our || Hai người → Their.
+The city is famous for ___ beautiful beaches. => it's | it | their | *its || "của nó" → its (không phải it's).
+The children are carrying ___ own backpacks. => theirs | *their | them | our || The children → their + N.
+The museum has changed ___ opening hours. => *its | it's | their | his || The museum (vật số ít) → its.
+
+@set mcq | Chọn đại từ sở hữu đúng | level=2 | gp=u9-possessive-pronouns
+This city map belongs to me. It is ___. => my | me | ours | *mine || Đứng một mình → mine.
+That blue suitcase belongs to Lan. It is ___. => her | she | *hers | their || Lan → hers.
+These postcards belong to us. They are ___. => our | *ours | us | theirs || us → ours.
+Those tickets belong to Tom and Ben. They are ___. => their | *theirs | them | ours || Tom and Ben → theirs.
+Our room is on the third floor; ___ is on the fourth. => their | them | *theirs | our || theirs = their room.
+Her postcard is colourful, but ___ is black and white. => my | *mine | me | our || mine = my postcard.
+Your city is larger than ___. => *ours | our | us | their || Sau than không có danh từ → ours.
+My camera is small, but ___ is very large. => he | *his | him | her || his = his camera.
+
+@set gap | Điền từ sở hữu phù hợp | level=2 | gp=u9-possessive-pronouns
+I have a new camera. ___ camera is very light. => My || Trước danh từ → My.
+This camera belongs to me. It is ___. => mine || Đứng một mình → mine.
+The red suitcase belongs to Lan. It is ___. => hers || Lan → hers.
+These tickets belong to us. They are ___. => ours || us → ours.
+Those photos are ___, not ours. (they) => theirs || Đứng một mình → theirs.
+This blue map is ___; the green one is mine. (you) => yours || you → yours.
+The museum is famous for ___ old paintings. => its || Vật số ít → its.
+His postcard is from Paris; ___ is from Rome. (she) => hers || hers = her postcard.
+
+@set mcq | Chọn my/mine, your/yours, its/it's... | level=2 | gp=u9-possessive-pronouns
+This is ___ favourite city. => *my | mine || Trước danh từ city → my.
+That travel bag is ___. => her | *hers || Đứng cuối câu → hers.
+These seats are ___. => their | *theirs || Đứng một mình → theirs.
+Is this ___ passport? => *your | yours || Trước danh từ → your.
+Paris is famous for ___ museums. => *its | it's || "của nó" → its.
+Our hotel is cheaper than ___. => their | *theirs || Sau than, không có danh từ → theirs.
+This guidebook is ___, not yours. => my | *mine || Đứng một mình → mine.
+Sydney is beautiful, and ___ harbour is famous. => *its | it's || its harbour = bến cảng của nó.
+
+@set rewrite | Viết lại câu với đại từ sở hữu | level=3 | gp=u9-possessive-pronouns
+This is my city map. → This city map ... => This city map is mine. || my city map → is mine.
+That is her suitcase. → That suitcase ... => That suitcase is hers. || her → hers.
+My room is smaller than their room. → My room is smaller than ... => My room is smaller than theirs. || their room → theirs.
+Our guidebook is newer than your guidebook. → Our guidebook is newer than ... => Our guidebook is newer than yours. || your guidebook → yours.
+That bicycle belongs to Nam. → That bicycle ... => That bicycle is Nam's. ## That bicycle is his. || belongs to Nam = is Nam's / his.
+These photos belong to Lan. → These photos ... => These photos are Lan's. ## These photos are hers. || belong to Lan = are Lan's / hers.
+
+@set rewrite | Đặt câu hỏi Whose và trả lời | level=3 | gp=u9-possessive-pronouns
+map (I) => Whose map is this? It's mine. ## Whose map is that? It's mine. ## Whose map is this? It is mine. || Whose + N số ít + is this? → It's + đại từ sở hữu.
+camera (Tom) => Whose camera is this? It's Tom's. ## Whose camera is this? It's his. ## Whose camera is that? It's Tom's. ## Whose camera is that? It's his. || Tom → Tom's / his.
+postcards (we) => Whose postcards are these? They're ours. ## Whose postcards are those? They're ours. ## Whose postcards are these? They are ours. || N số nhiều → are these? → They're ours.
+tickets (they) => Whose tickets are these? They're theirs. ## Whose tickets are those? They're theirs. || they → theirs.
+suitcase (Lan) => Whose suitcase is this? It's Lan's. ## Whose suitcase is this? It's hers. ## Whose suitcase is that? It's Lan's. ## Whose suitcase is that? It's hers. || Lan → Lan's / hers.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u9-possessive-pronouns
+This postcard is my. => my -> mine || Đứng cuối câu → đại từ sở hữu mine.
+Hers hotel is near the station. => Hers -> Her || Trước danh từ → tính từ sở hữu Her.
+These suitcases are our. => our -> ours || Đứng một mình → ours.
+The city is famous for it's old bridge. => it's -> its || it's = it is; "của nó" là its.
+That camera is her, not mine. => her -> hers || Đứng một mình → hers.
+Their is the biggest room in the hotel. => Their -> Theirs || Không có danh từ theo sau → Theirs.
+This is yours passport. => yours -> your || Trước danh từ → your.
+Our city is cleaner than their. => their -> theirs || Sau than, không có danh từ → theirs.
+The blue tickets are their's. => their's -> theirs || Đại từ sở hữu không có dấu nháy.
+Nam is taking photos with him camera. => him -> his || Trước danh từ → his.
+Is this map your? => your -> yours || Đứng cuối câu → yours.
+Mine hotel room has a sea view. => Mine -> My || Trước danh từ → My.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 9) | level=5 | gp=u9-possessive-adjectives
+Last summer, my family visited Singapore. I packed {{my}} clothes in a small suitcase, and my sister packed {{hers}} in a larger one. At the airport, Dad asked, "Is this black bag {{yours}}, Nam?" I said, "No, {{mine}} is blue. The black one is Mum's."
+Our hotel was in the city centre. {{Our}} room had a wonderful view, and my grandparents' room was next to {{ours}}. Singapore is famous for {{its}} clean streets and modern buildings. My sister loved the gardens. She took many photos with {{her}} phone. I used {{my}} camera instead.
+On the second day, we met another Vietnamese family. Their children showed us {{their}} city map because we had left {{ours}} at the hotel. "You can use this one," they said. "It is {{ours}}."
+
+=== 10 | Our Houses in the Future | Ngôi nhà tương lai
+
+## u10-will | Future Simple | Thì tương lai đơn
+### Cách dùng
+- Dự đoán, quyết định tức thời, lời hứa, sự việc sẽ xảy ra trong tương lai.
+> People will live in smarter houses. :: Con người sẽ sống trong những ngôi nhà thông minh hơn.
+> I'll help you with the robot. :: Mình sẽ giúp bạn với con robot.
+- Dấu hiệu: tomorrow, next week/year, in the future, one day, soon, I think, I'm sure.
+### Cấu trúc
+= (+) S + will ('ll) + V nguyên mẫu
+= (–) S + will not (won't) + V nguyên mẫu
+= (?) Will + S + V...? → Yes, S + will. / No, S + won't.
+= (Wh) Wh-word + will + S + V...? → Where will you live?
+x She will lives in a smart house. => She will live in a smart house.
+x He won't to use a dishwasher. => He won't use a dishwasher.
+
+## u10-might | Might / Might not | Khả năng trong tương lai
+### Cách dùng & cấu trúc
+= might + V nguyên mẫu = có thể (nhưng chưa chắc) → My house might be on an island.
+= might not + V nguyên mẫu = có thể không → We might not use ordinary TVs.
+- might dùng giống nhau với mọi chủ ngữ, không thêm -s, không dùng "to".
+### Will hay might?
+= will: người nói tin chắc / dự đoán khá chắc chắn
+= might: khả năng, không chắc chắn (perhaps, maybe, not sure, not decided)
+> Robots will be common, but my family might not buy one soon. :: Robot sẽ phổ biến, nhưng nhà tôi có thể chưa mua sớm.
+x My house might has a robot. => My house might have a robot.
+x Perhaps people might will live on Mars. => Perhaps people might live on Mars.
+
+@set mcq | Chọn will / won't đúng | level=1 | gp=u10-will
+I think homes ___ use more solar energy in the future. => won't | did | are | *will || Dự đoán (I think) → will.
+The robot is broken, so it ___ clean the floor today. => will | *won't | does | did || Robot hỏng → won't.
+Our new house ___ have a garden because there is no space. => *won't | will | is | does || Không có chỗ → won't.
+This old TV no longer works. We ___ use it in our future house. => *won't | will | do | did || TV hỏng → won't.
+I promise I ___ leave the lights on when nobody is home. => will | do | *won't | am || Lời hứa không để đèn → won't.
+People ___ need keys if doors recognise their faces. => *won't | will | did | are || Cửa nhận diện khuôn mặt → không cần chìa.
+Our future house ___ be on the Moon; we plan to stay on Earth. => will | *won't | does | was || Ở lại Trái Đất → won't.
+The house has no stairs, so we ___ need a lift. => will | did | are | *won't || Không có cầu thang → không cần thang máy.
+
+@set gap | Hoàn thành với will / won't + V | level=2 | gp=u10-will
+My future house ___ (have) a smart kitchen. => will have || will + V nguyên mẫu.
+We ___ (use) much electricity because we will have solar panels. => won't use || Có pin mặt trời → ít dùng điện lưới.
+I ___ (forget) to turn off the lights; the smart system will do it automatically. => won't forget || Hệ thống tự làm → won't forget.
+We ___ (need) a normal key for the front door. => won't need || Nhà thông minh → không cần chìa thường.
+Our house ___ (collect) rainwater for the garden. => will collect || Dự đoán → will.
+I ___ (put) a TV in every room. => won't put || Ngữ cảnh: không đặt TV mọi phòng.
+Robots ___ (help) older people with simple chores. => will help || Dự đoán → will.
+Our future home ___ (waste) much energy. => won't waste || "much" → won't waste.
+
+@set rewrite | Đặt câu hỏi với will và trả lời ngắn | level=3 | gp=u10-will
+your future house / have / a robot? – Yes => Will your future house have a robot? Yes, it will. || Will + S + V? → Yes, it will.
+people / live / underwater? – No => Will people live underwater? No, they won't. || No, they won't.
+the robot / cook / meals? – No => Will the robot cook meals? No, it won't. || the robot → it.
+where / you / live / in the future? => Where will you live in the future? || Wh + will + S + V?
+how many rooms / your future house / have? => How many rooms will your future house have? || How many + N + will + S + V?
+
+@set reorder | Sắp xếp từ thành câu tương lai | level=3 | gp=u10-will
+a smart kitchen / my future house / have / will / . => My future house will have a smart kitchen. || S + will + V + O.
+won't / people / use / so much plastic / . => People won't use so much plastic. || S + won't + V.
+solar panels / your house / will / have / ? => Will your house have solar panels? || Will + S + V?
+in the future / where / live / will / you / ? => Where will you live in the future? || Wh + will + S + V?
+do / your robot / what / will / ? => What will your robot do? || What + will + S + do?
+ordinary keys / need / we / won't / . => We won't need ordinary keys. || S + won't + V.
+next year / a new fridge / buy / will / my parents / . => My parents will buy a new fridge next year. ## Next year my parents will buy a new fridge. || Trạng từ thời gian ở đầu hoặc cuối câu.
+
+@set mcq | Will hay might? | level=4 | gp=u10-might
+Dad has installed solar panels on the roof. Our house ___ use less electricity from the grid. => *will | won't | might | might not || Đã lắp pin → chắc chắn → will.
+We are still choosing between a flat in the city and a house in the countryside. We ___ live in the countryside. => won't | *might | will | will not || Chưa quyết định → might.
+The robot's battery is completely empty. It ___ clean the floor until we charge it. => might | will | *won't | might not || Hết pin → chắc chắn không → won't.
+Mum has already ordered a new smart fridge. It ___ arrive on Friday. => might not | *will | won't | might || Đã đặt hàng → will.
+Scientists are testing houses under the sea, but nobody knows what will happen. People ___ live underwater one day. => *might | won't | will | will not || Không ai biết → might.
+This smart door only opens with your fingerprint. You ___ need an ordinary key. => might | will | *won't | might not || Chắc chắn không cần → won't.
+The weather forecast is uncertain. We ___ use the solar cooker tomorrow. => will | *might not | won't | will not || Không chắc → might not.
+My parents have not decided whether to buy a dishwasher. We ___ get one next year. => will | won't | *might | will not || Chưa quyết định → might.
+
+@set mcq | Đọc hiểu – chọn câu dự đoán phù hợp | level=4 | gp=u10-might
+Ben's future house is planned for a small island. There are no roads connecting the island to the city. => Ben will drive to the city every day. | *Ben might travel by boat. | Ben won't have any windows. | Ben will live in a skyscraper. || Không có đường bộ → có thể đi thuyền.
+Tom wants a robot, but his parents think robots are too expensive at the moment. => They will definitely buy three robots. | *They might not buy a robot soon. | Their robot will cook dinner tonight. | They won't live in a house. || Robot đắt → có thể chưa mua.
+Anna's bedroom plan has two versions. One has a balcony and the other does not. Her family has not chosen yet. => Her bedroom will definitely have a balcony. | Her bedroom won't have a window. | *Her bedroom might have a balcony. | Her bedroom will be underground. || Chưa chọn → might.
+Scientists are testing houses that can float on water, but the technology is still new. => Everyone will live on water next year. | *Floating houses might become more common in the future. | People won't build houses anymore. | All houses will be under the sea. || Công nghệ còn mới → might.
+Minh's family is thinking about buying a dishwasher, but they are also trying to spend less money this year. => *They might not buy a dishwasher this year. | They will definitely buy one tomorrow. | They won't use a kitchen anymore. | They might move to another country. || Đang tiết kiệm → might not.
+
+@set rewrite | Viết lại câu dự đoán với might / might not | level=3 | gp=u10-might
+Perhaps my future house will be in the mountains. (might) => My future house might be in the mountains. || Perhaps ... will → might.
+Perhaps we will not need remote controls. (might not) => We might not need remote controls. || might not + V.
+Maybe my bedroom will have a smart TV. (might) => My bedroom might have a smart TV. || might + V nguyên mẫu.
+There is a possibility that people will live underwater. (might) => People might live underwater. || might = có khả năng.
+Perhaps our robot will not cook meals. (might not) => Our robot might not cook meals. || might not + V.
+Perhaps we will not buy a dishwasher. (might not) => We might not buy a dishwasher. || might not + V.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u10-will
+My future house will has twenty rooms. => has -> have || will + V nguyên mẫu.
+She won't to use a normal TV. => to use -> use || Sau won't không dùng to.
+Will your robot cooks meals? => cooks -> cook || Will + S + V nguyên mẫu.
+Where you will live in the future? => you will -> will you || Câu hỏi: Wh + will + S + V.
+He might lives near the sea. => lives -> live || might + V nguyên mẫu.
+We might not to buy a dishwasher. => to buy -> buy || might not + V.
+Robots will helps us with chores. => helps -> help || will + V nguyên mẫu.
+Perhaps people might will live on Mars. => might will -> might || Không dùng hai động từ khuyết thiếu liền nhau.
+I won't forgot to turn off the lights. => forgot -> forget || won't + V nguyên mẫu.
+Will there is a swimming pool? => is -> be || Will there be...?
+My parents will moving next year. => moving -> move || will + V nguyên mẫu.
+What will your robot does? => does -> do || will + V nguyên mẫu.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 10) | level=5 | gp=u10-might
+In twenty years, I think my family {{will live}} (live) in a smart house outside the city. The house {{will use}} (use) solar energy, so we {{won't need}} (not / need) as much electricity from the grid. I am sure there {{will be}} (be) a home robot because my parents love new technology.
+The robot {{will do}} (do) the dishes and {{will water|water}} (water) the plants. It {{won't drive}} (not / drive) a car because we plan to use public transport. I'm not certain about the location. We {{*might/will}} live near a lake, but we {{*won't/might}} choose a place that is too far from school and work.
+I am sure the windows {{will}} close automatically when it rains. Perhaps our kitchen {{might}} not have a normal cooker because a cooking robot could prepare meals.
+
+=== 11 | Our Greener World | Thế giới xanh hơn
+
+## u11-articles | Articles: a / an / the | Mạo từ a / an / the
+### a / an – một người/vật chưa xác định
+= a + N đếm được số ít bắt đầu bằng ÂM phụ âm → a bag, a reusable bottle, a uniform
+= an + N đếm được số ít bắt đầu bằng ÂM nguyên âm → an egg, an old newspaper, an hour
+! Chọn a/an theo âm đầu, không chỉ theo chữ cái: an hour, a university.
+### the – đối tượng đã xác định / duy nhất
+- Người nghe đã biết hoặc đã được nhắc trước đó.
+> I bought a bag. The bag is reusable. :: Tôi mua một cái túi. Cái túi đó tái sử dụng được.
+- Vật duy nhất: the Earth, the Sun, the environment.
+### Không dùng mạo từ (Ø)
+- Nói chung về N số nhiều / không đếm được.
+> Trees help clean the air. Water is important. :: Cây giúp làm sạch không khí. Nước rất quan trọng.
+x an plastic bottle => a plastic bottle
+x a hour => an hour
+
+## u11-first-conditional | First Conditional | Câu điều kiện loại 1
+### Cách dùng & công thức
+- Điều kiện có thể xảy ra ở hiện tại/tương lai và kết quả có khả năng xảy ra.
+= If + S + V (hiện tại đơn), S + will/won't + V
+> If we recycle more, we will reduce waste. :: Nếu chúng ta tái chế nhiều hơn, chúng ta sẽ giảm rác thải.
+= Có thể đảo vế: S + will + V + if + S + V (không dùng dấu phẩy)
+> We will reduce waste if we recycle more. :: Chúng ta sẽ giảm rác thải nếu tái chế nhiều hơn.
+### Dấu phẩy & phủ định
+- Mệnh đề if đứng trước → có dấu phẩy.
+> If you don't turn off the tap, you will waste water. :: Nếu bạn không khoá vòi, bạn sẽ lãng phí nước.
+x If we will recycle, we will save resources. => If we recycle, we will save resources.
+x If she use a reusable bag, ... => If she uses a reusable bag, ...
+! Không dùng will ngay sau if.
+
+@set classify | Chọn a hay an | level=1 | gp=u11-articles | cats=a,an
+reusable bag => a || "reusable" bắt đầu bằng âm /r/ → a.
+old newspaper => an || "old" bắt đầu bằng nguyên âm → an.
+apple core => an || "apple" bắt đầu bằng nguyên âm → an.
+useful idea => a || "useful" đọc /juː/ (âm phụ âm) → a.
+eco-friendly product => an || "eco" bắt đầu bằng nguyên âm → an.
+hour of cleaning => an || "h" câm, đọc /aʊ/ → an.
+uniform for volunteers => a || "uniform" đọc /juː/ → a.
+orange bin => an || "orange" bắt đầu bằng nguyên âm → an.
+metal box => a || Âm /m/ → a.
+electric bike => an || "electric" bắt đầu bằng nguyên âm → an.
+
+@set mcq | Chọn a / an / the | level=2 | gp=u11-articles
+I bought ___ reusable bottle yesterday. => an | the | *a | some || Nhắc lần đầu, âm phụ âm → a.
+___ bottle is made of metal. => A | *The | An | Some || Chai đã được nhắc ở câu trước → The.
+We saw ___ old bicycle near the gate. => a | the | *an | some || "old" → an.
+Please put the paper in ___ blue recycling bin over there. => a | *the | an | some || "over there" → đã xác định → the.
+Lan brought ___ empty box for the recycling project. => *an | a | the | some || "empty" → an.
+Turn off ___ light in your bedroom before you leave. => a | an | some | *the || Đèn cụ thể trong phòng bạn → the.
+I found ___ interesting article about saving water. => a | the | *an | some || "interesting" → an.
+Dad bought ___ electric bike last month. => *an | a | the | some || "electric" → an.
+We visited ___ recycling point that our teacher recommended. => *the | a | an | some || Có mệnh đề xác định "that our teacher recommended" → the.
+
+@set mcq | A / an / the / Ø (không dùng mạo từ) | level=3 | gp=u11-articles
+___ water is important for all living things. => a | an | the | *Ø || Nói chung về N không đếm được → Ø.
+We should protect ___ environment. => a | an | *the | Ø || Vật duy nhất → the environment.
+___ trees help reduce air pollution. => a | an | the | *Ø || Nói chung về N số nhiều → Ø.
+We saw ___ Earth in a photo from space. => a | an | *the | Ø || Duy nhất → the Earth.
+She is ___ active member of the club. => a | *an | the | Ø || "active" → an.
+___ plastic can stay in the environment for many years. => a | an | the | *Ø || Nói chung → Ø.
+I picked up a bottle and put it in the recycling bin. ___ bottle was empty. => A | An | *The | Ø || Đã nhắc → The.
+It takes about ___ hour to clean this part of the park. => a | *an | the | Ø || "hour" h câm → an.
+
+@set mcq | Chọn dạng đúng trong câu điều kiện loại 1 | level=2 | gp=u11-first-conditional
+If we ___ reusable bags, we will use fewer plastic bags. => will use | used | *use | uses || Mệnh đề if: hiện tại đơn; we → use.
+If Lan ___ the tap off, she will save water. => *turns | will turn | turn | turned || Lan (số ít) → turns.
+If you ___ the lights on, you will waste electricity. => will leave | leaves | left | *leave || you → leave.
+If it ___ tomorrow, we will cancel the clean-up. => will rain | rain | *rains | rained || it → rains (không dùng will sau if).
+If Nam brings a bottle, he ___ need to buy a plastic one. => doesn't | *won't | isn't | didn't || Mệnh đề chính: won't + V.
+If the bin ___ full, we will empty it. => will be | be | *is | was || Mệnh đề if: is.
+If you don't sort the rubbish, recycling ___ more difficult. => is | was | would be | *will be || Mệnh đề chính: will be.
+If everyone ___ one piece of rubbish, the park will look cleaner. => will pick up | pick up | *picks up | picked up || everyone → số ít → picks up.
+
+@set gap | Chia động từ trong câu điều kiện loại 1 | level=3 | gp=u11-first-conditional
+If we (recycle) ___ paper, we (save) ___ trees. => recycle ;; will save || If + hiện tại đơn, will + V.
+If Mai (use) ___ a reusable bottle, she (not / buy) ___ plastic ones. => uses ;; won't buy || Mai → uses; phủ định: won't buy.
+If it (be) ___ sunny tomorrow, we (plant) ___ trees. => is ;; will plant || it → is.
+If you (not / turn off) ___ the tap, you (waste) ___ water. => don't turn off ;; will waste || Phủ định trong mệnh đề if: don't + V.
+If the bin (be) ___ full, I (empty) ___ it. => is ;; will empty || is / will empty.
+If everyone (help) ___, the clean-up (finish) ___ quickly. => helps ;; will finish || everyone → helps.
+If the weather (be) ___ bad, we (not / go) ___ cycling. => is ;; won't go || won't + V.
+
+@set rewrite | Nối hai câu với If | level=3 | gp=u11-first-conditional
+We recycle paper. We will save trees. => If we recycle paper, we will save trees. ## We will save trees if we recycle paper. || If + vế điều kiện, vế kết quả.
+You turn off the tap. You will save water. => If you turn off the tap, you will save water. ## You will save water if you turn off the tap. || Có dấu phẩy khi If đứng đầu.
+It rains tomorrow. We will stay at home. => If it rains tomorrow, we will stay at home. ## We will stay at home if it rains tomorrow. || If + hiện tại đơn.
+Nam does not bring a bottle. He will buy a plastic one. => If Nam does not bring a bottle, he will buy a plastic one. ## Nam will buy a plastic one if he does not bring a bottle. || Phủ định trong mệnh đề if.
+The bin is full. We will empty it. => If the bin is full, we will empty it. ## We will empty it if the bin is full. || If + is.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u11-first-conditional
+I bought an reusable bottle. => an -> a || "reusable" bắt đầu bằng âm phụ âm → a.
+We should protect a environment. => a -> the || Vật duy nhất → the environment.
+I found a old newspaper under the bench. => a -> an || "old" → an.
+If we will recycle more, we will reduce waste. => will recycle -> recycle || Không dùng will sau if.
+If Lan use a reusable bag, she will help the environment. => use -> uses || Lan → uses.
+If it rain tomorrow, we will stay home. => rain -> rains || it → rains.
+If people throw rubbish in rivers, the water become dirty. => become -> will become || Mệnh đề chính: will + V.
+We visited a recycling centre. A centre was very modern. => A -> The || Đã nhắc ở câu trước → The.
+The Earth is an planet. => an -> a || "planet" → a.
+I need a hour to finish the clean-up. => a -> an || "hour" h câm → an.
+If the bin will be full, I will empty it. => will be -> is || Mệnh đề if: hiện tại đơn.
+If Dad rides his bike, he save petrol. => save -> will save || Mệnh đề chính: will + V.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 11) | level=5 | gp=u11-first-conditional
+Our school has {{a}} Green Club. {{The}} club meets every Friday after class. Last week, our teacher gave us {{an}} interesting challenge: reduce waste for seven days. I decided to carry {{a}} reusable bottle and stop buying plastic ones.
+If I {{remember}} (remember) my bottle every day, I {{won't need}} (not / need) to buy drinks in plastic bottles. My friend Lan brings {{a}} lunch box from home. If she {{reuses}} (reuse) it all year, she {{will create}} (create) much less waste. We also put paper in {{the}} blue bin next to our classroom.
+{{The}} trees in our school yard give us shade and cleaner air. If every class {{plants}} (plant) one more tree, the school {{will be}} (be) greener. If everyone makes {{a}} small change, together we will make a big difference.
+
+=== 12 | Robots | Người máy
+
+## u12-superlative | Superlative Adjectives | So sánh nhất với tính từ ngắn
+### Cách dùng & cấu trúc
+- So sánh từ 3 người/vật trở lên, chỉ đối tượng nổi bật nhất.
+= S + be + the + adj-est + N + in/of ...
+> H8 is the fastest robot in the show. :: H8 là robot nhanh nhất trong buổi triển lãm.
+= in + nơi chốn/tập thể → the tallest in the class
+= of + nhóm có số lượng cụ thể → the fastest of the three robots
+### Quy tắc thêm -est
+= Thông thường: + est → fast → fastest, tall → tallest
+= Tận cùng -e: + st → large → largest, nice → nicest
+= Phụ âm + y: y → iest → noisy → noisiest, heavy → heaviest
+= CVC: gấp đôi phụ âm → big → biggest, hot → hottest, thin → thinnest
+= Bất quy tắc: good → best · bad → worst · far → farthest/furthest
+x the most fastest robot => the fastest robot
+x the bigest => the biggest
+! Luôn có "the" trước dạng so sánh nhất.
+
+## u12-can | Can / Can't | Khả năng (chủ đề robot)
+### Cấu trúc
+= S + can / can't + V nguyên mẫu → This robot can repair machines. / It can't cook.
+= Can + S + V...? → Yes, it can. / No, it can't.
+> Can it understand our feelings? – No, it can't. :: Nó có hiểu cảm xúc của chúng ta không? – Không.
+x It can repairs machines. => It can repair machines.
+
+@set gap | Viết dạng so sánh nhất | level=1 | gp=u12-superlative
+large → ___ => largest | the largest || Tận cùng -e → + st.
+nice → ___ => nicest | the nicest || + st.
+heavy → ___ => heaviest | the heaviest || Phụ âm + y → iest.
+noisy → ___ => noisiest | the noisiest || y → iest.
+big → ___ => biggest | the biggest || CVC → gấp đôi g.
+hot → ___ => hottest | the hottest || Gấp đôi t.
+thin → ___ => thinnest | the thinnest || Gấp đôi n.
+quiet → ___ => quietest | the quietest || Thông thường + est.
+
+@set mcq | Chọn dạng so sánh nhất đúng | level=2 | gp=u12-superlative
+H8 is ___ robot in the home-robot group. => faster | the faster | *the fastest | most fast || So sánh nhất: the + adj-est.
+This is ___ robot in the shop. => smaller | *the smallest | the smaller | most small || the smallest.
+That robot is ___ of the three. => taller | the taller | *the tallest | most tall || "of the three" → so sánh nhất.
+This old robot is ___ one in the room. => noisier | the noisier | most noisy | *the noisiest || noisy → the noisiest.
+The red robot is ___ of all. => bigger | *the biggest | the bigger | most big || big → the biggest.
+This delivery robot is ___ model in the series. => *the newest | newer | the newer | most new || new → the newest.
+The silver robot is ___ of the four. => *the thinnest | thinner | the thinner | most thin || thin → the thinnest.
+This robot has ___ battery performance in the test. => better | the better | the goodest | *the best || good → the best.
+
+@set gap | Chia tính từ trong ngoặc ở dạng so sánh nhất | level=3 | gp=u12-superlative
+RoboMax can finish the race in only 20 seconds. It is ___ machine in the competition. (fast) => the fastest || the + adj-est.
+Atlas can lift a 100-kilo box. It is ___ machine in the factory. (strong) => the strongest || the strongest.
+This metal box weighs 30 kilos. It is ___ thing the robot has to carry. (heavy) => the heaviest || heavy → heaviest.
+The new mini-drone weighs only 200 grams. It is ___ device in the science room. (light) => the lightest || light → lightest.
+The old vacuum cleaner makes a terrible sound. It is ___ machine in our house. (noisy) => the noisiest || noisy → noisiest.
+The new robot factory covers ten football fields. It is ___ building in the area. (big) => the biggest || big → biggest.
+July was ___ month of the year in our city. (hot) => the hottest || hot → hottest.
+Team A got 98 points in the robot challenge. It had ___ result in the competition. (good) => the best || good → best.
+
+@set mcq | In hay of? | level=2 | gp=u12-superlative
+RoboMax is the fastest machine ___ the competition. => *in | of || "the competition" là tập thể/sự kiện → in.
+This is the strongest ___ the five models we tested. => in | *of || Nhóm có số lượng cụ thể → of.
+The reading room is the quietest place ___ our school. => *in | of || Nơi chốn → in.
+Mina is the tallest ___ the four students in her group. => in | *of || "the four students" → of.
+Nam is the smartest student ___ the robotics club. => *in | of || Tập thể (câu lạc bộ) → in.
+This mini-drone is the lightest ___ the three on the table. => in | *of || "the three" → of.
+Tom was the fastest ___ the eight finalists in the race. => in | *of || Nhóm cụ thể → of.
+The computer room is the hottest room ___ the building today. => *in | of || Nơi chốn → in.
+
+@set gap | So sánh các robot theo bảng | level=4 | gp=u12-superlative
+? Bảng: A1 – 120 cm, 12 km/h, 28 kg, $900, 45 dB | B2 – 150 cm, 10 km/h, 35 kg, $750, 52 dB | C3 – 110 cm, 15 km/h, 22 kg, $1,100, 40 dB | D4 – 135 cm, 8 km/h, 30 kg, $650, 58 dB
+___ is the tallest robot. => B2 || B2 cao 150 cm – cao nhất.
+___ is the fastest robot. => C3 || C3 chạy 15 km/h – nhanh nhất.
+___ is the cheapest robot. => D4 || D4 giá $650 – rẻ nhất.
+___ is the quietest robot. => C3 || C3 chỉ 40 dB – êm nhất.
+___ is the noisiest robot. => D4 || D4 58 dB – ồn nhất.
+B2 is the ___ robot. (heavy) => heaviest || B2 nặng 35 kg – nặng nhất.
+C3 is the ___ robot to carry. (light) => lightest || C3 chỉ 22 kg – nhẹ nhất.
+
+@set gap | Can / can't – khả năng của robot | level=3 | gp=u12-can
+? Chọn cụm: water the plants • carry heavy boxes • recognise faces • translate • clean the floor • play football • work underwater • drive a car
+The floor is covered with dust, and HomeBot has brushes underneath it. → HomeBot ___. => can clean the floor || Có chổi → có thể lau sàn.
+This little robot can lift only one kilogram. The box weighs 40 kilograms. → It ___. => can't carry heavy boxes | cannot carry heavy boxes || Chỉ nâng 1 kg → không mang được.
+Alex wants the robot to explain a Japanese sentence, but this model only knows English. → It ___ Japanese. => can't translate | cannot translate || Chỉ biết tiếng Anh → can't translate.
+The flowers are dry. GardenBot has a water tank and moves around the garden every morning. → GardenBot ___. => can water the plants || Có bình nước → can water.
+The football club wants Robo-X to join a match, but it cannot run or kick a ball. → Robo-X ___. => can't play football | cannot play football || Không chạy, không sút → can't.
+SeaBot is completely waterproof and has been designed for ocean research. → SeaBot ___. => can work underwater || Chống nước → can work underwater.
+DriveBot has wheels, but it has no navigation system and is not allowed on public roads. → It ___ safely. => can't drive a car | cannot drive a car || Không có định vị → can't.
+
+@set rewrite | Viết lại câu với so sánh nhất | level=4 | gp=u12-superlative
+Mini-1 is smaller than all the other models in the shop. (small) => Mini-1 is the smallest model in the shop. || the smallest + in the shop.
+Mai is taller than the other four students in her group. (tall) => Mai is the tallest student in her group. ## Mai is the tallest of the five students in her group. ## Mai is the tallest in her group. || the tallest.
+No machine in the factory is stronger than Atlas. (strong) => Atlas is the strongest machine in the factory. || Đảo chủ ngữ: Atlas is the strongest.
+No place in our school is quieter than the reading room. (quiet) => The reading room is the quietest place in our school. || the quietest place in...
+The school hall is bigger than all the other rooms in the building. (big) => The school hall is the biggest room in the building. || big → the biggest.
+July was hotter than every other month last year. (hot) => July was the hottest month last year. ## July was the hottest month of the year. || hot → the hottest.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u12-superlative
+H8 is fastest machine in the competition. => fastest -> the fastest || So sánh nhất phải có the.
+This is the most small model in the shop. => most small -> smallest || Tính từ ngắn → -est.
+WB2 is the strongest of the factory. => of -> in || Nơi chốn → in.
+Mai is the tallest of our robotics club. => of -> in || Tập thể (câu lạc bộ) → in.
+Team Green got the goodest result in the robot challenge. => goodest -> best || good → best.
+This laptop is the cheaptest one in the shop. => cheaptest -> cheapest || cheap → cheapest.
+This robot can repairs simple machines. => repairs -> repair || can + V nguyên mẫu.
+This is the most fastest robot. => most fastest -> fastest || Không dùng most với -est.
+
+@set rewrite | Viết câu hoàn chỉnh từ từ gợi ý | level=4 | gp=u12-can
+H8 / be / fast / machine / competition. => H8 is the fastest machine in the competition. || the fastest + in.
+WB2 / be / strong / of / five / models. => WB2 is the strongest of the five models. || of the five models.
+this home robot / can not / cook / meals. => This home robot can't cook meals. || can't + V.
+your robot / can / water / plants / ? => Can your robot water the plants? || Can + S + V?
+Mai / be / tall / of / four / students. => Mai is the tallest of the four students. || of the four students.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 12) | level=5 | gp=u12-superlative
+Yesterday, our class visited an international robot show. There were four home robots in one area. H8 was {{the fastest}} (fast) robot there, and Mini-1 was {{the smallest}} (small). WB2 was {{the strongest}} (strong) of the four, so it could move heavy boxes easily. A quiet library robot was {{the quietest}} (quiet) robot in the whole hall.
+Each robot had different skills. H8 {{could|can}} do the dishes and {{could|can}} put toys away. The library robot {{couldn't|can't}} speak loudly because it was designed for quiet places. There was also a repair robot that {{could|can}} fix simple machines.
+At the end, we voted for our favourites. I chose Smartie because it was {{the smartest}} (smart) robot in my opinion. My friend chose Mini-1 because it was {{the lightest}} (light) and {{the cheapest}} (cheap) of the group. Our teacher asked, "Which robot is {{the best}} (good) for a school?"

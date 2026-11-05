@@ -38,7 +38,7 @@ const SKILL_CARDS: SkillCardData[] = [
     tabId: 'socratic',
     title: 'Ngữ Pháp',
     titleEn: 'Grammar',
-    description: 'Học ngữ pháp qua phương pháp Socratic — AI dẫn dắt em tự khám phá',
+    description: 'Lý thuyết & 104 bộ bài tập ngữ pháp 12 Unit kèm Sổ lỗi sai & Gia sư AI Socratic',
     icon: <GraduationCap className="w-8 h-8" />,
     emoji: '🧠',
     gradientClass: 'skill-card-grammar',

@@ -1,0 +1,548 @@
+=== 1 | My New School | Trường mới của em
+
+## u1-present-simple | Present Simple | Thì hiện tại đơn
+### Cách dùng
+- Thói quen, hành động lặp lại
+> I walk to school every day. :: Tôi đi bộ đến trường mỗi ngày.
+- Sự thật, chân lý
+> Water boils at 100°C. :: Nước sôi ở 100°C.
+- Trạng thái, sở thích, cảm xúc
+> Lan likes English. :: Lan thích môn Tiếng Anh.
+- Lịch trình cố định
+> The first lesson starts at 7 a.m. :: Tiết học đầu tiên bắt đầu lúc 7 giờ.
+### Động từ TO BE: am / is / are
+= (+) I am · He/She/It is · You/We/They are
+= (–) S + am not / isn't / aren't + ...
+= (?) Am/Is/Are + S + ...?  →  Yes, S + am/is/are. / No, S + am not/isn't/aren't.
+> My classroom is large. :: Lớp học của tôi rộng.
+> Is your classroom large? – Yes, it is. :: Lớp bạn có rộng không? – Có.
+### Động từ thường
+= (+) I/You/We/They + V · He/She/It + V-s/es
+= (–) S + don't / doesn't + V nguyên mẫu
+= (?) Do/Does + S + V nguyên mẫu?  →  Yes, S + do/does. / No, S + don't/doesn't.
+> Duy studies English every day. :: Duy học tiếng Anh mỗi ngày.
+> Does Duy study English every day? – Yes, he does. :: Duy có học tiếng Anh mỗi ngày không? – Có.
+### Dấu hiệu nhận biết
+- always, usually, often, sometimes, rarely/seldom, never
+- every day/week; on Mondays; once/twice a week; in the morning
+x She doesn't goes to school by bus. => She doesn't go to school by bus.
+! Sau do/does/don't/doesn't, động từ chính luôn ở dạng nguyên mẫu.
+
+## u1-s-es | Adding -s / -es | Quy tắc thêm -s/-es và cách phát âm
+### Khi nào thêm đuôi?
+- Chỉ thêm -s/-es ở câu khẳng định khi chủ ngữ là He, She, It hoặc danh từ số ít.
+- I/You/We/They hoặc danh từ số nhiều → dùng động từ nguyên mẫu.
+> Nam plays football. / They play football. :: Nam chơi bóng đá. / Họ chơi bóng đá.
+### Quy tắc chính tả
+= Phần lớn động từ: V + s → reads, plays, likes
+= Tận cùng -s, -ss, -sh, -ch, -x, -z, -o: + es → watches, washes, fixes, goes, does
+= Phụ âm + y: y → i + es → study → studies, carry → carries
+= Nguyên âm + y: + s → play → plays, enjoy → enjoys
+= Đặc biệt: have → has
+### Phát âm đuôi -s/-es
+= /s/ sau âm vô thanh /p, k, f, t, θ/ → stops, likes, laughs
+= /ɪz/ sau /s, z, ʃ, ʒ, tʃ, dʒ/ → watches, washes, closes
+= /z/ các trường hợp còn lại → plays, reads, comes
+! Cách phát âm phụ thuộc vào ÂM cuối, không phải CHỮ cái cuối.
+x He study English. => He studies English.
+x Does she likes Maths? => Does she like Maths?
+
+## u1-frequency | Adverbs of Frequency | Trạng từ và cụm từ chỉ tần suất
+### Thang tần suất
+= always (100%) → usually → often → sometimes → rarely/seldom → never (0%)
+> I usually do my homework after dinner. :: Tôi thường làm bài tập sau bữa tối.
+### Vị trí trong câu
+= S + trạng từ tần suất + V thường → Lan often goes to the library.
+= S + am/is/are + trạng từ tần suất → Nam is never late for school.
+= Modal / don't / doesn't + trạng từ + V → They don't often go to the cinema.
+- Cụm tần suất (every day, once a week, twice a month, on Mondays) thường đứng cuối câu.
+> We have English three times a week. :: Chúng tôi học tiếng Anh ba lần một tuần.
+### Câu hỏi How often
+= How often + do/does + S + V?
+> How often do you play badminton? – Twice a week. :: Bạn chơi cầu lông bao lâu một lần? – Hai lần một tuần.
+x I don't never go to school late. => I never go to school late.
+! Never đã mang nghĩa phủ định, không dùng thêm don't/doesn't.
+
+@set mcq | Chọn đáp án đúng | level=1 | gp=u1-present-simple
+My new school ___ very big. => am | *is | are | be || "My new school" là danh từ số ít → is.
+Lan ___ English every day. => study | *studies | studying | studied || Lan = she, có "every day" → hiện tại đơn; study (phụ âm + y) → studies.
+We ___ to school at 7 a.m. => goes | going | *go | gone || Chủ ngữ We → động từ nguyên mẫu.
+He ___ his homework after school. => do | *does | doing | did || He → do thêm -es thành does.
+Nam ___ a new bicycle. => have | having | *has | had || have là trường hợp đặc biệt: He/She/It → has.
+Mai ___ to the school library every afternoon. => go | gone | going | *goes || Mai (số ít) + go → goes (tận cùng -o thêm -es).
+The first lesson ___ at 7:15. => start | starting | *starts | started || Lịch trình cố định dùng hiện tại đơn; "The first lesson" số ít → starts.
+My brother and I ___ lunch at school. => has | *have | having | had || "My brother and I" = we (số nhiều) → have.
+
+@set gap | Điền am / is / are / am not / is not / are not | level=1 | gp=u1-present-simple
+I ___ a new student at this school. => am || Chủ ngữ I → am.
+My classroom ___ on the first floor. => is || Danh từ số ít → is.
+Lan and Mai ___ good at English. => are || Hai người → số nhiều → are.
+I ___ tired in the morning; I feel great. => am not || "I feel great" → nghĩa phủ định: am not.
+The computer room ___ small; it is quite large. => is not || Vế sau "it is quite large" → câu đầu phủ định: is not / isn't.
+___ your classroom large? => Is || Câu hỏi với chủ ngữ số ít: Is + S...?
+___ Mai and Lan in the library now? => Are || Chủ ngữ số nhiều → Are.
+
+@set gap | Chia động từ trong ngoặc ở thì hiện tại đơn | level=2 | gp=u1-s-es
+My best friend (play) ___ badminton after school. => plays || Nguyên âm + y → chỉ thêm -s.
+Lan (study) ___ very hard. => studies || Phụ âm + y → đổi y thành i + es.
+They (do) ___ their homework in the evening. => do || They → nguyên mẫu.
+My brother (wash) ___ his face every morning. => washes || Tận cùng -sh → thêm -es.
+The bus (pass) ___ my house at 6:45 every morning. => passes || Tận cùng -ss → thêm -es.
+My sister (carry) ___ her books in a rucksack. => carries || carry: phụ âm r + y → carries.
+The school (have) ___ two computer rooms. => has || have → has với chủ ngữ số ít.
+Minh and Phong (finish) ___ school at 4 p.m. => finish || Hai người → số nhiều → giữ nguyên mẫu.
+
+@set classify | Phân loại cách phát âm đuôi -s / -es | level=2 | gp=u1-s-es | cats=/s/,/z/,/ɪz/
+likes => /s/ || Âm cuối /k/ là âm vô thanh → /s/.
+plays => /z/ || Âm cuối là nguyên âm → /z/.
+watches => /ɪz/ || Âm cuối /tʃ/ → /ɪz/.
+reads => /z/ || Âm cuối /d/ hữu thanh → /z/.
+helps => /s/ || Âm cuối /p/ → /s/.
+goes => /z/ || Âm cuối là nguyên âm → /z/.
+washes => /ɪz/ || Âm cuối /ʃ/ → /ɪz/.
+works => /s/ || Âm cuối /k/ → /s/.
+studies => /z/ || Âm cuối là nguyên âm /i/ → /z/.
+finishes => /ɪz/ || Âm cuối /ʃ/ → /ɪz/.
+opens => /z/ || Âm cuối /n/ hữu thanh → /z/.
+takes => /s/ || Âm cuối /k/ → /s/.
+uses => /ɪz/ || Âm cuối /z/ → /ɪz/.
+starts => /s/ || Âm cuối /t/ → /s/.
+lives => /z/ || Âm cuối /v/ hữu thanh → /z/.
+
+@set reorder | Sắp xếp từ thành câu hoàn chỉnh | level=2 | gp=u1-frequency
+usually / I / get up / at 6 o'clock. => I usually get up at 6 o'clock. || Trạng từ tần suất đứng trước động từ thường.
+always / Lan / is / friendly. => Lan is always friendly. || Với to be, trạng từ đứng sau am/is/are.
+often / Nam / goes / to the library / after school. => Nam often goes to the library after school. || S + often + V.
+don't / they / usually / play / football / in the rain. => They don't usually play football in the rain. || Trạng từ đứng sau don't/doesn't và trước động từ chính.
+never / my brother / is / late / for school. => My brother is never late for school. || is + never.
+on Saturdays / sometimes / we / visit / our grandparents. => We sometimes visit our grandparents on Saturdays. ## Sometimes we visit our grandparents on Saturdays. || Sometimes có thể đứng đầu câu hoặc trước động từ; cụm thời gian ở cuối.
+How often / the school library / do / use / you / ? => How often do you use the school library? || How often + do + S + V?
+
+@set rewrite | Viết lại câu ở thể phủ định | level=3 | gp=u1-present-simple
+She likes Art. => She doesn't like Art. || Động từ thường + chủ ngữ số ít → doesn't + V nguyên mẫu.
+We are in class 6A. => We aren't in class 6A. || Động từ to be → thêm not sau are.
+He does his homework after dinner. => He doesn't do his homework after dinner. || "does" ở đây là động từ chính → doesn't do.
+My school has a big library. => My school doesn't have a big library. || has → doesn't have.
+Nam studies French on Mondays. => Nam doesn't study French on Mondays. || studies → doesn't study.
+The school bus stops near my house. => The school bus doesn't stop near my house. || stops → doesn't stop.
+
+@set rewrite | Đặt câu hỏi và trả lời ngắn theo gợi ý | level=3 | gp=u1-present-simple
+She goes to school by bus. (Yes) => Does she go to school by bus? Yes, she does. || Does + S + V nguyên mẫu? → Yes, she does.
+Nam likes Science. (No) => Does Nam like Science? No, he doesn't. || Nam → he; phủ định ngắn: doesn't.
+The library is on the first floor. (No) => Is the library on the first floor? No, it isn't. || To be → đảo Is lên đầu.
+They are in the playground. (Yes) => Are they in the playground? Yes, they are. || Are + they...?
+you / practise English – twice a week => How often do you practise English? ## How often do you practise English? Twice a week. || Hỏi tần suất: How often + do + S + V?
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u1-present-simple
+She don't walk to school every day. => don't -> doesn't || She là ngôi 3 số ít → doesn't.
+Does Lan goes to the library after school? => goes -> go || Sau Does, động từ ở dạng nguyên mẫu.
+My classroom are very large. => are -> is || "My classroom" số ít → is.
+We usually are happy at school. => usually are -> are usually || Trạng từ tần suất đứng SAU to be.
+I am usually do my homework after dinner. => am usually -> usually || Câu có động từ thường "do" → không dùng am.
+They never don't wear uniforms. => never don't -> never || Never đã mang nghĩa phủ định.
+Does your school has a gym? => has -> have || Sau Does dùng nguyên mẫu have.
+Our teachers is always helpful. => is -> are || "Our teachers" số nhiều → are.
+Lan goes never to school late. => goes never -> never goes || Trạng từ tần suất đứng trước động từ thường.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 1) | level=5 | gp=u1-present-simple
+Hi! My name is Phong. I {{am}} (be) a student at My Dinh Secondary School. My school {{is}} (be) quite big and modern. Every school day, I {{walk}} (walk) to school with my best friend Nam. Nam {{lives}} (live) near my house, so we usually go together.
+Our first lesson {{starts}} (start) at 7:15. We {{have}} (have) English three times a week. Nam {{likes}} (like) English very much, and he often {{reads}} (read) English books in the library after class. I {{don't read}} (not / read) there every day because I also enjoy the sports club.
+Our teachers {{are}} (be) kind and helpful. They {{don't give}} (not / give) us too much homework on Fridays. My form teacher {{teaches}} (teach) English. She {{is always}} (always / be) cheerful and patient, so we enjoy her lessons.
+How often {{do}} you practise English after school? I practise it twice a week, but Nam {{practises}} (practise) it almost every day.
+
+=== 2 | My House | Ngôi nhà của em
+
+## u2-possessive | Possessive Case | Sở hữu cách ('s)
+### Danh từ số ít và tên riêng
+= danh từ số ít / tên riêng + 's + vật được sở hữu
+> This is Lan's bedroom. :: Đây là phòng ngủ của Lan.
+> My brother's desk is near the window. :: Bàn của anh tôi ở gần cửa sổ.
+- Tên riêng tận cùng bằng -s vẫn thường thêm 's: James's room, Chris's bike.
+### Danh từ số nhiều
+= Số nhiều có -s: chỉ thêm ' → the students' books, my parents' room
+= Số nhiều bất quy tắc: thêm 's → children's room, men's shoes, women's bags
+! Xác định danh từ đã là số nhiều hay chưa trước khi đặt dấu nháy.
+### Sở hữu chung và sở hữu riêng
+= Sở hữu chung: chỉ danh từ cuối có 's → Lan and Mai's room (một phòng chung)
+= Sở hữu riêng: mỗi người đều có 's → Lan's and Mai's rooms (hai phòng riêng)
+### Cụm thời gian và "of"
+- today's lesson; a week's holiday; two weeks' holiday
+- Với đồ vật: the + N + of + N → the door of the house; the colour of the wall
+x Lan room. => Lan's room.
+! its = của nó; it's = it is / it has.
+
+## u2-prepositions | Prepositions of Place | Giới từ chỉ vị trí
+### in – on – at
+= in: ở trong một không gian → The books are in the cupboard.
+= on: ở trên, có tiếp xúc bề mặt → The lamp is on the desk.
+= at: tại một điểm → My mum is at home.
+### above – over – under – below
+- above: cao hơn (không tiếp xúc); over: phía trên, thường che phủ
+- under: ngay phía dưới; below: thấp hơn
+> The cat is under the table. :: Con mèo ở dưới gầm bàn.
+### Các giới từ khác
+= in front of (phía trước) · behind (phía sau) · next to / beside (bên cạnh)
+= between A and B (giữa hai vật) · among (giữa nhóm ≥3) · near (gần) · opposite (đối diện)
+> The sofa is in front of the TV. :: Ghế sofa ở phía trước TV.
+> The table is between the two chairs. :: Cái bàn ở giữa hai cái ghế.
+x The TV is between the sofa to the bookcase. => The TV is between the sofa and the bookcase.
+! on = có tiếp xúc; above/over = không nhất thiết tiếp xúc.
+
+## u2-there-is | There is / There are | Cấu trúc There is / There are
+### Khẳng định
+= There is + a/an + N số ít → There is a sofa in the living room.
+= There is + N không đếm được → There is some milk in the fridge.
+= There are + N số nhiều → There are three bedrooms upstairs.
+### Phủ định và câu hỏi
+= There isn't / There aren't + ...
+= Is there + N số ít? → Yes, there is. / No, there isn't.
+= Are there + N số nhiều? → Yes, there are. / No, there aren't.
+= How many + N số nhiều + are there + ...?
+### some / any
+- some: câu khẳng định; any: câu phủ định và câu hỏi
+> Are there any chairs in the kitchen? :: Trong bếp có cái ghế nào không?
+### There is/are và have/has
+- There is/are: nhấn mạnh sự tồn tại ở đâu → There is a balcony in the flat.
+- have/has: nhấn mạnh sự sở hữu → The flat has a balcony.
+x There is two bedrooms. => There are two bedrooms.
+x Are there some chairs? => Are there any chairs?
+
+@set mcq | Chọn dạng sở hữu đúng | level=1 | gp=u2-possessive
+This is ___ bedroom. => Lans' | *Lan's | Lan | Lans || Tên riêng số ít + 's.
+The ___ books are on the shelf. => students | students's | *students' | student || Số nhiều có -s → chỉ thêm dấu '.
+That is the ___ room. => children | childrens' | childrens | *children's || children là số nhiều bất quy tắc (không có -s) → thêm 's.
+My ___ bedroom is upstairs. => parent's | *parents' | parent | parents's || parents (số nhiều có -s) → parents'.
+The ___ bags are in the hall. => mens' | *men's | men | mens || men là số nhiều bất quy tắc → men's.
+Lan and Mai share one room. It is ___ room. => Lan's and Mai's | *Lan and Mai's | Lan's and Mai | Lans and Mais || Sở hữu chung: chỉ danh từ cuối có 's.
+They have separate rooms. These are ___ rooms. => Lan and Mai's | Lan's and Mai | *Lan's and Mai's | Lan and Mais' || Sở hữu riêng: mỗi người đều có 's.
+We are having a two-week holiday. It is ___ holiday. => *two weeks' | two week's | two week | two weeks's || "two weeks" số nhiều có -s → weeks'.
+
+@set gap | Viết dạng sở hữu đúng từ gợi ý | level=2 | gp=u2-possessive
+That is ___ computer. (Nick) => Nick's || Tên riêng + 's.
+We play in the ___ room. (children) => children's || Số nhiều bất quy tắc + 's.
+The ___ office is on the first floor. (teachers) => teachers' || Số nhiều có -s → thêm '.
+This is ___ shared bedroom. (Lan and Mai) => Lan and Mai's || Phòng chung → chỉ danh từ cuối có 's.
+We are preparing for ___ lesson. (today) => today's || Cụm thời gian: today's lesson.
+My ___ garden is behind their house. (grandparents) => grandparents' || grandparents số nhiều có -s → grandparents'.
+
+@set gap | Điền giới từ chỉ vị trí | level=2 | gp=u2-prepositions
+? Chọn từ: in • on • under • above • behind • in front of • next to • between • near • opposite
+The fridge is ___ the kitchen. => in || Ở trong một căn phòng → in.
+There is a small rug ___ the coffee table. => under || Tấm thảm nằm dưới bàn → under.
+The bookcase is ___ the desk, with only a tiny gap between them. => next to || Sát bên cạnh → next to.
+The lamp is ___ the desk and the bed. => between || between A and B.
+My bedroom is ___ my brother's bedroom, across the hall. => opposite || "across the hall" = đối diện → opposite.
+There is a park ___ my house, only two minutes away. => near || Cách hai phút → near (gần).
+The shoes are ___ the bed, not on it. => under || Không ở trên → under.
+The mirror is ___ the washbasin. => above || Gương treo cao hơn bồn rửa, không chạm → above.
+Dad is standing ___ the front door, so I cannot open it. => in front of || Bố chắn phía trước cửa → in front of.
+
+@set gap | Điền there is / there are / is there / are there / some / any / a / an | level=2 | gp=u2-there-is
+___ a sofa in the living room. => There is || "a sofa" số ít → There is.
+___ two bathrooms in our house. => There are || Số nhiều → There are.
+There is ___ armchair next to the window. => an || armchair bắt đầu bằng nguyên âm → an.
+There isn't ___ TV in my bedroom. => a || TV đọc /tiː/ bắt đầu bằng phụ âm → a.
+There aren't ___ chairs in the hall. => any || Câu phủ định → any.
+___ a balcony in your flat? => Is there || Câu hỏi + danh từ số ít → Is there.
+___ any books on the shelf? => Are there || Câu hỏi + số nhiều → Are there.
+There is ___ milk in the fridge. => some || Danh từ không đếm được, câu khẳng định → some.
+There is ___ orange lamp on the desk. => an || orange bắt đầu bằng nguyên âm → an.
+
+@set rewrite | Viết lại câu (there is/are ↔ have/has, phủ định, câu hỏi) | level=3 | gp=u2-there-is
+Our flat has a balcony. (There is) => There is a balcony in our flat. || has → There is ... in + nơi chốn.
+There are three bedrooms in my house. (has) => My house has three bedrooms. || Nơi chốn làm chủ ngữ + has.
+My bedroom has two windows. (There are) => There are two windows in my bedroom. || Số nhiều → There are.
+There are four chairs in the dining room. (has) => The dining room has four chairs. || The dining room + has.
+The flat has no balcony. (There isn't) => There isn't a balcony in the flat. || has no = There isn't a...
+There are some books on the desk. (phủ định) => There aren't any books on the desk. || Phủ định: aren't + any (some → any).
+There is a lamp next to the bed. (câu hỏi – Yes) => Is there a lamp next to the bed? Yes, there is. || Đảo is lên trước there.
+There are some pictures on the wall. (câu hỏi – No) => Are there any pictures on the wall? No, there aren't. || Câu hỏi dùng any.
+There are five rooms in the flat. (How many ...?) => How many rooms are there in the flat? || How many + N số nhiều + are there...?
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u2-there-is
+This is Lan bedroom. => Lan -> Lan's || Thiếu sở hữu cách 's.
+The students's books are on the table. => students's -> students' || Số nhiều có -s chỉ thêm '.
+The childrens' room is upstairs. => childrens' -> children's || children đã là số nhiều → children's.
+The lamp is in the desk. => in -> on || Đèn đặt trên mặt bàn → on.
+The picture is above of the sofa. => above of -> above || above không đi với of.
+The garden is in front the house. => in front -> in front of || Cụm đúng là in front of.
+There are a sofa in the living room. => are -> is || "a sofa" số ít → There is.
+There aren't some chairs in the kitchen. => some -> any || Câu phủ định dùng any.
+Is there any books on the shelf? => Is -> Are || "books" số nhiều → Are there.
+My flat have a small balcony. => have -> has || "My flat" số ít → has.
+The TV is between the sofa to the bookcase. => to -> and || between A and B.
+
+@set reorder | Sắp xếp từ thành câu đúng | level=3 | gp=u2-prepositions
+behind / there / is / garden / a / house / the / . => There is a garden behind the house. || There is + a + N + giới từ + nơi chốn.
+TV / the / in front of / sofa / is / the / . => The TV is in front of the sofa. || S + is + giới từ + N.
+any / are / chairs / kitchen / there / in / the / ? => Are there any chairs in the kitchen? || Câu hỏi: Are there any + N số nhiều?
+between / table / the / two / is / chairs / the / . => The table is between the two chairs. || between + hai vật.
+flat / balcony / our / has / small / a / . => Our flat has a small balcony. || S + has + a + adj + N.
+milk / there / fridge / some / is / the / in / . => There is some milk in the fridge. || N không đếm được → There is some.
+how many / there / rooms / are / your house / in / ? => How many rooms are there in your house? || How many + N + are there + ...?
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 2) | level=5 | gp=u2-there-is
+Hi! I'm Mi. This is my family's new house. It is not very big, but it is comfortable. The front door is {{*in/on/at}} the middle of the house. When you go inside, there {{is}} a small hall. My {{parents'}} (parents) bedroom is on the first floor, and my brother's room is next {{to}} mine. There {{are}} two beds in his room because he sometimes shares it with our cousin.
+The living room is my favourite place. There is {{a}} big sofa opposite the TV, and there are {{some}} family photos on the wall. A small table is {{between}} the sofa and the armchair. The bookshelf is {{above}} the sofa, so it is higher but does not touch it.
+Our kitchen {{has}} a new fridge and a dishwasher. There is some fruit on the table, but there isn't {{any}} milk in the fridge today. Behind the house, there is a garden. It is my {{grandparents'}} (grandparents) favourite place when they visit us.
+
+=== 3 | My Friends | Bạn bè của em
+
+## u3-present-continuous | Present Continuous | Thì hiện tại tiếp diễn
+### Cách dùng
+- Hành động đang xảy ra lúc nói
+> They are playing football now. :: Bây giờ họ đang chơi bóng đá.
+- Việc đang diễn ra quanh thời điểm hiện tại / tình huống tạm thời
+> Hoa is staying with her aunt this month. :: Tháng này Hoa đang ở với cô.
+- Mở rộng: kế hoạch đã sắp xếp trong tương lai gần
+> We are meeting our friends tomorrow. :: Ngày mai chúng tôi sẽ gặp bạn.
+### Cấu trúc
+= (+) S + am/is/are + V-ing
+= (–) S + am not / isn't / aren't + V-ing
+= (?) Am/Is/Are + S + V-ing?  →  Yes, S + am/is/are. / No, ...
+= (Wh) Wh-word + am/is/are + S + V-ing?
+> Is Nam doing his homework? – Yes, he is. :: Nam đang làm bài tập à? – Đúng vậy.
+> What are they doing? – They are playing chess. :: Họ đang làm gì? – Họ đang chơi cờ.
+### Dấu hiệu nhận biết
+- now, right now, at the moment, at present, today, this week
+- Look!  Listen!  Be quiet!
+x She is play badminton. => She is playing badminton.
+x They not are talking. => They are not talking.
+! Luôn có am/is/are trước V-ing.
+
+## u3-ing | Adding -ing | Quy tắc thêm -ing
+### Quy tắc chính tả
+= Phần lớn động từ: V + ing → play → playing, read → reading
+= Tận cùng -e câm: bỏ e + ing → make → making, write → writing (ngoại lệ: see → seeing)
+= Tận cùng -ie: ie → y + ing → lie → lying, tie → tying
+= 1 âm tiết dạng phụ âm–nguyên âm–phụ âm: gấp đôi phụ âm cuối → run → running, swim → swimming
+= Không gấp đôi w, x, y → snow → snowing, fix → fixing
+= Nhiều âm tiết, trọng âm ở âm cuối: gấp đôi → begin → beginning; trọng âm không ở cuối: visit → visiting
+= Anh-Anh: nguyên âm + l → gấp đôi l → travel → travelling
+### Lỗi thường gặp
+x swiming => swimming
+x lieing => lying
+x haveing => having
+
+## u3-ps-vs-pc | Present Simple vs Present Continuous | Phân biệt hiện tại đơn và hiện tại tiếp diễn
+### So sánh
+= Hiện tại đơn: thói quen, lịch trình, sự thật → She walks to school every day.
+= Hiện tại tiếp diễn: đang xảy ra, tạm thời → She is walking to school now.
+- every day / usually / often ↔ now / at the moment / Look! / Listen!
+### Động từ chỉ trạng thái
+- like, love, know, understand, want, need, believe thường KHÔNG dùng V-ing.
+> I like this book. :: Tôi thích cuốn sách này.
+x I am knowing the answer. => I know the answer.
+### Cách làm bài nhanh
+- Bước 1: Tìm dấu hiệu thời gian.
+- Bước 2: Xác định chủ ngữ để chọn am/is/are.
+- Bước 3: Viết đúng dạng V-ing.
+- Bước 4: Kiểm tra trật tự từ, dấu câu.
+
+@set mcq | Chọn đáp án đúng | level=1 | gp=u3-present-continuous
+Look! Nam ___ football with his friends. => plays | *is playing | play | playing || "Look!" → hành động đang xảy ra: is + V-ing.
+My sister ___ glasses today. => wear | wears | *is wearing | are wearing || "today" + tình huống tạm thời → is wearing.
+We ___ for the bus at the moment. => wait | *are waiting | is waiting | waits || "at the moment" + We → are waiting.
+Listen! The baby ___. => *is crying | cries | cry | are crying || "Listen!" → đang xảy ra; the baby số ít → is crying.
+I ___ TV now; I am studying. => *am not watching | not watch | isn't watching | don't watch || Phủ định với I: am not + V-ing.
+___ your brother reading a comic? => Am | Are | *Is | Does || "your brother" số ít → Is.
+What ___ they doing at the moment? => is | do | does | *are || they → are.
+The dog ___ under the table now. => sleep | sleeps | *is sleeping | are sleeping || "now" + the dog (số ít) → is sleeping.
+
+@set gap | Viết dạng V-ing đúng | level=2 | gp=u3-ing
+write → ___ => writing || Bỏ e câm rồi thêm -ing.
+run → ___ => running || CVC 1 âm tiết → gấp đôi n.
+lie → ___ => lying || -ie → y + ing.
+swim → ___ => swimming || Gấp đôi m.
+see → ___ => seeing || Ngoại lệ: see → seeing (không bỏ e).
+visit → ___ => visiting || Trọng âm không ở âm cuối → không gấp đôi.
+begin → ___ => beginning || Trọng âm ở âm cuối → gấp đôi n.
+travel → ___ => travelling | traveling || Anh-Anh gấp đôi l: travelling (Anh-Mỹ: traveling).
+have → ___ => having || Bỏ e câm.
+tie → ___ => tying || -ie → y + ing.
+
+@set gap | Chia động từ ở thì hiện tại tiếp diễn | level=2 | gp=u3-present-continuous
+I (write) ___ an email to my best friend. => am writing || I → am + V-ing.
+My sister (not / make) ___ a sandwich at present. => isn't making || Phủ định: isn't + V-ing.
+Lan (take) ___ photos in the garden. => is taking || take → taking (bỏ e).
+The boys (run) ___ in the playground. => are running || Số nhiều → are; run → running.
+You (sit) ___ next to Minh today. => are sitting || sit → sitting.
+The baby (sleep) ___, so please be quiet. => is sleeping || Hành động đang xảy ra.
+Mai (not / wear) ___ glasses today. => isn't wearing || Phủ định với chủ ngữ số ít.
+
+@set gap | Hiện tại đơn hay hiện tại tiếp diễn? | level=4 | gp=u3-ps-vs-pc
+Lan usually (walk) ___ to school, but today she (go) ___ by bus. => walks ;; is going || "usually" → hiện tại đơn; "today" (khác thói quen) → hiện tại tiếp diễn.
+Look! The boys (play) ___ football in the yard. => are playing || "Look!" → đang xảy ra.
+My best friend often (help) ___ me with Maths. => helps || "often" → thói quen.
+Be quiet! The baby (sleep) ___. => is sleeping || "Be quiet!" → đang xảy ra.
+This week, I (stay) ___ with my grandparents. => am staying || "This week" → tạm thời.
+Listen! Someone (knock) ___ at the door. => is knocking || "Listen!" → đang xảy ra.
+Chau (like) ___ drawing pictures. => likes || like là động từ trạng thái → không dùng V-ing.
+The school bus (leave) ___ at 6:45 every morning. => leaves || Lịch trình cố định → hiện tại đơn.
+
+@set rewrite | Viết câu phủ định / câu hỏi | level=3 | gp=u3-present-continuous
+She is talking to Mai. (phủ định) => She isn't talking to Mai. || is + not + V-ing.
+They are playing chess at the moment. (phủ định) => They aren't playing chess at the moment. || are + not + V-ing.
+She is reading a book. (Yes/No – Yes) => Is she reading a book? Yes, she is. || Đảo is lên đầu câu.
+Nam is talking to Phong. (Yes/No – No) => Is Nam talking to Phong? No, he isn't. || Nam → he.
+The boys are playing badminton. (Yes/No – Yes) => Are the boys playing badminton? Yes, they are. || The boys → they.
+Nam is reading a comic in the library. (What) => What is Nam reading in the library? ## What is Nam reading? || Hỏi vật → What + is + S + V-ing?
+They are playing football in the school yard. (Where) => Where are they playing football? || Hỏi nơi chốn → Where.
+The students are laughing because the story is funny. (Why) => Why are the students laughing? || Hỏi lý do → Why.
+
+@set reorder | Sắp xếp từ thành câu hoàn chỉnh | level=3 | gp=u3-present-continuous
+now / Nam / is / a book / reading / . => Nam is reading a book now. ## Now Nam is reading a book. || S + is + V-ing + O + now.
+not / I / am / TV / watching / . => I am not watching TV. || S + am not + V-ing.
+wearing / is / today / Mai / glasses / ? => Is Mai wearing glasses today? || Is + S + V-ing...?
+what / doing / your friends / are / ? => What are your friends doing? || Wh + are + S + V-ing?
+is / the teacher / why / smiling / ? => Why is the teacher smiling? || Why + is + S + V-ing?
+where / Chau / going / is / ? => Where is Chau going? || Where + is + S + V-ing?
+tomorrow / meeting / we / are / our new classmates / . => We are meeting our new classmates tomorrow. ## Tomorrow we are meeting our new classmates. || Kế hoạch tương lai gần dùng hiện tại tiếp diễn.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u3-present-continuous
+She is play badminton now. => play -> playing || Sau is phải là V-ing.
+They are not study at the moment. => study -> studying || are not + V-ing.
+I is reading a new book this week. => is -> am || I → am.
+Are Nam doing his homework? => Are -> Is || Nam số ít → Is.
+Look! The dog running in the garden. => dog running -> dog is running || Thiếu to be trước V-ing.
+We are swiming in the pool now. => swiming -> swimming || swim → gấp đôi m.
+He is lieing on the sofa. => lieing -> lying || -ie → y + ing.
+What does Lan doing at the moment? => does -> is || Hiện tại tiếp diễn: What + is + S + V-ing?
+The children not are playing football. => not are -> are not || Trật tự: are + not.
+I am knowing the answer. => am knowing -> know || know là động từ trạng thái.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 3) | level=5 | gp=u3-ps-vs-pc
+Hi! I'm Mai. Today our class is having a special activity about friendship. Right now, everyone {{is}} (be) busy. Nam {{is making}} (make) a friendship poster, and Phong {{is writing}} (write) short messages for our classmates.
+Lan and Chau {{aren't sitting}} (not / sit) at their desks. They {{are standing}} (stand) near the window and {{are talking|talking}} (talk) about the pictures for the poster. Look! Minh {{is cutting}} (cut) paper hearts, while our teacher {{is helping}} (help) them.
+I usually {{draw}} (draw) slowly, but today I {{am working}} (work) quite fast because we only have one hour. My friend Linh {{is}} (be) very creative, so she {{is designing}} (design) the centre of the poster at the moment.
+What {{are}} your classmates doing now? After school, we {{are meeting}} (meet) some friends from another class to show them our poster.
+
+=== 4 | My Neighbourhood | Khu phố của em
+
+## u4-comparative-short | Comparative – Short Adjectives | So sánh hơn với tính từ ngắn
+### Cách dùng
+- So sánh hai người, hai vật hoặc hai nơi.
+= S + be + adj-er + than + N/pronoun
+> Tom is taller than Mary. :: Tom cao hơn Mary.
+> My neighbourhood is quieter than yours. :: Khu phố của tôi yên tĩnh hơn khu của bạn.
+### Quy tắc chính tả
+= Thông thường: + er → tall → taller, cheap → cheaper
+= Tận cùng -e: + r → large → larger, nice → nicer
+= Phụ âm + y: y → i + er → noisy → noisier, busy → busier
+= CVC 1 âm tiết: gấp đôi phụ âm → big → bigger, hot → hotter
+= Không gấp đôi w, x, y → new → newer
+
+## u4-comparative-long | Comparative – Long & Irregular | So sánh hơn với tính từ dài và bất quy tắc
+### Tính từ dài
+= more + adj + than → modern → more modern, expensive → more expensive
+- Nhiều tính từ 2 âm tiết dùng more: peaceful, crowded, modern, boring.
+- Tính từ 2 âm tiết tận cùng -y dùng -ier: noisy → noisier.
+> A city is usually more expensive than the countryside. :: Thành phố thường đắt đỏ hơn nông thôn.
+### Bất quy tắc
+= good → better · bad → worse · far → farther/further · many/much → more · little → less
+- less + adj + than = kém ... hơn → This street is less noisy than the main road.
+### Từ nhấn mạnh (mở rộng)
+= much / far / a lot + so sánh hơn = hơn nhiều
+= a little / slightly + so sánh hơn = hơn một chút
+> The new road is much wider than the old one. :: Con đường mới rộng hơn nhiều so với đường cũ.
+x more bigger => bigger
+x more cheaper => cheaper
+! Không nhầm then (sau đó) với than (hơn).
+
+## u4-comparative-questions | Comparative Questions | Câu phủ định và câu hỏi so sánh hơn
+### Cấu trúc
+= (–) S + be + not + adj-er/more adj + than + ...
+= (?) Be + S + adj-er/more adj + than + ...?
+> Is Binh Minh noisier than Long Son? – Yes, it is. :: Bình Minh ồn hơn Long Sơn phải không? – Đúng.
+> Is Long Son more modern than Binh Minh? – No, it isn't. :: Long Sơn hiện đại hơn Bình Minh không? – Không.
+### Mẹo làm bài
+- Bước 1: xác định tính từ ngắn hay dài. Bước 2: dùng -er hoặc more.
+- Bước 3: kiểm tra chính tả (-e, -y, CVC). Bước 4: kiểm tra than và động từ be.
+x This area more peaceful than that one. => This area is more peaceful than that one.
+x The city is crowdeder. => The city is more crowded.
+
+@set mcq | Chọn đáp án đúng | level=1 | gp=u4-comparative-short
+My neighbourhood is ___ than yours. => noisiest | more noisy | noisy | *noisier || noisy: phụ âm + y → noisier.
+The new shop is ___ than the old one. => modernest | moderner | *more modern | modern || modern là tính từ dài → more modern.
+The city centre is ___ than the suburb. => crowdeder | *more crowded | most crowded | crowded || crowded dùng more.
+Living here is ___ than living near the station. => *more peaceful | peacefuler | peacefuller | most peaceful || peaceful → more peaceful.
+This road is ___ than the old road. => wide | more wide | widest | *wider || wide tận cùng -e → chỉ thêm -r.
+This bus stop is ___ to my house than the other one. => more near | *nearer | nearest | near || near là tính từ ngắn → nearer.
+The air here is ___ than in the city centre. => more good | gooder | *better | best || good → better (bất quy tắc).
+The traffic today is ___ than yesterday. => *worse | badder | more bad | worst || bad → worse (bất quy tắc).
+
+@set mcq | Chọn cấu trúc so sánh phù hợp | level=3 | gp=u4-comparative-long
+This area is ___ noisy than the city centre. => *less | fewer | little | least || less + adj + than = kém ... hơn.
+The new road is ___ wider than the old one. => *much | many | more | most || much + so sánh hơn = hơn nhiều.
+The museum is more interesting ___ the shop. => *than | then | that | as || So sánh hơn đi với than.
+The old town is ___ crowded than the city centre. => *less | least | fewer | few || less crowded than.
+The new building is ___ modern than the old one. => *more | -er | most | much moreer || modern → more modern.
+This lane is ___ narrower than the main road. => *a little | more | many | most || a little + so sánh hơn = hơn một chút.
+
+@set gap | Viết dạng so sánh hơn | level=2 | gp=u4-comparative-short
+large → ___ => larger || Tận cùng -e → + r.
+big → ___ => bigger || CVC → gấp đôi g.
+hot → ___ => hotter || CVC → gấp đôi t.
+busy → ___ => busier || Phụ âm + y → ier.
+modern → ___ => more modern || Tính từ dài → more.
+expensive → ___ => more expensive || Tính từ dài → more.
+good → ___ => better || Bất quy tắc.
+bad → ___ => worse || Bất quy tắc.
+
+@set gap | Chia tính từ trong ngoặc | level=2 | gp=u4-comparative-long
+The new library is ___ than the old one. (modern) => more modern || Tính từ dài.
+My street is ___ than the main road. (quiet) => quieter || quiet → quieter.
+The market is ___ in the morning than in the afternoon. (busy) => busier || busy → busier.
+The city centre is ___ than my neighbourhood. (crowded) => more crowded || crowded → more crowded.
+The traffic here is ___ than near the school. (bad) => worse || bad → worse.
+The square is ___ than the small park. (big) => bigger || big → bigger.
+Taking the bus is ___ than walking for me. (convenient) => more convenient || Tính từ dài.
+Our neighbourhood is ___ than it was last year. (clean) => cleaner || clean → cleaner.
+
+@set gap | So sánh hai khu phố theo bảng thông tin | level=4 | gp=u4-comparative-questions
+? Bảng: Binh Minh – traffic heavy, noisy, crowded, modern, expensive, less clean air, busy life | Long Son – light traffic, quiet, not crowded, traditional, cheap, clean air, peaceful life
+Binh Minh is ___ than Long Son. (noisy) => noisier || Bình Minh ồn → noisier.
+Long Son is ___ than Binh Minh. (quiet) => quieter || Long Sơn yên tĩnh → quieter.
+Binh Minh is ___ than Long Son. (modern) => more modern || Bình Minh hiện đại → more modern.
+Long Son is ___ than Binh Minh. (cheap) => cheaper || Giá ở Long Sơn rẻ → cheaper.
+The atmosphere in Long Son is ___ noisy than in Binh Minh. => less || Long Sơn kém ồn hơn → less.
+Binh Minh has ___ traffic than Long Son. (heavy) => heavier || heavy → heavier.
+Binh Minh is ___ peaceful than Long Son. => less || Bình Minh kém yên bình hơn → less.
+
+@set rewrite | Viết lại câu so sánh | level=4 | gp=u4-comparative-questions
+The old road is 6 metres wide. The new road is 10 metres wide. (The new road / wide) => The new road is wider than the old road. ## The new road is wider than the old one. || wide → wider.
+A bus ticket costs 10,000 dong. A taxi ride costs 80,000 dong. (A taxi ride / expensive) => A taxi ride is more expensive than a bus ticket. || Tính từ dài → more expensive.
+The city centre has more traffic than my neighbourhood. (My neighbourhood / quiet) => My neighbourhood is quieter than the city centre. || Ít xe hơn → yên tĩnh hơn.
+Long Son is peaceful. Binh Minh is noisy. (Long Son / peaceful) => Long Son is more peaceful than Binh Minh. || peaceful → more peaceful.
+The city air is bad. The countryside air is good. (The countryside air / good) => The countryside air is better than the city air. || good → better.
+the new library / modern / the old library (câu hỏi – Yes) => Is the new library more modern than the old library? Yes, it is. || Be + S + more adj + than...?
+your street / noisy / the main road (câu hỏi – No) => Is your street noisier than the main road? No, it isn't. || Be + S + adj-er + than...?
+
+@set reorder | Sắp xếp từ thành câu so sánh | level=3 | gp=u4-comparative-long
+my neighbourhood / quieter / is / than / the city centre => My neighbourhood is quieter than the city centre. || S + is + adj-er + than + N.
+more modern / the new library / than / is / the old one => The new library is more modern than the old one. || S + is + more adj + than.
+the suburb / less crowded / than / is / the centre => The suburb is less crowded than the centre. || less + adj + than.
+a little / this street / wider / that lane / is / than => This street is a little wider than that lane. || a little + so sánh hơn.
+much / the new road / safer / the old road / is / than => The new road is much safer than the old road. || much + so sánh hơn.
+nearer / the library / my house / than / the station / is / to => The library is nearer to my house than the station. || nearer to + nơi chốn + than.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u4-comparative-long
+This street is more cleaner than that one. => more cleaner -> cleaner || Không dùng more với tính từ ngắn đã thêm -er.
+My neighbourhood is noisyer than yours. => noisyer -> noisier || Phụ âm + y → ier.
+This shop is more cheap than the supermarket. => more cheap -> cheaper || cheap là tính từ ngắn → cheaper.
+The city centre is crowded than the suburb. => crowded -> more crowded || Thiếu more.
+This area is more peaceful then the station area. => then -> than || than = hơn; then = sau đó.
+The market is more busier in the morning. => more busier -> busier || Không dùng more + -er.
+This café is gooder than the one near school. => gooder -> better || good → better.
+The suburb is less noisier than the city centre. => noisier -> noisy || less + tính từ nguyên dạng.
+Is the new cinema excitinger than the old one? => excitinger -> more exciting || exciting là tính từ dài.
+
+@set cloze | Hoàn thành bức thư (tổng hợp Unit 4) | level=5 | gp=u4-comparative-long
+Dear Nick,
+How are you? I'm having a great time in a seaside neighbourhood. It is quite different from my area in Ha Noi.
+The streets here are {{quieter}} (quiet) than the streets near my home, and the air is {{cleaner}} (clean) than in Ha Noi. The beach road is {{wider}} (wide) than the old road in my neighbourhood. There are fewer motorbikes, so it is also {{safer}} (safe) for people to walk.
+Some new hotels are {{more modern}} (modern) than the older buildings. Food here is {{cheaper}} (cheap) than in the city centre, while the seafood restaurants are a little {{more expensive}} (expensive) than the small local cafés.
+In the morning, the market is {{busier}} (busy) than it is in the afternoon. However, the park near the beach is much {{more peaceful}} (peaceful) than the market area. I think the view from the hill is {{better}} (good) than the view from my street at home.
+The bus stop is {{nearer|closer}} (near) to our hotel than the railway station, and travelling by bus is {{more convenient}} (convenient) than walking long distances in the hot sun. At night, the beach is {{less}} crowded than during the day, so it is very relaxing.
+See you soon,
+Vy

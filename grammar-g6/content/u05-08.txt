@@ -1,0 +1,469 @@
+=== 5 | Natural Wonders of Viet Nam | Kỳ quan thiên nhiên Việt Nam
+
+## u5-countable | Countable & Uncountable Nouns | Danh từ đếm được và không đếm được
+### Danh từ đếm được
+- Có thể đếm bằng số, có dạng số ít và số nhiều.
+= a/an + N số ít → a mountain, an island
+= số đếm / many / a few / some / a lot of + N số nhiều → three islands, many caves
+> There are many caves in this area. :: Có nhiều hang động ở khu vực này.
+### Danh từ không đếm được
+- Không dùng trực tiếp với số đếm, thường không có dạng số nhiều.
+- Thường gặp: water, air, sand, rice, information, advice, furniture, homework, luggage.
+= much / a little / some / a lot of + N không đếm được → some water, a little rice
+x an advice => a piece of advice
+x informations => information
+### Hỏi về số lượng
+= How many + N đếm được số nhiều + ...? → How many islands are there?
+= How much + N không đếm được + ...? → How much water do we need?
+- many / a few → đếm được; much / a little → không đếm được; some / a lot of → cả hai.
+### Đơn vị đo / vật chứa
+= a bottle of water · a bowl of rice · a loaf of bread · a piece of information / advice
+- Số nhiều đổi ở đơn vị: two bottles of water; three pieces of advice.
+
+## u5-plural | Plural Nouns | Danh từ số nhiều – quy tắc và ngoại lệ
+### Quy tắc
+= Phần lớn: + s → cave → caves; nguyên âm + y: + s → day → days
+= -s, -ss, -sh, -ch, -x, -z: + es → bus → buses, beach → beaches, box → boxes
+= Phụ âm + o: thường + es → tomato → tomatoes (ngoại lệ: photos, pianos)
+= Phụ âm + y: y → ies → city → cities
+= -f/-fe → -ves → leaf → leaves, knife → knives (ngoại lệ: roofs, cliffs)
+### Bất quy tắc / không đổi
+= man → men · woman → women · child → children · person → people
+= foot → feet · tooth → teeth · mouse → mice
+= sheep → sheep · deer → deer · fish → fish
+! Danh từ không đếm được không tự thêm -s: water, information, advice, furniture.
+
+## u5-must | Must / Mustn't | Bắt buộc và cấm đoán
+### Ý nghĩa
+= must = phải (quy định, điều cần thiết) → You must follow the signs.
+= mustn't = không được phép, bị cấm → You mustn't pick flowers.
+### Cấu trúc
+= S + must / mustn't + V nguyên mẫu (không "to", không thêm -s)
+= Must + S + V...? → Yes, you must. / No, you don't have to.
+> We must bring water. :: Chúng ta phải mang theo nước.
+> They mustn't litter. :: Họ không được xả rác.
+! mustn't (bị cấm) khác don't have to (không bắt buộc).
+x He musts go. => He must go.
+x We must to wear helmets. => We must wear helmets.
+x You don't must swim here. => You mustn't swim here.
+
+@set classify | Phân loại danh từ đếm được / không đếm được | level=1 | gp=u5-countable | cats=Countable,Uncountable
+islands — Ha Long Bay has many islands. => Countable || Có dạng số nhiều -s.
+water — We need some water for the hike. => Uncountable || Chất lỏng, không đếm được.
+mountain — There is a high mountain near the village. => Countable || Đi với "a".
+information — Please give me some information about the cave. => Uncountable || information không có số nhiều.
+sand — The beach has soft white sand. => Uncountable || Cát: không đếm từng hạt.
+waterfalls — There are three waterfalls in this park. => Countable || Đi với số đếm "three".
+luggage — We packed our luggage before the trip. => Uncountable || luggage không đếm được.
+advice — The guide gave us useful advice. => Uncountable || advice không đếm được (a piece of advice).
+rice — There is a little rice left for lunch. => Uncountable || Đi với "a little".
+deer — We saw several deer near the forest. => Countable || deer số nhiều không đổi dạng, vẫn đếm được.
+furniture — The hotel has modern furniture. => Uncountable || furniture không đếm được.
+homework — The teacher gave us some homework. => Uncountable || homework không đếm được.
+
+@set mcq | Chọn dạng số nhiều đúng | level=2 | gp=u5-plural
+The plural of "beach" is ___. => beachies | *beaches | beachs | beachs' || Tận cùng -ch → + es.
+The plural of "city" is ___. => citis | citys | cityes | *cities || Phụ âm + y → ies.
+The plural of "knife" is ___. => knifees | knivs | *knives | knifes || -fe → -ves.
+The plural of "child" is ___. => childs | *children | childes | childrens || Bất quy tắc.
+The plural of "person" is ___. => persones | *people | peoples | persones' || person → people.
+The plural of "mouse" is ___. => *mice | mouse | mices | mouses || Bất quy tắc.
+The plural of "photo" is ___. => photo | photies | photoes | *photos || Ngoại lệ: photo → photos.
+The plural of "roof" is ___. => rooves | roofes | roofs' | *roofs || Ngoại lệ: roof → roofs.
+The plural of "sheep" is ___. => sheepes | sheeps | *sheep | sheepies || sheep không đổi.
+
+@set mcq | Chọn từ chỉ lượng phù hợp | level=2 | gp=u5-countable
+There are ___ caves in this area, so we cannot visit all of them. => much | an | a little | *many || caves đếm được số nhiều → many.
+We have only ___ water left. Please drink carefully. => a few | many | *a little | an || water không đếm được → a little.
+There are ___ small islands near the coast, but not many. => a little | an | much | *a few || islands đếm được, "not many" → a few.
+How ___ luggage do you have? => an | many | a few | *much || luggage không đếm được → How much.
+The guide gave us ___ useful information before the trip. => an | a few | many | *some || information không đếm được → some.
+There isn't ___ rice in the bowl. => a few | many | an | *much || rice không đếm được, câu phủ định → much.
+We don't have ___ time before sunset. => a few | *much | many | an || time (thời gian) không đếm được → much.
+Please add ___ water to the bottle. => a few | an | many | *a little || water → a little.
+
+@set gap | Điền How many hoặc How much | level=2 | gp=u5-countable
+___ islands are there in Ha Long Bay? => How many || islands đếm được số nhiều.
+___ water should we take on the trip? => How much || water không đếm được.
+___ luggage are you taking? => How much || luggage không đếm được.
+___ information do you have about Son Doong Cave? => How much || information không đếm được.
+___ bottles of water are in your backpack? => How many || bottles đếm được (dù đi với water).
+___ advice did the guide give you? => How much || advice không đếm được.
+___ people are joining the geography trip? => How many || people là số nhiều của person.
+___ homework do you have tonight? => How much || homework không đếm được.
+
+@set gap | Điền đơn vị đo / vật chứa phù hợp | level=3 | gp=u5-countable
+? Chọn: a bottle of • a bowl of • a loaf of • a piece of • two bottles of • three pieces of
+Please bring ___ water for yourself; one bottle is enough. => a bottle of || Một chai → a bottle of.
+The guide gave me ___ advice. => a piece of || advice → a piece of advice.
+We bought ___ bread for our picnic. => a loaf of || Ổ bánh mì → a loaf of bread.
+Lan ate ___ rice before the hike. => a bowl of || Bát cơm → a bowl of rice.
+There are ___ water in my backpack; I packed one for me and one for Lan. => two bottles of || Hai chai, động từ "are" → two bottles of.
+The guide gave our group ___ advice: wear boots, stay together, and carry water. => three pieces of || Ba lời khuyên → three pieces of.
+
+@set mcq | Must / Mustn't – chọn đáp án đúng | level=2 | gp=u5-must
+The sign says "Keep off the grass." You ___ walk on the grass. => *mustn't | musts | must | must to || Biển cấm → mustn't.
+The path is rocky. You ___ wear good walking shoes. => musts | mustn't | *must | must to || Điều cần thiết → must.
+Visitors ___ leave rubbish in the national park. => must | *mustn't | musts | must to || Hành động bị cấm → mustn't.
+Before entering the cave, everyone ___ listen to the guide. => *must | musts | must to | mustn't || Quy định bắt buộc → must.
+Tourists ___ climb over the safety barrier. => must to | must | musts | *mustn't || Nguy hiểm, bị cấm → mustn't.
+On a boat trip, passengers ___ wear life jackets. => *must | musts | mustn't | must to || Quy định an toàn → must.
+Visitors ___ write on cave walls. => must | must to | *mustn't | musts || Bị cấm → mustn't.
+You ___ swim here because the current is dangerous. => *mustn't | musts | must to | must || Dòng nước nguy hiểm → mustn't.
+
+@set gap | Hoàn thành quy tắc với must / mustn't + V | level=3 | gp=u5-must
+You ___ (follow) the guide's instructions. => must follow || Quy định bắt buộc.
+Visitors ___ (drop) litter in the cave. => mustn't drop || Bị cấm.
+You ___ (touch) the stalactites. => mustn't touch || Bảo vệ thạch nhũ → cấm chạm.
+Children ___ (stay) close to an adult on the trail. => must stay || An toàn → bắt buộc.
+You ___ (climb) on the rocks behind the warning sign. => mustn't climb || Biển cảnh báo → cấm.
+You ___ (make) a fire in this protected forest. => mustn't make || Rừng được bảo vệ → cấm đốt lửa.
+You ___ (use) a torch inside the dark cave. => must use || Hang tối → phải dùng đèn pin.
+We ___ (leave) the path without the guide. => mustn't leave || Nguy hiểm → cấm.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u5-countable
+There are much islands in this bay. => much -> many || islands đếm được → many.
+We need a few water for the trip. => a few -> a little || water không đếm được → a little.
+I bought two loafs of bread. => loafs -> loaves || loaf → loaves (-f → -ves).
+How much caves are there in this area? => much -> many || caves đếm được → How many.
+There are three childs in the group. => childs -> children || child → children.
+We saw two sheeps near the mountain. => sheeps -> sheep || sheep không đổi dạng số nhiều.
+You must to follow the signs. => must to -> must || Sau must không dùng to.
+He musts wear a helmet. => musts -> must || must không thêm -s.
+Tourists don't must pick flowers here. => don't must -> mustn't || Phủ định của must là mustn't.
+There are five womans in the hiking group. => womans -> women || woman → women.
+How many luggage are you taking? => many -> much || luggage không đếm được.
+
+@set rewrite | Viết câu hoàn chỉnh từ từ gợi ý | level=4 | gp=u5-countable
+Ha Long Bay / have / many / island. => Ha Long Bay has many islands. || has; many + N số nhiều.
+how many / cave / there / be / this area / ? => How many caves are there in this area? || How many + N số nhiều + are there.
+I / need / two bottle / water. => I need two bottles of water. || two bottles of.
+tourists / must / follow / safety signs. => Tourists must follow safety signs. ## Tourists must follow the safety signs. || must + V nguyên mẫu.
+you / must not / pick / flower / here. => You mustn't pick flowers here. || mustn't + V; flower → flowers.
+how much / rice / we / need / ? => How much rice do we need? || How much + N không đếm được + do + S + V?
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 5) | level=5 | gp=u5-must
+Next weekend, our Geography Club is visiting a national park. There are {{much/*many}} beautiful mountains and a few deep {{caves}} (cave) in the area. Our teacher says we need {{*some/many}} water because the walk is long, but we do not need {{many/*much}} luggage. Each student should bring two {{bottles}} (bottle) of water.
+Before the trip, the guide gives us a piece of {{advices/*advice}}: we {{*must/mustn't}} stay on the path, we {{*mustn't/must}} leave rubbish on the path, and we {{must/*mustn't}} pick wild flowers. There are some wild {{deer}} (deer) in the park, so we must be quiet near them.
+At lunch, we have a {{*loaf/bottle}} of bread and a little {{rices/*rice}}. Our teacher asks, "How {{much/*many}} bottles of water are left?" and "How {{*much/many}} food do we have?" In the afternoon, we visit a waterfall, but we {{must/*mustn't}} swim there because the current is dangerous.
+
+=== 6 | Our Tet Holiday | Tết của chúng mình
+
+## u6-should | Should / Shouldn't | Lời khuyên với should
+### Ý nghĩa
+= should = nên → Children should behave well at Tet.
+= shouldn't = không nên → You shouldn't eat too many sweets.
+### Cấu trúc
+= (+) S + should + V nguyên mẫu
+= (–) S + should not / shouldn't + V nguyên mẫu
+= (?) Should + S + V...? → Yes, you/we should. / No, you/we shouldn't.
+= (Wh) Wh-word + should + S + V...? → What should children do at Tet?
+- should dùng giống nhau với mọi chủ ngữ, không thêm -s, không dùng "to".
+x He shoulds visit his grandparents. => He should visit his grandparents.
+x We should to clean the house. => We should clean the house.
+x You don't should break things. => You shouldn't break things.
+
+## u6-some-any | Some / Any | Some và any
+### Some
+- Một vài / một ít; thường dùng trong câu khẳng định.
+= some + N đếm được số nhiều → some flowers, some relatives
+= some + N không đếm được → some food, some lucky money
+> We buy some peach flowers before Tet. :: Chúng tôi mua vài cành đào trước Tết.
+### Any
+- Thường dùng trong câu phủ định và câu hỏi.
+> We don't buy any fireworks. :: Chúng tôi không mua pháo hoa.
+> Are there any flowers in the living room? :: Phòng khách có hoa không?
+### Với There is/are và have/has
+= There is some + N không đếm được · There are some + N số nhiều
+= There isn't/aren't any ... · Do/Does ... have any ...?
+x There are any flowers on the table. => There are some flowers on the table.
+x We don't have some lucky money. => We don't have any lucky money.
+
+@set mcq | Chọn should / shouldn't đúng | level=1 | gp=u6-should
+Children ___ behave well when they visit their grandparents. => should to | *should | shoulds | shouldn't || Việc tốt nên làm → should.
+You ___ break things during Tet. => should to | *shouldn't | shoulds | should || Việc không nên làm → shouldn't.
+You ___ eat too many sweets. => *shouldn't | shoulds | should to | should || "too many" → không nên.
+Children ___ fight with their brothers or sisters. => should | shoulds | *shouldn't | should to || Đánh nhau → không nên.
+You ___ make a wish for the new year. => shouldn't | should to | shoulds | *should || Việc tốt → should.
+You ___ say bad words on the first days of the year. => should to | *shouldn't | shoulds | should || Nói điều xấu → không nên.
+Children ___ spend all their lucky money at once. => *shouldn't | should | shoulds | should to || Tiêu hết một lúc → không nên.
+You ___ thank adults when you receive lucky money. => *should | should to | shouldn't | shoulds || Cảm ơn → nên.
+
+@set gap | Hoàn thành với should / shouldn't + V | level=2 | gp=u6-should
+Children ___ (help) their parents decorate the house before Tet. => should help || Việc tốt → should.
+You ___ (break) anything on New Year's Day. => shouldn't break || Kiêng làm vỡ đồ → shouldn't.
+You ___ (eat) too many sweets before dinner. => shouldn't eat || "too many" → shouldn't.
+Children ___ (fight) at family gatherings. => shouldn't fight || Không nên đánh nhau.
+We ___ (prepare) some special food for our guests. => should prepare || Việc tốt → should.
+You ___ (throw) rubbish on the street. => shouldn't throw || Không nên xả rác.
+You ___ (spend) all your lucky money immediately. => shouldn't spend || Không nên tiêu hết ngay.
+Children ___ (thank) adults for their New Year wishes. => should thank || Lễ phép → should.
+
+@set mcq | Chọn some / any | level=2 | gp=u6-some-any
+There are ___ peach flowers in the living room. => *some | a | an | any || Câu khẳng định + N số nhiều → some.
+We don't have ___ fireworks at home. => *any | an | some | a || Câu phủ định → any.
+Are there ___ sweets on the table? => an | some | *any | a || Câu hỏi → any.
+There is ___ lucky money in these red envelopes. => *some | an | a | any || Khẳng định + N không đếm được → some.
+Do you have ___ relatives in Da Nang? => *any | some | an | a || Câu hỏi → any.
+There aren't ___ flowers in this vase. => some | *any | an | a || Phủ định → any.
+Is there ___ food left after the party? => *any | a | an | some || Câu hỏi → any.
+The children receive ___ presents from their grandparents. => a | *some | an | any || Khẳng định + số nhiều → some.
+
+@set gap | Some / any + dạng đúng của danh từ | level=3 | gp=u6-some-any
+There are ___ on the table. (sweet) => some sweets || Khẳng định, số nhiều → some sweets.
+We don't buy ___ for Tet. (firework) => any fireworks || Phủ định → any + N số nhiều.
+Mum cooks ___ for the family. (food) => some food || food không đếm được → không thêm -s.
+Are there ___ in the vase? (flower) => any flowers || Câu hỏi → any flowers.
+Do you invite ___ to your house? (relative) => any relatives || Câu hỏi → any relatives.
+We don't need ___ today. (furniture) => any furniture || furniture không đếm được.
+
+@set mcq | Chọn lời khuyên phù hợp | level=2 | gp=u6-should
+Nam has eaten six sweets before lunch. What should he do? => eat quickly | buy sweets | eat more | *stop eating || Ăn quá nhiều kẹo → nên dừng lại.
+Mai is visiting her grandparents. What should she do? => make noise | ignore them | fight there | *behave well || Thăm ông bà → nên cư xử ngoan.
+A child wants to spend all his lucky money. What should he do? => *save some | lose it | waste it | spend all || Nên để dành một ít.
+It is late and guests are sleeping. What should you do? => *keep quiet | play music | shout loudly | wake them || Khách đang ngủ → giữ yên lặng.
+
+@set rewrite | Viết lời khuyên / câu hỏi với should | level=3 | gp=u6-should
+Tom eats too many sweets. (eat so many sweets) => Tom shouldn't eat so many sweets. ## He shouldn't eat so many sweets. || Lời khuyên tránh → shouldn't + V.
+The children are fighting. (fight) => They shouldn't fight. ## The children shouldn't fight. || shouldn't fight.
+Nam receives lucky money. (say thank you) => He should say thank you. ## Nam should say thank you. || should + V.
+A child wants to break a peach branch. (break branches) => He shouldn't break branches. ## The child shouldn't break branches. ## She shouldn't break branches. ## Children shouldn't break branches. || shouldn't + V.
+we / clean the house before Tet? (Yes) => Should we clean the house before Tet? Yes, we should. ## Should we clean the house before Tet? Yes, you should. || Should + S + V...?
+children / eat too many sweets? (No) => Should children eat too many sweets? No, they shouldn't. || Trả lời ngắn: No, they shouldn't.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u6-should
+Children shoulds behave well at Tet. => shoulds -> should || should không thêm -s.
+You should to visit your grandparents. => should to -> should || Sau should không dùng to.
+We don't should break anything on New Year's Day. => don't should -> shouldn't || Phủ định của should là shouldn't.
+There are any peach flowers on the table. => any -> some || Câu khẳng định → some.
+We don't have some fireworks at home. => some -> any || Câu phủ định → any.
+She should visits her relatives during Tet. => visits -> visit || should + V nguyên mẫu.
+There is some decorations in the living room. => is -> are || decorations số nhiều → There are.
+You should being polite to older people. => being -> be || should + be.
+Should she to help her mother clean the house? => to help -> help || Should + S + V nguyên mẫu.
+
+@set rewrite | Viết câu hoàn chỉnh từ từ gợi ý | level=4 | gp=u6-some-any
+children / should / behave / well / at Tet => Children should behave well at Tet. || S + should + V + adv.
+we / have / some / peach flowers / living room => We have some peach flowers in the living room. || Thêm in the.
+there / not be / any / fireworks / our house => There aren't any fireworks in our house. || Số nhiều, phủ định → There aren't any.
+should / we / visit / our grandparents / tomorrow / ? => Should we visit our grandparents tomorrow? || Should + S + V?
+do / you / have / any / relatives / Hue / ? => Do you have any relatives in Hue? || Câu hỏi → any.
+Nam / should not / spend / all / lucky money => Nam shouldn't spend all his lucky money. ## Nam shouldn't spend all of his lucky money. || shouldn't + V; thêm his.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 6) | level=5 | gp=u6-some-any
+Tet is coming, and my family is very busy. We {{shouldn't/*should}} clean and decorate our house before the holiday. Mum buys {{any/*some}} peach flowers and prepares {{*some/any}} special food. We do not buy {{some/*any}} fireworks. My grandparents are coming to stay with us, so I {{shouldn't/*should}} help my parents prepare their room.
+On the first day of Tet, children {{*should/shouldn't}} behave well and say "Happy New Year" to older people. We {{should/*shouldn't}} fight or break things. When my aunt gives me lucky money, I {{shouldn't/*should}} say thank you. There are {{any/*some}} sweets on the table, but I {{should/*shouldn't}} eat too many of them.
+In the afternoon, we visit our relatives. "{{Do/*Should}} we bring some fruit?" I ask Mum. "Yes, we {{shouldn't/*should}}," she says. Before we leave, Dad asks, "Are there {{some/*any}} presents for the children?" Mum checks the bags and says, "Yes, there are {{any/*some}}." At night, everyone is tired, so we {{should/*shouldn't}} make too much noise.
+
+=== 7 | Television | Truyền hình
+
+## u7-wh-questions | Wh-questions | Câu hỏi có từ để hỏi
+### Từ để hỏi
+= What: sự vật / hoạt động → What is your favourite TV programme?
+= Who: người → Who watches TV with you?
+= Where: nơi chốn → Where do you watch TV?
+= When: thời gian → When does the programme start?
+= Why: lý do → Why do you like cartoons? – Because they are funny.
+= How: cách thức → How do you watch this programme? – On my tablet.
+### Cụm từ để hỏi
+= How often: tần suất → Twice a week.
+= How long: khoảng thời gian → Thirty minutes.
+= How many + N số nhiều: số lượng → How many programmes do you watch?
+= What time / Which (channel): giờ cụ thể / lựa chọn
+### Cấu trúc
+= Wh-word + be + S + ...? → Where is the remote control?
+= Wh-word + do/does/did + S + V nguyên mẫu? → What does Lan watch after dinner?
+= Who + V-s/es...? (Who làm chủ ngữ) → Who presents the weather forecast?
+! Nhìn câu trả lời để chọn đúng từ để hỏi trước khi chọn trợ động từ.
+x Why you like this programme? => Why do you like this programme?
+x Where does she watches TV? => Where does she watch TV?
+
+## u7-conjunctions | Conjunctions: and, but, so | Liên từ trong câu ghép
+### and – thêm ý cùng hướng
+> I like cartoons, and my brother likes them, too. :: Tôi thích phim hoạt hình, và em trai tôi cũng thế.
+- Hai mệnh đề cùng chủ ngữ có thể lược chủ ngữ thứ hai: I watch the news and learn new things.
+### but – hai ý tương phản
+> The programme is long, but it is interesting. :: Chương trình dài nhưng thú vị.
+### so – chỉ kết quả
+> The film was boring, so we changed the channel. :: Phim chán nên chúng tôi chuyển kênh.
+- Mệnh đề trước "so" là nguyên nhân, mệnh đề sau là kết quả.
+! Dùng dấu phẩy trước but/so khi nối hai mệnh đề độc lập.
+x It was late, but we went to bed. => It was late, so we went to bed.
+
+@set mcq | Chọn từ để hỏi đúng | level=1 | gp=u7-wh-questions
+___ do you usually watch TV? – In the living room. => When | Why | *Where | Who || Trả lời nơi chốn → Where.
+___ does the cartoon start? – At 6.30 p.m. => *When | Where | Who | What || Trả lời thời gian → When.
+___ do you like the game show? – Because it is exciting. => How | When | Where | *Why || "Because..." → Why.
+___ watches the news with your father? – My grandfather. => What | When | Where | *Who || Trả lời người → Who.
+___ do you watch documentaries? – Twice a week. => How long | *How often | How many | How || Tần suất → How often.
+___ is the sports programme? – About forty minutes. => How often | How many | *How long | What time || Khoảng thời gian → How long.
+___ TV channels can you receive? – About twenty. => *How many | How much | How long | How often || channels đếm được → How many.
+___ do you change channels? – With the remote control. => Why | Where | *How | Who || Cách thức → How.
+___ is the weather forecast on? – Channel 3. => How often | *Which channel | Whose channel | What time || Hỏi kênh nào → Which channel.
+
+@set mcq | Chọn câu hỏi phù hợp với câu trả lời | level=2 | gp=u7-wh-questions
+Answer: "On VTV3." => When is it on? | Who watches it? | Why do you like it? | *Which channel is it on? || Trả lời tên kênh → Which channel.
+Answer: "About thirty minutes." => *How long does it last? | How often is it on? | How many episodes are there? | What time is it? || Khoảng thời gian → How long.
+Answer: "Every Saturday." => *How often do you watch it? | When did you watch it? | How long is it? | Which channel is it on? || Tần suất → How often.
+Answer: "By using the app." => Where is the programme? | Why do you watch it? | When do you watch it? | *How do you watch the programme? || Cách thức → How.
+Answer: "It was boring." => What did you change? | *Why did you change the channel? | Who changed the channel? | Where was the channel? || Nêu lý do → Why.
+
+@set gap | Điền MỘT từ để hoàn thành câu hỏi | level=2 | gp=u7-wh-questions
+What ___ you usually watch after dinner? => do || you + động từ thường → do.
+Where ___ your sister watch cartoons? => does || your sister (số ít) → does.
+What time ___ the film start yesterday? => did || "yesterday" → did.
+Who ___ the weather forecast every evening? => presents || Who là chủ ngữ → động từ chia số ít.
+How often ___ your parents watch the news? => do || your parents số nhiều → do.
+What ___ your favourite TV character? => is || Sau là danh từ, không có động từ chính → is.
+How long ___ this programme last? => does || this programme số ít → does.
+What ___ they watch last Saturday? => did || "last Saturday" → did.
+
+@set reorder | Sắp xếp từ thành câu hỏi | level=3 | gp=u7-wh-questions
+where / you / do / usually / watch TV / ? => Where do you usually watch TV? || Wh + do + S + adv + V?
+when / the cartoon / does / start / ? => When does the cartoon start? || Wh + does + S + V?
+why / like / does / Mai / game shows / ? => Why does Mai like game shows? || Wh + does + S + V?
+how often / you / do / watch / sports programmes / ? => How often do you watch sports programmes? || How often + do + S + V?
+what / your brother / did / watch / last night / ? => What did your brother watch last night? || Quá khứ: Wh + did + S + V?
+who / TV / watches / with / you / ? => Who watches TV with you? || Who làm chủ ngữ → Who + V-s.
+why / they / did / turn off / the TV / ? => Why did they turn off the TV? || Wh + did + S + V?
+
+@set mcq | Chọn and / but / so | level=2 | gp=u7-conjunctions
+I like cartoons, ___ my sister prefers documentaries. => and | so | because | *but || Hai ý tương phản → but.
+The match was exciting, ___ we watched it until the end. => *so | but | and | or || Kết quả → so.
+My father watches the news ___ checks the weather forecast every evening. => but | so | because | *and || Thêm ý cùng hướng → and.
+The programme is educational, ___ it is a little long. => and | so | *but | because || Tương phản → but.
+The remote control was missing, ___ I changed the channel on the TV. => and | but | *so | because || Kết quả → so.
+Tom is tired, ___ he still wants to watch the final. => so | *but | and | because || "still" → tương phản → but.
+The weather was bad, ___ the outdoor show was cancelled. => but | *so | and | or || Kết quả → so.
+The presenter is friendly ___ funny. => *and | but | so | because || Hai ý tích cực cùng hướng → and.
+
+@set rewrite | Nối hai câu bằng liên từ trong ngoặc | level=3 | gp=u7-conjunctions
+The film was interesting. It was too long. (but) => The film was interesting, but it was too long. || Tương phản → , but.
+It was getting late. We turned off the TV. (so) => It was getting late, so we turned off the TV. || Kết quả → , so.
+Lan watches the news. She reads the newspaper. (and) => Lan watches the news and reads the newspaper. ## Lan watches the news, and she reads the newspaper. ## Lan watches the news and she reads the newspaper. || Cùng chủ ngữ có thể lược she.
+The match started at midnight. Dad recorded it. (so) => The match started at midnight, so Dad recorded it. || Kết quả → so.
+Tom likes sports programmes. He does not like talent shows. (but) => Tom likes sports programmes, but he does not like talent shows. || Tương phản → but.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u7-wh-questions
+Where does your father watches the news? => watches -> watch || Sau does dùng V nguyên mẫu.
+Why you like this comedy show? => Why you -> Why do you || Thiếu trợ động từ do.
+Who does presents the weather forecast? => does presents -> presents || Who làm chủ ngữ → không dùng does.
+How often does they watch cartoons? => does -> do || they → do.
+What did Lan watched last night? => watched -> watch || Sau did dùng V nguyên mẫu.
+How many programme do you watch every week? => programme -> programmes || How many + N số nhiều.
+The film was boring, and we changed the channel. => and -> so || Kết quả → so.
+I like sports programmes, so my sister prefers cartoons. => so -> but || Tương phản → but.
+How long do this documentary last? => do -> does || this documentary số ít → does.
+The TV was very loud, but Dad turned down the volume. => but -> so || Kết quả → so.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 7) | level=5 | gp=u7-conjunctions
+My family enjoys watching television together, but we do not watch it all evening. My favourite programme is a wildlife show. "{{What/*Why}} do you like it?" my sister often asks. I like it because it is exciting {{*and/but}} educational. It starts at 7.30 p.m., so my mother usually asks, "{{What}} time does it start?" before dinner.
+My father prefers the news, {{but/*so}} he watches it on his phone when my programme is on. "{{How often}} do you watch the news?" I asked him yesterday. "Every evening," he replied. My younger brother loves cartoons. His favourite one lasts twenty minutes. "{{How}} long does it last?" Mum asked him, and he answered correctly. He sometimes wants to watch TV before homework, {{*but/so}} my parents say no.
+Last Saturday, we watched a quiz show. "{{Who}} presented it?" my grandfather asked. The presenter was Ms Linh.
+
+=== 8 | Sports and Games | Thể thao và trò chơi
+
+## u8-past-simple | Past Simple | Thì quá khứ đơn
+### Cách dùng & dấu hiệu
+- Hành động đã xảy ra và kết thúc trong quá khứ.
+- yesterday, last night/week/year, ... ago, in 2024, when I was...
+> We played badminton yesterday. :: Hôm qua chúng tôi chơi cầu lông.
+> Nam went swimming last Sunday. :: Chủ nhật tuần trước Nam đi bơi.
+### TO BE: was / were
+= I/He/She/It + was · You/We/They + were
+= (–) wasn't / weren't
+= (?) Was/Were + S + ...? → Were you at the gym yesterday? – Yes, I was.
+### Động từ thường
+= (+) S + V2/V-ed → They played football.
+= (–) S + didn't + V nguyên mẫu → They didn't play football.
+= (?) Did + S + V nguyên mẫu...? → Did they play football? – Yes, they did.
+! Sau did/didn't, động từ chính luôn ở dạng nguyên mẫu.
+### Động từ có quy tắc / bất quy tắc
+= Thông thường + ed → play → played; tận cùng -e: + d → live → lived
+= Phụ âm + y → ied → study → studied; CVC → gấp đôi → stop → stopped
+= Bất quy tắc: go → went · have → had · do → did · win → won · see → saw · take → took · buy → bought · run → ran · swim → swam · meet → met
+x Did you played tennis? => Did you play tennis?
+x She didn't went swimming. => She didn't go swimming.
+
+## u8-imperatives | Imperatives | Câu mệnh lệnh
+### Cấu trúc
+= (+) V nguyên mẫu + ... → Warm up before the match.
+= (–) Don't + V nguyên mẫu + ... → Don't run on the wet floor.
+- Dùng để hướng dẫn, yêu cầu, ra lệnh hoặc nhắc nhở ngắn.
+x Don't to push. => Don't push.
+x Not push other players. => Don't push other players.
+
+@set mcq | Chọn was / were | level=1 | gp=u8-past-simple
+We ___ at the sports centre last Saturday. => was | *were | are | be || We → were.
+My friends ___ very happy when their team won. => was | is | be | *were || Số nhiều → were.
+You ___ very fast in the race. => was | are | *were | be || You → were.
+Nam and Minh ___ on the school team last year. => was | is | be | *were || Hai người → were.
+The tickets ___ expensive. => was | are | *were | be || Số nhiều, ngữ cảnh quá khứ → were.
+I ___ not nervous before the game. => were | am | *was | be || I → was.
+___ the final match exciting? => Were | *Was | Did | Is || the final match số ít → Was.
+
+@set gap | Viết dạng quá khứ của động từ | level=2 | gp=u8-past-simple
+study → ___ => studied || Phụ âm + y → ied.
+stop → ___ => stopped || CVC → gấp đôi p.
+go → ___ => went || Bất quy tắc.
+win → ___ => won || Bất quy tắc.
+see → ___ => saw || Bất quy tắc.
+take → ___ => took || Bất quy tắc.
+buy → ___ => bought || Bất quy tắc.
+swim → ___ => swam || Bất quy tắc.
+meet → ___ => met || Bất quy tắc.
+run → ___ => ran || Bất quy tắc.
+
+@set mcq | Chọn dạng quá khứ đúng | level=2 | gp=u8-past-simple
+Mai ___ a gold medal in the school competition. => *won | wins | win | winned || win → won.
+Tom ___ to the gym with his brother last Sunday. => goes | *went | go | goed || go → went.
+I ___ my favourite player at the stadium. => see | *saw | seen | seed || see → saw.
+Lan ___ part in a swimming competition. => take | takes | taked | *took || take → took.
+Dad ___ me a new badminton racket. => *bought | buy | buys | buyed || buy → bought.
+My cousin ___ across the lake yesterday. => swim | swimmed | swims | *swam || swim → swam.
+The goalkeeper ___ the ball safely. => catch | *caught | catched | catches || catch → caught.
+The referee ___ the game after ninety minutes. => end | ends | *ended | ending || Động từ có quy tắc → ended.
+
+@set rewrite | Viết câu phủ định / câu hỏi ở quá khứ đơn | level=3 | gp=u8-past-simple
+I played chess yesterday. (phủ định) => I didn't play chess yesterday. || didn't + V nguyên mẫu.
+Lan was at the gym last night. (phủ định) => Lan wasn't at the gym last night. || was → wasn't.
+Nam went cycling with his father. (phủ định) => Nam didn't go cycling with his father. || went → didn't go.
+The players were nervous before the game. (phủ định) => The players weren't nervous before the game. || were → weren't.
+She played badminton yesterday. (Yes/No – Yes) => Did she play badminton yesterday? Yes, she did. || Did + S + V?
+They were at the stadium. (Yes/No – No) => Were they at the stadium? No, they weren't. || Were + S...?
+Nam won the race. (Yes/No – Yes) => Did Nam win the race? Yes, he did. || won → Did ... win.
+
+@set rewrite | Viết lại câu ở thì quá khứ đơn | level=3 | gp=u8-past-simple
+I play table tennis every Friday. (last Friday) => I played table tennis last Friday. || play → played.
+Lan goes swimming every Sunday. (last Sunday) => Lan went swimming last Sunday. || goes → went.
+We are at the gym every afternoon. (yesterday afternoon) => We were at the gym yesterday afternoon. || are → were.
+I see my coach every Monday. (last Monday) => I saw my coach last Monday. || see → saw.
+Tom swims for thirty minutes every day. (yesterday) => Tom swam for thirty minutes yesterday. || swims → swam.
+Our team trains after school every Tuesday. (last Tuesday) => Our team trained after school last Tuesday. || trains → trained.
+
+@set mcq | Chọn câu mệnh lệnh phù hợp | level=2 | gp=u8-imperatives
+The floor is wet. => Run quickly. | Jump high. | Push hard. | *Walk carefully. || Sàn ướt → đi cẩn thận.
+You are about to play football. => Sit down all day. | Close your eyes. | Turn off the ball. | *Warm up first. || Trước khi chơi → khởi động.
+The sign says the swimming area is closed. => Swim faster. | Open the pool. | *Don't swim here. | Bring a chair. || Khu vực đóng → Don't swim here.
+You are cycling on a busy road. => Take off your helmet. | Close the road. | *Wear a helmet. | Kick the bicycle. || An toàn → đội mũ bảo hiểm.
+The referee blows the whistle. => Keep arguing. | *Stop playing. | Start shouting. | Leave your shoes. || Trọng tài thổi còi → dừng chơi.
+A sign says "No food in the gym". => *Don't eat here. | Cook here. | Buy more food. | Open the fridge. || Cấm đồ ăn → Don't eat here.
+
+@set error | Tìm và sửa lỗi sai | level=3 | gp=u8-past-simple
+We play football yesterday. => play -> played || "yesterday" → quá khứ.
+Lan didn't went to the gym. => went -> go || didn't + V nguyên mẫu.
+Did Nam won the race? => won -> win || Did + S + V nguyên mẫu.
+They was at the stadium last night. => was -> were || They → were.
+I were tired after the match. => were -> was || I → was.
+She watched not the game yesterday. => watched not -> didn't watch || Phủ định: didn't + V.
+The boys swimmed in the pool last Sunday. => swimmed -> swam || swim → swam (bất quy tắc).
+Dad buyed me a new racket. => buyed -> bought || buy → bought.
+Don't to run on the wet floor. => to run -> run || Don't + V nguyên mẫu.
+Wears a helmet when you cycle. => Wears -> Wear || Câu mệnh lệnh dùng V nguyên mẫu.
+Not push other players. => Not -> Don't || Mệnh lệnh phủ định: Don't + V.
+My team didn't trained on Monday. => trained -> train || didn't + V nguyên mẫu.
+
+@set cloze | Hoàn thành đoạn văn (tổng hợp Unit 8) | level=5 | gp=u8-past-simple
+Last Saturday, our school {{had}} (have) a Sports Day. I {{was}} (be) in the red team. In the morning, we {{played}} (play) volleyball. Our team {{won}} (win) the first match, but we {{didn't win}} (not / win) the second one.
+Before the running race, our PE teacher said, "{{*Warm/Warming}} up carefully and {{*don't/didn't}} start before the whistle." I {{ran}} (run) as fast as I could and {{finished}} (finish) third. Nam {{took}} (take) part in the long jump. He jumped very well and {{got}} (get) a silver medal.
+At lunchtime, the teacher reminded us, "{{*Drink/Drank}} enough water and don't leave rubbish on the field." In the afternoon, we {{watched}} (watch) the football final. "{{*Don't/Didn't}} push!" the referee shouted to the players. It was a great day, and everyone went home happily.
