@@ -56,13 +56,13 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
     return () => window.removeEventListener('vocab-image-updated', handleExternalUpdate);
   }, [word]);
 
-  const finalUrl = customUrl || (imageUrl && imageUrl.trim()) || resolveVocabImageUrl(word, imageUrl, seed);
+  const finalUrl = resolveVocabImageUrl(word, customUrl || imageUrl, seed);
   const emoji = getVocabEmoji(word, meaningVi);
 
   const sizeClasses = {
-    sm: 'w-20 h-20 rounded-2xl',
-    md: 'w-32 h-32 sm:w-36 sm:h-36 rounded-2xl',
-    lg: 'w-36 h-36 sm:w-44 sm:h-44 rounded-3xl',
+    sm: 'w-24 h-20 rounded-2xl',
+    md: 'w-40 h-32 sm:w-48 sm:h-36 rounded-2xl',
+    lg: 'w-48 h-36 sm:w-60 sm:h-44 rounded-3xl',
   }[size];
 
   const applyNewImage = (newUrl: string) => {
@@ -139,7 +139,7 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
       onClick={(e) => e.stopPropagation()}
     >
       <div
-        className={`relative ${sizeClasses} bg-gradient-to-br from-sky-50 via-white to-indigo-50 border-2 border-indigo-100/90 shadow-sm overflow-hidden flex items-center justify-center group`}
+        className={`relative ${sizeClasses} bg-[#FFFDF5] border-2 border-indigo-100/90 shadow-sm overflow-hidden flex items-center justify-center group`}
       >
         {/* Emoji & Shimmer hiển thị tức thì trong lúc ảnh đang tải hoặc nếu lỗi mạng */}
         {imgStatus !== 'loaded' && (
@@ -149,7 +149,7 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
             </span>
             {imgStatus === 'loading' && size !== 'sm' && (
               <span className="mt-1 text-[10px] font-bold text-indigo-400 animate-pulse">
-                Đang tạo minh họa...
+                Đang tải minh họa...
               </span>
             )}
           </div>
@@ -162,7 +162,7 @@ export const VocabIllustration: React.FC<VocabIllustrationProps> = ({
           loading="lazy"
           onLoad={() => setImgStatus('loaded')}
           onError={() => setImgStatus('error')}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
+          className={`w-full h-full object-contain transition-opacity duration-300 ${
             imgStatus === 'loaded' ? 'opacity-100' : 'opacity-0'
           }`}
         />

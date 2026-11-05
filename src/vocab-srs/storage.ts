@@ -45,12 +45,19 @@ export function loadVocabSrsData(): VocabSrsStoreData {
         ? parsed.words
         : seedWords;
 
-      // Đảm bảo các từ mẫu của Unit 1 luôn có mặt nếu chưa bị xóa
+      // Đảm bảo toàn bộ từ chuẩn của Unit 1 (bao gồm từ mới bổ sung và imageUrl chuẩn) luôn được đồng bộ
       const wordMap = new Map<string, Word>();
-      existingWords.forEach((w) => wordMap.set(w.id, w));
-      seedWords.forEach((sw) => {
-        if (!wordMap.has(sw.id)) {
-          wordMap.set(sw.id, sw);
+      seedWords.forEach((sw) => wordMap.set(sw.id, sw));
+      existingWords.forEach((w) => {
+        const seedMatch = wordMap.get(w.id);
+        if (seedMatch) {
+          wordMap.set(w.id, {
+            ...seedMatch,
+            ...w,
+            imageUrl: w.imageUrl || seedMatch.imageUrl,
+          });
+        } else {
+          wordMap.set(w.id, w);
         }
       });
 

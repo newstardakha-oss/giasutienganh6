@@ -104,16 +104,7 @@ export function seedUnit12Vocab(existingVocab: VocabItem[] = []): VocabItem[] {
  * @param part Tên phần bài học (VD: "GETTING STARTED", "A CLOSER LOOK 1", "SKILLS 1"...)
  */
 export function getVocabByPart(part: string, unitId: string = 'unit-12'): VocabItem[] {
-  let sourceList = UNIT12_VOCAB_DATA;
-  if (unitId === 'unit-2') sourceList = UNIT2_VOCAB_DATA;
-  if (unitId === 'unit-3') sourceList = UNIT3_VOCAB_DATA;
-  if (unitId === 'unit-4') sourceList = UNIT4_VOCAB_DATA;
-  if (unitId === 'unit-5') sourceList = UNIT5_VOCAB_DATA;
-  if (unitId === 'unit-6') sourceList = UNIT6_VOCAB_DATA;
-  if (unitId === 'unit-7') sourceList = UNIT7_VOCAB_DATA;
-  if (unitId === 'unit-8') sourceList = UNIT8_VOCAB_DATA;
-  if (unitId === 'unit-9') sourceList = UNIT9_VOCAB_DATA;
-  if (unitId === 'unit-11') sourceList = UNIT11_VOCAB_DATA;
+  const sourceList = getAllVocabByUnit(unitId);
 
   if (!part || part === 'ALL') {
     return sourceList;
@@ -147,16 +138,7 @@ export function getRandomVocabForGames(count: number = 10, unitId: string = 'uni
  * 4. Chuyển đổi dữ liệu VocabItem thành Question object để dùng trong PracticeHub & Mini-Games
  */
 export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-12'): Question {
-  let sourceList = UNIT12_VOCAB_DATA;
-  if (unitId === 'unit-2') sourceList = UNIT2_VOCAB_DATA;
-  if (unitId === 'unit-3') sourceList = UNIT3_VOCAB_DATA;
-  if (unitId === 'unit-4') sourceList = UNIT4_VOCAB_DATA;
-  if (unitId === 'unit-5') sourceList = UNIT5_VOCAB_DATA;
-  if (unitId === 'unit-6') sourceList = UNIT6_VOCAB_DATA;
-  if (unitId === 'unit-7') sourceList = UNIT7_VOCAB_DATA;
-  if (unitId === 'unit-8') sourceList = UNIT8_VOCAB_DATA;
-  if (unitId === 'unit-9') sourceList = UNIT9_VOCAB_DATA;
-  if (unitId === 'unit-11') sourceList = UNIT11_VOCAB_DATA;
+  const sourceList = getAllVocabByUnit(unitId);
 
   const options = [vocab.word];
   const otherWords = sourceList
@@ -191,30 +173,50 @@ export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-
 }
 
 /**
- * 5. Từ vựng tĩnh cho Unit 1 và Unit 10 (không có file JSON riêng)
- * Được tạo từ danh sách vocabulary trong SGK_UNITS (sgkData.ts)
+ * 5. Từ vựng chuẩn cho Unit 1 (bao gồm 26 từ vựng có hình ảnh minh họa chính xác từ bộ thẻ Unit 1) và Unit 10
  */
 const UNIT1_VOCAB_INLINE: VocabItem[] = [
-  { id: 'u1-1', word: 'calculator', phonetic: '/ˈkæl.kjə.leɪ.tər/', type: 'n', meaning: 'máy tính bỏ túi', example_en: 'I use a calculator in maths class.', example_vi: 'Tôi dùng máy tính bỏ túi trong giờ toán.', part: 'GETTING STARTED' },
-  { id: 'u1-2', word: 'compass', phonetic: '/ˈkʌm.pəs/', type: 'n', meaning: 'com-pa', example_en: 'Can I borrow your compass?', example_vi: 'Cho tôi mượn com-pa của bạn được không?', part: 'GETTING STARTED' },
-  { id: 'u1-3', word: 'pencil case', phonetic: '/ˈpen.sᵊl keɪs/', type: 'n', meaning: 'hộp bút', example_en: 'My pencil case is blue.', example_vi: 'Hộp bút của tôi màu xanh.', part: 'GETTING STARTED' },
-  { id: 'u1-4', word: 'rubber', phonetic: '/ˈrʌb.ər/', type: 'n', meaning: 'cục tẩy', example_en: 'I need a rubber to erase this.', example_vi: 'Tôi cần một cục tẩy để xóa cái này.', part: 'GETTING STARTED' },
-  { id: 'u1-5', word: 'school bag', phonetic: '/skuːl bæɡ/', type: 'n', meaning: 'cặp sách', example_en: 'My school bag is very heavy.', example_vi: 'Cặp sách của tôi rất nặng.', part: 'GETTING STARTED' },
-  { id: 'u1-6', word: 'uniform', phonetic: '/ˈjuː.nɪ.fɔːm/', type: 'n', meaning: 'đồng phục', example_en: 'Students wear uniform at school.', example_vi: 'Học sinh mặc đồng phục ở trường.', part: 'GETTING STARTED' },
-  { id: 'u1-7', word: 'history', phonetic: '/ˈhɪs.tər.i/', type: 'n', meaning: 'lịch sử', example_en: 'I have history on Monday.', example_vi: 'Tôi có môn lịch sử vào thứ Hai.', part: 'A CLOSER LOOK 1' },
-  { id: 'u1-8', word: 'science', phonetic: '/ˈsaɪ.əns/', type: 'n', meaning: 'khoa học', example_en: 'Science is my favourite subject.', example_vi: 'Khoa học là môn yêu thích của tôi.', part: 'A CLOSER LOOK 1' },
-  { id: 'u1-9', word: 'exercise', phonetic: '/ˈek.sər.saɪz/', type: 'n', meaning: 'bài tập', example_en: 'Please do exercise 1 on page 5.', example_vi: 'Hãy làm bài tập 1 ở trang 5.', part: 'A CLOSER LOOK 1' },
-  { id: 'u1-10', word: 'homework', phonetic: '/ˈhəʊm.wɜːk/', type: 'n', meaning: 'bài tập về nhà', example_en: 'I do my homework every day.', example_vi: 'Tôi làm bài tập về nhà mỗi ngày.', part: 'A CLOSER LOOK 1' },
-  { id: 'u1-11', word: 'subject', phonetic: '/ˈsʌb.dʒɪkt/', type: 'n', meaning: 'môn học', example_en: 'What is your favourite subject?', example_vi: 'Môn học yêu thích của bạn là gì?', part: 'A CLOSER LOOK 1' },
-  { id: 'u1-12', word: 'timetable', phonetic: '/ˈtaɪm.teɪ.bᵊl/', type: 'n', meaning: 'thời khóa biểu', example_en: 'Look at the timetable.', example_vi: 'Hãy nhìn vào thời khóa biểu.', part: 'A CLOSER LOOK 1' },
-  { id: 'u1-13', word: 'classmate', phonetic: '/ˈklɑːs.meɪt/', type: 'n', meaning: 'bạn cùng lớp', example_en: 'She is my new classmate.', example_vi: 'Cô ấy là bạn cùng lớp mới của tôi.', part: 'A CLOSER LOOK 2' },
-  { id: 'u1-14', word: 'library', phonetic: '/ˈlaɪ.brər.i/', type: 'n', meaning: 'thư viện', example_en: 'I read books in the library.', example_vi: 'Tôi đọc sách ở thư viện.', part: 'A CLOSER LOOK 2' },
-  { id: 'u1-15', word: 'playground', phonetic: '/ˈpleɪ.ɡraʊnd/', type: 'n', meaning: 'sân chơi', example_en: 'We play football in the playground.', example_vi: 'Chúng tôi chơi bóng đá ở sân chơi.', part: 'A CLOSER LOOK 2' },
-  { id: 'u1-16', word: 'always', phonetic: '/ˈɔːl.weɪz/', type: 'adv', meaning: 'luôn luôn', example_en: 'He always goes to school early.', example_vi: 'Anh ấy luôn đi học sớm.', part: 'A CLOSER LOOK 2' },
-  { id: 'u1-17', word: 'usually', phonetic: '/ˈjuː.ʒu.ə.li/', type: 'adv', meaning: 'thường xuyên', example_en: 'I usually have breakfast at 7.', example_vi: 'Tôi thường ăn sáng lúc 7 giờ.', part: 'A CLOSER LOOK 2' },
-  { id: 'u1-18', word: 'sometimes', phonetic: '/ˈsʌm.taɪmz/', type: 'adv', meaning: 'thỉnh thoảng', example_en: 'Sometimes I walk to school.', example_vi: 'Thỉnh thoảng tôi đi bộ đến trường.', part: 'A CLOSER LOOK 2' },
-  { id: 'u1-19', word: 'never', phonetic: '/ˈnev.ər/', type: 'adv', meaning: 'không bao giờ', example_en: 'I never skip breakfast.', example_vi: 'Tôi không bao giờ bỏ bữa sáng.', part: 'A CLOSER LOOK 2' },
-  { id: 'u1-20', word: 'boarding school', phonetic: '/ˈbɔːdɪŋ skuːl/', type: 'n', meaning: 'trường nội trú', example_en: 'She studies at a boarding school.', example_vi: 'Cô ấy học ở trường nội trú.', part: 'SKILLS 1' },
+  // Nhóm 1: School things (Đồ dùng học tập)
+  { id: 'u1-1', word: 'school bag', phonetic: '/ˈskuːl bæɡ/', type: 'n', meaning: 'cặp sách', example_en: 'My school bag is very heavy.', example_vi: 'Cặp sách của tôi rất nặng.', part: 'School things', imageUrl: './images/vocab/unit1/school-bag.jpg' },
+  { id: 'u1-2', word: 'compass', phonetic: '/ˈkʌm.pəs/', type: 'n', meaning: 'com-pa', example_en: 'Can I borrow your compass?', example_vi: 'Cho tôi mượn com-pa của bạn được không?', part: 'School things', imageUrl: './images/vocab/unit1/compass.jpg' },
+  { id: 'u1-3', word: 'calculator', phonetic: '/ˈkæl.kjə.leɪ.tər/', type: 'n', meaning: 'máy tính bỏ túi', example_en: 'I use a calculator in maths class.', example_vi: 'Tôi dùng máy tính bỏ túi trong giờ toán.', part: 'School things', imageUrl: './images/vocab/unit1/calculator.jpg' },
+  { id: 'u1-4', word: 'pencil case', phonetic: '/ˈpen.sᵊl keɪs/', type: 'n', meaning: 'hộp bút', example_en: 'My pencil case has a pink flower on it.', example_vi: 'Hộp bút của tôi có hình bông hoa màu hồng.', part: 'School things', imageUrl: './images/vocab/unit1/pencil-case.jpg' },
+  { id: 'u1-5', word: 'notebook', phonetic: '/ˈnəʊt.bʊk/', type: 'n', meaning: 'vở ghi', example_en: 'Write the new words in your notebook.', example_vi: 'Hãy viết các từ mới vào vở ghi của bạn.', part: 'School things', imageUrl: './images/vocab/unit1/notebook.jpg' },
+  { id: 'u1-6', word: 'textbook', phonetic: '/ˈtekst.bʊk/', type: 'n', meaning: 'sách giáo khoa', example_en: 'Open your English textbook on page 6.', example_vi: 'Hãy mở sách giáo khoa Tiếng Anh trang 6.', part: 'School things', imageUrl: './images/vocab/unit1/textbook.jpg' },
+  { id: 'u1-7', word: 'rubber', phonetic: '/ˈrʌb.ər/', type: 'n', meaning: 'cục tẩy', example_en: 'I need a rubber to erase this pencil mark.', example_vi: 'Tôi cần một cục tẩy để xóa vết bút chì này.', part: 'School things', imageUrl: './images/vocab/unit1/rubber.jpg' },
+  { id: 'u1-8', word: 'ruler', phonetic: '/ˈruː.lər/', type: 'n', meaning: 'thước kẻ', example_en: 'Use a ruler to draw a straight line.', example_vi: 'Hãy dùng thước kẻ để kẻ một đường thẳng.', part: 'School things', imageUrl: './images/vocab/unit1/ruler.jpg' },
+  { id: 'u1-9', word: 'sharpener', phonetic: '/ˈʃɑː.pən.ər/', type: 'n', meaning: 'gọt bút chì', example_en: 'I have a blue pencil sharpener.', example_vi: 'Tôi có một chiếc gọt bút chì màu xanh.', part: 'School things', imageUrl: './images/vocab/unit1/sharpener.jpg' },
+  { id: 'u1-10', word: 'uniform', phonetic: '/ˈjuː.nɪ.fɔːm/', type: 'n', meaning: 'đồng phục', example_en: 'Students wear their uniform at school.', example_vi: 'Học sinh mặc đồng phục ở trường.', part: 'School things', imageUrl: './images/vocab/unit1/uniform.jpg' },
+
+  // Nhóm 2: Con người và loại hình trường học
+  { id: 'u1-11', word: 'classmate', phonetic: '/ˈklɑːs.meɪt/', type: 'n', meaning: 'bạn cùng lớp', example_en: 'She is my new classmate.', example_vi: 'Cô ấy là bạn cùng lớp mới của tôi.', part: 'Con người & Trường học', imageUrl: './images/vocab/unit1/classmate.jpg' },
+  { id: 'u1-12', word: 'boarding school', phonetic: '/ˈbɔː.dɪŋ skuːl/', type: 'n', meaning: 'trường nội trú', example_en: 'Students live and study at a boarding school.', example_vi: 'Học sinh sống và học tập tại trường nội trú.', part: 'Con người & Trường học', imageUrl: './images/vocab/unit1/boarding-school.jpg' },
+  { id: 'u1-13', word: 'international school', phonetic: '/ˌɪn.təˈnæʃ.ən.əl skuːl/', type: 'n', meaning: 'trường quốc tế', example_en: 'Students from many countries study at an international school.', example_vi: 'Học sinh từ nhiều quốc gia học tại trường quốc tế.', part: 'Con người & Trường học', imageUrl: './images/vocab/unit1/international-school.jpg' },
+
+  // Nhóm 3: Subjects & Learning (Môn học & Học tập)
+  { id: 'u1-14', word: 'subject', phonetic: '/ˈsʌb.dʒɪkt/', type: 'n', meaning: 'môn học', example_en: 'What is your favourite subject?', example_vi: 'Môn học yêu thích của bạn là gì?', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/subject.jpg' },
+  { id: 'u1-15', word: 'maths', phonetic: '/mæθs/', type: 'n', meaning: 'toán', example_en: 'We learn numbers and shapes in maths.', example_vi: 'Chúng tôi học về số và hình học trong môn toán.', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/maths.jpg' },
+  { id: 'u1-16', word: 'science', phonetic: '/ˈsaɪ.əns/', type: 'n', meaning: 'khoa học', example_en: 'Science is my favourite subject.', example_vi: 'Khoa học là môn yêu thích của tôi.', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/science.jpg' },
+  { id: 'u1-17', word: 'history', phonetic: '/ˈhɪs.tər.i/', type: 'n', meaning: 'lịch sử', example_en: 'I have history on Monday.', example_vi: 'Tôi có môn lịch sử vào thứ Hai.', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/history.jpg' },
+  { id: 'u1-18', word: 'art', phonetic: '/ɑːt/', type: 'n', meaning: 'mỹ thuật', example_en: 'She loves drawing pictures in art class.', example_vi: 'Cô ấy thích vẽ tranh trong giờ mỹ thuật.', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/art.jpg' },
+  { id: 'u1-19', word: 'homework', phonetic: '/ˈhəʊm.wɜːk/', type: 'n', meaning: 'bài tập về nhà', example_en: 'I do my homework every evening.', example_vi: 'Tôi làm bài tập về nhà mỗi tối.', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/homework.jpg' },
+  { id: 'u1-20', word: 'lesson', phonetic: '/ˈles.ən/', type: 'n', meaning: 'tiết học, bài học', example_en: 'Our English lesson starts at 8 o’clock.', example_vi: 'Tiết học Tiếng Anh của chúng tôi bắt đầu lúc 8 giờ.', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/lesson.jpg' },
+  { id: 'u1-21', word: 'timetable', phonetic: '/ˈtaɪm.teɪ.bᵊl/', type: 'n', meaning: 'thời khóa biểu', example_en: 'Look at the school timetable on the wall.', example_vi: 'Hãy nhìn vào thời khóa biểu trên tường.', part: 'Subjects & Learning', imageUrl: './images/vocab/unit1/timetable.jpg' },
+
+  // Nhóm 4: School facilities (Cơ sở vật chất trường học)
+  { id: 'u1-22', word: 'library', phonetic: '/ˈlaɪ.brər.i/', type: 'n', meaning: 'thư viện', example_en: 'I read books in the school library.', example_vi: 'Tôi đọc sách ở thư viện trường.', part: 'School facilities', imageUrl: './images/vocab/unit1/library.jpg' },
+  { id: 'u1-23', word: 'canteen', phonetic: '/kænˈtiːn/', type: 'n', meaning: 'căng-tin', example_en: 'We have lunch together in the school canteen.', example_vi: 'Chúng tôi ăn trưa cùng nhau ở căng-tin trường.', part: 'School facilities', imageUrl: './images/vocab/unit1/canteen.jpg' },
+  { id: 'u1-24', word: 'gym', phonetic: '/dʒɪm/', type: 'n', meaning: 'phòng thể chất', example_en: 'The boys are playing basketball in the gym.', example_vi: 'Các bạn nam đang chơi bóng rổ trong phòng thể chất.', part: 'School facilities', imageUrl: './images/vocab/unit1/gym.jpg' },
+  { id: 'u1-25', word: 'playground', phonetic: '/ˈpleɪ.ɡraʊnd/', type: 'n', meaning: 'sân chơi', example_en: 'Children play games in the playground at break time.', example_vi: 'Học sinh chơi trò chơi ở sân chơi vào giờ ra chơi.', part: 'School facilities', imageUrl: './images/vocab/unit1/playground.jpg' },
+  { id: 'u1-26', word: 'classroom', phonetic: '/ˈklɑːs.ruːm/', type: 'n', meaning: 'phòng học', example_en: 'Our classroom is clean and bright.', example_vi: 'Phòng học của chúng tôi sạch sẽ và thoáng đãng.', part: 'School facilities', imageUrl: './images/vocab/unit1/classroom.jpg' },
+
+  // Từ vựng mở rộng trong bài
+  { id: 'u1-27', word: 'smart', phonetic: '/smɑːt/', type: 'adj', meaning: 'bảnh bao, gọn gàng', example_en: 'You look very smart in your new uniform!', example_vi: 'Bạn trông thật bảnh bao trong bộ đồng phục mới!', part: 'Grammar & More' },
+  { id: 'u1-28', word: 'exercise', phonetic: '/ˈek.sər.saɪz/', type: 'n', meaning: 'bài tập', example_en: 'Please do exercise 1 on page 5.', example_vi: 'Hãy làm bài tập 1 ở trang 5.', part: 'Grammar & More' },
+  { id: 'u1-29', word: 'always', phonetic: '/ˈɔːl.weɪz/', type: 'adv', meaning: 'luôn luôn', example_en: 'He always goes to school early.', example_vi: 'Anh ấy luôn đi học sớm.', part: 'Grammar & More' },
+  { id: 'u1-30', word: 'usually', phonetic: '/ˈjuː.ʒu.ə.li/', type: 'adv', meaning: 'thường xuyên', example_en: 'I usually have breakfast at 7.', example_vi: 'Tôi thường ăn sáng lúc 7 giờ.', part: 'Grammar & More' },
+  { id: 'u1-31', word: 'sometimes', phonetic: '/ˈsʌm.taɪmz/', type: 'adv', meaning: 'thỉnh thoảng', example_en: 'Sometimes I walk to school.', example_vi: 'Thỉnh thoảng tôi đi bộ đến trường.', part: 'Grammar & More' },
+  { id: 'u1-32', word: 'never', phonetic: '/ˈnev.ər/', type: 'adv', meaning: 'không bao giờ', example_en: 'I never skip breakfast.', example_vi: 'Tôi không bao giờ bỏ bữa sáng.', part: 'Grammar & More' },
 ];
 
 const UNIT10_VOCAB_INLINE: VocabItem[] = [

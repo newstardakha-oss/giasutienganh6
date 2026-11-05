@@ -48,22 +48,63 @@ export function buildAutoVocabImageUrl(word: string, seedVariant: number = 1): s
 }
 
 /**
+ * Kho hình ảnh minh họa chuẩn SGK cho Unit 1 - My New School (26 từ vựng từ bộ thẻ hình ảnh đính kèm).
+ */
+export const BUILTIN_VOCAB_IMAGES: Record<string, string> = {
+  // 1. School things (Đồ dùng học tập)
+  'school bag': './images/vocab/unit1/school-bag.jpg',
+  compass: './images/vocab/unit1/compass.jpg',
+  calculator: './images/vocab/unit1/calculator.jpg',
+  'pencil case': './images/vocab/unit1/pencil-case.jpg',
+  notebook: './images/vocab/unit1/notebook.jpg',
+  textbook: './images/vocab/unit1/textbook.jpg',
+  rubber: './images/vocab/unit1/rubber.jpg',
+  ruler: './images/vocab/unit1/ruler.jpg',
+  sharpener: './images/vocab/unit1/sharpener.jpg',
+  uniform: './images/vocab/unit1/uniform.jpg',
+  // 2. Con người và loại hình trường học
+  classmate: './images/vocab/unit1/classmate.jpg',
+  'boarding school': './images/vocab/unit1/boarding-school.jpg',
+  'international school': './images/vocab/unit1/international-school.jpg',
+  // 3. Subjects & Learning (Môn học & Học tập)
+  subject: './images/vocab/unit1/subject.jpg',
+  maths: './images/vocab/unit1/maths.jpg',
+  science: './images/vocab/unit1/science.jpg',
+  history: './images/vocab/unit1/history.jpg',
+  art: './images/vocab/unit1/art.jpg',
+  homework: './images/vocab/unit1/homework.jpg',
+  lesson: './images/vocab/unit1/lesson.jpg',
+  timetable: './images/vocab/unit1/timetable.jpg',
+  // 4. School facilities (Cơ sở vật chất trường học)
+  library: './images/vocab/unit1/library.jpg',
+  canteen: './images/vocab/unit1/canteen.jpg',
+  gym: './images/vocab/unit1/gym.jpg',
+  playground: './images/vocab/unit1/playground.jpg',
+  classroom: './images/vocab/unit1/classroom.jpg',
+};
+
+/**
  * Lấy link ảnh ưu tiên:
- * 1. imageUrl truyền trực tiếp từ dữ liệu từ vựng
- * 2. Ảnh tùy chỉnh đã lưu trong kho ảnh chung theo từ
- * 3. Ảnh AI tự động sinh theo từ vựng
+ * 1. Ảnh tùy chỉnh đã lưu trong kho ảnh chung theo từ (nếu giáo viên tự đổi)
+ * 2. imageUrl truyền trực tiếp từ dữ liệu từ vựng
+ * 3. Ảnh minh họa chuẩn có sẵn trong kho BUILTIN_VOCAB_IMAGES
+ * 4. Ảnh AI tự động sinh theo từ vựng
  */
 export function resolveVocabImageUrl(
   word: string,
   explicitImageUrl?: string,
   seedVariant: number = 1
 ): string {
-  if (explicitImageUrl && explicitImageUrl.trim()) {
-    return explicitImageUrl.trim();
-  }
   const savedCustom = getCustomVocabImage(word);
   if (savedCustom) {
     return savedCustom;
+  }
+  if (explicitImageUrl && explicitImageUrl.trim()) {
+    return explicitImageUrl.trim();
+  }
+  const cleanKey = word.toLowerCase().trim();
+  if (BUILTIN_VOCAB_IMAGES[cleanKey]) {
+    return BUILTIN_VOCAB_IMAGES[cleanKey];
   }
   return buildAutoVocabImageUrl(word, seedVariant);
 }
@@ -136,10 +177,19 @@ const WORD_EMOJI_MAP: Record<string, string> = {
   library: '📖',
   playground: '🛝',
   'boarding school': '🏫',
+  'international school': '🌍',
   smart: '✨',
   notebook: '📓',
   ruler: '📏',
   textbook: '📕',
+  sharpener: '✏️',
+  maths: '➕',
+  art: '🎨',
+  lesson: '👩‍🏫',
+  timetable: '🗓️',
+  canteen: '🍱',
+  gym: '🏀',
+  classroom: '🏫',
   // Unit 2: My House
   house: '🏠',
   flat: '🏢',
@@ -261,7 +311,6 @@ const WORD_EMOJI_MAP: Record<string, string> = {
   boat: '🚤',
   marathon: '🏃‍♂️',
   champion: '🏆',
-  gym: '🏋️',
   // Unit 9: Cities of the World
   city: '🌆',
   continent: '🌍',

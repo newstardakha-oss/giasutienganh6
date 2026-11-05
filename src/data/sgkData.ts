@@ -8,7 +8,7 @@ export const SGK_UNITS: SgkUnit[] = [
     term: 1,
     theme: 'Our Communities',
     grammar: ['Present simple (Thì hiện tại đơn)', 'Adverbs of frequency (Trạng từ chỉ tần suất: always, usually, often, sometimes, rarely, never)'],
-    vocabulary: ['calculator, compass, pencil case, rubber, school bag, uniform, history, science, exercise, homework'],
+    vocabulary: ['School things: school bag, compass, calculator, pencil case, notebook, textbook, rubber, ruler, sharpener, uniform', 'Con người & Trường học: classmate, boarding school, international school', 'Subjects & Learning: subject, maths, science, history, art, homework, lesson, timetable', 'School facilities: library, canteen, gym, playground, classroom'],
     pronunciationIPA: '/a:/ & /ʌ/ (smart, art vs subject, study)',
     skillsSummary: 'Đọc & Nghe thông tin trường học, Nói về loại trường yêu thích, Viết đoạn văn ngắn về trường học.',
     iconName: 'School'
