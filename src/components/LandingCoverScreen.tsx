@@ -230,42 +230,48 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
     <div className="min-h-screen bg-[#f5f3ff] text-slate-800 flex flex-col justify-between font-['Be_Vietnam_Pro',sans-serif] relative overflow-x-hidden selection:bg-purple-200">
       
       {/* Top Cute Pastel Brand Header */}
-      <header className="relative z-10 border-b border-purple-100 bg-white/80 backdrop-blur-md px-4 sm:px-8 py-4 shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#38bdf8] via-[#a855f7] to-[#ec4899] p-0.5 shadow-md shadow-purple-500/20 animate-float">
+      <header className="relative z-10 border-b border-purple-100 bg-white/80 backdrop-blur-md px-4 sm:px-8 py-3.5 sm:py-4 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#38bdf8] via-[#a855f7] to-[#ec4899] p-0.5 shadow-md shadow-purple-500/20 shrink-0">
               <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center text-white">
-                <GraduationCap className="w-7 h-7 text-purple-600" />
+                <GraduationCap className="w-6 h-6 sm:w-7 sm:h-7 text-purple-600" />
               </div>
             </div>
-            <div>
-              <h1 className="font-extrabold text-xl sm:text-2xl tracking-tight bg-gradient-to-r from-sky-500 via-purple-600 to-pink-500 bg-clip-text text-transparent flex items-center gap-2">
-                <span>Gia Sư AI Tiếng Anh Lớp 6</span> 🌟
+            <div className="min-w-0">
+              <h1 className="font-extrabold text-base sm:text-2xl tracking-tight bg-gradient-to-r from-sky-500 via-purple-600 to-pink-500 bg-clip-text text-transparent flex items-center gap-1.5 whitespace-nowrap">
+                <span className="truncate">Gia Sư AI Lớp 6</span>
+                <span className="hidden sm:inline">🌟</span>
               </h1>
-              <p className="text-xs text-purple-600 font-bold flex items-center gap-1.5">
-                <span>Global Success 📖</span> • <span>Created by Mrs.Nhan - THCS Chu Van An Dak Ha 🏫</span>
+              <p className="text-[11px] sm:text-xs text-purple-600 font-bold flex items-center gap-1.5 whitespace-nowrap">
+                <span>Global Success</span>
+                <span className="hidden md:inline">• Created by Mrs.Nhan - THCS Chu Van An Dak Ha 🏫</span>
               </p>
             </div>
           </div>
 
           <button
             onClick={() => setActiveTab('student')}
-            className="px-4 py-2.5 rounded-2xl neu-card-purple text-purple-900 font-extrabold text-xs border-2 border-purple-300 transition-all flex items-center gap-2 hover:scale-105 shadow-sm cursor-pointer"
+            className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl neu-card-purple text-purple-900 font-extrabold text-xs border-2 border-purple-300 transition-all flex items-center gap-1.5 sm:gap-2 hover:scale-105 shadow-sm cursor-pointer whitespace-nowrap shrink-0"
           >
-            <UserCheck className="w-4 h-4 text-purple-600" />
-            <span>🔒 Đăng Nhập Học Sinh</span>
+            <UserCheck className="w-4 h-4 text-purple-600 shrink-0" />
+            <span className="whitespace-nowrap sm:hidden">Đăng Nhập</span>
+            <span className="whitespace-nowrap hidden sm:inline">🔒 Đăng Nhập Học Sinh</span>
           </button>
         </div>
       </header>
 
       {/* Main Content Focused 3D Pastel Hero & Auth Box */}
-      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 flex-1 flex flex-col justify-center items-center">
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-10 lg:pb-12 flex-1 flex flex-col justify-start items-center w-full">
         
         {/* Center Hero Heading */}
-        <div className="text-center max-w-3xl space-y-3 mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-pastel-yellow text-amber-800 text-xs font-extrabold shadow-sm animate-bounce">
-            <Sparkles className="w-4 h-4 text-amber-600" />
-            <span>Chương Trình Chuẩn GDPT Mới • Sách Tiếng Anh 6 Global Success 📚</span>
+        <div className="text-center max-w-3xl space-y-3 mb-7 pt-2 w-full">
+          <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full badge-pastel-yellow text-amber-800 text-xs font-extrabold shadow-sm whitespace-nowrap max-w-full">
+            <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
+            <span className="whitespace-nowrap truncate">
+              <span className="hidden sm:inline">Chương Trình Chuẩn GDPT Mới • </span>
+              Sách Tiếng Anh 6 Global Success 📚
+            </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-purple-950 leading-tight">
@@ -286,50 +292,50 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
             <button
               onClick={() => setActiveTab('student')}
-              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+              className={`py-2.5 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
                 activeTab === 'student'
                   ? 'neu-btn-primary text-white shadow-lg scale-105'
                   : 'neu-btn text-slate-700 hover:text-indigo-600'
               }`}
             >
-              <UserCheck className="w-4 h-4" />
-              <span>1. Học Sinh 👨‍🎓</span>
+              <UserCheck className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap truncate">1. Học Sinh 👨‍🎓</span>
             </button>
 
             <button
               onClick={() => setActiveTab('register')}
-              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+              className={`py-2.5 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
                 activeTab === 'register'
                   ? 'neu-btn-primary text-white shadow-lg scale-105'
                   : 'neu-btn text-slate-700 hover:text-indigo-600'
               }`}
             >
-              <UserPlus className="w-4 h-4" />
-              <span>2. Đăng Ký 📝</span>
+              <UserPlus className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap truncate">2. Đăng Ký 📝</span>
             </button>
 
             <button
               onClick={() => setActiveTab('teacher')}
-              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+              className={`py-2.5 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
                 activeTab === 'teacher'
                   ? 'neu-btn-primary text-white shadow-lg scale-105'
                   : 'neu-btn text-slate-700 hover:text-purple-600'
               }`}
             >
-              <ShieldCheck className="w-4 h-4" />
-              <span>3. Giáo Viên 👩‍🏫</span>
+              <ShieldCheck className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap truncate">3. Giáo Viên 👩‍🏫</span>
             </button>
 
             <button
               onClick={() => setActiveTab('parent')}
-              className={`py-3 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex flex-col sm:flex-row items-center justify-center gap-1.5 cursor-pointer ${
+              className={`py-2.5 px-2 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
                 activeTab === 'parent'
                   ? 'neu-btn-success text-white shadow-lg scale-105'
                   : 'neu-btn text-slate-700 hover:text-emerald-600'
               }`}
             >
-              <Users className="w-4 h-4" />
-              <span>4. Phụ Huynh 👨‍👩‍👧</span>
+              <Users className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap truncate">4. Phụ Huynh 👨‍👩‍👧</span>
             </button>
           </div>
 

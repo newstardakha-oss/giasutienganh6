@@ -139,22 +139,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ appData, onSelectSkill }
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
       {/* Section Title */}
-      <div className="flex items-center justify-between mt-4 mb-6">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-purple-950 flex items-center gap-2">
-            <Target className="w-6 h-6 text-indigo-500" />
-            Chọn Kỹ Năng Để Học
-            <Sparkles className="w-5 h-5 text-amber-400" />
+      <div className="flex items-center justify-between gap-3 pt-2 mt-4 mb-6">
+        <div className="min-w-0">
+          <h2 className="text-lg sm:text-2xl font-extrabold text-purple-950 flex items-center gap-2 whitespace-nowrap">
+            <Target className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-500 shrink-0" />
+            <span className="truncate">Chọn Kỹ Năng Để Học</span>
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
           </h2>
-          <p className="text-sm text-purple-600 font-semibold mt-1">
+          <p className="text-xs sm:text-sm text-purple-600 font-semibold mt-1">
             5 kỹ năng Tiếng Anh cốt lõi — em muốn luyện kỹ năng nào hôm nay? 🎯
           </p>
         </div>
-        <div className="hidden sm:flex items-center gap-2 neu-card-purple px-4 py-2">
-          <Trophy className="w-5 h-5 text-amber-500" />
-          <div className="text-center">
-            <span className="text-[10px] font-bold text-purple-600 block uppercase">Tổng tiến độ</span>
-            <span className="text-lg font-extrabold text-purple-800">{avgMastery}%</span>
+        <div className="flex items-center gap-2 neu-card-purple px-3.5 sm:px-4 py-2 shrink-0 whitespace-nowrap">
+          <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 shrink-0" />
+          <div className="text-center whitespace-nowrap">
+            <span className="text-[10px] font-bold text-purple-600 block uppercase whitespace-nowrap">Tổng tiến độ</span>
+            <span className="text-base sm:text-lg font-extrabold text-purple-800 block whitespace-nowrap">{avgMastery}%</span>
           </div>
         </div>
       </div>

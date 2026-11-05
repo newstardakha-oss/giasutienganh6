@@ -85,6 +85,7 @@
   border: 2px solid rgba(255, 255, 255, 0.8);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .neu-btn:hover {
@@ -106,6 +107,7 @@
   border: 2px solid rgba(255, 255, 255, 0.4);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .neu-btn-primary:hover {
@@ -127,6 +129,7 @@
   border: 2px solid rgba(255, 255, 255, 0.4);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .neu-btn-success:hover {
@@ -139,30 +142,35 @@
   background-color: #ffe4e6;
   color: #e11d48;
   border: 1px solid #fecdd3;
+  white-space: nowrap;
 }
 
 .badge-pastel-blue {
   background-color: #e0f2fe;
   color: #0284c7;
   border: 1px solid #bae6fd;
+  white-space: nowrap;
 }
 
 .badge-pastel-mint {
   background-color: #dcfce7;
   color: #059669;
   border: 1px solid #a7f3d0;
+  white-space: nowrap;
 }
 
 .badge-pastel-yellow {
   background-color: #fef3c7;
   color: #d97706;
   border: 1px solid #fde68a;
+  white-space: nowrap;
 }
 
 .badge-pastel-purple {
   background-color: #f3e8ff;
   color: #7c3aed;
   border: 1px solid #e9d5ff;
+  white-space: nowrap;
 }
 
 /* Fun Floating Animation */
@@ -198,14 +206,18 @@
    HomeScreen — Skill Cards & Tool Cards
    ========================================== */
 
-/* Skill Cards Grid Layout */
+/* Skill Cards Grid Layout:
+   - Mobile (< 640px): 1 column
+   - Tablet / small screen (640px - 1023px): 2 columns
+   - Desktop (>= 1024px): Row 1 has 3 cards, Row 2 has 2 centered cards (no empty hole in the middle)
+*/
 .skill-cards-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) and (max-width: 1023px) {
   .skill-cards-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
@@ -214,19 +226,18 @@
 
 @media (min-width: 1024px) {
   .skill-cards-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 1.5rem;
   }
-  /* Last 2 cards center in bottom row on desktop */
+  .skill-cards-grid .skill-card {
+    grid-column: span 2;
+  }
+  /* Last 2 cards side-by-side & centered in bottom row (cols 2-3 and cols 4-5) */
   .skill-cards-grid .skill-card:nth-child(4) {
-    grid-column: 1 / 2;
-    margin-left: auto;
-    width: 100%;
+    grid-column: 2 / span 2;
   }
   .skill-cards-grid .skill-card:nth-child(5) {
-    grid-column: 3 / 4;
-    margin-right: auto;
-    width: 100%;
+    grid-column: 4 / span 2;
   }
 }
 
@@ -349,12 +360,14 @@
   background: rgba(255, 255, 255, 0.2);
   padding: 0.125rem 0.5rem;
   border-radius: 9999px;
+  white-space: nowrap;
 }
 
 .skill-card-percent {
   font-size: 0.85rem;
   font-weight: 800;
   color: #fff;
+  white-space: nowrap;
 }
 
 .skill-card-progress-track {
@@ -381,6 +394,7 @@
   color: rgba(255, 255, 255, 0.7);
   margin-top: 0.25rem;
   transition: color 0.2s, transform 0.2s;
+  white-space: nowrap;
 }
 
 .skill-card:hover .skill-card-arrow {
@@ -476,6 +490,7 @@
   font-size: 0.8rem;
   font-weight: 800;
   color: #334155;
+  white-space: nowrap;
 }
 
 .tool-card-desc {
