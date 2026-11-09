@@ -1679,7 +1679,7 @@ export const GS6_PRONUNCIATION_UNITS: UnitPronunciationData[] = [
             id: 'u9-ex1-q4',
             prompt: 'Câu 4: Chọn từ có phần gạch chân phát âm khác:',
             options: ['pr[ou]d', 'ar[ou]nd', 'cl[ou]d', 'fam[ou]s'],
-            correctAnswer: 'f[a]m[ou]s',
+            correctAnswer: 'fam[ou]s',
             explanation: 'Đuôi "-ous" trong "famous" /ˈfeɪməs/ phát âm là /əs/, còn proud, around, cloud phát âm là /aʊ/.',
           },
         ],

@@ -152,15 +152,25 @@ export function convertVocabToQuestion(vocab: VocabItem, unitId: string = 'unit-
 
   options.sort(() => 0.5 - Math.random());
 
+  const INFLECTED_MAP: Record<string, RegExp> = {
+    central: /\b(central|centre|center)\b/gi,
+    come: /\b(comes|coming|came|come)\b/gi,
+    activity: /\b(activities|activity)\b/gi,
+    comedy: /\b(comedies|comedy)\b/gi,
+    win: /\b(winning|wins|won|win)\b/gi,
+    bear: /\b(bears|bore|born|bear)\b/gi,
+    tidy: /\b(tidiest|tidier|tidies|tidied|tidy)\b/gi,
+  };
+  const cleanWordKey = vocab.word.trim().toLowerCase();
+  const blankRegex = INFLECTED_MAP[cleanWordKey] || new RegExp(vocab.word, 'gi');
+  const maskedSentence = vocab.example_en.replace(blankRegex, '________');
+
   return {
     id: `q-${unitId}-v-${vocab.id}`,
     unitId: unitId,
     skill: 'Vocabulary',
     type: 'fill-in-blank',
-    content: `📌 [${unitId.toUpperCase()} - ${vocab.part}]\n${vocab.example_en.replace(
-      new RegExp(vocab.word, 'gi'),
-      '________'
-    )} (${vocab.meaning})`,
+    content: `📌 [${unitId.toUpperCase()} - ${vocab.part}]\n${maskedSentence} (${vocab.meaning})`,
     options,
     correctAnswer: vocab.word,
     explanation: `Từ "${vocab.word}" (${vocab.phonetic}) thuộc loại từ (${vocab.type}), nghĩa là "${vocab.meaning}". Ví dụ: ${vocab.example_vi}`,
