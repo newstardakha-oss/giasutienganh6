@@ -19,7 +19,7 @@ export const UNIT_NAMES: Record<string, string> = {
 
 /**
  * Dữ liệu mẫu chuẩn cho Unit 1 - My New School (Tiếng Anh 6 Global Success)
- * gồm đầy đủ 26 từ vựng có hình ảnh minh họa chính xác từ bộ thẻ hình ảnh Unit 1 (và từ mở rộng).
+ * gồm đầy đủ 30 từ vựng có hình ảnh minh họa chính xác từ bộ thẻ hình ảnh Unit 1.
  * Mỗi từ chỉ dạy ĐÚNG MỘT nghĩa theo ngữ cảnh bài học, định nghĩa tiếng Anh ngắn gọn ở trình độ A1–A2.
  */
 export const UNIT1_SEED_WORDS: Word[] = [
@@ -342,6 +342,56 @@ export const UNIT1_SEED_WORDS: Word[] = [
     imageUrl: './images/vocab/unit1/classroom.jpg',
     unit: 'Unit 1 - My New School',
   },
+
+  // 5. Adjectives (Tính từ - 4 từ)
+  {
+    id: 'u1-excited',
+    word: 'excited',
+    ipa: '/ɪkˈsaɪtɪd/',
+    partOfSpeech: 'adj',
+    meaningVi: 'hào hứng',
+    definitionEn: 'Feeling very happy and enthusiastic about something good.',
+    example: 'Vy and Duy are excited about their first day at the new school.',
+    exampleVi: 'Vy và Duy rất hào hứng về ngày đầu tiên ở ngôi trường mới.',
+    imageUrl: './images/vocab/unit1/excited.jpg',
+    unit: 'Unit 1 - My New School',
+  },
+  {
+    id: 'u1-helpful',
+    word: 'helpful',
+    ipa: '/ˈhelpfl/',
+    partOfSpeech: 'adj',
+    meaningVi: 'hay giúp đỡ',
+    definitionEn: 'Willing to help other people when they need support.',
+    example: 'Our new teachers and classmates are very friendly and helpful.',
+    exampleVi: 'Các thầy cô và bạn học mới của chúng mình rất thân thiện và hay giúp đỡ.',
+    imageUrl: './images/vocab/unit1/helpful.jpg',
+    unit: 'Unit 1 - My New School',
+  },
+  {
+    id: 'u1-creative',
+    word: 'creative',
+    ipa: '/kriˈeɪtɪv/',
+    partOfSpeech: 'adj',
+    meaningVi: 'sáng tạo',
+    definitionEn: 'Good at thinking of new ideas or making interesting things.',
+    example: 'Students in the art club are very creative.',
+    exampleVi: 'Các bạn học sinh trong câu lạc bộ Mỹ thuật rất sáng tạo.',
+    imageUrl: './images/vocab/unit1/creative.jpg',
+    unit: 'Unit 1 - My New School',
+  },
+  {
+    id: 'u1-favourite',
+    word: 'favourite',
+    ipa: '/ˈfeɪvərɪt/',
+    partOfSpeech: 'adj',
+    meaningVi: 'yêu thích',
+    definitionEn: 'Liked more than others of the same kind.',
+    example: 'English is my favourite subject at school.',
+    exampleVi: 'Tiếng Anh là môn học yêu thích của mình ở trường.',
+    imageUrl: './images/vocab/unit1/favourite.jpg',
+    unit: 'Unit 1 - My New School',
+  },
 ];
 
 /**
@@ -349,21 +399,38 @@ export const UNIT1_SEED_WORDS: Word[] = [
  * giúp toàn bộ 12 Unit trong app đều có định nghĩa chuẩn chỉnh theo bối cảnh.
  */
 const EXTRA_DEFINITIONS_EN: Record<string, string> = {
-  // Unit 2 - My House
-  room: 'A part of the inside of a house that has its own walls, floor, and door.',
-  flat: 'A set of rooms for living in, usually on one floor of a large building.',
-  townhouse: 'A modern house built in a row with other houses in a town or city.',
+  // Unit 2 - My House (26 từ có hình minh họa + từ mở rộng)
+  window: 'An opening in the wall of a room with glass that lets light and air come in.',
+  wall: 'One of the vertical sides of a room or house.',
+  door: 'A flat piece of wood or glass that you open and close to go into or out of a room.',
   'living room': 'The room in a house where family members sit together, talk, and watch TV.',
   bedroom: 'The room in a house where you sleep at night.',
   kitchen: 'The room in a house where people cook food and wash dishes.',
   bathroom: 'The room in a house where you wash your hands, take a shower, or bath.',
+  hall: 'The space or passage just inside the front door of a house.',
+  sink: 'A bowl attached to the wall in a kitchen or bathroom for washing dishes or hands.',
   fridge: 'A kitchen box that keeps food and drinks cold and fresh.',
   dishwasher: 'A machine in the kitchen that washes dirty plates, bowls, and cups.',
-  'chest of drawers': 'A piece of furniture with drawers used for keeping clothes.',
-  wardrobe: 'A tall cupboard in the bedroom where you hang your clothes.',
-  sink: 'A bowl attached to the wall in a kitchen or bathroom for washing dishes or hands.',
+  toilet: 'A large bowl with a seat in the bathroom that you use when you need to go to the restroom.',
+  shower: 'A piece of bathroom equipment that sprays water from above so you can wash your body.',
+  furniture: 'Objects such as tables, chairs, beds, and wardrobes that you put in a house.',
   lamp: 'An object that gives light when you study or read at night.',
   sofa: 'A long, soft, comfortable seat for two or three people in the living room.',
+  cupboard: 'A piece of furniture with a door and shelves used for storing things.',
+  'chest of drawers': 'A piece of furniture with drawers used for keeping clothes.',
+  picture: 'A drawing, painting, or photo that hangs on the wall.',
+  wardrobe: 'A tall cupboard in the bedroom where you hang your clothes.',
+  shelf: 'A flat board on a wall or in a bookcase where you put books and small objects.',
+  bookshelf: 'A shelf or piece of furniture used for holding books.',
+  desk: 'A table where you sit to read, write, and do your homework.',
+  chair: 'A piece of furniture for one person to sit on, with a back and four legs.',
+  bed: 'A piece of furniture with a mattress and pillow that you lie on to sleep.',
+  table: 'A piece of furniture with a flat top and four legs used for eating meals or putting things on.',
+  clock: 'An object on the wall or table that shows you what time it is.',
+  room: 'A part of the inside of a house that has its own walls, floor, and door.',
+  flat: 'A set of rooms for living in, usually on one floor of a large building.',
+  townhouse: 'A modern house built in a row with other houses in a town or city.',
+  'country house': 'A house located in the peaceful countryside.',
   pillow: 'A soft cushion for your head when you sleep in bed.',
   chopsticks: 'A pair of thin sticks used for eating rice and noodles in Asia.',
   // Unit 3 - My Friends
@@ -373,12 +440,32 @@ const EXTRA_DEFINITIONS_EN: Record<string, string> = {
   clever: 'Quick at learning and understanding new things.',
   confident: 'Feeling sure about your own ability to do things well.',
   creative: 'Good at thinking of new ideas or making art and stories.',
+  helpful: 'Willing to help other people when they need support.',
+  excited: 'Feeling very happy and enthusiastic about something good.',
+  favourite: 'Liked more than others of the same kind.',
   friendly: 'Acting in a kind, warm, and pleasant way towards other people.',
   funny: 'Making other people laugh and smile.',
   'hard-working': 'Always putting a lot of effort into schoolwork and tasks.',
   kind: 'Helpful, generous, and thinking about other people’s feelings.',
   shy: 'Nervous and quiet when meeting new people.',
   talkative: 'Liking to talk a lot with friends and people around.',
+  active: 'Always busy doing physical activities and full of energy.',
+  patient: 'Able to wait calmly or deal with problems without getting angry.',
+  serious: 'Quiet, thoughtful, and not joking very much.',
+  sporty: 'Liking sports and being good at playing them.',
+  blonde: 'Having pale yellow or golden hair.',
+  curly: 'Having hair in the shape of waves or rings, not straight.',
+  straight: 'Not curving or curling.',
+  chubby: 'Slightly fat in a cute and healthy way.',
+  slim: 'Thin in an attractive and healthy way.',
+  glasses: 'Two lenses in a frame that you wear over your eyes to see better.',
+  cheek: 'The soft side of your face below your eye.',
+  shoulder: 'One of the two parts of your body between your neck and the top of your arms.',
+  classmate: 'A friend who is in the same class as you at school.',
+  homework: 'School work that teachers give students to do at home.',
+  picnic: 'An outdoor meal where friends eat food in a park or the countryside.',
+  biscuit: 'A small, flat, sweet baked cake that is crisp and dry.',
+  magazine: 'A thin book with lots of pictures and articles that comes out every week or month.',
 };
 
 function buildSimpleDefinitionEn(item: VocabItem, unitTitle: string): string {
@@ -408,8 +495,8 @@ function buildSimpleDefinitionEn(item: VocabItem, unitTitle: string): string {
 }
 
 /**
- * Tạo danh sách từ vựng khởi tạo cho toàn bộ 12 Unit (ưu tiên 15 từ chuẩn của Unit 1,
- * và nạp thêm tối đa 15 từ tiêu biểu cho mỗi Unit từ Unit 2 đến Unit 12).
+ * Tạo danh sách từ vựng khởi tạo cho toàn bộ 12 Unit (ưu tiên 30 từ chuẩn của Unit 1,
+ * 26 từ có hình ảnh minh họa của Unit 2, 20 từ trọng tâm của Unit 3, và 15 từ tiêu biểu cho Unit 4–12).
  */
 export function getInitialSeedWords(): Word[] {
   const allWords: Word[] = [...UNIT1_SEED_WORDS];
@@ -417,7 +504,8 @@ export function getInitialSeedWords(): Word[] {
   for (let u = 2; u <= 12; u++) {
     const unitKey = `unit-${u}`;
     const unitLabel = UNIT_NAMES[unitKey] || `Unit ${u}`;
-    const rawItems = getAllVocabByUnit(unitKey).slice(0, 15);
+    const maxItems = u === 2 ? 26 : u === 3 ? 20 : 15;
+    const rawItems = getAllVocabByUnit(unitKey).slice(0, maxItems);
     rawItems.forEach((item, idx) => {
       const builtinImage = item.imageUrl || getBuiltinVocabImage(item.word);
       allWords.push({

@@ -69,7 +69,7 @@ export function loadVocabSrsData(): VocabSrsStoreData {
         ? parsed.words
         : seedWords;
 
-      // Đảm bảo toàn bộ từ chuẩn của Unit 1 (bao gồm 26 từ có imageUrl chuẩn) luôn được đồng bộ
+      // Đảm bảo toàn bộ từ chuẩn của Unit 1 (30 từ) và Unit 2 (26 từ) luôn được đồng bộ sạch
       const OBSOLETE_WORD_IDS = new Set([
         'u1-smart',
         'u1-27',
@@ -78,6 +78,21 @@ export function loadVocabSrsData(): VocabSrsStoreData {
         'u1-30',
         'u1-31',
         'u1-32',
+        'u2-1-room',
+        'u2-2-sister',
+        'u2-3-behind',
+        'u2-4-where',
+        'u2-5-live',
+        'u2-6-townhouse',
+        'u2-7-parents',
+        'u2-8-flat',
+        'u2-9-aunt',
+        'u2-10-cousin',
+        'u2-11-living-room',
+        'u2-12-bedroom',
+        'u2-13-kitchen',
+        'u2-14-bathroom',
+        'u2-15-buy',
       ]);
       const wordMap = new Map<string, Word>();
       seedWords.forEach((sw) => wordMap.set(sw.id, sw));

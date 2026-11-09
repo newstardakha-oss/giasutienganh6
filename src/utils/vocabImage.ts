@@ -65,9 +65,10 @@ export function buildAutoVocabImageUrl(word: string, seedVariant: number = 1): s
 }
 
 /**
- * Kho hình ảnh minh họa chuẩn SGK cho Unit 1 - My New School (26 từ vựng từ bộ thẻ hình ảnh đính kèm).
+ * Kho hình ảnh minh họa chuẩn SGK cho Unit 1, Unit 2 và các từ giao thoa sang Unit 3 (56 từ vựng từ bộ thẻ hình ảnh đính kèm).
  */
 export const BUILTIN_VOCAB_IMAGES: Record<string, string> = {
+  // ===== UNIT 1: MY NEW SCHOOL (30 từ) =====
   // 1. School things (Đồ dùng học tập)
   'school bag': './images/vocab/unit1/school-bag.jpg',
   compass: './images/vocab/unit1/compass.jpg',
@@ -98,6 +99,43 @@ export const BUILTIN_VOCAB_IMAGES: Record<string, string> = {
   gym: './images/vocab/unit1/gym.jpg',
   playground: './images/vocab/unit1/playground.jpg',
   classroom: './images/vocab/unit1/classroom.jpg',
+  // 5. Adjectives (Tính từ - dùng cho cả Unit 1 & Unit 3)
+  excited: './images/vocab/unit1/excited.jpg',
+  helpful: './images/vocab/unit1/helpful.jpg',
+  creative: './images/vocab/unit1/creative.jpg',
+  favourite: './images/vocab/unit1/favourite.jpg',
+
+  // ===== UNIT 2: MY HOUSE (26 từ) =====
+  // 1. Parts of a House (Các bộ phận của ngôi nhà)
+  window: './images/vocab/unit2/window.jpg',
+  wall: './images/vocab/unit2/wall.jpg',
+  door: './images/vocab/unit2/door.jpg',
+  // 2. Rooms (Các phòng trong nhà)
+  'living room': './images/vocab/unit2/living-room.jpg',
+  bedroom: './images/vocab/unit2/bedroom.jpg',
+  kitchen: './images/vocab/unit2/kitchen.jpg',
+  bathroom: './images/vocab/unit2/bathroom.jpg',
+  hall: './images/vocab/unit2/hall.jpg',
+  // 3. Home Appliances and Facilities (Thiết bị & tiện nghi gia đình)
+  sink: './images/vocab/unit2/sink.jpg',
+  fridge: './images/vocab/unit2/fridge.jpg',
+  dishwasher: './images/vocab/unit2/dishwasher.jpg',
+  toilet: './images/vocab/unit2/toilet.jpg',
+  shower: './images/vocab/unit2/shower.jpg',
+  // 4. Furniture (Đồ nội thất)
+  furniture: './images/vocab/unit2/furniture.jpg',
+  lamp: './images/vocab/unit2/lamp.jpg',
+  sofa: './images/vocab/unit2/sofa.jpg',
+  cupboard: './images/vocab/unit2/cupboard.jpg',
+  'chest of drawers': './images/vocab/unit2/chest-of-drawers.jpg',
+  picture: './images/vocab/unit2/picture.jpg',
+  wardrobe: './images/vocab/unit2/wardrobe.jpg',
+  shelf: './images/vocab/unit2/shelf.jpg',
+  desk: './images/vocab/unit2/desk.jpg',
+  chair: './images/vocab/unit2/chair.jpg',
+  bed: './images/vocab/unit2/bed.jpg',
+  table: './images/vocab/unit2/table.jpg',
+  clock: './images/vocab/unit2/clock.jpg',
 };
 
 const BUILTIN_VOCAB_ALIASES: Record<string, string> = {
@@ -106,6 +144,11 @@ const BUILTIN_VOCAB_ALIASES: Record<string, string> = {
   math: 'maths',
   mathematics: 'maths',
   eraser: 'rubber',
+  favorite: 'favourite',
+  bookshelf: 'shelf',
+  bookcase: 'shelf',
+  restroom: 'toilet',
+  refrigerator: 'fridge',
 };
 
 export function getBuiltinVocabImage(word: string): string | undefined {

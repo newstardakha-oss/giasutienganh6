@@ -8,7 +8,13 @@ export const SGK_UNITS: SgkUnit[] = [
     term: 1,
     theme: 'Our Communities',
     grammar: ['Present simple (Thì hiện tại đơn)', 'Adverbs of frequency (Trạng từ chỉ tần suất: always, usually, often, sometimes, rarely, never)'],
-    vocabulary: ['School things: school bag, compass, calculator, pencil case, notebook, textbook, rubber, ruler, sharpener, uniform', 'Con người & Trường học: classmate, boarding school, international school', 'Subjects & Learning: subject, maths, science, history, art, homework, lesson, timetable', 'School facilities: library, canteen, gym, playground, classroom'],
+    vocabulary: [
+      'School things: school bag, compass, calculator, pencil case, notebook, textbook, rubber, ruler, sharpener, uniform',
+      'Con người & Trường học: classmate, boarding school, international school',
+      'Subjects & Learning: subject, maths, science, history, art, homework, lesson, timetable',
+      'School facilities: library, canteen, gym, playground, classroom',
+      'Adjectives: excited, helpful, creative, favourite'
+    ],
     pronunciationIPA: '/a:/ & /ʌ/ (smart, art vs subject, study)',
     skillsSummary: 'Đọc & Nghe thông tin trường học, Nói về loại trường yêu thích, Viết đoạn văn ngắn về trường học.',
     iconName: 'School'
@@ -20,7 +26,12 @@ export const SGK_UNITS: SgkUnit[] = [
     term: 1,
     theme: 'Our Communities',
     grammar: ['Possessive case (Sở hữu cách: \'s)', 'Prepositions of place (Giới từ chỉ vị trí: in, on, behind, under, next to, in front of, between)'],
-    vocabulary: ['balcony, bathroom, bedroom, hall, kitchen, living room, chest of drawers, dishwasher, fridge, wardrobe'],
+    vocabulary: [
+      'Parts of a house: window, wall, door',
+      'Rooms: living room, bedroom, kitchen, bathroom, hall',
+      'Home appliances & facilities: sink, fridge, dishwasher, toilet, shower',
+      'Furniture: furniture, lamp, sofa, cupboard, chest of drawers, picture, wardrobe, shelf, desk, chair, bed, table, clock'
+    ],
     pronunciationIPA: '/s/ & /z/ (sinks, lamps vs rooms, sofas)',
     skillsSummary: 'Đọc email tả khách sạn/ngôi nhà, Tả các phòng và đồ đạc, Nghe vị trí đồ vật, Viết email tả ngôi nhà.',
     iconName: 'Home'
@@ -32,7 +43,11 @@ export const SGK_UNITS: SgkUnit[] = [
     term: 1,
     theme: 'Our Communities',
     grammar: ['Present continuous (Thì hiện tại tiếp diễn)', 'Adjectives for appearance & personality (Tính từ tả ngoại hình & tính cách)'],
-    vocabulary: ['active, caring, clever, confident, creative, friendly, hard-working, kind, shy, cheek, elbow'],
+    vocabulary: [
+      'Personality: creative, helpful, excited, favourite, active, careful, caring, clever, confident, friendly, funny, hard-working, kind, shy',
+      'Appearance & Body parts: blonde, curly, chubby, glasses, cheek, shoulder',
+      'Friends & Activities: classmate, homework, picnic, biscuit, magazine'
+    ],
     pronunciationIPA: '/b/ & /p/ (big, bear vs pig, pear)',
     skillsSummary: 'Đọc về trại hè, Nói về bạn bè và ngoại hình/tính cách, Nghe tả bạn thân, Viết nhật ký về bạn thân.',
     iconName: 'Users'

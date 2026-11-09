@@ -209,12 +209,18 @@ const UNIT1_VOCAB_INLINE: VocabItem[] = [
   { id: 'u1-24', word: 'gym', phonetic: '/dʒɪm/', type: 'n', meaning: 'phòng thể chất', example_en: 'The boys are playing basketball in the gym.', example_vi: 'Các bạn nam đang chơi bóng rổ trong phòng thể chất.', part: 'School facilities', imageUrl: './images/vocab/unit1/gym.jpg' },
   { id: 'u1-25', word: 'playground', phonetic: '/ˈpleɪ.ɡraʊnd/', type: 'n', meaning: 'sân chơi', example_en: 'Children play games in the playground at break time.', example_vi: 'Học sinh chơi trò chơi ở sân chơi vào giờ ra chơi.', part: 'School facilities', imageUrl: './images/vocab/unit1/playground.jpg' },
   { id: 'u1-26', word: 'classroom', phonetic: '/ˈklɑːs.ruːm/', type: 'n', meaning: 'phòng học', example_en: 'Our classroom is clean and bright.', example_vi: 'Phòng học của chúng tôi sạch sẽ và thoáng đãng.', part: 'School facilities', imageUrl: './images/vocab/unit1/classroom.jpg' },
+
+  // Nhóm 5: Adjectives (Tính từ)
+  { id: 'u1-27', word: 'excited', phonetic: '/ɪkˈsaɪ.tɪd/', type: 'adj', meaning: 'hào hứng', example_en: 'Duy is excited about his first day at school.', example_vi: 'Duy rất hào hứng với ngày đầu tiên đi học.', part: 'Adjectives', imageUrl: './images/vocab/unit1/excited.jpg' },
+  { id: 'u1-28', word: 'helpful', phonetic: '/ˈhelp.fəl/', type: 'adj', meaning: 'hay giúp đỡ', example_en: 'My new classmates are friendly and helpful.', example_vi: 'Các bạn cùng lớp mới của tôi rất thân thiện và hay giúp đỡ.', part: 'Adjectives', imageUrl: './images/vocab/unit1/helpful.jpg' },
+  { id: 'u1-29', word: 'creative', phonetic: '/kriˈeɪ.tɪv/', type: 'adj', meaning: 'sáng tạo', example_en: 'Students in the art club are very creative.', example_vi: 'Các bạn học sinh trong câu lạc bộ mỹ thuật rất sáng tạo.', part: 'Adjectives', imageUrl: './images/vocab/unit1/creative.jpg' },
+  { id: 'u1-30', word: 'favourite', phonetic: '/ˈfeɪ.vər.ɪt/', type: 'adj', meaning: 'yêu thích', example_en: 'English is my favourite subject at school.', example_vi: 'Tiếng Anh là môn học yêu thích của tôi ở trường.', part: 'Adjectives', imageUrl: './images/vocab/unit1/favourite.jpg' },
 ];
 
 const UNIT10_VOCAB_INLINE: VocabItem[] = [
   { id: 'u10-1', word: 'appliance', phonetic: '/əˈplaɪ.əns/', type: 'n', meaning: 'thiết bị, đồ dùng', example_en: 'There are many modern appliances in the kitchen.', example_vi: 'Có nhiều thiết bị hiện đại trong nhà bếp.', part: 'GETTING STARTED' },
   { id: 'u10-2', word: 'automatic', phonetic: '/ˌɔː.təˈmæt.ɪk/', type: 'adj', meaning: 'tự động', example_en: 'The door is automatic.', example_vi: 'Cánh cửa này tự động.', part: 'GETTING STARTED' },
-  { id: 'u10-3', word: 'dishwasher', phonetic: '/ˈdɪʃ.wɒʃ.ər/', type: 'n', meaning: 'máy rửa bát', example_en: 'We will have an automatic dishwasher.', example_vi: 'Chúng ta sẽ có một máy rửa bát tự động.', part: 'GETTING STARTED' },
+  { id: 'u10-3', word: 'dishwasher', phonetic: '/ˈdɪʃ.wɒʃ.ər/', type: 'n', meaning: 'máy rửa bát', example_en: 'We will have an automatic dishwasher.', example_vi: 'Chúng ta sẽ có một máy rửa bát tự động.', part: 'GETTING STARTED', imageUrl: './images/vocab/unit2/dishwasher.jpg' },
   { id: 'u10-4', word: 'hi-tech', phonetic: '/ˌhaɪˈtek/', type: 'adj', meaning: 'công nghệ cao', example_en: 'My future house will be hi-tech.', example_vi: 'Ngôi nhà tương lai của tôi sẽ là công nghệ cao.', part: 'GETTING STARTED' },
   { id: 'u10-5', word: 'solar energy', phonetic: '/ˌsəʊ.lər ˈen.ə.dʒi/', type: 'n', meaning: 'năng lượng mặt trời', example_en: 'The house will use solar energy.', example_vi: 'Ngôi nhà sẽ sử dụng năng lượng mặt trời.', part: 'GETTING STARTED' },
   { id: 'u10-6', word: 'space', phonetic: '/speɪs/', type: 'n', meaning: 'không gian, vũ trụ', example_en: 'People might live in space.', example_vi: 'Mọi người có thể sống trong vũ trụ.', part: 'A CLOSER LOOK 1' },
@@ -228,8 +234,8 @@ const UNIT10_VOCAB_INLINE: VocabItem[] = [
   { id: 'u10-14', word: 'comfortable', phonetic: '/ˈkʌm.fə.tə.bᵊl/', type: 'adj', meaning: 'thoải mái', example_en: 'The house will be comfortable.', example_vi: 'Ngôi nhà sẽ rất thoải mái.', part: 'SKILLS 1' },
   { id: 'u10-15', word: 'modern', phonetic: '/ˈmɒd.ən/', type: 'adj', meaning: 'hiện đại', example_en: 'Our future house will be modern.', example_vi: 'Ngôi nhà tương lai sẽ hiện đại.', part: 'SKILLS 1' },
   { id: 'u10-16', word: 'robot', phonetic: '/ˈrəʊ.bɒt/', type: 'n', meaning: 'người máy', example_en: 'A robot will clean the house.', example_vi: 'Người máy sẽ dọn dẹp nhà.', part: 'SKILLS 1' },
-  { id: 'u10-17', word: 'fridge', phonetic: '/frɪdʒ/', type: 'n', meaning: 'tủ lạnh', example_en: 'The fridge will tell us what to buy.', example_vi: 'Tủ lạnh sẽ cho biết cần mua gì.', part: 'SKILLS 2' },
-  { id: 'u10-18', word: 'bedroom', phonetic: '/ˈbed.ruːm/', type: 'n', meaning: 'phòng ngủ', example_en: 'My bedroom will have a super TV.', example_vi: 'Phòng ngủ sẽ có TV siêu lớn.', part: 'SKILLS 2' },
+  { id: 'u10-17', word: 'fridge', phonetic: '/frɪdʒ/', type: 'n', meaning: 'tủ lạnh', example_en: 'The fridge will tell us what to buy.', example_vi: 'Tủ lạnh sẽ cho biết cần mua gì.', part: 'SKILLS 2', imageUrl: './images/vocab/unit2/fridge.jpg' },
+  { id: 'u10-18', word: 'bedroom', phonetic: '/ˈbed.ruːm/', type: 'n', meaning: 'phòng ngủ', example_en: 'My bedroom will have a super TV.', example_vi: 'Phòng ngủ sẽ có TV siêu lớn.', part: 'SKILLS 2', imageUrl: './images/vocab/unit2/bedroom.jpg' },
 ];
 
 /**
