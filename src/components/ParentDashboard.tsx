@@ -751,8 +751,8 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
         grade: 6,
         totalXP: 0,
         level: 1,
-        streakDays: 1,
-        lastStudyDate: todayStr,
+        streakDays: 0,
+        lastStudyDate: '',
         badges: [],
         weakTopics: [],
         skillMastery: {

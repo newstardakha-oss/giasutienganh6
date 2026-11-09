@@ -383,8 +383,59 @@ export function isStudentPracticeLocked(student?: StudentAccount | null): boolea
 // 3. TEST ROUNDS (ĐỢT KIỂM TRA ĐẦU VÀO / ĐẦU RA / DUY TRÌ / THỬ NGHIỆM)
 // ============================================================================
 
+function createDefaultTestRounds(): FirestoreTestRoundDoc[] {
+  const defaultClasses: TestRoundClassEntry[] = [
+    { className: '6A1', group: 'TN' },
+    { className: '6A2', group: 'DC' },
+    { className: '6A3', group: 'TN' },
+    { className: '6A4', group: 'DC' },
+    { className: '6A5', group: 'TN' },
+    { className: '6A6', group: 'DC' },
+    { className: '6A7', group: 'TN' },
+  ];
+  const createdAt = '2026-09-01T00:00:00.000Z';
+  return [
+    {
+      id: 'round-default-pre-hk1',
+      name: 'Khảo sát Đầu vào Tiếng Anh 6 (Pre-test)',
+      formId: 'hk1-A',
+      kind: 'pre',
+      schoolId: 'default',
+      classes: defaultClasses,
+      openAt: '',
+      closeAt: '',
+      durationMin: 40,
+      showScoreAfterSubmit: true,
+      status: 'open',
+      createdBy: 'system',
+      createdAt,
+    },
+    {
+      id: 'round-default-post-hk1',
+      name: 'Khảo sát Đầu ra Tiếng Anh 6 (Post-test)',
+      formId: 'hk1-B',
+      kind: 'post',
+      schoolId: 'default',
+      classes: defaultClasses,
+      openAt: '',
+      closeAt: '',
+      durationMin: 40,
+      showScoreAfterSubmit: true,
+      status: 'open',
+      createdBy: 'system',
+      createdAt,
+    },
+  ];
+}
+
 export function loadAllTestRounds(): FirestoreTestRoundDoc[] {
-  return readStorageJson<FirestoreTestRoundDoc[]>(ROUNDS_STORAGE_KEY, []);
+  const existing = readStorageJson<FirestoreTestRoundDoc[] | null>(ROUNDS_STORAGE_KEY, null);
+  if (!existing || !Array.isArray(existing) || existing.length === 0) {
+    const defaults = createDefaultTestRounds();
+    writeStorageJson(ROUNDS_STORAGE_KEY, defaults);
+    return defaults;
+  }
+  return existing;
 }
 
 export function createTestRound(input: {
@@ -473,6 +524,8 @@ export function isRoundCurrentlyOpen(round: FirestoreTestRoundDoc, nowMs = Date.
 
 /**
  * Tìm các đợt kiểm tra đang mở cho học sinh hiện tại.
+ * Hỗ trợ tự động cho mọi lớp khối 6 (kể cả học sinh mới đăng ký lớp mới như 6A7, 6A8...)
+ * đối với các đợt khảo sát mặc định hoặc các đợt áp dụng chung toàn trường.
  */
 export function getAvailableRoundsForStudent(
   student: StudentAccount | null | undefined
@@ -482,6 +535,8 @@ export function getAvailableRoundsForStudent(
   const rounds = loadAllTestRounds();
   return rounds.filter((r) => {
     if (!isRoundCurrentlyOpen(r)) return false;
+    if (!r.classes || r.classes.length === 0) return true;
+    if (r.id.startsWith('round-default-') || r.schoolId === 'default') return true;
     return r.classes.some((c) => normalizeClassName(c.className) === normClass);
   });
 }
@@ -540,6 +595,19 @@ export function startOrResumeTestAttempt(params: {
   const classSetting = getClassSetting(schoolId, normClass);
   const group: ResearchGroupType =
     classEntry?.group || classSetting.researchGroup || 'TN';
+
+  // Nếu lớp của học sinh (ví dụ 6A7 mới đăng ký) chưa nằm trong danh sách lớp của đợt thi, tự động bổ sung vào đợt thi
+  if (normClass && !classEntry) {
+    const allRounds = loadAllTestRounds();
+    const rIdx = allRounds.findIndex((r) => r.id === round.id);
+    if (rIdx >= 0) {
+      allRounds[rIdx] = {
+        ...allRounds[rIdx],
+        classes: [...allRounds[rIdx].classes, { className: normClass, group }],
+      };
+      writeStorageJson(ROUNDS_STORAGE_KEY, allRounds);
+    }
+  }
 
   // Xáo trộn thứ tự 40 câu và thứ tự phương án trả lời riêng cho từng học sinh
   const itemOrder = shuffleStrings(sanitizedForm.items.map((it) => it.id));

@@ -918,10 +918,37 @@ function migrateStudentsData(rawStudents: any[]): StudentAccount[] {
     .map((s) => {
       const rawPass = s.passwordHash || s.pinCode || '';
       const hashed = rawPass ? hashPasswordSync(rawPass) : '';
+      const cleanName = normalizeFullName(s.fullName || 'Học Sinh');
+      const cleanGrade = s.grade || 6;
+      const sessions: StudySession[] = Array.isArray(s.sessions) ? s.sessions : [];
+
+      // Phát hiện dữ liệu mẫu ảo cũ (320 XP, Lv.3, Streak 4 ngày, Unit 1: 100%) hoặc học sinh chưa có buổi học nào (sessions.length === 0)
+      const hasLegacyFakeDemoProgress =
+        sessions.length === 0 ||
+        (s.progress?.totalXP === 320 &&
+          s.progress?.level === 3 &&
+          s.progress?.unitProgress?.['unit-1'] === 100 &&
+          s.progress?.unitProgress?.['unit-2'] === 85);
+
+      const cleanProgress: UserProgress = hasLegacyFakeDemoProgress
+        ? {
+            ...INITIAL_PROGRESS,
+            studentName: cleanName,
+            grade: cleanGrade,
+            skillMastery: { ...INITIAL_PROGRESS.skillMastery },
+            unitProgress: {},
+          }
+        : {
+            ...INITIAL_PROGRESS,
+            ...(s.progress || {}),
+            studentName: cleanName,
+            grade: cleanGrade,
+          };
+
       return {
         ...s,
-        fullName: normalizeFullName(s.fullName || 'Học Sinh'),
-        grade: s.grade || 6,
+        fullName: cleanName,
+        grade: cleanGrade,
         className: s.className ? normalizeClassName(s.className) : '',
         provinceName: s.provinceName || '',
         communeName: s.communeName || '',
@@ -929,6 +956,9 @@ function migrateStudentsData(rawStudents: any[]): StudentAccount[] {
         passwordHash: hashed,
         pinCode: hashed,
         recoveryCodeHash: s.recoveryCodeHash || '',
+        sessions,
+        progress: cleanProgress,
+        lastActiveLesson: hasLegacyFakeDemoProgress ? undefined : s.lastActiveLesson,
       };
     });
 }

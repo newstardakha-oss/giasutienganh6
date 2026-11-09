@@ -13,16 +13,24 @@ import {
   Play,
   School,
   CheckCircle2,
+  ClipboardCheck,
 } from 'lucide-react';
 import { AppDataSchema, SkillType, SgkUnit } from '../types';
 import { loadGrammarProgress } from '../grammar-g6/storage';
 import { getMasteryLabel, getMasteryBadgeStyle } from '../config/masteryThresholds';
 import { normalizeClassName } from '../services/storage';
+import {
+  FirestoreTestRoundDoc,
+  TEST_ROUND_KIND_LABELS,
+  getActiveStudentAttemptForRound,
+} from '../services/researchTests';
 
 interface HomeScreenProps {
   appData: AppDataSchema;
   onSelectSkill: (tabId: string, unitId?: string | null) => void;
   onChangeClassUnit?: (className: string, unitId: string) => void;
+  openTestRounds?: FirestoreTestRoundDoc[];
+  onStartExamRound?: (round: FirestoreTestRoundDoc) => void;
 }
 
 interface SkillCardData {
@@ -146,6 +154,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   appData,
   onSelectSkill,
   onChangeClassUnit,
+  openTestRounds = [],
+  onStartExamRound,
 }) => {
   const { progress, sessions, units, currentStudentId, students, classCurrentUnits, masteryThresholds } =
     appData;
@@ -283,7 +293,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
   // 1. Determine "Tiếp tục học" (Continue Learning) lesson
   const continueLesson = useMemo(() => {
-    if (currentStudent?.lastActiveLesson) {
+    const hasGrammarActivity =
+      (grammarStore.attempts || []).length > 0 ||
+      Object.keys(grammarStore.setProgress || {}).length > 0 ||
+      Object.keys(grammarStore.best || {}).length > 0;
+
+    // Học sinh mới chưa có buổi học (sessions) và chưa làm câu ngữ pháp nào thì tuyệt đối chưa có bài đang học dở
+    if (sessions.length === 0 && !hasGrammarActivity) {
+      return null;
+    }
+
+    if (currentStudent?.lastActiveLesson && sessions.length > 0) {
       const unitObj =
         units.find((u) => u.id === currentStudent.lastActiveLesson!.unitId) || units[0];
       const pct =
@@ -321,13 +341,24 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       };
     }
 
-    // Check if any unit in unitProgress has progress > 0
-    const inProgressUnitId = Object.keys(progress.unitProgress || {}).find(
-      (uId) => progress.unitProgress[uId] > 0
-    );
-    if (inProgressUnitId) {
-      const unitObj = units.find((u) => u.id === inProgressUnitId) || units[0];
-      const pct = progress.unitProgress?.[unitObj.id] ?? 0;
+    // If student has grammarStore activity, find the active grammar unit
+    if (hasGrammarActivity) {
+      const lastAttempt = grammarStore.attempts?.[grammarStore.attempts.length - 1];
+      const m = /^u(\d+)/i.exec(
+        lastAttempt?.unitId ||
+          lastAttempt?.itemId ||
+          Object.keys(grammarStore.setProgress || {})[0] ||
+          'u1'
+      );
+      const unitNum = m ? Number(m[1]) : 1;
+      const unitObj = units.find((u) => u.unitNumber === unitNum) || units[0];
+      const gSets = Object.entries(grammarStore.best || {}).filter(([k]) =>
+        k.startsWith(`u${unitObj.unitNumber}-`)
+      );
+      const pct =
+        gSets.length > 0
+          ? Math.round((gSets.reduce((a, [, v]) => a + v, 0) / gSets.length) * 100)
+          : progress.unitProgress?.[unitObj.id] ?? 0;
       return {
         unitId: unitObj.id,
         unitNumber: unitObj.unitNumber,
@@ -340,7 +371,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     }
 
     return null;
-  }, [currentStudent, sessions, units, progress]);
+  }, [currentStudent, sessions, units, progress, grammarStore]);
 
   // 2. Determine "Unit đang học trên lớp" (selected by teacher for student's class or default)
   const currentClassroomUnit: SgkUnit = useMemo(() => {
@@ -500,15 +531,45 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={() => onSelectSkill('socratic', 'unit-1')}
-                className="w-full min-h-[48px] py-3.5 px-5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm sm:text-base shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.01]"
-              >
-                <Play className="w-4 h-4 fill-white" />
-                <span>Chọn Unit 1 để bắt đầu</span>
-                <ChevronRight className="w-5 h-5" />
-              </button>
+              <div className="space-y-2.5">
+                {(() => {
+                  const preRound = openTestRounds.find((r) => r.kind === 'pre');
+                  const preAtt =
+                    preRound && currentStudent
+                      ? getActiveStudentAttemptForRound(preRound.id, currentStudent.id)
+                      : null;
+                  const isPreDone =
+                    preAtt?.status === 'submitted' || preAtt?.status === 'auto_submitted';
+                  if (preRound && onStartExamRound && !isPreDone) {
+                    return (
+                      <button
+                        type="button"
+                        onClick={() => onStartExamRound(preRound)}
+                        className="w-full min-h-[48px] py-3 px-4 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer border-2 border-amber-500"
+                      >
+                        <ClipboardCheck className="w-4 h-4 shrink-0" />
+                        <span>
+                          {preAtt?.status === 'in_progress'
+                            ? 'Tiếp tục Bài Kiểm Tra Đầu Vào (Pre-test)'
+                            : 'Bước 1: Làm Bài Kiểm Tra Đầu Vào (Pre-test)'}
+                        </span>
+                        <ChevronRight className="w-4 h-4 shrink-0" />
+                      </button>
+                    );
+                  }
+                  return null;
+                })()}
+
+                <button
+                  type="button"
+                  onClick={() => onSelectSkill('socratic', 'unit-1')}
+                  className="w-full min-h-[48px] py-3.5 px-5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm sm:text-base shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.01]"
+                >
+                  <Play className="w-4 h-4 fill-white" />
+                  <span>Chọn Unit 1 để bắt đầu</span>
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
             </>
           )}
         </section>
@@ -590,6 +651,109 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
         </section>
       </div>
+
+      {/* KHỐI BÀI KIỂM TRA ĐẦU VÀO (PRE-TEST) & ĐẦU RA (POST-TEST) */}
+      {currentStudent && openTestRounds.length > 0 && onStartExamRound && (
+        <section
+          aria-label="Bài kiểm tra đầu vào và đầu ra"
+          className="neu-card bg-white p-5 sm:p-6 border-2 border-amber-300 space-y-4"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-950 text-xs font-extrabold border border-amber-300">
+                <ClipboardCheck className="w-3.5 h-3.5 text-amber-800" />
+                <span>Đánh giá năng lực chuẩn hóa (40 câu · 40 phút)</span>
+              </div>
+              <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">
+                Bài Kiểm Tra Đầu Vào (Pre-test) & Đầu Ra (Post-test)
+              </h3>
+              <p className="text-xs text-slate-600 font-semibold mt-0.5">
+                Học sinh mới vui lòng hoàn thành <strong>Bài kiểm tra Đầu vào (Pre-test)</strong> trước khi bắt đầu lộ trình học tập.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {openTestRounds.map((round) => {
+              const att = getActiveStudentAttemptForRound(round.id, currentStudent.id);
+              const isSubmitted =
+                att?.status === 'submitted' || att?.status === 'auto_submitted';
+              const isInProgress = att?.status === 'in_progress';
+              const isPre = round.kind === 'pre';
+
+              return (
+                <div
+                  key={round.id}
+                  className={`p-4 rounded-2xl border-2 flex flex-col justify-between gap-3 transition-all ${
+                    isSubmitted
+                      ? 'bg-emerald-50/70 border-emerald-200'
+                      : isPre
+                      ? 'bg-indigo-50/80 border-indigo-300'
+                      : 'bg-purple-50/70 border-purple-200'
+                  }`}
+                >
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between gap-2 flex-wrap">
+                      <span
+                        className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase ${
+                          isSubmitted
+                            ? 'bg-emerald-600 text-white'
+                            : isPre
+                            ? 'bg-indigo-700 text-white'
+                            : 'bg-purple-700 text-white'
+                        }`}
+                      >
+                        {TEST_ROUND_KIND_LABELS[round.kind]}
+                      </span>
+                      <span className="text-xs font-extrabold text-slate-700">
+                        Đề {round.formId} • {round.durationMin} phút
+                      </span>
+                    </div>
+
+                    <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
+                      {round.name}
+                    </h4>
+
+                    <p className="text-xs font-semibold text-slate-700">
+                      {isSubmitted
+                        ? `✓ Đã hoàn thành${
+                            round.showScoreAfterSubmit && att
+                              ? ` • Điểm đạt: ${att.score10.toFixed(2)}/10 (${att.rawCorrect}/40 câu đúng)`
+                              : ''
+                          }`
+                        : isInProgress
+                        ? `⏳ Đang làm dở (${Object.keys(att?.responses || {}).length}/40 câu đã chọn)`
+                        : isPre
+                        ? 'Dành cho học sinh mới bắt đầu học để đo năng lực đầu vào.'
+                        : 'Thực hiện sau khi hoàn thành chương trình ôn luyện để đo mức tiến bộ.'}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => onStartExamRound(round)}
+                    className={`w-full min-h-[42px] py-2.5 px-4 rounded-xl font-extrabold text-xs sm:text-sm flex items-center justify-center gap-1.5 cursor-pointer transition-all ${
+                      isSubmitted
+                        ? 'bg-white text-emerald-800 border border-emerald-300 hover:bg-emerald-100'
+                        : isPre
+                        ? 'bg-indigo-700 hover:bg-indigo-800 text-white shadow-xs'
+                        : 'bg-purple-700 hover:bg-purple-800 text-white shadow-xs'
+                    }`}
+                  >
+                    <span>
+                      {isSubmitted
+                        ? 'Xem kết quả đã nộp'
+                        : isInProgress
+                        ? 'Tiếp tục làm bài →'
+                        : 'Bắt đầu làm bài kiểm tra →'}
+                    </span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* SECTION TITLE & OVERALL SUMMARY */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">

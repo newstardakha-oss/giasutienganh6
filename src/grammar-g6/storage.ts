@@ -105,11 +105,16 @@ function writeRawRoot(root: RawGrammarStorageRoot): void {
 
 /**
  * Đọc tiến độ Ngữ pháp 6 của học sinh hiện tại (hoặc mặc định).
+ * Nếu có `studentId`, chỉ trả về tiến độ riêng của đúng học sinh đó (nếu chưa học thì trả về rỗng,
+ * tuyệt đối không lấy dữ liệu chung của thiết bị hay của học sinh trước đó).
  */
 export function loadGrammarProgress(studentId?: string | null): GrammarStudentStore {
   const root = readRawRoot();
-  if (studentId && root.byStudent && root.byStudent[studentId]) {
-    return sanitizeStudentStore(root.byStudent[studentId]);
+  if (studentId) {
+    if (root.byStudent && root.byStudent[studentId]) {
+      return sanitizeStudentStore(root.byStudent[studentId]);
+    }
+    return createEmptyStudentStore();
   }
   return sanitizeStudentStore(root);
 }
@@ -147,6 +152,12 @@ export function saveGrammarProgress(
 
   if (studentId) {
     byStudent[studentId] = clean;
+    const updatedRoot: RawGrammarStorageRoot = {
+      ...createEmptyStudentStore(),
+      byStudent,
+    };
+    writeRawRoot(updatedRoot);
+    return clean;
   }
 
   const updatedRoot: RawGrammarStorageRoot = {

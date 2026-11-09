@@ -408,7 +408,7 @@ export default function App() {
       writing: { skill: 'Writing', label: 'Viết' },
     };
     const mapped = tabSkillMap[tabId];
-    if (mapped && appData.currentStudentId) {
+    if (mapped && appData.currentStudentId && appData.sessions.length > 0) {
       const targetUnit =
         appData.units.find((u) => u.id === resolvedUnitId) ||
         appData.units[0];
@@ -663,6 +663,8 @@ export default function App() {
             appData={appData}
             onSelectSkill={handleSelectSkillFromHome}
             onChangeClassUnit={handleChangeClassUnit}
+            openTestRounds={openStudentTestRounds}
+            onStartExamRound={(round) => setActiveExamRound(round)}
           />
         )}
         {!isPracticeLockedForControlGroup && activeTab === 'socratic' && (
