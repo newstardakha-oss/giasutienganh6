@@ -728,7 +728,11 @@ export default function App() {
           </div>
         )}
         {!isPracticeLockedForControlGroup && activeTab === 'speech' && (
-          <SpeechStudio units={appData.units} initialUnitId={selectedSkillUnitId} />
+          <SpeechStudio
+            units={appData.units}
+            initialUnitId={selectedSkillUnitId}
+            onSessionCompleted={handleSessionCompleted}
+          />
         )}
         {!isPracticeLockedForControlGroup && activeTab === 'writing' && (
           <WritingGrader

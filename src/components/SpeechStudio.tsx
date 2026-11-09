@@ -6,19 +6,58 @@ import {
   Sparkles,
   Award,
   CheckCircle2,
+  XCircle,
   AlertTriangle,
   RefreshCw,
   MessageSquare,
   Music,
-  ArrowRight
+  BookOpen,
+  ArrowRight,
+  CheckSquare
 } from 'lucide-react';
-import { PronunciationEvaluation, SgkUnit } from '../types';
+import confetti from 'canvas-confetti';
+import { PronunciationEvaluation, SgkUnit, StudySession } from '../types';
 import { evaluateSpeechPronunciation } from '../services/api';
+import {
+  GS6_PRONUNCIATION_UNITS,
+  getUnitPronunciationData,
+  PronunciationExercise,
+} from '../data/gs6Pronunciation';
 
 interface SpeechStudioProps {
   units: SgkUnit[];
   initialUnitId?: string | null;
+  onSessionCompleted?: (session: StudySession) => void;
 }
+
+/**
+ * Hiển thị chuỗi có ký hiệu [chữ] thành phần gạch chân và in đậm (<u><strong>chữ</strong></u>)
+ */
+export const renderBracketedText = (text: string): React.ReactNode => {
+  const parts = text.split(/(\[[^\]]+\])/g);
+  return parts.map((part, idx) => {
+    if (part.startsWith('[') && part.endsWith(']')) {
+      const inner = part.slice(1, -1);
+      return (
+        <u
+          key={idx}
+          className="font-black underline decoration-2 underline-offset-4 text-indigo-700"
+        >
+          {inner}
+        </u>
+      );
+    }
+    return <React.Fragment key={idx}>{part}</React.Fragment>;
+  });
+};
+
+export const stripBracketsForSpeech = (text: string): string => {
+  return text
+    .replace(/\[([^\]]+)\]/g, '$1')
+    .replace(/[↘↗→]/g, '')
+    .replace(/\([^)]*\)/g, '')
+    .trim();
+};
 
 export interface PronunciationTarget {
   text: string;
@@ -329,7 +368,11 @@ export const UNIT_COMMUNICATION_DIALOGUES: Record<number, DialogueOption[]> = {
   ]
 };
 
-export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId }) => {
+export const SpeechStudio: React.FC<SpeechStudioProps> = ({
+  units,
+  initialUnitId,
+  onSessionCompleted,
+}) => {
   const [selectedUnit, setSelectedUnit] = useState<SgkUnit>(() => {
     if (initialUnitId) {
       const found = units.find((u) => u.id === initialUnitId);
@@ -344,7 +387,20 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId
       if (found) setSelectedUnit(found);
     }
   }, [initialUnitId, units]);
-  const [activeTab, setActiveTab] = useState<'phoneme' | 'roleplay'>('phoneme');
+  const [activeTab, setActiveTab] = useState<'gs6-pronunciation' | 'phoneme' | 'roleplay'>(
+    'gs6-pronunciation'
+  );
+
+  // State cho phần Luyện Pronunciation Unit 1-12 (LEARN & PRACTICE Exercise 1-3)
+  const [pronSubTab, setPronSubTab] = useState<'learn' | 'practice'>('learn');
+  const [activeExerciseNum, setActiveExerciseNum] = useState<1 | 2 | 3>(1);
+  const [exerciseAnswers, setExerciseAnswers] = useState<Record<string, string>>({});
+  const [submittedExercises, setSubmittedExercises] = useState<Record<string, boolean>>({});
+
+  const currentUnitPronData = getUnitPronunciationData(selectedUnit.unitNumber);
+  const currentExercise: PronunciationExercise =
+    currentUnitPronData.exercises.find((ex) => ex.number === activeExerciseNum) ||
+    currentUnitPronData.exercises[0];
 
   // Dynamic target sentences for currently selected unit (Phoneme mode)
   const targetSentences = UNIT_PRONUNCIATION_TARGETS[selectedUnit.unitNumber] || UNIT_PRONUNCIATION_TARGETS[1];
@@ -445,6 +501,74 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId
     }
   };
 
+  // Xử lý chọn đáp án & chấm điểm Exercise 1-3 trong phần PRACTICE
+  const isCurrentExerciseSubmitted = Boolean(submittedExercises[currentExercise.id]);
+
+  const handleSelectExerciseOption = (questionId: string, option: string) => {
+    if (isCurrentExerciseSubmitted) return;
+    setExerciseAnswers((prev) => ({
+      ...prev,
+      [questionId]: option,
+    }));
+  };
+
+  const handleSubmitCurrentExercise = () => {
+    const unanswered = currentExercise.questions.filter((q) => !exerciseAnswers[q.id]);
+    if (unanswered.length > 0) {
+      alert(`Em hãy chọn đáp án cho tất cả ${currentExercise.questions.length} câu trước khi chấm điểm nhé!`);
+      return;
+    }
+
+    setSubmittedExercises((prev) => ({
+      ...prev,
+      [currentExercise.id]: true,
+    }));
+
+    const correctCount = currentExercise.questions.filter(
+      (q) => exerciseAnswers[q.id] === q.correctAnswer
+    ).length;
+    const totalCount = currentExercise.questions.length;
+    const scorePct = Math.round((correctCount / totalCount) * 100);
+
+    if (scorePct >= 75) {
+      confetti({
+        particleCount: 80,
+        spread: 65,
+        origin: { y: 0.65 },
+      });
+    }
+
+    if (onSessionCompleted) {
+      onSessionCompleted({
+        id: `pron-u${selectedUnit.unitNumber}-ex${currentExercise.number}-${Date.now()}`,
+        unitId: selectedUnit.id,
+        unitTitle: `Unit ${selectedUnit.unitNumber}: ${selectedUnit.title} (Pronunciation Ex.${currentExercise.number})`,
+        skill: 'Pronunciation',
+        score: scorePct,
+        totalQuestions: totalCount,
+        correctAnswers: correctCount,
+        timeSpentSeconds: 60,
+        date: new Date().toISOString(),
+        xpEarned: correctCount * 10 + 10,
+      });
+    }
+  };
+
+  const handleResetCurrentExercise = () => {
+    setSubmittedExercises((prev) => {
+      const next = { ...prev };
+      delete next[currentExercise.id];
+      return next;
+    });
+    setExerciseAnswers((prev) => {
+      const next = { ...prev };
+      for (const q of currentExercise.questions) {
+        delete next[q.id];
+      }
+      return next;
+    });
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
       {/* Banner (Unified Pronunciation Color & Mic Icon) */}
@@ -462,21 +586,34 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId
       </div>
 
       {/* Mode Switches */}
-      <div className="flex gap-2 border-b border-slate-200 pb-2">
+      <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-2">
+        <button
+          onClick={() => {
+            setActiveTab('gs6-pronunciation');
+          }}
+          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
+            activeTab === 'gs6-pronunciation'
+              ? 'bg-[#4A90E2] text-white shadow-2xs'
+              : 'bg-white text-slate-600 hover:bg-slate-100'
+          }`}
+        >
+          <BookOpen className="w-4 h-4" />
+          1. Học & Bài Tập Phát Âm SGK (Unit 1–12: LEARN & PRACTICE)
+        </button>
         <button
           onClick={() => {
             setActiveTab('phoneme');
             setEvaluation(null);
             setRecognizedText('');
           }}
-          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${
+          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
             activeTab === 'phoneme'
               ? 'bg-[#4A90E2] text-white shadow-2xs'
               : 'bg-white text-slate-600 hover:bg-slate-100'
           }`}
         >
           <Music className="w-4 h-4" />
-          1. Luyện Âm Trọng Tâm (Phonemes / IPA)
+          2. Luyện Đọc Câu AI Chấm Điểm (Speech Recognition)
         </button>
         <button
           onClick={() => {
@@ -484,19 +621,488 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId
             setEvaluation(null);
             setRecognizedText('');
           }}
-          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 ${
+          className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
             activeTab === 'roleplay'
               ? 'bg-[#4A90E2] text-white shadow-2xs'
               : 'bg-white text-slate-600 hover:bg-slate-100'
           }`}
         >
           <MessageSquare className="w-4 h-4" />
-          2. Khung Hội Thoại Giao Tiếp 2 Chiều (Communication)
+          3. Khung Hội Thoại Giao Tiếp 2 Chiều (Communication)
         </button>
       </div>
 
       {/* Content Area */}
-      {activeTab === 'phoneme' ? (
+      {activeTab === 'gs6-pronunciation' ? (
+        <div className="space-y-6">
+          {/* Top Bar: Unit Selector (Unit 1 - 12) & LEARN / PRACTICE Toggle */}
+          <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-2xs border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+              <div>
+                <span className="text-[11px] font-extrabold text-slate-500 uppercase tracking-wider block mb-1">
+                  Chọn Unit (Global Success 6)
+                </span>
+                <select
+                  value={selectedUnit.id}
+                  onChange={(e) => {
+                    const u = units.find((x) => x.id === e.target.value);
+                    if (u) setSelectedUnit(u);
+                  }}
+                  className="text-xs sm:text-sm bg-slate-50 border-2 border-indigo-200 font-extrabold px-3.5 py-2 rounded-xl text-slate-900 focus:ring-2 focus:ring-indigo-400 outline-none cursor-pointer"
+                >
+                  {units.map((u) => {
+                    const pData = GS6_PRONUNCIATION_UNITS.find((p) => p.unitNumber === u.unitNumber);
+                    return (
+                      <option key={u.id} value={u.id}>
+                        Unit {u.unitNumber}: {u.title} ({pData?.topicFocus || u.pronunciationIPA})
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+
+              <div className="px-3.5 py-2 rounded-xl bg-indigo-50 border border-indigo-200 text-xs">
+                <span className="font-bold text-indigo-600 block">Chủ điểm phát âm:</span>
+                <span className="font-extrabold text-indigo-950 text-sm">
+                  {currentUnitPronData.topicFocus}
+                </span>
+              </div>
+            </div>
+
+            {/* LEARN vs PRACTICE Switch */}
+            <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl self-start md:self-auto">
+              <button
+                type="button"
+                onClick={() => setPronSubTab('learn')}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 cursor-pointer ${
+                  pronSubTab === 'learn'
+                    ? 'bg-indigo-600 text-white shadow-xs'
+                    : 'text-slate-700 hover:bg-white/70'
+                }`}
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>LEARN (Lý thuyết & So sánh âm)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setPronSubTab('practice')}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 cursor-pointer ${
+                  pronSubTab === 'practice'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : 'text-slate-700 hover:bg-white/70'
+                }`}
+              >
+                <CheckSquare className="w-4 h-4" />
+                <span>PRACTICE (Exercise 1–3)</span>
+              </button>
+            </div>
+          </div>
+
+          {pronSubTab === 'learn' ? (
+            <div className="space-y-6">
+              {/* Summary Note */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-indigo-50 via-blue-50 to-sky-50 border border-indigo-200 text-xs sm:text-sm text-slate-800 space-y-1.5">
+                <div className="font-extrabold text-indigo-950 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
+                  <span>
+                    Ghi nhớ trọng tâm Unit {currentUnitPronData.unitNumber} ({currentUnitPronData.unitTitle}):
+                  </span>
+                </div>
+                <p className="font-medium leading-relaxed text-slate-700">
+                  {currentUnitPronData.summaryNote}
+                </p>
+                <p className="text-[11px] font-bold text-indigo-700 pt-1">
+                  💡 Lưu ý: Phần chữ được <u><strong className="text-indigo-700">gạch chân và in đậm</strong></u> trong mỗi từ chính là phần thể hiện âm trọng tâm của bài. Bấm vào biểu tượng loa 🔊 để nghe phát âm mẫu.
+                </p>
+              </div>
+
+              {/* 1. Bảng so sánh 2 âm (Sound Comparison Table) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {currentUnitPronData.sounds.map((snd, idx) => (
+                  <div
+                    key={idx}
+                    className={`rounded-2xl p-5 bg-white border-2 shadow-2xs space-y-4 ${
+                      idx === 0 ? 'border-indigo-200' : 'border-sky-200'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                      <div>
+                        <span
+                          className={`inline-block px-3 py-1 rounded-xl font-black text-base sm:text-lg ${
+                            idx === 0
+                              ? 'bg-indigo-100 text-indigo-900 border border-indigo-300'
+                              : 'bg-sky-100 text-sky-900 border border-sky-300'
+                          }`}
+                        >
+                          {snd.symbol}
+                        </span>
+                        <h3 className="font-extrabold text-slate-900 text-sm sm:text-base mt-1.5">
+                          {snd.name}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                        <span className="font-extrabold text-slate-700 block mb-0.5">
+                          👄 Cách phát âm:
+                        </span>
+                        <p className="text-slate-600 font-medium leading-relaxed">
+                          {snd.howToPronounce}
+                        </p>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-amber-50/60 border border-amber-200/80">
+                        <span className="font-extrabold text-amber-900 block mb-1">
+                          ✍️ Dấu hiệu chính tả thường gặp:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {snd.spellingPatterns.map((pat, pIdx) => (
+                            <span
+                              key={pIdx}
+                              className="px-2.5 py-1 rounded-lg bg-white border border-amber-200 text-amber-950 font-bold text-[11px]"
+                            >
+                              {pat}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Examples list */}
+                    <div className="space-y-2">
+                      <span className="text-xs font-extrabold text-slate-700 uppercase tracking-wider block">
+                        Từ vựng ví dụ (Bấm để nghe):
+                      </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {snd.examples.map((ex, eIdx) => (
+                          <button
+                            key={eIdx}
+                            type="button"
+                            onClick={() => handleListenTarget(stripBracketsForSpeech(ex.word))}
+                            className="p-2.5 rounded-xl bg-slate-50 hover:bg-indigo-50/70 border border-slate-200 hover:border-indigo-300 text-left flex items-center justify-between gap-2 transition-all cursor-pointer group"
+                          >
+                            <div className="min-w-0">
+                              <div className="text-sm font-bold text-slate-900">
+                                {renderBracketedText(ex.word)}
+                              </div>
+                              <div className="text-[11px] font-semibold text-indigo-600">
+                                {ex.ipa}
+                              </div>
+                              <div className="text-[11px] text-slate-500 truncate">
+                                {ex.meaningVi}
+                              </div>
+                            </div>
+                            <Volume2 className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 shrink-0" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 2. Bảng cặp từ so sánh âm (Minimal Pairs / Sound Contrast Pairs) */}
+              <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                  <div>
+                    <h3 className="text-base sm:text-lg font-extrabold text-slate-900">
+                      🔄 {currentUnitPronData.minimalPairsTitle}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-semibold">
+                      Nghe và đọc to từng cặp từ để cảm nhận rõ sự khác biệt giữa hai âm.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setPronSubTab('practice')}
+                    className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs inline-flex items-center gap-1.5 self-start sm:self-auto cursor-pointer shadow-xs"
+                  >
+                    <span>Chuyển sang làm Bài tập (Exercise 1–3)</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {currentUnitPronData.minimalPairs.map((pair, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 grid grid-cols-2 gap-3 items-center"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handleListenTarget(stripBracketsForSpeech(pair.leftWord))}
+                        className="p-3 rounded-xl bg-white hover:bg-indigo-50 border border-indigo-200 text-left flex items-center justify-between gap-2 cursor-pointer transition-all"
+                      >
+                        <div className="min-w-0">
+                          <div className="text-sm font-bold text-slate-900">
+                            {renderBracketedText(pair.leftWord)}
+                          </div>
+                          <div className="text-[11px] font-bold text-indigo-600">
+                            {pair.leftIpa}
+                          </div>
+                          <div className="text-[11px] text-slate-500">{pair.leftMeaningVi}</div>
+                        </div>
+                        <Volume2 className="w-4 h-4 text-indigo-500 shrink-0" />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleListenTarget(stripBracketsForSpeech(pair.rightWord))}
+                        className="p-3 rounded-xl bg-white hover:bg-sky-50 border border-sky-200 text-left flex items-center justify-between gap-2 cursor-pointer transition-all"
+                      >
+                        <div className="min-w-0">
+                          <div className="text-sm font-bold text-slate-900">
+                            {renderBracketedText(pair.rightWord)}
+                          </div>
+                          <div className="text-[11px] font-bold text-sky-600">
+                            {pair.rightIpa}
+                          </div>
+                          <div className="text-[11px] text-slate-500">{pair.rightMeaningVi}</div>
+                        </div>
+                        <Volume2 className="w-4 h-4 text-sky-500 shrink-0" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* PRACTICE: Exercise 1 - 3 with Automatic Grading */
+            <div className="space-y-5">
+              {/* Exercise Selector Tabs (Exercise 1, Exercise 2, Exercise 3) */}
+              <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs">
+                <div className="flex flex-wrap gap-2">
+                  {currentUnitPronData.exercises.map((ex) => {
+                    const isDone = Boolean(submittedExercises[ex.id]);
+                    const isActive = activeExerciseNum === ex.number;
+                    const correctInEx = isDone
+                      ? ex.questions.filter((q) => exerciseAnswers[q.id] === q.correctAnswer).length
+                      : 0;
+
+                    return (
+                      <button
+                        key={ex.id}
+                        type="button"
+                        onClick={() => setActiveExerciseNum(ex.number)}
+                        className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 cursor-pointer border ${
+                          isActive
+                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-xs'
+                            : isDone
+                            ? 'bg-emerald-50 text-emerald-900 border-emerald-300 hover:bg-emerald-100'
+                            : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                        }`}
+                      >
+                        <span>Exercise {ex.number}</span>
+                        {isDone && (
+                          <span
+                            className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
+                              isActive
+                                ? 'bg-white text-indigo-700'
+                                : 'bg-emerald-600 text-white'
+                            }`}
+                          >
+                            {correctInEx}/{ex.questions.length}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setPronSubTab('learn')}
+                  className="text-xs font-extrabold text-indigo-600 hover:underline cursor-pointer"
+                >
+                  ← Xem lại bảng lý thuyết LEARN
+                </button>
+              </div>
+
+              {/* Active Exercise Card */}
+              <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                  <div>
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-indigo-100 text-indigo-800 text-[11px] font-extrabold mb-1">
+                      Unit {currentUnitPronData.unitNumber} • {currentUnitPronData.topicFocus}
+                    </span>
+                    <h3 className="text-base sm:text-lg font-extrabold text-slate-900">
+                      {currentExercise.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 font-semibold mt-0.5">
+                      {currentExercise.instruction}
+                    </p>
+                  </div>
+
+                  {/* Score banner if submitted */}
+                  {isCurrentExerciseSubmitted && (
+                    <div className="px-4 py-2.5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-emerald-950 flex items-center gap-3 shrink-0">
+                      <Award className="w-6 h-6 text-emerald-600" />
+                      <div>
+                        <span className="text-[11px] font-bold uppercase block text-emerald-700">
+                          Điểm số của em
+                        </span>
+                        <span className="text-base sm:text-lg font-black">
+                          {
+                            currentExercise.questions.filter(
+                              (q) => exerciseAnswers[q.id] === q.correctAnswer
+                            ).length
+                          }{' '}
+                          / {currentExercise.questions.length} câu đúng (
+                          {Math.round(
+                            (currentExercise.questions.filter(
+                              (q) => exerciseAnswers[q.id] === q.correctAnswer
+                            ).length /
+                              currentExercise.questions.length) *
+                              100
+                          )}
+                          %)
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Questions List */}
+                <div className="space-y-5">
+                  {currentExercise.questions.map((q, qIdx) => {
+                    const userChoice = exerciseAnswers[q.id];
+                    const isCorrect = userChoice === q.correctAnswer;
+
+                    return (
+                      <div
+                        key={q.id}
+                        className="p-4 sm:p-5 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-3.5"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <h4 className="text-xs sm:text-sm font-extrabold text-slate-900 leading-relaxed">
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs font-black mr-2">
+                              {qIdx + 1}
+                            </span>
+                            {renderBracketedText(q.prompt)}
+                          </h4>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {q.options.map((opt, oIdx) => {
+                            const isSelected = userChoice === opt;
+                            const isRightOpt = opt === q.correctAnswer;
+
+                            let btnStyle =
+                              'bg-white border-slate-200 text-slate-800 hover:border-indigo-400';
+                            if (!isCurrentExerciseSubmitted && isSelected) {
+                              btnStyle =
+                                'bg-indigo-50 border-indigo-600 text-indigo-950 ring-2 ring-indigo-200';
+                            } else if (isCurrentExerciseSubmitted) {
+                              if (isRightOpt) {
+                                btnStyle =
+                                  'bg-emerald-50 border-emerald-500 text-emerald-950 font-bold';
+                              } else if (isSelected && !isRightOpt) {
+                                btnStyle =
+                                  'bg-rose-50 border-rose-500 text-rose-950 font-bold';
+                              }
+                            }
+
+                            return (
+                              <div key={oIdx} className="flex items-center gap-1.5">
+                                <button
+                                  type="button"
+                                  disabled={isCurrentExerciseSubmitted}
+                                  onClick={() => handleSelectExerciseOption(q.id, opt)}
+                                  className={`flex-1 p-3.5 rounded-xl border-2 text-left text-xs sm:text-sm transition-all flex items-center justify-between gap-2 cursor-pointer ${btnStyle}`}
+                                >
+                                  <div className="flex items-center gap-2.5">
+                                    <span className="w-6 h-6 rounded-md bg-slate-100 border border-slate-300 flex items-center justify-center font-extrabold text-xs text-slate-700 shrink-0">
+                                      {String.fromCharCode(65 + oIdx)}
+                                    </span>
+                                    <span className="font-semibold">
+                                      {renderBracketedText(opt)}
+                                    </span>
+                                  </div>
+                                  {isCurrentExerciseSubmitted && isRightOpt && (
+                                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                                  )}
+                                  {isCurrentExerciseSubmitted && isSelected && !isRightOpt && (
+                                    <XCircle className="w-5 h-5 text-rose-600 shrink-0" />
+                                  )}
+                                </button>
+
+                                <button
+                                  type="button"
+                                  onClick={() => handleListenTarget(stripBracketsForSpeech(opt))}
+                                  title="Nghe phát âm"
+                                  className="p-3 rounded-xl bg-white border border-slate-200 hover:border-indigo-400 text-slate-500 hover:text-indigo-600 cursor-pointer shrink-0"
+                                >
+                                  <Volume2 className="w-4 h-4" />
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {isCurrentExerciseSubmitted && (
+                          <div
+                            className={`p-3 rounded-xl text-xs border ${
+                              isCorrect
+                                ? 'bg-emerald-50/80 border-emerald-200 text-emerald-900'
+                                : 'bg-amber-50 border-amber-200 text-amber-950'
+                            }`}
+                          >
+                            <span className="font-extrabold">
+                              {isCorrect ? '✓ Chính xác! ' : '💡 Giải thích: '}
+                            </span>
+                            <span className="font-medium">
+                              {renderBracketedText(q.explanation)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Action Footer: Submit / Retry / Next Exercise */}
+                <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                  {!isCurrentExerciseSubmitted ? (
+                    <button
+                      type="button"
+                      onClick={handleSubmitCurrentExercise}
+                      className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs sm:text-sm shadow-sm cursor-pointer transition-all flex items-center gap-2"
+                    >
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>Chấm Điểm Exercise {currentExercise.number}</span>
+                    </button>
+                  ) : (
+                    <div className="flex flex-wrap items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={handleResetCurrentExercise}
+                        className="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs sm:text-sm cursor-pointer transition-all flex items-center gap-2"
+                      >
+                        <RefreshCw className="w-4 h-4" />
+                        <span>Làm Lại Exercise {currentExercise.number}</span>
+                      </button>
+
+                      {activeExerciseNum < 3 && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setActiveExerciseNum((activeExerciseNum + 1) as 1 | 2 | 3)
+                          }
+                          className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm cursor-pointer transition-all flex items-center gap-2 shadow-xs"
+                        >
+                          <span>Sang Exercise {activeExerciseNum + 1}</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ) : activeTab === 'phoneme' ? (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Target List */}
           <div className="lg:col-span-5 bg-white rounded-2xl p-5 shadow-2xs border border-slate-200 space-y-4">
