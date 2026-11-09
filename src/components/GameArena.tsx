@@ -4,6 +4,7 @@ import { CaroQuiz } from '../games/CaroQuiz';
 import { CastleConquest } from '../games/CastleConquest';
 import { RaceToFinish } from '../games/RaceToFinish';
 import { Swords, Gamepad2, Trophy, Flame, Play, Sparkles } from 'lucide-react';
+import { isReservedTestItemId } from '../grammar-g6/testFormsLoader';
 
 interface GameArenaProps {
   questions: Question[];
@@ -19,10 +20,11 @@ export const GameArena: React.FC<GameArenaProps> = ({
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
   const [selectedUnitId, setSelectedUnitId] = useState<string>('all');
 
+  const safeQuestions = questions.filter((q) => !isReservedTestItemId(q.id));
   const filteredQuestions =
     selectedUnitId === 'all'
-      ? questions
-      : questions.filter((q) => q.unitId === selectedUnitId);
+      ? safeQuestions
+      : safeQuestions.filter((q) => q.unitId === selectedUnitId);
 
   const handleGameEnd = (winner: string, score: number) => {
     onSessionCompleted?.(score, Math.round((score / 500) * 10), 10);

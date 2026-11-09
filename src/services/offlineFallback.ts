@@ -196,6 +196,8 @@ export function getOfflineWritingFeedback(
     detailedCorrections: corrections,
     suggestedRevision: promptInfo.sample,
     pedagogicalAdvice: `Em đã hoàn thành bài viết rất cố gắng! Hãy tiếp tục rèn luyện vốn từ và cấu trúc ngữ pháp SGK Lớp 6 mỗi ngày để viết hay hơn nhé.`,
+    isOfflineFallback: true,
+    gradingModeLabel: 'Chấm tự động cơ bản (chưa có AI)',
   };
 }
 
@@ -203,19 +205,20 @@ export function getOfflineWritingFeedback(
  * Offline Socratic Tutor Fallback Response
  */
 export function getOfflineTutorResponse(prompt: string, unitTitle: string): string {
-  return `🤖 **Gia Sư AI Tiếng Anh Lớp 6 (${unitTitle || 'SGK Global Success'}):**\n\nChào em! Thầy/cô rất vui vì em đã tự giác đặt câu hỏi: "${prompt}".\n\n💡 **Gợi ý tư duy Socratic (Bước 1 & 2):**\n- Trong bài **${unitTitle || 'Tiếng Anh 6'}**, chúng ta thường chú ý đến cấu trúc ngữ pháp chính và từ vựng chỉ hoạt động/miêu tả.\n- Em hãy thử đọc lại ví dụ mẫu trong sách giáo khoa, sau đó xác định chủ ngữ và động từ chính nhé!\n\n👉 **Bài tập luyện nhanh cho em:** Em thử hoàn thành câu sau xem nhé:\n*"They ________ (play) sports in the school yard every afternoon."*\n\nEm nghĩ từ trong ngoặc chia như thế nào? Thử trả lời cho thầy/cô biết nhé!`;
+  return `⚙️ **[Chấm tự động cơ bản (chưa có AI)] — Gia Sư Tiếng Anh Lớp 6 (${unitTitle || 'SGK Global Success'}):**\n\nChào em! Thầy/cô rất vui vì em đã tự giác đặt câu hỏi: "${prompt}".\n\n💡 **Gợi ý tư duy Socratic (Bước 1 & 2):**\n- Trong bài **${unitTitle || 'Tiếng Anh 6'}**, chúng ta thường chú ý đến cấu trúc ngữ pháp chính và từ vựng chỉ hoạt động/miêu tả.\n- Em hãy thử đọc lại ví dụ mẫu trong sách giáo khoa, sau đó xác định chủ ngữ và động từ chính nhé!\n\n👉 **Bài tập luyện nhanh cho em:** Em thử hoàn thành câu sau xem nhé:\n*"They ________ (play) sports in the school yard every afternoon."*\n\nEm nghĩ từ trong ngoặc chia như thế nào? Thử trả lời cho thầy/cô biết nhé!`;
 }
 
 /**
  * Offline Homework Hint Fallback Response
  */
 export function getOfflineHomeworkHint(questionContent: string, hintLevel: number = 1): string {
+  const modeTag = `*(Chấm tự động cơ bản (chưa có AI))*\n\n`;
   if (hintLevel === 1) {
-    return `💡 **Gợi Ý Cấp Độ 1 (Từ Khóa Trọng Tâm):**\n- Hãy chú ý đến từ chìa khóa trong đề bài: "${questionContent.slice(0, 40)}...".\n- Xác định xem đây là câu hỏi về **Từ vựng (Vocabulary)** hay **Ngữ pháp (Grammar)** SGK Lớp 6.`;
+    return `${modeTag}💡 **Gợi Ý Cấp Độ 1 (Từ Khóa Trọng Tâm):**\n- Hãy chú ý đến từ chìa khóa trong đề bài: "${questionContent.slice(0, 40)}...".\n- Xác định xem đây là câu hỏi về **Từ vựng (Vocabulary)** hay **Ngữ pháp (Grammar)** SGK Lớp 6.`;
   } else if (hintLevel === 2) {
-    return `💡 **Gợi Ý Cấp Độ 2 (Cấu Trúc Ngữ Pháp):**\n- Kiểm tra thì của câu (Thì Hiện tại đơn, Hiện tại tiếp diễn, Quá khứ đơn, hay Tương lai đơn với *will*).\n- Quan sát chủ ngữ số ít hay số nhiều để chọn đáp án hòa hợp nhất.`;
+    return `${modeTag}💡 **Gợi Ý Cấp Độ 2 (Cấu Trúc Ngữ Pháp):**\n- Kiểm tra thì của câu (Thì Hiện tại đơn, Hiện tại tiếp diễn, Quá khứ đơn, hay Tương lai đơn với *will*).\n- Quan sát chủ ngữ số ít hay số nhiều để chọn đáp án hòa hợp nhất.`;
   } else {
-    return `💡 **Gợi Ý Cấp Độ 3 (Phương Pháp Loại Trừ):**\n- Loại bỏ 2 phương án sai rõ rệt không đúng loại từ hoặc thì.\n- Phân tích nghĩa câu dịch sang tiếng Việt để chọn ra đáp án chính xác nhất!`;
+    return `${modeTag}💡 **Gợi Ý Cấp Độ 3 (Phương Pháp Loại Trừ):**\n- Loại bỏ 2 phương án sai rõ rệt không đúng loại từ hoặc thì.\n- Phân tích nghĩa câu dịch sang tiếng Việt để chọn ra đáp án chính xác nhất!`;
   }
 }
 
@@ -253,10 +256,12 @@ export function getOfflineSpeechEvaluation(recognizedText: string, targetText: s
     ],
     recognizedText: recognizedText || targetText,
     targetText,
-    teacherFeedback: `Em đọc rất tự tin! Âm lượng và nhịp điệu phát âm khá chuẩn chuẩn SGK Tiếng Anh 6.`,
+    teacherFeedback: `Em đọc rất tự tin! Âm lượng và nhịp điệu phát âm khá chuẩn SGK Tiếng Anh 6.`,
     tipsToImprove: [
       'Luyện tập phát âm rõ các âm gió s/z ở cuối từ.',
       'Nghe thêm file audio mẫu trong SGK và nhấn đúng trọng âm câu.',
     ],
+    isOfflineFallback: true,
+    gradingModeLabel: 'Chấm tự động cơ bản (chưa có AI)',
   };
 }

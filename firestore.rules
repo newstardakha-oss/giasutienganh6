@@ -1,0 +1,169 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===== HELPER FUNCTIONS =====
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isTeacher() {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/teachers/$(request.auth.uid));
+    }
+
+    function getTeacherData() {
+      return get(/databases/$(database)/documents/teachers/$(request.auth.uid)).data;
+    }
+
+    function isAdmin() {
+      return isTeacher() && getTeacherData().role == 'admin';
+    }
+
+    function isSameSchoolTeacher(schoolId) {
+      return isTeacher() && (
+        getTeacherData().schoolId == schoolId ||
+        getTeacherData().role == 'admin'
+      );
+    }
+
+    function isOwnerStudent(studentId) {
+      return isSignedIn() && request.auth.uid == studentId;
+    }
+
+    // ===== 1. COLLECTION: students =====
+    // Họ tên học sinh chỉ nằm trong collection students, không lưu trong attempts
+    match /students/{studentId} {
+      allow read: if isOwnerStudent(studentId) ||
+                     isSameSchoolTeacher(resource.data.schoolId);
+      allow create: if isOwnerStudent(studentId) || isSameSchoolTeacher(request.resource.data.schoolId);
+      allow update: if isOwnerStudent(studentId) || isSameSchoolTeacher(resource.data.schoolId);
+      allow delete: if isSameSchoolTeacher(resource.data.schoolId);
+    }
+
+    // ===== 2. COLLECTION: teachers =====
+    match /teachers/{teacherId} {
+      allow read: if isSignedIn() && (request.auth.uid == teacherId || isAdmin());
+      allow create: if isSignedIn() && request.auth.uid == teacherId;
+      allow update: if isSignedIn() && (request.auth.uid == teacherId || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // ===== 3. COLLECTION: attempts =====
+    // - Giáo viên chỉ đọc attempts của học sinh cùng trường (schoolId khớp với trường của GV).
+    // - Học sinh chỉ được ghi (create) attempts của chính mình.
+    // - Không ai (kể cả học sinh) được sửa (update) hay xoá (delete) attempts đã ghi.
+    // - Không cho phép ghi trường fullName / studentName vào document attempts.
+    match /attempts/{attemptId} {
+      allow read: if isOwnerStudent(resource.data.studentId) ||
+                     isSameSchoolTeacher(resource.data.schoolId);
+
+      allow create: if isOwnerStudent(request.resource.data.studentId)
+        && !('fullName' in request.resource.data)
+        && !('studentName' in request.resource.data)
+        && request.resource.data.keys().hasAll([
+          'studentId',
+          'schoolId',
+          'className',
+          'grade',
+          'unitId',
+          'skill',
+          'setId',
+          'itemId',
+          'correct',
+          'score',
+          'answer',
+          'attemptNo',
+          'startedAt',
+          'submittedAt',
+          'durationSec',
+          'device'
+        ])
+        && request.resource.data.skill in ['grammar', 'vocab', 'pronunciation', 'reading', 'writing', 'game']
+        && request.resource.data.correct is bool
+        && request.resource.data.score is number
+        && request.resource.data.score >= 0
+        && request.resource.data.score <= 1
+        && request.resource.data.durationSec is number
+        && request.resource.data.durationSec >= 0
+        && request.resource.data.device in ['mobile', 'desktop'];
+
+      // Tuyệt đối không cho phép sửa hoặc xoá attempts đã ghi
+      allow update, delete: if false;
+    }
+
+    // ===== 4. COLLECTION: dailyStats =====
+    // Tổng hợp sẵn theo ngày cho từng học sinh (docId: {studentId}_{YYYY-MM-DD})
+    match /dailyStats/{statId} {
+      allow read: if isOwnerStudent(resource.data.studentId) ||
+                     isSameSchoolTeacher(resource.data.schoolId);
+
+      allow create, update: if isOwnerStudent(request.resource.data.studentId)
+        && !('fullName' in request.resource.data)
+        && !('studentName' in request.resource.data)
+        && request.resource.data.studentId is string
+        && request.resource.data.schoolId is string
+        && request.resource.data.date is string
+        && request.resource.data.studyMinutes is number
+        && request.resource.data.totalAttempts is number
+        && request.resource.data.correctAttempts is number
+        && request.resource.data.accuracyRate is number;
+
+      allow delete: if false;
+    }
+
+    // ===== 5. COLLECTION: testForms =====
+    // Đề gốc chứa đáp án (answerIndex, blanks.accept, accept): chỉ Giáo viên/Admin mới đọc được.
+    // Học sinh nhận bản đề đã lọc bỏ đáp án từ máy chủ, và việc chấm điểm chạy trên Cloud Function / Server.
+    match /testForms/{formId} {
+      allow read: if isTeacher();
+      allow write: if isAdmin() || isTeacher();
+    }
+
+    // ===== 6. COLLECTION: testRounds =====
+    // Đợt kiểm tra đầu vào / đầu ra / duy trì / thử nghiệm
+    match /testRounds/{roundId} {
+      allow read: if isSignedIn();
+      allow create: if isSameSchoolTeacher(request.resource.data.schoolId);
+      allow update, delete: if isSameSchoolTeacher(resource.data.schoolId);
+    }
+
+    // ===== 7. COLLECTION: testAttempts =====
+    // - Học sinh chỉ tạo và sửa attempt của chính mình khi đợt đang mở và trạng thái đang là in_progress;
+    //   không sửa được sau khi đã nộp (submitted / auto_submitted / voided).
+    // - Giáo viên đọc được attempts của trường mình và chỉ được huỷ bài (voided) khi ghi rõ voidReason.
+    match /testAttempts/{attemptId} {
+      allow read: if isOwnerStudent(resource.data.studentId) ||
+                     isSameSchoolTeacher(resource.data.schoolId);
+
+      allow create: if isOwnerStudent(request.resource.data.studentId)
+        && !('fullName' in request.resource.data)
+        && !('studentName' in request.resource.data)
+        && request.resource.data.status == 'in_progress'
+        && get(/databases/$(database)/documents/testRounds/$(request.resource.data.roundId)).data.status == 'open';
+
+      allow update: if (
+        isOwnerStudent(resource.data.studentId)
+        && resource.data.status == 'in_progress'
+        && request.resource.data.status == 'in_progress'
+        && !('fullName' in request.resource.data)
+        && get(/databases/$(database)/documents/testRounds/$(resource.data.roundId)).data.status == 'open'
+      ) || (
+        isSameSchoolTeacher(resource.data.schoolId)
+        && request.resource.data.status == 'voided'
+        && request.resource.data.voidReason is string
+        && request.resource.data.voidReason.size() > 0
+      );
+
+      allow delete: if false;
+    }
+
+    // ===== 8. COLLECTION: classSettings =====
+    // Cài đặt nhóm nghiên cứu (TN / DC) và khoá luyện tập (practiceLocked) cho lớp đối chứng
+    match /classSettings/{classSettingId} {
+      allow read: if isSignedIn();
+      allow create, update: if isSameSchoolTeacher(request.resource.data.schoolId);
+      allow delete: if isAdmin();
+    }
+  }
+}

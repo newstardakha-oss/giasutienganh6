@@ -8,6 +8,7 @@ import {
   toGrammarUnitId,
   type LoadedGrammarBundle,
 } from '../dataLoader';
+import { getMistakePracticePool, isReservedTestItemId } from '../testFormsLoader';
 import {
   loadGrammarProgress,
   recordItemAttempt,
@@ -39,12 +40,28 @@ interface GrammarG6AppProps {
   currentStudentId?: string | null;
   initialUnitId?: string | null;
   onSessionCompleted?: (session: StudySession) => void;
+  onPlayerActiveChange?: (isActive: boolean) => void;
+  /** Gọi mỗi lần học sinh nộp 1 câu – dùng để ghi collection "attempts" + "dailyStats" */
+  onItemAttempt?: (params: {
+    itemId: string;
+    setId: string;
+    unitId: string;
+    grammarPointId?: string;
+    correct: boolean;
+    score: number;
+    answer: string;
+    startedAt?: string;
+    submittedAt?: string;
+    durationSec?: number;
+  }) => void;
 }
 
 export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
   currentStudentId,
   initialUnitId,
   onSessionCompleted,
+  onPlayerActiveChange,
+  onItemAttempt,
 }) => {
   const [bundle, setBundle] = useState<LoadedGrammarBundle | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -52,6 +69,16 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
     loadGrammarProgress(currentStudentId)
   );
   const [screen, setScreen] = useState<ScreenState>({ view: 'home' });
+
+  useEffect(() => {
+    onPlayerActiveChange?.(screen.view === 'player');
+  }, [screen.view, onPlayerActiveChange]);
+
+  useEffect(() => {
+    return () => {
+      onPlayerActiveChange?.(false);
+    };
+  }, [onPlayerActiveChange]);
 
   // Tải lại tiến độ khi đổi tài khoản học sinh
   useEffect(() => {
@@ -102,7 +129,7 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
   }
 
   const { dataset, itemIndex, grammarPointIndex } = bundle;
-  const mistakeCount = Object.keys(store.mistakes).filter((id) => Boolean(itemIndex[id])).length;
+  const mistakeCount = getMistakePracticePool(store, itemIndex).length;
 
   const handleSelectUnit = (unit: Unit) => {
     setScreen({ view: 'unit', unitId: unit.id, tab: 'theory' });
@@ -110,9 +137,13 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
   };
 
   const handleStartSet = (unit: Unit, set: ExerciseSet) => {
+    const safeItemIds = set.items
+      .map((it) => it.id)
+      .filter((id) => !isReservedTestItemId(id));
+    if (safeItemIds.length === 0) return;
     setScreen({
       view: 'player',
-      itemIds: set.items.map((it) => it.id),
+      itemIds: safeItemIds,
       title: set.title,
       setId: set.id,
       returnScreen: { view: 'unit', unitId: unit.id, tab: 'practice' },
@@ -122,9 +153,11 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
   };
 
   const handleStartQuickTest = (itemIds: string[], title: string, unit: Unit) => {
+    const safeItemIds = itemIds.filter((id) => !isReservedTestItemId(id));
+    if (safeItemIds.length === 0) return;
     setScreen({
       view: 'player',
-      itemIds,
+      itemIds: safeItemIds,
       title,
       returnScreen: { view: 'unit', unitId: unit.id, tab: 'practice' },
       sessionKey: Date.now(),
@@ -133,9 +166,11 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
   };
 
   const handlePracticeMistakes = (itemIds: string[]) => {
+    const safeItemIds = itemIds.filter((id) => !isReservedTestItemId(id));
+    if (safeItemIds.length === 0) return;
     setScreen({
       view: 'player',
-      itemIds,
+      itemIds: safeItemIds,
       title: 'Luyện lại câu sai',
       returnScreen: { view: 'mistakes' },
       sessionKey: Date.now(),
@@ -145,52 +180,54 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
 
   return (
     <div className="space-y-5">
-      {/* Top Module Navigation Bar */}
-      <div className="neu-card bg-white/95 px-4 sm:px-5 py-3 flex items-center justify-between flex-wrap gap-3 border border-purple-100">
-        <button
-          type="button"
-          onClick={() => setScreen({ view: 'home' })}
-          className="inline-flex items-center gap-2.5 min-h-[44px] text-left cursor-pointer group"
-          aria-label="Về danh sách 12 Unit Ngữ pháp"
-        >
-          <span className="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black text-base grid place-items-center shadow-xs group-hover:scale-105 transition-transform">
-            6
-          </span>
-          <span className="font-extrabold text-sm sm:text-base text-purple-950 group-hover:text-indigo-600 transition-colors">
-            Ngữ pháp Tiếng Anh 6
-          </span>
-        </button>
-
-        <div className="flex items-center gap-2 flex-wrap">
+      {/* Top Module Navigation Bar (hidden while doing an exercise in player view) */}
+      {screen.view !== 'player' && (
+        <div className="neu-card bg-white/95 px-4 sm:px-5 py-3 flex items-center justify-between flex-wrap gap-3 border border-purple-100">
           <button
             type="button"
-            onClick={() => setScreen({ view: 'stats' })}
-            className={`min-h-[44px] px-3.5 py-1.5 rounded-full text-xs font-extrabold inline-flex items-center gap-1.5 transition-all cursor-pointer ${
-              screen.view === 'stats'
-                ? 'bg-indigo-600 text-white shadow-xs'
-                : 'bg-slate-100 text-slate-700 hover:bg-indigo-50 hover:text-indigo-700'
-            }`}
+            onClick={() => setScreen({ view: 'home' })}
+            className="inline-flex items-center gap-2.5 min-h-[44px] text-left cursor-pointer group"
+            aria-label="Về danh sách 12 Unit Ngữ pháp"
           >
-            <BarChart3 className="w-3.5 h-3.5" />
-            <span>Thống kê</span>
+            <span className="w-8 h-8 rounded-xl bg-indigo-600 text-white font-black text-base grid place-items-center shadow-xs group-hover:scale-105 transition-transform">
+              6
+            </span>
+            <span className="font-extrabold text-sm sm:text-base text-purple-950 group-hover:text-indigo-600 transition-colors">
+              Ngữ pháp Tiếng Anh 6
+            </span>
           </button>
 
-          <button
-            type="button"
-            onClick={() => setScreen({ view: 'mistakes' })}
-            className={`min-h-[44px] px-3.5 py-1.5 rounded-full text-xs font-extrabold inline-flex items-center gap-1.5 transition-all cursor-pointer ${
-              screen.view === 'mistakes'
-                ? 'bg-rose-600 text-white shadow-xs'
-                : mistakeCount > 0
-                ? 'bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100'
-                : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
-            }`}
-          >
-            <BookMarked className="w-3.5 h-3.5" />
-            <span>Sổ lỗi sai · {mistakeCount}</span>
-          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setScreen({ view: 'stats' })}
+              className={`min-h-[44px] px-3.5 py-1.5 rounded-full text-xs font-extrabold inline-flex items-center gap-1.5 transition-all cursor-pointer ${
+                screen.view === 'stats'
+                  ? 'bg-indigo-600 text-white shadow-xs'
+                  : 'bg-slate-100 text-slate-700 hover:bg-indigo-50 hover:text-indigo-700'
+              }`}
+            >
+              <BarChart3 className="w-3.5 h-3.5" />
+              <span>Thống kê</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setScreen({ view: 'mistakes' })}
+              className={`min-h-[44px] px-3.5 py-1.5 rounded-full text-xs font-extrabold inline-flex items-center gap-1.5 transition-all cursor-pointer ${
+                screen.view === 'mistakes'
+                  ? 'bg-rose-600 text-white shadow-xs'
+                  : mistakeCount > 0
+                  ? 'bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100'
+                  : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100'
+              }`}
+            >
+              <BookMarked className="w-3.5 h-3.5" />
+              <span>Sổ lỗi sai · {mistakeCount}</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Screen Router */}
       {screen.view === 'home' && (
@@ -227,6 +264,21 @@ export const GrammarG6App: React.FC<GrammarG6AppProps> = ({
           grammarPointIndex={grammarPointIndex}
           onRecordAttempt={(params) => {
             setStore((prev) => recordItemAttempt(prev, params, currentStudentId));
+            if (onItemAttempt) {
+              const entry = itemIndex[params.itemId];
+              onItemAttempt({
+                itemId: params.itemId,
+                setId: params.setId,
+                unitId: params.unitId,
+                grammarPointId: entry?.set.grammarPointId,
+                correct: params.correct,
+                score: params.score ?? (params.correct ? 1 : 0),
+                answer: params.answerText,
+                startedAt: params.startedAt,
+                submittedAt: params.submittedAt,
+                durationSec: params.durationSec,
+              });
+            }
           }}
           onCompleteSession={({
             setId,

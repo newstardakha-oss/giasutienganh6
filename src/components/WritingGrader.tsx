@@ -510,12 +510,32 @@ export const WritingGrader: React.FC<WritingGraderProps> = ({
         <div className="lg:col-span-6 space-y-4">
           {feedback ? (
             <div className="bg-white rounded-2xl p-6 shadow-2xs border border-slate-200 space-y-5 animate-in fade-in duration-200">
+              {feedback.isOfflineFallback && (
+                <div className="p-3 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs font-extrabold flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
+                  <span>Chấm tự động cơ bản (chưa có AI)</span>
+                </div>
+              )}
+
               {/* Score Header */}
               <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                 <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                    Kết Quả Đánh Giá Tổng Thể
-                  </span>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Kết Quả Đánh Giá Tổng Thể
+                    </span>
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold border ${
+                        feedback.isOfflineFallback
+                          ? 'bg-amber-100 text-amber-900 border-amber-300'
+                          : 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                      }`}
+                    >
+                      {feedback.isOfflineFallback
+                        ? 'Chấm tự động cơ bản (chưa có AI)'
+                        : feedback.gradingModeLabel || 'Chấm bởi AI Gemini'}
+                    </span>
+                  </div>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-3xl font-extrabold text-[#4A90E2]">
                       {feedback.overallScore}/10
@@ -603,7 +623,10 @@ export const WritingGrader: React.FC<WritingGraderProps> = ({
               <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 space-y-2 text-xs">
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-blue-900 flex items-center gap-1.5">
-                    <Sparkles className="w-4 h-4 text-[#4A90E2]" /> Đoạn Văn Mẫu Gợi Ý Từ AI:
+                    <Sparkles className="w-4 h-4 text-[#4A90E2]" />{' '}
+                    {feedback.isOfflineFallback
+                      ? 'Đoạn Văn Mẫu Tham Khảo (SGK):'
+                      : 'Đoạn Văn Mẫu Gợi Ý Từ AI:'}
                   </span>
                   <button
                     onClick={() => handleCopyModel(feedback.suggestedRevision)}

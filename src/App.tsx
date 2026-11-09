@@ -31,6 +31,20 @@ import { DocParser } from './components/DocParser';
 import { ParentDashboard } from './components/ParentDashboard';
 import { GameArena } from './components/GameArena';
 import { TeacherProfileModal } from './components/TeacherProfileModal';
+import { StudentTestExamModal } from './components/StudentTestExamModal';
+import {
+  buildSessionAttemptInput,
+  mapAppSkillToAttemptSkill,
+  recordAttemptAndUpdateDailyStats,
+} from './services/firebaseAnalytics';
+import {
+  FirestoreTestRoundDoc,
+  TEST_ROUND_KIND_LABELS,
+  getActiveStudentAttemptForRound,
+  getAvailableRoundsForStudent,
+  isStudentPracticeLocked,
+  loadAllTestRounds,
+} from './services/researchTests';
 
 export default function App() {
   const [appData, setAppData] = useState<AppDataSchema>(() => loadAppData());
@@ -43,6 +57,40 @@ export default function App() {
   const [isBackupModalOpen, setIsBackupModalOpen] = useState<boolean>(false);
   const [isStudentAuthModalOpen, setIsStudentAuthModalOpen] = useState<boolean>(false);
   const [isTeacherProfileModalOpen, setIsTeacherProfileModalOpen] = useState<boolean>(false);
+  const [isGrammarExerciseActive, setIsGrammarExerciseActive] = useState<boolean>(false);
+  const [activeExamRound, setActiveExamRound] = useState<FirestoreTestRoundDoc | null>(null);
+  const [researchTick, setResearchTick] = useState<number>(0);
+
+  useEffect(() => {
+    const onResearchUpdate = () => setResearchTick((t) => t + 1);
+    window.addEventListener('storage', onResearchUpdate);
+    window.addEventListener('research-tests-updated', onResearchUpdate);
+    return () => {
+      window.removeEventListener('storage', onResearchUpdate);
+      window.removeEventListener('research-tests-updated', onResearchUpdate);
+    };
+  }, []);
+
+  // Tự động mở bài kiểm tra nếu học sinh truy cập từ đường link QR (?testRound=...)
+  useEffect(() => {
+    if (!appData.currentStudentId || appData.isTeacherLoggedIn) return;
+    const params = new URLSearchParams(window.location.search);
+    const roundIdFromUrl = params.get('testRound');
+    if (!roundIdFromUrl) return;
+    const found = loadAllTestRounds().find((r) => r.id === roundIdFromUrl && r.status === 'open');
+    if (found) {
+      setActiveExamRound(found);
+      setIsCoverActive(false);
+    }
+  }, [appData.currentStudentId, appData.isTeacherLoggedIn]);
+
+  // Scroll to top whenever activeTab or cover screen state changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (activeTab !== 'socratic') {
+      setIsGrammarExerciseActive(false);
+    }
+  }, [activeTab, isCoverActive]);
 
   // Server handles API key pooling transparently. Students enter directly without popups.
   useEffect(() => {
@@ -268,6 +316,51 @@ export default function App() {
   const handleSessionCompleted = (session: StudySession) => {
     const updated = addStudySession(appData, session);
     setAppData(updated);
+
+    // Ghi collection "attempts" + "dailyStats" cho các kỹ năng không phải Ngữ pháp
+    // (Ngữ pháp được ghi chi tiết từng câu qua handleGrammarItemAttempt).
+    const student = appData.students.find((s) => s.id === appData.currentStudentId);
+    if (student && mapAppSkillToAttemptSkill(session.skill) !== 'grammar') {
+      recordAttemptAndUpdateDailyStats(buildSessionAttemptInput(student, session), student.id);
+    }
+  };
+
+  const handleGrammarItemAttempt = (params: {
+    itemId: string;
+    setId: string;
+    unitId: string;
+    grammarPointId?: string;
+    correct: boolean;
+    score: number;
+    answer: string;
+    startedAt?: string;
+    submittedAt?: string;
+    durationSec?: number;
+  }) => {
+    const student = appData.students.find((s) => s.id === appData.currentStudentId);
+    if (!student) return; // Chế độ khách: không ghi báo cáo
+    recordAttemptAndUpdateDailyStats(
+      {
+        studentId: student.id,
+        schoolName: student.schoolName,
+        communeName: student.communeName,
+        provinceName: student.provinceName,
+        className: student.className,
+        grade: student.grade || 6,
+        unitId: params.unitId,
+        skill: 'grammar',
+        setId: params.setId,
+        itemId: params.itemId,
+        grammarPointId: params.grammarPointId,
+        correct: params.correct,
+        score: params.score,
+        answer: params.answer,
+        startedAt: params.startedAt,
+        submittedAt: params.submittedAt,
+        durationSec: params.durationSec,
+      },
+      student.id
+    );
   };
 
   const handleCustomQuestionsGenerated = (docTitle: string, newQuestions: Question[]) => {
@@ -293,6 +386,7 @@ export default function App() {
     setSelectedSkillUnitId(unitId);
     setGrammarSubMode('grammar-g6');
     setActiveTab('socratic');
+    window.scrollTo(0, 0);
   };
 
   const handleSelectSkillFromHome = (tabId: string, unitId?: string | null) => {
@@ -303,6 +397,7 @@ export default function App() {
     }
     setSelectedSkillUnitId(resolvedUnitId);
     setActiveTab(tabId);
+    window.scrollTo(0, 0);
 
     // Record lastActiveLesson for "Tiếp tục học" block when student enters a skill
     const tabSkillMap: Record<string, { skill: SkillType; label: string }> = {
@@ -317,7 +412,7 @@ export default function App() {
       const targetUnit =
         appData.units.find((u) => u.id === resolvedUnitId) ||
         appData.units[0];
-      const pct = appData.progress.unitProgress?.[targetUnit.id] || 25;
+      const pct = appData.progress.unitProgress?.[targetUnit.id] || 0;
       setAppData((prev) => ({
         ...prev,
         students: prev.students.map((st) =>
@@ -358,9 +453,14 @@ export default function App() {
     }));
   };
 
-  // Get current teacher info
+  // Get current teacher & student info
   const currentTeacher = getCurrentTeacher(appData);
   const isAdmin = isCurrentTeacherAdmin(appData);
+  const currentStudent = appData.students.find((s) => s.id === appData.currentStudentId) || null;
+  const openStudentTestRounds = getAvailableRoundsForStudent(currentStudent);
+  const isPracticeLockedForControlGroup =
+    !appData.isTeacherLoggedIn && isStudentPracticeLocked(currentStudent);
+  void researchTick;
 
   // Render Landing Cover Screen if active
   if (isCoverActive) {
@@ -395,6 +495,7 @@ export default function App() {
             setSelectedGrammarUnitId(null);
           }
           setActiveTab(tab);
+          window.scrollTo(0, 0);
         }}
         appData={appData}
         currentTeacher={currentTeacher}
@@ -410,8 +511,8 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1 pb-24 md:pb-12 bg-[var(--bg-page)]">
-        {/* Student Greeting Banner (chỉ hiện với Học sinh, ẩn hoàn toàn XP/Level khi Giáo viên đăng nhập) */}
-        {!appData.isTeacherLoggedIn && (
+        {/* Student Greeting Banner (chỉ hiện với Học sinh, ẩn hoàn toàn XP/Level khi Giáo viên đăng nhập, và ẩn khi đang làm bài tập ngữ pháp) */}
+        {!appData.isTeacherLoggedIn && !(activeTab === 'socratic' && grammarSubMode === 'grammar-g6' && isGrammarExerciseActive) && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
             <div className="neu-card-purple p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 relative overflow-hidden">
               <div className="flex items-center gap-3.5 sm:gap-4 relative z-10 w-full md:w-auto min-w-0">
@@ -456,8 +557,106 @@ export default function App() {
                 </div>
               </div>
             </div>
+
+            {/* Banner Bài Kiểm Tra Đầu Vào / Đầu Ra đang mở cho lớp của Học sinh */}
+            {currentStudent && openStudentTestRounds.length > 0 && (
+              <div className="mt-4 space-y-3">
+                {openStudentTestRounds.map((round) => {
+                  const att = getActiveStudentAttemptForRound(round.id, currentStudent.id);
+                  const isSubmitted =
+                    att?.status === 'submitted' || att?.status === 'auto_submitted';
+                  const isInProgress = att?.status === 'in_progress';
+
+                  return (
+                    <div
+                      key={round.id}
+                      className="neu-card bg-indigo-950 text-white p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-2 border-indigo-400 shadow-md"
+                    >
+                      <div className="space-y-1">
+                        <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[11px] font-black uppercase">
+                          <span>🔔 {TEST_ROUND_KIND_LABELS[round.kind]}</span>
+                        </div>
+                        <h3 className="text-base sm:text-lg font-extrabold text-white">
+                          {round.name} (Đề {round.formId} · 40 câu · {round.durationMin} phút)
+                        </h3>
+                        <p className="text-xs text-indigo-200 font-medium">
+                          {isSubmitted
+                            ? `✓ Em đã hoàn thành và nộp bài kiểm tra này${
+                                round.showScoreAfterSubmit && att
+                                  ? ` (Điểm: ${att.score10.toFixed(2)}/10)`
+                                  : ''
+                              }.`
+                            : isInProgress
+                            ? '⏳ Em đang có bài kiểm tra làm dở. Hãy nhấn Tiếp tục để hoàn thành trước khi hết giờ!'
+                            : 'Giáo viên đã mở phòng kiểm tra cho lớp của em. Nhấn Bắt đầu làm bài ngay nhé!'}
+                        </p>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setActiveExamRound(round)}
+                        className={`min-h-[44px] px-5 py-2.5 rounded-2xl font-extrabold text-xs sm:text-sm shrink-0 cursor-pointer transition-all ${
+                          isSubmitted
+                            ? 'bg-white/15 hover:bg-white/25 text-white border border-white/30'
+                            : 'bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-sm'
+                        }`}
+                      >
+                        {isSubmitted
+                          ? 'Xem xác nhận đã nộp'
+                          : isInProgress
+                          ? 'Tiếp tục làm bài →'
+                          : 'Vào làm bài kiểm tra →'}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
+
+        {/* Màn hình Khoá Luyện Tập cho Nhóm Đối Chứng (ĐC) trong thời gian nghiên cứu */}
+        {isPracticeLockedForControlGroup &&
+          ['socratic', 'practice', 'speech', 'reading-game', 'writing', 'arena', 'upload'].includes(
+            activeTab
+          ) && (
+            <div className="max-w-3xl mx-auto px-4 py-10">
+              <div className="neu-card bg-white p-6 sm:p-8 text-center space-y-4 border-2 border-indigo-200">
+                <div className="w-14 h-14 rounded-3xl bg-indigo-100 text-indigo-700 grid place-items-center mx-auto text-2xl font-black">
+                  🔒
+                </div>
+                <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-800 text-xs font-extrabold">
+                  Chế độ Lớp Nghiên cứu Đối chứng ({currentStudent?.className})
+                </span>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+                  Phần luyện tập đang tạm khoá trong thời gian nghiên cứu
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed font-medium">
+                  Hiện tại lớp <strong>{currentStudent?.className}</strong> đang tham gia đợt khảo sát Đầu vào – Đầu ra của trường nên các mục tự luyện tập trên app tạm khoá. Em vẫn đăng nhập bình thường để làm <strong>Bài kiểm tra Đầu vào / Đầu ra</strong> khi giáo viên mở đề nhé! Ngay sau khi kết thúc đợt khảo sát, giáo viên sẽ mở khoá toàn bộ tính năng cho lớp mình.
+                </p>
+
+                <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
+                  {openStudentTestRounds.map((round) => (
+                    <button
+                      key={round.id}
+                      type="button"
+                      onClick={() => setActiveExamRound(round)}
+                      className="min-h-[46px] px-5 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm cursor-pointer shadow-sm"
+                    >
+                      Làm bài: {round.name} →
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('home')}
+                    className="min-h-[46px] px-5 py-2.5 rounded-2xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-100 cursor-pointer"
+                  >
+                    Về Trang chủ
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
         {activeTab === 'home' && !appData.isTeacherLoggedIn && (
           <HomeScreen
@@ -466,66 +665,70 @@ export default function App() {
             onChangeClassUnit={handleChangeClassUnit}
           />
         )}
-        {activeTab === 'socratic' && (
+        {!isPracticeLockedForControlGroup && activeTab === 'socratic' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-            {/* Grammar Mode Switcher Banner (Unified Grammar Color & GraduationCap Icon) */}
-            <div className="skill-banner-grammar p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
-                  <span>Ngữ Pháp Tiếng Anh 6 (Global Success)</span>
+            {/* Grammar Mode Switcher Banner (Unified Grammar Color & GraduationCap Icon) - ẩn trong lúc làm bài ngữ pháp */}
+            {!(grammarSubMode === 'grammar-g6' && isGrammarExerciseActive) && (
+              <div className="skill-banner-grammar p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
+                    <span>Ngữ Pháp Tiếng Anh 6 (Global Success)</span>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                    Ngữ Pháp Trọng Tâm 12 Unit & Gia Sư AI Socratic
+                  </h2>
+                  <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
+                    29 chủ điểm lý thuyết, 104 bộ bài tập tương tác 7 dạng & sổ lỗi sai thông minh
+                  </p>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                  Ngữ Pháp Trọng Tâm 12 Unit & Gia Sư AI Socratic
-                </h2>
-                <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
-                  29 chủ điểm lý thuyết, 104 bộ bài tập tương tác 7 dạng & sổ lỗi sai thông minh
-                </p>
-              </div>
 
-              <div className="flex items-center gap-2 flex-wrap">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setGrammarSubMode('grammar-g6');
-                    setSelectedGrammarUnitId(null);
-                  }}
-                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer whitespace-nowrap ${
-                    grammarSubMode === 'grammar-g6'
-                      ? 'bg-white text-[var(--skill-grammar)] shadow-md'
-                      : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
-                  }`}
-                >
-                  <span>Bài Học & Bài Tập (12 Unit)</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setGrammarSubMode('socratic')}
-                  className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer whitespace-nowrap ${
-                    grammarSubMode === 'socratic'
-                      ? 'bg-white text-[var(--skill-grammar)] shadow-md'
-                      : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
-                  }`}
-                >
-                  <span>Gia Sư AI Socratic (Hỏi Đáp)</span>
-                </button>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setGrammarSubMode('grammar-g6');
+                      setSelectedGrammarUnitId(null);
+                    }}
+                    className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer whitespace-nowrap ${
+                      grammarSubMode === 'grammar-g6'
+                        ? 'bg-white text-[var(--skill-grammar)] shadow-md'
+                        : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
+                    }`}
+                  >
+                    <span>Bài Học & Bài Tập (12 Unit)</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setGrammarSubMode('socratic')}
+                    className={`min-h-[44px] flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer whitespace-nowrap ${
+                      grammarSubMode === 'socratic'
+                        ? 'bg-white text-[var(--skill-grammar)] shadow-md'
+                        : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
+                    }`}
+                  >
+                    <span>Gia Sư AI Socratic (Hỏi Đáp)</span>
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
 
             {grammarSubMode === 'grammar-g6' ? (
               <GrammarG6App
                 currentStudentId={appData.currentStudentId}
                 initialUnitId={selectedGrammarUnitId}
                 onSessionCompleted={handleSessionCompleted}
+                onItemAttempt={handleGrammarItemAttempt}
+                onPlayerActiveChange={setIsGrammarExerciseActive}
               />
             ) : (
               <SocraticTutor units={appData.units} />
             )}
           </div>
         )}
-        {activeTab === 'speech' && (
+        {!isPracticeLockedForControlGroup && activeTab === 'speech' && (
           <SpeechStudio units={appData.units} initialUnitId={selectedSkillUnitId} />
         )}
-        {activeTab === 'writing' && (
+        {!isPracticeLockedForControlGroup && activeTab === 'writing' && (
           <WritingGrader
             units={appData.units}
             initialUnitId={selectedSkillUnitId}
@@ -535,7 +738,7 @@ export default function App() {
             }
           />
         )}
-        {activeTab === 'reading-game' && (
+        {!isPracticeLockedForControlGroup && activeTab === 'reading-game' && (
           <ReadingMasteryGame
             units={appData.units}
             initialUnitId={selectedSkillUnitId}
@@ -543,16 +746,17 @@ export default function App() {
             onBackToPractice={() => setActiveTab('practice')}
           />
         )}
-        {activeTab === 'practice' && (
+        {!isPracticeLockedForControlGroup && activeTab === 'practice' && (
           <PracticeHub
             questions={appData.questions}
             units={appData.units}
             initialUnitId={selectedSkillUnitId}
+            streakDays={appData.progress.streakDays}
             onSessionCompleted={handleSessionCompleted}
             onOpenReadingGame={() => setActiveTab('reading-game')}
           />
         )}
-        {activeTab === 'arena' && (
+        {!isPracticeLockedForControlGroup && activeTab === 'arena' && (
           <GameArena
             questions={appData.questions}
             units={appData.units}
@@ -572,7 +776,7 @@ export default function App() {
             }}
           />
         )}
-        {activeTab === 'upload' && (
+        {!isPracticeLockedForControlGroup && activeTab === 'upload' && (
           <DocParser onCustomQuestionsGenerated={handleCustomQuestionsGenerated} />
         )}
         {(activeTab === 'report' || (appData.isTeacherLoggedIn && activeTab === 'home')) && (
@@ -614,6 +818,15 @@ export default function App() {
       </footer>
 
       {/* Modals */}
+      {activeExamRound && currentStudent && (
+        <StudentTestExamModal
+          round={activeExamRound}
+          student={currentStudent}
+          onClose={() => setActiveExamRound(null)}
+          onSubmitted={() => setResearchTick((t) => t + 1)}
+        />
+      )}
+
       <StudentAuthModal
         isOpen={isStudentAuthModalOpen}
         onClose={() => setIsStudentAuthModalOpen(false)}

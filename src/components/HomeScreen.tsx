@@ -287,9 +287,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       const unitObj =
         units.find((u) => u.id === currentStudent.lastActiveLesson!.unitId) || units[0];
       const pct =
-        progress.unitProgress?.[unitObj.id] ||
-        currentStudent.lastActiveLesson.progressPercent ||
-        35;
+        progress.unitProgress?.[unitObj.id] ??
+        currentStudent.lastActiveLesson.progressPercent ??
+        0;
       return {
         unitId: unitObj.id,
         unitNumber: unitObj.unitNumber,
@@ -297,7 +297,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         skill: currentStudent.lastActiveLesson.skill,
         skillLabel: currentStudent.lastActiveLesson.skillLabel,
         tabId: currentStudent.lastActiveLesson.tabId,
-        progressPercent: Math.min(100, Math.max(10, pct)),
+        progressPercent: Math.min(100, Math.max(0, pct)),
       };
     }
 
@@ -309,7 +309,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         units.find((u) => progress.unitProgress?.[u.id] > 0 && progress.unitProgress?.[u.id] < 100) ||
         units[0];
       const skillMeta = SKILL_DISPLAY_MAP[latest.skill] || SKILL_DISPLAY_MAP.Grammar;
-      const pct = progress.unitProgress?.[matchedUnit.id] || latest.score || 40;
+      const pct = progress.unitProgress?.[matchedUnit.id] ?? latest.score ?? 0;
       return {
         unitId: matchedUnit.id,
         unitNumber: matchedUnit.unitNumber,
@@ -317,26 +317,29 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         skill: latest.skill,
         skillLabel: skillMeta.label,
         tabId: skillMeta.tabId,
-        progressPercent: Math.min(100, Math.max(15, pct)),
+        progressPercent: Math.min(100, Math.max(0, pct)),
       };
     }
 
-    // Fallback to first unit in unitProgress or Unit 1 Grammar
-    const inProgressUnitId =
-      Object.keys(progress.unitProgress || {}).find(
-        (uId) => progress.unitProgress[uId] > 0 && progress.unitProgress[uId] < 100
-      ) || 'unit-1';
-    const unitObj = units.find((u) => u.id === inProgressUnitId) || units[0];
-    const pct = progress.unitProgress?.[unitObj.id] || 20;
-    return {
-      unitId: unitObj.id,
-      unitNumber: unitObj.unitNumber,
-      unitTitle: unitObj.title,
-      skill: 'Grammar' as SkillType,
-      skillLabel: 'Ngữ pháp',
-      tabId: 'socratic',
-      progressPercent: pct,
-    };
+    // Check if any unit in unitProgress has progress > 0
+    const inProgressUnitId = Object.keys(progress.unitProgress || {}).find(
+      (uId) => progress.unitProgress[uId] > 0
+    );
+    if (inProgressUnitId) {
+      const unitObj = units.find((u) => u.id === inProgressUnitId) || units[0];
+      const pct = progress.unitProgress?.[unitObj.id] ?? 0;
+      return {
+        unitId: unitObj.id,
+        unitNumber: unitObj.unitNumber,
+        unitTitle: unitObj.title,
+        skill: 'Grammar' as SkillType,
+        skillLabel: 'Ngữ pháp',
+        tabId: 'socratic',
+        progressPercent: Math.min(100, Math.max(0, pct)),
+      };
+    }
+
+    return null;
   }, [currentStudent, sessions, units, progress]);
 
   // 2. Determine "Unit đang học trên lớp" (selected by teacher for student's class or default)
@@ -408,56 +411,106 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           aria-label="Tiếp tục học"
           className="lg:col-span-5 neu-card bg-white p-5 sm:p-6 flex flex-col justify-between gap-4 border-2 border-indigo-200"
         >
-          <div className="space-y-3">
-            <div className="flex items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-950 text-xs font-extrabold border border-indigo-300">
-                <Play className="w-3.5 h-3.5 fill-indigo-800 text-indigo-800" />
-                <span>Tiếp tục học</span>
-              </span>
-              <span className="text-xs font-extrabold text-indigo-900 bg-indigo-50 px-2.5 py-1 rounded-xl border border-indigo-200">
-                Đã làm {continueLesson.progressPercent}%
-              </span>
-            </div>
+          {continueLesson ? (
+            <>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-950 text-xs font-extrabold border border-indigo-300">
+                    <Play className="w-3.5 h-3.5 fill-indigo-800 text-indigo-800" />
+                    <span>Tiếp tục học</span>
+                  </span>
+                  <span className="text-xs font-extrabold text-indigo-900 bg-indigo-50 px-2.5 py-1 rounded-xl border border-indigo-200">
+                    Đã làm {continueLesson.progressPercent}%
+                  </span>
+                </div>
 
-            <div>
-              <p className="text-xs font-extrabold text-slate-600 uppercase tracking-wide">
-                Bài đang học dở
-              </p>
-              <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5 leading-snug">
-                Unit {continueLesson.unitNumber}: {continueLesson.unitTitle}
-              </h3>
-              <div className="flex items-center gap-2 mt-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-100 text-slate-900 text-xs font-extrabold border border-slate-300">
-                  {SKILL_DISPLAY_MAP[continueLesson.skill]?.icon}
-                  <span>Kỹ năng: {continueLesson.skillLabel}</span>
-                </span>
-              </div>
-            </div>
+                <div>
+                  <p className="text-xs font-extrabold text-slate-600 uppercase tracking-wide">
+                    Bài đang học dở
+                  </p>
+                  <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 mt-0.5 leading-snug">
+                    Unit {continueLesson.unitNumber}: {continueLesson.unitTitle}
+                  </h3>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-100 text-slate-900 text-xs font-extrabold border border-slate-300">
+                      {SKILL_DISPLAY_MAP[continueLesson.skill]?.icon}
+                      <span>Kỹ năng: {continueLesson.skillLabel}</span>
+                    </span>
+                  </div>
+                </div>
 
-            {/* Progress bar */}
-            <div className="space-y-1.5 pt-1">
-              <div className="flex items-center justify-between text-xs font-extrabold text-slate-700">
-                <span>Tiến độ bài học này</span>
-                <span className="text-indigo-900">{continueLesson.progressPercent}%</span>
+                {/* Progress bar */}
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex items-center justify-between text-xs font-extrabold text-slate-700">
+                    <span>Tiến độ bài học này</span>
+                    <span className="text-indigo-900">{continueLesson.progressPercent}%</span>
+                  </div>
+                  <div className="w-full h-3 rounded-full bg-slate-200 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-[#4338ca] to-[#6d28d9] transition-all duration-500"
+                      style={{ width: `${continueLesson.progressPercent}%` }}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="w-full h-3 rounded-full bg-slate-200 overflow-hidden">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-[#4338ca] to-[#6d28d9] transition-all duration-500"
-                  style={{ width: `${continueLesson.progressPercent}%` }}
-                />
-              </div>
-            </div>
-          </div>
 
-          <button
-            type="button"
-            onClick={() => onSelectSkill(continueLesson.tabId, continueLesson.unitId)}
-            className="w-full min-h-[48px] py-3.5 px-5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm sm:text-base shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.01]"
-          >
-            <Play className="w-4 h-4 fill-white" />
-            <span>Học tiếp</span>
-            <ChevronRight className="w-5 h-5" />
-          </button>
+              <button
+                type="button"
+                onClick={() => onSelectSkill(continueLesson.tabId, continueLesson.unitId)}
+                className="w-full min-h-[48px] py-3.5 px-5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm sm:text-base shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.01]"
+              >
+                <Play className="w-4 h-4 fill-white" />
+                <span>Học tiếp</span>
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-100 text-indigo-950 text-xs font-extrabold border border-indigo-300">
+                    <Play className="w-3.5 h-3.5 fill-indigo-800 text-indigo-800" />
+                    <span>Tiếp tục học</span>
+                  </span>
+                  <span className="text-xs font-extrabold text-indigo-900 bg-indigo-50 px-2.5 py-1 rounded-xl border border-indigo-200">
+                    Đã làm 0%
+                  </span>
+                </div>
+
+                <div className="py-2">
+                  <h3 className="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">
+                    Em chưa bắt đầu bài nào – chọn Unit 1 để bắt đầu nhé
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-600 mt-1.5">
+                    Unit 1: {units[0]?.title || 'MY NEW SCHOOL'}
+                  </p>
+                </div>
+
+                <div className="space-y-1.5 pt-1">
+                  <div className="flex items-center justify-between text-xs font-extrabold text-slate-700">
+                    <span>Tiến độ bài học này</span>
+                    <span className="text-indigo-900">0%</span>
+                  </div>
+                  <div className="w-full h-3 rounded-full bg-slate-200 overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-[#4338ca] to-[#6d28d9] transition-all duration-500"
+                      style={{ width: '0%' }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onSelectSkill('socratic', 'unit-1')}
+                className="w-full min-h-[48px] py-3.5 px-5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm sm:text-base shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.01]"
+              >
+                <Play className="w-4 h-4 fill-white" />
+                <span>Chọn Unit 1 để bắt đầu</span>
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
         </section>
 
         {/* 2. KHỐI "UNIT ĐANG HỌC TRÊN LỚP" */}
@@ -630,7 +683,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <div className="skill-card-progress-track">
                     <div
                       className="skill-card-progress-fill"
-                      style={{ width: `${Math.max(unitPct, stats.accuracyPercent > 0 ? 8 : 0)}%` }}
+                      style={{ width: `${unitPct}%` }}
                     />
                   </div>
                 </div>

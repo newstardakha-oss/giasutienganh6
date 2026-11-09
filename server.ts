@@ -8,6 +8,11 @@ import {
   getOfflineHomeworkHint,
   getOfflineSpeechEvaluation,
 } from './src/services/offlineFallback';
+import {
+  evaluateAndFinalizeAttempt,
+  getFormById,
+  getStudentSanitizedTestForm,
+} from './src/services/researchTests';
 
 dotenv.config();
 
@@ -114,7 +119,7 @@ async function generateWithFallback(
 // ==========================================
 // 1. Health Check API
 // ==========================================
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/health'], (req, res) => {
   const pool = getApiKeyPool();
   res.json({
     status: 'ok',
@@ -126,9 +131,37 @@ app.get('/api/health', (req, res) => {
 });
 
 // ==========================================
+// 1b. Pre/Post Research Test API (Sanitized Form & Server Grading)
+// ==========================================
+app.get(['/api/test-forms/:formId/student', '/test-forms/:formId/student'], (req, res) => {
+  const sanitized = getStudentSanitizedTestForm(req.params.formId);
+  if (!sanitized) {
+    return res.status(404).json({ error: 'Không tìm thấy đề kiểm tra.' });
+  }
+  return res.json({ form: sanitized });
+});
+
+app.post(['/api/test-attempts/submit', '/test-attempts/submit'], (req, res) => {
+  try {
+    const { attempt, autoSubmitted } = req.body || {};
+    if (!attempt || !attempt.formId) {
+      return res.status(400).json({ error: 'Thiếu dữ liệu bài làm.' });
+    }
+    const form = getFormById(attempt.formId);
+    if (!form) {
+      return res.status(404).json({ error: 'Không tìm thấy đề kiểm tra.' });
+    }
+    const graded = evaluateAndFinalizeAttempt(attempt, form, Boolean(autoSubmitted));
+    return res.json({ attempt: graded });
+  } catch (err: any) {
+    return res.status(500).json({ error: err?.message || 'Lỗi chấm bài.' });
+  }
+});
+
+// ==========================================
 // 2. AI Tutor Endpoint (5-Step Socratic Method)
 // ==========================================
-app.post('/api/gemini/tutor', async (req, res) => {
+app.post(['/api/gemini/tutor', '/gemini/tutor'], async (req, res) => {
   try {
     const { prompt, history, unitTitle, targetGrammar, step } = req.body;
 
@@ -196,7 +229,7 @@ QUY TẮC SƯ PHẠM VÀNG (BẮT BUỘC):
 // ==========================================
 // 3. Homework Hint Assistant
 // ==========================================
-app.post('/api/gemini/homework-hint', async (req, res) => {
+app.post(['/api/gemini/homework-hint', '/gemini/homework-hint'], async (req, res) => {
   try {
     const { questionContent, studentAnswer, hintLevel } = req.body;
 
@@ -233,7 +266,7 @@ Format trả về bằng Markdown sạch đẹp với icon động viên.
 // ==========================================
 // 4. Writing Grader Endpoint
 // ==========================================
-app.post('/api/gemini/grade-writing', async (req, res) => {
+app.post(['/api/gemini/grade-writing', '/gemini/grade-writing'], async (req, res) => {
   try {
     const { essayText, topicPrompt, targetUnit } = req.body;
 
@@ -327,7 +360,11 @@ BẮT BUỘC TRẢ VỀ ĐÚNG ĐỊNH DẠNG JSON SCHEMA NÀY (Không thêm mar
       return res.json(getOfflineWritingFeedback(essayText, topicPrompt, targetUnit));
     }
 
-    res.json(jsonResult);
+    res.json({
+      ...jsonResult,
+      isOfflineFallback: false,
+      gradingModeLabel: 'Chấm bởi AI Gemini',
+    });
   } catch (err: any) {
     res.json(getOfflineWritingFeedback(req.body.essayText || '', req.body.topicPrompt || '', req.body.targetUnit || 'unit-1'));
   }
@@ -336,7 +373,7 @@ BẮT BUỘC TRẢ VỀ ĐÚNG ĐỊNH DẠNG JSON SCHEMA NÀY (Không thêm mar
 // ==========================================
 // 4b. OCR Handwritten Essay Scan Endpoint
 // ==========================================
-app.post('/api/gemini/ocr-writing', async (req, res) => {
+app.post(['/api/gemini/ocr-writing', '/gemini/ocr-writing'], async (req, res) => {
   try {
     const { imageBase64, mimeType } = req.body;
     if (!imageBase64) {
@@ -377,7 +414,7 @@ app.post('/api/gemini/ocr-writing', async (req, res) => {
 // ==========================================
 // 5. Speech & Pronunciation Evaluator
 // ==========================================
-app.post('/api/gemini/evaluate-speech', async (req, res) => {
+app.post(['/api/gemini/evaluate-speech', '/gemini/evaluate-speech'], async (req, res) => {
   try {
     const { recognizedText, targetText, focusPhoneme } = req.body;
 
@@ -456,7 +493,11 @@ BẮT BUỘC TRẢ VỀ ĐÚNG JSON SCHEMA NÀY:
       return res.json(getOfflineSpeechEvaluation(recognizedText, targetText));
     }
 
-    res.json(jsonResult);
+    res.json({
+      ...jsonResult,
+      isOfflineFallback: false,
+      gradingModeLabel: 'Chấm bởi AI Gemini',
+    });
   } catch (err: any) {
     res.json(getOfflineSpeechEvaluation(req.body.recognizedText || '', req.body.targetText || ''));
   }
@@ -465,7 +506,7 @@ BẮT BUỘC TRẢ VỀ ĐÚNG JSON SCHEMA NÀY:
 // ==========================================
 // 6. Document Upload & Practice Generator
 // ==========================================
-app.post('/api/gemini/parse-doc', async (req, res) => {
+app.post(['/api/gemini/parse-doc', '/gemini/parse-doc'], async (req, res) => {
   try {
     const { docText, docTitle } = req.body;
 

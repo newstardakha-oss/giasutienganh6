@@ -78,13 +78,14 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
   const [teacherErr, setTeacherErr] = useState<string>('');
   const [teacherSuccess, setTeacherSuccess] = useState<string>('');
 
-  // Register form state: 6 trường (Họ tên, Trường, Lớp, Xã, Tên đăng nhập, Mật khẩu)
+  // Register form state: để trống giá trị mặc định
   const [regFullName, setRegFullName] = useState<string>('');
-  const [regSchoolName, setRegSchoolName] = useState<string>('THCS Chu Văn An');
+  const [regProvinceName, setRegProvinceName] = useState<string>('');
+  const [regSchoolName, setRegSchoolName] = useState<string>('');
   const [regClassName, setRegClassName] = useState<string>('');
-  const [regCommuneName, setRegCommuneName] = useState<string>('Thị trấn Đăk Hà');
+  const [regCommuneName, setRegCommuneName] = useState<string>('');
   const [regUsername, setRegUsername] = useState<string>('');
-  const [regPassword, setRegPassword] = useState<string>('1234');
+  const [regPassword, setRegPassword] = useState<string>('');
   const [regSuccessMsg, setRegSuccessMsg] = useState<string>('');
 
   if (!isOpen) return null;
@@ -213,7 +214,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
       fullName: normName,
       grade: 6,
       className: normClass,
-      provinceName: 'Tỉnh Quảng Ngãi',
+      provinceName: regProvinceName.trim(),
       communeName: regCommuneName.trim(),
       schoolName: normSchool,
       passwordHash: hashedPass,
@@ -612,17 +613,17 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                 />
               </div>
 
-              {/* 2. Lớp & 3. Trường */}
+              {/* 2. Tỉnh/Thành phố & 3. Xã / Phường */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
-                    2. Lớp: <span className="text-rose-500">*</span>
+                    2. Tỉnh / Thành phố: <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
-                    value={regClassName}
-                    onChange={(e) => setRegClassName(e.target.value)}
-                    placeholder="Ví dụ: Lớp 6A1"
+                    value={regProvinceName}
+                    onChange={(e) => setRegProvinceName(e.target.value)}
+                    placeholder="Chọn Tỉnh/Thành phố..."
                     className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none font-semibold"
                     required
                   />
@@ -630,29 +631,60 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
 
                 <div>
                   <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
-                    3. Trường: <span className="text-rose-500">*</span>
+                    3. Xã / Phường: <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
-                    value={regSchoolName}
-                    onChange={(e) => setRegSchoolName(e.target.value)}
-                    placeholder="Ví dụ: THCS Chu Văn An"
+                    value={regCommuneName}
+                    onChange={(e) => setRegCommuneName(e.target.value)}
+                    placeholder="Chọn Xã/Phường..."
                     className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none font-semibold"
                     required
                   />
                 </div>
               </div>
 
-              {/* 4. Xã / Thị Trấn */}
+              {/* 4. Trường & 5. Lớp */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
+                    4. Trường: <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={regSchoolName}
+                    onChange={(e) => setRegSchoolName(e.target.value)}
+                    placeholder="Chọn Trường THCS..."
+                    className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none font-semibold"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
+                    5. Lớp: <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={regClassName}
+                    onChange={(e) => setRegClassName(e.target.value)}
+                    placeholder="Ví dụ: 6A1"
+                    className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none font-semibold"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* 6. Mật khẩu */}
               <div>
                 <label className="text-xs font-bold text-slate-800 uppercase tracking-wider block mb-1">
-                  4. Xã / Thị Trấn: <span className="text-rose-500">*</span>
+                  6. Mật khẩu (tối thiểu 6 ký tự): <span className="text-rose-500">*</span>
                 </label>
                 <input
-                  type="text"
-                  value={regCommuneName}
-                  onChange={(e) => setRegCommuneName(e.target.value)}
-                  placeholder="Ví dụ: Thị trấn Đăk Hà"
+                  type="password"
+                  value={regPassword}
+                  onChange={(e) => setRegPassword(e.target.value)}
+                  placeholder="Tối thiểu 6 ký tự"
                   className="w-full px-4 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-[#4A90E2] focus:outline-none font-semibold"
                   required
                 />
@@ -700,10 +732,10 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                     </div>
                     <div>
                       <h4 className="font-extrabold text-purple-900 text-base">
-                        {appData.teacherAccount.fullName}
+                        {currentTeacher?.fullName || 'Giáo viên'}
                       </h4>
                       <p className="text-xs text-purple-700">
-                        {appData.teacherAccount.schoolName} • @{appData.teacherAccount.username}
+                        {currentTeacher?.schoolName || ''} {currentTeacher?.username ? `• @${currentTeacher.username}` : ''}
                       </p>
                     </div>
                   </div>

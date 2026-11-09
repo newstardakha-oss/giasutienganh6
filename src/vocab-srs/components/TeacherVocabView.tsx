@@ -28,6 +28,7 @@ interface TeacherVocabViewProps {
   words: Word[];
   settings: VocabSrsSettings;
   onUpdateWords: (newWords: Word[]) => void;
+  onUpdateSettings?: (newSettings: VocabSrsSettings) => void;
   onBack: () => void;
 }
 
@@ -48,10 +49,12 @@ export const TeacherVocabView: React.FC<TeacherVocabViewProps> = ({
   words,
   settings,
   onUpdateWords,
+  onUpdateSettings,
   onBack,
 }) => {
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const [pinInput, setPinInput] = useState<string>('');
+  const [confirmPinInput, setConfirmPinInput] = useState<string>('');
   const [pinError, setPinError] = useState<string | null>(null);
 
   const [selectedUnit, setSelectedUnit] = useState<string>('ALL');
@@ -69,14 +72,31 @@ export const TeacherVocabView: React.FC<TeacherVocabViewProps> = ({
   const [bulkMessage, setBulkMessage] = useState<string | null>(null);
 
   const units = Array.from(new Set(words.map((w) => w.unit)));
+  const isFirstTimePinSetup = !settings.teacherPin;
 
   const handleUnlockPin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pinInput.trim() === (settings.teacherPin || '1234')) {
+    const cleanPin = pinInput.trim();
+    if (isFirstTimePinSetup) {
+      if (cleanPin.length < 4) {
+        setPinError('Mã PIN phải có ít nhất 4 ký tự!');
+        return;
+      }
+      if (cleanPin !== confirmPinInput.trim()) {
+        setPinError('Mã PIN nhập lại không khớp!');
+        return;
+      }
+      onUpdateSettings?.({ ...settings, teacherPin: cleanPin });
+      setIsUnlocked(true);
+      setPinError(null);
+      return;
+    }
+
+    if (cleanPin === settings.teacherPin) {
       setIsUnlocked(true);
       setPinError(null);
     } else {
-      setPinError('Mã PIN chưa đúng! (Mã PIN mặc định là 1234)');
+      setPinError('Mã PIN chưa đúng! Vui lòng kiểm tra lại.');
     }
   };
 
@@ -310,10 +330,14 @@ export const TeacherVocabView: React.FC<TeacherVocabViewProps> = ({
           </div>
           <div className="space-y-1">
             <h2 className="text-xl sm:text-2xl font-black text-slate-900">
-              Khu Vực Dành Cho Giáo Viên 👩‍🏫
+              {isFirstTimePinSetup
+                ? 'Thiết Lập Mã PIN Giáo Viên Lần Đầu 👩‍🏫'
+                : 'Khu Vực Dành Cho Giáo Viên 👩‍🏫'}
             </h2>
             <p className="text-xs sm:text-sm font-semibold text-slate-500">
-              Nhập mã PIN để quản lý, thêm/sửa/xóa hoặc nhập/xuất danh sách từ vựng (Mặc định: <strong>1234</strong>)
+              {isFirstTimePinSetup
+                ? 'Tạo mã PIN bảo vệ để quản lý, thêm/sửa/xóa hoặc nhập/xuất danh sách từ vựng'
+                : 'Nhập mã PIN đã thiết lập để quản lý, thêm/sửa/xóa hoặc nhập/xuất danh sách từ vựng'}
             </p>
           </div>
 
@@ -325,10 +349,22 @@ export const TeacherVocabView: React.FC<TeacherVocabViewProps> = ({
                 setPinInput(e.target.value);
                 if (pinError) setPinError(null);
               }}
-              placeholder="Nhập mã PIN (vd: 1234)"
+              placeholder={isFirstTimePinSetup ? 'Tạo mã PIN mới (tối thiểu 4 ký tự)' : 'Nhập mã PIN giáo viên'}
               autoFocus
-              className="w-full px-5 py-3.5 rounded-2xl border-2 border-purple-200 text-center text-2xl font-black tracking-widest text-slate-900 focus:border-purple-500 focus:outline-none"
+              className="w-full px-5 py-3.5 rounded-2xl border-2 border-purple-200 text-center text-lg sm:text-xl font-black tracking-wider text-slate-900 focus:border-purple-500 focus:outline-none"
             />
+            {isFirstTimePinSetup && (
+              <input
+                type="password"
+                value={confirmPinInput}
+                onChange={(e) => {
+                  setConfirmPinInput(e.target.value);
+                  if (pinError) setPinError(null);
+                }}
+                placeholder="Nhập lại mã PIN mới"
+                className="w-full px-5 py-3.5 rounded-2xl border-2 border-purple-200 text-center text-lg sm:text-xl font-black tracking-wider text-slate-900 focus:border-purple-500 focus:outline-none"
+              />
+            )}
             {pinError && (
               <p className="text-xs font-extrabold text-rose-600">{pinError}</p>
             )}
@@ -344,7 +380,7 @@ export const TeacherVocabView: React.FC<TeacherVocabViewProps> = ({
                 type="submit"
                 className="flex-1 py-3 rounded-2xl bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-sm shadow-md cursor-pointer"
               >
-                Mở khóa
+                {isFirstTimePinSetup ? 'Lưu mã PIN & Mở khóa' : 'Mở khóa'}
               </button>
             </div>
           </form>

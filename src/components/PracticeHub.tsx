@@ -19,11 +19,13 @@ import confetti from 'canvas-confetti';
 import { Question, SgkUnit, SkillType, StudySession } from '../types';
 import { VocabFlashcard } from './VocabFlashcard';
 import { VocabSrsApp } from '../vocab-srs/components/VocabSrsApp';
+import { isReservedTestItemId } from '../grammar-g6/testFormsLoader';
 
 interface PracticeHubProps {
   questions: Question[];
   units: SgkUnit[];
   initialUnitId?: string | null;
+  streakDays?: number;
   onSessionCompleted: (session: StudySession) => void;
   onOpenReadingGame?: () => void;
 }
@@ -32,6 +34,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
   questions,
   units,
   initialUnitId,
+  streakDays,
   onSessionCompleted,
   onOpenReadingGame,
 }) => {
@@ -46,6 +49,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
   const [subMode, setSubMode] = useState<'srs' | 'quiz' | 'flashcard'>('srs');
 
   const filteredQuestions = questions.filter((q) => {
+    if (isReservedTestItemId(q.id)) return false;
     const matchUnit = selectedUnitId === 'All' || q.unitId === selectedUnitId;
     const matchSkill = selectedSkill === 'All' || q.skill === selectedSkill;
     return matchUnit && matchSkill;
@@ -230,7 +234,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
       {/* Render SRS mode or Flashcard mode or Quiz mode */}
       {subMode === 'srs' ? (
-        <VocabSrsApp onSessionCompleted={onSessionCompleted} />
+        <VocabSrsApp streakDays={streakDays} onSessionCompleted={onSessionCompleted} />
       ) : subMode === 'flashcard' ? (
         <VocabFlashcard units={units} onBack={() => setSubMode('srs')} />
       ) : (

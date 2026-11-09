@@ -18607,77 +18607,20 @@ export const DEMO_QUESTIONS: Question[] = [
 export const INITIAL_PROGRESS = {
   studentName: 'Học Sinh Lớp 6',
   grade: 6,
-  totalXP: 320,
-  level: 3,
-  streakDays: 4,
-  lastStudyDate: new Date().toISOString().split('T')[0],
-  badges: [
-    {
-      id: 'b1',
-      title: 'Tân Binh Lớp 6',
-      description: 'Hoàn thành bài học đầu tiên bám sát SGK Global Success.',
-      icon: 'GraduationCap',
-      unlockedAt: new Date().toISOString()
-    },
-    {
-      id: 'b2',
-      title: 'Chiến Binh Phát Âm',
-      description: 'Thực hành luyện nói chuẩn IPA với AI Tutor.',
-      icon: 'Mic',
-      unlockedAt: new Date().toISOString()
-    },
-    {
-      id: 'b3',
-      title: 'Nhà Thông Thái Socratic',
-      description: 'Trả lời đúng câu hỏi gợi mở 5 bước của Gia sư AI.',
-      icon: 'Brain',
-      unlockedAt: new Date().toISOString()
-    }
-  ],
-  weakTopics: [
-    {
-      unitId: 'unit-3',
-      topicName: 'Thì Hiện Tại Tiếp Diễn (Present Continuous)',
-      skill: 'Grammar' as const,
-      errorRate: 45,
-      recommendation: 'Ôn tập lại quy tắc chia động từ to be (am/is/are) + V-ing và các từ nhận biết như Look!, Listen!, now.'
-    },
-    {
-      unitId: 'unit-2',
-      topicName: 'Phát Âm Đuôi /s/ và /z/',
-      skill: 'Pronunciation' as const,
-      errorRate: 40,
-      recommendation: 'Luyện tập phân biệt các âm vô thanh (/p/, /t/, /k/) với âm hữu thanh khi đọc đuôi -s/es.'
-    },
-    {
-      unitId: 'unit-4',
-      topicName: 'So Sánh Hơn Của Tính Từ (Comparatives)',
-      skill: 'Grammar' as const,
-      errorRate: 35,
-      recommendation: 'Chú ý phân biệt tính từ ngắn (thêm -er) và tính từ dài (dùng more + adj).'
-    }
-  ],
+  totalXP: 0,
+  level: 1,
+  streakDays: 0,
+  lastStudyDate: '',
+  badges: [],
+  weakTopics: [],
   skillMastery: {
-    Grammar: 72,
-    Vocabulary: 80,
-    Pronunciation: 65,
-    Listening: 75,
-    Speaking: 68,
-    Reading: 82,
-    Writing: 64
+    Grammar: 0,
+    Vocabulary: 0,
+    Pronunciation: 0,
+    Listening: 0,
+    Speaking: 0,
+    Reading: 0,
+    Writing: 0
   },
-  unitProgress: {
-    'unit-1': 100,
-    'unit-2': 85,
-    'unit-3': 70,
-    'unit-4': 60,
-    'unit-5': 40,
-    'unit-6': 30,
-    'unit-7': 10,
-    'unit-8': 0,
-    'unit-9': 0,
-    'unit-10': 0,
-    'unit-11': 0,
-    'unit-12': 0
-  }
+  unitProgress: {}
 };

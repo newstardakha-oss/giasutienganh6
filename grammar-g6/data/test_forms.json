@@ -1,0 +1,3026 @@
+{
+  "version": "1.0.0",
+  "seed": 2026,
+  "blueprint": {
+    "grammar": 32,
+    "vocab": 8,
+    "totalItems": 40,
+    "durationMinutes": 40,
+    "maxScore": 10
+  },
+  "tests": [
+    {
+      "id": "hk1-A",
+      "semester": "hk1",
+      "title": "Bài kiểm tra Học kì 1 (Unit 1–6) – Đề A",
+      "form": "A",
+      "units": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "items": [
+        {
+          "id": "u2-s3-q1",
+          "prompt": "The fridge is ___ the kitchen.",
+          "blanks": [
+            {
+              "accept": [
+                "in"
+              ]
+            }
+          ],
+          "explanation": "Ở trong một căn phòng → in.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-prepositions",
+          "instruction": "Điền giới từ chỉ vị trí",
+          "wordBank": "Chọn từ: in • on • under • above • behind • in front of • next to • between • near • opposite"
+        },
+        {
+          "id": "u5-s6-q2",
+          "prompt": "The path is rocky. You ___ wear good walking shoes.",
+          "options": [
+            "musts",
+            "mustn't",
+            "must",
+            "must to"
+          ],
+          "answerIndex": 2,
+          "explanation": "Điều cần thiết → must.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-must",
+          "instruction": "Must / Mustn't – chọn đáp án đúng"
+        },
+        {
+          "id": "u1-s1-q1",
+          "prompt": "My new school ___ very big.",
+          "options": [
+            "am",
+            "is",
+            "are",
+            "be"
+          ],
+          "answerIndex": 1,
+          "explanation": "\"My new school\" là danh từ số ít → is.",
+          "unit": 1,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u1-present-simple",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u3-s2-q10",
+          "prompt": "tie → ___",
+          "blanks": [
+            {
+              "accept": [
+                "tying"
+              ]
+            }
+          ],
+          "explanation": "-ie → y + ing.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ing",
+          "instruction": "Viết dạng V-ing đúng"
+        },
+        {
+          "id": "u6-s1-q1",
+          "prompt": "Children ___ behave well when they visit their grandparents.",
+          "options": [
+            "should to",
+            "should",
+            "shoulds",
+            "shouldn't"
+          ],
+          "answerIndex": 1,
+          "explanation": "Việc tốt nên làm → should.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-should",
+          "instruction": "Chọn should / shouldn't đúng"
+        },
+        {
+          "id": "u4-s4-q2",
+          "prompt": "My street is ___ than the main road. (quiet)",
+          "blanks": [
+            {
+              "accept": [
+                "quieter"
+              ]
+            }
+          ],
+          "explanation": "quiet → quieter.",
+          "unit": 4,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-long",
+          "instruction": "Chia tính từ trong ngoặc"
+        },
+        {
+          "id": "u1-s5-q1",
+          "tokens": [
+            "usually",
+            "I",
+            "get up",
+            "at 6 o'clock"
+          ],
+          "endPunct": ".",
+          "accept": [
+            "I usually get up at 6 o'clock."
+          ],
+          "explanation": "Trạng từ tần suất đứng trước động từ thường.",
+          "unit": 1,
+          "type": "reorder",
+          "skill": "grammar",
+          "grammarPointId": "u1-frequency",
+          "instruction": "Sắp xếp từ thành câu hoàn chỉnh"
+        },
+        {
+          "id": "u2-s4-q2",
+          "prompt": "___ two bathrooms in our house.",
+          "blanks": [
+            {
+              "accept": [
+                "There are"
+              ]
+            }
+          ],
+          "explanation": "Số nhiều → There are.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-there-is",
+          "instruction": "Điền there is / there are / is there / are there / some / any / a / an"
+        },
+        {
+          "id": "u3-s4-q2",
+          "prompt": "Look! The boys (play) ___ football in the yard.",
+          "blanks": [
+            {
+              "accept": [
+                "are playing"
+              ]
+            }
+          ],
+          "explanation": "\"Look!\" → đang xảy ra.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ps-vs-pc",
+          "instruction": "Hiện tại đơn hay hiện tại tiếp diễn?"
+        },
+        {
+          "id": "u5-s2-q2",
+          "prompt": "The plural of \"city\" is ___.",
+          "options": [
+            "citis",
+            "citys",
+            "cityes",
+            "cities"
+          ],
+          "answerIndex": 3,
+          "explanation": "Phụ âm + y → ies.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-plural",
+          "instruction": "Chọn dạng số nhiều đúng"
+        },
+        {
+          "id": "u6-s3-q1",
+          "prompt": "There are ___ peach flowers in the living room.",
+          "options": [
+            "some",
+            "a",
+            "an",
+            "any"
+          ],
+          "answerIndex": 0,
+          "explanation": "Câu khẳng định + N số nhiều → some.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-some-any",
+          "instruction": "Chọn some / any"
+        },
+        {
+          "id": "u4-s1-q2",
+          "prompt": "The new shop is ___ than the old one.",
+          "options": [
+            "modernest",
+            "moderner",
+            "more modern",
+            "modern"
+          ],
+          "answerIndex": 2,
+          "explanation": "modern là tính từ dài → more modern.",
+          "unit": 4,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-short",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s1-q1",
+          "prompt": "This is ___ bedroom.",
+          "options": [
+            "Lans'",
+            "Lan's",
+            "Lan",
+            "Lans"
+          ],
+          "answerIndex": 1,
+          "explanation": "Tên riêng số ít + 's.",
+          "unit": 2,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u2-possessive",
+          "instruction": "Chọn dạng sở hữu đúng"
+        },
+        {
+          "id": "u5-s3-q2",
+          "prompt": "We have only ___ water left. Please drink carefully.",
+          "options": [
+            "a few",
+            "many",
+            "a little",
+            "an"
+          ],
+          "answerIndex": 2,
+          "explanation": "water không đếm được → a little.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-countable",
+          "instruction": "Chọn từ chỉ lượng phù hợp"
+        },
+        {
+          "id": "u3-s1-q1",
+          "prompt": "Look! Nam ___ football with his friends.",
+          "options": [
+            "plays",
+            "is playing",
+            "play",
+            "playing"
+          ],
+          "answerIndex": 1,
+          "explanation": "\"Look!\" → hành động đang xảy ra: is + V-ing.",
+          "unit": 3,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u3-present-continuous",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u1-s3-q2",
+          "prompt": "Lan (study) ___ very hard.",
+          "blanks": [
+            {
+              "accept": [
+                "studies"
+              ]
+            }
+          ],
+          "explanation": "Phụ âm + y → đổi y thành i + es.",
+          "unit": 1,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u1-s-es",
+          "instruction": "Chia động từ trong ngoặc ở thì hiện tại đơn"
+        },
+        {
+          "id": "u4-s4-q3",
+          "prompt": "The market is ___ in the morning than in the afternoon. (busy)",
+          "blanks": [
+            {
+              "accept": [
+                "busier"
+              ]
+            }
+          ],
+          "explanation": "busy → busier.",
+          "unit": 4,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-long",
+          "instruction": "Chia tính từ trong ngoặc"
+        },
+        {
+          "id": "u6-s1-q4",
+          "prompt": "Children ___ fight with their brothers or sisters.",
+          "options": [
+            "should",
+            "shoulds",
+            "shouldn't",
+            "should to"
+          ],
+          "answerIndex": 2,
+          "explanation": "Đánh nhau → không nên.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-should",
+          "instruction": "Chọn should / shouldn't đúng"
+        },
+        {
+          "id": "u5-s2-q3",
+          "prompt": "The plural of \"knife\" is ___.",
+          "options": [
+            "knifees",
+            "knivs",
+            "knives",
+            "knifes"
+          ],
+          "answerIndex": 2,
+          "explanation": "-fe → -ves.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-plural",
+          "instruction": "Chọn dạng số nhiều đúng"
+        },
+        {
+          "id": "u1-s5-q4",
+          "tokens": [
+            "don't",
+            "they",
+            "usually",
+            "play",
+            "football",
+            "in the rain"
+          ],
+          "endPunct": ".",
+          "accept": [
+            "They don't usually play football in the rain."
+          ],
+          "explanation": "Trạng từ đứng sau don't/doesn't và trước động từ chính.",
+          "unit": 1,
+          "type": "reorder",
+          "skill": "grammar",
+          "grammarPointId": "u1-frequency",
+          "instruction": "Sắp xếp từ thành câu hoàn chỉnh"
+        },
+        {
+          "id": "u3-s1-q3",
+          "prompt": "We ___ for the bus at the moment.",
+          "options": [
+            "wait",
+            "are waiting",
+            "is waiting",
+            "waits"
+          ],
+          "answerIndex": 1,
+          "explanation": "\"at the moment\" + We → are waiting.",
+          "unit": 3,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u3-present-continuous",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u4-s1-q4",
+          "prompt": "Living here is ___ than living near the station.",
+          "options": [
+            "more peaceful",
+            "peacefuler",
+            "peacefuller",
+            "most peaceful"
+          ],
+          "answerIndex": 0,
+          "explanation": "peaceful → more peaceful.",
+          "unit": 4,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-short",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s4-q3",
+          "prompt": "There is ___ armchair next to the window.",
+          "blanks": [
+            {
+              "accept": [
+                "an"
+              ]
+            }
+          ],
+          "explanation": "armchair bắt đầu bằng nguyên âm → an.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-there-is",
+          "instruction": "Điền there is / there are / is there / are there / some / any / a / an"
+        },
+        {
+          "id": "u6-s3-q4",
+          "prompt": "There is ___ lucky money in these red envelopes.",
+          "options": [
+            "some",
+            "an",
+            "a",
+            "any"
+          ],
+          "answerIndex": 0,
+          "explanation": "Khẳng định + N không đếm được → some.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-some-any",
+          "instruction": "Chọn some / any"
+        },
+        {
+          "id": "u1-s1-q3",
+          "prompt": "We ___ to school at 7 a.m.",
+          "options": [
+            "goes",
+            "going",
+            "go",
+            "gone"
+          ],
+          "answerIndex": 2,
+          "explanation": "Chủ ngữ We → động từ nguyên mẫu.",
+          "unit": 1,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u1-present-simple",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s3-q4",
+          "prompt": "The lamp is ___ the desk and the bed.",
+          "blanks": [
+            {
+              "accept": [
+                "between"
+              ]
+            }
+          ],
+          "explanation": "between A and B.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-prepositions",
+          "instruction": "Điền giới từ chỉ vị trí",
+          "wordBank": "Chọn từ: in • on • under • above • behind • in front of • next to • between • near • opposite"
+        },
+        {
+          "id": "u5-s3-q3",
+          "prompt": "There are ___ small islands near the coast, but not many.",
+          "options": [
+            "a little",
+            "an",
+            "much",
+            "a few"
+          ],
+          "answerIndex": 3,
+          "explanation": "islands đếm được, \"not many\" → a few.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-countable",
+          "instruction": "Chọn từ chỉ lượng phù hợp"
+        },
+        {
+          "id": "u3-s2-q3",
+          "prompt": "lie → ___",
+          "blanks": [
+            {
+              "accept": [
+                "lying"
+              ]
+            }
+          ],
+          "explanation": "-ie → y + ing.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ing",
+          "instruction": "Viết dạng V-ing đúng"
+        },
+        {
+          "id": "u3-s4-q4",
+          "prompt": "Be quiet! The baby (sleep) ___.",
+          "blanks": [
+            {
+              "accept": [
+                "is sleeping"
+              ]
+            }
+          ],
+          "explanation": "\"Be quiet!\" → đang xảy ra.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ps-vs-pc",
+          "instruction": "Hiện tại đơn hay hiện tại tiếp diễn?"
+        },
+        {
+          "id": "u1-s3-q4",
+          "prompt": "My brother (wash) ___ his face every morning.",
+          "blanks": [
+            {
+              "accept": [
+                "washes"
+              ]
+            }
+          ],
+          "explanation": "Tận cùng -sh → thêm -es.",
+          "unit": 1,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u1-s-es",
+          "instruction": "Chia động từ trong ngoặc ở thì hiện tại đơn"
+        },
+        {
+          "id": "u5-s6-q3",
+          "prompt": "Visitors ___ leave rubbish in the national park.",
+          "options": [
+            "must",
+            "mustn't",
+            "musts",
+            "must to"
+          ],
+          "answerIndex": 1,
+          "explanation": "Hành động bị cấm → mustn't.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-must",
+          "instruction": "Must / Mustn't – chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s1-q4",
+          "prompt": "My ___ bedroom is upstairs.",
+          "options": [
+            "parent's",
+            "parents'",
+            "parent",
+            "parents's"
+          ],
+          "answerIndex": 1,
+          "explanation": "parents (số nhiều có -s) → parents'.",
+          "unit": 2,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u2-possessive",
+          "instruction": "Chọn dạng sở hữu đúng"
+        },
+        {
+          "unit": 6,
+          "id": "voc-u6-behave",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “cư xử”?",
+          "options": [
+            "behave",
+            "wear",
+            "break",
+            "fight"
+          ],
+          "answerIndex": 0,
+          "explanation": "behave = cư xử"
+        },
+        {
+          "unit": 5,
+          "id": "voc-u5-lost",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “bị lạc”?",
+          "options": [
+            "natural",
+            "necessary",
+            "sure",
+            "lost"
+          ],
+          "answerIndex": 3,
+          "explanation": "lost = bị lạc"
+        },
+        {
+          "unit": 4,
+          "id": "voc-u4-busy",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “bận rộn, nhộn nhịp”?",
+          "options": [
+            "fantastic",
+            "right",
+            "cheap",
+            "busy"
+          ],
+          "answerIndex": 3,
+          "explanation": "busy = bận rộn, nhộn nhịp"
+        },
+        {
+          "unit": 3,
+          "id": "voc-u3-camp",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “trại, hội trại”?",
+          "options": [
+            "arm",
+            "homework",
+            "ice cream",
+            "camp"
+          ],
+          "answerIndex": 3,
+          "explanation": "camp = trại, hội trại"
+        },
+        {
+          "unit": 1,
+          "id": "voc-u1-canteen",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “căng-tin”?",
+          "options": [
+            "classroom",
+            "textbook",
+            "canteen",
+            "subject"
+          ],
+          "answerIndex": 2,
+          "explanation": "canteen = căng-tin"
+        },
+        {
+          "unit": 2,
+          "id": "voc-u2-flat",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “căn hộ”?",
+          "options": [
+            "kitchen",
+            "flat",
+            "computer",
+            "cousin"
+          ],
+          "answerIndex": 1,
+          "explanation": "flat = căn hộ"
+        },
+        {
+          "unit": 6,
+          "id": "voc-u6-cook",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “nấu”?",
+          "options": [
+            "celebrate",
+            "cook",
+            "guess",
+            "visit"
+          ],
+          "answerIndex": 1,
+          "explanation": "cook = nấu"
+        },
+        {
+          "unit": 1,
+          "id": "voc-u1-international-school",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “trường quốc tế”?",
+          "options": [
+            "compass",
+            "ruler",
+            "library",
+            "international school"
+          ],
+          "answerIndex": 3,
+          "explanation": "international school = trường quốc tế"
+        }
+      ],
+      "coverage": {
+        "byUnit": {
+          "1": 8,
+          "2": 7,
+          "3": 7,
+          "4": 5,
+          "5": 7,
+          "6": 6
+        },
+        "byGrammarPoint": {
+          "u1-frequency": 2,
+          "u1-present-simple": 2,
+          "u1-s-es": 2,
+          "u2-possessive": 2,
+          "u2-prepositions": 2,
+          "u2-there-is": 2,
+          "u3-ing": 2,
+          "u3-present-continuous": 2,
+          "u3-ps-vs-pc": 2,
+          "u4-comparative-long": 2,
+          "u4-comparative-short": 2,
+          "u5-countable": 2,
+          "u5-must": 2,
+          "u5-plural": 2,
+          "u6-should": 2,
+          "u6-some-any": 2
+        }
+      }
+    },
+    {
+      "id": "hk1-B",
+      "semester": "hk1",
+      "title": "Bài kiểm tra Học kì 1 (Unit 1–6) – Đề B",
+      "form": "B",
+      "units": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "items": [
+        {
+          "id": "u2-s3-q2",
+          "prompt": "There is a small rug ___ the coffee table.",
+          "blanks": [
+            {
+              "accept": [
+                "under"
+              ]
+            }
+          ],
+          "explanation": "Tấm thảm nằm dưới bàn → under.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-prepositions",
+          "instruction": "Điền giới từ chỉ vị trí",
+          "wordBank": "Chọn từ: in • on • under • above • behind • in front of • next to • between • near • opposite"
+        },
+        {
+          "id": "u5-s6-q1",
+          "prompt": "The sign says \"Keep off the grass.\" You ___ walk on the grass.",
+          "options": [
+            "mustn't",
+            "musts",
+            "must",
+            "must to"
+          ],
+          "answerIndex": 0,
+          "explanation": "Biển cấm → mustn't.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-must",
+          "instruction": "Must / Mustn't – chọn đáp án đúng"
+        },
+        {
+          "id": "u1-s1-q2",
+          "prompt": "Lan ___ English every day.",
+          "options": [
+            "study",
+            "studies",
+            "studying",
+            "studied"
+          ],
+          "answerIndex": 1,
+          "explanation": "Lan = she, có \"every day\" → hiện tại đơn; study (phụ âm + y) → studies.",
+          "unit": 1,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u1-present-simple",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u3-s2-q1",
+          "prompt": "write → ___",
+          "blanks": [
+            {
+              "accept": [
+                "writing"
+              ]
+            }
+          ],
+          "explanation": "Bỏ e câm rồi thêm -ing.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ing",
+          "instruction": "Viết dạng V-ing đúng"
+        },
+        {
+          "id": "u6-s1-q2",
+          "prompt": "You ___ break things during Tet.",
+          "options": [
+            "should to",
+            "shouldn't",
+            "shoulds",
+            "should"
+          ],
+          "answerIndex": 1,
+          "explanation": "Việc không nên làm → shouldn't.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-should",
+          "instruction": "Chọn should / shouldn't đúng"
+        },
+        {
+          "id": "u4-s4-q1",
+          "prompt": "The new library is ___ than the old one. (modern)",
+          "blanks": [
+            {
+              "accept": [
+                "more modern"
+              ]
+            }
+          ],
+          "explanation": "Tính từ dài.",
+          "unit": 4,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-long",
+          "instruction": "Chia tính từ trong ngoặc"
+        },
+        {
+          "id": "u1-s5-q2",
+          "tokens": [
+            "always",
+            "Lan",
+            "is",
+            "friendly"
+          ],
+          "endPunct": ".",
+          "accept": [
+            "Lan is always friendly."
+          ],
+          "explanation": "Với to be, trạng từ đứng sau am/is/are.",
+          "unit": 1,
+          "type": "reorder",
+          "skill": "grammar",
+          "grammarPointId": "u1-frequency",
+          "instruction": "Sắp xếp từ thành câu hoàn chỉnh"
+        },
+        {
+          "id": "u2-s4-q1",
+          "prompt": "___ a sofa in the living room.",
+          "blanks": [
+            {
+              "accept": [
+                "There is"
+              ]
+            }
+          ],
+          "explanation": "\"a sofa\" số ít → There is.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-there-is",
+          "instruction": "Điền there is / there are / is there / are there / some / any / a / an"
+        },
+        {
+          "id": "u3-s4-q3",
+          "prompt": "My best friend often (help) ___ me with Maths.",
+          "blanks": [
+            {
+              "accept": [
+                "helps"
+              ]
+            }
+          ],
+          "explanation": "\"often\" → thói quen.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ps-vs-pc",
+          "instruction": "Hiện tại đơn hay hiện tại tiếp diễn?"
+        },
+        {
+          "id": "u5-s2-q1",
+          "prompt": "The plural of \"beach\" is ___.",
+          "options": [
+            "beachies",
+            "beaches",
+            "beachs",
+            "beachs'"
+          ],
+          "answerIndex": 1,
+          "explanation": "Tận cùng -ch → + es.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-plural",
+          "instruction": "Chọn dạng số nhiều đúng"
+        },
+        {
+          "id": "u6-s3-q2",
+          "prompt": "We don't have ___ fireworks at home.",
+          "options": [
+            "any",
+            "an",
+            "some",
+            "a"
+          ],
+          "answerIndex": 0,
+          "explanation": "Câu phủ định → any.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-some-any",
+          "instruction": "Chọn some / any"
+        },
+        {
+          "id": "u4-s1-q1",
+          "prompt": "My neighbourhood is ___ than yours.",
+          "options": [
+            "noisiest",
+            "more noisy",
+            "noisy",
+            "noisier"
+          ],
+          "answerIndex": 3,
+          "explanation": "noisy: phụ âm + y → noisier.",
+          "unit": 4,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-short",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s1-q2",
+          "prompt": "The ___ books are on the shelf.",
+          "options": [
+            "students",
+            "students's",
+            "students'",
+            "student"
+          ],
+          "answerIndex": 2,
+          "explanation": "Số nhiều có -s → chỉ thêm dấu '.",
+          "unit": 2,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u2-possessive",
+          "instruction": "Chọn dạng sở hữu đúng"
+        },
+        {
+          "id": "u5-s3-q1",
+          "prompt": "There are ___ caves in this area, so we cannot visit all of them.",
+          "options": [
+            "much",
+            "an",
+            "a little",
+            "many"
+          ],
+          "answerIndex": 3,
+          "explanation": "caves đếm được số nhiều → many.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-countable",
+          "instruction": "Chọn từ chỉ lượng phù hợp"
+        },
+        {
+          "id": "u3-s1-q2",
+          "prompt": "My sister ___ glasses today.",
+          "options": [
+            "wear",
+            "wears",
+            "is wearing",
+            "are wearing"
+          ],
+          "answerIndex": 2,
+          "explanation": "\"today\" + tình huống tạm thời → is wearing.",
+          "unit": 3,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u3-present-continuous",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u1-s3-q1",
+          "prompt": "My best friend (play) ___ badminton after school.",
+          "blanks": [
+            {
+              "accept": [
+                "plays"
+              ]
+            }
+          ],
+          "explanation": "Nguyên âm + y → chỉ thêm -s.",
+          "unit": 1,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u1-s-es",
+          "instruction": "Chia động từ trong ngoặc ở thì hiện tại đơn"
+        },
+        {
+          "id": "u4-s4-q4",
+          "prompt": "The city centre is ___ than my neighbourhood. (crowded)",
+          "blanks": [
+            {
+              "accept": [
+                "more crowded"
+              ]
+            }
+          ],
+          "explanation": "crowded → more crowded.",
+          "unit": 4,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-long",
+          "instruction": "Chia tính từ trong ngoặc"
+        },
+        {
+          "id": "u6-s1-q3",
+          "prompt": "You ___ eat too many sweets.",
+          "options": [
+            "shouldn't",
+            "shoulds",
+            "should to",
+            "should"
+          ],
+          "answerIndex": 0,
+          "explanation": "\"too many\" → không nên.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-should",
+          "instruction": "Chọn should / shouldn't đúng"
+        },
+        {
+          "id": "u5-s2-q4",
+          "prompt": "The plural of \"child\" is ___.",
+          "options": [
+            "childs",
+            "children",
+            "childes",
+            "childrens"
+          ],
+          "answerIndex": 1,
+          "explanation": "Bất quy tắc.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-plural",
+          "instruction": "Chọn dạng số nhiều đúng"
+        },
+        {
+          "id": "u1-s5-q3",
+          "tokens": [
+            "often",
+            "Nam",
+            "goes",
+            "to the library",
+            "after school"
+          ],
+          "endPunct": ".",
+          "accept": [
+            "Nam often goes to the library after school."
+          ],
+          "explanation": "S + often + V.",
+          "unit": 1,
+          "type": "reorder",
+          "skill": "grammar",
+          "grammarPointId": "u1-frequency",
+          "instruction": "Sắp xếp từ thành câu hoàn chỉnh"
+        },
+        {
+          "id": "u3-s1-q4",
+          "prompt": "Listen! The baby ___.",
+          "options": [
+            "is crying",
+            "cries",
+            "cry",
+            "are crying"
+          ],
+          "answerIndex": 0,
+          "explanation": "\"Listen!\" → đang xảy ra; the baby số ít → is crying.",
+          "unit": 3,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u3-present-continuous",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u4-s1-q3",
+          "prompt": "The city centre is ___ than the suburb.",
+          "options": [
+            "crowdeder",
+            "more crowded",
+            "most crowded",
+            "crowded"
+          ],
+          "answerIndex": 1,
+          "explanation": "crowded dùng more.",
+          "unit": 4,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u4-comparative-short",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s4-q4",
+          "prompt": "There isn't ___ TV in my bedroom.",
+          "blanks": [
+            {
+              "accept": [
+                "a"
+              ]
+            }
+          ],
+          "explanation": "TV đọc /tiː/ bắt đầu bằng phụ âm → a.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-there-is",
+          "instruction": "Điền there is / there are / is there / are there / some / any / a / an"
+        },
+        {
+          "id": "u6-s3-q3",
+          "prompt": "Are there ___ sweets on the table?",
+          "options": [
+            "an",
+            "some",
+            "any",
+            "a"
+          ],
+          "answerIndex": 2,
+          "explanation": "Câu hỏi → any.",
+          "unit": 6,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u6-some-any",
+          "instruction": "Chọn some / any"
+        },
+        {
+          "id": "u1-s1-q4",
+          "prompt": "He ___ his homework after school.",
+          "options": [
+            "do",
+            "does",
+            "doing",
+            "did"
+          ],
+          "answerIndex": 1,
+          "explanation": "He → do thêm -es thành does.",
+          "unit": 1,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u1-present-simple",
+          "instruction": "Chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s3-q3",
+          "prompt": "The bookcase is ___ the desk, with only a tiny gap between them.",
+          "blanks": [
+            {
+              "accept": [
+                "next to"
+              ]
+            }
+          ],
+          "explanation": "Sát bên cạnh → next to.",
+          "unit": 2,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u2-prepositions",
+          "instruction": "Điền giới từ chỉ vị trí",
+          "wordBank": "Chọn từ: in • on • under • above • behind • in front of • next to • between • near • opposite"
+        },
+        {
+          "id": "u5-s3-q4",
+          "prompt": "How ___ luggage do you have?",
+          "options": [
+            "an",
+            "many",
+            "a few",
+            "much"
+          ],
+          "answerIndex": 3,
+          "explanation": "luggage không đếm được → How much.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-countable",
+          "instruction": "Chọn từ chỉ lượng phù hợp"
+        },
+        {
+          "id": "u3-s2-q2",
+          "prompt": "run → ___",
+          "blanks": [
+            {
+              "accept": [
+                "running"
+              ]
+            }
+          ],
+          "explanation": "CVC 1 âm tiết → gấp đôi n.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ing",
+          "instruction": "Viết dạng V-ing đúng"
+        },
+        {
+          "id": "u3-s4-q5",
+          "prompt": "This week, I (stay) ___ with my grandparents.",
+          "blanks": [
+            {
+              "accept": [
+                "am staying"
+              ]
+            }
+          ],
+          "explanation": "\"This week\" → tạm thời.",
+          "unit": 3,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u3-ps-vs-pc",
+          "instruction": "Hiện tại đơn hay hiện tại tiếp diễn?"
+        },
+        {
+          "id": "u1-s3-q3",
+          "prompt": "They (do) ___ their homework in the evening.",
+          "blanks": [
+            {
+              "accept": [
+                "do"
+              ]
+            }
+          ],
+          "explanation": "They → nguyên mẫu.",
+          "unit": 1,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u1-s-es",
+          "instruction": "Chia động từ trong ngoặc ở thì hiện tại đơn"
+        },
+        {
+          "id": "u5-s6-q4",
+          "prompt": "Before entering the cave, everyone ___ listen to the guide.",
+          "options": [
+            "must",
+            "musts",
+            "must to",
+            "mustn't"
+          ],
+          "answerIndex": 0,
+          "explanation": "Quy định bắt buộc → must.",
+          "unit": 5,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u5-must",
+          "instruction": "Must / Mustn't – chọn đáp án đúng"
+        },
+        {
+          "id": "u2-s1-q3",
+          "prompt": "That is the ___ room.",
+          "options": [
+            "children",
+            "childrens'",
+            "childrens",
+            "children's"
+          ],
+          "answerIndex": 3,
+          "explanation": "children là số nhiều bất quy tắc (không có -s) → thêm 's.",
+          "unit": 2,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u2-possessive",
+          "instruction": "Chọn dạng sở hữu đúng"
+        },
+        {
+          "unit": 6,
+          "id": "voc-u6-coin",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “đồng xu”?",
+          "options": [
+            "spring",
+            "wish",
+            "grandparents",
+            "coin"
+          ],
+          "answerIndex": 3,
+          "explanation": "coin = đồng xu"
+        },
+        {
+          "unit": 5,
+          "id": "voc-u5-camping-site",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “khu cắm trại”?",
+          "options": [
+            "geography",
+            "luggage",
+            "water",
+            "camping site"
+          ],
+          "answerIndex": 3,
+          "explanation": "camping site = khu cắm trại"
+        },
+        {
+          "unit": 4,
+          "id": "voc-u4-city",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “thành phố”?",
+          "options": [
+            "temple",
+            "museum",
+            "pagoda",
+            "city"
+          ],
+          "answerIndex": 3,
+          "explanation": "city = thành phố"
+        },
+        {
+          "unit": 3,
+          "id": "voc-u3-blonde",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “vàng (tóc)”?",
+          "options": [
+            "creative",
+            "blonde",
+            "careful",
+            "friendly"
+          ],
+          "answerIndex": 1,
+          "explanation": "blonde = vàng (tóc)"
+        },
+        {
+          "unit": 1,
+          "id": "voc-u1-history",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “lịch sử”?",
+          "options": [
+            "boarding school",
+            "subject",
+            "history",
+            "library"
+          ],
+          "answerIndex": 2,
+          "explanation": "history = lịch sử"
+        },
+        {
+          "unit": 2,
+          "id": "voc-u2-family",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “gia đình”?",
+          "options": [
+            "television",
+            "bedroom",
+            "family",
+            "grandmother"
+          ],
+          "answerIndex": 2,
+          "explanation": "family = gia đình"
+        },
+        {
+          "unit": 6,
+          "id": "voc-u6-december",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “tháng Mười hai”?",
+          "options": [
+            "December",
+            "envelope",
+            "peach flower",
+            "sweets"
+          ],
+          "answerIndex": 0,
+          "explanation": "December = tháng Mười hai"
+        },
+        {
+          "unit": 1,
+          "id": "voc-u1-homework",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “bài tập về nhà”?",
+          "options": [
+            "homework",
+            "playground",
+            "rubber",
+            "maths"
+          ],
+          "answerIndex": 0,
+          "explanation": "homework = bài tập về nhà"
+        }
+      ],
+      "coverage": {
+        "byUnit": {
+          "1": 8,
+          "2": 7,
+          "3": 7,
+          "4": 5,
+          "5": 7,
+          "6": 6
+        },
+        "byGrammarPoint": {
+          "u1-frequency": 2,
+          "u1-present-simple": 2,
+          "u1-s-es": 2,
+          "u2-possessive": 2,
+          "u2-prepositions": 2,
+          "u2-there-is": 2,
+          "u3-ing": 2,
+          "u3-present-continuous": 2,
+          "u3-ps-vs-pc": 2,
+          "u4-comparative-long": 2,
+          "u4-comparative-short": 2,
+          "u5-countable": 2,
+          "u5-must": 2,
+          "u5-plural": 2,
+          "u6-should": 2,
+          "u6-some-any": 2
+        }
+      }
+    },
+    {
+      "id": "hk2-A",
+      "semester": "hk2",
+      "title": "Bài kiểm tra Học kì 2 (Unit 7–12) – Đề A",
+      "form": "A",
+      "units": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "items": [
+        {
+          "id": "u9-s1-q1",
+          "prompt": "I love Ha Noi. ___ favourite place is Hoan Kiem Lake.",
+          "options": [
+            "Mine",
+            "My",
+            "Me",
+            "I"
+          ],
+          "answerIndex": 1,
+          "explanation": "Trước danh từ → tính từ sở hữu My.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-adjectives",
+          "instruction": "Chọn tính từ sở hữu đúng"
+        },
+        {
+          "id": "u11-s2-q2",
+          "prompt": "___ bottle is made of metal.",
+          "options": [
+            "A",
+            "The",
+            "An",
+            "Some"
+          ],
+          "answerIndex": 1,
+          "explanation": "Chai đã được nhắc ở câu trước → The.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-articles",
+          "instruction": "Chọn a / an / the"
+        },
+        {
+          "id": "u10-s5-q1",
+          "prompt": "Dad has installed solar panels on the roof. Our house ___ use less electricity from the grid.",
+          "options": [
+            "will",
+            "won't",
+            "might",
+            "might not"
+          ],
+          "answerIndex": 0,
+          "explanation": "Đã lắp pin → chắc chắn → will.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-might",
+          "instruction": "Will hay might?"
+        },
+        {
+          "id": "u7-s5-q2",
+          "prompt": "The match was exciting, ___ we watched it until the end.",
+          "options": [
+            "so",
+            "but",
+            "and",
+            "or"
+          ],
+          "answerIndex": 0,
+          "explanation": "Kết quả → so.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-conjunctions",
+          "instruction": "Chọn and / but / so"
+        },
+        {
+          "id": "u8-s6-q1",
+          "prompt": "The floor is wet.",
+          "options": [
+            "Run quickly.",
+            "Jump high.",
+            "Push hard.",
+            "Walk carefully."
+          ],
+          "answerIndex": 3,
+          "explanation": "Sàn ướt → đi cẩn thận.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-imperatives",
+          "instruction": "Chọn câu mệnh lệnh phù hợp"
+        },
+        {
+          "id": "u12-s1-q2",
+          "prompt": "nice → ___",
+          "blanks": [
+            {
+              "accept": [
+                "nicest",
+                "the nicest"
+              ]
+            }
+          ],
+          "explanation": "+ st.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-superlative",
+          "instruction": "Viết dạng so sánh nhất"
+        },
+        {
+          "id": "u11-s4-q1",
+          "prompt": "If we ___ reusable bags, we will use fewer plastic bags.",
+          "options": [
+            "will use",
+            "used",
+            "use",
+            "uses"
+          ],
+          "answerIndex": 2,
+          "explanation": "Mệnh đề if: hiện tại đơn; we → use.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-first-conditional",
+          "instruction": "Chọn dạng đúng trong câu điều kiện loại 1"
+        },
+        {
+          "id": "u7-s1-q2",
+          "prompt": "___ does the cartoon start? – At 6.30 p.m.",
+          "options": [
+            "When",
+            "Where",
+            "Who",
+            "What"
+          ],
+          "answerIndex": 0,
+          "explanation": "Trả lời thời gian → When.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-wh-questions",
+          "instruction": "Chọn từ để hỏi đúng"
+        },
+        {
+          "id": "u8-s1-q1",
+          "prompt": "We ___ at the sports centre last Saturday.",
+          "options": [
+            "was",
+            "were",
+            "are",
+            "be"
+          ],
+          "answerIndex": 1,
+          "explanation": "We → were.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-past-simple",
+          "instruction": "Chọn was / were"
+        },
+        {
+          "id": "u9-s2-q2",
+          "prompt": "That blue suitcase belongs to Lan. It is ___.",
+          "options": [
+            "her",
+            "she",
+            "hers",
+            "their"
+          ],
+          "answerIndex": 2,
+          "explanation": "Lan → hers.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-pronouns",
+          "instruction": "Chọn đại từ sở hữu đúng"
+        },
+        {
+          "id": "u10-s1-q1",
+          "prompt": "I think homes ___ use more solar energy in the future.",
+          "options": [
+            "won't",
+            "did",
+            "are",
+            "will"
+          ],
+          "answerIndex": 3,
+          "explanation": "Dự đoán (I think) → will.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-will",
+          "instruction": "Chọn will / won't đúng"
+        },
+        {
+          "id": "u12-s6-q2",
+          "prompt": "This little robot can lift only one kilogram. The box weighs 40 kilograms. → It ___.",
+          "blanks": [
+            {
+              "accept": [
+                "can't carry heavy boxes",
+                "cannot carry heavy boxes"
+              ]
+            }
+          ],
+          "explanation": "Chỉ nâng 1 kg → không mang được.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-can",
+          "instruction": "Can / can't – khả năng của robot",
+          "wordBank": "Chọn cụm: water the plants • carry heavy boxes • recognise faces • translate • clean the floor • play football • work underwater • drive a car"
+        },
+        {
+          "id": "u7-s1-q3",
+          "prompt": "___ do you like the game show? – Because it is exciting.",
+          "options": [
+            "How",
+            "When",
+            "Where",
+            "Why"
+          ],
+          "answerIndex": 3,
+          "explanation": "\"Because...\" → Why.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-wh-questions",
+          "instruction": "Chọn từ để hỏi đúng"
+        },
+        {
+          "id": "u8-s6-q4",
+          "prompt": "You are cycling on a busy road.",
+          "options": [
+            "Take off your helmet.",
+            "Close the road.",
+            "Wear a helmet.",
+            "Kick the bicycle."
+          ],
+          "answerIndex": 2,
+          "explanation": "An toàn → đội mũ bảo hiểm.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-imperatives",
+          "instruction": "Chọn câu mệnh lệnh phù hợp"
+        },
+        {
+          "id": "u11-s2-q3",
+          "prompt": "We saw ___ old bicycle near the gate.",
+          "options": [
+            "a",
+            "the",
+            "an",
+            "some"
+          ],
+          "answerIndex": 2,
+          "explanation": "\"old\" → an.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-articles",
+          "instruction": "Chọn a / an / the"
+        },
+        {
+          "id": "u9-s2-q4",
+          "prompt": "Those tickets belong to Tom and Ben. They are ___.",
+          "options": [
+            "their",
+            "theirs",
+            "them",
+            "ours"
+          ],
+          "answerIndex": 1,
+          "explanation": "Tom and Ben → theirs.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-pronouns",
+          "instruction": "Chọn đại từ sở hữu đúng"
+        },
+        {
+          "id": "u12-s6-q3",
+          "prompt": "Alex wants the robot to explain a Japanese sentence, but this model only knows English. → It ___ Japanese.",
+          "blanks": [
+            {
+              "accept": [
+                "can't translate",
+                "cannot translate"
+              ]
+            }
+          ],
+          "explanation": "Chỉ biết tiếng Anh → can't translate.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-can",
+          "instruction": "Can / can't – khả năng của robot",
+          "wordBank": "Chọn cụm: water the plants • carry heavy boxes • recognise faces • translate • clean the floor • play football • work underwater • drive a car"
+        },
+        {
+          "id": "u10-s5-q4",
+          "prompt": "Mum has already ordered a new smart fridge. It ___ arrive on Friday.",
+          "options": [
+            "might not",
+            "will",
+            "won't",
+            "might"
+          ],
+          "answerIndex": 1,
+          "explanation": "Đã đặt hàng → will.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-might",
+          "instruction": "Will hay might?"
+        },
+        {
+          "id": "u9-s1-q3",
+          "prompt": "Lan is visiting Paris with ___ parents.",
+          "options": [
+            "hers",
+            "she",
+            "her",
+            "their"
+          ],
+          "answerIndex": 2,
+          "explanation": "Lan (nữ) + danh từ → her.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-adjectives",
+          "instruction": "Chọn tính từ sở hữu đúng"
+        },
+        {
+          "id": "u7-s5-q4",
+          "prompt": "The programme is educational, ___ it is a little long.",
+          "options": [
+            "and",
+            "so",
+            "but",
+            "because"
+          ],
+          "answerIndex": 2,
+          "explanation": "Tương phản → but.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-conjunctions",
+          "instruction": "Chọn and / but / so"
+        },
+        {
+          "id": "u8-s1-q3",
+          "prompt": "You ___ very fast in the race.",
+          "options": [
+            "was",
+            "are",
+            "were",
+            "be"
+          ],
+          "answerIndex": 2,
+          "explanation": "You → were.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-past-simple",
+          "instruction": "Chọn was / were"
+        },
+        {
+          "id": "u10-s1-q4",
+          "prompt": "This old TV no longer works. We ___ use it in our future house.",
+          "options": [
+            "won't",
+            "will",
+            "do",
+            "did"
+          ],
+          "answerIndex": 0,
+          "explanation": "TV hỏng → won't.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-will",
+          "instruction": "Chọn will / won't đúng"
+        },
+        {
+          "id": "u11-s4-q3",
+          "prompt": "If you ___ the lights on, you will waste electricity.",
+          "options": [
+            "will leave",
+            "leaves",
+            "left",
+            "leave"
+          ],
+          "answerIndex": 3,
+          "explanation": "you → leave.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-first-conditional",
+          "instruction": "Chọn dạng đúng trong câu điều kiện loại 1"
+        },
+        {
+          "id": "u12-s1-q4",
+          "prompt": "noisy → ___",
+          "blanks": [
+            {
+              "accept": [
+                "noisiest",
+                "the noisiest"
+              ]
+            }
+          ],
+          "explanation": "y → iest.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-superlative",
+          "instruction": "Viết dạng so sánh nhất"
+        },
+        {
+          "id": "u12-s1-q5",
+          "prompt": "big → ___",
+          "blanks": [
+            {
+              "accept": [
+                "biggest",
+                "the biggest"
+              ]
+            }
+          ],
+          "explanation": "CVC → gấp đôi g.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-superlative",
+          "instruction": "Viết dạng so sánh nhất"
+        },
+        {
+          "id": "u7-s1-q6",
+          "prompt": "___ is the sports programme? – About forty minutes.",
+          "options": [
+            "How often",
+            "How many",
+            "How long",
+            "What time"
+          ],
+          "answerIndex": 2,
+          "explanation": "Khoảng thời gian → How long.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-wh-questions",
+          "instruction": "Chọn từ để hỏi đúng"
+        },
+        {
+          "id": "u9-s1-q5",
+          "prompt": "Mai and Nam are tourists. ___ guide is very friendly.",
+          "options": [
+            "Theirs",
+            "Their",
+            "Them",
+            "Our"
+          ],
+          "answerIndex": 1,
+          "explanation": "Hai người → Their.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-adjectives",
+          "instruction": "Chọn tính từ sở hữu đúng"
+        },
+        {
+          "id": "u11-s4-q6",
+          "prompt": "If the bin ___ full, we will empty it.",
+          "options": [
+            "will be",
+            "be",
+            "is",
+            "was"
+          ],
+          "answerIndex": 2,
+          "explanation": "Mệnh đề if: is.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-first-conditional",
+          "instruction": "Chọn dạng đúng trong câu điều kiện loại 1"
+        },
+        {
+          "id": "u10-s1-q5",
+          "prompt": "I promise I ___ leave the lights on when nobody is home.",
+          "options": [
+            "will",
+            "do",
+            "won't",
+            "am"
+          ],
+          "answerIndex": 2,
+          "explanation": "Lời hứa không để đèn → won't.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-will",
+          "instruction": "Chọn will / won't đúng"
+        },
+        {
+          "id": "u8-s6-q6",
+          "prompt": "A sign says \"No food in the gym\".",
+          "options": [
+            "Don't eat here.",
+            "Cook here.",
+            "Buy more food.",
+            "Open the fridge."
+          ],
+          "answerIndex": 0,
+          "explanation": "Cấm đồ ăn → Don't eat here.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-imperatives",
+          "instruction": "Chọn câu mệnh lệnh phù hợp"
+        },
+        {
+          "id": "u11-s2-q5",
+          "prompt": "Lan brought ___ empty box for the recycling project.",
+          "options": [
+            "an",
+            "a",
+            "the",
+            "some"
+          ],
+          "answerIndex": 0,
+          "explanation": "\"empty\" → an.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-articles",
+          "instruction": "Chọn a / an / the"
+        },
+        {
+          "id": "u7-s5-q6",
+          "prompt": "Tom is tired, ___ he still wants to watch the final.",
+          "options": [
+            "so",
+            "but",
+            "and",
+            "because"
+          ],
+          "answerIndex": 1,
+          "explanation": "\"still\" → tương phản → but.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-conjunctions",
+          "instruction": "Chọn and / but / so"
+        },
+        {
+          "unit": 12,
+          "id": "voc-u12-ceiling",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “trần nhà”?",
+          "options": [
+            "electricity",
+            "literature",
+            "ceiling",
+            "choice"
+          ],
+          "answerIndex": 2,
+          "explanation": "ceiling = trần nhà"
+        },
+        {
+          "unit": 11,
+          "id": "voc-u11-flood",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “lũ lụt”?",
+          "options": [
+            "flood",
+            "idea",
+            "garden",
+            "environment"
+          ],
+          "answerIndex": 0,
+          "explanation": "flood = lũ lụt"
+        },
+        {
+          "unit": 9,
+          "id": "voc-u9-around",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “xung quanh”?",
+          "options": [
+            "food",
+            "bell",
+            "around",
+            "clean"
+          ],
+          "answerIndex": 2,
+          "explanation": "around = xung quanh"
+        },
+        {
+          "unit": 8,
+          "id": "voc-u8-grandpa",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “ông (nội/ngoại)”?",
+          "options": [
+            "grandpa",
+            "idea",
+            "schoolyard",
+            "equipment"
+          ],
+          "answerIndex": 0,
+          "explanation": "grandpa = ông (nội/ngoại)"
+        },
+        {
+          "unit": 7,
+          "id": "voc-u7-depend",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “tùy thuộc”?",
+          "options": [
+            "laugh",
+            "live",
+            "depend",
+            "learn"
+          ],
+          "answerIndex": 2,
+          "explanation": "depend = tùy thuộc"
+        },
+        {
+          "unit": 10,
+          "id": "voc-u10-bedroom",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “phòng ngủ”?",
+          "options": [
+            "robot",
+            "bedroom",
+            "dishwasher",
+            "cottage"
+          ],
+          "answerIndex": 1,
+          "explanation": "bedroom = phòng ngủ"
+        },
+        {
+          "unit": 7,
+          "id": "voc-u7-football",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “bóng đá”?",
+          "options": [
+            "football",
+            "street",
+            "comedy",
+            "instruction"
+          ],
+          "answerIndex": 0,
+          "explanation": "football = bóng đá"
+        },
+        {
+          "unit": 11,
+          "id": "voc-u11-plastic",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “nhựa, bằng nhựa”?",
+          "options": [
+            "plastic",
+            "noise",
+            "temple",
+            "fish"
+          ],
+          "answerIndex": 0,
+          "explanation": "plastic = nhựa, bằng nhựa"
+        }
+      ],
+      "coverage": {
+        "byUnit": {
+          "7": 8,
+          "8": 6,
+          "9": 6,
+          "10": 6,
+          "11": 8,
+          "12": 6
+        },
+        "byGrammarPoint": {
+          "u10-might": 2,
+          "u10-will": 3,
+          "u11-articles": 3,
+          "u11-first-conditional": 3,
+          "u12-can": 2,
+          "u12-superlative": 3,
+          "u7-conjunctions": 3,
+          "u7-wh-questions": 3,
+          "u8-imperatives": 3,
+          "u8-past-simple": 2,
+          "u9-possessive-adjectives": 3,
+          "u9-possessive-pronouns": 2
+        }
+      }
+    },
+    {
+      "id": "hk2-B",
+      "semester": "hk2",
+      "title": "Bài kiểm tra Học kì 2 (Unit 7–12) – Đề B",
+      "form": "B",
+      "units": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "items": [
+        {
+          "id": "u9-s1-q2",
+          "prompt": "Tom is from London. ___ city has many famous landmarks.",
+          "options": [
+            "Him",
+            "He",
+            "Hers",
+            "His"
+          ],
+          "answerIndex": 3,
+          "explanation": "Tom (nam) → His.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-adjectives",
+          "instruction": "Chọn tính từ sở hữu đúng"
+        },
+        {
+          "id": "u11-s2-q1",
+          "prompt": "I bought ___ reusable bottle yesterday.",
+          "options": [
+            "an",
+            "the",
+            "a",
+            "some"
+          ],
+          "answerIndex": 2,
+          "explanation": "Nhắc lần đầu, âm phụ âm → a.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-articles",
+          "instruction": "Chọn a / an / the"
+        },
+        {
+          "id": "u10-s5-q2",
+          "prompt": "We are still choosing between a flat in the city and a house in the countryside. We ___ live in the countryside.",
+          "options": [
+            "won't",
+            "might",
+            "will",
+            "will not"
+          ],
+          "answerIndex": 1,
+          "explanation": "Chưa quyết định → might.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-might",
+          "instruction": "Will hay might?"
+        },
+        {
+          "id": "u7-s5-q1",
+          "prompt": "I like cartoons, ___ my sister prefers documentaries.",
+          "options": [
+            "and",
+            "so",
+            "because",
+            "but"
+          ],
+          "answerIndex": 3,
+          "explanation": "Hai ý tương phản → but.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-conjunctions",
+          "instruction": "Chọn and / but / so"
+        },
+        {
+          "id": "u8-s6-q2",
+          "prompt": "You are about to play football.",
+          "options": [
+            "Sit down all day.",
+            "Close your eyes.",
+            "Turn off the ball.",
+            "Warm up first."
+          ],
+          "answerIndex": 3,
+          "explanation": "Trước khi chơi → khởi động.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-imperatives",
+          "instruction": "Chọn câu mệnh lệnh phù hợp"
+        },
+        {
+          "id": "u12-s1-q1",
+          "prompt": "large → ___",
+          "blanks": [
+            {
+              "accept": [
+                "largest",
+                "the largest"
+              ]
+            }
+          ],
+          "explanation": "Tận cùng -e → + st.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-superlative",
+          "instruction": "Viết dạng so sánh nhất"
+        },
+        {
+          "id": "u11-s4-q2",
+          "prompt": "If Lan ___ the tap off, she will save water.",
+          "options": [
+            "turns",
+            "will turn",
+            "turn",
+            "turned"
+          ],
+          "answerIndex": 0,
+          "explanation": "Lan (số ít) → turns.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-first-conditional",
+          "instruction": "Chọn dạng đúng trong câu điều kiện loại 1"
+        },
+        {
+          "id": "u7-s1-q1",
+          "prompt": "___ do you usually watch TV? – In the living room.",
+          "options": [
+            "When",
+            "Why",
+            "Where",
+            "Who"
+          ],
+          "answerIndex": 2,
+          "explanation": "Trả lời nơi chốn → Where.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-wh-questions",
+          "instruction": "Chọn từ để hỏi đúng"
+        },
+        {
+          "id": "u8-s1-q2",
+          "prompt": "My friends ___ very happy when their team won.",
+          "options": [
+            "was",
+            "is",
+            "be",
+            "were"
+          ],
+          "answerIndex": 3,
+          "explanation": "Số nhiều → were.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-past-simple",
+          "instruction": "Chọn was / were"
+        },
+        {
+          "id": "u9-s2-q1",
+          "prompt": "This city map belongs to me. It is ___.",
+          "options": [
+            "my",
+            "me",
+            "ours",
+            "mine"
+          ],
+          "answerIndex": 3,
+          "explanation": "Đứng một mình → mine.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-pronouns",
+          "instruction": "Chọn đại từ sở hữu đúng"
+        },
+        {
+          "id": "u10-s1-q2",
+          "prompt": "The robot is broken, so it ___ clean the floor today.",
+          "options": [
+            "will",
+            "won't",
+            "does",
+            "did"
+          ],
+          "answerIndex": 1,
+          "explanation": "Robot hỏng → won't.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-will",
+          "instruction": "Chọn will / won't đúng"
+        },
+        {
+          "id": "u12-s6-q1",
+          "prompt": "The floor is covered with dust, and HomeBot has brushes underneath it. → HomeBot ___.",
+          "blanks": [
+            {
+              "accept": [
+                "can clean the floor"
+              ]
+            }
+          ],
+          "explanation": "Có chổi → có thể lau sàn.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-can",
+          "instruction": "Can / can't – khả năng của robot",
+          "wordBank": "Chọn cụm: water the plants • carry heavy boxes • recognise faces • translate • clean the floor • play football • work underwater • drive a car"
+        },
+        {
+          "id": "u7-s1-q4",
+          "prompt": "___ watches the news with your father? – My grandfather.",
+          "options": [
+            "What",
+            "When",
+            "Where",
+            "Who"
+          ],
+          "answerIndex": 3,
+          "explanation": "Trả lời người → Who.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-wh-questions",
+          "instruction": "Chọn từ để hỏi đúng"
+        },
+        {
+          "id": "u8-s6-q3",
+          "prompt": "The sign says the swimming area is closed.",
+          "options": [
+            "Swim faster.",
+            "Open the pool.",
+            "Don't swim here.",
+            "Bring a chair."
+          ],
+          "answerIndex": 2,
+          "explanation": "Khu vực đóng → Don't swim here.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-imperatives",
+          "instruction": "Chọn câu mệnh lệnh phù hợp"
+        },
+        {
+          "id": "u11-s2-q4",
+          "prompt": "Please put the paper in ___ blue recycling bin over there.",
+          "options": [
+            "a",
+            "the",
+            "an",
+            "some"
+          ],
+          "answerIndex": 1,
+          "explanation": "\"over there\" → đã xác định → the.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-articles",
+          "instruction": "Chọn a / an / the"
+        },
+        {
+          "id": "u9-s2-q3",
+          "prompt": "These postcards belong to us. They are ___.",
+          "options": [
+            "our",
+            "ours",
+            "us",
+            "theirs"
+          ],
+          "answerIndex": 1,
+          "explanation": "us → ours.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-pronouns",
+          "instruction": "Chọn đại từ sở hữu đúng"
+        },
+        {
+          "id": "u12-s6-q4",
+          "prompt": "The flowers are dry. GardenBot has a water tank and moves around the garden every morning. → GardenBot ___.",
+          "blanks": [
+            {
+              "accept": [
+                "can water the plants"
+              ]
+            }
+          ],
+          "explanation": "Có bình nước → can water.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-can",
+          "instruction": "Can / can't – khả năng của robot",
+          "wordBank": "Chọn cụm: water the plants • carry heavy boxes • recognise faces • translate • clean the floor • play football • work underwater • drive a car"
+        },
+        {
+          "id": "u10-s5-q3",
+          "prompt": "The robot's battery is completely empty. It ___ clean the floor until we charge it.",
+          "options": [
+            "might",
+            "will",
+            "won't",
+            "might not"
+          ],
+          "answerIndex": 2,
+          "explanation": "Hết pin → chắc chắn không → won't.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-might",
+          "instruction": "Will hay might?"
+        },
+        {
+          "id": "u9-s1-q4",
+          "prompt": "We are staying in Sydney. ___ hotel is near the Opera House.",
+          "options": [
+            "Our",
+            "Ours",
+            "Us",
+            "Their"
+          ],
+          "answerIndex": 0,
+          "explanation": "We → Our.",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-adjectives",
+          "instruction": "Chọn tính từ sở hữu đúng"
+        },
+        {
+          "id": "u7-s5-q3",
+          "prompt": "My father watches the news ___ checks the weather forecast every evening.",
+          "options": [
+            "but",
+            "so",
+            "because",
+            "and"
+          ],
+          "answerIndex": 3,
+          "explanation": "Thêm ý cùng hướng → and.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-conjunctions",
+          "instruction": "Chọn and / but / so"
+        },
+        {
+          "id": "u8-s1-q4",
+          "prompt": "Nam and Minh ___ on the school team last year.",
+          "options": [
+            "was",
+            "is",
+            "be",
+            "were"
+          ],
+          "answerIndex": 3,
+          "explanation": "Hai người → were.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-past-simple",
+          "instruction": "Chọn was / were"
+        },
+        {
+          "id": "u10-s1-q3",
+          "prompt": "Our new house ___ have a garden because there is no space.",
+          "options": [
+            "won't",
+            "will",
+            "is",
+            "does"
+          ],
+          "answerIndex": 0,
+          "explanation": "Không có chỗ → won't.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-will",
+          "instruction": "Chọn will / won't đúng"
+        },
+        {
+          "id": "u11-s4-q4",
+          "prompt": "If it ___ tomorrow, we will cancel the clean-up.",
+          "options": [
+            "will rain",
+            "rain",
+            "rains",
+            "rained"
+          ],
+          "answerIndex": 2,
+          "explanation": "it → rains (không dùng will sau if).",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-first-conditional",
+          "instruction": "Chọn dạng đúng trong câu điều kiện loại 1"
+        },
+        {
+          "id": "u12-s1-q3",
+          "prompt": "heavy → ___",
+          "blanks": [
+            {
+              "accept": [
+                "heaviest",
+                "the heaviest"
+              ]
+            }
+          ],
+          "explanation": "Phụ âm + y → iest.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-superlative",
+          "instruction": "Viết dạng so sánh nhất"
+        },
+        {
+          "id": "u12-s1-q6",
+          "prompt": "hot → ___",
+          "blanks": [
+            {
+              "accept": [
+                "hottest",
+                "the hottest"
+              ]
+            }
+          ],
+          "explanation": "Gấp đôi t.",
+          "unit": 12,
+          "type": "gap",
+          "skill": "grammar",
+          "grammarPointId": "u12-superlative",
+          "instruction": "Viết dạng so sánh nhất"
+        },
+        {
+          "id": "u7-s1-q5",
+          "prompt": "___ do you watch documentaries? – Twice a week.",
+          "options": [
+            "How long",
+            "How often",
+            "How many",
+            "How"
+          ],
+          "answerIndex": 1,
+          "explanation": "Tần suất → How often.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-wh-questions",
+          "instruction": "Chọn từ để hỏi đúng"
+        },
+        {
+          "id": "u9-s1-q6",
+          "prompt": "The city is famous for ___ beautiful beaches.",
+          "options": [
+            "it's",
+            "it",
+            "their",
+            "its"
+          ],
+          "answerIndex": 3,
+          "explanation": "\"của nó\" → its (không phải it's).",
+          "unit": 9,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u9-possessive-adjectives",
+          "instruction": "Chọn tính từ sở hữu đúng"
+        },
+        {
+          "id": "u11-s4-q5",
+          "prompt": "If Nam brings a bottle, he ___ need to buy a plastic one.",
+          "options": [
+            "doesn't",
+            "won't",
+            "isn't",
+            "didn't"
+          ],
+          "answerIndex": 1,
+          "explanation": "Mệnh đề chính: won't + V.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-first-conditional",
+          "instruction": "Chọn dạng đúng trong câu điều kiện loại 1"
+        },
+        {
+          "id": "u10-s1-q6",
+          "prompt": "People ___ need keys if doors recognise their faces.",
+          "options": [
+            "won't",
+            "will",
+            "did",
+            "are"
+          ],
+          "answerIndex": 0,
+          "explanation": "Cửa nhận diện khuôn mặt → không cần chìa.",
+          "unit": 10,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u10-will",
+          "instruction": "Chọn will / won't đúng"
+        },
+        {
+          "id": "u8-s6-q5",
+          "prompt": "The referee blows the whistle.",
+          "options": [
+            "Keep arguing.",
+            "Stop playing.",
+            "Start shouting.",
+            "Leave your shoes."
+          ],
+          "answerIndex": 1,
+          "explanation": "Trọng tài thổi còi → dừng chơi.",
+          "unit": 8,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u8-imperatives",
+          "instruction": "Chọn câu mệnh lệnh phù hợp"
+        },
+        {
+          "id": "u11-s2-q6",
+          "prompt": "Turn off ___ light in your bedroom before you leave.",
+          "options": [
+            "a",
+            "an",
+            "some",
+            "the"
+          ],
+          "answerIndex": 3,
+          "explanation": "Đèn cụ thể trong phòng bạn → the.",
+          "unit": 11,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u11-articles",
+          "instruction": "Chọn a / an / the"
+        },
+        {
+          "id": "u7-s5-q5",
+          "prompt": "The remote control was missing, ___ I changed the channel on the TV.",
+          "options": [
+            "and",
+            "but",
+            "so",
+            "because"
+          ],
+          "answerIndex": 2,
+          "explanation": "Kết quả → so.",
+          "unit": 7,
+          "type": "mcq",
+          "skill": "grammar",
+          "grammarPointId": "u7-conjunctions",
+          "instruction": "Chọn and / but / so"
+        },
+        {
+          "unit": 12,
+          "id": "voc-u12-draw",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “vẽ”?",
+          "options": [
+            "can",
+            "draw",
+            "make",
+            "put"
+          ],
+          "answerIndex": 1,
+          "explanation": "draw = vẽ"
+        },
+        {
+          "unit": 11,
+          "id": "voc-u11-bright",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “sáng, sáng chói”?",
+          "options": [
+            "hungry",
+            "tired",
+            "reusable",
+            "bright"
+          ],
+          "answerIndex": 3,
+          "explanation": "bright = sáng, sáng chói"
+        },
+        {
+          "unit": 9,
+          "id": "voc-u9-chocolate",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “sô-cô-la”?",
+          "options": [
+            "chocolate",
+            "weather",
+            "lion",
+            "sky"
+          ],
+          "answerIndex": 0,
+          "explanation": "chocolate = sô-cô-la"
+        },
+        {
+          "unit": 8,
+          "id": "voc-u8-fishing",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “việc câu cá”?",
+          "options": [
+            "fishing",
+            "bicycle",
+            "fire",
+            "restaurant"
+          ],
+          "answerIndex": 0,
+          "explanation": "fishing = việc câu cá"
+        },
+        {
+          "unit": 7,
+          "id": "voc-u7-enjoy",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “thưởng thức, thích thú”?",
+          "options": [
+            "enjoy",
+            "laugh",
+            "learn",
+            "depend"
+          ],
+          "answerIndex": 0,
+          "explanation": "enjoy = thưởng thức, thích thú"
+        },
+        {
+          "unit": 10,
+          "id": "voc-u10-appliance",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “thiết bị, đồ dùng”?",
+          "options": [
+            "cottage",
+            "dishwasher",
+            "appliance",
+            "robot"
+          ],
+          "answerIndex": 2,
+          "explanation": "appliance = thiết bị, đồ dùng"
+        },
+        {
+          "unit": 7,
+          "id": "voc-u7-hard",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “chăm chỉ”?",
+          "options": [
+            "early",
+            "often",
+            "today",
+            "hard"
+          ],
+          "answerIndex": 3,
+          "explanation": "hard = chăm chỉ"
+        },
+        {
+          "unit": 11,
+          "id": "voc-u11-plant",
+          "type": "mcq",
+          "skill": "vocab",
+          "grammarPointId": null,
+          "prompt": "Từ nào có nghĩa là “trồng (cây), cây cối”?",
+          "options": [
+            "throw",
+            "buy",
+            "organise",
+            "plant"
+          ],
+          "answerIndex": 3,
+          "explanation": "plant = trồng (cây), cây cối"
+        }
+      ],
+      "coverage": {
+        "byUnit": {
+          "7": 8,
+          "8": 6,
+          "9": 6,
+          "10": 6,
+          "11": 8,
+          "12": 6
+        },
+        "byGrammarPoint": {
+          "u10-might": 2,
+          "u10-will": 3,
+          "u11-articles": 3,
+          "u11-first-conditional": 3,
+          "u12-can": 2,
+          "u12-superlative": 3,
+          "u7-conjunctions": 3,
+          "u7-wh-questions": 3,
+          "u8-imperatives": 3,
+          "u8-past-simple": 2,
+          "u9-possessive-adjectives": 3,
+          "u9-possessive-pronouns": 2
+        }
+      }
+    }
+  ],
+  "reservedItemIds": [
+    "u2-s3-q1",
+    "u5-s6-q2",
+    "u1-s1-q1",
+    "u3-s2-q10",
+    "u6-s1-q1",
+    "u4-s4-q2",
+    "u1-s5-q1",
+    "u2-s4-q2",
+    "u3-s4-q2",
+    "u5-s2-q2",
+    "u6-s3-q1",
+    "u4-s1-q2",
+    "u2-s1-q1",
+    "u5-s3-q2",
+    "u3-s1-q1",
+    "u1-s3-q2",
+    "u4-s4-q3",
+    "u6-s1-q4",
+    "u5-s2-q3",
+    "u1-s5-q4",
+    "u3-s1-q3",
+    "u4-s1-q4",
+    "u2-s4-q3",
+    "u6-s3-q4",
+    "u1-s1-q3",
+    "u2-s3-q4",
+    "u5-s3-q3",
+    "u3-s2-q3",
+    "u3-s4-q4",
+    "u1-s3-q4",
+    "u5-s6-q3",
+    "u2-s1-q4",
+    "u2-s3-q2",
+    "u5-s6-q1",
+    "u1-s1-q2",
+    "u3-s2-q1",
+    "u6-s1-q2",
+    "u4-s4-q1",
+    "u1-s5-q2",
+    "u2-s4-q1",
+    "u3-s4-q3",
+    "u5-s2-q1",
+    "u6-s3-q2",
+    "u4-s1-q1",
+    "u2-s1-q2",
+    "u5-s3-q1",
+    "u3-s1-q2",
+    "u1-s3-q1",
+    "u4-s4-q4",
+    "u6-s1-q3",
+    "u5-s2-q4",
+    "u1-s5-q3",
+    "u3-s1-q4",
+    "u4-s1-q3",
+    "u2-s4-q4",
+    "u6-s3-q3",
+    "u1-s1-q4",
+    "u2-s3-q3",
+    "u5-s3-q4",
+    "u3-s2-q2",
+    "u3-s4-q5",
+    "u1-s3-q3",
+    "u5-s6-q4",
+    "u2-s1-q3",
+    "u9-s1-q1",
+    "u11-s2-q2",
+    "u10-s5-q1",
+    "u7-s5-q2",
+    "u8-s6-q1",
+    "u12-s1-q2",
+    "u11-s4-q1",
+    "u7-s1-q2",
+    "u8-s1-q1",
+    "u9-s2-q2",
+    "u10-s1-q1",
+    "u12-s6-q2",
+    "u7-s1-q3",
+    "u8-s6-q4",
+    "u11-s2-q3",
+    "u9-s2-q4",
+    "u12-s6-q3",
+    "u10-s5-q4",
+    "u9-s1-q3",
+    "u7-s5-q4",
+    "u8-s1-q3",
+    "u10-s1-q4",
+    "u11-s4-q3",
+    "u12-s1-q4",
+    "u12-s1-q5",
+    "u7-s1-q6",
+    "u9-s1-q5",
+    "u11-s4-q6",
+    "u10-s1-q5",
+    "u8-s6-q6",
+    "u11-s2-q5",
+    "u7-s5-q6",
+    "u9-s1-q2",
+    "u11-s2-q1",
+    "u10-s5-q2",
+    "u7-s5-q1",
+    "u8-s6-q2",
+    "u12-s1-q1",
+    "u11-s4-q2",
+    "u7-s1-q1",
+    "u8-s1-q2",
+    "u9-s2-q1",
+    "u10-s1-q2",
+    "u12-s6-q1",
+    "u7-s1-q4",
+    "u8-s6-q3",
+    "u11-s2-q4",
+    "u9-s2-q3",
+    "u12-s6-q4",
+    "u10-s5-q3",
+    "u9-s1-q4",
+    "u7-s5-q3",
+    "u8-s1-q4",
+    "u10-s1-q3",
+    "u11-s4-q4",
+    "u12-s1-q3",
+    "u12-s1-q6",
+    "u7-s1-q5",
+    "u9-s1-q6",
+    "u11-s4-q5",
+    "u10-s1-q6",
+    "u8-s6-q5",
+    "u11-s2-q6",
+    "u7-s5-q5"
+  ]
+}

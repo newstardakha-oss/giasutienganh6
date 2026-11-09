@@ -49,7 +49,7 @@ export type VocabSrsSettings = {
   autoPlayAudio: boolean;       // mặc định true
   voiceLang: 'en-US' | 'en-GB'; // giọng Anh-Mỹ hoặc Anh-Anh
   speechRate: number;           // mặc định 0.9
-  teacherPin: string;           // mặc định "1234"
+  teacherPin: string;           // mã PIN do giáo viên thiết lập lần đầu
 };
 
 export type DailyReviewStat = {

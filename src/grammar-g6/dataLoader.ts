@@ -11,15 +11,30 @@ import type {
   GapItem,
   RewriteItem,
 } from './types';
+import {
+  filterPracticeGrammarDataset,
+  getReservedItemIdSet,
+} from './testFormsLoader';
 
 export interface LoadedGrammarBundle {
+  /** Bộ dữ liệu luyện tập đã loại bỏ toàn bộ câu thuộc `reservedItemIds` */
   dataset: GrammarDataset;
+  /** Chỉ mục câu hỏi luyện tập (không chứa `reservedItemIds`) */
   itemIndex: Record<string, IndexedExerciseItem>;
+  /** Bộ dữ liệu gốc đầy đủ (chỉ dùng cho Giáo viên khi đổi câu trong "Xem trước đề") */
+  rawDataset: GrammarDataset;
+  /** Chỉ mục câu hỏi gốc đầy đủ (chỉ dùng cho Giáo viên) */
+  rawItemIndex: Record<string, IndexedExerciseItem>;
   grammarPointIndex: Record<string, { unit: Unit; point: GrammarPoint }>;
 }
 
 let cachedBundle: LoadedGrammarBundle | null = null;
 let pendingPromise: Promise<LoadedGrammarBundle> | null = null;
+
+export function invalidateGrammarDatasetCache(): void {
+  cachedBundle = null;
+  pendingPromise = null;
+}
 
 export const EXERCISE_TYPE_LABELS: Record<ExerciseType, string> = {
   mcq: 'Trắc nghiệm',
@@ -33,28 +48,50 @@ export const EXERCISE_TYPE_LABELS: Record<ExerciseType, string> = {
 
 /**
  * Lazy-load dữ liệu grammar_g6.json khi người dùng truy cập module Ngữ pháp.
+ * Tự động loại bỏ mọi câu hỏi có `id` nằm trong `reservedItemIds` của `test_forms.json`
+ * khỏi `dataset` và `itemIndex` dành cho học sinh luyện tập.
  */
 export async function loadGrammarDataset(): Promise<LoadedGrammarBundle> {
   if (cachedBundle) return cachedBundle;
   if (pendingPromise) return pendingPromise;
 
   pendingPromise = import('../data/grammar_g6.json').then((mod) => {
-    const dataset = (mod.default || mod) as GrammarDataset;
+    const rawDataset = (mod.default || mod) as GrammarDataset;
+    const reservedIds = getReservedItemIdSet();
+    const dataset = filterPracticeGrammarDataset(rawDataset, reservedIds);
+
     const itemIndex: Record<string, IndexedExerciseItem> = {};
+    const rawItemIndex: Record<string, IndexedExerciseItem> = {};
     const grammarPointIndex: Record<string, { unit: Unit; point: GrammarPoint }> = {};
 
-    for (const unit of dataset.units) {
+    for (const unit of rawDataset.units) {
       for (const point of unit.grammarPoints) {
         grammarPointIndex[point.id] = { unit, point };
       }
       for (const set of unit.exerciseSets) {
         for (const item of set.items) {
-          itemIndex[item.id] = { unit, set, item };
+          rawItemIndex[item.id] = { unit, set, item };
         }
       }
     }
 
-    cachedBundle = { dataset, itemIndex, grammarPointIndex };
+    for (const unit of dataset.units) {
+      for (const set of unit.exerciseSets) {
+        for (const item of set.items) {
+          if (!reservedIds.has(item.id)) {
+            itemIndex[item.id] = { unit, set, item };
+          }
+        }
+      }
+    }
+
+    cachedBundle = {
+      dataset,
+      itemIndex,
+      rawDataset,
+      rawItemIndex,
+      grammarPointIndex,
+    };
     return cachedBundle;
   });
 

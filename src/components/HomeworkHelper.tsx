@@ -268,7 +268,9 @@ export const HomeworkHelper: React.FC<HomeworkHelperProps> = ({ questions, units
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 animate-in fade-in duration-200">
                 <div className="flex items-center gap-2 text-[#FF9500] font-bold text-xs uppercase tracking-wider">
                   <Sparkles className="w-4 h-4" />
-                  Phản Hồi & Hướng Dẫn Tư Duy Từ AI:
+                  {aiResponse.includes('Chấm tự động cơ bản (chưa có AI)')
+                    ? 'Chấm tự động cơ bản (chưa có AI):'
+                    : 'Phản Hồi & Hướng Dẫn Tư Duy Từ AI:'}
                 </div>
                 <div className="prose prose-sm max-w-none text-slate-800 text-xs sm:text-sm leading-relaxed">
                   <ReactMarkdown>{aiResponse}</ReactMarkdown>

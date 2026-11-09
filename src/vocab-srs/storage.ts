@@ -10,14 +10,38 @@ import { getInitialSeedWords } from './seedData';
 import { ensureCardStatesForWords, createInitialCardsForWord } from './srs';
 
 const VOCAB_SRS_STORAGE_KEY = 'global_success_6_vocab_srs_v1';
+const APP_DATA_STORAGE_KEY = 'giasu_ai_english6_data_v1';
 
 export const DEFAULT_VOCAB_SETTINGS: VocabSrsSettings = {
   newWordsPerDay: 10,
   autoPlayAudio: true,
   voiceLang: 'en-US',
   speechRate: 0.9,
-  teacherPin: '1234',
+  teacherPin: '',
 };
+
+export function getSharedStreakDays(fallback: number = 0): number {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const raw = window.localStorage.getItem(APP_DATA_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed?.currentStudentId && Array.isArray(parsed?.students)) {
+          const activeStudent = parsed.students.find((s: any) => s.id === parsed.currentStudentId);
+          if (typeof activeStudent?.progress?.streakDays === 'number') {
+            return activeStudent.progress.streakDays;
+          }
+        }
+        if (typeof parsed?.progress?.streakDays === 'number') {
+          return parsed.progress.streakDays;
+        }
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return fallback;
+}
 
 export function getTodayKey(date: Date = new Date()): string {
   const year = date.getFullYear();
@@ -87,7 +111,7 @@ export function loadVocabSrsData(): VocabSrsStoreData {
           ...(parsed.settings || {}),
         },
         dailyStats: parsed.dailyStats || {},
-        streakDays: typeof parsed.streakDays === 'number' ? parsed.streakDays : 0,
+        streakDays: getSharedStreakDays(typeof parsed.streakDays === 'number' ? parsed.streakDays : 0),
         lastStudyDate: parsed.lastStudyDate || '',
       };
     }
@@ -100,7 +124,7 @@ export function loadVocabSrsData(): VocabSrsStoreData {
     cardStates: ensureCardStatesForWords(seedWords, {}),
     settings: { ...DEFAULT_VOCAB_SETTINGS },
     dailyStats: {},
-    streakDays: 0,
+    streakDays: getSharedStreakDays(0),
     lastStudyDate: '',
   };
 }

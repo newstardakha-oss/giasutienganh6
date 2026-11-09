@@ -85,6 +85,8 @@ export interface WritingFeedback {
   }>;
   suggestedRevision: string;
   pedagogicalAdvice: string;
+  isOfflineFallback?: boolean;
+  gradingModeLabel?: string;
 }
 
 export interface PronunciationEvaluation {
@@ -99,6 +101,8 @@ export interface PronunciationEvaluation {
   targetText: string;
   teacherFeedback: string;
   tipsToImprove: string[];
+  isOfflineFallback?: boolean;
+  gradingModeLabel?: string;
 }
 
 export interface StudySession {
@@ -230,7 +234,7 @@ export interface AppDataSchema {
   customCommunes?: Record<string, string[]>; // Xã/phường bổ sung theo Tỉnh
   classCurrentUnits?: Record<string, string>; // Unit đang học trên lớp do giáo viên chọn (key: className hoặc "DEFAULT" -> value: unitId)
   masteryThresholds?: MasteryThresholdsOverride; // Ngưỡng mức độ Tốt/Khá/Đạt/Cần cố gắng do giáo viên cấu hình
-  teacherAccount: TeacherAccount; // DEPRECATED — kept for migration compatibility
+  teacherAccount?: TeacherAccount | null; // DEPRECATED — kept for migration compatibility
   settings: AppSettings;
   customDocuments: Array<{
     id: string;

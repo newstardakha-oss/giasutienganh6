@@ -99,11 +99,12 @@ export function generateBaseUsername(fullName: string, className: string): strin
     .filter(Boolean)
     .map((p) => p.replace(/[^a-z0-9]/g, ''))
     .filter(Boolean);
-  const cleanClass = normalizeClassName(className, 6).toLowerCase().replace(/[^a-z0-9]/g, '') || '6a1';
-  if (parts.length === 0) return `hocsinh_${cleanClass}`;
+  const cleanClass = normalizeClassName(className, 6).toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (parts.length === 0) return cleanClass ? `hocsinh_${cleanClass}` : 'hocsinh';
   const givenName = parts[parts.length - 1];
   const initials = parts.slice(0, -1).map((p) => p[0]).join('');
-  return `${givenName}${initials}_${cleanClass}`;
+  const baseName = `${givenName}${initials}`;
+  return cleanClass ? `${baseName}_${cleanClass}` : baseName;
 }
 
 /**
@@ -119,11 +120,11 @@ export function suggestAvailableUsernames(
   const baseFromInput = removeVietnameseTones(desiredUsername.trim().toLowerCase()).replace(/[^a-z0-9_]/g, '');
   const baseFromName = generateBaseUsername(fullName, className);
   const fullClean = removeVietnameseTones(fullName.trim().toLowerCase()).replace(/[^a-z0-9]/g, '');
-  const cleanClass = normalizeClassName(className, 6).toLowerCase().replace(/[^a-z0-9]/g, '') || '6a1';
+  const cleanClass = normalizeClassName(className, 6).toLowerCase().replace(/[^a-z0-9]/g, '');
 
   const candidates = [
     baseFromName,
-    fullClean ? `${fullClean}_${cleanClass}` : '',
+    fullClean && cleanClass ? `${fullClean}_${cleanClass}` : fullClean,
     baseFromInput ? `${baseFromInput}_01` : '',
     baseFromInput ? `${baseFromInput}_02` : '',
     baseFromInput ? `${baseFromInput}_2026` : '',
@@ -197,8 +198,6 @@ export function verifyPassword(passwordInput: string, storedPassword?: string): 
 }
 
 const WEAK_PASSWORDS = new Set([
-  '1234',
-  '12345',
   '123456',
   '1234567',
   '12345678',
@@ -519,127 +518,12 @@ export function addSchoolToSystem(
   return { data: updatedData, normalizedSchool };
 }
 
-// ===== INITIAL DEMO DATA =====
-export const INITIAL_STUDENTS: StudentAccount[] = [
-  {
-    id: 'student-6a1-01',
-    username: 'an_6a1',
-    fullName: 'Nguyễn Văn An',
-    grade: 6,
-    className: '6A1',
-    provinceName: 'Tỉnh Quảng Ngãi',
-    communeName: 'Xã Đăk Hà',
-    schoolName: 'THCS Chu Văn An',
-    passwordHash: hashPasswordSync('An6a1@2026'),
-    recoveryCodeHash: hashPasswordSync('AN6A1CVA'),
-    parentConsent: true,
-    pinCode: hashPasswordSync('An6a1@2026'),
-    avatar: '👨‍🎓',
-    dailyGoalMinutes: 20,
-    createdAt: new Date(Date.now() - 86400000 * 10).toISOString(),
-    lastLoginAt: new Date().toISOString(),
-    progress: {
-      ...INITIAL_PROGRESS,
-      studentName: 'Nguyễn Văn An',
-      totalXP: 240,
-      level: 3,
-      streakDays: 4,
-    },
-    sessions: [
-      {
-        id: 's1',
-        unitId: 'unit-1',
-        unitTitle: 'MY NEW SCHOOL',
-        skill: 'Grammar',
-        score: 100,
-        totalQuestions: 5,
-        correctAnswers: 5,
-        timeSpentSeconds: 180,
-        date: new Date(Date.now() - 86400000 * 2).toISOString(),
-        xpEarned: 50,
-      },
-      {
-        id: 's2',
-        unitId: 'unit-2',
-        unitTitle: 'MY HOUSE',
-        skill: 'Pronunciation',
-        score: 80,
-        totalQuestions: 5,
-        correctAnswers: 4,
-        timeSpentSeconds: 210,
-        date: new Date(Date.now() - 86400000 * 1).toISOString(),
-        xpEarned: 40,
-      },
-    ],
-    dailyLogs: {
-      [getTodayDateString()]: {
-        date: getTodayDateString(),
-        timeSpentSeconds: 900, // 15 mins
-        sessionsCompleted: 2,
-        xpEarned: 90,
-        skillsPracticed: ['Grammar', 'Pronunciation'],
-        lastActiveTime: getCurrentFormattedTime(),
-      },
-    },
-  },
-  {
-    id: 'student-6a2-02',
-    username: 'minh_6a2',
-    fullName: 'Trần Thị Minh',
-    grade: 6,
-    className: '6A2',
-    provinceName: 'Tỉnh Quảng Ngãi',
-    communeName: 'Xã Đăk Hà',
-    schoolName: 'THCS Chu Văn An',
-    passwordHash: hashPasswordSync('Minh6a2@26'),
-    recoveryCodeHash: hashPasswordSync('MINH6A2X'),
-    parentConsent: true,
-    pinCode: hashPasswordSync('Minh6a2@26'),
-    avatar: '👩‍🎓',
-    dailyGoalMinutes: 30,
-    createdAt: new Date(Date.now() - 86400000 * 5).toISOString(),
-    lastLoginAt: new Date(Date.now() - 86400000 * 1).toISOString(),
-    progress: {
-      ...INITIAL_PROGRESS,
-      studentName: 'Trần Thị Minh',
-      totalXP: 180,
-      level: 2,
-      streakDays: 2,
-    },
-    sessions: [],
-    dailyLogs: {},
-  },
-];
+// ===== INITIAL DEMO DATA (Empty: Students & Admin are created via registration / first-time setup) =====
+export const INITIAL_STUDENTS: StudentAccount[] = [];
 
-// ===== MULTI-TEACHER: Default Admin Account =====
-export const DEFAULT_ADMIN: TeacherAccount = {
-  id: 'admin-001',
-  email: 'hoangnhancva86@gmail.com',
-  username: 'admin',
-  fullName: 'Mrs Nhan (Admin)',
-  password: hashPasswordSync('teacher2026'),
-  provinceName: 'Tỉnh Quảng Ngãi',
-  communeName: 'Xã Đăk Hà',
-  schoolName: 'THCS Chu Văn An',
-  role: 'admin',
-  managedClasses: ['6A1', '6A2', '6A3', '6A4', '6A5', '6A6'],
-  isActive: true,
-  createdAt: new Date().toISOString(),
-  lastLoginAt: new Date().toISOString(),
-};
-
-// Legacy default for migration compatibility
-export const DEFAULT_TEACHER = {
-  id: 'teacher-6-01',
-  username: 'giaovien6',
-  fullName: 'Mrs Nhan',
-  password: hashPasswordSync('teacher2026'),
-  provinceName: 'Tỉnh Quảng Ngãi',
-  communeName: 'Xã Đăk Hà',
-  schoolName: 'THCS Chu Văn An',
-  managedClasses: ['6A1', '6A2', '6A3', '6A4', '6A5', '6A6'],
-  lastLoginAt: new Date().toISOString(),
-};
+export function hasAdminAccount(data: AppDataSchema): boolean {
+  return data.teachers.some((t) => t.role === 'admin' && t.isActive);
+}
 
 // ===== ACTIVATION CODE HELPERS =====
 export function generateActivationCode(existingCodes: ActivationCode[]): string {
@@ -816,17 +700,18 @@ export function registerTeacher(
     workingData = added.data;
   }
 
-  const newTeacherId = `teacher-${Date.now()}`;
+  const isFirstAdmin = !hasAdminAccount(workingData);
+  const newTeacherId = isFirstAdmin ? `admin-setup-${Date.now()}` : `teacher-${Date.now()}`;
   const newTeacher: TeacherAccount = {
     id: newTeacherId,
     email: cleanEmail,
     username: cleanEmail.includes('@') ? cleanEmail.split('@')[0] : cleanEmail,
     fullName: normalizedFullName,
     password: hashPasswordSync(password.trim()),
-    provinceName: provinceName?.trim() || 'Tỉnh Quảng Ngãi',
-    communeName: communeName?.trim() || 'Xã Đăk Hà',
+    provinceName: provinceName?.trim() || '',
+    communeName: communeName?.trim() || '',
     schoolName: normalizedSchool,
-    role: 'teacher',
+    role: isFirstAdmin ? 'admin' : 'teacher',
     managedClasses: [], // Tự động xem học sinh cùng trường, lọc theo lớp
     isActive: true,
     activationCode: activationCodeStr?.trim() || undefined,
@@ -1009,66 +894,43 @@ export function addCustomClass(data: AppDataSchema, className: string): AppDataS
 // ===== MIGRATION: Old single teacherAccount → multi-teacher teachers[] =====
 function migrateTeacherData(parsed: any): TeacherAccount[] {
   if (parsed.teachers && Array.isArray(parsed.teachers) && parsed.teachers.length > 0) {
-    const normalizedTeachers = parsed.teachers.map((t: TeacherAccount) => ({
-      ...t,
-      provinceName: t.provinceName || 'Tỉnh Quảng Ngãi',
-      communeName: t.communeName || 'Xã Đăk Hà',
-      schoolName: normalizeSchoolName(t.schoolName || 'THCS Chu Văn An'),
-      password: hashPasswordSync(t.password || 'teacher2026'),
-      managedClasses: (t.managedClasses || []).map((c: string) => normalizeClassName(c)),
-    }));
-    const hasAdmin = normalizedTeachers.some((t: TeacherAccount) => t.email === DEFAULT_ADMIN.email);
-    if (!hasAdmin) {
-      return [DEFAULT_ADMIN, ...normalizedTeachers];
-    }
-    return normalizedTeachers;
+    return parsed.teachers
+      .filter((t: TeacherAccount) => t.id !== 'admin-001' && Boolean(t.password))
+      .map((t: TeacherAccount) => ({
+        ...t,
+        provinceName: t.provinceName || '',
+        communeName: t.communeName || '',
+        schoolName: t.schoolName ? normalizeSchoolName(t.schoolName) : '',
+        password: hashPasswordSync(t.password),
+        managedClasses: (t.managedClasses || []).map((c: string) => normalizeClassName(c)),
+      }));
   }
 
-  const teachers: TeacherAccount[] = [DEFAULT_ADMIN];
-  if (parsed.teacherAccount && parsed.teacherAccount.id !== DEFAULT_ADMIN.id) {
-    const oldTeacher = parsed.teacherAccount;
-    teachers.push({
-      id: oldTeacher.id || `teacher-migrated-${Date.now()}`,
-      email: `${oldTeacher.username || 'giaovien'}@migrated.local`,
-      username: oldTeacher.username || 'giaovien6',
-      fullName: normalizeFullName(oldTeacher.fullName || 'Giáo Viên'),
-      password: hashPasswordSync(oldTeacher.password || 'teacher2026'),
-      provinceName: 'Tỉnh Quảng Ngãi',
-      communeName: 'Xã Đăk Hà',
-      schoolName: normalizeSchoolName(oldTeacher.schoolName || 'THCS Chu Văn An'),
-      role: 'teacher',
-      managedClasses: (oldTeacher.managedClasses || []).map((c: string) => normalizeClassName(c)),
-      isActive: true,
-      createdAt: new Date().toISOString(),
-      lastLoginAt: oldTeacher.lastLoginAt,
-    });
-  }
-
-  return teachers;
+  return [];
 }
 
 function migrateStudentsData(rawStudents: any[]): StudentAccount[] {
   if (!Array.isArray(rawStudents) || rawStudents.length === 0) {
     return INITIAL_STUDENTS;
   }
-  return rawStudents.map((s) => {
-    const rawPass = s.passwordHash || s.pinCode || '123456';
-    const hashed = hashPasswordSync(rawPass);
-    const comm =
-      !s.communeName || s.communeName === 'Thị trấn Đăk Hà' ? 'Xã Đăk Hà' : s.communeName;
-    return {
-      ...s,
-      fullName: normalizeFullName(s.fullName || 'Học Sinh'),
-      grade: s.grade || 6,
-      className: normalizeClassName(s.className || '6A1'),
-      provinceName: s.provinceName || 'Tỉnh Quảng Ngãi',
-      communeName: comm,
-      schoolName: normalizeSchoolName(s.schoolName || 'THCS Chu Văn An'),
-      passwordHash: hashed,
-      pinCode: hashed,
-      recoveryCodeHash: s.recoveryCodeHash || hashPasswordSync('AN6A1CVA'),
-    };
-  });
+  return rawStudents
+    .filter((s) => s.id !== 'student-6a1-01' && s.id !== 'student-6a2-02')
+    .map((s) => {
+      const rawPass = s.passwordHash || s.pinCode || '';
+      const hashed = rawPass ? hashPasswordSync(rawPass) : '';
+      return {
+        ...s,
+        fullName: normalizeFullName(s.fullName || 'Học Sinh'),
+        grade: s.grade || 6,
+        className: s.className ? normalizeClassName(s.className) : '',
+        provinceName: s.provinceName || '',
+        communeName: s.communeName || '',
+        schoolName: s.schoolName ? normalizeSchoolName(s.schoolName) : '',
+        passwordHash: hashed,
+        pinCode: hashed,
+        recoveryCodeHash: s.recoveryCodeHash || '',
+      };
+    });
 }
 
 // ===== LOAD & SAVE =====
@@ -1079,7 +941,9 @@ export function loadAppData(): AppDataSchema {
       const parsed = JSON.parse(raw);
       const students: StudentAccount[] = migrateStudentsData(parsed.students);
       const currentStudentId =
-        parsed.currentStudentId !== undefined ? parsed.currentStudentId : students[0]?.id || null;
+        parsed.currentStudentId && students.some((s) => s.id === parsed.currentStudentId)
+          ? parsed.currentStudentId
+          : students[0]?.id || null;
 
       const activeStudent = students.find((s) => s.id === currentStudentId);
 
@@ -1088,6 +952,10 @@ export function loadAppData(): AppDataSchema {
       const mergedQuestions = [...DEMO_QUESTIONS, ...customQuestions];
 
       const teachers = migrateTeacherData(parsed);
+      const validTeacherLoggedIn =
+        Boolean(parsed.isTeacherLoggedIn) &&
+        Boolean(parsed.currentTeacherId) &&
+        teachers.some((t) => t.id === parsed.currentTeacherId && t.isActive);
 
       const defaultSchools: SchoolEntry[] = (vnAdminData.defaultSchools || []).map((sc) => ({
         provinceName: sc.provinceName,
@@ -1099,12 +967,12 @@ export function loadAppData(): AppDataSchema {
       return {
         units: SGK_UNITS,
         questions: mergedQuestions,
-        sessions: activeStudent ? activeStudent.sessions : parsed.sessions || [],
-        progress: activeStudent ? activeStudent.progress : parsed.progress || INITIAL_PROGRESS,
+        sessions: activeStudent ? activeStudent.sessions : [],
+        progress: activeStudent ? activeStudent.progress : { ...INITIAL_PROGRESS },
         students,
         currentStudentId,
-        isTeacherLoggedIn: parsed.isTeacherLoggedIn || false,
-        currentTeacherId: parsed.currentTeacherId || null,
+        isTeacherLoggedIn: validTeacherLoggedIn,
+        currentTeacherId: validTeacherLoggedIn ? parsed.currentTeacherId : null,
         teachers,
         activationCodes: parsed.activationCodes || [],
         customClasses: (parsed.customClasses || []).map((c: string) => normalizeClassName(c)),
@@ -1112,14 +980,7 @@ export function loadAppData(): AppDataSchema {
         customCommunes: parsed.customCommunes || {},
         classCurrentUnits: parsed.classCurrentUnits || { DEFAULT: 'unit-1' },
         masteryThresholds: parsed.masteryThresholds || undefined,
-        teacherAccount:
-          parsed.teacherAccount || {
-            ...DEFAULT_TEACHER,
-            email: DEFAULT_ADMIN.email,
-            role: 'admin',
-            isActive: true,
-            createdAt: new Date().toISOString(),
-          },
+        teacherAccount: teachers[0] || null,
         settings: {
           geminiApiKey: localStorage.getItem('gemini_api_key') || '',
           selectedModel: (localStorage.getItem('gemini_selected_model') as any) || 'gemini-3.6-flash',
@@ -1135,17 +996,16 @@ export function loadAppData(): AppDataSchema {
     console.error('Lỗi đọc LocalStorage:', err);
   }
 
-  const defaultStudent = INITIAL_STUDENTS[0];
   return {
     units: SGK_UNITS,
     questions: DEMO_QUESTIONS,
-    sessions: defaultStudent.sessions,
-    progress: defaultStudent.progress,
+    sessions: [],
+    progress: { ...INITIAL_PROGRESS },
     students: INITIAL_STUDENTS,
-    currentStudentId: defaultStudent.id,
+    currentStudentId: null,
     isTeacherLoggedIn: false,
     currentTeacherId: null,
-    teachers: [DEFAULT_ADMIN],
+    teachers: [],
     activationCodes: [],
     customClasses: [],
     schools: (vnAdminData.defaultSchools || []).map((sc) => ({
@@ -1155,13 +1015,7 @@ export function loadAppData(): AppDataSchema {
     })),
     customCommunes: {},
     classCurrentUnits: { DEFAULT: 'unit-1' },
-    teacherAccount: {
-      ...DEFAULT_TEACHER,
-      email: DEFAULT_ADMIN.email,
-      role: 'admin',
-      isActive: true,
-      createdAt: new Date().toISOString(),
-    } as any,
+    teacherAccount: null,
     settings: {
       geminiApiKey: localStorage.getItem('gemini_api_key') || '',
       selectedModel: (localStorage.getItem('gemini_selected_model') as any) || 'gemini-3.6-flash',
@@ -1275,7 +1129,7 @@ export function addStudySession(data: AppDataSchema, session: StudySession): App
             skill: session.skill,
             skillLabel: skillMeta.label,
             tabId: skillMeta.tabId,
-            progressPercent: updatedUnitProgress[matchedUnit.id] || session.score || 40,
+            progressPercent: updatedUnitProgress[matchedUnit.id] || session.score || 0,
             updatedAt: new Date().toISOString(),
           },
           dailyLogs: {

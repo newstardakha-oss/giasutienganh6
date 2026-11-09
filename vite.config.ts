@@ -10,6 +10,7 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
+        jstat: path.resolve(__dirname, 'src/vendor/jstat/index.ts'),
       },
     },
     server: {

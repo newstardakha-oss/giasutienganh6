@@ -39,10 +39,12 @@ type ActiveScreen =
   | 'settings';
 
 interface VocabSrsAppProps {
+  streakDays?: number;
   onSessionCompleted?: (session: StudySession) => void;
 }
 
 export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
+  streakDays,
   onSessionCompleted,
 }) => {
   const [store, setStore] = useState<VocabSrsStoreData>(() => loadVocabSrsData());
@@ -191,6 +193,8 @@ export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
     setStore((prev) => resetVocabProgress(prev));
   };
 
+  const effectiveStreakDays = streakDays ?? store.streakDays;
+
   return (
     <div className="w-full">
       {screen === 'home' && (
@@ -200,7 +204,7 @@ export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
           settings={store.settings}
           dueCardsCount={dueCards.length}
           newWordsTodayCount={newWordsAvailable.length}
-          streakDays={store.streakDays}
+          streakDays={effectiveStreakDays}
           selectedUnitFilter={selectedUnitFilter}
           onStartStudy={(unit) => handleStartStudy(unit)}
           onOpenUnitSelect={() => setScreen('units')}
@@ -252,7 +256,7 @@ export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
           words={store.words}
           cardStates={store.cardStates}
           dailyStats={store.dailyStats}
-          streakDays={store.streakDays}
+          streakDays={effectiveStreakDays}
           settings={store.settings}
           onBack={() => setScreen('home')}
         />
@@ -263,6 +267,7 @@ export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
           words={store.words}
           settings={store.settings}
           onUpdateWords={handleUpdateWords}
+          onUpdateSettings={handleUpdateSettings}
           onBack={() => setScreen('home')}
         />
       )}

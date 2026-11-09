@@ -5,6 +5,7 @@ import {
   getOfflineHomeworkHint,
   getOfflineSpeechEvaluation,
 } from './offlineFallback';
+import { containsReservedTestItemContent } from '../grammar-g6/testFormsLoader';
 
 /**
  * Gets custom API Key from localStorage if user set it in Settings
@@ -44,14 +45,18 @@ export async function callSocraticTutor(
   targetGrammar: string,
   step?: string
 ): Promise<string> {
+  if (containsReservedTestItemContent(prompt)) {
+    return '🔒 Câu hỏi này thuộc bộ đề Kiểm tra Đầu vào / Đầu ra chính thức nên Gia Sư AI không giải đáp để đảm bảo tính khách quan. Em hãy tự suy nghĩ hoặc chọn câu luyện tập khác nhé!';
+  }
   try {
     const model = getSelectedModel();
+    const safeHistory = history.filter((m) => !containsReservedTestItemContent(m.text));
     const response = await fetch('/api/gemini/tutor', {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify({
         prompt,
-        history,
+        history: safeHistory,
         unitTitle,
         targetGrammar,
         step,
@@ -80,6 +85,9 @@ export async function fetchHomeworkHint(
   studentAnswer?: string,
   hintLevel: number = 1
 ): Promise<string> {
+  if (containsReservedTestItemContent(questionContent)) {
+    return '🔒 Câu hỏi này thuộc bộ đề Kiểm tra Đầu vào / Đầu ra nên không hỗ trợ gợi ý tự động.';
+  }
   try {
     const model = getSelectedModel();
     const response = await fetch('/api/gemini/homework-hint', {

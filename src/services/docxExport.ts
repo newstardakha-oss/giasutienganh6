@@ -148,7 +148,9 @@ export async function exportWritingFeedbackToDocx(
             spacing: { after: 200 },
           }),
           new Paragraph({
-            text: '--- KẾT QUẢ ĐÁNH GIÁ TỔNG THỂ ---',
+            text: feedback.isOfflineFallback
+              ? '--- KẾT QUẢ ĐÁNH GIÁ TỔNG THỂ (CHẤM TỰ ĐỘNG CƠ BẢN - CHƯA CÓ AI) ---'
+              : '--- KẾT QUẢ ĐÁNH GIÁ TỔNG THỂ ---',
             heading: HeadingLevel.HEADING_3,
             spacing: { before: 200, after: 100 },
           }),
@@ -184,7 +186,9 @@ export async function exportWritingFeedbackToDocx(
             spacing: { after: 100 },
           })),
           new Paragraph({
-            text: '--- ĐOẠN VĂN MẪU GỢI Ý CỦA AI ---',
+            text: feedback.isOfflineFallback
+              ? '--- ĐOẠN VĂN MẪU THAM KHẢO (SGK) ---'
+              : '--- ĐOẠN VĂN MẪU GỢI Ý CỦA AI ---',
             heading: HeadingLevel.HEADING_3,
             spacing: { before: 200, after: 100 },
           }),

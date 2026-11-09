@@ -44,6 +44,11 @@ interface ExercisePlayerViewProps {
     correct: boolean;
     answerText: string;
     clozeBlankResults?: { n: number; correct: boolean; value: string }[];
+    /** Điểm từng phần 0..1 (cloze/classify có thể đúng một phần) */
+    score?: number;
+    startedAt?: string;
+    submittedAt?: string;
+    durationSec?: number;
   }) => void;
   onCompleteSession: (params: {
     setId?: string;
@@ -78,7 +83,13 @@ export const ExercisePlayerView: React.FC<ExercisePlayerViewProps> = ({
   const [viewingGrammarPointId, setViewingGrammarPointId] = useState<string | null>(null);
 
   const startTimeRef = useRef<number>(Date.now());
+  // Thời điểm bắt đầu câu hiện tại (phục vụ startedAt/durationSec của collection "attempts")
+  const itemStartRef = useRef<number>(Date.now());
   const nextBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    itemStartRef.current = Date.now();
+  }, [currentIndex]);
 
   const validItemIds = itemIds.filter((id) => Boolean(itemIndex[id]));
   const currentId = validItemIds[currentIndex];
@@ -151,6 +162,7 @@ export const ExercisePlayerView: React.FC<ExercisePlayerViewProps> = ({
     };
     setOutcomes((prev) => [...prev, nextOutcome]);
 
+    const submittedAtMs = Date.now();
     onRecordAttempt({
       itemId: item.id,
       setId: set.id,
@@ -158,6 +170,10 @@ export const ExercisePlayerView: React.FC<ExercisePlayerViewProps> = ({
       correct: res.correct,
       answerText: displayAnswer,
       clozeBlankResults,
+      score: part,
+      startedAt: new Date(itemStartRef.current).toISOString(),
+      submittedAt: new Date(submittedAtMs).toISOString(),
+      durationSec: Math.max(1, Math.round((submittedAtMs - itemStartRef.current) / 1000)),
     });
   };
 

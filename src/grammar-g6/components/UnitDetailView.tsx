@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft, BookOpen, Sparkles, Zap } from 'lucide-react';
 import type { ClozeItem, ExerciseSet, GrammarStudentStore, Unit } from '../types';
 import { EXERCISE_TYPE_LABELS, shuffleArray } from '../dataLoader';
+import { getQuickTestItemPool } from '../testFormsLoader';
 import { GrammarPointCard } from './TheoryBlockView';
 
 interface UnitDetailViewProps {
@@ -29,9 +30,7 @@ export const UnitDetailView: React.FC<UnitDetailViewProps> = ({
   onStartQuickTest,
 }) => {
   const handleQuickTest = () => {
-    const pool = unit.exerciseSets
-      .filter((s) => s.type !== 'cloze')
-      .flatMap((s) => s.items.map((it) => it.id));
+    const pool = getQuickTestItemPool(unit);
     const picked = shuffleArray(pool).slice(0, 12);
     if (picked.length > 0) {
       onStartQuickTest(picked, `Kiểm tra nhanh Unit ${unit.number}`, unit);

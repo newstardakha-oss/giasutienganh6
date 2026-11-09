@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowLeft, CheckCircle2, RotateCcw } from 'lucide-react';
 import type { GrammarStudentStore, IndexedExerciseItem } from '../types';
 import { EXERCISE_TYPE_LABELS, formatItemPreview, shuffleArray } from '../dataLoader';
+import { getMistakePracticePool } from '../testFormsLoader';
 
 interface MistakesBookViewProps {
   store: GrammarStudentStore;
@@ -16,7 +17,7 @@ export const MistakesBookView: React.FC<MistakesBookViewProps> = ({
   onBackHome,
   onPracticeMistakes,
 }) => {
-  const mistakeIds = Object.keys(store.mistakes).filter((id) => Boolean(itemIndex[id]));
+  const mistakeIds = getMistakePracticePool(store, itemIndex);
   const practiceCount = Math.min(mistakeIds.length, 15);
 
   const handleStartReview = () => {

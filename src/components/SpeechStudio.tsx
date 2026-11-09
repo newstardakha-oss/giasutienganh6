@@ -637,12 +637,19 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId
             {/* Evaluation Results */}
             {evaluation && (
               <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-4 animate-in fade-in duration-200">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3 flex-wrap gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <Award className="w-5 h-5 text-[#FF9500]" />
                     <span className="font-bold text-sm text-slate-900">
-                      Kết Quả Đánh Giá Phát Âm AI
+                      {evaluation.isOfflineFallback
+                        ? 'Chấm tự động cơ bản (chưa có AI)'
+                        : 'Kết Quả Đánh Giá Phát Âm AI'}
                     </span>
+                    {evaluation.isOfflineFallback && (
+                      <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-extrabold">
+                        Chấm tự động cơ bản (chưa có AI)
+                      </span>
+                    )}
                   </div>
                   <div className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-extrabold text-sm">
                     {evaluation.score}/100 - {evaluation.accuracyGrade}
@@ -834,12 +841,19 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({ units, initialUnitId
           {/* Evaluation Results */}
           {evaluation && (
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 animate-in fade-in duration-200">
-              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3 flex-wrap gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   <Award className="w-5 h-5 text-[#FF9500]" />
                   <span className="font-bold text-sm text-slate-900">
-                    Đánh Giá Giao Tiếp AI
+                    {evaluation.isOfflineFallback
+                      ? 'Chấm tự động cơ bản (chưa có AI)'
+                      : 'Đánh Giá Giao Tiếp AI'}
                   </span>
+                  {evaluation.isOfflineFallback && (
+                    <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-extrabold">
+                      Chấm tự động cơ bản (chưa có AI)
+                    </span>
+                  )}
                 </div>
                 <div className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-extrabold text-sm">
                   {evaluation.score}/100 - {evaluation.accuracyGrade}

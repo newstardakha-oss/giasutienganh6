@@ -18,6 +18,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "jstat": [
+        "./src/vendor/jstat/index.ts"
       ]
     },
     "allowImportingTsExtensions": true,

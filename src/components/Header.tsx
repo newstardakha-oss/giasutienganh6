@@ -140,9 +140,24 @@ export const Header: React.FC<HeaderProps> = ({
         setShowExportSubmenu(false);
       }
     };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsAvatarMenuOpen(false);
+        setShowExportSubmenu(false);
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isAvatarMenuOpen]);
+
+  const handleNavClick = (tab: string) => {
+    setActiveTab(tab);
+    window.scrollTo(0, 0);
+  };
 
   const handleExportDocx = () => {
     exportQuestionsToDocx('De_Kiem_Tra_Tieng_Anh_6', appData.questions.slice(0, 10), appData.units[0]);
@@ -183,7 +198,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Trái: Logo + Tên "Gia Sư AI Lớp 6" (chỉ 1 dòng) */}
             <button
               type="button"
-              onClick={() => setActiveTab(appData.isTeacherLoggedIn ? 'report' : 'home')}
+              onClick={() => handleNavClick(appData.isTeacherLoggedIn ? 'report' : 'home')}
               className="flex items-center gap-2.5 cursor-pointer group min-w-0 shrink-0 text-left"
             >
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-all border-2 border-white shrink-0">
@@ -419,7 +434,7 @@ export const Header: React.FC<HeaderProps> = ({
               <>
                 <button
                   type="button"
-                  onClick={() => setActiveTab('report')}
+                  onClick={() => handleNavClick('report')}
                   className={`flex-1 flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all min-w-0 cursor-pointer ${
                     activeTab === 'report' || activeTab === 'home'
                       ? 'nav-active-home shadow-md'
@@ -439,7 +454,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveTab('upload')}
+                  onClick={() => handleNavClick('upload')}
                   className={`flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                     activeTab === 'upload'
                       ? 'nav-active-vocab shadow-md'
@@ -455,7 +470,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveTab('socratic')}
+                  onClick={() => handleNavClick('socratic')}
                   className={`flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                     activeTab === 'socratic'
                       ? 'nav-active-grammar shadow-md'
@@ -479,7 +494,7 @@ export const Header: React.FC<HeaderProps> = ({
                     key={item.id}
                     type="button"
                     id={`nav-tab-${item.id}`}
-                    onClick={() => setActiveTab(item.id)}
+                    onClick={() => handleNavClick(item.id)}
                     className={`flex-1 flex items-center justify-center gap-1.5 px-2.5 lg:px-3.5 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all min-w-0 cursor-pointer ${
                       isActive
                         ? `${item.activeClass} shadow-md`
@@ -516,7 +531,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="grid grid-cols-4 gap-1 max-w-md mx-auto">
             <button
               type="button"
-              onClick={() => setActiveTab('report')}
+              onClick={() => handleNavClick('report')}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
                 activeTab === 'report' || activeTab === 'home'
                   ? 'nav-active-home shadow-sm'
@@ -529,7 +544,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               type="button"
-              onClick={() => setActiveTab('upload')}
+              onClick={() => handleNavClick('upload')}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
                 activeTab === 'upload'
                   ? 'nav-active-vocab shadow-sm'
@@ -542,7 +557,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               type="button"
-              onClick={() => setActiveTab('socratic')}
+              onClick={() => handleNavClick('socratic')}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
                 activeTab === 'socratic'
                   ? 'nav-active-grammar shadow-sm'
@@ -567,7 +582,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               id="mobile-nav-home"
-              onClick={() => setActiveTab('home')}
+              onClick={() => handleNavClick('home')}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
                 activeTab === 'home'
                   ? 'nav-active-home shadow-sm'
@@ -581,7 +596,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               id="mobile-nav-learn"
-              onClick={() => setActiveTab(isLearningActive ? activeTab : 'socratic')}
+              onClick={() => handleNavClick(isLearningActive ? activeTab : 'socratic')}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
                 isLearningActive
                   ? 'nav-active-grammar shadow-sm'
@@ -595,7 +610,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               id="mobile-nav-arena"
-              onClick={() => setActiveTab('arena')}
+              onClick={() => handleNavClick('arena')}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
                 activeTab === 'arena'
                   ? 'nav-active-arena shadow-sm'
@@ -609,7 +624,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               id="mobile-nav-report"
-              onClick={() => setActiveTab('report')}
+              onClick={() => handleNavClick('report')}
               className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-1 rounded-xl text-[11px] font-extrabold whitespace-nowrap transition-all ${
                 activeTab === 'report'
                   ? 'nav-active-home shadow-sm'

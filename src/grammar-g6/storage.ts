@@ -114,51 +114,6 @@ export function loadGrammarProgress(studentId?: string | null): GrammarStudentSt
   return sanitizeStudentStore(root);
 }
 
-const DEMO_STUDENT_STORES: Record<string, GrammarStudentStore> = {
-  'student-6a1-01': {
-    best: { 'u1-s1': 0.8, 'u1-s5': 0.6, 'u2-s1': 0.7 },
-    setProgress: {
-      'u1-s1': { setId: 'u1-s1', bestScore: 0.8, attempts: 2, lastPlayedAt: '2026-11-04T08:00:00Z' },
-      'u1-s5': { setId: 'u1-s5', bestScore: 0.6, attempts: 1, lastPlayedAt: '2026-11-04T09:00:00Z' },
-      'u2-s1': { setId: 'u2-s1', bestScore: 0.7, attempts: 1, lastPlayedAt: '2026-11-05T07:00:00Z' },
-    },
-    mistakes: {
-      'u1-s1-q2': 2,
-      'u1-s6-q1': 2,
-      'u1-s5-q2': 1,
-      'u2-s1-q2': 2,
-      'u2-s4-q5': 1,
-    },
-    attempts: [
-      { itemId: 'u1-s1-q1', setId: 'u1-s1', unitId: 'u1', correct: true, answer: 'is', at: '2026-11-04T08:00:00Z' },
-      { itemId: 'u1-s1-q2', setId: 'u1-s1', unitId: 'u1', correct: false, answer: 'study', at: '2026-11-04T08:01:00Z' },
-      { itemId: 'u1-s6-q1', setId: 'u1-s6', unitId: 'u1', correct: false, answer: "She don't like Art.", at: '2026-11-04T08:05:00Z' },
-      { itemId: 'u1-s5-q2', setId: 'u1-s5', unitId: 'u1', correct: false, answer: 'Lan always is friendly.', at: '2026-11-04T09:00:00Z' },
-      { itemId: 'u2-s1-q2', setId: 'u2-s1', unitId: 'u2', correct: false, answer: "students's", at: '2026-11-05T07:00:00Z' },
-      { itemId: 'u2-s4-q5', setId: 'u2-s4', unitId: 'u2', correct: false, answer: 'some', at: '2026-11-05T07:10:00Z' },
-    ],
-  },
-  'student-6a2-02': {
-    best: { 'u1-s1': 0.7, 'u2-s1': 0.6 },
-    setProgress: {
-      'u1-s1': { setId: 'u1-s1', bestScore: 0.7, attempts: 1, lastPlayedAt: '2026-11-04T10:00:00Z' },
-      'u2-s1': { setId: 'u2-s1', bestScore: 0.6, attempts: 1, lastPlayedAt: '2026-11-05T08:00:00Z' },
-    },
-    mistakes: {
-      'u1-s1-q2': 1,
-      'u1-s1-q4': 2,
-      'u2-s1-q3': 2,
-      'u2-s3-q8': 1,
-    },
-    attempts: [
-      { itemId: 'u1-s1-q2', setId: 'u1-s1', unitId: 'u1', correct: false, answer: 'study', at: '2026-11-04T10:00:00Z' },
-      { itemId: 'u1-s1-q4', setId: 'u1-s1', unitId: 'u1', correct: false, answer: 'do', at: '2026-11-04T10:02:00Z' },
-      { itemId: 'u2-s1-q3', setId: 'u2-s1', unitId: 'u2', correct: false, answer: "childrens'", at: '2026-11-05T08:00:00Z' },
-      { itemId: 'u2-s3-q8', setId: 'u2-s3', unitId: 'u2', correct: false, answer: 'on', at: '2026-11-05T08:05:00Z' },
-    ],
-  },
-};
-
 /**
  * Đọc dữ liệu Sổ lỗi sai & tiến độ Ngữ pháp 6 của danh sách học sinh (phục vụ trang Giáo viên).
  */
@@ -169,36 +124,13 @@ export function loadClassGrammarStores(studentIds: string[]): Record<string, Gra
   for (const id of studentIds) {
     if (root.byStudent && root.byStudent[id]) {
       result[id] = sanitizeStudentStore(root.byStudent[id]);
-    } else if (DEMO_STUDENT_STORES[id]) {
-      result[id] = sanitizeStudentStore(DEMO_STUDENT_STORES[id]);
     } else {
       result[id] = createEmptyStudentStore();
     }
   }
 
-  // Nếu root có dữ liệu chung chưa gắn studentId, gộp vào học sinh đầu tiên trong danh sách để không sót lỗi
-  const rootClean = sanitizeStudentStore(root);
-  if (
-    studentIds.length > 0 &&
-    (Object.keys(rootClean.mistakes).length > 0 || rootClean.attempts.length > 0)
-  ) {
-    const firstId = studentIds[0];
-    const hasAlready =
-      root.byStudent &&
-      Object.values(root.byStudent).some(
-        (st) => Object.keys(st.mistakes || {}).length > 0 || (st.attempts || []).length > 0
-      );
-    if (!hasAlready) {
-      const target = result[firstId] || createEmptyStudentStore();
-      result[firstId] = {
-        best: { ...target.best, ...rootClean.best },
-        setProgress: { ...target.setProgress, ...rootClean.setProgress },
-        mistakes: { ...target.mistakes, ...rootClean.mistakes },
-        attempts: [...target.attempts, ...rootClean.attempts],
-      };
-    }
-  }
-
+  // Dữ liệu chung chưa gắn studentId (chế độ khách) không được gộp vào học sinh nào,
+  // để báo cáo của giáo viên chỉ phản ánh đúng bài làm của từng học sinh.
   return result;
 }
 

@@ -71,6 +71,8 @@ import {
 } from '../grammar-g6/dataLoader';
 import { loadClassGrammarStores } from '../grammar-g6/storage';
 import { TeacherManagementPanel } from './TeacherManagementPanel';
+import { TeacherAnalyticsReportSection } from './TeacherAnalyticsReportSection';
+import { TeacherPrePostTestSection } from './TeacherPrePostTestSection';
 
 interface ParentDashboardProps {
   appData: AppDataSchema;
@@ -191,7 +193,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
   const [formData, setFormData] = useState({
     username: '',
     fullName: '',
-    className: '6A1',
+    className: '',
     password: '',
     avatar: '👨‍🎓',
     dailyGoalMinutes: 20,
@@ -637,12 +639,12 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     const defaultClass =
       selectedClassFilter !== 'all'
         ? normalizeClassName(selectedClassFilter)
-        : availableClasses[0] || '6A1';
+        : '';
     setFormData({
       username: '',
       fullName: '',
       className: defaultClass,
-      password: 'Hocsinh@2026',
+      password: '',
       avatar: '👨‍🎓',
       dailyGoalMinutes: 20,
     });
@@ -733,9 +735,9 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
       fullName: cleanFullName,
       grade: 6,
       className: cleanClass,
-      provinceName: currentTeacher?.provinceName || 'Tỉnh Quảng Ngãi',
-      communeName: currentTeacher?.communeName || 'Xã Đăk Hà',
-      schoolName: currentTeacher?.schoolName || 'THCS Chu Văn An',
+      provinceName: currentTeacher?.provinceName || '',
+      communeName: currentTeacher?.communeName || '',
+      schoolName: currentTeacher?.schoolName || '',
       passwordHash: hashedPassword,
       recoveryCodeHash: hashPasswordSync(recoveryCode),
       parentConsent: true,
@@ -1720,6 +1722,30 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
               </div>
             </div>
           </section>
+
+          {/* =====================================================================
+              KIỂM TRA ĐẦU VÀO – ĐẦU RA & NGHIÊN CỨU SƯ PHẠM ỨNG DỤNG (NCKHSPƯD / SKKN)
+             ===================================================================== */}
+          <TeacherPrePostTestSection
+            appData={appData}
+            currentTeacher={currentTeacher}
+            isAdmin={isAdmin}
+            scopeStudents={teacherStudents}
+            grammarBundle={grammarBundle}
+            onUpdateStudent={onUpdateStudent}
+          />
+
+          {/* =====================================================================
+              BÁO CÁO (attempts + dailyStats): lọc Trường / Lớp / Unit / Kỹ năng / Thời gian, Xuất Excel
+             ===================================================================== */}
+          <TeacherAnalyticsReportSection
+            appData={appData}
+            currentTeacher={currentTeacher}
+            isAdmin={isAdmin}
+            scopeStudents={teacherStudents}
+            grammarBundle={grammarBundle}
+            classGrammarStores={grammarStoreByStudent}
+          />
 
           {/* =====================================================================
               PHẦN 4: DANH SÁCH ĐIỂM NGỮ PHÁP LỚP SAI NHIỀU NHẤT (LẤY TỪ SỔ LỖI SAI)

@@ -51,6 +51,7 @@ import {
   getLinkedStudentIdsForParent,
   addLinkedStudentForParent,
   removeLinkedStudentForParent,
+  hasAdminAccount,
 } from '../services/storage';
 
 interface LandingCoverScreenProps {
@@ -106,8 +107,17 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
         setIsOpen(false);
       }
     };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
     document.addEventListener('mousedown', handleOutside);
-    return () => document.removeEventListener('mousedown', handleOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const filteredOptions = useMemo(() => {
@@ -121,85 +131,100 @@ const SearchableSelect: React.FC<SearchableSelectProps> = ({
   return (
     <div ref={containerRef} className="relative">
       <label className="text-xs font-extrabold text-slate-800 block mb-1">{label}</label>
-      <button
-        type="button"
-        disabled={disabled}
-        onClick={() => {
-          if (!disabled) {
-            setIsOpen((prev) => !prev);
-            setQuery('');
-          }
-        }}
-        className={`w-full pl-10 pr-9 py-2.5 rounded-2xl neu-inset text-left text-xs font-extrabold flex items-center justify-between transition-all ${
-          disabled
-            ? 'opacity-60 cursor-not-allowed text-slate-500'
-            : 'cursor-pointer text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-        }`}
-      >
-        <span className="absolute left-3.5 top-3 text-indigo-600">{icon}</span>
-        <span className={`truncate ${value ? 'text-slate-900 font-extrabold' : 'text-slate-600 font-semibold'}`}>
-          {value || placeholder}
-        </span>
-        <ChevronDown className="w-4 h-4 text-slate-600 shrink-0" />
-      </button>
+      <div className="relative">
+        <button
+          type="button"
+          disabled={disabled}
+          onClick={() => {
+            if (!disabled) {
+              setIsOpen((prev) => !prev);
+              setQuery('');
+            }
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              setIsOpen(false);
+            }
+          }}
+          className={`relative w-full pl-10 pr-9 py-2.5 rounded-2xl neu-inset text-left text-xs font-extrabold flex items-center justify-between transition-all ${
+            disabled
+              ? 'opacity-60 cursor-not-allowed text-slate-500'
+              : 'cursor-pointer text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+          }`}
+        >
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-indigo-600 pointer-events-none flex items-center">
+            {icon}
+          </span>
+          <span className={`truncate ${value ? 'text-slate-900 font-extrabold' : 'text-slate-600 font-semibold'}`}>
+            {value || placeholder}
+          </span>
+          <ChevronDown className="w-4 h-4 text-slate-600 shrink-0" />
+        </button>
 
-      {isOpen && !disabled && (
-        <div className="absolute z-40 left-0 right-0 mt-1.5 bg-white rounded-2xl shadow-2xl border-2 border-indigo-200 overflow-hidden animate-in fade-in duration-150">
-          <div className="p-2 border-b border-slate-200 bg-slate-50 relative">
-            <Search className="w-3.5 h-3.5 text-slate-500 absolute left-4 top-4.5" />
-            <input
-              type="text"
-              autoFocus
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Gõ để tìm nhanh..."
-              className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-white border border-slate-300 text-xs font-bold text-slate-900 placeholder-slate-600 focus:outline-none focus:border-indigo-500"
-            />
-          </div>
-          <div className="max-h-52 overflow-y-auto divide-y divide-slate-100">
-            {filteredOptions.length > 0 ? (
-              filteredOptions.map((opt) => (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => {
-                    onChange(opt);
+        {isOpen && !disabled && (
+          <div className="absolute z-40 left-0 right-0 mt-1.5 bg-white rounded-2xl shadow-2xl border-2 border-indigo-200 overflow-hidden animate-in fade-in duration-150">
+            <div className="p-2 border-b border-slate-200 bg-slate-50 relative">
+              <Search className="w-3.5 h-3.5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                autoFocus
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') {
+                    e.stopPropagation();
                     setIsOpen(false);
-                    setQuery('');
-                  }}
-                  className={`w-full text-left px-3.5 py-2.5 text-xs font-bold transition-colors flex items-center justify-between cursor-pointer ${
-                    value === opt
-                      ? 'bg-indigo-50 text-indigo-800 font-extrabold'
-                      : 'text-slate-800 hover:bg-slate-100'
-                  }`}
-                >
-                  <span>{opt}</span>
-                  {value === opt && <Check className="w-3.5 h-3.5 text-indigo-600 shrink-0" />}
-                </button>
-              ))
-            ) : (
-              <div className="p-3 text-center text-xs text-slate-600 font-semibold space-y-2">
-                <p>Không tìm thấy kết quả khớp "{query}".</p>
-                {allowCustomAdd && query.trim() && (
+                  }
+                }}
+                placeholder="Gõ để tìm nhanh..."
+                className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-white border border-slate-300 text-xs font-bold text-slate-900 placeholder-slate-600 focus:outline-none focus:border-indigo-500"
+              />
+            </div>
+            <div className="max-h-52 overflow-y-auto divide-y divide-slate-100">
+              {filteredOptions.length > 0 ? (
+                filteredOptions.map((opt) => (
                   <button
+                    key={opt}
                     type="button"
                     onClick={() => {
-                      const formatted = normalizeFullName(query.trim());
-                      onChange(formatted);
+                      onChange(opt);
                       setIsOpen(false);
                       setQuery('');
                     }}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 text-white font-extrabold text-xs shadow-xs hover:bg-indigo-700 cursor-pointer"
+                    className={`w-full text-left px-3.5 py-2.5 text-xs font-bold transition-colors flex items-center justify-between cursor-pointer ${
+                      value === opt
+                        ? 'bg-indigo-50 text-indigo-800 font-extrabold'
+                        : 'text-slate-800 hover:bg-slate-100'
+                    }`}
                   >
-                    <Plus className="w-3.5 h-3.5" />
-                    <span>{customAddLabel}: "{normalizeFullName(query.trim())}"</span>
+                    <span>{opt}</span>
+                    {value === opt && <Check className="w-3.5 h-3.5 text-indigo-600 shrink-0" />}
                   </button>
-                )}
-              </div>
-            )}
+                ))
+              ) : (
+                <div className="p-3 text-center text-xs text-slate-600 font-semibold space-y-2">
+                  <p>Không tìm thấy kết quả khớp "{query}".</p>
+                  {allowCustomAdd && query.trim() && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const formatted = normalizeFullName(query.trim());
+                        onChange(formatted);
+                        setIsOpen(false);
+                        setQuery('');
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600 text-white font-extrabold text-xs shadow-xs hover:bg-indigo-700 cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>{customAddLabel}: "{normalizeFullName(query.trim())}"</span>
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
@@ -236,8 +261,17 @@ const SchoolSelector: React.FC<SchoolSelectorProps> = ({
         setIsDropdownOpen(false);
       }
     };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsDropdownOpen(false);
+      }
+    };
     document.addEventListener('mousedown', handleOutside);
-    return () => document.removeEventListener('mousedown', handleOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const filteredSchools = useMemo(() => {
@@ -286,7 +320,7 @@ const SchoolSelector: React.FC<SchoolSelectorProps> = ({
 
       {!isAddingNew ? (
         <div className="relative">
-          <School className="w-4 h-4 text-indigo-600 absolute left-3.5 top-3" />
+          <School className="w-4 h-4 text-indigo-600 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             disabled={disabled}
@@ -301,12 +335,15 @@ const SchoolSelector: React.FC<SchoolSelectorProps> = ({
               setSearchQuery(e.target.value);
               setIsDropdownOpen(true);
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                setIsDropdownOpen(false);
+              }
+            }}
             placeholder={
               disabled
-                ? 'Vui lòng chọn Tỉnh/Thành phố và Xã/Phường trước'
-                : existingSchools.length > 0
-                ? `Tìm hoặc chọn trường (${existingSchools.length} trường đã có)...`
-                : 'Chưa có trường ở xã này — bấm "Thêm trường mới"'
+                ? 'Chọn Tỉnh/Thành phố và Xã/Phường trước...'
+                : 'Chọn Trường THCS...'
             }
             className={`w-full pl-10 pr-9 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-900 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
               disabled ? 'opacity-60 cursor-not-allowed' : ''
@@ -321,7 +358,7 @@ const SchoolSelector: React.FC<SchoolSelectorProps> = ({
                 setSearchQuery('');
               }
             }}
-            className="absolute right-3 top-3 text-slate-600 cursor-pointer"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 cursor-pointer"
           >
             <ChevronDown className="w-4 h-4" />
           </button>
@@ -430,11 +467,22 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   // 1. Top 3 role tabs: Học sinh, Giáo viên, Phụ huynh (equal height, unnumbered)
   const [activeRole, setActiveRole] = useState<'student' | 'teacher' | 'parent'>('student');
 
+  // Check if any admin account exists in the system
+  const hasAdmin = hasAdminAccount(appData);
+
   // Sub-modes inside Student Role: 'login' | 'register' | 'forgot'
   const [studentView, setStudentView] = useState<'login' | 'register' | 'forgot'>('login');
 
-  // Sub-modes inside Teacher Role: 'login' | 'register'
-  const [teacherMode, setTeacherMode] = useState<'login' | 'register'>('login');
+  // Sub-modes inside Teacher Role: 'login' | 'register' (force 'register' if no admin exists yet)
+  const [teacherMode, setTeacherMode] = useState<'login' | 'register'>(() =>
+    hasAdminAccount(appData) ? 'login' : 'register'
+  );
+
+  useEffect(() => {
+    if (!hasAdmin) {
+      setTeacherMode('register');
+    }
+  }, [hasAdmin]);
 
   // Lockout countdown tick every 1 second
   const [, setTick] = useState(0);
@@ -449,13 +497,13 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const [showLoginPass, setShowLoginPass] = useState(false);
   const [studentErr, setStudentErr] = useState('');
 
-  // ===== STUDENT REGISTER STATE (Ordered top-to-bottom per spec) =====
+  // ===== STUDENT REGISTER STATE (Ordered top-to-bottom per spec, empty defaults) =====
   const [regFullName, setRegFullName] = useState('');
-  const [regProvince, setRegProvince] = useState('Tỉnh Quảng Ngãi');
-  const [regCommune, setRegCommune] = useState('Xã Đăk Hà');
-  const [regSchoolName, setRegSchoolName] = useState('THCS Chu Văn An');
+  const [regProvince, setRegProvince] = useState('');
+  const [regCommune, setRegCommune] = useState('');
+  const [regSchoolName, setRegSchoolName] = useState('');
   const [regGrade, setRegGrade] = useState<number>(6);
-  const [regClassInput, setRegClassInput] = useState('6A1');
+  const [regClassInput, setRegClassInput] = useState('');
   const [regUsername, setRegUsername] = useState('');
   const [isUsernameManuallyEdited, setIsUsernameManuallyEdited] = useState(false);
   const [regPassword, setRegPassword] = useState('');
@@ -487,9 +535,9 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const [teacherConfirmPass, setTeacherConfirmPass] = useState('');
   const [showTeacherPass, setShowTeacherPass] = useState(false);
   const [teacherFullName, setTeacherFullName] = useState('');
-  const [teacherProvince, setTeacherProvince] = useState('Tỉnh Quảng Ngãi');
-  const [teacherCommune, setTeacherCommune] = useState('Xã Đăk Hà');
-  const [teacherSchoolName, setTeacherSchoolName] = useState('THCS Chu Văn An');
+  const [teacherProvince, setTeacherProvince] = useState('');
+  const [teacherCommune, setTeacherCommune] = useState('');
+  const [teacherSchoolName, setTeacherSchoolName] = useState('');
   const [teacherErr, setTeacherErr] = useState('');
   const [teacherSuccess, setTeacherSuccess] = useState('');
 
@@ -546,7 +594,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
     if (!regFullName.trim() && !regUsername.trim()) return [];
     return suggestAvailableUsernames(
       regFullName,
-      normalizedRegClass || '6A1',
+      normalizedRegClass,
       regUsername,
       appData.students
     );
@@ -556,8 +604,8 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const handleStudentFullNameChange = (val: string) => {
     setRegFullName(val);
     if (!isUsernameManuallyEdited) {
-      const base = generateBaseUsername(val, normalizedRegClass || '6A1');
-      const suggestions = suggestAvailableUsernames(val, normalizedRegClass || '6A1', base, appData.students);
+      const base = generateBaseUsername(val, normalizedRegClass);
+      const suggestions = suggestAvailableUsernames(val, normalizedRegClass, base, appData.students);
       setRegUsername(suggestions[0] || base);
     }
   };
@@ -566,8 +614,8 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
     setRegClassInput(val);
     const normCls = normalizeClassName(val, regGrade);
     if (!isUsernameManuallyEdited && regFullName.trim()) {
-      const base = generateBaseUsername(regFullName, normCls || '6A1');
-      const suggestions = suggestAvailableUsernames(regFullName, normCls || '6A1', base, appData.students);
+      const base = generateBaseUsername(regFullName, normCls);
+      const suggestions = suggestAvailableUsernames(regFullName, normCls, base, appData.students);
       setRegUsername(suggestions[0] || base);
     }
   };
@@ -1212,11 +1260,8 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                     value={regProvince}
                     onChange={(newProv) => {
                       setRegProvince(newProv);
-                      const comms = getCommunesForProvince(appData, newProv);
-                      const firstComm = comms[0] || '';
-                      setRegCommune(firstComm);
-                      const schs = getSchoolsForCommune(appData, newProv, firstComm);
-                      setRegSchoolName(schs[0] || '');
+                      setRegCommune('');
+                      setRegSchoolName('');
                     }}
                     options={provinces}
                     placeholder="Chọn Tỉnh/Thành phố..."
@@ -1229,11 +1274,10 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                     value={regCommune}
                     onChange={(newComm) => {
                       setRegCommune(newComm);
-                      const schs = getSchoolsForCommune(appData, regProvince, newComm);
-                      setRegSchoolName(schs[0] || '');
+                      setRegSchoolName('');
                     }}
                     options={studentCommunes}
-                    placeholder={regProvince ? 'Chọn hoặc tìm Xã/Phường...' : 'Chọn Tỉnh/Thành phố trước'}
+                    placeholder={regProvince ? 'Chọn Xã/Phường...' : 'Chọn Tỉnh/Thành phố trước'}
                     disabled={!regProvince}
                     icon={<MapPin className="w-4 h-4" />}
                     allowCustomAdd={true}
@@ -1479,7 +1523,7 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                         maxLength={10}
                         value={forgotRecoveryCode}
                         onChange={(e) => setForgotRecoveryCode(e.target.value.toUpperCase())}
-                        placeholder="Nhập mã 8 ký tự (ví dụ: AN6A1CVA)"
+                        placeholder="Nhập mã khôi phục 8 ký tự"
                         className="w-full px-3.5 py-2.5 rounded-2xl neu-inset text-xs font-mono font-extrabold text-slate-900 uppercase tracking-wider placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                     </div>
@@ -1560,27 +1604,31 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
             </>
           )}
 
-          {/* ================= ROLE 2: GIÁO VIÊN ================= */}
+          {/* ================= ROLE 2: GIÁO VIÊN / QUẢN TRỊ VIÊN ================= */}
           {activeRole === 'teacher' && (
             <form onSubmit={handleTeacherSubmit} className="space-y-3.5 animate-in fade-in duration-150">
               <div className="border-b border-indigo-200/80 pb-2.5">
                 <h3 className="font-extrabold text-base sm:text-lg text-slate-900">
-                  {teacherMode === 'login'
+                  {!hasAdmin
+                    ? 'Thiết lập tài khoản Quản trị viên (Admin) lần đầu'
+                    : teacherMode === 'login'
                     ? 'Đăng nhập Giáo viên'
                     : 'Đăng ký tài khoản Giáo viên'}
                 </h3>
                 <p className="text-xs text-slate-700 font-semibold">
-                  {teacherMode === 'login'
+                  {!hasAdmin
+                    ? 'Hệ thống chưa có tài khoản Quản trị viên. Tài khoản đầu tiên được tạo tại đây sẽ là Quản trị viên (Admin).'
+                    : teacherMode === 'login'
                     ? 'Xem tự động tiến độ học sinh cùng trường và lọc theo từng lớp'
                     : 'Chọn Tỉnh/Thành → Xã/Phường → Trường để tự động kết nối danh sách học sinh cùng trường'}
                 </p>
               </div>
 
-              {teacherMode === 'register' && (
+              {(teacherMode === 'register' || !hasAdmin) && (
                 <>
                   <div>
                     <label className="text-xs font-extrabold text-slate-800 block mb-1">
-                      Họ và tên Giáo viên: *
+                      Họ và tên Giáo viên / Quản trị viên: *
                     </label>
                     <div className="relative">
                       <User className="w-4 h-4 text-indigo-600 absolute left-3.5 top-3" />
@@ -1601,11 +1649,8 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                     value={teacherProvince}
                     onChange={(newProv) => {
                       setTeacherProvince(newProv);
-                      const comms = getCommunesForProvince(appData, newProv);
-                      const firstComm = comms[0] || '';
-                      setTeacherCommune(firstComm);
-                      const schs = getSchoolsForCommune(appData, newProv, firstComm);
-                      setTeacherSchoolName(schs[0] || '');
+                      setTeacherCommune('');
+                      setTeacherSchoolName('');
                     }}
                     options={provinces}
                     placeholder="Chọn Tỉnh/Thành phố..."
@@ -1617,11 +1662,10 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                     value={teacherCommune}
                     onChange={(newComm) => {
                       setTeacherCommune(newComm);
-                      const schs = getSchoolsForCommune(appData, teacherProvince, newComm);
-                      setTeacherSchoolName(schs[0] || '');
+                      setTeacherSchoolName('');
                     }}
                     options={teacherCommunes}
-                    placeholder={teacherProvince ? 'Chọn hoặc tìm Xã/Phường...' : 'Chọn Tỉnh/Thành phố trước'}
+                    placeholder={teacherProvince ? 'Chọn Xã/Phường...' : 'Chọn Tỉnh/Thành phố trước'}
                     disabled={!teacherProvince}
                     icon={<MapPin className="w-4 h-4" />}
                     allowCustomAdd={true}
@@ -1730,22 +1774,30 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                 disabled={teacherLock.isLocked}
                 className="w-full py-3.5 rounded-2xl neu-btn-primary text-white font-extrabold text-sm shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.01]"
               >
-                <span>{teacherMode === 'login' ? 'Đăng nhập' : 'Hoàn tất đăng ký Giáo viên'}</span>
+                <span>
+                  {!hasAdmin
+                    ? 'Tạo tài khoản Admin đầu tiên'
+                    : teacherMode === 'login'
+                    ? 'Đăng nhập'
+                    : 'Hoàn tất đăng ký Giáo viên'}
+                </span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
-              <div className="text-center pt-1">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setTeacherMode(teacherMode === 'login' ? 'register' : 'login');
-                    setTeacherErr('');
-                  }}
-                  className="text-xs sm:text-sm text-indigo-800 hover:text-indigo-950 font-extrabold underline cursor-pointer"
-                >
-                  {teacherMode === 'login' ? 'Chưa có tài khoản? Đăng ký' : 'Đã có tài khoản? Đăng nhập'}
-                </button>
-              </div>
+              {hasAdmin && (
+                <div className="text-center pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTeacherMode(teacherMode === 'login' ? 'register' : 'login');
+                      setTeacherErr('');
+                    }}
+                    className="text-xs sm:text-sm text-indigo-800 hover:text-indigo-950 font-extrabold underline cursor-pointer"
+                  >
+                    {teacherMode === 'login' ? 'Chưa có tài khoản? Đăng ký' : 'Đã có tài khoản? Đăng nhập'}
+                  </button>
+                </div>
+              )}
             </form>
           )}
 
