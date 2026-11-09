@@ -23,6 +23,7 @@ interface VocabHomeViewProps {
   streakDays: number;
   selectedUnitFilter: string | undefined;
   onStartStudy: (unitFilter?: string) => void;
+  onChangeUnit: (unit: string | undefined) => void;
   onOpenUnitSelect: () => void;
   onOpenStats: () => void;
   onOpenTeacherManager: () => void;
@@ -38,11 +39,13 @@ export const VocabHomeView: React.FC<VocabHomeViewProps> = ({
   streakDays,
   selectedUnitFilter,
   onStartStudy,
+  onChangeUnit,
   onOpenUnitSelect,
   onOpenStats,
   onOpenTeacherManager,
   onOpenSettings,
 }) => {
+  const unitNames = Array.from(new Set(words.map((w) => w.unit)));
   const masteredCount = words.filter((w) => isWordMastered(w.id, cardStates)).length;
   const totalEstimatedTurns = dueCardsCount + newWordsTodayCount * 3;
   const hasCardsToStudy = dueCardsCount > 0 || newWordsTodayCount > 0;
@@ -64,11 +67,22 @@ export const VocabHomeView: React.FC<VocabHomeViewProps> = ({
               Mỗi từ vựng đi qua 3 bước: <strong className="text-white">Làm quen ➔ Nghe & đoán ➔ Nhớ lại</strong>.
               Ôn đúng lúc sắp quên giúp em nhớ từ siêu lâu mà không cần học vẹt!
             </p>
-            {selectedUnitFilter && (
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-xl bg-amber-400/20 border border-amber-300/40 text-amber-100 text-xs font-extrabold">
-                <span>📌 Đang chọn: {selectedUnitFilter}</span>
-              </div>
-            )}
+            <div className="inline-flex items-center gap-2 flex-wrap px-3.5 py-2 rounded-xl bg-amber-400/20 border border-amber-300/40 text-amber-100 text-xs font-extrabold">
+              <label htmlFor="vocab-unit-select">📌 Chọn bài học:</label>
+              <select
+                id="vocab-unit-select"
+                value={selectedUnitFilter ?? ''}
+                onChange={(e) => onChangeUnit(e.target.value || undefined)}
+                className="px-3 py-1.5 rounded-lg bg-white text-slate-800 text-xs font-extrabold focus:outline-none cursor-pointer max-w-[260px]"
+              >
+                <option value="">Tất cả bài học</option>
+                {unitNames.map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* Huy hiệu Streak 🔥 */}

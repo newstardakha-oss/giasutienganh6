@@ -653,7 +653,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </div>
 
       {/* KHỐI BÀI KIỂM TRA ĐẦU VÀO (PRE-TEST) & ĐẦU RA (POST-TEST) */}
-      {currentStudent && openTestRounds.length > 0 && onStartExamRound && (
+      {currentStudent && openTestRounds.some((r) => r.kind !== 'post') && onStartExamRound && (
         <section
           aria-label="Bài kiểm tra đầu vào và đầu ra"
           className="neu-card bg-white p-5 sm:p-6 border-2 border-amber-300 space-y-4"
@@ -674,7 +674,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {openTestRounds.map((round) => {
+            {openTestRounds.filter((round) => round.kind !== 'post').map((round) => {
               const att = getActiveStudentAttemptForRound(round.id, currentStudent.id);
               const isSubmitted =
                 att?.status === 'submitted' || att?.status === 'auto_submitted';

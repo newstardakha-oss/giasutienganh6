@@ -207,6 +207,7 @@ export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
           streakDays={effectiveStreakDays}
           selectedUnitFilter={selectedUnitFilter}
           onStartStudy={(unit) => handleStartStudy(unit)}
+          onChangeUnit={setSelectedUnitFilter}
           onOpenUnitSelect={() => setScreen('units')}
           onOpenStats={() => setScreen('stats')}
           onOpenTeacherManager={() => setScreen('teacher')}

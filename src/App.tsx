@@ -559,9 +559,9 @@ export default function App() {
             </div>
 
             {/* Banner Bài Kiểm Tra Đầu Vào / Đầu Ra đang mở cho lớp của Học sinh */}
-            {currentStudent && openStudentTestRounds.length > 0 && (
+            {currentStudent && openStudentTestRounds.some((r) => r.kind !== 'post') && (
               <div className="mt-4 space-y-3">
-                {openStudentTestRounds.map((round) => {
+                {openStudentTestRounds.filter((round) => round.kind !== 'post').map((round) => {
                   const att = getActiveStudentAttemptForRound(round.id, currentStudent.id);
                   const isSubmitted =
                     att?.status === 'submitted' || att?.status === 'auto_submitted';
