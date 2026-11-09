@@ -421,7 +421,7 @@ function createDefaultTestRounds(): FirestoreTestRoundDoc[] {
       closeAt: '',
       durationMin: 40,
       showScoreAfterSubmit: true,
-      status: 'open',
+      status: 'draft',
       createdBy: 'system',
       createdAt,
     },

@@ -636,7 +636,7 @@ export default function App() {
                 </p>
 
                 <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
-                  {openStudentTestRounds.map((round) => (
+                  {openStudentTestRounds.filter((round) => round.kind !== 'post').map((round) => (
                     <button
                       key={round.id}
                       type="button"

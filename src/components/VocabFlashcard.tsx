@@ -11,6 +11,7 @@ import confetti from 'canvas-confetti';
 
 interface VocabFlashcardProps {
   units: SgkUnit[];
+  initialUnitId?: string | null;
   onBack: () => void;
 }
 
@@ -34,8 +35,22 @@ const speak = (text: string) => {
   }
 };
 
-export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({ units, onBack }) => {
-  const [selectedUnitId, setSelectedUnitId] = useState<string>(units[0]?.id || '');
+export const VocabFlashcard: React.FC<VocabFlashcardProps> = ({
+  units,
+  initialUnitId,
+  onBack,
+}) => {
+  const [selectedUnitId, setSelectedUnitId] = useState<string>(
+    initialUnitId && units.some((u) => u.id === initialUnitId)
+      ? initialUnitId
+      : units[0]?.id || ''
+  );
+
+  useEffect(() => {
+    if (initialUnitId && units.some((u) => u.id === initialUnitId)) {
+      setSelectedUnitId(initialUnitId);
+    }
+  }, [initialUnitId, units]);
   const [vocabData, setVocabData] = useState<VocabItem[]>([]);
   const [selectedPart, setSelectedPart] = useState<string>('all');
   const [mode, setMode] = useState<Mode>('browse');

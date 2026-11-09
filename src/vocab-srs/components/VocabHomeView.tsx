@@ -46,7 +46,10 @@ export const VocabHomeView: React.FC<VocabHomeViewProps> = ({
   onOpenSettings,
 }) => {
   const unitNames = Array.from(new Set(words.map((w) => w.unit)));
-  const masteredCount = words.filter((w) => isWordMastered(w.id, cardStates)).length;
+  const scopedWords = selectedUnitFilter
+    ? words.filter((w) => w.unit === selectedUnitFilter)
+    : words;
+  const masteredCount = scopedWords.filter((w) => isWordMastered(w.id, cardStates)).length;
   const totalEstimatedTurns = dueCardsCount + newWordsTodayCount * 3;
   const hasCardsToStudy = dueCardsCount > 0 || newWordsTodayCount > 0;
 
@@ -143,7 +146,7 @@ export const VocabHomeView: React.FC<VocabHomeViewProps> = ({
             </span>
             <span className="text-3xl font-black text-slate-900">
               {masteredCount}{' '}
-              <span className="text-sm font-bold text-slate-400">/ {words.length}</span>
+              <span className="text-sm font-bold text-slate-400">/ {scopedWords.length}</span>
             </span>
             <span className="text-xs font-bold text-slate-500 block">
               Thẻ 2 & Thẻ 3 đạt bậc ≥ 3

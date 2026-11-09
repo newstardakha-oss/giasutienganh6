@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Word,
   CardState,
@@ -6,6 +6,7 @@ import {
   SessionTurnResult,
   VocabSrsStoreData,
 } from '../types';
+import { UNIT_NAMES } from '../seedData';
 import {
   loadVocabSrsData,
   saveVocabSrsData,
@@ -39,19 +40,27 @@ type ActiveScreen =
   | 'settings';
 
 interface VocabSrsAppProps {
+  initialUnitId?: string | null;
   streakDays?: number;
   onSessionCompleted?: (session: StudySession) => void;
 }
 
 export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
+  initialUnitId,
   streakDays,
   onSessionCompleted,
 }) => {
   const [store, setStore] = useState<VocabSrsStoreData>(() => loadVocabSrsData());
   const [screen, setScreen] = useState<ActiveScreen>('home');
   const [selectedUnitFilter, setSelectedUnitFilter] = useState<string | undefined>(
-    'Unit 1 - My New School'
+    (initialUnitId && UNIT_NAMES[initialUnitId]) || 'Unit 1 - My New School'
   );
+
+  useEffect(() => {
+    if (initialUnitId && UNIT_NAMES[initialUnitId]) {
+      setSelectedUnitFilter(UNIT_NAMES[initialUnitId]);
+    }
+  }, [initialUnitId]);
   const [activeQueue, setActiveQueue] = useState<QueueItem[]>([]);
   const [lastSessionResults, setLastSessionResults] = useState<SessionTurnResult[]>([]);
   const [sessionStartTime, setSessionStartTime] = useState<number>(Date.now());
@@ -150,9 +159,13 @@ export const VocabSrsApp: React.FC<VocabSrsAppProps> = ({
         Math.round((Date.now() - sessionStartTime) / 1000)
       );
 
+      const matchedUnitId =
+        Object.entries(UNIT_NAMES).find(([, name]) => name === selectedUnitFilter)?.[0] ||
+        'unit-1';
+
       onSessionCompleted({
         id: `vocab-srs-${Date.now()}`,
-        unitId: 'unit-1',
+        unitId: matchedUnitId,
         unitTitle: selectedUnitFilter || 'Từ Vựng Spaced Repetition',
         skill: 'Vocabulary',
         score: scorePct,

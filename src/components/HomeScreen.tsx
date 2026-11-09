@@ -652,10 +652,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </section>
       </div>
 
-      {/* KHỐI BÀI KIỂM TRA ĐẦU VÀO (PRE-TEST) & ĐẦU RA (POST-TEST) */}
+      {/* KHỐI BÀI KIỂM TRA ĐẦU VÀO (PRE-TEST) */}
       {currentStudent && openTestRounds.some((r) => r.kind !== 'post') && onStartExamRound && (
         <section
-          aria-label="Bài kiểm tra đầu vào và đầu ra"
+          aria-label="Bài kiểm tra đầu vào"
           className="neu-card bg-white p-5 sm:p-6 border-2 border-amber-300 space-y-4"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
@@ -665,7 +665,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 <span>Đánh giá năng lực chuẩn hóa (40 câu · 40 phút)</span>
               </div>
               <h3 className="text-base sm:text-lg font-extrabold text-slate-900 mt-1.5">
-                Bài Kiểm Tra Đầu Vào (Pre-test) & Đầu Ra (Post-test)
+                Bài Kiểm Tra Đầu Vào (Pre-test)
               </h3>
               <p className="text-xs text-slate-600 font-semibold mt-0.5">
                 Học sinh mới vui lòng hoàn thành <strong>Bài kiểm tra Đầu vào (Pre-test)</strong> trước khi bắt đầu lộ trình học tập.

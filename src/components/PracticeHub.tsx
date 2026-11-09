@@ -234,9 +234,17 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
       {/* Render SRS mode or Flashcard mode or Quiz mode */}
       {subMode === 'srs' ? (
-        <VocabSrsApp streakDays={streakDays} onSessionCompleted={onSessionCompleted} />
+        <VocabSrsApp
+          initialUnitId={initialUnitId}
+          streakDays={streakDays}
+          onSessionCompleted={onSessionCompleted}
+        />
       ) : subMode === 'flashcard' ? (
-        <VocabFlashcard units={units} onBack={() => setSubMode('srs')} />
+        <VocabFlashcard
+          units={units}
+          initialUnitId={initialUnitId}
+          onBack={() => setSubMode('srs')}
+        />
       ) : (
       <>
 
