@@ -1,55 +1,19 @@
 import { WritingFeedback, PronunciationEvaluation, Question } from '../types';
+import { getUnitWritingData } from '../data/gs6Writing';
 
-export const SAMPLE_ESSAYS: Record<string, { prompt: string; sample: string }> = {
-  'unit-1': {
-    prompt: 'Write a paragraph of 40-50 words about your school.',
-    sample: 'My school is Le Loi Lower Secondary School. It is in a quiet area in my town. The school has 20 classes and about 30 teachers. The teachers are very friendly and helpful. I like my school library best because there are many good books.',
-  },
-  'unit-2': {
-    prompt: 'Write an email to a friend telling him/her about your house.',
-    sample: 'Hi Mira, Thanks for your email. Now I will tell you about my house. I live in a town house in Ha Noi. There are six rooms in my house. My favorite room is my bedroom because it is quiet and cozy.',
-  },
-  'unit-3': {
-    prompt: 'Write a diary entry of about 50 words about your best friend.',
-    sample: 'Dear Diary, My best friend is Phong. He is tall and has short black hair. He is very clever and hard-working. He always helps me with my homework. I like Phong because he is kind and funny.',
-  },
-  'unit-4': {
-    prompt: 'Write a paragraph of 40-50 words about your neighbourhood.',
-    sample: 'I live in a quiet neighbourhood in Da Nang. There are many tall trees and a nice park near my house. In the afternoon, I often play badminton with my friends there. I like my neighbourhood because the people are friendly, but I dislike the dirty streets after the night market.',
-  },
-  'unit-5': {
-    prompt: 'Write a short paragraph introducing a natural wonder in Viet Nam.',
-    sample: 'Ha Long Bay is a famous natural wonder in Quang Ninh, Viet Nam. It has thousands of beautiful islands and impressive limestone caves. Visitors can take a boat trip to enjoy the stunning scenery and eat fresh seafood. It is a wonderful place to visit in summer.',
-  },
-  'unit-6': {
-    prompt: 'Write an email to a friend about what children should and shouldn\'t do at Tet.',
-    sample: 'Dear Tom, Tet is coming soon! My family cleans and decorates our house with pink peach blossoms. Children should behave well and wish adults good health. They shouldn\'t break things or make a mess. I love getting lucky money in red envelopes!',
-  },
-  'unit-7': {
-    prompt: 'Write a paragraph about your favorite TV programme.',
-    sample: 'My favorite TV programme is "Let\'s Learn English" on VTV7. It airs every Saturday at 8 p.m. In this show, viewers learn English through fun games and songs. I like it because it helps me speak English better and makes learning fun.',
-  },
-  'unit-8': {
-    prompt: 'Write a paragraph about a sport or game you like.',
-    sample: 'My favorite sport is badminton. I play it with my brother in the yard every afternoon. We need two rackets and a shuttlecock to play. It is easy to play and keeps me fit and healthy. I feel happy whenever I win a match.',
-  },
-  'unit-9': {
-    prompt: 'Write a postcard to a friend about a city you visited.',
-    sample: 'Dear Linh, I am having a great time in London! The weather is cool and rainy today. Yesterday, I visited the Big Ben and took photos near the River Thames. The fish and chips here is delicious. See you next week!',
-  },
-  'unit-10': {
-    prompt: 'Write a paragraph about your dream house in the future.',
-    sample: 'My dream house will be on an island in the future. It will be a big high-tech villa surrounded by trees. There will be smart TVs and a helper robot to clean the floors and cook meals.',
-  },
-  'unit-11': {
-    prompt: 'Write a paragraph about 3 to 4 tips to make your school or house greener.',
-    sample: 'We can do several things to make our school greener. First, we should reuse plastic bottles and old paper. Second, students ought to turn off the lights and fans when leaving the classroom. Finally, we can plant more trees in the school garden.',
-  },
-  'unit-12': {
-    prompt: 'Write a paragraph about a robot you would like to have.',
-    sample: 'I would like to have a smart home robot named RoboMax. It will be small and silver with two bright blue eyes. RoboMax can clean the house, wash dishes, and help me with my English homework. It will make my life easier and fun.',
-  },
-};
+export const SAMPLE_ESSAYS: Record<string, { prompt: string; sample: string }> = Object.fromEntries(
+  Array.from({ length: 12 }, (_, idx) => {
+    const unitNum = idx + 1;
+    const unitData = getUnitWritingData(unitNum);
+    return [
+      `unit-${unitNum}`,
+      {
+        prompt: unitData.practice.prompt,
+        sample: unitData.sample_paragraphs[0].paragraphs.join(' '),
+      },
+    ];
+  })
+);
 
 /**
  * Offline Rule-Based Essay Evaluator for Grade 6 Writing

@@ -702,11 +702,18 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({
             <div className="space-y-6">
               {/* Summary Note */}
               <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-indigo-50 via-blue-50 to-sky-50 border border-indigo-200 text-xs sm:text-sm text-slate-800 space-y-1.5">
-                <div className="font-extrabold text-indigo-950 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
-                  <span>
-                    Ghi nhớ trọng tâm Unit {currentUnitPronData.unitNumber} ({currentUnitPronData.unitTitle}):
-                  </span>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="font-extrabold text-indigo-950 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
+                    <span>
+                      Ghi nhớ trọng tâm Unit {currentUnitPronData.unitNumber} ({currentUnitPronData.unitTitle}):
+                    </span>
+                  </div>
+                  {(currentUnitPronData.book || currentUnitPronData.pages) && (
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/80 border border-indigo-200 text-[11px] font-bold text-indigo-800">
+                      📖 {currentUnitPronData.book || 'SGK Tiếng Anh 6'} {currentUnitPronData.pages ? `• Trang ${currentUnitPronData.pages}` : ''}
+                    </span>
+                  )}
                 </div>
                 <p className="font-medium leading-relaxed text-slate-700">
                   {currentUnitPronData.summaryNote}
@@ -751,6 +758,17 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({
                           {snd.howToPronounce}
                         </p>
                       </div>
+
+                      {snd.pronunciationTip && (
+                        <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+                          <span className="font-extrabold text-emerald-900 block mb-0.5">
+                            💡 Mẹo phát âm dễ nhớ:
+                          </span>
+                          <p className="text-emerald-800 font-medium leading-relaxed">
+                            {snd.pronunciationTip}
+                          </p>
+                        </div>
+                      )}
 
                       <div className="p-3 rounded-xl bg-amber-50/60 border border-amber-200/80">
                         <span className="font-extrabold text-amber-900 block mb-1">
@@ -866,6 +884,22 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({
                   ))}
                 </div>
               </div>
+
+              {/* 3. Lưu ý mở rộng / Quy tắc chính tả & Âm câm */}
+              {currentUnitPronData.extraNotes && currentUnitPronData.extraNotes.length > 0 && (
+                <div className="bg-amber-50/70 rounded-2xl p-5 border border-amber-200 shadow-2xs space-y-2.5">
+                  <h3 className="text-sm sm:text-base font-extrabold text-amber-950 flex items-center gap-2">
+                    <span>📌 Lưu ý mở rộng & Quy tắc phát âm đặc biệt</span>
+                  </h3>
+                  <ul className="space-y-1.5 text-xs sm:text-sm text-amber-900 font-medium list-disc list-inside">
+                    {currentUnitPronData.extraNotes.map((note, nIdx) => (
+                      <li key={nIdx} className="leading-relaxed">
+                        {renderBracketedText(note)}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           ) : (
             /* PRACTICE: Exercise 1 - 3 with Automatic Grading */
@@ -962,6 +996,41 @@ export const SpeechStudio: React.FC<SpeechStudioProps> = ({
                     </div>
                   )}
                 </div>
+
+                {/* Tongue Twisters / Rhythm Practice Sentences (in Exercise 3) */}
+                {currentExercise.tongueTwisters && currentExercise.tongueTwisters.length > 0 && (
+                  <div className="p-4 rounded-2xl bg-indigo-50/70 border border-indigo-200 space-y-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <h4 className="text-xs sm:text-sm font-extrabold text-indigo-950 flex items-center gap-1.5">
+                        <Volume2 className="w-4 h-4 text-indigo-600" />
+                        <span>Luyện đọc câu xoắn lưỡi (Tongue Twisters) trước khi làm bài:</span>
+                      </h4>
+                      <span className="text-[11px] font-bold text-indigo-700">Bấm vào câu để nghe mẫu 🔊</span>
+                    </div>
+                    <div className="grid grid-cols-1 gap-2.5">
+                      {currentExercise.tongueTwisters.map((tt, ttIdx) => (
+                        <button
+                          key={ttIdx}
+                          type="button"
+                          onClick={() => handleListenTarget(stripBracketsForSpeech(tt.sentence))}
+                          className="p-3 rounded-xl bg-white hover:bg-indigo-50 border border-indigo-200 text-left flex items-center justify-between gap-3 transition-all cursor-pointer group"
+                        >
+                          <div className="space-y-1 min-w-0">
+                            <div className="text-xs sm:text-sm font-bold text-slate-900 leading-relaxed">
+                              {ttIdx + 1}. {renderBracketedText(tt.sentence)}
+                            </div>
+                            {tt.ipa && (
+                              <div className="text-[11px] font-semibold text-indigo-600">
+                                {tt.ipa}
+                              </div>
+                            )}
+                          </div>
+                          <Volume2 className="w-4 h-4 text-indigo-500 group-hover:scale-110 transition-transform shrink-0" />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Questions List */}
                 <div className="space-y-5">
