@@ -136,6 +136,41 @@ export const BUILTIN_VOCAB_IMAGES: Record<string, string> = {
   bed: './images/vocab/unit2/bed.jpg',
   table: './images/vocab/unit2/table.jpg',
   clock: './images/vocab/unit2/clock.jpg',
+
+  // ===== UNIT 4: MY NEIGHBOURHOOD (29 từ từ 3 áp phích Adjectives, Places, Directions) =====
+  // 1. Adjectives (10 từ)
+  noisy: './images/vocab/unit4/noisy.jpg',
+  peaceful: './images/vocab/unit4/peaceful.jpg',
+  crowded: './images/vocab/unit4/crowded.jpg',
+  convenient: './images/vocab/unit4/convenient.jpg',
+  modern: './images/vocab/unit4/modern.jpg',
+  expensive: './images/vocab/unit4/expensive.jpg',
+  boring: './images/vocab/unit4/boring.jpg',
+  beautiful: './images/vocab/unit4/beautiful.jpg',
+  friendly: './images/vocab/unit4/friendly.jpg',
+  busy: './images/vocab/unit4/busy.jpg',
+  // 2. Places in the Neighbourhood (14 từ)
+  neighbourhood: './images/vocab/unit4/neighbourhood.jpg',
+  square: './images/vocab/unit4/square.jpg',
+  'art gallery': './images/vocab/unit4/art-gallery.jpg',
+  cathedral: './images/vocab/unit4/cathedral.jpg',
+  temple: './images/vocab/unit4/temple.jpg',
+  'railway station': './images/vocab/unit4/railway-station.jpg',
+  market: './images/vocab/unit4/market.jpg',
+  supermarket: './images/vocab/unit4/supermarket.jpg',
+  park: './images/vocab/unit4/park.jpg',
+  cinema: './images/vocab/unit4/cinema.jpg',
+  cafe: './images/vocab/unit4/cafe.jpg',
+  'café': './images/vocab/unit4/cafe.jpg',
+  bank: './images/vocab/unit4/bank.jpg',
+  'bus stop': './images/vocab/unit4/bus-stop.jpg',
+  'post office': './images/vocab/unit4/post-office.jpg',
+  // 3. Directions (5 từ)
+  direction: './images/vocab/unit4/direction.jpg',
+  'go straight': './images/vocab/unit4/go-straight.jpg',
+  'turn left': './images/vocab/unit4/turn-left.jpg',
+  'turn right': './images/vocab/unit4/turn-right.jpg',
+  'cross the road': './images/vocab/unit4/cross-the-road.jpg',
 };
 
 const BUILTIN_VOCAB_ALIASES: Record<string, string> = {
@@ -149,6 +184,12 @@ const BUILTIN_VOCAB_ALIASES: Record<string, string> = {
   bookcase: 'shelf',
   restroom: 'toilet',
   refrigerator: 'fridge',
+  neighborhood: 'neighbourhood',
+  directions: 'direction',
+  'go straight on': 'go straight',
+  'go straight ahead': 'go straight',
+  left: 'turn left',
+  right: 'turn right',
 };
 
 export function getBuiltinVocabImage(word: string): string | undefined {

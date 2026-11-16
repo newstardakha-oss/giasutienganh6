@@ -34,6 +34,7 @@ import {
   toggleGs6WordManualStatus,
 } from '../services/gs6VocabService';
 import { recordAttemptAndUpdateDailyStats } from '../services/firebaseAnalytics';
+import { getBuiltinVocabImage } from '../utils/vocabImage';
 import { StudentAccount } from '../types';
 
 interface Gs6VocabModuleProps {
@@ -883,27 +884,41 @@ export const Gs6VocabModule: React.FC<Gs6VocabModuleProps> = ({
                 </span>
 
                 {!isFlipped ? (
-                  /* MẶT TRƯỚC: Từ tiếng Anh + IPA */
-                  <div className="space-y-4 my-6">
+                  /* MẶT TRƯỚC: Từ tiếng Anh + IPA (+ Hình minh họa nếu có) */
+                  <div className="space-y-3 my-5 flex flex-col items-center">
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-teal-600 block">
                       Mặt trước • Từ tiếng Anh & Phiên âm IPA
                     </span>
+                    {getBuiltinVocabImage(currentCard.word) && (
+                      <img
+                        src={getBuiltinVocabImage(currentCard.word)}
+                        alt={currentCard.word}
+                        className="w-36 h-28 sm:w-44 sm:h-32 object-cover rounded-2xl border border-teal-100 shadow-xs"
+                      />
+                    )}
                     <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
                       {currentCard.word}
                     </h3>
                     <p className="text-lg sm:text-xl font-mono font-bold text-teal-700 bg-teal-50 px-4 py-1.5 rounded-2xl inline-block border border-teal-100">
                       {currentCard.ipa}
                     </p>
-                    <p className="text-xs font-bold text-slate-400 pt-2">
+                    <p className="text-xs font-bold text-slate-400 pt-1">
                       👆 Chạm vào thẻ để xem Loại từ & Nghĩa tiếng Việt
                     </p>
                   </div>
                 ) : (
                   /* MẶT SAU: Loại từ (pos) + Nghĩa tiếng Việt (vi) */
-                  <div className="space-y-4 my-6">
+                  <div className="space-y-3 my-5 flex flex-col items-center">
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-600 block">
                       Mặt sau • Loại từ & Nghĩa tiếng Việt
                     </span>
+                    {getBuiltinVocabImage(currentCard.word) && (
+                      <img
+                        src={getBuiltinVocabImage(currentCard.word)}
+                        alt={currentCard.word}
+                        className="w-28 h-20 object-cover rounded-xl border border-indigo-100 shadow-2xs"
+                      />
+                    )}
                     <div>
                       <span
                         className={`inline-block px-3.5 py-1 rounded-full text-xs sm:text-sm font-extrabold border ${
