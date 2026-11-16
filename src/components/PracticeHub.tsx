@@ -16,14 +16,16 @@ import {
   Brain
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { Question, SgkUnit, SkillType, StudySession } from '../types';
+import { Question, SgkUnit, SkillType, StudentAccount, StudySession } from '../types';
 import { VocabFlashcard } from './VocabFlashcard';
+import { Gs6VocabModule } from './Gs6VocabModule';
 import { VocabSrsApp } from '../vocab-srs/components/VocabSrsApp';
 import { isReservedTestItemId } from '../grammar-g6/testFormsLoader';
 
 interface PracticeHubProps {
   questions: Question[];
   units: SgkUnit[];
+  currentStudent?: StudentAccount | null;
   initialUnitId?: string | null;
   streakDays?: number;
   onSessionCompleted: (session: StudySession) => void;
@@ -33,6 +35,7 @@ interface PracticeHubProps {
 export const PracticeHub: React.FC<PracticeHubProps> = ({
   questions,
   units,
+  currentStudent = null,
   initialUnitId,
   streakDays,
   onSessionCompleted,
@@ -46,7 +49,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
     }
   }, [initialUnitId, units]);
   const [selectedSkill, setSelectedSkill] = useState<SkillType | 'All'>('Vocabulary');
-  const [subMode, setSubMode] = useState<'srs' | 'quiz' | 'flashcard'>('srs');
+  const [subMode, setSubMode] = useState<'srs' | 'gs6' | 'quiz' | 'flashcard'>('srs');
 
   const filteredQuestions = questions.filter((q) => {
     if (isReservedTestItemId(q.id)) return false;
@@ -194,7 +197,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
           </p>
         </div>
 
-        {/* Sub-mode Toggle: SRS vs Quiz vs Flashcard */}
+        {/* Sub-mode Toggle: SRS vs GS6 (761 từ) vs Quiz vs Flashcard */}
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setSubMode('srs')}
@@ -206,6 +209,17 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
           >
             <Sparkles className="w-4 h-4 shrink-0" />
             <span>Học Từ Vựng SRS (3 Thẻ)</span>
+          </button>
+          <button
+            onClick={() => setSubMode('gs6')}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap ${
+              subMode === 'gs6'
+                ? 'bg-white text-[var(--skill-vocab)] shadow-md'
+                : 'bg-white/15 text-white border border-white/30 hover:bg-white/25'
+            }`}
+          >
+            <BookOpen className="w-4 h-4 shrink-0" />
+            <span>Từ Vựng GS6 Theo Chủ Đề (761 Từ)</span>
           </button>
           <button
             onClick={() => setSubMode('quiz')}
@@ -232,11 +246,17 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
         </div>
       </div>
 
-      {/* Render SRS mode or Flashcard mode or Quiz mode */}
+      {/* Render SRS mode or GS6 761 words mode or Flashcard mode or Quiz mode */}
       {subMode === 'srs' ? (
         <VocabSrsApp
           initialUnitId={initialUnitId}
           streakDays={streakDays}
+          onSessionCompleted={onSessionCompleted}
+        />
+      ) : subMode === 'gs6' ? (
+        <Gs6VocabModule
+          currentStudent={currentStudent}
+          initialUnitId={initialUnitId}
           onSessionCompleted={onSessionCompleted}
         />
       ) : subMode === 'flashcard' ? (

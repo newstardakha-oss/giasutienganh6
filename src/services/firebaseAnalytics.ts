@@ -402,13 +402,64 @@ export function loadAllDailyStatsRaw(): Record<string, FirestoreDailyStatDoc> {
   }
 }
 
-function saveAllDailyStatsRaw(statsMap: Record<string, FirestoreDailyStatDoc>): void {
+export function saveAllDailyStatsRaw(statsMap: Record<string, FirestoreDailyStatDoc>): void {
   if (typeof window === 'undefined' || !window.localStorage) return;
   try {
     window.localStorage.setItem(DAILY_STATS_STORAGE_KEY, JSON.stringify(statsMap));
   } catch (err) {
     console.warn('[FirebaseAnalytics] Không thể lưu collection dailyStats:', err);
   }
+}
+
+/**
+ * Hợp nhất dữ liệu attempts & dailyStats từ Server Store về trình duyệt của Giáo viên
+ * để trang Báo cáo luôn hiển thị đầy đủ dữ liệu thực tế từ mọi thiết bị học sinh.
+ */
+export function mergeServerAnalyticsIntoLocal(
+  remoteAttempts?: FirestoreAttemptDoc[],
+  remoteDailyStats?: Record<string, FirestoreDailyStatDoc>
+): boolean {
+  if (typeof window === 'undefined' || !window.localStorage) return false;
+  let updated = false;
+
+  if (Array.isArray(remoteAttempts) && remoteAttempts.length > 0) {
+    const localAtt = loadAllAttemptsRaw();
+    const attMap = new Map<string, FirestoreAttemptDoc>();
+    localAtt.forEach((a) => a?.id && attMap.set(a.id, a));
+    let added = 0;
+    remoteAttempts.forEach((ra) => {
+      if (ra && ra.id && !attMap.has(ra.id)) {
+        attMap.set(ra.id, stripPiiFromAttempt(ra as unknown as Record<string, unknown>));
+        added++;
+      }
+    });
+    if (added > 0) {
+      saveAllAttemptsRaw(Array.from(attMap.values()));
+      updated = true;
+    }
+  }
+
+  if (remoteDailyStats && typeof remoteDailyStats === 'object') {
+    const localStats = loadAllDailyStatsRaw();
+    let changedStats = false;
+    for (const [statId, rStat] of Object.entries(remoteDailyStats)) {
+      if (!rStat || !statId) continue;
+      const lStat = localStats[statId];
+      if (!lStat || (rStat.totalAttempts || 0) > (lStat.totalAttempts || 0)) {
+        localStats[statId] = rStat;
+        changedStats = true;
+      }
+    }
+    if (changedStats) {
+      saveAllDailyStatsRaw(localStats);
+      updated = true;
+    }
+  }
+
+  if (updated) {
+    window.dispatchEvent(new CustomEvent('analytics-data-updated'));
+  }
+  return updated;
 }
 
 /**
@@ -613,6 +664,20 @@ export function recordAttemptAndUpdateDailyStats(
   // Đồng bộ ngầm lên Cloud Firestore nếu có cấu hình
   void syncDocToCloudFirestore('attempts', attemptDoc.id, attemptDoc);
   void syncDocToCloudFirestore('dailyStats', updatedDailyStat.id, updatedDailyStat);
+
+  // Đồng bộ ngầm về Server trung tâm để Giáo viên nhận dữ liệu thực tức thì
+  if (typeof window !== 'undefined' && typeof fetch === 'function') {
+    void fetch('/api/sync/learning-activity', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        studentId: input.studentId,
+        attempt: attemptDoc,
+        dailyStat: updatedDailyStat,
+      }),
+    }).catch(() => {});
+  }
 
   return { attempt: attemptDoc, dailyStat: updatedDailyStat };
 }

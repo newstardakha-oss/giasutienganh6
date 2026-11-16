@@ -10,6 +10,7 @@ import {
   Users,
   X,
   AlertTriangle,
+  FileText,
 } from 'lucide-react';
 import {
   Bar,
@@ -31,7 +32,7 @@ import {
   buildTeacherAnalyticsReport,
   toSchoolId,
 } from '../services/firebaseAnalytics';
-import { exportTeacherReportToXlsx } from '../services/excelExport';
+import { exportTeacherReportToXlsx, exportTeacherReportToDocx } from '../services/excelExport';
 
 interface TeacherAnalyticsReportSectionProps {
   appData: AppDataSchema;
@@ -97,9 +98,10 @@ export const TeacherAnalyticsReportSection: React.FC<TeacherAnalyticsReportSecti
   });
   const [anonymize, setAnonymize] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+  const [isExportingDocx, setIsExportingDocx] = useState(false);
   const [exportError, setExportError] = useState('');
   const [detailStudentId, setDetailStudentId] = useState<string | null>(null);
-  // Tăng khi có attempt mới ở tab khác để tính lại báo cáo
+  // Tăng khi có attempt mới ở tab khác hoặc đồng bộ từ server để tính lại báo cáo
   const [refreshTick, setRefreshTick] = useState(0);
 
   useEffect(() => {
@@ -108,8 +110,13 @@ export const TeacherAnalyticsReportSection: React.FC<TeacherAnalyticsReportSecti
         setRefreshTick((t) => t + 1);
       }
     };
+    const onAnalyticsUpdate = () => setRefreshTick((t) => t + 1);
     window.addEventListener('storage', onStorage);
-    return () => window.removeEventListener('storage', onStorage);
+    window.addEventListener('analytics-data-updated', onAnalyticsUpdate);
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      window.removeEventListener('analytics-data-updated', onAnalyticsUpdate);
+    };
   }, []);
 
   useEffect(() => {
@@ -166,6 +173,25 @@ export const TeacherAnalyticsReportSection: React.FC<TeacherAnalyticsReportSecti
     }
   };
 
+  const handleExportDocx = async () => {
+    setExportError('');
+    setIsExportingDocx(true);
+    try {
+      await exportTeacherReportToDocx({
+        report,
+        filter,
+        anonymize,
+        schoolLabel,
+        teacherName: currentTeacher?.fullName,
+      });
+    } catch (err) {
+      console.error('[Báo cáo] Lỗi xuất Word:', err);
+      setExportError('Không thể tạo file Word (.docx). Vui lòng thử lại.');
+    } finally {
+      setIsExportingDocx(false);
+    }
+  };
+
   const updateFilter = (patch: Partial<AnalyticsReportFilter>) =>
     setFilter((prev) => ({ ...prev, ...patch }));
 
@@ -211,6 +237,19 @@ export const TeacherAnalyticsReportSection: React.FC<TeacherAnalyticsReportSecti
           </label>
           <button
             type="button"
+            onClick={handleExportDocx}
+            disabled={isExportingDocx}
+            className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white text-xs font-extrabold inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+          >
+            {isExportingDocx ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <FileText className="w-4 h-4" />
+            )}
+            <span>Xuất Word (.docx) cho SKKN</span>
+          </button>
+          <button
+            type="button"
             onClick={handleExport}
             disabled={isExporting}
             className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 text-white text-xs font-extrabold inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
@@ -220,7 +259,7 @@ export const TeacherAnalyticsReportSection: React.FC<TeacherAnalyticsReportSecti
             ) : (
               <Download className="w-4 h-4" />
             )}
-            <span>Xuất Excel</span>
+            <span>Xuất Excel (.xlsx)</span>
           </button>
         </div>
       </div>

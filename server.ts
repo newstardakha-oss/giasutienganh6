@@ -13,7 +13,11 @@ import {
   getFormById,
   getStudentSanitizedTestForm,
 } from './src/services/researchTests';
-import { registerManagementRoutes } from './src/services/serverManageStore';
+import {
+  registerManagementRoutes,
+  getServerStore,
+  saveServerStore,
+} from './src/services/serverManageStore';
 
 dotenv.config();
 
@@ -154,6 +158,25 @@ app.post(['/api/test-attempts/submit', '/test-attempts/submit'], (req, res) => {
       return res.status(404).json({ error: 'Không tìm thấy đề kiểm tra.' });
     }
     const graded = evaluateAndFinalizeAttempt(attempt, form, Boolean(autoSubmitted));
+
+    // Lưu trực tiếp bài kiểm tra đã chấm vào Server Store và phát tín hiệu SSE thời gian thực cho Giáo viên
+    const store = getServerStore();
+    const existingList = store.researchTestAttempts || [];
+    const idx = existingList.findIndex((a: any) => a?.id === graded.id);
+    const nextList =
+      idx >= 0
+        ? existingList.map((a: any, i: number) => (i === idx ? graded : a))
+        : [...existingList, graded];
+    saveServerStore(
+      {
+        ...store,
+        researchTestAttempts: nextList,
+      },
+      'RESEARCH_TEST_SUBMITTED',
+      true,
+      { schoolId: graded.schoolId }
+    );
+
     return res.json({ attempt: graded });
   } catch (err: any) {
     return res.status(500).json({ error: err?.message || 'Lỗi chấm bài.' });

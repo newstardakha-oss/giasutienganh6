@@ -128,7 +128,7 @@ function readStorageJson<T>(key: string, fallback: T): T {
   }
 }
 
-function writeStorageJson<T>(key: string, data: T): void {
+function writeStorageJson<T>(key: string, data: T, skipServerSync = false): void {
   try {
     const raw = JSON.stringify(data);
     memStore[key] = raw;
@@ -136,9 +136,108 @@ function writeStorageJson<T>(key: string, data: T): void {
       window.localStorage.setItem(key, raw);
       window.dispatchEvent(new CustomEvent('research-tests-updated', { detail: { key } }));
     }
+    if (!skipServerSync && typeof window !== 'undefined' && typeof fetch === 'function') {
+      const payload: Record<string, unknown> = {};
+      if (key === ROUNDS_STORAGE_KEY) payload.testRounds = data;
+      else if (key === ATTEMPTS_STORAGE_KEY) payload.testAttempts = data;
+      else if (key === CLASS_SETTINGS_STORAGE_KEY) payload.classSettings = data;
+      else if (key === VOID_LOGS_STORAGE_KEY) payload.voidLogs = data;
+
+      if (Object.keys(payload).length > 0) {
+        void fetch('/api/sync/research-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload),
+        }).catch(() => {});
+      }
+    }
   } catch {
     // ignore quota errors
   }
+}
+
+/**
+ * Hợp nhất dữ liệu khảo thí nghiên cứu (Pre/Post-test, đợt thi, cấu hình lớp TN/ĐC) từ Server Store về trình duyệt
+ */
+export function mergeServerResearchDataIntoLocal(params: {
+  testRounds?: FirestoreTestRoundDoc[];
+  testAttempts?: FirestoreTestAttemptDoc[];
+  classSettings?: FirestoreClassSettingDoc[];
+  voidLogs?: TestVoidLogEntry[];
+}): boolean {
+  if (typeof window === 'undefined' || !window.localStorage) return false;
+  let updated = false;
+
+  if (Array.isArray(params.testRounds) && params.testRounds.length > 0) {
+    const localRounds = loadAllTestRounds();
+    const rMap = new Map<string, FirestoreTestRoundDoc>();
+    localRounds.forEach((r) => r?.id && rMap.set(r.id, r));
+    params.testRounds.forEach((rr) => {
+      if (rr && rr.id) {
+        rMap.set(rr.id, rr);
+      }
+    });
+    const merged = Array.from(rMap.values());
+    if (JSON.stringify(merged) !== JSON.stringify(localRounds)) {
+      writeStorageJson(ROUNDS_STORAGE_KEY, merged, true);
+      updated = true;
+    }
+  }
+
+  if (Array.isArray(params.testAttempts) && params.testAttempts.length > 0) {
+    const localAttempts = loadAllTestAttempts();
+    const aMap = new Map<string, FirestoreTestAttemptDoc>();
+    localAttempts.forEach((a) => a?.id && aMap.set(a.id, a));
+    params.testAttempts.forEach((ra) => {
+      if (!ra || !ra.id) return;
+      const ex = aMap.get(ra.id);
+      if (
+        !ex ||
+        ra.status === 'submitted' ||
+        ra.status === 'auto_submitted' ||
+        ra.status === 'voided' ||
+        Object.keys(ra.responses || {}).length >= Object.keys(ex.responses || {}).length
+      ) {
+        aMap.set(ra.id, ra);
+      }
+    });
+    const merged = Array.from(aMap.values());
+    if (JSON.stringify(merged) !== JSON.stringify(localAttempts)) {
+      writeStorageJson(ATTEMPTS_STORAGE_KEY, merged, true);
+      updated = true;
+    }
+  }
+
+  if (Array.isArray(params.classSettings) && params.classSettings.length > 0) {
+    const localCs = loadAllClassSettings();
+    const csMap = new Map<string, FirestoreClassSettingDoc>();
+    localCs.forEach((c) => c?.id && csMap.set(c.id, c));
+    params.classSettings.forEach((rc) => {
+      if (rc && rc.id) csMap.set(rc.id, rc);
+    });
+    const merged = Array.from(csMap.values());
+    if (JSON.stringify(merged) !== JSON.stringify(localCs)) {
+      writeStorageJson(CLASS_SETTINGS_STORAGE_KEY, merged, true);
+      updated = true;
+    }
+  }
+
+  if (Array.isArray(params.voidLogs) && params.voidLogs.length > 0) {
+    const localLogs = loadTestVoidLogs();
+    const vlMap = new Map<string, TestVoidLogEntry>();
+    localLogs.forEach((v) => v?.id && vlMap.set(v.id, v));
+    params.voidLogs.forEach((rv) => {
+      if (rv && rv.id) vlMap.set(rv.id, rv);
+    });
+    const merged = Array.from(vlMap.values());
+    if (JSON.stringify(merged) !== JSON.stringify(localLogs)) {
+      writeStorageJson(VOID_LOGS_STORAGE_KEY, merged, true);
+      updated = true;
+    }
+  }
+
+  return updated;
 }
 
 function shuffleIndices(length: number): number[] {

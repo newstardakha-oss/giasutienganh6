@@ -469,6 +469,272 @@ export async function exportTeacherReportToXlsx(params: ExportTeacherReportParam
   saveAs(blob, fileName);
 }
 
+/**
+ * Xuất Báo cáo học tập thực tế ra file Word (.docx) với các bảng biểu chuẩn bị sẵn
+ * để Giáo viên dán thẳng vào Sáng kiến kinh nghiệm (SKKN) hoặc Báo cáo NCKHSPƯD.
+ */
+export async function exportTeacherReportToDocx(params: ExportTeacherReportParams): Promise<void> {
+  const {
+    Document,
+    Packer,
+    Paragraph,
+    Table,
+    TableCell,
+    TableRow,
+    TextRun,
+    WidthType,
+    AlignmentType,
+    HeadingLevel,
+  } = await import('docx');
+
+  const { report, filter, anonymize, schoolLabel = 'Tất cả các trường', teacherName = '' } = params;
+  const stamp = new Date().toLocaleDateString('vi-VN');
+  const classText = filter.className === 'all' ? 'Tất cả các lớp' : `Lớp ${filter.className}`;
+
+  const makeCell = (text: string | number, bold = false) =>
+    new TableCell({
+      children: [
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: String(text ?? ''),
+              bold,
+              size: 22,
+              font: 'Times New Roman',
+            }),
+          ],
+        }),
+      ],
+    });
+
+  // Bảng 1: Tổng quan theo lớp
+  const classTableRows = [
+    new TableRow({
+      children: [
+        makeCell('Lớp', true),
+        makeCell('Trường', true),
+        makeCell('Sĩ số', true),
+        makeCell('HS tham gia', true),
+        makeCell('Tổng phút học', true),
+        makeCell('Tổng lượt làm bài', true),
+        makeCell('Tỉ lệ đúng TB (%)', true),
+      ],
+    }),
+    ...report.classRows.map(
+      (c) =>
+        new TableRow({
+          children: [
+            makeCell(c.className),
+            makeCell(c.schoolName),
+            makeCell(c.totalStudents),
+            makeCell(c.activeStudents),
+            makeCell(c.studyMinutes),
+            makeCell(c.attemptCount),
+            makeCell(`${c.accuracyPct}%`),
+          ],
+        })
+    ),
+  ];
+
+  // Bảng 2: Bảng thống kê thực tế từng học sinh
+  const studentTableRows = [
+    new TableRow({
+      children: [
+        makeCell('Mã HS', true),
+        makeCell(anonymize ? 'Mã ẩn danh' : 'Họ và tên học sinh', true),
+        makeCell('Lớp', true),
+        makeCell('Số phút học', true),
+        makeCell('Số câu/bài đã làm', true),
+        makeCell('Số câu đúng', true),
+        makeCell('Tỉ lệ đúng (%)', true),
+      ],
+    }),
+    ...report.studentRows.map(
+      (st) =>
+        new TableRow({
+          children: [
+            makeCell(st.anonymousCode),
+            makeCell(anonymize ? st.anonymousCode : st.fullName),
+            makeCell(st.className),
+            makeCell(st.studyMinutes),
+            makeCell(st.attemptCount),
+            makeCell(st.correctCount),
+            makeCell(`${st.accuracyPct}%`),
+          ],
+        })
+    ),
+  ];
+
+  // Bảng 3: Top chủ điểm/câu hỏi học sinh hay sai nhất (Phân tích thực trạng)
+  const missedTableRows = [
+    new TableRow({
+      children: [
+        makeCell('Hạng', true),
+        makeCell('Chủ điểm ngữ pháp / Kỹ năng', true),
+        makeCell('Unit', true),
+        makeCell('Số lượt làm', true),
+        makeCell('Tỉ lệ sai (%)', true),
+        makeCell('Lỗi sai phổ biến nhất của HS', true),
+      ],
+    }),
+    ...report.topMissedItems.slice(0, 15).map(
+      (m) =>
+        new TableRow({
+          children: [
+            makeCell(m.rank),
+            makeCell(`${m.grammarPointTitle} (${m.questionPrompt})`),
+            makeCell(`Unit ${m.unitNumber}`),
+            makeCell(m.totalAttempts),
+            makeCell(`${m.errorRatePct}%`),
+            makeCell(`${m.mostCommonWrongAnswer} (${m.mostCommonWrongCount} lần)`),
+          ],
+        })
+    ),
+  ];
+
+  const doc = new Document({
+    sections: [
+      {
+        children: [
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            heading: HeadingLevel.HEADING_1,
+            children: [
+              new TextRun({
+                text: 'BÁO CÁO SỐ LIỆU THỰC NGHIỆM HỌC TẬP TRÊN ỨNG DỤNG GIA SƯ AI TIẾNG ANH 6',
+                bold: true,
+                size: 28,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            children: [
+              new TextRun({
+                text: `Đơn vị: ${schoolLabel} | Phạm vi: ${classText} | Ngày trích xuất: ${stamp}`,
+                italics: true,
+                size: 24,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          ...(teacherName
+            ? [
+                new Paragraph({
+                  alignment: AlignmentType.CENTER,
+                  children: [
+                    new TextRun({
+                      text: `Giáo viên phụ trách: ${teacherName}`,
+                      bold: true,
+                      size: 24,
+                      font: 'Times New Roman',
+                    }),
+                  ],
+                }),
+              ]
+            : []),
+          new Paragraph({ text: '' }),
+          new Paragraph({
+            heading: HeadingLevel.HEADING_2,
+            children: [
+              new TextRun({
+                text: '1. Tổng quan số liệu học sinh tham gia thực tế',
+                bold: true,
+                size: 26,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `• Tổng số học sinh trong danh sách: ${report.overview.totalStudentsInScope} học sinh (Số học sinh tích cực làm bài: ${report.overview.activeStudentsCount} học sinh).`,
+                size: 24,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `• Tổng thời lượng học tập thực tế trên hệ thống: ${report.overview.totalStudyMinutes} phút (~${report.overview.totalStudyHours} giờ).`,
+                size: 24,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `• Tổng số lượt câu hỏi/bài tập đã hoàn thành: ${report.overview.totalAttempts} lượt (Đúng ${report.overview.totalCorrect} lượt — Tỉ lệ chính xác trung bình đạt ${report.overview.avgAccuracyPct}%).`,
+                size: 24,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Paragraph({ text: '' }),
+          new Paragraph({
+            heading: HeadingLevel.HEADING_2,
+            children: [
+              new TextRun({
+                text: '2. Bảng tổng hợp kết quả theo lớp học',
+                bold: true,
+                size: 26,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: classTableRows,
+          }),
+          new Paragraph({ text: '' }),
+          new Paragraph({
+            heading: HeadingLevel.HEADING_2,
+            children: [
+              new TextRun({
+                text: '3. Phân tích các lỗi sai điển hình của học sinh (Dữ liệu thực trạng)',
+                bold: true,
+                size: 26,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: missedTableRows,
+          }),
+          new Paragraph({ text: '' }),
+          new Paragraph({
+            heading: HeadingLevel.HEADING_2,
+            children: [
+              new TextRun({
+                text: '4. Bảng thống kê chi tiết từng học sinh tham gia học tập',
+                bold: true,
+                size: 26,
+                font: 'Times New Roman',
+              }),
+            ],
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: studentTableRows,
+          }),
+        ],
+      },
+    ],
+  });
+
+  const blob = await Packer.toBlob(doc);
+  const datePart = new Date().toISOString().slice(0, 10);
+  const classPart = filter.className === 'all' ? 'tat-ca-lop' : filter.className;
+  saveAs(
+    blob,
+    `Bao-cao-SKKN-thuc-nghiem_${classPart}_${datePart}${anonymize ? '_an-danh' : ''}.docx`
+  );
+}
+
 import type {
   ItemPsychometricsRow,
   ResearchComparisonSummary,

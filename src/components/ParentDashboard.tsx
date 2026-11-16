@@ -76,6 +76,10 @@ import {
   EXERCISE_TYPE_LABELS,
 } from '../grammar-g6/dataLoader';
 import { loadClassGrammarStores } from '../grammar-g6/storage';
+import {
+  getAllGs6VocabEntries,
+  loadClassGs6VocabProgress,
+} from '../services/gs6VocabService';
 import { TeacherManagementPanel } from './TeacherManagementPanel';
 import { TeacherAnalyticsReportSection } from './TeacherAnalyticsReportSection';
 import { TeacherPrePostTestSection } from './TeacherPrePostTestSection';
@@ -326,6 +330,25 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
   const grammarStoreByStudent = useMemo(
     () => loadClassGrammarStores(teacherStudents.map((s) => s.id)),
     [teacherStudents, appData.sessions.length]
+  );
+
+  // Load GS6 761-word Vocabulary progress for all teacherStudents
+  const [gs6VocabTick, setGs6VocabTick] = useState(0);
+  useEffect(() => {
+    const onGs6Update = () => setGs6VocabTick((t) => t + 1);
+    window.addEventListener('gs6-vocab-progress-updated', onGs6Update);
+    window.addEventListener('storage', onGs6Update);
+    return () => {
+      window.removeEventListener('gs6-vocab-progress-updated', onGs6Update);
+      window.removeEventListener('storage', onGs6Update);
+    };
+  }, []);
+
+  const allGs6Entries = useMemo(() => getAllGs6VocabEntries(), []);
+  const gs6VocabByStudent = useMemo(
+    () => loadClassGs6VocabProgress(teacherStudents.map((s) => s.id)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [teacherStudents, appData.sessions.length, gs6VocabTick]
   );
 
   // Teacher settings for Classroom Unit & Mastery Thresholds
@@ -2048,6 +2071,97 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
             grammarBundle={grammarBundle}
             classGrammarStores={grammarStoreByStudent}
           />
+
+          {/* =====================================================================
+              PHẦN 3B: TIẾN ĐỘ TỪ VỰNG GS6 (761 TỪ - BOOK 1 & 2) THEO LỚP & TỪ CẦN ÔN
+             ===================================================================== */}
+          <section
+            aria-label="Tiến độ Từ vựng GS6 (761 từ) theo lớp"
+            className="bg-white rounded-2xl p-5 sm:p-6 shadow-2xs border border-slate-200 space-y-4"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+              <div>
+                <h2 className="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-teal-700 shrink-0" />
+                  <span>
+                    Tiến Độ Học Từ Vựng GS6 Theo Lớp (761 Mục Từ • 12 Unit)
+                  </span>
+                </h2>
+                <p className="text-xs text-slate-600 font-medium mt-0.5">
+                  Theo dõi số từ học sinh <strong>Đã thuộc</strong> và <strong>Cần ôn lại</strong> trong kho <code>gs6_vocab_data.json</code> (áp dụng theo bộ lọc Lớp hiện tại).
+                </p>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-900 text-xs font-extrabold whitespace-nowrap self-start sm:self-center">
+                {reportTargetStudents.length} học sinh trong phạm vi
+              </span>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-extrabold text-slate-600 uppercase">
+                    <th className="py-2.5 px-3">Học Sinh</th>
+                    <th className="py-2.5 px-3">Lớp</th>
+                    <th className="py-2.5 px-3 text-center">Từ Đã Thuộc (/761)</th>
+                    <th className="py-2.5 px-3 text-center">Từ Cần Ôn Lại</th>
+                    <th className="py-2.5 px-3">Các Từ Học Sinh Đang Cần Ôn / Hay Sai</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-xs">
+                  {reportTargetStudents.map((st) => {
+                    const prog = gs6VocabByStudent[st.id];
+                    const itemValues = Object.values(prog?.items || {});
+                    const knownCount = itemValues.filter((i) => i.status === 'known').length;
+                    const reviewRecords = itemValues.filter((i) => i.status === 'review');
+                    const reviewWords = reviewRecords
+                      .slice(0, 6)
+                      .map((r) => {
+                        const found = allGs6Entries.find((e) => e.id === r.entryId);
+                        return found ? `${found.word} (U${found.unitNumber})` : null;
+                      })
+                      .filter(Boolean);
+
+                    return (
+                      <tr key={st.id} className="hover:bg-slate-50/80">
+                        <td className="py-2.5 px-3 font-extrabold text-slate-900">
+                          {st.fullName}
+                        </td>
+                        <td className="py-2.5 px-3 font-bold text-indigo-800">
+                          {normalizeClassName(st.className)}
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-extrabold">
+                            {knownCount} / 761 từ
+                          </span>
+                        </td>
+                        <td className="py-2.5 px-3 text-center">
+                          <span
+                            className={`px-2.5 py-0.5 rounded-full font-extrabold border ${
+                              reviewRecords.length > 0
+                                ? 'bg-amber-50 text-amber-900 border-amber-300'
+                                : 'bg-slate-50 text-slate-500 border-slate-200'
+                            }`}
+                          >
+                            {reviewRecords.length} từ
+                          </span>
+                        </td>
+                        <td className="py-2.5 px-3 text-slate-700 font-semibold">
+                          {reviewWords.length > 0 ? (
+                            <span>
+                              {reviewWords.join(', ')}
+                              {reviewRecords.length > 6 ? '...' : ''}
+                            </span>
+                          ) : (
+                            <span className="text-slate-400">Chưa có từ cần ôn</span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </section>
 
           {/* =====================================================================
               PHẦN 4: DANH SÁCH ĐIỂM NGỮ PHÁP LỚP SAI NHIỀU NHẤT (LẤY TỪ SỔ LỖI SAI)

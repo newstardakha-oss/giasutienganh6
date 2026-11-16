@@ -44,11 +44,14 @@ import {
   getAvailableRoundsForStudent,
   isStudentPracticeLocked,
   loadAllTestRounds,
+  mergeServerResearchDataIntoLocal,
 } from './services/researchTests';
 import {
   useRealtimeSync,
   establishServerSession,
   syncEntityToServer,
+  syncStudentLearningToServer,
+  fetchPublicBootstrapState,
 } from './services/realtimeSync';
 
 export default function App() {
@@ -107,9 +110,44 @@ export default function App() {
   }, [activeTab, isCoverActive]);
 
   // Server handles API key pooling transparently. Students enter directly without popups.
+  // Also bootstrap student roster & open research test rounds from server so students on any device can log in and take tests.
   useEffect(() => {
-    // Check server health silently without blocking students
     fetch('/api/health').catch(() => {});
+
+    fetchPublicBootstrapState()
+      .then((boot) => {
+        if (!boot) return;
+        const changedResearch = mergeServerResearchDataIntoLocal({
+          testRounds: boot.researchTestRounds,
+          testAttempts: boot.researchTestAttempts,
+          classSettings: boot.researchClassSettings,
+        });
+        if (changedResearch) {
+          setResearchTick((t) => t + 1);
+        }
+        if (Array.isArray(boot.students) && boot.students.length > 0) {
+          setAppData((prev) => {
+            const stMap = new Map<string, StudentAccount>();
+            prev.students.forEach((s) => stMap.set(s.id, s));
+            boot.students!.forEach((rs) => {
+              if (!rs?.id) return;
+              const ex = stMap.get(rs.id);
+              if (!ex || (rs.sessions?.length || 0) >= (ex.sessions?.length || 0)) {
+                stMap.set(rs.id, { ...(ex || {}), ...rs });
+              }
+            });
+            return {
+              ...prev,
+              students: Array.from(stMap.values()),
+              schools: boot.schools && boot.schools.length > 0 ? boot.schools : prev.schools,
+              customCommunes: boot.customCommunes || prev.customCommunes,
+              customClasses: boot.customClasses || prev.customClasses,
+              classCurrentUnits: boot.classCurrentUnits || prev.classCurrentUnits,
+            };
+          });
+        }
+      })
+      .catch(() => {});
   }, []);
 
   // Sync appData changes to localStorage
@@ -117,11 +155,18 @@ export default function App() {
     saveAppData(appData);
   }, [appData]);
 
-  // Periodic active study time tracking (every 30 seconds)
+  // Periodic active study time tracking (every 30 seconds) + sync to central server
   useEffect(() => {
     const timer = setInterval(() => {
       if (appData.currentStudentId) {
-        setAppData((prev) => recordTimeSpent(prev, 30));
+        setAppData((prev) => {
+          const next = recordTimeSpent(prev, 30);
+          const activeSt = next.students.find((s) => s.id === next.currentStudentId);
+          if (activeSt) {
+            syncStudentLearningToServer(activeSt).catch(() => {});
+          }
+          return next;
+        });
       }
     }, 30000);
     return () => clearInterval(timer);
@@ -149,19 +194,27 @@ export default function App() {
     const targetStudent = appData.students.find((s) => s.id === studentId);
     if (!targetStudent) return;
 
-    setAppData((prev) => ({
-      ...prev,
-      isTeacherLoggedIn: false,
-      currentTeacherId: null,
-      currentStudentId: studentId,
-      progress: targetStudent.progress,
-      sessions: targetStudent.sessions,
-      students: prev.students.map((st) =>
-        st.id === studentId
-          ? { ...st, lastLoginAt: new Date().toISOString() }
-          : st
-      ),
-    }));
+    const loggedInStudent: StudentAccount = {
+      ...targetStudent,
+      lastLoginAt: new Date().toISOString(),
+    };
+
+    setAppData((prev) => {
+      const next = {
+        ...prev,
+        isTeacherLoggedIn: false,
+        currentTeacherId: null,
+        currentStudentId: studentId,
+        progress: loggedInStudent.progress,
+        sessions: loggedInStudent.sessions,
+        students: prev.students.map((st) =>
+          st.id === studentId ? loggedInStudent : st
+        ),
+      };
+      establishServerSession('student', studentId, next).catch(() => {});
+      syncStudentLearningToServer(loggedInStudent).catch(() => {});
+      return next;
+    });
     setActiveTab('home');
     setIsCoverActive(false);
   };
@@ -370,9 +423,13 @@ export default function App() {
 
     // Ghi collection "attempts" + "dailyStats" cho các kỹ năng không phải Ngữ pháp
     // (Ngữ pháp được ghi chi tiết từng câu qua handleGrammarItemAttempt).
-    const student = appData.students.find((s) => s.id === appData.currentStudentId);
-    if (student && mapAppSkillToAttemptSkill(session.skill) !== 'grammar') {
-      recordAttemptAndUpdateDailyStats(buildSessionAttemptInput(student, session), student.id);
+    const updatedStudent = updated.students.find((s) => s.id === updated.currentStudentId);
+    if (updatedStudent) {
+      if (mapAppSkillToAttemptSkill(session.skill) !== 'grammar') {
+        recordAttemptAndUpdateDailyStats(buildSessionAttemptInput(updatedStudent, session), updatedStudent.id);
+      }
+      // Đồng bộ hồ sơ tiến độ & danh sách buổi học mới nhất của học sinh về Server của Giáo viên
+      syncStudentLearningToServer(updatedStudent).catch(() => {});
     }
   };
 
@@ -809,6 +866,7 @@ export default function App() {
           <PracticeHub
             questions={appData.questions}
             units={appData.units}
+            currentStudent={currentStudent}
             initialUnitId={selectedSkillUnitId}
             streakDays={appData.progress.streakDays}
             onSessionCompleted={handleSessionCompleted}

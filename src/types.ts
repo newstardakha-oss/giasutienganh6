@@ -307,6 +307,14 @@ export interface AppDataSchema {
   masteryThresholds?: MasteryThresholdsOverride; // Ngưỡng mức độ Tốt/Khá/Đạt/Cần cố gắng do giáo viên cấu hình
   auditLogs?: AuditLogEntry[]; // Nhật ký thay đổi có hỗ trợ hoàn tác (Undo) và TTL
   unmappedMigrationQueue?: UnmappedMigrationItem[]; // Hàng chờ xử lý các bản ghi chưa ánh xạ được mã định danh
+  analyticsAttempts?: any[]; // Lịch sử nộp từng câu (attempts) đồng bộ từ tất cả thiết bị học sinh
+  analyticsDailyStats?: Record<string, any>; // Thống kê học tập theo ngày (dailyStats) đồng bộ toàn hệ thống
+  researchTestRounds?: any[]; // Danh sách đợt kiểm tra nghiên cứu (Pre-test / Post-test / Retention)
+  researchTestAttempts?: any[]; // Bài làm khảo thí của học sinh đồng bộ về máy chủ
+  researchClassSettings?: any[]; // Cấu hình phân nhóm Thực nghiệm (TN) / Đối chứng (ĐC)
+  researchVoidLogs?: any[]; // Nhật ký huỷ bài kiểm tra do sự cố kỹ thuật
+  grammarStoresByStudent?: Record<string, any>; // Tiến độ ngữ pháp & sổ lỗi sai chi tiết từng học sinh
+  gs6VocabProgressByStudent?: Record<string, any>; // Tiến độ học 761 từ vựng GS6 (Đã thuộc / Cần ôn) của từng học sinh
   revision?: number; // Số thứ tự phiên bản dữ liệu phục vụ đồng bộ SSE
   teacherAccount?: TeacherAccount | null; // DEPRECATED — kept for migration compatibility
   settings: AppSettings;

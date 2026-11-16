@@ -7,6 +7,26 @@ import {
   MigrationReport,
 } from '../types';
 import { loadAppData, saveAppData } from './storage';
+import {
+  loadAllAttemptsRaw,
+  loadAllDailyStatsRaw,
+  mergeServerAnalyticsIntoLocal,
+} from './firebaseAnalytics';
+import {
+  loadAllClassSettings,
+  loadAllTestAttempts,
+  loadAllTestRounds,
+  loadTestVoidLogs,
+  mergeServerResearchDataIntoLocal,
+} from './researchTests';
+import {
+  loadGrammarProgress,
+  mergeServerGrammarStoresIntoLocal,
+} from '../grammar-g6/storage';
+import {
+  loadStudentGs6VocabProgress,
+  mergeServerGs6VocabProgressIntoLocal,
+} from './gs6VocabService';
 
 const BROADCAST_CHANNEL_NAME = 'giasu_ai_realtime_v1';
 
@@ -52,6 +72,18 @@ export async function establishServerSession(
   clientStoreSnapshot?: AppDataSchema
 ): Promise<{ ok: boolean; revision?: number }> {
   try {
+    const enrichedSnapshot = clientStoreSnapshot
+      ? {
+          ...clientStoreSnapshot,
+          analyticsAttempts: loadAllAttemptsRaw(),
+          analyticsDailyStats: loadAllDailyStatsRaw(),
+          researchTestRounds: loadAllTestRounds(),
+          researchTestAttempts: loadAllTestAttempts(),
+          researchClassSettings: loadAllClassSettings(),
+          researchVoidLogs: loadTestVoidLogs(),
+        }
+      : undefined;
+
     const res = await fetch('/api/auth/session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -59,7 +91,7 @@ export async function establishServerSession(
       body: JSON.stringify({
         actorType,
         actorId,
-        clientStoreSnapshot,
+        clientStoreSnapshot: enrichedSnapshot,
       }),
     });
     if (!res.ok) return { ok: false };
@@ -70,6 +102,53 @@ export async function establishServerSession(
     return { ok: true, revision: data.revision };
   } catch {
     return { ok: false };
+  }
+}
+
+export async function syncStudentLearningToServer(
+  student: StudentAccount
+): Promise<void> {
+  try {
+    const grammarStore = loadGrammarProgress(student.id);
+    const gs6VocabProgress = loadStudentGs6VocabProgress(student.id);
+    await fetch('/api/sync/learning-activity', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      credentials: 'include',
+      body: JSON.stringify({
+        studentId: student.id,
+        student,
+        grammarStore,
+        gs6VocabProgress,
+      }),
+    });
+    broadcastLocalStateChange();
+  } catch {
+    // fallback silently when offline
+  }
+}
+
+export async function fetchPublicBootstrapState(): Promise<{
+  revision?: number;
+  students?: StudentAccount[];
+  teachers?: TeacherAccount[];
+  schools?: any[];
+  customCommunes?: Record<string, string[]>;
+  customClasses?: string[];
+  classCurrentUnits?: Record<string, string>;
+  researchTestRounds?: any[];
+  researchClassSettings?: any[];
+  researchTestAttempts?: any[];
+} | null> {
+  try {
+    const res = await fetch('/api/sync/public-bootstrap', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
   }
 }
 
@@ -159,6 +238,17 @@ export function useRealtimeSync(params: {
     const remote = await fetchServerScopedState();
     if (!remote) return;
 
+    // Đồng bộ ngầm dữ liệu lịch sử câu hỏi, thống kê ngày, sổ lỗi sai ngữ pháp, từ vựng GS6 và bài khảo thí nghiên cứu về máy Giáo viên
+    mergeServerAnalyticsIntoLocal(remote.analyticsAttempts, remote.analyticsDailyStats);
+    mergeServerGrammarStoresIntoLocal(remote.grammarStoresByStudent);
+    mergeServerGs6VocabProgressIntoLocal(remote.gs6VocabProgressByStudent);
+    mergeServerResearchDataIntoLocal({
+      testRounds: remote.researchTestRounds,
+      testAttempts: remote.researchTestAttempts,
+      classSettings: remote.researchClassSettings,
+      voidLogs: remote.researchVoidLogs,
+    });
+
     onServerStateSynced((prev) => {
       // Merge remote students with local students so local registrations are never overwritten by an empty serverless instance
       const mergedStudentMap = new Map<string, StudentAccount>();
@@ -166,8 +256,25 @@ export function useRealtimeSync(params: {
       if (Array.isArray(remote.students)) {
         remote.students.forEach((rs) => {
           const existing = mergedStudentMap.get(rs.id);
-          if (!existing || (rs.sessions?.length || 0) >= (existing.sessions?.length || 0)) {
-            mergedStudentMap.set(rs.id, { ...(existing || {}), ...rs });
+          if (!existing) {
+            mergedStudentMap.set(rs.id, rs);
+          } else {
+            const sessMap = new Map<string, any>();
+            (existing.sessions || []).forEach((ss) => sessMap.set(ss.id, ss));
+            (rs.sessions || []).forEach((ss) => sessMap.set(ss.id, ss));
+            const mergedSessions = Array.from(sessMap.values()).sort(
+              (a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+            );
+            mergedStudentMap.set(rs.id, {
+              ...existing,
+              ...rs,
+              sessions: mergedSessions,
+              dailyLogs: { ...(existing.dailyLogs || {}), ...(rs.dailyLogs || {}) },
+              progress:
+                (rs.progress?.totalXP || 0) >= (existing.progress?.totalXP || 0)
+                  ? rs.progress
+                  : existing.progress,
+            });
           }
         });
       }

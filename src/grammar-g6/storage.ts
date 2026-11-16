@@ -140,6 +140,40 @@ export function loadClassGrammarStores(studentIds: string[]): Record<string, Gra
 }
 
 /**
+ * Hợp nhất dữ liệu Sổ lỗi sai & tiến độ Ngữ pháp 6 từ Server Store về trình duyệt của Giáo viên
+ */
+export function mergeServerGrammarStoresIntoLocal(
+  remoteByStudent?: Record<string, GrammarStudentStore>
+): boolean {
+  if (!remoteByStudent || typeof remoteByStudent !== 'object') return false;
+  const root = readRawRoot();
+  const byStudent = { ...(root.byStudent || {}) };
+  let changed = false;
+
+  for (const [stId, rStore] of Object.entries(remoteByStudent)) {
+    if (!stId || !rStore) continue;
+    const cleanRemote = sanitizeStudentStore(rStore);
+    const localExisting = byStudent[stId] ? sanitizeStudentStore(byStudent[stId]) : null;
+    if (
+      !localExisting ||
+      cleanRemote.attempts.length > localExisting.attempts.length ||
+      Object.keys(cleanRemote.setProgress).length > Object.keys(localExisting.setProgress).length
+    ) {
+      byStudent[stId] = cleanRemote;
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    writeRawRoot({
+      ...createEmptyStudentStore(),
+      byStudent,
+    });
+  }
+  return changed;
+}
+
+/**
  * Lưu tiến độ Ngữ pháp 6 xuống localStorage key `g6-grammar-progress-v1` (bọc try/catch).
  */
 export function saveGrammarProgress(
@@ -157,6 +191,17 @@ export function saveGrammarProgress(
       byStudent,
     };
     writeRawRoot(updatedRoot);
+    if (typeof window !== 'undefined' && typeof fetch === 'function') {
+      void fetch('/api/sync/learning-activity', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          studentId,
+          grammarStore: clean,
+        }),
+      }).catch(() => {});
+    }
     return clean;
   }
 

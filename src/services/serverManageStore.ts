@@ -112,6 +112,14 @@ function createEmptyStore(): AppDataSchema {
     classCurrentUnits: { DEFAULT: 'unit-1' },
     auditLogs: [],
     unmappedMigrationQueue: [],
+    analyticsAttempts: [],
+    analyticsDailyStats: {},
+    researchTestRounds: [],
+    researchTestAttempts: [],
+    researchClassSettings: [],
+    researchVoidLogs: [],
+    grammarStoresByStudent: {},
+    gs6VocabProgressByStudent: {},
     revision: 1,
     teacherAccount: getDefaultAdminTeacher(),
     settings: {
@@ -406,6 +414,60 @@ export function registerManagementRoutes(app: express.Express) {
             ...(store.classCurrentUnits || { DEFAULT: 'unit-1' }),
             ...(clientStoreSnapshot.classCurrentUnits || {}),
           },
+          analyticsAttempts: (() => {
+            const attMap = new Map<string, any>();
+            (store.analyticsAttempts || []).forEach((a: any) => a?.id && attMap.set(a.id, a));
+            (clientStoreSnapshot.analyticsAttempts || []).forEach((a: any) => a?.id && attMap.set(a.id, a));
+            return Array.from(attMap.values()).slice(-10000);
+          })(),
+          analyticsDailyStats: {
+            ...(store.analyticsDailyStats || {}),
+            ...(clientStoreSnapshot.analyticsDailyStats || {}),
+          },
+          researchTestRounds: (() => {
+            const rMap = new Map<string, any>();
+            (store.researchTestRounds || []).forEach((r: any) => r?.id && rMap.set(r.id, r));
+            (clientStoreSnapshot.researchTestRounds || []).forEach((r: any) => r?.id && rMap.set(r.id, r));
+            return Array.from(rMap.values());
+          })(),
+          researchTestAttempts: (() => {
+            const taMap = new Map<string, any>();
+            (store.researchTestAttempts || []).forEach((a: any) => a?.id && taMap.set(a.id, a));
+            (clientStoreSnapshot.researchTestAttempts || []).forEach((a: any) => {
+              if (!a?.id) return;
+              const ex = taMap.get(a.id);
+              if (
+                !ex ||
+                a.status === 'submitted' ||
+                a.status === 'auto_submitted' ||
+                a.status === 'voided' ||
+                Object.keys(a.responses || {}).length >= Object.keys(ex.responses || {}).length
+              ) {
+                taMap.set(a.id, a);
+              }
+            });
+            return Array.from(taMap.values());
+          })(),
+          researchClassSettings: (() => {
+            const csMap = new Map<string, any>();
+            (store.researchClassSettings || []).forEach((c: any) => c?.id && csMap.set(c.id, c));
+            (clientStoreSnapshot.researchClassSettings || []).forEach((c: any) => c?.id && csMap.set(c.id, c));
+            return Array.from(csMap.values());
+          })(),
+          researchVoidLogs: (() => {
+            const vMap = new Map<string, any>();
+            (store.researchVoidLogs || []).forEach((v: any) => v?.id && vMap.set(v.id, v));
+            (clientStoreSnapshot.researchVoidLogs || []).forEach((v: any) => v?.id && vMap.set(v.id, v));
+            return Array.from(vMap.values());
+          })(),
+          grammarStoresByStudent: {
+            ...(store.grammarStoresByStudent || {}),
+            ...(clientStoreSnapshot.grammarStoresByStudent || {}),
+          },
+          gs6VocabProgressByStudent: {
+            ...(store.gs6VocabProgressByStudent || {}),
+            ...(clientStoreSnapshot.gs6VocabProgressByStudent || {}),
+          },
         },
         'BOOTSTRAP_MERGE',
         false
@@ -582,6 +644,225 @@ export function registerManagementRoutes(app: express.Express) {
     return res.status(400).json({ error: 'Invalid entity payload' });
   });
 
+  // ===== REALTIME LEARNING & RESEARCH TELEMETRY SYNC =====
+  // 1. Public bootstrap for students on other devices to get canonical student roster, open test rounds & class settings
+  app.get(['/api/sync/public-bootstrap', '/sync/public-bootstrap'], (_req, res) => {
+    const store = getServerStore();
+    return res.json({
+      revision: store.revision || 1,
+      students: store.students || [],
+      teachers: store.teachers || [],
+      schools: store.schools || [],
+      customCommunes: store.customCommunes || {},
+      customClasses: store.customClasses || [],
+      classCurrentUnits: store.classCurrentUnits || { DEFAULT: 'unit-1' },
+      researchTestRounds: store.researchTestRounds || [],
+      researchClassSettings: store.researchClassSettings || [],
+      researchTestAttempts: store.researchTestAttempts || [],
+    });
+  });
+
+  // 2. Sync student learning activity (attempt, dailyStat, updated student profile/sessions, grammarStore, gs6VocabProgress)
+  app.post(['/api/sync/learning-activity', '/sync/learning-activity'], (req, res) => {
+    const { student, attempt, dailyStat, grammarStore, gs6VocabProgress, studentId } = req.body || {};
+    const store = getServerStore();
+    let changed = false;
+    let targetSchoolId: string | undefined;
+    let targetClassId: string | undefined;
+
+    let nextStudents = store.students;
+    if (student && student.id) {
+      const loc = resolveCanonicalLocationStrict(store, {
+        provinceCode: student.provinceCode,
+        communeCode: student.communeCode,
+        schoolId: student.schoolId,
+        provinceName: student.provinceName,
+        communeName: student.communeName,
+        schoolName: student.schoolName,
+        className: student.className,
+        requireClass: true,
+      });
+      const enriched: StudentAccount = loc.mapped
+        ? {
+            ...student,
+            provinceCode: loc.provinceCode,
+            provinceName: loc.provinceName,
+            communeCode: loc.communeCode,
+            communeName: loc.communeName,
+            schoolId: loc.schoolId,
+            schoolName: loc.schoolName,
+            className: loc.className!,
+            classId: loc.classId,
+            migrationStatus: 'mapped',
+          }
+        : student;
+
+      targetSchoolId = enriched.schoolId;
+      targetClassId = enriched.classId;
+
+      const existingIdx = store.students.findIndex((s) => s.id === enriched.id);
+      if (existingIdx >= 0) {
+        const existing = store.students[existingIdx];
+        // Merge sessions by id so no session is ever lost
+        const sessionMap = new Map<string, any>();
+        (existing.sessions || []).forEach((ss) => sessionMap.set(ss.id, ss));
+        (enriched.sessions || []).forEach((ss) => sessionMap.set(ss.id, ss));
+        const mergedSessions = Array.from(sessionMap.values()).sort(
+          (a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+        );
+
+        const mergedDailyLogs = {
+          ...(existing.dailyLogs || {}),
+          ...(enriched.dailyLogs || {}),
+        };
+
+        nextStudents = [...store.students];
+        nextStudents[existingIdx] = {
+          ...existing,
+          ...enriched,
+          sessions: mergedSessions,
+          dailyLogs: mergedDailyLogs,
+          progress:
+            (enriched.progress?.totalXP || 0) >= (existing.progress?.totalXP || 0)
+              ? enriched.progress
+              : existing.progress,
+        };
+      } else {
+        nextStudents = [enriched, ...store.students];
+      }
+      changed = true;
+    }
+
+    let nextAttempts = store.analyticsAttempts || [];
+    if (attempt && attempt.id) {
+      if (!nextAttempts.some((a: any) => a.id === attempt.id)) {
+        nextAttempts = [...nextAttempts, attempt].slice(-10000);
+        changed = true;
+      }
+    }
+
+    let nextDailyStats = { ...(store.analyticsDailyStats || {}) };
+    if (dailyStat && dailyStat.id) {
+      const prevStat = nextDailyStats[dailyStat.id];
+      if (!prevStat || (dailyStat.totalAttempts || 0) >= (prevStat.totalAttempts || 0)) {
+        nextDailyStats[dailyStat.id] = dailyStat;
+        changed = true;
+      }
+    }
+
+    let nextGrammarStores = { ...(store.grammarStoresByStudent || {}) };
+    const effectiveStudentId = studentId || student?.id || attempt?.studentId;
+    if (effectiveStudentId && grammarStore && typeof grammarStore === 'object') {
+      const prevG = nextGrammarStores[effectiveStudentId];
+      if (!prevG || (grammarStore.attempts?.length || 0) >= (prevG.attempts?.length || 0)) {
+        nextGrammarStores[effectiveStudentId] = grammarStore;
+        changed = true;
+      }
+    }
+
+    let nextGs6VocabStores = { ...(store.gs6VocabProgressByStudent || {}) };
+    if (effectiveStudentId && gs6VocabProgress && typeof gs6VocabProgress === 'object') {
+      const prevV = nextGs6VocabStores[effectiveStudentId];
+      if (
+        !prevV ||
+        Object.keys(gs6VocabProgress.items || {}).length >=
+          Object.keys(prevV.items || {}).length ||
+        (gs6VocabProgress.updatedAt &&
+          (!prevV.updatedAt || gs6VocabProgress.updatedAt >= prevV.updatedAt))
+      ) {
+        nextGs6VocabStores[effectiveStudentId] = gs6VocabProgress;
+        changed = true;
+      }
+    }
+
+    if (!changed) {
+      return res.json({ ok: true, revision: store.revision || 1 });
+    }
+
+    const saved = saveServerStore(
+      {
+        ...store,
+        students: nextStudents,
+        analyticsAttempts: nextAttempts,
+        analyticsDailyStats: nextDailyStats,
+        grammarStoresByStudent: nextGrammarStores,
+        gs6VocabProgressByStudent: nextGs6VocabStores,
+      },
+      'STUDENT_LEARNING_ACTIVITY',
+      true,
+      { schoolId: targetSchoolId, classId: targetClassId }
+    );
+
+    return res.json({ ok: true, revision: saved.revision });
+  });
+
+  // 3. Sync research Pre/Post-test rounds, attempts, classSettings & voidLogs
+  app.post(['/api/sync/research-data', '/sync/research-data'], (req, res) => {
+    const { testRounds, testAttempt, testAttempts, classSettings, voidLogs } = req.body || {};
+    const store = getServerStore();
+
+    let nextRounds = store.researchTestRounds || [];
+    if (Array.isArray(testRounds) && testRounds.length > 0) {
+      const roundMap = new Map<string, any>();
+      nextRounds.forEach((r: any) => r?.id && roundMap.set(r.id, r));
+      testRounds.forEach((r: any) => r?.id && roundMap.set(r.id, r));
+      nextRounds = Array.from(roundMap.values());
+    }
+
+    let nextTestAttempts = store.researchTestAttempts || [];
+    const attemptMap = new Map<string, any>();
+    nextTestAttempts.forEach((a: any) => a?.id && attemptMap.set(a.id, a));
+    if (Array.isArray(testAttempts)) {
+      testAttempts.forEach((a: any) => {
+        if (!a?.id) return;
+        const existing = attemptMap.get(a.id);
+        if (
+          !existing ||
+          a.status === 'submitted' ||
+          a.status === 'auto_submitted' ||
+          a.status === 'voided' ||
+          Object.keys(a.responses || {}).length >= Object.keys(existing.responses || {}).length
+        ) {
+          attemptMap.set(a.id, a);
+        }
+      });
+    }
+    if (testAttempt && testAttempt.id) {
+      attemptMap.set(testAttempt.id, testAttempt);
+    }
+    nextTestAttempts = Array.from(attemptMap.values());
+
+    let nextClassSettings = store.researchClassSettings || [];
+    if (Array.isArray(classSettings) && classSettings.length > 0) {
+      const csMap = new Map<string, any>();
+      nextClassSettings.forEach((c: any) => c?.id && csMap.set(c.id, c));
+      classSettings.forEach((c: any) => c?.id && csMap.set(c.id, c));
+      nextClassSettings = Array.from(csMap.values());
+    }
+
+    let nextVoidLogs = store.researchVoidLogs || [];
+    if (Array.isArray(voidLogs) && voidLogs.length > 0) {
+      const vlMap = new Map<string, any>();
+      nextVoidLogs.forEach((v: any) => v?.id && vlMap.set(v.id, v));
+      voidLogs.forEach((v: any) => v?.id && vlMap.set(v.id, v));
+      nextVoidLogs = Array.from(vlMap.values());
+    }
+
+    const saved = saveServerStore(
+      {
+        ...store,
+        researchTestRounds: nextRounds,
+        researchTestAttempts: nextTestAttempts,
+        researchClassSettings: nextClassSettings,
+        researchVoidLogs: nextVoidLogs,
+      },
+      'RESEARCH_DATA_SYNCED',
+      true
+    );
+
+    return res.json({ ok: true, revision: saved.revision });
+  });
+
   // ===== REALTIME SSE STREAM (/api/events) =====
   app.get(['/api/events', '/events'], (req, res) => {
     const session = resolveCallerSession(req);
@@ -679,6 +960,39 @@ export function registerManagementRoutes(app: express.Express) {
         ? store.auditLogs || []
         : (store.auditLogs || []).filter((l) => l.actorId === session.sub);
 
+    const scopedStudentIds = new Set(scopedStudents.map((s) => s.id));
+    const scopedAnalyticsAttempts =
+      session.role === 'admin'
+        ? store.analyticsAttempts || []
+        : (store.analyticsAttempts || []).filter((a: any) => scopedStudentIds.has(a?.studentId));
+
+    const scopedAnalyticsDailyStats: Record<string, any> = {};
+    if (store.analyticsDailyStats && typeof store.analyticsDailyStats === 'object') {
+      for (const [k, v] of Object.entries(store.analyticsDailyStats)) {
+        if (session.role === 'admin' || (v && scopedStudentIds.has((v as any).studentId))) {
+          scopedAnalyticsDailyStats[k] = v;
+        }
+      }
+    }
+
+    const scopedGrammarStores: Record<string, any> = {};
+    if (store.grammarStoresByStudent && typeof store.grammarStoresByStudent === 'object') {
+      for (const [stId, gStore] of Object.entries(store.grammarStoresByStudent)) {
+        if (session.role === 'admin' || scopedStudentIds.has(stId)) {
+          scopedGrammarStores[stId] = gStore;
+        }
+      }
+    }
+
+    const scopedGs6VocabStores: Record<string, any> = {};
+    if (store.gs6VocabProgressByStudent && typeof store.gs6VocabProgressByStudent === 'object') {
+      for (const [stId, vStore] of Object.entries(store.gs6VocabProgressByStudent)) {
+        if (session.role === 'admin' || scopedStudentIds.has(stId)) {
+          scopedGs6VocabStores[stId] = vStore;
+        }
+      }
+    }
+
     return res.json({
       revision: store.revision || 1,
       role: session.role,
@@ -694,6 +1008,14 @@ export function registerManagementRoutes(app: express.Express) {
       auditLogs: scopedLogs,
       unmappedMigrationQueue:
         session.role === 'admin' ? store.unmappedMigrationQueue || [] : [],
+      analyticsAttempts: scopedAnalyticsAttempts,
+      analyticsDailyStats: scopedAnalyticsDailyStats,
+      researchTestRounds: store.researchTestRounds || [],
+      researchTestAttempts: store.researchTestAttempts || [],
+      researchClassSettings: store.researchClassSettings || [],
+      researchVoidLogs: store.researchVoidLogs || [],
+      grammarStoresByStudent: scopedGrammarStores,
+      gs6VocabProgressByStudent: scopedGs6VocabStores,
     });
   });
 

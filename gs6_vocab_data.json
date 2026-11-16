@@ -1,0 +1,4966 @@
+{
+ "meta": {
+  "source": "GS6 Book 1 & 2 – Teacher's, Vocabulary > Learn",
+  "total_words": 761
+ },
+ "units": [
+  {
+   "unit": 1,
+   "title": "My New School",
+   "topics": [
+    {
+     "topic": "School Supplies",
+     "words": [
+      {
+       "word": "school bag",
+       "ipa": "/skuːl bæɡ/",
+       "pos": "n",
+       "vi": "cặp sách"
+      },
+      {
+       "word": "pencil case",
+       "ipa": "/ˈpensl keɪs/",
+       "pos": "n",
+       "vi": "hộp bút"
+      },
+      {
+       "word": "pencil sharpener",
+       "ipa": "/ˈpensl ʃɑːpnə/",
+       "pos": "n",
+       "vi": "đồ chuốt bút chì"
+      },
+      {
+       "word": "rubber",
+       "ipa": "/ˈrʌbə/",
+       "pos": "n",
+       "vi": "cục tẩy"
+      },
+      {
+       "word": "compass",
+       "ipa": "/ˈkʌmpəs/",
+       "pos": "n",
+       "vi": "com-pa"
+      },
+      {
+       "word": "calculator",
+       "ipa": "/ˈkælkjuleɪtə/",
+       "pos": "n",
+       "vi": "máy tính cầm tay"
+      },
+      {
+       "word": "notebook",
+       "ipa": "/ˈnəʊtbʊk/",
+       "pos": "n",
+       "vi": "quyển vở"
+      },
+      {
+       "word": "uniform",
+       "ipa": "/ˈjuːnɪfɔːm/",
+       "pos": "n",
+       "vi": "đồng phục"
+      }
+     ]
+    },
+    {
+     "topic": "School Subjects",
+     "words": [
+      {
+       "word": "English",
+       "ipa": "/ˈɪŋɡlɪʃ/",
+       "pos": "n",
+       "vi": "môn tiếng Anh"
+      },
+      {
+       "word": "Vietnamese",
+       "ipa": "/ˌvjetnəˈmiːz/",
+       "pos": "n",
+       "vi": "môn tiếng Việt"
+      },
+      {
+       "word": "Russian",
+       "ipa": "/ˈrʌʃn/",
+       "pos": "n",
+       "vi": "môn tiếng Nga"
+      },
+      {
+       "word": "foreign language",
+       "ipa": "/ˌfɒrən ˈlæŋɡwɪdʒ/",
+       "pos": "n",
+       "vi": "ngoại ngữ"
+      },
+      {
+       "word": "history",
+       "ipa": "/ˈhɪstri/",
+       "pos": "n",
+       "vi": "môn lịch sử"
+      },
+      {
+       "word": "maths",
+       "ipa": "/mæθs/",
+       "pos": "n",
+       "vi": "môn toán"
+      },
+      {
+       "word": "science",
+       "ipa": "/ˈsaɪəns/",
+       "pos": "n",
+       "vi": "môn khoa học"
+      },
+      {
+       "word": "biology",
+       "ipa": "/baɪˈɒlədʒi/",
+       "pos": "n",
+       "vi": "môn sinh học"
+      },
+      {
+       "word": "art",
+       "ipa": "/ɑːt/",
+       "pos": "n",
+       "vi": "môn mỹ thuật"
+      },
+      {
+       "word": "music",
+       "ipa": "/ˈmjuːzɪk/",
+       "pos": "n",
+       "vi": "môn âm nhạc"
+      }
+     ]
+    },
+    {
+     "topic": "School Places",
+     "words": [
+      {
+       "word": "classroom",
+       "ipa": "/ˈklɑːsruːm/",
+       "pos": "n",
+       "vi": "phòng học"
+      },
+      {
+       "word": "computer room",
+       "ipa": "/kəmˈpjuːtə ruːm/",
+       "pos": "n",
+       "vi": "phòng máy tính"
+      },
+      {
+       "word": "library",
+       "ipa": "/ˈlaɪbrəri/",
+       "pos": "n",
+       "vi": "thư viện"
+      },
+      {
+       "word": "school garden",
+       "ipa": "/skuːl ˈɡɑːdn/",
+       "pos": "n",
+       "vi": "vườn trường"
+      },
+      {
+       "word": "playground",
+       "ipa": "/ˈpleɪɡraʊnd/",
+       "pos": "n",
+       "vi": "sân chơi"
+      },
+      {
+       "word": "swimming pool",
+       "ipa": "/ˈswɪmɪŋ puːl/",
+       "pos": "n",
+       "vi": "hồ bơi"
+      },
+      {
+       "word": "greenhouse",
+       "ipa": "/ˈɡriːnhaʊs/",
+       "pos": "n",
+       "vi": "nhà kính"
+      },
+      {
+       "word": "farm",
+       "ipa": "/fɑːm/",
+       "pos": "n",
+       "vi": "nông trại"
+      }
+     ]
+    },
+    {
+     "topic": "Types of Schools",
+     "words": [
+      {
+       "word": "primary school",
+       "ipa": "/ˈpraɪməri skuːl/",
+       "pos": "n",
+       "vi": "trường tiểu học"
+      },
+      {
+       "word": "lower secondary school",
+       "ipa": "/ˈləʊə ˈsekəndri skuːl/",
+       "pos": "n",
+       "vi": "trường trung học cơ sở"
+      },
+      {
+       "word": "boarding school",
+       "ipa": "/ˈbɔːdɪŋ skuːl/",
+       "pos": "n",
+       "vi": "trường nội trú"
+      },
+      {
+       "word": "international school",
+       "ipa": "/ˌɪntəˈnæʃnəl skuːl/",
+       "pos": "n",
+       "vi": "trường quốc tế"
+      }
+     ]
+    },
+    {
+     "topic": "People at School",
+     "words": [
+      {
+       "word": "student",
+       "ipa": "/ˈstjuːdnt/",
+       "pos": "n",
+       "vi": "học sinh"
+      },
+      {
+       "word": "classmate",
+       "ipa": "/ˈklɑːsmeɪt/",
+       "pos": "n",
+       "vi": "bạn cùng lớp"
+      },
+      {
+       "word": "friend",
+       "ipa": "/frend/",
+       "pos": "n",
+       "vi": "bạn bè"
+      },
+      {
+       "word": "teacher",
+       "ipa": "/ˈtiːtʃə/",
+       "pos": "n",
+       "vi": "giáo viên"
+      }
+     ]
+    },
+    {
+     "topic": "Locations",
+     "words": [
+      {
+       "word": "village",
+       "ipa": "/ˈvɪlɪdʒ/",
+       "pos": "n",
+       "vi": "ngôi làng"
+      },
+      {
+       "word": "town",
+       "ipa": "/taʊn/",
+       "pos": "n",
+       "vi": "thị trấn"
+      },
+      {
+       "word": "country",
+       "ipa": "/ˈkʌntri/",
+       "pos": "n",
+       "vi": "vùng quê, nông thôn"
+      },
+      {
+       "word": "city",
+       "ipa": "/ˈsɪti/",
+       "pos": "n",
+       "vi": "thành phố"
+      },
+      {
+       "word": "mountain",
+       "ipa": "/ˈmaʊntən/",
+       "pos": "n",
+       "vi": "ngọn núi"
+      },
+      {
+       "word": "green fields",
+       "ipa": "/ɡriːn fiːldz/",
+       "pos": "n",
+       "vi": "cánh đồng xanh"
+      }
+     ]
+    },
+    {
+     "topic": "Food and Meals",
+     "words": [
+      {
+       "word": "breakfast",
+       "ipa": "/ˈbrekfəst/",
+       "pos": "n",
+       "vi": "bữa sáng"
+      },
+      {
+       "word": "lunch",
+       "ipa": "/lʌntʃ/",
+       "pos": "n",
+       "vi": "bữa trưa"
+      },
+      {
+       "word": "dinner",
+       "ipa": "/ˈdɪnə/",
+       "pos": "n",
+       "vi": "bữa tối"
+      },
+      {
+       "word": "snack",
+       "ipa": "/snæk/",
+       "pos": "n",
+       "vi": "bữa ăn nhẹ, đồ ăn vặt"
+      }
+     ]
+    },
+    {
+     "topic": "Descriptions",
+     "words": [
+      {
+       "word": "small",
+       "ipa": "/smɔːl/",
+       "pos": "adj",
+       "vi": "nhỏ bé"
+      },
+      {
+       "word": "large",
+       "ipa": "/lɑːdʒ/",
+       "pos": "adj",
+       "vi": "lớn, rộng"
+      },
+      {
+       "word": "heavy",
+       "ipa": "/ˈhevi/",
+       "pos": "adj",
+       "vi": "nặng"
+      },
+      {
+       "word": "smart",
+       "ipa": "/smɑːt/",
+       "pos": "adj",
+       "vi": "bảnh bao, thông minh"
+      },
+      {
+       "word": "healthy",
+       "ipa": "/ˈhelθi/",
+       "pos": "adj",
+       "vi": "khỏe mạnh"
+      },
+      {
+       "word": "interesting",
+       "ipa": "/ˈɪntrəstɪŋ/",
+       "pos": "adj",
+       "vi": "thú vị"
+      },
+      {
+       "word": "favourite",
+       "ipa": "/ˈfeɪvərɪt/",
+       "pos": "adj",
+       "vi": "yêu thích"
+      },
+      {
+       "word": "same",
+       "ipa": "/seɪm/",
+       "pos": "adj",
+       "vi": "giống nhau, cùng"
+      }
+     ]
+    },
+    {
+     "topic": "Activities and Actions",
+     "words": [
+      {
+       "word": "go to school",
+       "ipa": "/ɡəʊ tə skuːl/",
+       "pos": "phr.v",
+       "vi": "đi học"
+      },
+      {
+       "word": "go home",
+       "ipa": "/ɡəʊ həʊm/",
+       "pos": "phr.v",
+       "vi": "về nhà"
+      },
+      {
+       "word": "go shopping",
+       "ipa": "/ɡəʊ ˈʃɒpɪŋ/",
+       "pos": "phr.v",
+       "vi": "đi mua sắm"
+      },
+      {
+       "word": "go on holiday",
+       "ipa": "/ɡəʊ ɒn ˈhɒlədeɪ/",
+       "pos": "phr.v",
+       "vi": "đi nghỉ mát"
+      },
+      {
+       "word": "travel",
+       "ipa": "/ˈtrævl/",
+       "pos": "v",
+       "vi": "đi du lịch"
+      },
+      {
+       "word": "walk",
+       "ipa": "/wɔːk/",
+       "pos": "v",
+       "vi": "đi bộ"
+      },
+      {
+       "word": "ride bicycles",
+       "ipa": "/raɪd ˈbaɪsɪklz/",
+       "pos": "phr.v",
+       "vi": "đạp xe đạp"
+      },
+      {
+       "word": "take the bus",
+       "ipa": "/teɪk ðə bʌs/",
+       "pos": "phr.v",
+       "vi": "đi xe buýt"
+      },
+      {
+       "word": "play football",
+       "ipa": "/pleɪ ˈfʊtbɔːl/",
+       "pos": "phr.v",
+       "vi": "chơi bóng đá"
+      },
+      {
+       "word": "do exercise",
+       "ipa": "/duː ˈeksəsaɪz/",
+       "pos": "phr.v",
+       "vi": "tập thể dục"
+      },
+      {
+       "word": "study",
+       "ipa": "/ˈstʌdi/",
+       "pos": "v",
+       "vi": "học tập"
+      },
+      {
+       "word": "learn",
+       "ipa": "/lɜːn/",
+       "pos": "v",
+       "vi": "học"
+      },
+      {
+       "word": "teach",
+       "ipa": "/tiːtʃ/",
+       "pos": "v",
+       "vi": "dạy"
+      },
+      {
+       "word": "paint",
+       "ipa": "/peɪnt/",
+       "pos": "v",
+       "vi": "tô màu, vẽ"
+      },
+      {
+       "word": "sing",
+       "ipa": "/sɪŋ/",
+       "pos": "v",
+       "vi": "hát"
+      },
+      {
+       "word": "share",
+       "ipa": "/ʃeə/",
+       "pos": "v",
+       "vi": "chia sẻ"
+      },
+      {
+       "word": "remember",
+       "ipa": "/rɪˈmembə/",
+       "pos": "v",
+       "vi": "nhớ"
+      },
+      {
+       "word": "wear",
+       "ipa": "/weə/",
+       "pos": "v",
+       "vi": "mặc"
+      },
+      {
+       "word": "put on",
+       "ipa": "/pʊt ɒn/",
+       "pos": "phr.v",
+       "vi": "mặc vào"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "minute",
+       "ipa": "/ˈmɪnɪt/",
+       "pos": "n",
+       "vi": "phút"
+      },
+      {
+       "word": "money",
+       "ipa": "/ˈmʌni/",
+       "pos": "n",
+       "vi": "tiền"
+      },
+      {
+       "word": "reason",
+       "ipa": "/ˈriːzn/",
+       "pos": "n",
+       "vi": "lý do"
+      },
+      {
+       "word": "advice",
+       "ipa": "/ədˈvaɪs/",
+       "pos": "n",
+       "vi": "lời khuyên"
+      },
+      {
+       "word": "secret",
+       "ipa": "/ˈsiːkrət/",
+       "pos": "n",
+       "vi": "bí mật"
+      },
+      {
+       "word": "painting",
+       "ipa": "/ˈpeɪntɪŋ/",
+       "pos": "n",
+       "vi": "bức tranh"
+      },
+      {
+       "word": "cartoon",
+       "ipa": "/kɑːˈtuːn/",
+       "pos": "n",
+       "vi": "phim hoạt hình"
+      },
+      {
+       "word": "dream",
+       "ipa": "/driːm/",
+       "pos": "n",
+       "vi": "giấc mơ"
+      },
+      {
+       "word": "shower",
+       "ipa": "/ˈʃaʊə/",
+       "pos": "n",
+       "vi": "vòi hoa sen, việc tắm vòi sen"
+      },
+      {
+       "word": "cinema",
+       "ipa": "/ˈsɪnəmə/",
+       "pos": "n",
+       "vi": "rạp chiếu phim"
+      },
+      {
+       "word": "holiday",
+       "ipa": "/ˈhɒlədeɪ/",
+       "pos": "n",
+       "vi": "kỳ nghỉ"
+      },
+      {
+       "word": "mark",
+       "ipa": "/mɑːk/",
+       "pos": "n",
+       "vi": "điểm số"
+      },
+      {
+       "word": "exam",
+       "ipa": "/ɪɡˈzæm/",
+       "pos": "n",
+       "vi": "kỳ thi"
+      },
+      {
+       "word": "break time",
+       "ipa": "/breɪk taɪm/",
+       "pos": "n",
+       "vi": "giờ ra chơi"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 2,
+   "title": "My House",
+   "topics": [
+    {
+     "topic": "Family Members",
+     "words": [
+      {
+       "word": "grandparents",
+       "ipa": "/ˈɡrænpeərənts/",
+       "pos": "n",
+       "vi": "ông bà"
+      },
+      {
+       "word": "grandmother",
+       "ipa": "/ˈɡrænmʌðə/",
+       "pos": "n",
+       "vi": "bà"
+      },
+      {
+       "word": "grandfather",
+       "ipa": "/ˈɡrænfɑːðə/",
+       "pos": "n",
+       "vi": "ông"
+      },
+      {
+       "word": "parents",
+       "ipa": "/ˈpeərənts/",
+       "pos": "n",
+       "vi": "bố mẹ"
+      },
+      {
+       "word": "father",
+       "ipa": "/ˈfɑːðə/",
+       "pos": "n",
+       "vi": "bố"
+      },
+      {
+       "word": "mother",
+       "ipa": "/ˈmʌðə/",
+       "pos": "n",
+       "vi": "mẹ"
+      },
+      {
+       "word": "children",
+       "ipa": "/ˈtʃɪldrən/",
+       "pos": "n",
+       "vi": "những đứa trẻ, con cái"
+      },
+      {
+       "word": "daughter",
+       "ipa": "/ˈdɔːtə/",
+       "pos": "n",
+       "vi": "con gái"
+      },
+      {
+       "word": "son",
+       "ipa": "/sʌn/",
+       "pos": "n",
+       "vi": "con trai"
+      },
+      {
+       "word": "sister",
+       "ipa": "/ˈsɪstə/",
+       "pos": "n",
+       "vi": "chị, em gái"
+      },
+      {
+       "word": "brother",
+       "ipa": "/ˈbrʌðə/",
+       "pos": "n",
+       "vi": "anh, em trai"
+      },
+      {
+       "word": "aunt",
+       "ipa": "/ɑːnt/",
+       "pos": "n",
+       "vi": "dì, cô, bác gái"
+      },
+      {
+       "word": "uncle",
+       "ipa": "/ˈʌŋkl/",
+       "pos": "n",
+       "vi": "chú, cậu, bác trai"
+      },
+      {
+       "word": "cousin",
+       "ipa": "/ˈkʌzn/",
+       "pos": "n",
+       "vi": "anh, chị, em họ"
+      },
+      {
+       "word": "niece",
+       "ipa": "/niːs/",
+       "pos": "n",
+       "vi": "cháu gái"
+      },
+      {
+       "word": "nephew",
+       "ipa": "/ˈnefjuː/",
+       "pos": "n",
+       "vi": "cháu trai"
+      }
+     ]
+    },
+    {
+     "topic": "Types of Houses",
+     "words": [
+      {
+       "word": "town house",
+       "ipa": "/ˈtaʊn haʊs/",
+       "pos": "n",
+       "vi": "nhà phố"
+      },
+      {
+       "word": "country house",
+       "ipa": "/ˈkʌntri haʊs/",
+       "pos": "n",
+       "vi": "nhà ở nông thôn"
+      },
+      {
+       "word": "flat",
+       "ipa": "/flæt/",
+       "pos": "n",
+       "vi": "căn hộ"
+      },
+      {
+       "word": "apartment",
+       "ipa": "/əˈpɑːtmənt/",
+       "pos": "n",
+       "vi": "căn hộ"
+      }
+     ]
+    },
+    {
+     "topic": "Rooms and Parts of a House",
+     "words": [
+      {
+       "word": "living room",
+       "ipa": "/ˈlɪvɪŋ ruːm/",
+       "pos": "n",
+       "vi": "phòng khách"
+      },
+      {
+       "word": "bedroom",
+       "ipa": "/ˈbedruːm/",
+       "pos": "n",
+       "vi": "phòng ngủ"
+      },
+      {
+       "word": "kitchen",
+       "ipa": "/ˈkɪtʃɪn/",
+       "pos": "n",
+       "vi": "nhà bếp"
+      },
+      {
+       "word": "bathroom",
+       "ipa": "/ˈbɑːθruːm/",
+       "pos": "n",
+       "vi": "phòng tắm"
+      },
+      {
+       "word": "hall",
+       "ipa": "/hɔːl/",
+       "pos": "n",
+       "vi": "hành lang, sảnh"
+      },
+      {
+       "word": "dining room",
+       "ipa": "/ˈdaɪnɪŋ ruːm/",
+       "pos": "n",
+       "vi": "phòng ăn"
+      },
+      {
+       "word": "window",
+       "ipa": "/ˈwɪndəʊ/",
+       "pos": "n",
+       "vi": "cửa sổ"
+      },
+      {
+       "word": "door",
+       "ipa": "/dɔː/",
+       "pos": "n",
+       "vi": "cửa ra vào"
+      }
+     ]
+    },
+    {
+     "topic": "Furniture and Household Items",
+     "words": [
+      {
+       "word": "sofa",
+       "ipa": "/ˈsəʊfə/",
+       "pos": "n",
+       "vi": "ghế sô-pha"
+      },
+      {
+       "word": "television",
+       "ipa": "/ˈtelɪvɪʒn/",
+       "pos": "n",
+       "vi": "ti vi"
+      },
+      {
+       "word": "lamp",
+       "ipa": "/læmp/",
+       "pos": "n",
+       "vi": "cái đèn"
+      },
+      {
+       "word": "cupboard",
+       "ipa": "/ˈkʌbəd/",
+       "pos": "n",
+       "vi": "tủ chén"
+      },
+      {
+       "word": "sink",
+       "ipa": "/sɪŋk/",
+       "pos": "n",
+       "vi": "bồn rửa"
+      },
+      {
+       "word": "dishwasher",
+       "ipa": "/ˈdɪʃwɒʃə/",
+       "pos": "n",
+       "vi": "máy rửa bát"
+      },
+      {
+       "word": "fridge",
+       "ipa": "/frɪdʒ/",
+       "pos": "n",
+       "vi": "tủ lạnh"
+      },
+      {
+       "word": "shower",
+       "ipa": "/ˈʃaʊə/",
+       "pos": "n",
+       "vi": "vòi hoa sen"
+      },
+      {
+       "word": "chest of drawers",
+       "ipa": "/ˌtʃest əv ˈdrɔːz/",
+       "pos": "n",
+       "vi": "tủ có ngăn kéo"
+      },
+      {
+       "word": "toilet",
+       "ipa": "/ˈtɔɪlət/",
+       "pos": "n",
+       "vi": "nhà vệ sinh, bồn cầu"
+      },
+      {
+       "word": "picture",
+       "ipa": "/ˈpɪktʃə/",
+       "pos": "n",
+       "vi": "bức tranh"
+      },
+      {
+       "word": "bowls",
+       "ipa": "/bəʊlz/",
+       "pos": "n",
+       "vi": "bát, chén"
+      },
+      {
+       "word": "chopsticks",
+       "ipa": "/ˈtʃɒpstɪks/",
+       "pos": "n",
+       "vi": "đũa"
+      },
+      {
+       "word": "table",
+       "ipa": "/ˈteɪbl/",
+       "pos": "n",
+       "vi": "cái bàn"
+      },
+      {
+       "word": "chair",
+       "ipa": "/tʃeə/",
+       "pos": "n",
+       "vi": "cái ghế"
+      },
+      {
+       "word": "bed",
+       "ipa": "/bed/",
+       "pos": "n",
+       "vi": "cái giường"
+      },
+      {
+       "word": "desk",
+       "ipa": "/desk/",
+       "pos": "n",
+       "vi": "bàn làm việc, bàn học"
+      },
+      {
+       "word": "wardrobe",
+       "ipa": "/ˈwɔːdrəʊb/",
+       "pos": "n",
+       "vi": "tủ quần áo"
+      },
+      {
+       "word": "bookshelf",
+       "ipa": "/ˈbʊkʃelf/",
+       "pos": "n",
+       "vi": "giá sách"
+      },
+      {
+       "word": "clock",
+       "ipa": "/klɒk/",
+       "pos": "n",
+       "vi": "đồng hồ"
+      },
+      {
+       "word": "shelf",
+       "ipa": "/ʃelf/",
+       "pos": "n",
+       "vi": "cái giá, kệ"
+      },
+      {
+       "word": "computer",
+       "ipa": "/kəmˈpjuːtə/",
+       "pos": "n",
+       "vi": "máy tính"
+      },
+      {
+       "word": "motorbike",
+       "ipa": "/ˈməʊtəbaɪk/",
+       "pos": "n",
+       "vi": "xe máy"
+      },
+      {
+       "word": "school bag",
+       "ipa": "/skuːl bæɡ/",
+       "pos": "n",
+       "vi": "cặp sách"
+      },
+      {
+       "word": "pillow",
+       "ipa": "/ˈpɪləʊ/",
+       "pos": "n",
+       "vi": "cái gối"
+      },
+      {
+       "word": "cap",
+       "ipa": "/kæp/",
+       "pos": "n",
+       "vi": "mũ lưỡi trai"
+      },
+      {
+       "word": "photo",
+       "ipa": "/ˈfəʊtəʊ/",
+       "pos": "n",
+       "vi": "bức ảnh"
+      },
+      {
+       "word": "cooker",
+       "ipa": "/ˈkʊkə/",
+       "pos": "n",
+       "vi": "bếp lò, nồi nấu"
+      }
+     ]
+    },
+    {
+     "topic": "Actions",
+     "words": [
+      {
+       "word": "live",
+       "ipa": "/lɪv/",
+       "pos": "v",
+       "vi": "sống, sinh sống"
+      },
+      {
+       "word": "move",
+       "ipa": "/muːv/",
+       "pos": "v",
+       "vi": "di chuyển, chuyển nhà"
+      },
+      {
+       "word": "buy",
+       "ipa": "/baɪ/",
+       "pos": "v",
+       "vi": "mua"
+      },
+      {
+       "word": "put",
+       "ipa": "/pʊt/",
+       "pos": "v",
+       "vi": "đặt, để"
+      },
+      {
+       "word": "stay",
+       "ipa": "/steɪ/",
+       "pos": "v",
+       "vi": "ở lại"
+      },
+      {
+       "word": "visit",
+       "ipa": "/ˈvɪzɪt/",
+       "pos": "v",
+       "vi": "thăm, đến thăm"
+      },
+      {
+       "word": "decorate",
+       "ipa": "/ˈdekəreɪt/",
+       "pos": "v",
+       "vi": "trang trí"
+      },
+      {
+       "word": "listen to music",
+       "ipa": "/ˈlɪsn tə ˈmjuːzɪk/",
+       "pos": "phr.v",
+       "vi": "nghe nhạc"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "big",
+       "ipa": "/bɪɡ/",
+       "pos": "adj",
+       "vi": "to, lớn"
+      },
+      {
+       "word": "small",
+       "ipa": "/smɔːl/",
+       "pos": "adj",
+       "vi": "nhỏ, bé"
+      },
+      {
+       "word": "beautiful",
+       "ipa": "/ˈbjuːtɪfl/",
+       "pos": "adj",
+       "vi": "đẹp"
+      },
+      {
+       "word": "strange",
+       "ipa": "/streɪndʒ/",
+       "pos": "adj",
+       "vi": "kỳ lạ"
+      },
+      {
+       "word": "great",
+       "ipa": "/ɡreɪt/",
+       "pos": "adj",
+       "vi": "tuyệt vời"
+      },
+      {
+       "word": "email",
+       "ipa": "/ˈiːmeɪl/",
+       "pos": "n",
+       "vi": "thư điện tử"
+      },
+      {
+       "word": "letter",
+       "ipa": "/ˈletə/",
+       "pos": "n",
+       "vi": "bức thư"
+      },
+      {
+       "word": "favourite",
+       "ipa": "/ˈfeɪvərɪt/",
+       "pos": "adj",
+       "vi": "yêu thích"
+      },
+      {
+       "word": "shape",
+       "ipa": "/ʃeɪp/",
+       "pos": "n",
+       "vi": "hình dáng, hình dạng"
+      },
+      {
+       "word": "department store",
+       "ipa": "/dɪˈpɑːtmənt stɔː/",
+       "pos": "n",
+       "vi": "cửa hàng bách hóa"
+      },
+      {
+       "word": "garden",
+       "ipa": "/ˈɡɑːdn/",
+       "pos": "n",
+       "vi": "khu vườn"
+      },
+      {
+       "word": "hotel",
+       "ipa": "/həʊˈtel/",
+       "pos": "n",
+       "vi": "khách sạn"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 3,
+   "title": "My Friends",
+   "topics": [
+    {
+     "topic": "Body Parts",
+     "words": [
+      {
+       "word": "hair",
+       "ipa": "/heə/",
+       "pos": "n",
+       "vi": "tóc"
+      },
+      {
+       "word": "face",
+       "ipa": "/feɪs/",
+       "pos": "n",
+       "vi": "khuôn mặt"
+      },
+      {
+       "word": "eye",
+       "ipa": "/aɪ/",
+       "pos": "n",
+       "vi": "mắt"
+      },
+      {
+       "word": "ear",
+       "ipa": "/ɪə/",
+       "pos": "n",
+       "vi": "tai"
+      },
+      {
+       "word": "nose",
+       "ipa": "/nəʊz/",
+       "pos": "n",
+       "vi": "mũi"
+      },
+      {
+       "word": "cheek",
+       "ipa": "/tʃiːk/",
+       "pos": "n",
+       "vi": "má"
+      },
+      {
+       "word": "mouth",
+       "ipa": "/maʊθ/",
+       "pos": "n",
+       "vi": "miệng"
+      },
+      {
+       "word": "shoulder",
+       "ipa": "/ˈʃəʊldə/",
+       "pos": "n",
+       "vi": "vai"
+      },
+      {
+       "word": "arm",
+       "ipa": "/ɑːm/",
+       "pos": "n",
+       "vi": "cánh tay"
+      },
+      {
+       "word": "hand",
+       "ipa": "/hænd/",
+       "pos": "n",
+       "vi": "bàn tay"
+      },
+      {
+       "word": "leg",
+       "ipa": "/leɡ/",
+       "pos": "n",
+       "vi": "chân"
+      },
+      {
+       "word": "foot",
+       "ipa": "/fʊt/",
+       "pos": "n",
+       "vi": "bàn chân"
+      }
+     ]
+    },
+    {
+     "topic": "Describing Words",
+     "words": [
+      {
+       "word": "big",
+       "ipa": "/bɪɡ/",
+       "pos": "adj",
+       "vi": "to, lớn"
+      },
+      {
+       "word": "small",
+       "ipa": "/smɔːl/",
+       "pos": "adj",
+       "vi": "nhỏ, bé"
+      },
+      {
+       "word": "tall",
+       "ipa": "/tɔːl/",
+       "pos": "adj",
+       "vi": "cao"
+      },
+      {
+       "word": "short",
+       "ipa": "/ʃɔːt/",
+       "pos": "adj",
+       "vi": "thấp, ngắn"
+      },
+      {
+       "word": "long",
+       "ipa": "/lɒŋ/",
+       "pos": "adj",
+       "vi": "dài"
+      },
+      {
+       "word": "round",
+       "ipa": "/raʊnd/",
+       "pos": "adj",
+       "vi": "tròn"
+      },
+      {
+       "word": "black",
+       "ipa": "/blæk/",
+       "pos": "adj",
+       "vi": "đen"
+      },
+      {
+       "word": "blonde",
+       "ipa": "/blɒnd/",
+       "pos": "adj",
+       "vi": "vàng (tóc)"
+      },
+      {
+       "word": "bright",
+       "ipa": "/braɪt/",
+       "pos": "adj",
+       "vi": "sáng, sáng ngời"
+      },
+      {
+       "word": "curly",
+       "ipa": "/ˈkɜːli/",
+       "pos": "adj",
+       "vi": "xoăn"
+      },
+      {
+       "word": "straight",
+       "ipa": "/streɪt/",
+       "pos": "adj",
+       "vi": "thẳng"
+      },
+      {
+       "word": "thin",
+       "ipa": "/θɪn/",
+       "pos": "adj",
+       "vi": "gầy, mảnh mai"
+      }
+     ]
+    },
+    {
+     "topic": "Personality",
+     "words": [
+      {
+       "word": "caring",
+       "ipa": "/ˈkeərɪŋ/",
+       "pos": "adj",
+       "vi": "chu đáo, biết quan tâm"
+      },
+      {
+       "word": "clever",
+       "ipa": "/ˈklevə/",
+       "pos": "adj",
+       "vi": "thông minh"
+      },
+      {
+       "word": "confident",
+       "ipa": "/ˈkɒnfɪdənt/",
+       "pos": "adj",
+       "vi": "tự tin"
+      },
+      {
+       "word": "creative",
+       "ipa": "/kriˈeɪtɪv/",
+       "pos": "adj",
+       "vi": "sáng tạo"
+      },
+      {
+       "word": "friendly",
+       "ipa": "/ˈfrendli/",
+       "pos": "adj",
+       "vi": "thân thiện"
+      },
+      {
+       "word": "funny",
+       "ipa": "/ˈfʌni/",
+       "pos": "adj",
+       "vi": "hài hước, buồn cười"
+      },
+      {
+       "word": "hard-working",
+       "ipa": "/ˌhɑːd ˈwɜːkɪŋ/",
+       "pos": "adj",
+       "vi": "chăm chỉ"
+      },
+      {
+       "word": "kind",
+       "ipa": "/kaɪnd/",
+       "pos": "adj",
+       "vi": "tốt bụng"
+      },
+      {
+       "word": "loving",
+       "ipa": "/ˈlʌvɪŋ/",
+       "pos": "adj",
+       "vi": "yêu thương, âu yếm"
+      },
+      {
+       "word": "active",
+       "ipa": "/ˈæktɪv/",
+       "pos": "adj",
+       "vi": "năng động"
+      },
+      {
+       "word": "shy",
+       "ipa": "/ʃaɪ/",
+       "pos": "adj",
+       "vi": "nhút nhát"
+      },
+      {
+       "word": "sporty",
+       "ipa": "/ˈspɔːti/",
+       "pos": "adj",
+       "vi": "dáng thể thao, yêu thể thao"
+      },
+      {
+       "word": "careful",
+       "ipa": "/ˈkeəfl/",
+       "pos": "adj",
+       "vi": "cẩn thận"
+      },
+      {
+       "word": "honest",
+       "ipa": "/ˈɒnɪst/",
+       "pos": "adj",
+       "vi": "trung thực"
+      },
+      {
+       "word": "patient",
+       "ipa": "/ˈpeɪʃnt/",
+       "pos": "adj",
+       "vi": "kiên nhẫn"
+      },
+      {
+       "word": "generous",
+       "ipa": "/ˈdʒenərəs/",
+       "pos": "adj",
+       "vi": "hào phóng"
+      }
+     ]
+    },
+    {
+     "topic": "Food and Drinks",
+     "words": [
+      {
+       "word": "biscuits",
+       "ipa": "/ˈbɪskɪts/",
+       "pos": "n",
+       "vi": "bánh quy"
+      },
+      {
+       "word": "cake",
+       "ipa": "/keɪk/",
+       "pos": "n",
+       "vi": "bánh ngọt"
+      },
+      {
+       "word": "nuts",
+       "ipa": "/nʌts/",
+       "pos": "n",
+       "vi": "các loại hạt"
+      },
+      {
+       "word": "sandwich",
+       "ipa": "/ˈsænwɪdʒ/",
+       "pos": "n",
+       "vi": "bánh mì kẹp"
+      }
+     ]
+    },
+    {
+     "topic": "Places & Events",
+     "words": [
+      {
+       "word": "summer camp",
+       "ipa": "/ˈsʌmə kæmp/",
+       "pos": "n",
+       "vi": "trại hè"
+      },
+      {
+       "word": "picnic",
+       "ipa": "/ˈpɪknɪk/",
+       "pos": "n",
+       "vi": "chuyến dã ngoại"
+      },
+      {
+       "word": "field trip",
+       "ipa": "/fiːld trɪp/",
+       "pos": "n",
+       "vi": "chuyến đi thực tế"
+      },
+      {
+       "word": "school fair",
+       "ipa": "/skuːl feə/",
+       "pos": "n",
+       "vi": "hội chợ trường học"
+      }
+     ]
+    },
+    {
+     "topic": "Skills",
+     "words": [
+      {
+       "word": "creativity",
+       "ipa": "/ˌkriːeɪˈtɪvəti/",
+       "pos": "n",
+       "vi": "sự sáng tạo"
+      },
+      {
+       "word": "leadership",
+       "ipa": "/ˈliːdəʃɪp/",
+       "pos": "n",
+       "vi": "khả năng lãnh đạo"
+      },
+      {
+       "word": "life skills",
+       "ipa": "/laɪf skɪlz/",
+       "pos": "n",
+       "vi": "kỹ năng sống"
+      },
+      {
+       "word": "teamwork",
+       "ipa": "/ˈtiːmwɜːk/",
+       "pos": "n",
+       "vi": "tinh thần đồng đội, làm việc nhóm"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "comic book",
+       "ipa": "/ˈkɒmɪk bʊk/",
+       "pos": "n",
+       "vi": "truyện tranh"
+      },
+      {
+       "word": "magazine",
+       "ipa": "/ˌmæɡəˈziːn/",
+       "pos": "n",
+       "vi": "tạp chí"
+      },
+      {
+       "word": "yearbook",
+       "ipa": "/ˈjɪəbʊk/",
+       "pos": "n",
+       "vi": "kỷ yếu"
+      },
+      {
+       "word": "email",
+       "ipa": "/ˈiːmeɪl/",
+       "pos": "n",
+       "vi": "thư điện tử"
+      },
+      {
+       "word": "letter",
+       "ipa": "/ˈletə/",
+       "pos": "n",
+       "vi": "lá thư"
+      },
+      {
+       "word": "sheet of paper",
+       "ipa": "/ʃiːt əv ˈpeɪpə/",
+       "pos": "n",
+       "vi": "tờ giấy"
+      },
+      {
+       "word": "bookshop",
+       "ipa": "/ˈbʊkʃɒp/",
+       "pos": "n",
+       "vi": "hiệu sách"
+      },
+      {
+       "word": "glasses",
+       "ipa": "/ˈɡlɑːsɪz/",
+       "pos": "n",
+       "vi": "kính mắt"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 4,
+   "title": "My Neighbourhood",
+   "topics": [
+    {
+     "topic": "Places",
+     "words": [
+      {
+       "word": "neighbourhood",
+       "ipa": "/ˈneɪbəhʊd/",
+       "pos": "n",
+       "vi": "khu vực lân cận"
+      },
+      {
+       "word": "square",
+       "ipa": "/skweə/",
+       "pos": "n",
+       "vi": "quảng trường"
+      },
+      {
+       "word": "art gallery",
+       "ipa": "/ɑːt ˈɡæləri/",
+       "pos": "n",
+       "vi": "phòng tranh"
+      },
+      {
+       "word": "cathedral",
+       "ipa": "/kəˈθiːdrəl/",
+       "pos": "n",
+       "vi": "nhà thờ lớn"
+      },
+      {
+       "word": "temple",
+       "ipa": "/ˈtempl/",
+       "pos": "n",
+       "vi": "đền, điện"
+      },
+      {
+       "word": "pagoda",
+       "ipa": "/pəˈɡəʊdə/",
+       "pos": "n",
+       "vi": "chùa"
+      },
+      {
+       "word": "museum",
+       "ipa": "/mjuˈzɪəm/",
+       "pos": "n",
+       "vi": "bảo tàng"
+      },
+      {
+       "word": "railway station",
+       "ipa": "/ˈreɪlweɪ ˈsteɪʃən/",
+       "pos": "n",
+       "vi": "nhà ga xe lửa"
+      },
+      {
+       "word": "cinema",
+       "ipa": "/ˈsɪnəmə/",
+       "pos": "n",
+       "vi": "rạp chiếu phim"
+      },
+      {
+       "word": "post office",
+       "ipa": "/ˈpəʊst ˈɒfɪs/",
+       "pos": "n",
+       "vi": "bưu điện"
+      },
+      {
+       "word": "market",
+       "ipa": "/ˈmɑːkɪt/",
+       "pos": "n",
+       "vi": "chợ"
+      },
+      {
+       "word": "village market",
+       "ipa": "/ˈvɪlɪdʒ ˈmɑːkɪt/",
+       "pos": "n",
+       "vi": "chợ quê"
+      },
+      {
+       "word": "corner shop",
+       "ipa": "/ˈkɔːnə ʃɒp/",
+       "pos": "n",
+       "vi": "cửa hàng ở góc phố, cửa hàng tiện lợi"
+      },
+      {
+       "word": "shops",
+       "ipa": "/ʃɒps/",
+       "pos": "n",
+       "vi": "cửa hàng"
+      },
+      {
+       "word": "restaurant",
+       "ipa": "/ˈrestrɒnt/",
+       "pos": "n",
+       "vi": "nhà hàng"
+      },
+      {
+       "word": "factory",
+       "ipa": "/ˈfæktəri/",
+       "pos": "n",
+       "vi": "nhà máy"
+      },
+      {
+       "word": "office",
+       "ipa": "/ˈɒfɪs/",
+       "pos": "n",
+       "vi": "văn phòng"
+      },
+      {
+       "word": "building",
+       "ipa": "/ˈbɪldɪŋ/",
+       "pos": "n",
+       "vi": "tòa nhà"
+      },
+      {
+       "word": "suburbs",
+       "ipa": "/ˈsʌbɜːbz/",
+       "pos": "n",
+       "vi": "vùng ngoại ô"
+      },
+      {
+       "word": "centre",
+       "ipa": "/ˈsentə/",
+       "pos": "n",
+       "vi": "trung tâm"
+      },
+      {
+       "word": "countryside",
+       "ipa": "/ˈkʌntrɪsaɪd/",
+       "pos": "n",
+       "vi": "vùng nông thôn"
+      },
+      {
+       "word": "street",
+       "ipa": "/striːt/",
+       "pos": "n",
+       "vi": "đường phố"
+      }
+     ]
+    },
+    {
+     "topic": "Directions",
+     "words": [
+      {
+       "word": "cross the road",
+       "ipa": "/krɒs ðə rəʊd/",
+       "pos": "phr",
+       "vi": "băng qua đường"
+      },
+      {
+       "word": "turn left",
+       "ipa": "/tɜːn left/",
+       "pos": "phr",
+       "vi": "rẽ trái"
+      },
+      {
+       "word": "turn right",
+       "ipa": "/tɜːn raɪt/",
+       "pos": "phr",
+       "vi": "rẽ phải"
+      },
+      {
+       "word": "go straight",
+       "ipa": "/ɡəʊ streɪt/",
+       "pos": "phr",
+       "vi": "đi thẳng"
+      },
+      {
+       "word": "turning",
+       "ipa": "/ˈtɜːnɪŋ/",
+       "pos": "n",
+       "vi": "ngã rẽ"
+      },
+      {
+       "word": "go along",
+       "ipa": "/ɡəʊ əˈlɒŋ/",
+       "pos": "phr",
+       "vi": "đi dọc theo"
+      },
+      {
+       "word": "go out of",
+       "ipa": "/ɡəʊ aʊt ɒv/",
+       "pos": "phr",
+       "vi": "đi ra khỏi"
+      },
+      {
+       "word": "get lost",
+       "ipa": "/ɡet lɒst/",
+       "pos": "phr",
+       "vi": "bị lạc"
+      },
+      {
+       "word": "ask the way",
+       "ipa": "/ɑːsk ðə weɪ/",
+       "pos": "phr",
+       "vi": "hỏi đường"
+      },
+      {
+       "word": "show the way",
+       "ipa": "/ʃəʊ ðə weɪ/",
+       "pos": "phr",
+       "vi": "chỉ đường"
+      },
+      {
+       "word": "near",
+       "ipa": "/nɪə/",
+       "pos": "adj",
+       "vi": "gần"
+      },
+      {
+       "word": "faraway",
+       "ipa": "/ˈfɑːrəweɪ/",
+       "pos": "adj",
+       "vi": "xa"
+      }
+     ]
+    },
+    {
+     "topic": "Describing Words",
+     "words": [
+      {
+       "word": "beautiful",
+       "ipa": "/ˈbjuːtɪfʊl/",
+       "pos": "adj",
+       "vi": "đẹp"
+      },
+      {
+       "word": "quiet",
+       "ipa": "/ˈkwaɪət/",
+       "pos": "adj",
+       "vi": "yên tĩnh"
+      },
+      {
+       "word": "noisy",
+       "ipa": "/ˈnɔɪzi/",
+       "pos": "adj",
+       "vi": "ồn ào"
+      },
+      {
+       "word": "crowded",
+       "ipa": "/ˈkraʊdɪd/",
+       "pos": "adj",
+       "vi": "đông đúc"
+      },
+      {
+       "word": "peaceful",
+       "ipa": "/ˈpiːsfʊl/",
+       "pos": "adj",
+       "vi": "yên bình"
+      },
+      {
+       "word": "boring",
+       "ipa": "/ˈbɔːrɪŋ/",
+       "pos": "adj",
+       "vi": "nhàm chán"
+      },
+      {
+       "word": "modern",
+       "ipa": "/ˈmɒdən/",
+       "pos": "adj",
+       "vi": "hiện đại"
+      },
+      {
+       "word": "busy",
+       "ipa": "/ˈbɪzi/",
+       "pos": "adj",
+       "vi": "nhộn nhịp, bận rộn"
+      },
+      {
+       "word": "exciting",
+       "ipa": "/ɪkˈsaɪtɪŋ/",
+       "pos": "adj",
+       "vi": "thú vị, hào hứng"
+      },
+      {
+       "word": "cheap",
+       "ipa": "/tʃiːp/",
+       "pos": "adj",
+       "vi": "rẻ"
+      },
+      {
+       "word": "expensive",
+       "ipa": "/ɪkˈspensɪv/",
+       "pos": "adj",
+       "vi": "đắt đỏ"
+      },
+      {
+       "word": "clean",
+       "ipa": "/kliːn/",
+       "pos": "adj",
+       "vi": "sạch sẽ"
+      },
+      {
+       "word": "dirty",
+       "ipa": "/ˈdɜːti/",
+       "pos": "adj",
+       "vi": "bẩn"
+      },
+      {
+       "word": "convenient",
+       "ipa": "/kənˈviːniənt/",
+       "pos": "adj",
+       "vi": "thuận tiện"
+      },
+      {
+       "word": "friendly",
+       "ipa": "/ˈfrendli/",
+       "pos": "adj",
+       "vi": "thân thiện"
+      },
+      {
+       "word": "lively",
+       "ipa": "/ˈlaɪvli/",
+       "pos": "adj",
+       "vi": "sống động, nhộn nhịp"
+      },
+      {
+       "word": "pretty",
+       "ipa": "/ˈprɪti/",
+       "pos": "adj",
+       "vi": "xinh xắn"
+      },
+      {
+       "word": "fantastic",
+       "ipa": "/fænˈtæstɪk/",
+       "pos": "adj",
+       "vi": "tuyệt vời"
+      },
+      {
+       "word": "wide",
+       "ipa": "/waɪd/",
+       "pos": "adj",
+       "vi": "rộng"
+      },
+      {
+       "word": "delicious",
+       "ipa": "/dɪˈlɪʃəs/",
+       "pos": "adj",
+       "vi": "ngon miệng"
+      },
+      {
+       "word": "heavy",
+       "ipa": "/ˈhevi/",
+       "pos": "adj",
+       "vi": "(giao thông) đông đúc, nặng"
+      },
+      {
+       "word": "large",
+       "ipa": "/lɑːdʒ/",
+       "pos": "adj",
+       "vi": "rộng lớn"
+      },
+      {
+       "word": "helpful",
+       "ipa": "/ˈhelpfʊl/",
+       "pos": "adj",
+       "vi": "hay giúp đỡ"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "partner",
+       "ipa": "/ˈpɑːtnə/",
+       "pos": "n",
+       "vi": "bạn cùng nhóm"
+      },
+      {
+       "word": "neighbour",
+       "ipa": "/ˈneɪbə/",
+       "pos": "n",
+       "vi": "người hàng xóm"
+      },
+      {
+       "word": "outdoor activity",
+       "ipa": "/ˈaʊtdɔːr ækˈtɪvɪti/",
+       "pos": "n.phr",
+       "vi": "hoạt động ngoài trời"
+      },
+      {
+       "word": "tour",
+       "ipa": "/tʊə/",
+       "pos": "n",
+       "vi": "chuyến tham quan"
+      },
+      {
+       "word": "workshop",
+       "ipa": "/ˈwɜːkʃɒp/",
+       "pos": "n",
+       "vi": "xưởng"
+      },
+      {
+       "word": "swap",
+       "ipa": "/swɒp/",
+       "pos": "v",
+       "vi": "đổi vai"
+      },
+      {
+       "word": "arrive",
+       "ipa": "/əˈraɪv/",
+       "pos": "v",
+       "vi": "đến nơi"
+      },
+      {
+       "word": "decide",
+       "ipa": "/dɪˈsaɪd/",
+       "pos": "v",
+       "vi": "quyết định"
+      },
+      {
+       "word": "grow",
+       "ipa": "/ɡrəʊ/",
+       "pos": "v",
+       "vi": "trồng, phát triển"
+      },
+      {
+       "word": "weather",
+       "ipa": "/ˈweðə/",
+       "pos": "n",
+       "vi": "thời tiết"
+      },
+      {
+       "word": "traffic",
+       "ipa": "/ˈtræfɪk/",
+       "pos": "n",
+       "vi": "giao thông"
+      },
+      {
+       "word": "seafood",
+       "ipa": "/ˈsiːfuːd/",
+       "pos": "n",
+       "vi": "hải sản"
+      },
+      {
+       "word": "present",
+       "ipa": "/ˈpreznt/",
+       "pos": "n",
+       "vi": "món quà"
+      },
+      {
+       "word": "air",
+       "ipa": "/eə/",
+       "pos": "n",
+       "vi": "không khí"
+      },
+      {
+       "word": "culture",
+       "ipa": "/ˈkʌltʃə/",
+       "pos": "n",
+       "vi": "văn hóa"
+      },
+      {
+       "word": "excited",
+       "ipa": "/ɪkˈsaɪtɪd/",
+       "pos": "adj",
+       "vi": "hào hứng, phấn khích"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 5,
+   "title": "Natural Wonders of Viet Nam",
+   "topics": [
+    {
+     "topic": "Nature and Scenery",
+     "words": [
+      {
+       "word": "natural wonder",
+       "ipa": "/ˈnætʃrəl ˈwʌndə/",
+       "pos": "n",
+       "vi": "kỳ quan thiên nhiên"
+      },
+      {
+       "word": "scenery",
+       "ipa": "/ˈsiːnəri/",
+       "pos": "n",
+       "vi": "phong cảnh"
+      },
+      {
+       "word": "landscape",
+       "ipa": "/ˈlændskeɪp/",
+       "pos": "n",
+       "vi": "phong cảnh, cảnh quan"
+      },
+      {
+       "word": "mountain",
+       "ipa": "/ˈmaʊntɪn/",
+       "pos": "n",
+       "vi": "ngọn núi"
+      },
+      {
+       "word": "mountain range",
+       "ipa": "/ˈmaʊntɪn reɪndʒ/",
+       "pos": "n",
+       "vi": "dãy núi"
+      },
+      {
+       "word": "river",
+       "ipa": "/ˈrɪvə/",
+       "pos": "n",
+       "vi": "dòng sông"
+      },
+      {
+       "word": "waterfall",
+       "ipa": "/ˈwɔːtəfɔːl/",
+       "pos": "n",
+       "vi": "thác nước"
+      },
+      {
+       "word": "forest",
+       "ipa": "/ˈfɒrɪst/",
+       "pos": "n",
+       "vi": "khu rừng"
+      },
+      {
+       "word": "cave",
+       "ipa": "/keɪv/",
+       "pos": "n",
+       "vi": "hang động"
+      },
+      {
+       "word": "desert",
+       "ipa": "/ˈdezət/",
+       "pos": "n",
+       "vi": "sa mạc"
+      },
+      {
+       "word": "beach",
+       "ipa": "/biːtʃ/",
+       "pos": "n",
+       "vi": "bãi biển"
+      },
+      {
+       "word": "island",
+       "ipa": "/ˈaɪlənd/",
+       "pos": "n",
+       "vi": "hòn đảo"
+      },
+      {
+       "word": "bay",
+       "ipa": "/beɪ/",
+       "pos": "n",
+       "vi": "vịnh"
+      },
+      {
+       "word": "sand dune",
+       "ipa": "/sænd djuːn/",
+       "pos": "n",
+       "vi": "cồn cát"
+      },
+      {
+       "word": "rock column",
+       "ipa": "/rɒk ˈkɒləm/",
+       "pos": "n",
+       "vi": "cột đá"
+      },
+      {
+       "word": "slope",
+       "ipa": "/sləʊp/",
+       "pos": "n",
+       "vi": "sườn dốc"
+      },
+      {
+       "word": "national park",
+       "ipa": "/ˈnæʃnəl pɑːk/",
+       "pos": "n",
+       "vi": "công viên quốc gia, vườn quốc gia"
+      }
+     ]
+    },
+    {
+     "topic": "Items and Equipment",
+     "words": [
+      {
+       "word": "compass",
+       "ipa": "/ˈkʌmpəs/",
+       "pos": "n",
+       "vi": "la bàn"
+      },
+      {
+       "word": "suncream",
+       "ipa": "/ˈsʌnkriːm/",
+       "pos": "n",
+       "vi": "kem chống nắng"
+      },
+      {
+       "word": "sleeping bag",
+       "ipa": "/ˈsliːpɪŋ bæɡ/",
+       "pos": "n",
+       "vi": "túi ngủ"
+      },
+      {
+       "word": "backpack",
+       "ipa": "/ˈbækpæk/",
+       "pos": "n",
+       "vi": "ba lô"
+      },
+      {
+       "word": "plaster",
+       "ipa": "/ˈplɑːstə/",
+       "pos": "n",
+       "vi": "băng cá nhân"
+      },
+      {
+       "word": "scissors",
+       "ipa": "/ˈsɪzəz/",
+       "pos": "n",
+       "vi": "cái kéo"
+      },
+      {
+       "word": "waterproof coat",
+       "ipa": "/ˈwɔːtəpruːf kəʊt/",
+       "pos": "n",
+       "vi": "áo khoác chống nước"
+      },
+      {
+       "word": "clothes",
+       "ipa": "/kləʊðz/",
+       "pos": "n",
+       "vi": "quần áo"
+      },
+      {
+       "word": "shorts",
+       "ipa": "/ʃɔːts/",
+       "pos": "n",
+       "vi": "quần soóc, quần đùi"
+      },
+      {
+       "word": "T-shirts",
+       "ipa": "/ˈtiː ʃɜːts/",
+       "pos": "n",
+       "vi": "áo thun, áo phông"
+      },
+      {
+       "word": "mobile phone",
+       "ipa": "/ˈməʊbaɪl fəʊn/",
+       "pos": "n",
+       "vi": "điện thoại di động"
+      },
+      {
+       "word": "luggage",
+       "ipa": "/ˈlʌɡɪdʒ/",
+       "pos": "n",
+       "vi": "hành lý"
+      },
+      {
+       "word": "candle",
+       "ipa": "/ˈkændl/",
+       "pos": "n",
+       "vi": "ngọn nến"
+      }
+     ]
+    },
+    {
+     "topic": "Describing Words",
+     "words": [
+      {
+       "word": "amazing",
+       "ipa": "/əˈmeɪzɪŋ/",
+       "pos": "adj",
+       "vi": "kinh ngạc, tuyệt vời"
+      },
+      {
+       "word": "wonderful",
+       "ipa": "/ˈwʌndəfl/",
+       "pos": "adj",
+       "vi": "tuyệt vời"
+      },
+      {
+       "word": "charming",
+       "ipa": "/ˈtʃɑːmɪŋ/",
+       "pos": "adj",
+       "vi": "quyến rũ, duyên dáng"
+      },
+      {
+       "word": "beautiful",
+       "ipa": "/ˈbjuːtɪfl/",
+       "pos": "adj",
+       "vi": "đẹp"
+      },
+      {
+       "word": "popular",
+       "ipa": "/ˈpɒpjələ/",
+       "pos": "adj",
+       "vi": "phổ biến, nổi tiếng"
+      },
+      {
+       "word": "special",
+       "ipa": "/ˈspeʃl/",
+       "pos": "adj",
+       "vi": "đặc biệt"
+      },
+      {
+       "word": "interesting",
+       "ipa": "/ˈɪntrəstɪŋ/",
+       "pos": "adj",
+       "vi": "thú vị"
+      },
+      {
+       "word": "exciting",
+       "ipa": "/ɪkˈsaɪtɪŋ/",
+       "pos": "adj",
+       "vi": "hứng thú, thú vị"
+      },
+      {
+       "word": "different",
+       "ipa": "/ˈdɪfrənt/",
+       "pos": "adj",
+       "vi": "khác nhau"
+      },
+      {
+       "word": "man-made",
+       "ipa": "/ˌmæn ˈmeɪd/",
+       "pos": "adj",
+       "vi": "nhân tạo"
+      },
+      {
+       "word": "necessary",
+       "ipa": "/ˈnesəsəri/",
+       "pos": "adj",
+       "vi": "cần thiết"
+      },
+      {
+       "word": "important",
+       "ipa": "/ɪmˈpɔːtnt/",
+       "pos": "adj",
+       "vi": "quan trọng"
+      },
+      {
+       "word": "dangerous",
+       "ipa": "/ˈdeɪndʒərəs/",
+       "pos": "adj",
+       "vi": "nguy hiểm"
+      },
+      {
+       "word": "famous",
+       "ipa": "/ˈfeɪməs/",
+       "pos": "adj",
+       "vi": "nổi tiếng"
+      },
+      {
+       "word": "natural",
+       "ipa": "/ˈnætʃrəl/",
+       "pos": "adj",
+       "vi": "thuộc về thiên nhiên, tự nhiên"
+      }
+     ]
+    },
+    {
+     "topic": "Weather",
+     "words": [
+      {
+       "word": "rainy",
+       "ipa": "/ˈreɪni/",
+       "pos": "adj",
+       "vi": "có mưa"
+      },
+      {
+       "word": "sunny",
+       "ipa": "/ˈsʌni/",
+       "pos": "adj",
+       "vi": "có nắng"
+      },
+      {
+       "word": "dry",
+       "ipa": "/draɪ/",
+       "pos": "adj",
+       "vi": "khô hạn"
+      },
+      {
+       "word": "warm",
+       "ipa": "/wɔːm/",
+       "pos": "adj",
+       "vi": "ấm áp"
+      }
+     ]
+    },
+    {
+     "topic": "Activities",
+     "words": [
+      {
+       "word": "play water sport",
+       "ipa": "/pleɪ ˈwɔːtə spɔːt/",
+       "pos": "phr.v",
+       "vi": "chơi thể thao dưới nước"
+      },
+      {
+       "word": "play musical instrument",
+       "ipa": "/pleɪ ˈmjuːzɪkl ˈɪnstrəmənt/",
+       "pos": "phr.v",
+       "vi": "chơi nhạc cụ"
+      },
+      {
+       "word": "go camping",
+       "ipa": "/ɡəʊ ˈkæmpɪŋ/",
+       "pos": "phr.v",
+       "vi": "đi cắm trại"
+      },
+      {
+       "word": "go hiking",
+       "ipa": "/ɡəʊ ˈhaɪkɪŋ/",
+       "pos": "phr.v",
+       "vi": "đi bộ đường dài"
+      },
+      {
+       "word": "ride a bike",
+       "ipa": "/raɪd ə baɪk/",
+       "pos": "phr.v",
+       "vi": "đạp xe"
+      },
+      {
+       "word": "fly kites",
+       "ipa": "/flaɪ kaɪts/",
+       "pos": "phr.v",
+       "vi": "thả diều"
+      },
+      {
+       "word": "enjoy seafood",
+       "ipa": "/ɪnˈdʒɔɪ ˈsiːfuːd/",
+       "pos": "phr.v",
+       "vi": "thưởng thức hải sản"
+      },
+      {
+       "word": "visit",
+       "ipa": "/ˈvɪzɪt/",
+       "pos": "v",
+       "vi": "thăm, tham quan"
+      },
+      {
+       "word": "explore",
+       "ipa": "/ɪkˈsplɔː/",
+       "pos": "v",
+       "vi": "khám phá"
+      },
+      {
+       "word": "travel",
+       "ipa": "/ˈtrævl/",
+       "pos": "v",
+       "vi": "đi du lịch"
+      },
+      {
+       "word": "picnic",
+       "ipa": "/ˈpɪknɪk/",
+       "pos": "n",
+       "vi": "chuyến dã ngoại"
+      }
+     ]
+    },
+    {
+     "topic": "Places and Transportation",
+     "words": [
+      {
+       "word": "fishing village",
+       "ipa": "/ˈfɪʃɪŋ ˈvɪlɪdʒ/",
+       "pos": "n",
+       "vi": "làng chài"
+      },
+      {
+       "word": "market",
+       "ipa": "/ˈmɑːkɪt/",
+       "pos": "n",
+       "vi": "chợ"
+      },
+      {
+       "word": "museum",
+       "ipa": "/mjuˈziːəm/",
+       "pos": "n",
+       "vi": "bảo tàng"
+      },
+      {
+       "word": "tourist attraction",
+       "ipa": "/ˈtʊərɪst əˈtrækʃn/",
+       "pos": "n",
+       "vi": "điểm thu hút khách du lịch"
+      },
+      {
+       "word": "canteen",
+       "ipa": "/kænˈtiːn/",
+       "pos": "n",
+       "vi": "căng tin, nhà ăn"
+      },
+      {
+       "word": "area",
+       "ipa": "/ˈeəriə/",
+       "pos": "n",
+       "vi": "khu vực"
+      },
+      {
+       "word": "camping site",
+       "ipa": "/ˈkæmpɪŋ saɪt/",
+       "pos": "n",
+       "vi": "địa điểm cắm trại"
+      },
+      {
+       "word": "road",
+       "ipa": "/rəʊd/",
+       "pos": "n",
+       "vi": "con đường"
+      },
+      {
+       "word": "train",
+       "ipa": "/treɪn/",
+       "pos": "n",
+       "vi": "xe lửa, tàu hỏa"
+      },
+      {
+       "word": "boat",
+       "ipa": "/bəʊt/",
+       "pos": "n",
+       "vi": "thuyền, tàu"
+      }
+     ]
+    },
+    {
+     "topic": "Food and Ingredients",
+     "words": [
+      {
+       "word": "butter",
+       "ipa": "/ˈbʌtə/",
+       "pos": "n",
+       "vi": "bơ"
+      },
+      {
+       "word": "milk",
+       "ipa": "/mɪlk/",
+       "pos": "n",
+       "vi": "sữa"
+      },
+      {
+       "word": "sugar",
+       "ipa": "/ˈʃʊɡə/",
+       "pos": "n",
+       "vi": "đường"
+      },
+      {
+       "word": "chocolate",
+       "ipa": "/ˈtʃɒklət/",
+       "pos": "n",
+       "vi": "sô-cô-la"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "sell",
+       "ipa": "/sel/",
+       "pos": "v",
+       "vi": "bán"
+      },
+      {
+       "word": "litter",
+       "ipa": "/ˈlɪtə/",
+       "pos": "v",
+       "vi": "xả rác"
+      },
+      {
+       "word": "follow",
+       "ipa": "/ˈfɒləʊ/",
+       "pos": "v",
+       "vi": "tuân theo, theo dõi"
+      },
+      {
+       "word": "tell the truth",
+       "ipa": "/tel ðə truːθ/",
+       "pos": "phr.v",
+       "vi": "nói sự thật"
+      },
+      {
+       "word": "practise",
+       "ipa": "/ˈpræktɪs/",
+       "pos": "v",
+       "vi": "thực hành, luyện tập"
+      },
+      {
+       "word": "arrive",
+       "ipa": "/əˈraɪv/",
+       "pos": "v",
+       "vi": "đến nơi"
+      },
+      {
+       "word": "pick flowers",
+       "ipa": "/pɪk ˈflaʊəz/",
+       "pos": "phr.v",
+       "vi": "hái hoa"
+      },
+      {
+       "word": "leave",
+       "ipa": "/liːv/",
+       "pos": "v",
+       "vi": "rời đi"
+      },
+      {
+       "word": "make noise",
+       "ipa": "/meɪk nɔɪz/",
+       "pos": "phr.v",
+       "vi": "làm ồn"
+      },
+      {
+       "word": "tourist",
+       "ipa": "/ˈtʊərɪst/",
+       "pos": "n",
+       "vi": "du khách"
+      },
+      {
+       "word": "guide",
+       "ipa": "/ɡaɪd/",
+       "pos": "n",
+       "vi": "hướng dẫn viên"
+      },
+      {
+       "word": "Geography",
+       "ipa": "/dʒiˈɒɡrəfi/",
+       "pos": "n",
+       "vi": "môn Địa lý"
+      },
+      {
+       "word": "item",
+       "ipa": "/ˈaɪtəm/",
+       "pos": "n",
+       "vi": "món đồ, vật dụng"
+      },
+      {
+       "word": "shape",
+       "ipa": "/ʃeɪp/",
+       "pos": "n",
+       "vi": "hình dạng"
+      },
+      {
+       "word": "size",
+       "ipa": "/saɪz/",
+       "pos": "n",
+       "vi": "kích cỡ"
+      },
+      {
+       "word": "overnight",
+       "ipa": "/ˌəʊvəˈnaɪt/",
+       "pos": "adv",
+       "vi": "qua đêm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 6,
+   "title": "Our Tet Holiday",
+   "topics": [
+    {
+     "topic": "New Year Celebrations",
+     "words": [
+      {
+       "word": "Tet / Tet holiday",
+       "ipa": "/tet / tet ˈhɒlɪdeɪ/",
+       "pos": "n",
+       "vi": "Tết / kỳ nghỉ Tết"
+      },
+      {
+       "word": "lucky money",
+       "ipa": "/ˈlʌki ˈmʌni/",
+       "pos": "n",
+       "vi": "tiền lì xì / tiền mừng tuổi"
+      },
+      {
+       "word": "family gathering",
+       "ipa": "/ˈfæmɪli ˈɡæðərɪŋ/",
+       "pos": "n",
+       "vi": "sự sum họp gia đình"
+      },
+      {
+       "word": "peach flower",
+       "ipa": "/piːtʃ ˈflaʊə/",
+       "pos": "n",
+       "vi": "hoa đào"
+      },
+      {
+       "word": "special food",
+       "ipa": "/ˈspeʃəl fuːd/",
+       "pos": "n",
+       "vi": "thức ăn đặc biệt / món ăn đặc biệt"
+      },
+      {
+       "word": "traditional game",
+       "ipa": "/trəˈdɪʃənl ɡeɪm/",
+       "pos": "n",
+       "vi": "trò chơi truyền thống"
+      },
+      {
+       "word": "human chess",
+       "ipa": "/ˈhjuːmən tʃes/",
+       "pos": "n",
+       "vi": "cờ người"
+      },
+      {
+       "word": "make a wish",
+       "ipa": "/meɪk ə wɪʃ/",
+       "pos": "v",
+       "vi": "ước một điều ước"
+      },
+      {
+       "word": "good luck",
+       "ipa": "/ɡʊd lʌk/",
+       "pos": "n",
+       "vi": "sự may mắn"
+      },
+      {
+       "word": "bad luck",
+       "ipa": "/bæd lʌk/",
+       "pos": "n",
+       "vi": "sự xui xẻo"
+      },
+      {
+       "word": "red envelope",
+       "ipa": "/red ˈenvələʊp/",
+       "pos": "n",
+       "vi": "bao lì xì"
+      },
+      {
+       "word": "mochi rice cake",
+       "ipa": "/ˈməʊtʃi raɪs keɪk/",
+       "pos": "n",
+       "vi": "bánh giầy mochi"
+      },
+      {
+       "word": "ring bells",
+       "ipa": "/rɪŋ belz/",
+       "pos": "v",
+       "vi": "rung chuông"
+      },
+      {
+       "word": "watch fireworks",
+       "ipa": "/wɒtʃ ˈfaɪəwɜːks/",
+       "pos": "v",
+       "vi": "xem pháo hoa"
+      },
+      {
+       "word": "dress beautifully",
+       "ipa": "/dres ˈbjuːtəfuli/",
+       "pos": "v",
+       "vi": "ăn mặc đẹp"
+      },
+      {
+       "word": "go out and have fun",
+       "ipa": "/ɡəʊ aʊt ænd hæv fʌn/",
+       "pos": "v",
+       "vi": "ra ngoài và vui chơi"
+      },
+      {
+       "word": "happy moment",
+       "ipa": "/ˈhæpi ˈməʊmənt/",
+       "pos": "n",
+       "vi": "khoảnh khắc hạnh phúc"
+      },
+      {
+       "word": "success",
+       "ipa": "/səkˈses/",
+       "pos": "n",
+       "vi": "sự thành công"
+      },
+      {
+       "word": "happiness",
+       "ipa": "/ˈhæpɪnəs/",
+       "pos": "n",
+       "vi": "sự hạnh phúc"
+      },
+      {
+       "word": "laughter",
+       "ipa": "/ˈlɑːftə/",
+       "pos": "n",
+       "vi": "tiếng cười"
+      },
+      {
+       "word": "cheers",
+       "ipa": "/tʃɪəz/",
+       "pos": "n",
+       "vi": "sự vui mừng / sự hân hoan"
+      },
+      {
+       "word": "health",
+       "ipa": "/helθ/",
+       "pos": "n",
+       "vi": "sức khỏe"
+      },
+      {
+       "word": "past year",
+       "ipa": "/pɑːst jɪə/",
+       "pos": "n",
+       "vi": "năm qua / năm cũ"
+      },
+      {
+       "word": "relative",
+       "ipa": "/ˈrelətɪv/",
+       "pos": "n",
+       "vi": "người họ hàng"
+      },
+      {
+       "word": "temple",
+       "ipa": "/ˈtempl/",
+       "pos": "n",
+       "vi": "ngôi đền"
+      },
+      {
+       "word": "midnight",
+       "ipa": "/ˈmɪdnaɪt/",
+       "pos": "n",
+       "vi": "nửa đêm"
+      },
+      {
+       "word": "custom",
+       "ipa": "/ˈkʌstəm/",
+       "pos": "n",
+       "vi": "phong tục"
+      },
+      {
+       "word": "decorate",
+       "ipa": "/ˈdekəreɪt/",
+       "pos": "v",
+       "vi": "trang trí"
+      },
+      {
+       "word": "clean furniture",
+       "ipa": "/kliːn ˈfɜːnɪtʃə/",
+       "pos": "v",
+       "vi": "lau chùi đồ đạc / lau chùi nội thất"
+      },
+      {
+       "word": "celebrate",
+       "ipa": "/ˈselɪbreɪt/",
+       "pos": "v",
+       "vi": "ăn mừng / kỷ niệm"
+      }
+     ]
+    },
+    {
+     "topic": "Countries",
+     "words": [
+      {
+       "word": "Thailand",
+       "ipa": "/ˈtaɪlænd/",
+       "pos": "n",
+       "vi": "nước Thái Lan"
+      },
+      {
+       "word": "Japan",
+       "ipa": "/dʒəˈpæn/",
+       "pos": "n",
+       "vi": "nước Nhật Bản"
+      },
+      {
+       "word": "The USA",
+       "ipa": "/ðə juː-es-ˈeɪ/",
+       "pos": "n",
+       "vi": "nước Mỹ"
+      },
+      {
+       "word": "Russia",
+       "ipa": "/ˈrʌʃə/",
+       "pos": "n",
+       "vi": "nước Nga"
+      },
+      {
+       "word": "Spain",
+       "ipa": "/speɪn/",
+       "pos": "n",
+       "vi": "nước Tây Ban Nha"
+      },
+      {
+       "word": "Switzerland",
+       "ipa": "/ˈswɪtsələnd/",
+       "pos": "n",
+       "vi": "nước Thụy Sĩ"
+      },
+      {
+       "word": "Romania",
+       "ipa": "/rəʊˈmeɪniə/",
+       "pos": "n",
+       "vi": "nước Ru-ma-ni"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "cucumber",
+       "ipa": "/ˈkjuːkʌmbə/",
+       "pos": "n",
+       "vi": "quả dưa chuột"
+      },
+      {
+       "word": "cheese",
+       "ipa": "/tʃiːz/",
+       "pos": "n",
+       "vi": "pho mát"
+      },
+      {
+       "word": "picture",
+       "ipa": "/ˈpɪktʃə/",
+       "pos": "n",
+       "vi": "bức tranh / bức ảnh"
+      },
+      {
+       "word": "balloon",
+       "ipa": "/bəˈluːn/",
+       "pos": "n",
+       "vi": "quả bóng bay"
+      },
+      {
+       "word": "magazine",
+       "ipa": "/ˌmæɡəˈziːn/",
+       "pos": "n",
+       "vi": "tạp chí"
+      },
+      {
+       "word": "colour pencil",
+       "ipa": "/ˈkʌlə ˈpensl/",
+       "pos": "n",
+       "vi": "bút chì màu"
+      },
+      {
+       "word": "sunlight",
+       "ipa": "/ˈsʌnlaɪt/",
+       "pos": "n",
+       "vi": "ánh sáng mặt trời"
+      },
+      {
+       "word": "coin",
+       "ipa": "/kɔɪn/",
+       "pos": "n",
+       "vi": "đồng xu"
+      },
+      {
+       "word": "salt",
+       "ipa": "/sɒlt/",
+       "pos": "n",
+       "vi": "muối"
+      },
+      {
+       "word": "shy",
+       "ipa": "/ʃaɪ/",
+       "pos": "adj",
+       "vi": "bẽn lẽn / nhút nhát"
+      },
+      {
+       "word": "smile",
+       "ipa": "/smaɪl/",
+       "pos": "n",
+       "vi": "nụ cười"
+      },
+      {
+       "word": "poor",
+       "ipa": "/pʊə/",
+       "pos": "adj",
+       "vi": "nghèo"
+      },
+      {
+       "word": "clock strikes",
+       "ipa": "/klɒk straɪks/",
+       "pos": "phr",
+       "vi": "đồng hồ điểm"
+      },
+      {
+       "word": "visit",
+       "ipa": "/ˈvɪzɪt/",
+       "pos": "v",
+       "vi": "thăm"
+      },
+      {
+       "word": "cook",
+       "ipa": "/kʊk/",
+       "pos": "v",
+       "vi": "nấu ăn"
+      },
+      {
+       "word": "plant",
+       "ipa": "/plɑːnt/",
+       "pos": "v",
+       "vi": "trồng"
+      },
+      {
+       "word": "behave well",
+       "ipa": "/bɪˈheɪv wel/",
+       "pos": "v",
+       "vi": "cư xử ngoan ngoãn / cư xử tốt"
+      },
+      {
+       "word": "knock",
+       "ipa": "/nɒk/",
+       "pos": "v",
+       "vi": "gõ (cửa)"
+      },
+      {
+       "word": "help with housework",
+       "ipa": "/help wɪð ˈhaʊswɜːk/",
+       "pos": "v",
+       "vi": "giúp làm việc nhà"
+      },
+      {
+       "word": "fight",
+       "ipa": "/faɪt/",
+       "pos": "v",
+       "vi": "đánh nhau"
+      },
+      {
+       "word": "invite",
+       "ipa": "/ɪnˈvaɪt/",
+       "pos": "v",
+       "vi": "mời"
+      },
+      {
+       "word": "ask for permission",
+       "ipa": "/ɑːsk fɔː pəˈmɪʃən/",
+       "pos": "v",
+       "vi": "xin phép"
+      },
+      {
+       "word": "make noise",
+       "ipa": "/meɪk nɔɪz/",
+       "pos": "v",
+       "vi": "làm ồn"
+      },
+      {
+       "word": "bathe",
+       "ipa": "/beɪð/",
+       "pos": "v",
+       "vi": "tắm"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 7,
+   "title": "Television",
+   "topics": [
+    {
+     "topic": "TV Programmes",
+     "words": [
+      {
+       "word": "animal programme",
+       "ipa": "/ˈænɪməl ˈprəʊɡræm/",
+       "pos": "n",
+       "vi": "chương trình động vật"
+      },
+      {
+       "word": "animated film",
+       "ipa": "/ˈænɪmeɪtɪd fɪlm/",
+       "pos": "n",
+       "vi": "phim hoạt hình"
+      },
+      {
+       "word": "cartoon",
+       "ipa": "/kɑːˈtuːn/",
+       "pos": "n",
+       "vi": "phim hoạt hình"
+      },
+      {
+       "word": "channel",
+       "ipa": "/ˈtʃænəl/",
+       "pos": "n",
+       "vi": "kênh truyền hình"
+      },
+      {
+       "word": "clip",
+       "ipa": "/klɪp/",
+       "pos": "n",
+       "vi": "đoạn phim ngắn"
+      },
+      {
+       "word": "comedy",
+       "ipa": "/ˈkɒmədi/",
+       "pos": "n",
+       "vi": "hài kịch"
+      },
+      {
+       "word": "educational programme",
+       "ipa": "/ˌedʒuˈkeɪʃənəl ˈprəʊɡræm/",
+       "pos": "n",
+       "vi": "chương trình giáo dục"
+      },
+      {
+       "word": "game show",
+       "ipa": "/ˈɡeɪm ʃəʊ/",
+       "pos": "n",
+       "vi": "trò chơi truyền hình"
+      },
+      {
+       "word": "programme",
+       "ipa": "/ˈprəʊɡræm/",
+       "pos": "n",
+       "vi": "chương trình (truyền hình)"
+      },
+      {
+       "word": "sports programme",
+       "ipa": "/ˈspɔːts ˈprəʊɡræm/",
+       "pos": "n",
+       "vi": "chương trình thể thao"
+      },
+      {
+       "word": "talent show",
+       "ipa": "/ˈtælənt ʃəʊ/",
+       "pos": "n",
+       "vi": "chương trình tài năng"
+      },
+      {
+       "word": "wildlife programme",
+       "ipa": "/ˈwaɪldlaɪf ˈprəʊɡræm/",
+       "pos": "n",
+       "vi": "chương trình động vật hoang dã"
+      }
+     ]
+    },
+    {
+     "topic": "Adjectives for Programmes and Characters",
+     "words": [
+      {
+       "word": "boring",
+       "ipa": "/ˈbɔːrɪŋ/",
+       "pos": "adj",
+       "vi": "nhàm chán"
+      },
+      {
+       "word": "clever",
+       "ipa": "/ˈklevər/",
+       "pos": "adj",
+       "vi": "thông minh"
+      },
+      {
+       "word": "educational",
+       "ipa": "/ˌedʒuˈkeɪʃənəl/",
+       "pos": "adj",
+       "vi": "giáo dục"
+      },
+      {
+       "word": "funny",
+       "ipa": "/ˈfʌni/",
+       "pos": "adj",
+       "vi": "hài hước"
+      },
+      {
+       "word": "interesting",
+       "ipa": "/ˈɪntrəstɪŋ/",
+       "pos": "adj",
+       "vi": "thú vị"
+      },
+      {
+       "word": "live",
+       "ipa": "/laɪv/",
+       "pos": "adj",
+       "vi": "trực tiếp"
+      },
+      {
+       "word": "popular",
+       "ipa": "/ˈpɒpjələr/",
+       "pos": "adj",
+       "vi": "phổ biến"
+      },
+      {
+       "word": "wonderful",
+       "ipa": "/ˈwʌndəfəl/",
+       "pos": "adj",
+       "vi": "tuyệt vời"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "character",
+       "ipa": "/ˈkærəktər/",
+       "pos": "n",
+       "vi": "nhân vật"
+      },
+      {
+       "word": "compete",
+       "ipa": "/kəmˈpiːt/",
+       "pos": "v",
+       "vi": "thi đấu"
+      },
+      {
+       "word": "dolphin",
+       "ipa": "/ˈdɒlfɪn/",
+       "pos": "n",
+       "vi": "cá heo"
+      },
+      {
+       "word": "earth",
+       "ipa": "/ɜːθ/",
+       "pos": "n",
+       "vi": "trái đất"
+      },
+      {
+       "word": "educate",
+       "ipa": "/ˈedʒuːkeɪt/",
+       "pos": "v",
+       "vi": "giáo dục"
+      },
+      {
+       "word": "laugh",
+       "ipa": "/lɑːf/",
+       "pos": "v",
+       "vi": "cười"
+      },
+      {
+       "word": "theatre",
+       "ipa": "/ˈθɪətər/",
+       "pos": "n",
+       "vi": "nhà hát"
+      },
+      {
+       "word": "viewer",
+       "ipa": "/ˈvjuːər/",
+       "pos": "n",
+       "vi": "người xem"
+      },
+      {
+       "word": "weather",
+       "ipa": "/ˈweðər/",
+       "pos": "n",
+       "vi": "thời tiết"
+      },
+      {
+       "word": "yard",
+       "ipa": "/jɑːd/",
+       "pos": "n",
+       "vi": "sân"
+      },
+      {
+       "word": "decorate",
+       "ipa": "/ˈdekəreɪt/",
+       "pos": "v",
+       "vi": "trang trí"
+      },
+      {
+       "word": "stadium",
+       "ipa": "/ˈsteɪdiəm/",
+       "pos": "n",
+       "vi": "sân vận động"
+      },
+      {
+       "word": "instruction",
+       "ipa": "/ɪnˈstrʌkʃən/",
+       "pos": "n",
+       "vi": "hướng dẫn"
+      },
+      {
+       "word": "childhood",
+       "ipa": "/ˈtʃaɪldhʊd/",
+       "pos": "n",
+       "vi": "thời thơ ấu"
+      },
+      {
+       "word": "attract",
+       "ipa": "/əˈtrækt/",
+       "pos": "v",
+       "vi": "thu hút"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 8,
+   "title": "Sports and Games",
+   "topics": [
+    {
+     "topic": "Sports and Games",
+     "words": [
+      {
+       "word": "aerobics",
+       "ipa": "/eəˈrəʊbɪks/",
+       "pos": "n",
+       "vi": "thể dục nhịp điệu"
+      },
+      {
+       "word": "badminton",
+       "ipa": "/ˈbædmɪntən/",
+       "pos": "n",
+       "vi": "cầu lông"
+      },
+      {
+       "word": "ball games",
+       "ipa": "/bɔːl ɡeɪms/",
+       "pos": "n",
+       "vi": "những trò chơi với bóng"
+      },
+      {
+       "word": "boating",
+       "ipa": "/ˈbəʊtɪŋ/",
+       "pos": "n",
+       "vi": "chèo thuyền"
+      },
+      {
+       "word": "chess",
+       "ipa": "/tʃes/",
+       "pos": "n",
+       "vi": "cờ vua"
+      },
+      {
+       "word": "cycling",
+       "ipa": "/ˈsaɪklɪŋ/",
+       "pos": "n",
+       "vi": "đạp xe"
+      },
+      {
+       "word": "football",
+       "ipa": "/ˈfʊtbɔːl/",
+       "pos": "n",
+       "vi": "bóng đá"
+      },
+      {
+       "word": "karate",
+       "ipa": "/kəˈrɑːti/",
+       "pos": "n",
+       "vi": "karate"
+      },
+      {
+       "word": "sport",
+       "ipa": "/spɔːt/",
+       "pos": "n",
+       "vi": "thể thao"
+      },
+      {
+       "word": "swimming",
+       "ipa": "/ˈswɪmɪŋ/",
+       "pos": "n",
+       "vi": "bơi lội"
+      },
+      {
+       "word": "table tennis",
+       "ipa": "/ˈteɪbəl ˈtenɪs/",
+       "pos": "n",
+       "vi": "bóng bàn"
+      },
+      {
+       "word": "volleyball",
+       "ipa": "/ˈvɒlibɔːl/",
+       "pos": "n",
+       "vi": "bóng chuyền"
+      }
+     ]
+    },
+    {
+     "topic": "Equipment and Places",
+     "words": [
+      {
+       "word": "bicycle",
+       "ipa": "/ˈbaɪsɪkəl/",
+       "pos": "n",
+       "vi": "xe đạp"
+      },
+      {
+       "word": "boat",
+       "ipa": "/bəʊt/",
+       "pos": "n",
+       "vi": "thuyền"
+      },
+      {
+       "word": "equipment",
+       "ipa": "/ɪˈkwɪpmənt/",
+       "pos": "n",
+       "vi": "thiết bị"
+      },
+      {
+       "word": "goggles",
+       "ipa": "/ˈɡɒɡəlz/",
+       "pos": "n",
+       "vi": "kính bảo hộ"
+      },
+      {
+       "word": "gym",
+       "ipa": "/dʒɪm/",
+       "pos": "n",
+       "vi": "phòng tập thể dục"
+      },
+      {
+       "word": "playground",
+       "ipa": "/ˈpleɪɡraʊnd/",
+       "pos": "n",
+       "vi": "sân chơi"
+      },
+      {
+       "word": "racket",
+       "ipa": "/ˈrækɪt/",
+       "pos": "n",
+       "vi": "vợt"
+      },
+      {
+       "word": "sports shoes",
+       "ipa": "/spɔːts ʃuːz/",
+       "pos": "n",
+       "vi": "giày thể thao"
+      }
+     ]
+    },
+    {
+     "topic": "Adjectives and Descriptions",
+     "words": [
+      {
+       "word": "active",
+       "ipa": "/ˈæktɪv/",
+       "pos": "adj",
+       "vi": "năng động"
+      },
+      {
+       "word": "amazing",
+       "ipa": "/əˈmeɪzɪŋ/",
+       "pos": "adj",
+       "vi": "kinh ngạc"
+      },
+      {
+       "word": "exhausted",
+       "ipa": "/ɪɡˈzɔːstɪd/",
+       "pos": "adj",
+       "vi": "kiệt sức"
+      },
+      {
+       "word": "famous",
+       "ipa": "/ˈfeɪməs/",
+       "pos": "adj",
+       "vi": "nổi tiếng"
+      },
+      {
+       "word": "fantastic",
+       "ipa": "/fænˈtæstɪk/",
+       "pos": "adj",
+       "vi": "tuyệt"
+      },
+      {
+       "word": "fast",
+       "ipa": "/fɑːst/",
+       "pos": "adj",
+       "vi": "nhanh"
+      },
+      {
+       "word": "fit",
+       "ipa": "/fɪt/",
+       "pos": "adj",
+       "vi": "khỏe mạnh"
+      },
+      {
+       "word": "important",
+       "ipa": "/ɪmˈpɔːtnt/",
+       "pos": "adj",
+       "vi": "quan trọng"
+      },
+      {
+       "word": "intelligent",
+       "ipa": "/ɪnˈtelɪdʒənt/",
+       "pos": "adj",
+       "vi": "thông minh"
+      },
+      {
+       "word": "international",
+       "ipa": "/ˌɪntəˈnæʃnəl/",
+       "pos": "adj",
+       "vi": "quốc tế"
+      },
+      {
+       "word": "special",
+       "ipa": "/ˈspeʃl/",
+       "pos": "adj",
+       "vi": "đặc biệt"
+      },
+      {
+       "word": "sporty",
+       "ipa": "/ˈspɔːti/",
+       "pos": "adj",
+       "vi": "năng động, có dáng vẻ thể thao"
+      }
+     ]
+    },
+    {
+     "topic": "People and Achievements",
+     "words": [
+      {
+       "word": "career",
+       "ipa": "/kəˈrɪə/",
+       "pos": "n",
+       "vi": "nghề nghiệp, sự nghiệp"
+      },
+      {
+       "word": "champion",
+       "ipa": "/ˈtʃæmpiən/",
+       "pos": "n",
+       "vi": "nhà vô địch"
+      },
+      {
+       "word": "competition",
+       "ipa": "/ˌkɒmpəˈtɪʃən/",
+       "pos": "n",
+       "vi": "cuộc thi"
+      },
+      {
+       "word": "congratulations",
+       "ipa": "/kənˌɡrætjuˈleɪʃənz/",
+       "pos": "n",
+       "vi": "chúc mừng"
+      },
+      {
+       "word": "footballer",
+       "ipa": "/ˈfʊtbɔːlər/",
+       "pos": "n",
+       "vi": "cầu thủ bóng đá"
+      },
+      {
+       "word": "sportsman",
+       "ipa": "/ˈspɔːtsmən/",
+       "pos": "n",
+       "vi": "vận động viên nam"
+      },
+      {
+       "word": "sportsperson",
+       "ipa": "/ˈspɔːtspɜːsən/",
+       "pos": "n",
+       "vi": "vận động viên"
+      }
+     ]
+    },
+    {
+     "topic": "Events and Activities",
+     "words": [
+      {
+       "word": "contest",
+       "ipa": "/ˈkɒntest/",
+       "pos": "n",
+       "vi": "cuộc thi"
+      },
+      {
+       "word": "exercise",
+       "ipa": "/ˈeksəsaɪz/",
+       "pos": "n",
+       "vi": "bài tập (thể dục)"
+      },
+      {
+       "word": "last",
+       "ipa": "/lɑːst/",
+       "pos": "v",
+       "vi": "kéo dài"
+      },
+      {
+       "word": "marathon",
+       "ipa": "/ˈmærəθən/",
+       "pos": "n",
+       "vi": "marathon"
+      },
+      {
+       "word": "match",
+       "ipa": "/mætʃ/",
+       "pos": "n",
+       "vi": "trận đấu"
+      },
+      {
+       "word": "Olympic Games",
+       "ipa": "/əˈlɪmpɪk ɡeɪmz/",
+       "pos": "n",
+       "vi": "Thế vận hội Olympic"
+      },
+      {
+       "word": "score",
+       "ipa": "/skɔː/",
+       "pos": "v",
+       "vi": "ghi bàn"
+      },
+      {
+       "word": "shoot",
+       "ipa": "/ʃuːt/",
+       "pos": "v",
+       "vi": "bắn"
+      },
+      {
+       "word": "take place",
+       "ipa": "/teɪk pleɪs/",
+       "pos": "v",
+       "vi": "diễn ra"
+      },
+      {
+       "word": "tidy up",
+       "ipa": "/ˈtaɪdi ʌp/",
+       "pos": "v",
+       "vi": "dọn dẹp"
+      },
+      {
+       "word": "tournament",
+       "ipa": "/ˈtʊənəmənt/",
+       "pos": "n",
+       "vi": "giải đấu"
+      },
+      {
+       "word": "World Cup",
+       "ipa": "/wɜːld kʌp/",
+       "pos": "n",
+       "vi": "Giải đấu thế giới"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "blind man's buff",
+       "ipa": "/blaɪnd mænz bʌf/",
+       "pos": "n",
+       "vi": "trò chơi bịt mắt bắt dê"
+      },
+      {
+       "word": "break time",
+       "ipa": "/breɪk taɪm/",
+       "pos": "n",
+       "vi": "giờ giải lao"
+      },
+      {
+       "word": "museum",
+       "ipa": "/mjuˈziːəm/",
+       "pos": "n",
+       "vi": "bảo tàng"
+      },
+      {
+       "word": "outdoors",
+       "ipa": "/ˌaʊtˈdɔːz/",
+       "pos": "n",
+       "vi": "ngoài trời"
+      },
+      {
+       "word": "passenger",
+       "ipa": "/ˈpæsɪndʒər/",
+       "pos": "n",
+       "vi": "hành khách"
+      },
+      {
+       "word": "schoolyard",
+       "ipa": "/ˈskuːljɑːd/",
+       "pos": "n",
+       "vi": "sân trường"
+      },
+      {
+       "word": "skipping",
+       "ipa": "/ˈskɪpɪŋ/",
+       "pos": "n",
+       "vi": "nhảy dây"
+      },
+      {
+       "word": "stadium",
+       "ipa": "/ˈsteɪdiəm/",
+       "pos": "n",
+       "vi": "sân vận động"
+      },
+      {
+       "word": "tug of war",
+       "ipa": "/tʌɡ əv wɔːr/",
+       "pos": "n",
+       "vi": "kéo co"
+      },
+      {
+       "word": "winner",
+       "ipa": "/ˈwɪnər/",
+       "pos": "n",
+       "vi": "người chiến thắng"
+      },
+      {
+       "word": "wrestling",
+       "ipa": "/ˈreslɪŋ/",
+       "pos": "n",
+       "vi": "đấu vật"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 9,
+   "title": "Cities of the World",
+   "topics": [
+    {
+     "topic": "Places",
+     "words": [
+      {
+       "word": "beach",
+       "ipa": "/biːtʃ/",
+       "pos": "n",
+       "vi": "bãi biển"
+      },
+      {
+       "word": "capital city",
+       "ipa": "/ˈkæpɪtəl ˈsɪti/",
+       "pos": "n",
+       "vi": "thủ đô"
+      },
+      {
+       "word": "city",
+       "ipa": "/ˈsɪti/",
+       "pos": "n",
+       "vi": "thành phố"
+      },
+      {
+       "word": "coast",
+       "ipa": "/kəʊst/",
+       "pos": "n",
+       "vi": "bờ biển"
+      },
+      {
+       "word": "floating market",
+       "ipa": "/ˈfləʊtɪŋ ˈmɑːkɪt/",
+       "pos": "n",
+       "vi": "chợ nổi"
+      },
+      {
+       "word": "landmark",
+       "ipa": "/ˈlændmɑːk/",
+       "pos": "n",
+       "vi": "địa điểm"
+      },
+      {
+       "word": "night market",
+       "ipa": "/naɪt ˈmɑːkɪt/",
+       "pos": "n",
+       "vi": "chợ đêm"
+      },
+      {
+       "word": "Old Town",
+       "ipa": "/əʊld taʊn/",
+       "pos": "n",
+       "vi": "Khu phố cổ"
+      },
+      {
+       "word": "Opera House",
+       "ipa": "/ˈɒpərə haʊs/",
+       "pos": "n",
+       "vi": "Nhà hát Opera"
+      },
+      {
+       "word": "palace",
+       "ipa": "/ˈpælɪs/",
+       "pos": "n",
+       "vi": "cung điện"
+      },
+      {
+       "word": "pagoda",
+       "ipa": "/pəˈɡəʊdə/",
+       "pos": "n",
+       "vi": "chùa"
+      },
+      {
+       "word": "river bank",
+       "ipa": "/ˈrɪvə bæŋk/",
+       "pos": "n",
+       "vi": "bờ sông"
+      },
+      {
+       "word": "stall",
+       "ipa": "/stɔːl/",
+       "pos": "n",
+       "vi": "quầy hàng"
+      },
+      {
+       "word": "temple",
+       "ipa": "/ˈtempl/",
+       "pos": "n",
+       "vi": "đền chùa"
+      },
+      {
+       "word": "tower",
+       "ipa": "/ˈtaʊər/",
+       "pos": "n",
+       "vi": "tháp"
+      }
+     ]
+    },
+    {
+     "topic": "Places in the World",
+     "words": [
+      {
+       "word": "Angkor Wat",
+       "ipa": "/ˈæŋkɔː wɑːt/",
+       "pos": "n",
+       "vi": "đền Angkor Wat"
+      },
+      {
+       "word": "Australia",
+       "ipa": "/ɒˈstreɪliə/",
+       "pos": "n",
+       "vi": "Úc"
+      },
+      {
+       "word": "Bangkok",
+       "ipa": "/ˈbæŋkɒk/",
+       "pos": "n",
+       "vi": "Bangkok"
+      },
+      {
+       "word": "Beijing",
+       "ipa": "/beɪˈdʒɪŋ/",
+       "pos": "n",
+       "vi": "Bắc Kinh"
+      },
+      {
+       "word": "Berlin",
+       "ipa": "/bɜːˈlɪn/",
+       "pos": "n",
+       "vi": "Berlin"
+      },
+      {
+       "word": "Big Ben",
+       "ipa": "/bɪɡ ˈben/",
+       "pos": "n",
+       "vi": "Big Ben"
+      },
+      {
+       "word": "California",
+       "ipa": "/ˌkælɪˈfɔːniə/",
+       "pos": "n",
+       "vi": "California"
+      },
+      {
+       "word": "Cambodia",
+       "ipa": "/kæmˈbəʊdiə/",
+       "pos": "n",
+       "vi": "Campuchia"
+      },
+      {
+       "word": "Chatuchak market",
+       "ipa": "/ˈtʃætʃək ˈmɑːkɪt/",
+       "pos": "n",
+       "vi": "Chợ Chatuchak"
+      },
+      {
+       "word": "Delhi",
+       "ipa": "/ˈdeli/",
+       "pos": "n",
+       "vi": "Delhi"
+      },
+      {
+       "word": "Disneyland Park",
+       "ipa": "/ˈdɪznilænd pɑːk/",
+       "pos": "n",
+       "vi": "Công viên Disneyland"
+      },
+      {
+       "word": "Eiffel Tower",
+       "ipa": "/ˈaɪfəl ˈtaʊər/",
+       "pos": "n",
+       "vi": "Tháp Eiffel"
+      },
+      {
+       "word": "Great Wall",
+       "ipa": "/ɡreɪt wɔːl/",
+       "pos": "n",
+       "vi": "Vạn Lý Trường Thành"
+      },
+      {
+       "word": "Ha Noi",
+       "ipa": "/hɑː ˈnɔɪ/",
+       "pos": "n",
+       "vi": "Hà Nội"
+      },
+      {
+       "word": "Hoi An",
+       "ipa": "/hɔɪ ˈɑːn/",
+       "pos": "n",
+       "vi": "Hội An"
+      },
+      {
+       "word": "Hue",
+       "ipa": "/hweɪ/",
+       "pos": "n",
+       "vi": "Huế"
+      },
+      {
+       "word": "India",
+       "ipa": "/ˈɪndiə/",
+       "pos": "n",
+       "vi": "Ấn Độ"
+      },
+      {
+       "word": "Jakarta",
+       "ipa": "/dʒəˈkɑːrtə/",
+       "pos": "n",
+       "vi": "Jakarta"
+      },
+      {
+       "word": "London",
+       "ipa": "/ˈlʌndən/",
+       "pos": "n",
+       "vi": "London"
+      },
+      {
+       "word": "New York",
+       "ipa": "/njuː ˈjɔːk/",
+       "pos": "n",
+       "vi": "New York"
+      },
+      {
+       "word": "Paris",
+       "ipa": "/ˈpærɪs/",
+       "pos": "n",
+       "vi": "Paris"
+      },
+      {
+       "word": "Phnom Penh",
+       "ipa": "/pnɒm ˈpen/",
+       "pos": "n",
+       "vi": "Phnom Penh"
+      },
+      {
+       "word": "Quang Nam",
+       "ipa": "/kwæŋ ˈnæm/",
+       "pos": "n",
+       "vi": "Quảng Nam"
+      },
+      {
+       "word": "River Thames",
+       "ipa": "/ˈrɪvə temz/",
+       "pos": "n",
+       "vi": "Sông Thames"
+      },
+      {
+       "word": "Royal Palace",
+       "ipa": "/ˈrɔɪəl ˈpælɪs/",
+       "pos": "n",
+       "vi": "Cung điện Hoàng gia"
+      },
+      {
+       "word": "Shanghai",
+       "ipa": "/ʃæŋˈhaɪ/",
+       "pos": "n",
+       "vi": "Thượng Hải"
+      },
+      {
+       "word": "Singapore",
+       "ipa": "/ˈsɪŋəpɔːr/",
+       "pos": "n",
+       "vi": "Singapore"
+      },
+      {
+       "word": "Sydney",
+       "ipa": "/ˈsɪdni/",
+       "pos": "n",
+       "vi": "Sydney"
+      },
+      {
+       "word": "Sydney Opera House",
+       "ipa": "/ˈsɪdni ˈɒpərə haʊs/",
+       "pos": "n",
+       "vi": "Nhà hát Opera Sydney"
+      },
+      {
+       "word": "Times Square",
+       "ipa": "/taɪmz ˈskweər/",
+       "pos": "n",
+       "vi": "Quảng trường Times"
+      },
+      {
+       "word": "Tokyo",
+       "ipa": "/ˈtəʊkiəʊ/",
+       "pos": "n",
+       "vi": "Tokyo"
+      },
+      {
+       "word": "Twin Towers",
+       "ipa": "/twɪn ˈtaʊərz/",
+       "pos": "n",
+       "vi": "Tháp đôi"
+      },
+      {
+       "word": "Venice",
+       "ipa": "/ˈvenɪs/",
+       "pos": "n",
+       "vi": "Venice"
+      }
+     ]
+    },
+    {
+     "topic": "Adjectives",
+     "words": [
+      {
+       "word": "ancient",
+       "ipa": "/ˈeɪnʃənt/",
+       "pos": "adj",
+       "vi": "cổ đại"
+      },
+      {
+       "word": "clean",
+       "ipa": "/kliːn/",
+       "pos": "adj",
+       "vi": "sạch sẽ"
+      },
+      {
+       "word": "crowded",
+       "ipa": "/ˈkraʊdɪd/",
+       "pos": "adj",
+       "vi": "đông đúc"
+      },
+      {
+       "word": "delicious",
+       "ipa": "/dɪˈlɪʃəs/",
+       "pos": "adj",
+       "vi": "ngon"
+      },
+      {
+       "word": "exciting",
+       "ipa": "/ɪkˈsaɪtɪŋ/",
+       "pos": "adj",
+       "vi": "thú vị"
+      },
+      {
+       "word": "famous",
+       "ipa": "/ˈfeɪməs/",
+       "pos": "adj",
+       "vi": "nổi tiếng"
+      },
+      {
+       "word": "friendly",
+       "ipa": "/ˈfrendli/",
+       "pos": "adj",
+       "vi": "thân thiện"
+      },
+      {
+       "word": "helpful",
+       "ipa": "/ˈhelpfəl/",
+       "pos": "adj",
+       "vi": "hữu ích"
+      },
+      {
+       "word": "interesting",
+       "ipa": "/ˈɪntrəstɪŋ/",
+       "pos": "adj",
+       "vi": "thú vị"
+      },
+      {
+       "word": "rainy",
+       "ipa": "/ˈreɪni/",
+       "pos": "adj",
+       "vi": "mưa"
+      },
+      {
+       "word": "sunny",
+       "ipa": "/ˈsʌni/",
+       "pos": "adj",
+       "vi": "nắng"
+      },
+      {
+       "word": "tasty",
+       "ipa": "/ˈteɪsti/",
+       "pos": "adj",
+       "vi": "ngon"
+      },
+      {
+       "word": "wonderful",
+       "ipa": "/ˈwʌndəfəl/",
+       "pos": "adj",
+       "vi": "tuyệt vời"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "building",
+       "ipa": "/ˈbɪldɪŋ/",
+       "pos": "n",
+       "vi": "tòa nhà"
+      },
+      {
+       "word": "city map",
+       "ipa": "/ˈsɪti mæp/",
+       "pos": "n",
+       "vi": "bản đồ thành phố"
+      },
+      {
+       "word": "coffee break",
+       "ipa": "/ˈkɒfi breɪk/",
+       "pos": "n",
+       "vi": "giờ nghỉ uống cà phê"
+      },
+      {
+       "word": "double-decker bus",
+       "ipa": "/ˈdʌbəl ˈdekə bʌs/",
+       "pos": "n",
+       "vi": "xe buýt hai tầng"
+      },
+      {
+       "word": "helmet",
+       "ipa": "/ˈhelmɪt/",
+       "pos": "n",
+       "vi": "mũ bảo hiểm"
+      },
+      {
+       "word": "holiday",
+       "ipa": "/ˈhɒlədeɪ/",
+       "pos": "n",
+       "vi": "kỳ nghỉ"
+      },
+      {
+       "word": "photo",
+       "ipa": "/ˈfəʊtəʊ/",
+       "pos": "n",
+       "vi": "ảnh"
+      },
+      {
+       "word": "postcard",
+       "ipa": "/ˈpəʊstkɑːd/",
+       "pos": "n",
+       "vi": "bưu thiếp"
+      },
+      {
+       "word": "rent",
+       "ipa": "/rent/",
+       "pos": "v",
+       "vi": "thuê"
+      },
+      {
+       "word": "shell",
+       "ipa": "/ʃel/",
+       "pos": "n",
+       "vi": "vỏ sò"
+      },
+      {
+       "word": "snake performance",
+       "ipa": "/sneɪk pəˈfɔːməns/",
+       "pos": "n",
+       "vi": "biểu diễn rắn"
+      },
+      {
+       "word": "street food",
+       "ipa": "/striːt fuːd/",
+       "pos": "n",
+       "vi": "đồ ăn đường phố"
+      },
+      {
+       "word": "tourist",
+       "ipa": "/ˈtʊərɪst/",
+       "pos": "n",
+       "vi": "khách du lịch"
+      },
+      {
+       "word": "visitor",
+       "ipa": "/ˈvɪzɪtər/",
+       "pos": "n",
+       "vi": "du khách"
+      },
+      {
+       "word": "weather",
+       "ipa": "/ˈweðər/",
+       "pos": "n",
+       "vi": "thời tiết"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 10,
+   "title": "Our Houses in the Future",
+   "topics": [
+    {
+     "topic": "Locations and Places",
+     "words": [
+      {
+       "word": "cottage",
+       "ipa": "/ˈkɒtɪdʒ/",
+       "pos": "n",
+       "vi": "nhà tranh"
+      },
+      {
+       "word": "countryside",
+       "ipa": "/ˈkʌntrisaɪd/",
+       "pos": "n",
+       "vi": "nông thôn"
+      },
+      {
+       "word": "hi-tech house",
+       "ipa": "/haɪ tek haʊs/",
+       "pos": "n",
+       "vi": "ngôi nhà công nghệ cao"
+      },
+      {
+       "word": "island",
+       "ipa": "/ˈaɪlənd/",
+       "pos": "n",
+       "vi": "đảo"
+      },
+      {
+       "word": "location",
+       "ipa": "/ləʊˈkeɪʃən/",
+       "pos": "n",
+       "vi": "địa điểm"
+      },
+      {
+       "word": "Moon",
+       "ipa": "/muːn/",
+       "pos": "n",
+       "vi": "mặt trăng"
+      },
+      {
+       "word": "mountain",
+       "ipa": "/ˈmaʊntɪn/",
+       "pos": "n",
+       "vi": "núi"
+      },
+      {
+       "word": "ocean",
+       "ipa": "/ˈəʊʃən/",
+       "pos": "n",
+       "vi": "đại dương"
+      },
+      {
+       "word": "palace",
+       "ipa": "/ˈpælɪs/",
+       "pos": "n",
+       "vi": "cung điện"
+      },
+      {
+       "word": "sea",
+       "ipa": "/siː/",
+       "pos": "n",
+       "vi": "biển"
+      },
+      {
+       "word": "sky",
+       "ipa": "/skaɪ/",
+       "pos": "n",
+       "vi": "bầu trời"
+      },
+      {
+       "word": "space",
+       "ipa": "/speɪs/",
+       "pos": "n",
+       "vi": "không gian"
+      },
+      {
+       "word": "UFO",
+       "ipa": "/juː ef ˈəʊ/",
+       "pos": "n",
+       "vi": "vật thể bay không xác định"
+      },
+      {
+       "word": "village",
+       "ipa": "/ˈvɪlɪdʒ/",
+       "pos": "n",
+       "vi": "làng"
+      }
+     ]
+    },
+    {
+     "topic": "Technology and Appliances",
+     "words": [
+      {
+       "word": "appliance",
+       "ipa": "/əˈplaɪəns/",
+       "pos": "n",
+       "vi": "thiết bị"
+      },
+      {
+       "word": "computer",
+       "ipa": "/kəmˈpjuːtə/",
+       "pos": "n",
+       "vi": "máy tính"
+      },
+      {
+       "word": "dishwasher",
+       "ipa": "/ˈdɪʃwɒʃə/",
+       "pos": "n",
+       "vi": "máy rửa bát"
+      },
+      {
+       "word": "electric cooker",
+       "ipa": "/ɪˈlektrɪk ˈkʊkə/",
+       "pos": "n",
+       "vi": "bếp điện"
+      },
+      {
+       "word": "electric fan",
+       "ipa": "/ɪˈlektrɪk fæn/",
+       "pos": "n",
+       "vi": "quạt điện"
+      },
+      {
+       "word": "fridge",
+       "ipa": "/frɪdʒ/",
+       "pos": "n",
+       "vi": "tủ lạnh"
+      },
+      {
+       "word": "helicopter",
+       "ipa": "/ˈhelɪkɒptə/",
+       "pos": "n",
+       "vi": "trực thăng"
+      },
+      {
+       "word": "robot",
+       "ipa": "/ˈrəʊbɒt/",
+       "pos": "n",
+       "vi": "robot"
+      },
+      {
+       "word": "smart clock",
+       "ipa": "/smɑːt klɒk/",
+       "pos": "n",
+       "vi": "đồng hồ thông minh"
+      },
+      {
+       "word": "smart TV",
+       "ipa": "/smɑːt ˌtiː ˈviː/",
+       "pos": "n",
+       "vi": "TV thông minh"
+      },
+      {
+       "word": "smartphone",
+       "ipa": "/ˈsmɑːtfəʊn/",
+       "pos": "n",
+       "vi": "điện thoại thông minh"
+      },
+      {
+       "word": "solar energy",
+       "ipa": "/ˈsəʊlə ˈenədʒi/",
+       "pos": "n",
+       "vi": "năng lượng mặt trời"
+      },
+      {
+       "word": "super car",
+       "ipa": "/ˈsuːpə kɑː/",
+       "pos": "n",
+       "vi": "siêu xe"
+      },
+      {
+       "word": "super smart TV",
+       "ipa": "/ˈsuːpə smɑːt ˌtiː ˈviː/",
+       "pos": "n",
+       "vi": "TV siêu thông minh"
+      },
+      {
+       "word": "washing machine",
+       "ipa": "/ˈwɒʃɪŋ məˈʃiːn/",
+       "pos": "n",
+       "vi": "máy giặt"
+      },
+      {
+       "word": "wireless TV",
+       "ipa": "/ˈwaɪələs ˌtiː ˈviː/",
+       "pos": "n",
+       "vi": "TV không dây"
+      }
+     ]
+    },
+    {
+     "topic": "Home Features",
+     "words": [
+      {
+       "word": "city view",
+       "ipa": "/ˈsɪti vjuː/",
+       "pos": "n",
+       "vi": "tầm nhìn ra thành phố"
+      },
+      {
+       "word": "garden",
+       "ipa": "/ˈɡɑːdn/",
+       "pos": "n",
+       "vi": "vườn"
+      },
+      {
+       "word": "park view",
+       "ipa": "/pɑːk vjuː/",
+       "pos": "n",
+       "vi": "tầm nhìn ra công viên"
+      },
+      {
+       "word": "pond",
+       "ipa": "/pɒnd/",
+       "pos": "n",
+       "vi": "ao"
+      },
+      {
+       "word": "sea view",
+       "ipa": "/siː vjuː/",
+       "pos": "n",
+       "vi": "tầm nhìn ra biển"
+      },
+      {
+       "word": "swimming pool",
+       "ipa": "/ˈswɪmɪŋ puːl/",
+       "pos": "n",
+       "vi": "hồ bơi"
+      }
+     ]
+    },
+    {
+     "topic": "Activities",
+     "words": [
+      {
+       "word": "clean the floors",
+       "ipa": "/kliːn ðə flɔːz/",
+       "pos": "v",
+       "vi": "lau sàn"
+      },
+      {
+       "word": "contact my friends",
+       "ipa": "/ˈkɒntækt maɪ frendz/",
+       "pos": "v",
+       "vi": "liên lạc bạn bè"
+      },
+      {
+       "word": "cook meals",
+       "ipa": "/kʊk miːlz/",
+       "pos": "v",
+       "vi": "nấu bữa ăn"
+      },
+      {
+       "word": "do the housework",
+       "ipa": "/duː ðə ˈhaʊswɜːk/",
+       "pos": "v",
+       "vi": "làm việc nhà"
+      },
+      {
+       "word": "dry",
+       "ipa": "/draɪ/",
+       "pos": "v",
+       "vi": "làm khô"
+      },
+      {
+       "word": "feed the dogs and cats",
+       "ipa": "/fiːd ðə dɒɡz ænd kæts/",
+       "pos": "v",
+       "vi": "cho chó và mèo ăn"
+      },
+      {
+       "word": "fly to school",
+       "ipa": "/flaɪ tuː skuːl/",
+       "pos": "v",
+       "vi": "bay đến trường"
+      },
+      {
+       "word": "iron clothes",
+       "ipa": "/ˈaɪən kləʊðz/",
+       "pos": "v",
+       "vi": "ủi quần áo"
+      },
+      {
+       "word": "look after",
+       "ipa": "/lʊk ˈɑːftə/",
+       "pos": "v",
+       "vi": "trông nom"
+      },
+      {
+       "word": "look after the house",
+       "ipa": "/lʊk ˈɑːftə ðə haʊs/",
+       "pos": "v",
+       "vi": "chăm sóc nhà"
+      },
+      {
+       "word": "outside",
+       "ipa": "/aʊtˈsaɪd/",
+       "pos": "adv",
+       "vi": "bên ngoài"
+      },
+      {
+       "word": "send and receive emails",
+       "ipa": "/send ænd rɪˈsiːv ˈiːmeɪlz/",
+       "pos": "v",
+       "vi": "gửi và nhận email"
+      },
+      {
+       "word": "take care of children",
+       "ipa": "/teɪk keə əv ˈtʃɪldrən/",
+       "pos": "v",
+       "vi": "chăm sóc trẻ em"
+      },
+      {
+       "word": "wash clothes",
+       "ipa": "/wɒʃ kləʊðz/",
+       "pos": "v",
+       "vi": "giặt quần áo"
+      },
+      {
+       "word": "water the flowers",
+       "ipa": "/ˈwɔːtə ðə ˈflaʊəz/",
+       "pos": "v",
+       "vi": "tưới hoa"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 11,
+   "title": "Our Greener World",
+   "topics": [
+    {
+     "topic": "3Rs and Recycling Concepts",
+     "words": [
+      {
+       "word": "3Rs",
+       "ipa": "/ɑːrˈz/",
+       "pos": "n",
+       "vi": "3R (giảm thiểu, tái sử dụng, tái chế)"
+      },
+      {
+       "word": "glass",
+       "ipa": "/ɡlɑːs/",
+       "pos": "n",
+       "vi": "thủy tinh"
+      },
+      {
+       "word": "plastic",
+       "ipa": "/ˈplæstɪk/",
+       "pos": "n",
+       "vi": "nhựa"
+      },
+      {
+       "word": "recycle",
+       "ipa": "/ˌriːˈsaɪkəl/",
+       "pos": "v",
+       "vi": "tái chế"
+      },
+      {
+       "word": "reduce",
+       "ipa": "/rɪˈdjuːs/",
+       "pos": "v",
+       "vi": "giảm thiểu"
+      },
+      {
+       "word": "reuse",
+       "ipa": "/riːˈjuːz/",
+       "pos": "v",
+       "vi": "tái sử dụng"
+      },
+      {
+       "word": "used bottle",
+       "ipa": "/juːzd ˈbɒtəl/",
+       "pos": "n",
+       "vi": "chai đã sử dụng"
+      },
+      {
+       "word": "used gift wrap",
+       "ipa": "/juːzd ɡɪft ræp/",
+       "pos": "n",
+       "vi": "giấy gói quà đã sử dụng"
+      },
+      {
+       "word": "used uniform",
+       "ipa": "/juːzd ˈjuːnɪfɔːm/",
+       "pos": "n",
+       "vi": "đồng phục đã sử dụng"
+      }
+     ]
+    },
+    {
+     "topic": "Environmental Actions",
+     "words": [
+      {
+       "word": "cut down trees",
+       "ipa": "/kʌt daʊn triːz/",
+       "pos": "v",
+       "vi": "chặt cây"
+      },
+      {
+       "word": "go green",
+       "ipa": "/ɡəʊ ɡriːn/",
+       "pos": "v",
+       "vi": "sống xanh"
+      },
+      {
+       "word": "help the environment",
+       "ipa": "/help ðiː ɪnˈvaɪrənmənt/",
+       "pos": "v",
+       "vi": "giúp môi trường"
+      },
+      {
+       "word": "make noise",
+       "ipa": "/meɪk nɔɪz/",
+       "pos": "v",
+       "vi": "tạo tiếng ồn"
+      },
+      {
+       "word": "make the air dirty",
+       "ipa": "/meɪk ðiː eə ˈdɜːti/",
+       "pos": "v",
+       "vi": "làm ô nhiễm không khí"
+      },
+      {
+       "word": "pick up rubbish",
+       "ipa": "/pɪk ʌp ˈrʌbɪʃ/",
+       "pos": "v",
+       "vi": "nhặt rác"
+      },
+      {
+       "word": "plant trees and flowers",
+       "ipa": "/plɑːnt triːz ən ˈflaʊərz/",
+       "pos": "v",
+       "vi": "trồng cây và hoa"
+      },
+      {
+       "word": "put in the bin",
+       "ipa": "/pʊt ɪn ðə bɪn/",
+       "pos": "v",
+       "vi": "bỏ vào thùng rác"
+      },
+      {
+       "word": "reuse paper",
+       "ipa": "/ˌriːˈjuːz ˈpeɪpər/",
+       "pos": "v",
+       "vi": "tái sử dụng giấy"
+      },
+      {
+       "word": "save trees",
+       "ipa": "/seɪv triːz/",
+       "pos": "v",
+       "vi": "cứu cây"
+      },
+      {
+       "word": "use less water",
+       "ipa": "/juːz les ˈwɔːtər/",
+       "pos": "v",
+       "vi": "sử dụng ít nước hơn"
+      },
+      {
+       "word": "use reusable bags",
+       "ipa": "/juːz ˌriːˈjuːzəbəl bæɡz/",
+       "pos": "v",
+       "vi": "sử dụng túi tái sử dụng"
+      },
+      {
+       "word": "walk to school",
+       "ipa": "/ˈwɔːk tuː skuːl/",
+       "pos": "v",
+       "vi": "đi bộ đến trường"
+      }
+     ]
+    },
+    {
+     "topic": "People",
+     "words": [
+      {
+       "word": "artist",
+       "ipa": "/ˈɑːtɪst/",
+       "pos": "n",
+       "vi": "nghệ sĩ"
+      },
+      {
+       "word": "president",
+       "ipa": "/ˈprezɪdənt/",
+       "pos": "n",
+       "vi": "chủ tịch"
+      },
+      {
+       "word": "reporter",
+       "ipa": "/rɪˈpɔːtər/",
+       "pos": "n",
+       "vi": "phóng viên"
+      }
+     ]
+    },
+    {
+     "topic": "Adjectives and Descriptions",
+     "words": [
+      {
+       "word": "creative",
+       "ipa": "/kriˈeɪtɪv/",
+       "pos": "adj",
+       "vi": "sáng tạo"
+      },
+      {
+       "word": "dirty",
+       "ipa": "/ˈdɜːti/",
+       "pos": "adj",
+       "vi": "bẩn, dơ"
+      },
+      {
+       "word": "fresh",
+       "ipa": "/freʃ/",
+       "pos": "adj",
+       "vi": "tươi"
+      },
+      {
+       "word": "hungry",
+       "ipa": "/ˈhʌŋɡri/",
+       "pos": "adj",
+       "vi": "đói"
+      },
+      {
+       "word": "intelligent",
+       "ipa": "/ɪnˈtelɪdʒənt/",
+       "pos": "adj",
+       "vi": "thông minh"
+      },
+      {
+       "word": "noisy",
+       "ipa": "/ˈnɔɪzi/",
+       "pos": "adj",
+       "vi": "ồn ào"
+      },
+      {
+       "word": "reusable",
+       "ipa": "/ˌriːˈjuːzəbəl/",
+       "pos": "adj",
+       "vi": "tái sử dụng"
+      },
+      {
+       "word": "used",
+       "ipa": "/juːzd/",
+       "pos": "adj",
+       "vi": "đã sử dụng"
+      }
+     ]
+    },
+    {
+     "topic": "Other Vocabulary",
+     "words": [
+      {
+       "word": "do a survey",
+       "ipa": "/du ə ˈsɜːveɪ/",
+       "pos": "v",
+       "vi": "thực hiện khảo sát"
+      },
+      {
+       "word": "environment",
+       "ipa": "/ɪnˈvaɪrənmənt/",
+       "pos": "n",
+       "vi": "môi trường"
+      },
+      {
+       "word": "exchange",
+       "ipa": "/ɪksˈtʃeɪndʒ/",
+       "pos": "v",
+       "vi": "trao đổi"
+      },
+      {
+       "word": "explanation",
+       "ipa": "/ˌekspləˈneɪʃən/",
+       "pos": "n",
+       "vi": "lời giải thích"
+      },
+      {
+       "word": "idea",
+       "ipa": "/aɪˈdɪə/",
+       "pos": "n",
+       "vi": "ý tưởng"
+      },
+      {
+       "word": "interview",
+       "ipa": "/ˈɪntəvjuː/",
+       "pos": "n",
+       "vi": "phỏng vấn"
+      },
+      {
+       "word": "tip",
+       "ipa": "/tɪp/",
+       "pos": "n",
+       "vi": "lời khuyên"
+      },
+      {
+       "word": "air conditioner",
+       "ipa": "/eə kənˈdɪʃənər/",
+       "pos": "n",
+       "vi": "máy lạnh"
+      },
+      {
+       "word": "airport",
+       "ipa": "/ˈeəpɔːt/",
+       "pos": "n",
+       "vi": "sân bay"
+      },
+      {
+       "word": "art gallery",
+       "ipa": "/ɑːt ˈɡæləri/",
+       "pos": "n",
+       "vi": "phòng trưng bày nghệ thuật"
+      },
+      {
+       "word": "book fair",
+       "ipa": "/bʊk feər/",
+       "pos": "n",
+       "vi": "hội sách"
+      },
+      {
+       "word": "breeze",
+       "ipa": "/briːz/",
+       "pos": "n",
+       "vi": "gió nhẹ"
+      },
+      {
+       "word": "charity",
+       "ipa": "/ˈtʃærəti/",
+       "pos": "n",
+       "vi": "từ thiện"
+      },
+      {
+       "word": "check-out",
+       "ipa": "/ˈtʃek aʊt/",
+       "pos": "n",
+       "vi": "quầy thanh toán"
+      },
+      {
+       "word": "container",
+       "ipa": "/kənˈteɪnə/",
+       "pos": "n",
+       "vi": "đồ đựng"
+      },
+      {
+       "word": "forest",
+       "ipa": "/ˈfɒrɪst/",
+       "pos": "n",
+       "vi": "rừng"
+      },
+      {
+       "word": "kilometre",
+       "ipa": "/kɪˈlɒmɪtər/",
+       "pos": "n",
+       "vi": "km"
+      },
+      {
+       "word": "picnic",
+       "ipa": "/ˈpɪknɪk/",
+       "pos": "n",
+       "vi": "dã ngoại"
+      },
+      {
+       "word": "recycling bin",
+       "ipa": "/ˌriːˈsaɪklɪŋ bɪn/",
+       "pos": "n",
+       "vi": "thùng tái chế"
+      },
+      {
+       "word": "road",
+       "ipa": "/rəʊd/",
+       "pos": "n",
+       "vi": "đường"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": 12,
+   "title": "Robots",
+   "topics": [
+    {
+     "topic": "Robot Types",
+     "words": [
+      {
+       "word": "doctor robot",
+       "ipa": "/ˈdɒktə ˈrəʊbɒt/",
+       "pos": "n",
+       "vi": "rô-bốt bác sĩ"
+      },
+      {
+       "word": "home robot",
+       "ipa": "/həʊm ˈrəʊbɒt/",
+       "pos": "n",
+       "vi": "rô-bốt gia đình"
+      },
+      {
+       "word": "space robot",
+       "ipa": "/speɪs ˈrəʊbɒt/",
+       "pos": "n",
+       "vi": "rô-bốt vũ trụ"
+      },
+      {
+       "word": "teacher robot",
+       "ipa": "/ˈtiːtʃə ˈrəʊbɒt/",
+       "pos": "n",
+       "vi": "rô-bốt giáo viên"
+      },
+      {
+       "word": "worker robot",
+       "ipa": "/ˈwɜːkə ˈrəʊbɒt/",
+       "pos": "n",
+       "vi": "rô-bốt công nhân"
+      }
+     ]
+    },
+    {
+     "topic": "Robot Abilities",
+     "words": [
+      {
+       "word": "build houses",
+       "ipa": "/bɪld ˈhaʊzɪz/",
+       "pos": "v",
+       "vi": "xây nhà"
+      },
+      {
+       "word": "build space stations",
+       "ipa": "/bɪld speɪs ˈsteɪʃənz/",
+       "pos": "v",
+       "vi": "xây trạm vũ trụ"
+      },
+      {
+       "word": "clean the house",
+       "ipa": "/kliːn ðə haʊs/",
+       "pos": "v",
+       "vi": "dọn nhà"
+      },
+      {
+       "word": "do the dishes",
+       "ipa": "/duː ðə ˈdɪʃɪz/",
+       "pos": "v",
+       "vi": "rửa bát đĩa"
+      },
+      {
+       "word": "do the washing",
+       "ipa": "/duː ðə ˈwɒʃɪŋ/",
+       "pos": "v",
+       "vi": "giặt quần áo"
+      },
+      {
+       "word": "help sick people",
+       "ipa": "/help sɪk ˈpiːpl/",
+       "pos": "v",
+       "vi": "giúp đỡ người bệnh"
+      },
+      {
+       "word": "improve pronunciation",
+       "ipa": "/ɪmˈpruːv prəˌnʌnsiˈeɪʃən/",
+       "pos": "v",
+       "vi": "cải thiện phát âm"
+      },
+      {
+       "word": "iron clothes",
+       "ipa": "/ˈaɪən kləʊðz/",
+       "pos": "v",
+       "vi": "là quần áo"
+      },
+      {
+       "word": "look after sick people",
+       "ipa": "/lʊk ˈɑːftə sɪk ˈpiːpl/",
+       "pos": "v",
+       "vi": "chăm sóc người bệnh"
+      },
+      {
+       "word": "make meals",
+       "ipa": "/meɪk miːlz/",
+       "pos": "v",
+       "vi": "nấu bữa ăn"
+      },
+      {
+       "word": "move heavy things",
+       "ipa": "/muːv ˈhevi θɪŋz/",
+       "pos": "v",
+       "vi": "di chuyển đồ nặng"
+      },
+      {
+       "word": "pick fruit",
+       "ipa": "/pɪk fruːt/",
+       "pos": "v",
+       "vi": "hái quả"
+      },
+      {
+       "word": "put toys away",
+       "ipa": "/pʊt tɔɪz əˈweɪ/",
+       "pos": "v",
+       "vi": "cất đồ chơi"
+      },
+      {
+       "word": "repair broken machines",
+       "ipa": "/rɪˈpeə ˈbrəʊkən məˈʃiːnz/",
+       "pos": "v",
+       "vi": "sửa chữa máy móc hỏng"
+      },
+      {
+       "word": "teach English",
+       "ipa": "/tiːtʃ ˈɪŋɡlɪʃ/",
+       "pos": "v",
+       "vi": "dạy tiếng Anh"
+      },
+      {
+       "word": "teach literature",
+       "ipa": "/tiːtʃ ˈlɪtrətʃə/",
+       "pos": "v",
+       "vi": "dạy văn học"
+      },
+      {
+       "word": "teach maths",
+       "ipa": "/tiːtʃ mæθs/",
+       "pos": "v",
+       "vi": "dạy toán"
+      },
+      {
+       "word": "water plants",
+       "ipa": "/ˈwɔːtə plɑːnts/",
+       "pos": "v",
+       "vi": "tưới cây"
+      },
+      {
+       "word": "work as a guard",
+       "ipa": "/wɜːk æz ə ɡɑːd/",
+       "pos": "v",
+       "vi": "làm việc như bảo vệ"
+      }
+     ]
+    },
+    {
+     "topic": "Adjectives",
+     "words": [
+      {
+       "word": "delicious",
+       "ipa": "/dɪˈlɪʃəs/",
+       "pos": "adj",
+       "vi": "ngon"
+      },
+      {
+       "word": "fast",
+       "ipa": "/fɑːst/",
+       "pos": "adj",
+       "vi": "nhanh"
+      },
+      {
+       "word": "heavy",
+       "ipa": "/ˈhevi/",
+       "pos": "adj",
+       "vi": "nặng"
+      },
+      {
+       "word": "smart",
+       "ipa": "/smɑːt/",
+       "pos": "adj",
+       "vi": "thông minh"
+      },
+      {
+       "word": "strong",
+       "ipa": "/strɒŋ/",
+       "pos": "adj",
+       "vi": "mạnh"
+      },
+      {
+       "word": "tidy",
+       "ipa": "/ˈtaɪdi/",
+       "pos": "adj",
+       "vi": "gọn gàng"
+      },
+      {
+       "word": "useful",
+       "ipa": "/ˈjuːsfl/",
+       "pos": "adj",
+       "vi": "hữu ích"
+      }
+     ]
+    },
+    {
+     "topic": "Others",
+     "words": [
+      {
+       "word": "ceiling",
+       "ipa": "/ˈsiːlɪŋ/",
+       "pos": "n",
+       "vi": "trần nhà"
+      },
+      {
+       "word": "daily life",
+       "ipa": "/ˈdeɪli laɪf/",
+       "pos": "n",
+       "vi": "cuộc sống hàng ngày"
+      },
+      {
+       "word": "electricity",
+       "ipa": "/ɪˌlekˈtrɪsəti/",
+       "pos": "n",
+       "vi": "điện"
+      },
+      {
+       "word": "feeling",
+       "ipa": "/ˈfiːlɪŋ/",
+       "pos": "n",
+       "vi": "cảm xúc"
+      },
+      {
+       "word": "housework",
+       "ipa": "/ˈhaʊswɜːk/",
+       "pos": "n",
+       "vi": "việc nhà"
+      },
+      {
+       "word": "moods",
+       "ipa": "/muːdz/",
+       "pos": "n",
+       "vi": "tâm trạng"
+      },
+      {
+       "word": "planet",
+       "ipa": "/ˈplænɪt/",
+       "pos": "n",
+       "vi": "hành tinh"
+      },
+      {
+       "word": "subject",
+       "ipa": "/ˈsʌbdʒɪkt/",
+       "pos": "n",
+       "vi": "môn học"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
