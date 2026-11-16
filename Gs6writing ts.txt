@@ -1,0 +1,3901 @@
+// Global Success 6 – Pronunciation Unit 1–12 (dữ liệu tổng hợp)
+// Phần gạch chân trong exercise1 được ghi trong ngoặc vuông, ví dụ m[a]ths
+export const gs6Pronunciation = {
+  "source": "Global Success 6 – Book 1 & Book 2 (Students) – phần B. PRONUNCIATION, Unit 1–12",
+  "conventions": {
+    "underline": "Trong exercise1, phần gạch chân của từ được đặt trong ngoặc vuông, ví dụ m[a]ths = chữ 'a' được gạch chân.",
+    "answer_key": "Sách không kèm đáp án. Trường 'answer' do Claude giải theo phiên âm Anh – Anh (BrE); giáo viên nên kiểm tra lại trước khi dùng.",
+    "ipa": "Phiên âm IPA được chuẩn hóa lại theo chuẩn BrE vì bản scan nhận dạng ký hiệu IPA không chính xác.",
+    "meo_phat_am_note": "Mẹo phát âm là cách để học sinh dễ tưởng tượng ra âm khi chưa có nền tảng tiếng Anh vững chắc, đây không phải là cách dạy chính thống và chỉ mang tính chất tham khảo.",
+    "exercise_titles": {
+      "exercise1": "Choose the word whose underlined part is pronounced differently from the others.",
+      "exercise2": "Choose the word that has a different stress pattern from the others."
+    }
+  },
+  "units": [
+    {
+      "unit": 1,
+      "title": "My New School",
+      "book": "Book 1",
+      "pages": "16–18",
+      "topic_type": "vowel_pair",
+      "topic": "Vowel Sounds (Nguyên âm): /ɑː/ và /ʌ/",
+      "comparison": {
+        "sounds": [
+          "/ɑː/",
+          "/ʌ/"
+        ],
+        "loai_am": [
+          "Nguyên âm dài",
+          "Nguyên âm ngắn"
+        ],
+        "cach_phat_am": [
+          "Miệng mở rộng, hàm dưới hạ thấp tự nhiên, lưỡi nằm thấp ở phía sau khoang miệng. Luồng hơi đi ra tự do và kéo dài, đồng thời dây thanh quản rung lên để tạo ra âm dài và sâu từ cổ họng.",
+          "Miệng mở vừa phải, hàm hơi hạ, lưỡi đặt ở vị trí trung tâm và môi thả lỏng không tròn. Luồng hơi đi ra tự do, đồng thời dây thanh quản rung lên để tạo ra âm ngắn, gọn và dứt khoát."
+        ],
+        "meo_phat_am": [
+          "Gần giống âm \"a\" trong tiếng Việt, nhưng miệng mở rộng hơn, kéo dài âm và phát ra từ sâu trong cổ họng.",
+          "Gần giống âm \"â\" trong tiếng Việt, nhưng âm phát ra ngắn, gọn và dứt khoát hơn."
+        ],
+        "vi_du": [
+          "art, class",
+          "study, lunch"
+        ]
+      },
+      "examples": {
+        "/ɑː/": [
+          [
+            "smart",
+            "/smɑːt/"
+          ],
+          [
+            "art",
+            "/ɑːt/"
+          ],
+          [
+            "carton",
+            "/ˈkɑːtn/"
+          ],
+          [
+            "class",
+            "/klɑːs/"
+          ]
+        ],
+        "/ʌ/": [
+          [
+            "subject",
+            "/ˈsʌbdʒɪkt/"
+          ],
+          [
+            "study",
+            "/ˈstʌdi/"
+          ],
+          [
+            "Monday",
+            "/ˈmʌndeɪ/"
+          ],
+          [
+            "compass",
+            "/ˈkʌmpəs/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "cart",
+          "/kɑːt/",
+          "cut",
+          "/kʌt/"
+        ],
+        [
+          "heart",
+          "/hɑːt/",
+          "hut",
+          "/hʌt/"
+        ],
+        [
+          "barn",
+          "/bɑːn/",
+          "bun",
+          "/bʌn/"
+        ],
+        [
+          "dark",
+          "/dɑːk/",
+          "duck",
+          "/dʌk/"
+        ]
+      ],
+      "extra": [
+        "/ɑː/ thường được viết bằng \"ar\" hoặc \"a\" trước một số phụ âm nhất định → art, smart, carton, class",
+        "/ʌ/ thường được viết bằng chữ \"u\" hoặc \"o\" trong các âm tiết đóng → study, subject, lunch, Monday",
+        "Lưu ý sự khác biệt Anh – Anh (BrE) và Anh – Mỹ (AmE):",
+        "  • Các từ như class, dance, ask, half…: BrE phát âm /ɑː/, AmE phát âm /æ/ — class: /klɑːs/ (BrE) – /klæs/ (AmE)",
+        "  • Các từ chứa \"ar\" (art, smart…): BrE âm \"r\" bị câm, chỉ phát âm /ɑː/; AmE phát âm rõ \"r\" thành /ɑːr/ — art: /ɑːt/ (BrE) – /ɑːrt/ (AmE)"
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "m[a]ths",
+            "b": "cl[a]ss",
+            "c": "p[a]ss",
+            "d": "gr[a]ss"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "d[a]nce",
+            "b": "l[a]st",
+            "c": "[a]fter",
+            "d": "b[a]g"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "st[ar]t",
+            "b": "p[ar]k",
+            "c": "w[ar]m",
+            "d": "sm[ar]t"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "l[u]nch",
+            "b": "r[u]le",
+            "c": "st[u]dy",
+            "d": "r[u]bber"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "j[u]mp",
+            "b": "[u]niform",
+            "c": "m[u]st",
+            "d": "b[u]s"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "n[o]t",
+            "b": "m[o]ney",
+            "c": "br[o]ther",
+            "d": "M[o]nday"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "c[o]me",
+            "b": "s[o]n",
+            "c": "m[o]ther",
+            "d": "g[o]"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "ab[ou]t",
+            "b": "y[ou]ng",
+            "c": "c[ou]sin",
+            "d": "c[ou]ntry"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "h[a]lf",
+            "b": "b[a]th",
+            "c": "b[a]ck",
+            "d": "[a]sk"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "l[u]nch",
+            "b": "p[u]t",
+            "c": "c[u]p",
+            "d": "m[u]m"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "classroom",
+            "b": "notebook",
+            "c": "teacher",
+            "d": "cartoon"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "music",
+            "b": "advice",
+            "c": "science",
+            "d": "village"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "country",
+            "b": "exam",
+            "c": "breakfast",
+            "d": "money"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "student",
+            "b": "garden",
+            "c": "hello",
+            "d": "dinner"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "about",
+            "b": "heavy",
+            "c": "study",
+            "d": "healthy"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "today",
+            "b": "minute",
+            "c": "reason",
+            "d": "secret"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "favourite",
+            "b": "exercise",
+            "c": "remember",
+            "d": "cinema"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "computer",
+            "b": "uniform",
+            "c": "library",
+            "d": "holiday"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "interesting",
+            "b": "history",
+            "c": "eraser",
+            "d": "bicycle"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "painting",
+            "b": "classmate",
+            "c": "English",
+            "d": "between"
+          },
+          "answer": "d"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing the sounds /ɑː/ and /ʌ/.",
+        "items": [
+          [
+            "My smart brother studies art on Monday.",
+            "/maɪ smɑːt ˈbrʌðə ˈstʌdiz ɑːt ɒn ˈmʌndeɪ/"
+          ],
+          [
+            "The funny class loves the fast bus.",
+            "/ðə ˈfʌni klɑːs lʌvz ðə fɑːst bʌs/"
+          ],
+          [
+            "Mum has a cup in the dark park.",
+            "/mʌm hæz ə kʌp ɪn ðə dɑːk pɑːk/"
+          ],
+          [
+            "Pass the compass to my hungry aunt.",
+            "/pɑːs ðə ˈkʌmpəs tə maɪ ˈhʌŋɡri ɑːnt/"
+          ],
+          [
+            "Half the club jumps in the yard.",
+            "/hɑːf ðə klʌb dʒʌmps ɪn ðə jɑːd/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 2,
+      "title": "My House",
+      "book": "Book 1",
+      "pages": "56–58",
+      "topic_type": "consonant_pair",
+      "topic": "Final Consonant Sounds (Phụ âm cuối): /s/ và /z/",
+      "comparison": {
+        "sounds": [
+          "/s/ (voiceless)",
+          "/z/ (voiced)"
+        ],
+        "loai_am": [
+          "Phụ âm vô thanh",
+          "Phụ âm hữu thanh"
+        ],
+        "cach_phat_am": [
+          "Khép hờ hai răng cắn nhẹ, đầu lưỡi đặt gần mặt sau của răng cửa trên. Luồng hơi được đẩy mạnh ra ngoài qua khe hẹp giữa hai hàm răng mà không làm rung dây thanh quản (âm vô thanh).",
+          "Khép hờ hai răng cắn nhẹ, đầu lưỡi đặt gần mặt sau của răng cửa trên tương tự như âm /s/. Không dùng hơi hoặc dùng hơi thật nhẹ đẩy ra ngoài qua khe hẹp giữa hai hàm răng, đồng thời dây thanh quản rung mạnh (âm hữu thanh)."
+        ],
+        "meo_phat_am": [
+          "Gần giống âm \"x\" trong tiếng Việt nhưng chỉ đẩy hơi ra ngoài, không tạo âm thanh hoàn chỉnh.",
+          "Gần giống âm \"gi\" trong tiếng Việt, nhưng chỉ tạo độ rung, không tạo thành âm hoàn chỉnh."
+        ],
+        "vi_du": [
+          "lamps, sinks",
+          "rooms, sofas"
+        ]
+      },
+      "examples": {
+        "/s/": [
+          [
+            "lamps",
+            "/læmps/"
+          ],
+          [
+            "sinks",
+            "/sɪŋks/"
+          ],
+          [
+            "flats",
+            "/flæts/"
+          ],
+          [
+            "toilets",
+            "/ˈtɔɪləts/"
+          ]
+        ],
+        "/z/": [
+          [
+            "rooms",
+            "/ruːmz/"
+          ],
+          [
+            "sofas",
+            "/ˈsəʊfəz/"
+          ],
+          [
+            "kitchens",
+            "/ˈkɪtʃɪnz/"
+          ],
+          [
+            "cupboards",
+            "/ˈkʌbədz/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "bus",
+          "/bʌs/ (xe buýt)",
+          "buzz",
+          "/bʌz/ (tiếng vo ve)"
+        ],
+        [
+          "price",
+          "/praɪs/ (giá cả)",
+          "prize",
+          "/praɪz/ (giải thưởng)"
+        ],
+        [
+          "piece",
+          "/piːs/ (mảnh, mẩu)",
+          "peas",
+          "/piːz/ (hạt đậu)"
+        ]
+      ],
+      "extra": [
+        "Âm /s/ thường xuất hiện khi từ tận cùng bằng các phụ âm vô thanh: /p/, /t/, /k/, /f/, /θ/ → lamps, flats, sinks",
+        "Âm /z/ thường xuất hiện khi từ tận cùng bằng các nguyên âm hoặc phụ âm hữu thanh (trừ các âm xuýt) → rooms, sofas, cupboards"
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "room[s]",
+            "b": "sink[s]",
+            "c": "flat[s]",
+            "d": "lamp[s]"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "sofa[s]",
+            "b": "bowl[s]",
+            "c": "kitchen[s]",
+            "d": "toilet[s]"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "cupboard[s]",
+            "b": "desk[s]",
+            "c": "door[s]",
+            "d": "bed[s]"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "cooker[s]",
+            "b": "photo[s]",
+            "c": "chair[s]",
+            "d": "chopstick[s]"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "apartment[s]",
+            "b": "aunt[s]",
+            "c": "cousin[s]",
+            "d": "parent[s]"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "sister[s]",
+            "b": "brother[s]",
+            "c": "uncle[s]",
+            "d": "parent[s]"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "book[s]",
+            "b": "dog[s]",
+            "c": "cat[s]",
+            "d": "map[s]"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "hat[s]",
+            "b": "pen[s]",
+            "c": "bag[s]",
+            "d": "ruler[s]"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "br[o]ther",
+            "b": "h[o]me",
+            "c": "c[o]me",
+            "d": "m[o]ther"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "h[a]ll",
+            "b": "t[a]ll",
+            "c": "fl[a]t",
+            "d": "w[a]ll"
+          },
+          "answer": "c"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "behind",
+            "b": "bedroom",
+            "c": "kitchen",
+            "d": "bathroom"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "cooker",
+            "b": "sofa",
+            "c": "between",
+            "d": "picture"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "toilet",
+            "b": "shower",
+            "c": "cupboard",
+            "d": "hotel"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "cousin",
+            "b": "sister",
+            "c": "forget",
+            "d": "brother"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "mother",
+            "b": "guitar",
+            "c": "father",
+            "d": "uncle"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "nephew",
+            "b": "machine",
+            "c": "parents",
+            "d": "daughter"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "motorbike",
+            "b": "dishwasher",
+            "c": "furniture",
+            "d": "apartment"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "computer",
+            "b": "favourite",
+            "c": "dishwasher",
+            "d": "beautiful"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "computer",
+            "b": "department",
+            "c": "furniture",
+            "d": "apartment"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "motorbike",
+            "b": "electric",
+            "c": "favourite",
+            "d": "beautiful"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "The cats and dogs sit on the mats near the logs.",
+            "/ðə kæts ənd dɒɡz sɪt ɒn ðə mæts nɪə ðə lɒɡz/"
+          ],
+          [
+            "My aunts and uncles buy cups and bowls.",
+            "/maɪ ɑːnts ənd ˈʌŋklz baɪ kʌps ənd bəʊlz/"
+          ],
+          [
+            "Six flats have rooms with beds and lamps.",
+            "/sɪks flæts hæv ruːmz wɪð bedz ənd læmps/"
+          ],
+          [
+            "The boys put books and pens on the desks.",
+            "/ðə bɔɪz pʊt bʊks ənd penz ɒn ðə desks/"
+          ],
+          [
+            "The girls clean sinks and cookers and pans.",
+            "/ðə ɡɜːlz kliːn sɪŋks ənd ˈkʊkəz ənd pænz/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 3,
+      "title": "My Friends",
+      "book": "Book 1",
+      "pages": "92–94",
+      "topic_type": "consonant_pair",
+      "topic": "Consonant Sounds (Phụ âm): /b/ và /p/",
+      "comparison": {
+        "sounds": [
+          "/p/ (voiceless)",
+          "/b/ (voiced)"
+        ],
+        "loai_am": [
+          "Phụ âm vô thanh",
+          "Phụ âm hữu thanh"
+        ],
+        "cach_phat_am": [
+          "Hai môi mím chặt để cản luồng hơi từ phổi đi lên, tạo áp suất phía sau môi, sau đó mở môi ra đột ngột để luồng hơi bật mạnh ra ngoài mà không làm rung dây thanh quản (âm bật hơi, vô thanh).",
+          "Hai môi mím chặt tương tự như âm /p/. Tuy nhiên, thay vì bật hơi mạnh, hãy làm rung dây thanh quản trước khi mở môi bật âm ra ngoài (âm rung, hữu thanh)."
+        ],
+        "meo_phat_am": [
+          "Gần giống âm \"p\" trong tiếng Việt nhưng bật hơi mạnh hơn, không rung dây thanh quản.",
+          "Gần giống âm \"b\" trong tiếng Việt, có rung dây thanh quản."
+        ],
+        "vi_du": [
+          "pig, pear",
+          "big, bear"
+        ]
+      },
+      "examples": null,
+      "minimal_pairs": [
+        [
+          "pig",
+          "/pɪɡ/ (con lợn)",
+          "big",
+          "/bɪɡ/ (to lớn)"
+        ],
+        [
+          "pear",
+          "/peə/ (quả lê)",
+          "bear",
+          "/beə/ (con gấu)"
+        ],
+        [
+          "pie",
+          "/paɪ/ (bánh nướng)",
+          "buy",
+          "/baɪ/ (mua)"
+        ],
+        [
+          "rope",
+          "/rəʊp/ (dây thừng)",
+          "robe",
+          "/rəʊb/ (áo choàng dài)"
+        ]
+      ],
+      "extra": [
+        "/p/ thường được viết bằng \"p\" hoặc \"pp\" → picnic, playing, apple",
+        "  Lưu ý – Âm câm (Silent letters): chữ \"p\" không được phát âm trong một số từ, ví dụ: cupboard (/ˈkʌbəd/), receipt (/rɪˈsiːt/).",
+        "/b/ thường được viết bằng \"b\" hoặc \"bb\" → biscuit, bringing, rabbit",
+        "  Lưu ý – Âm câm (Silent letters): chữ \"b\" thường bị câm khi đứng sau \"m\" ở cuối từ, ví dụ: climb (/klaɪm/), comb (/kəʊm/)."
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "num[b]er",
+            "b": "clim[b]",
+            "c": "clu[b]",
+            "d": "[b]asket"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "kee[p]",
+            "b": "su[pp]er",
+            "c": "cu[p]board",
+            "d": "[p]atient"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "ra[bb]it",
+            "b": "com[b]",
+            "c": "[b]rother",
+            "d": "we[b]"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "[p]icture",
+            "b": "a[pp]le",
+            "c": "recei[p]t",
+            "d": "cu[p]"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "ze[b]ra",
+            "b": "cra[b]",
+            "c": "lam[b]",
+            "d": "[b]ear"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "[p]erson",
+            "b": "cam[p]ing",
+            "c": "sto[p]",
+            "d": "ras[p]berry"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "[b]usy",
+            "b": "thum[b]",
+            "c": "tu[b]",
+            "d": "ca[bb]age"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "plum[b]er",
+            "b": "[b]uilding",
+            "c": "ro[b]",
+            "d": "su[b]ject"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "[p]sychology",
+            "b": "shi[p]",
+            "c": "[p]arent",
+            "d": "su[pp]ort"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "jo[b]",
+            "b": "we[b]site",
+            "c": "[b]eautiful",
+            "d": "dou[b]t"
+          },
+          "answer": "d"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "summer",
+            "b": "picnic",
+            "c": "careful",
+            "d": "enjoy"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "funny",
+            "b": "active",
+            "c": "clever",
+            "d": "relax"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "patient",
+            "b": "honest",
+            "c": "sporty",
+            "d": "decide"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "arrive",
+            "b": "biscuits",
+            "c": "believe",
+            "d": "forget"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "around",
+            "b": "sandwich",
+            "c": "comic",
+            "d": "teamwork"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "creative",
+            "b": "leadership",
+            "c": "favourite",
+            "d": "confident"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "remember",
+            "b": "important",
+            "c": "character",
+            "d": "computer"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "beautiful",
+            "b": "generous",
+            "c": "tomorrow",
+            "d": "energy"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "friendly",
+            "b": "caring",
+            "c": "appear",
+            "d": "loving"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "agree",
+            "b": "shoulder",
+            "c": "become",
+            "d": "begin"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "Big brown bears pick plums and pears.",
+            "/bɪɡ braʊn beəz pɪk plʌmz ənd peəz/"
+          ],
+          [
+            "Paul puts big black books in pink plastic bags.",
+            "/pɔːl pʊts bɪɡ blæk bʊks ɪn pɪŋk ˈplæstɪk bæɡz/"
+          ],
+          [
+            "Ben bakes perfect pies for people at the picnic.",
+            "/ben beɪks ˈpɜːfɪkt paɪz fə ˈpiːpl ət ðə ˈpɪknɪk/"
+          ],
+          [
+            "Pat's pet pig bites brown biscuits from the bag.",
+            "/pæts pet pɪɡ baɪts braʊn ˈbɪskɪts frəm ðə bæɡ/"
+          ],
+          [
+            "The brave boy bought pretty boats and painted them pink.",
+            "/ðə breɪv bɔɪ bɔːt ˈprɪti bəʊts ənd ˈpeɪntɪd ðəm pɪŋk/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 4,
+      "title": "My Neighbourhood",
+      "book": "Book 1",
+      "pages": "131–133",
+      "topic_type": "vowel_pair",
+      "topic": "Vowel Sounds (Nguyên âm): /ɪ/ và /iː/",
+      "comparison": {
+        "sounds": [
+          "/ɪ/ (short vowel)",
+          "/iː/ (long vowel)"
+        ],
+        "loai_am": [
+          "Nguyên âm đơn ngắn",
+          "Nguyên âm đơn dài"
+        ],
+        "cach_phat_am": [
+          "Miệng hơi mở và môi thả lỏng. Khi phát âm, phần giữa lưỡi hơi nâng lên, đầu lưỡi chạm nhẹ vào răng cửa dưới. Luồng hơi đi ra tự do, không bị cản trở, đồng thời dây thanh quản rung để tạo ra một âm ngắn, dứt khoát.",
+          "Môi kéo sang hai bên như đang cười và miệng hẹp. Khi phát âm, phần giữa lưỡi nâng cao, đầu lưỡi chạm nhẹ vào răng cửa dưới. Luồng hơi đi ra tự do, không bị cản trở, đồng thời dây thanh quản rung để tạo ra một âm kéo dài, vang."
+        ],
+        "meo_phat_am": [
+          "Phát âm như chữ \"ê\" trong tiếng Việt và pha chút \"i\" nhưng nhanh, gọn và thả lỏng.",
+          "Phát âm như chữ \"i\" trong tiếng Việt nhưng căng hơn, mạnh hơn và kéo dài."
+        ],
+        "vi_du": [
+          "sit, fish",
+          "sheep, tree"
+        ]
+      },
+      "examples": {
+        "/ɪ/": [
+          [
+            "noisy (ồn ào)",
+            "/ˈnɔɪzi/"
+          ],
+          [
+            "exciting (thú vị, nhộn nhịp)",
+            "/ɪkˈsaɪtɪŋ/"
+          ],
+          [
+            "expensive (đắt đỏ)",
+            "/ɪkˈspensɪv/"
+          ],
+          [
+            "friendly (thân thiện)",
+            "/ˈfrendli/"
+          ]
+        ],
+        "/iː/": [
+          [
+            "clean (sạch sẽ)",
+            "/kliːn/"
+          ],
+          [
+            "peaceful (yên bình)",
+            "/ˈpiːsfl/"
+          ],
+          [
+            "convenient (tiện lợi)",
+            "/kənˈviːniənt/"
+          ],
+          [
+            "cheap (rẻ)",
+            "/tʃiːp/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "ship",
+          "/ʃɪp/ (tàu thủy)",
+          "sheep",
+          "/ʃiːp/ (con cừu)"
+        ],
+        [
+          "sit",
+          "/sɪt/ (ngồi)",
+          "seat",
+          "/siːt/ (chỗ ngồi)"
+        ],
+        [
+          "bin",
+          "/bɪn/ (thùng rác)",
+          "bean",
+          "/biːn/ (hạt đậu)"
+        ],
+        [
+          "fit",
+          "/fɪt/ (vừa vặn, khỏe mạnh)",
+          "feet",
+          "/fiːt/ (bàn chân)"
+        ],
+        [
+          "live",
+          "/lɪv/ (sống)",
+          "leave",
+          "/liːv/ (rời đi)"
+        ]
+      ],
+      "extra": [
+        "/ɪ/ thường được viết bằng:",
+        "  • Chữ \"i\" trong các từ ngắn → sit, bin, fit",
+        "  • Chữ \"y\" ở cuối các từ có 2 âm tiết trở lên → noisy, friendly, busy",
+        "  • Tiền tố \"ex-\" → exciting, expensive",
+        "/iː/ thường được viết bằng:",
+        "  • Chữ \"ea\" → clean, cheap, peaceful",
+        "  • Chữ \"ee\" → street, see, tree",
+        "  • Chữ \"ie\" hoặc \"ei\" → convenient, believe, receive"
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "cl[ea]n",
+            "b": "ch[ea]p",
+            "c": "p[ea]ceful",
+            "d": "h[ea]vy"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "s[i]t",
+            "b": "f[i]t",
+            "c": "pol[i]ce",
+            "d": "l[i]ve"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "car[ee]r",
+            "b": "str[ee]t",
+            "c": "tr[ee]",
+            "d": "s[ee]"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "bus[y]",
+            "b": "sk[y]",
+            "c": "friendl[y]",
+            "d": "nois[y]"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "c[i]ty",
+            "b": "p[i]cnic",
+            "c": "mach[i]ne",
+            "d": "v[i]llage"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "th[e]se",
+            "b": "b[e]gin",
+            "c": "d[e]cide",
+            "d": "b[e]fore"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "sh[e]",
+            "b": "b[e]",
+            "c": "d[e]scribe",
+            "d": "w[e]"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "m[ea]t",
+            "b": "s[ea]t",
+            "c": "b[ea]ch",
+            "d": "h[ea]d"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "w[i]ndow",
+            "b": "l[i]tre",
+            "c": "sh[i]p",
+            "d": "b[i]n"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "happ[y]",
+            "b": "cr[y]",
+            "c": "prett[y]",
+            "d": "funn[y]"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "modern",
+            "b": "crowded",
+            "c": "police",
+            "d": "noisy"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "busy",
+            "b": "decide",
+            "c": "peaceful",
+            "d": "boring"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "pretty",
+            "b": "quiet",
+            "c": "begin",
+            "d": "market"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "temple",
+            "b": "building",
+            "c": "suburb",
+            "d": "dislike"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "neighbour",
+            "b": "partner",
+            "c": "centre",
+            "d": "avoid"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "factory",
+            "b": "cathedral",
+            "c": "museum",
+            "d": "pagoda"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "exciting",
+            "b": "fantastic",
+            "c": "beautiful",
+            "d": "expensive"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "wonderful",
+            "b": "important",
+            "c": "cathedral",
+            "d": "delicious"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "friendly",
+            "b": "correct",
+            "c": "repeat",
+            "d": "arrive"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "cathedral",
+            "b": "gallery",
+            "c": "suggestion",
+            "d": "direction"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "Pete eats cheap chips and peaches in the busy city street.",
+            "/piːt iːts tʃiːp tʃɪps ənd ˈpiːtʃɪz ɪn ðə ˈbɪzi ˈsɪti striːt/"
+          ],
+          [
+            "Six simple sheep sleep in the green field.",
+            "/sɪks ˈsɪmpl ʃiːp sliːp ɪn ðə ɡriːn fiːld/"
+          ],
+          [
+            "Tim sits and sees a slim sheep eating green beans.",
+            "/tɪm sɪts ənd siːz ə slɪm ʃiːp ˈiːtɪŋ ɡriːn biːnz/"
+          ],
+          [
+            "Bill feeds the clean pig with big sweet peaches.",
+            "/bɪl fiːdz ðə kliːn pɪɡ wɪð bɪɡ swiːt ˈpiːtʃɪz/"
+          ],
+          [
+            "A busy queen cleans the green clinic quickly.",
+            "/ə ˈbɪzi kwiːn kliːnz ðə ɡriːn ˈklɪnɪk ˈkwɪkli/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 5,
+      "title": "Natural Wonders of Viet Nam",
+      "book": "Book 1",
+      "pages": "172–175",
+      "topic_type": "consonant_pair",
+      "topic": "Consonant Sounds (Phụ âm): /t/ và /d/",
+      "comparison": {
+        "sounds": [
+          "/t/ (voiceless)",
+          "/d/ (voiced)"
+        ],
+        "loai_am": [
+          "Phụ âm vô thanh (âm không rung)",
+          "Phụ âm hữu thanh (âm rung)"
+        ],
+        "cach_phat_am": [
+          "Đặt đầu lưỡi ở phần lợi phía sau răng cửa hàm trên để chặn luồng hơi lại. Sau đó, bật lưỡi ra thật nhanh để luồng hơi thoát ra ngoài đột ngột tạo thành âm bật hơi, đồng thời dây thanh quản không rung.",
+          "Vị trí lưỡi và miệng đặt tương tự như khi phát âm /t/. Tuy nhiên, thay vì bật hơi mạnh, hãy làm rung dây thanh quản khi hơi thoát ra để tạo thành âm rung."
+        ],
+        "meo_phat_am": [
+          "Gần giống âm \"t\" trong tiếng Việt nhưng bật hơi mạnh hơn từ đầu lưỡi, không rung dây thanh quản.",
+          "Gần giống âm \"đ\" trong tiếng Việt, có rung dây thanh quản."
+        ],
+        "vi_du": [
+          "tea, cat",
+          "dog, red"
+        ]
+      },
+      "examples": {
+        "/t/": [
+          [
+            "mountain (núi, ngọn núi)",
+            "/ˈmaʊntən/"
+          ],
+          [
+            "waterfall (thác nước)",
+            "/ˈwɔːtəfɔːl/"
+          ],
+          [
+            "desert (sa mạc)",
+            "/ˈdezət/"
+          ],
+          [
+            "plaster (băng dán cá nhân)",
+            "/ˈplɑːstə/"
+          ]
+        ],
+        "/d/": [
+          [
+            "wonder (kỳ quan)",
+            "/ˈwʌndə/"
+          ],
+          [
+            "island (hòn đảo)",
+            "/ˈaɪlənd/"
+          ],
+          [
+            "guide (hướng dẫn viên)",
+            "/ɡaɪd/"
+          ],
+          [
+            "holiday (ngày nghỉ, kỳ nghỉ)",
+            "/ˈhɒlədeɪ/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "ten",
+          "/ten/ (số mười)",
+          "den",
+          "/den/ (hang thú)"
+        ],
+        [
+          "tip",
+          "/tɪp/ (đầu, chóp, tiền boa)",
+          "dip",
+          "/dɪp/ (nhúng, dìm)"
+        ],
+        [
+          "neat",
+          "/niːt/ (ngăn nắp, gọn gàng)",
+          "need",
+          "/niːd/ (cần, nhu cầu)"
+        ],
+        [
+          "hat",
+          "/hæt/ (cái mũ)",
+          "had",
+          "/hæd/ (đã có – quá khứ của have)"
+        ],
+        [
+          "write",
+          "/raɪt/ (viết)",
+          "ride",
+          "/raɪd/ (lái xe, cưỡi ngựa)"
+        ]
+      ],
+      "extra": [
+        "/t/ thường được viết bằng chữ \"t\" hoặc \"tt\" → want, boat, cat, butter",
+        "  Lưu ý – Âm câm (Silent letters): chữ \"t\" không được phát âm trong một số từ, ví dụ: listen (/ˈlɪsn/), castle (/ˈkɑːsl/), often (/ˈɒfn/).",
+        "/d/ thường được viết bằng chữ \"d\" hoặc \"dd\" → do, head, need, ladder",
+        "  Lưu ý – Âm câm (Silent letters): chữ \"d\" không được phát âm trong một số từ quen thuộc, ví dụ: handsome (/ˈhænsəm/), Wednesday (/ˈwenzdeɪ/), sandwich (/ˈsænwɪdʒ/).",
+        "Hiện tượng biến âm trong giao tiếp thực tế:",
+        "  • Flap T (âm /t/ lướt): Trong tiếng Anh – Mỹ, khi âm /t/ đứng giữa hai nguyên âm (hoặc sau âm /r/ và trước một nguyên âm) và không nằm trong âm tiết được nhấn trọng âm, nó thường được phát âm nhanh và nhẹ gần giống âm /d/ (ví dụ: butter, water, city).",
+        "  • Glottal Stop T (âm tắc thanh hầu): Khi âm /t/ đứng cuối từ (đặc biệt khi từ tiếp theo bắt đầu bằng một phụ âm) hoặc đứng trước âm /n/ (ví dụ: button, kitten, mountain), luồng hơi có thể bị chặn lại ở cổ họng mà không cần bật mạnh hơi ra ngoài thành âm /t/ rõ ràng.",
+        "  Lưu ý: Đây là các cách phát âm biến đổi khi giao tiếp nhanh và tự nhiên (connected speech). Khi làm các bài tập phát âm trên giấy, các em không áp dụng quy tắc biến âm này mà vẫn dùng âm bật hơi /t/ chuẩn."
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "Chris[t]mas",
+            "b": "deser[t]",
+            "c": "lis[t]en",
+            "d": "cas[t]le"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "holi[d]ay",
+            "b": "han[d]some",
+            "c": "un[d]er",
+            "d": "won[d]er"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "ques[t]ion",
+            "b": "for[t]une",
+            "c": "fores[t]",
+            "d": "na[t]ural"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "educa[t]ion",
+            "b": "direc[t]ion",
+            "c": "tradi[t]ion",
+            "d": "ticke[t]"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "gar[d]en",
+            "b": "rea[d]y",
+            "c": "e[d]ucation",
+            "d": "win[d]y"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "cap[t]ure",
+            "b": "pic[t]ure",
+            "c": "moun[t]ain",
+            "d": "na[t]ure"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "ac[t]ivity",
+            "b": "sta[t]ion",
+            "c": "prepara[t]ion",
+            "d": "na[t]ion"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "rus[t]le",
+            "b": "fas[t]en",
+            "c": "whis[t]le",
+            "d": "plas[t]er"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "fin[d]",
+            "b": "frien[d]",
+            "c": "sen[d]",
+            "d": "We[d]nesday"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "gui[d]e",
+            "b": "sol[d]ier",
+            "c": "in[d]ividual",
+            "d": "gra[d]uate"
+          },
+          "answer": "a"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "island",
+            "b": "wonder",
+            "c": "explore",
+            "d": "desert"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "plaster",
+            "b": "prepare",
+            "c": "compass",
+            "d": "mountain"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "valley",
+            "b": "river",
+            "c": "enjoy",
+            "d": "forest"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "popular",
+            "b": "wonderful",
+            "c": "natural",
+            "d": "exciting"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "important",
+            "b": "attractive",
+            "c": "amazing",
+            "d": "beautiful"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "prevent",
+            "b": "visit",
+            "c": "protect",
+            "d": "arrive"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "gallery",
+            "b": "monument",
+            "c": "scenery",
+            "d": "cathedral"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "special",
+            "b": "active",
+            "c": "correct",
+            "d": "friendly"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "expensive",
+            "b": "dangerous",
+            "c": "waterfall",
+            "d": "family"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "alone",
+            "b": "blanket",
+            "c": "scissors",
+            "d": "backpack"
+          },
+          "answer": "a"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "Two tiny turtles took ten days to dig deep down.",
+            "/tuː ˈtaɪni ˈtɜːtlz tʊk ten deɪz tə dɪɡ diːp daʊn/"
+          ],
+          [
+            "David drove a dirty truck down the dusty road on Tuesday.",
+            "/ˈdeɪvɪd drəʊv ə ˈdɜːti trʌk daʊn ðə ˈdʌsti rəʊd ɒn ˈtjuːzdeɪ/"
+          ],
+          [
+            "Tom told Dan to tidy the ten dirty desks today.",
+            "/tɒm təʊld dæn tə ˈtaɪdi ðə ten ˈdɜːti desks təˈdeɪ/"
+          ],
+          [
+            "Ten tall doctors travel together to the drumming beat.",
+            "/ten tɔːl ˈdɒktəz ˈtrævl təˈɡeðə tə ðə ˈdrʌmɪŋ biːt/"
+          ],
+          [
+            "Diana tries to tie a tight knot on the drafty deck.",
+            "/daɪˈænə traɪz tə taɪ ə taɪt nɒt ɒn ðə ˈdrɑːfti dek/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 6,
+      "title": "Our Tet Holiday",
+      "book": "Book 1",
+      "pages": "211–214",
+      "topic_type": "consonant_pair",
+      "topic": "Consonant Sounds (Phụ âm): /s/ và /ʃ/",
+      "comparison": {
+        "sounds": [
+          "/s/ (voiceless)",
+          "/ʃ/ (voiceless)"
+        ],
+        "loai_am": [
+          "Phụ âm vô thanh (âm không rung)",
+          "Phụ âm vô thanh (âm không rung)"
+        ],
+        "cach_phat_am": [
+          "Đặt đầu lưỡi nhẹ hướng về phía chân răng hàm trên (phần lợi) nhưng không chạm vào. Khép hai hàm răng lại gần nhau. Đẩy luồng hơi thoát ra ngoài qua khe hở hẹp giữa đầu lưỡi và chân răng để tạo ra tiếng rít nhẹ, đồng thời dây thanh quản không rung.",
+          "Đặt lưỡi lùi về phía sau hơn một chút so với khi phát âm /s/ (phần sau của lợi). Cong phần giữa lưỡi lên hướng về vòm họng. Tròn môi và đưa môi về phía trước. Đẩy luồng hơi mạnh thoát ra ngoài qua khe hở giữa lưỡi và vòm họng để tạo ra tiếng xì mạnh, đồng thời dây thanh quản không rung."
+        ],
+        "meo_phat_am": [
+          "Gần giống âm \"x\" trong tiếng Việt khi phát âm nhẹ nhàng, thả lỏng môi và không rung dây thanh quản.",
+          "Gần giống âm \"s\" (s nặng, uốn lưỡi) trong tiếng Việt nhưng tròn môi (chu môi) và đẩy hơi xì mạnh ra ngoài, không rung dây thanh quản."
+        ],
+        "vi_du": [
+          "spring, celebrate",
+          "shopping, wish"
+        ]
+      },
+      "examples": {
+        "/s/": [
+          [
+            "spring (mùa xuân)",
+            "/sprɪŋ/"
+          ],
+          [
+            "celebrate (ăn mừng, đón mừng)",
+            "/ˈselɪbreɪt/"
+          ],
+          [
+            "rice (gạo, lúa, cơm)",
+            "/raɪs/"
+          ],
+          [
+            "sweet (kẹo, đồ ngọt)",
+            "/swiːt/"
+          ]
+        ],
+        "/ʃ/": [
+          [
+            "shopping (việc mua sắm)",
+            "/ˈʃɒpɪŋ/"
+          ],
+          [
+            "special (đặc biệt)",
+            "/ˈspeʃl/"
+          ],
+          [
+            "wish (lời chúc, điều ước)",
+            "/wɪʃ/"
+          ],
+          [
+            "should (nên)",
+            "/ʃʊd/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "sip",
+          "/sɪp/ (hớp, nhấp nháp)",
+          "ship",
+          "/ʃɪp/ (tàu thủy)"
+        ],
+        [
+          "seat",
+          "/siːt/ (chỗ ngồi)",
+          "sheet",
+          "/ʃiːt/ (tờ, tấm)"
+        ],
+        [
+          "sign",
+          "/saɪn/ (dấu hiệu, biển hiệu)",
+          "shine",
+          "/ʃaɪn/ (chiếu sáng, tỏa sáng)"
+        ],
+        [
+          "sue",
+          "/suː/ (kiện, khởi kiện)",
+          "shoe",
+          "/ʃuː/ (chiếc giày)"
+        ],
+        [
+          "sort",
+          "/sɔːt/ (loại, phân loại)",
+          "short",
+          "/ʃɔːt/ (ngắn, thấp)"
+        ]
+      ],
+      "extra": [
+        "/s/ thường được viết bằng:",
+        "  • Chữ \"s\" hoặc \"ss\" → spring (/sprɪŋ/), smile (/smaɪl/), dress (/dres/)",
+        "  • Chữ \"c\" (khi đứng trước e, i, y) → celebrate (/ˈselɪbreɪt/), rice (/raɪs/), city (/ˈsɪti/)",
+        "/ʃ/ thường được viết bằng:",
+        "  • Chữ \"sh\" → shopping (/ˈʃɒpɪŋ/), wish (/wɪʃ/), shine (/ʃaɪn/)",
+        "  • Chữ \"t\" hoặc \"c\" (trong các đuôi -tion, -cial, -cious) → special (/ˈspeʃl/), traditional (/trəˈdɪʃənl/), delicious (/dɪˈlɪʃəs/)",
+        "  • Chữ \"ch\" (trong một số từ mượn từ tiếng Pháp) → chef (/ʃef/), machine (/məˈʃiːn/)",
+        "  • Chữ \"su\" (trong một số trường hợp đặc biệt) → sugar (/ˈʃʊɡə/), sure (/ʃɔː/), pressure (/ˈpreʃə/)",
+        "Cẩn thận với âm \"s\" câm (Silent \"s\"): một số từ tuy có chữ cái \"s\" nhưng chữ \"s\" này hoàn toàn là âm câm:",
+        "  • island (/ˈaɪlənd/ – hòn đảo)",
+        "  • aisle (/aɪl/ – lối đi giữa các hàng ghế)",
+        "  • debris (/ˈdebriː/ – mảnh vụn, mảnh vỡ)"
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "[s]ure",
+            "b": "[s]uper",
+            "c": "[s]unny",
+            "d": "[s]ummer"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "[s]urvive",
+            "b": "[s]upport",
+            "c": "[s]ugar",
+            "d": "[s]uit"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "ri[c]e",
+            "b": "fa[c]e",
+            "c": "pla[c]e",
+            "d": "o[c]ean"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "le[ss]on",
+            "b": "pa[ss]enger",
+            "c": "ti[ss]ue",
+            "d": "cla[ss]ic"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "de[ci]de",
+            "b": "so[ci]al",
+            "c": "spe[ci]al",
+            "d": "offi[ci]al"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "ma[ns]ion",
+            "b": "pe[ns]ion",
+            "c": "te[ns]ion",
+            "d": "se[ns]e"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "sta[ti]on",
+            "b": "ques[ti]on",
+            "c": "na[ti]on",
+            "d": "tradi[ti]on"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "expre[ss]",
+            "b": "cla[ss]",
+            "c": "pre[ss]ure",
+            "d": "profe[ss]or"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "re[s]cue",
+            "b": "i[s]land",
+            "c": "fo[s]sil",
+            "d": "fe[s]tival"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "[ch]ristmas",
+            "b": "[ch]ef",
+            "c": "[ch]emistry",
+            "d": "[ch]aracter"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "special",
+            "b": "prepare",
+            "c": "blossom",
+            "d": "cleaner"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "housework",
+            "b": "clothing",
+            "c": "custom",
+            "d": "behave"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "invite",
+            "b": "advice",
+            "c": "balloon",
+            "d": "practice"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "furniture",
+            "b": "celebrate",
+            "c": "tradition",
+            "d": "holiday"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "calendar",
+            "b": "remember",
+            "c": "relative",
+            "d": "gathering"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "friendship",
+            "b": "shopping",
+            "c": "agree",
+            "d": "music"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "lucky",
+            "b": "winter",
+            "c": "colour",
+            "d": "begin"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "exciting",
+            "b": "colourful",
+            "c": "beautiful",
+            "d": "yesterday"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "welcome",
+            "b": "village",
+            "c": "around",
+            "d": "market"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "delicious",
+            "b": "decorate",
+            "c": "everyone",
+            "d": "history"
+          },
+          "answer": "a"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "She sells special sweets and spring seeds at the shop.",
+            "/ʃiː selz ˈspeʃl swiːts ənd sprɪŋ siːdz ət ðə ʃɒp/"
+          ],
+          [
+            "Seven silent sheep sleep slowly in the shade.",
+            "/ˈsevn ˈsaɪlənt ʃiːp sliːp ˈsləʊli ɪn ðə ʃeɪd/"
+          ],
+          [
+            "Phong should show his sister some shiny silver shoes.",
+            "/fɒŋ ʃʊd ʃəʊ hɪz ˈsɪstə səm ˈʃaɪni ˈsɪlvə ʃuːz/"
+          ],
+          [
+            "Sally shares special shellfish she found by the sea.",
+            "/ˈsæli ʃeəz ˈspeʃl ˈʃelfɪʃ ʃi faʊnd baɪ ðə siː/"
+          ],
+          [
+            "Shy students should sing in spring with a smile.",
+            "/ʃaɪ ˈstjuːdnts ʃʊd sɪŋ ɪn sprɪŋ wɪð ə smaɪl/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 7,
+      "title": "Television",
+      "book": "Book 2",
+      "pages": "13–15",
+      "topic_type": "consonant_pair",
+      "topic": "Consonant Sounds (Phụ âm): /θ/ và /ð/",
+      "comparison": {
+        "sounds": [
+          "/θ/ (voiceless)",
+          "/ð/ (voiced)"
+        ],
+        "loai_am": [
+          "Phụ âm vô thanh",
+          "Phụ âm hữu thanh"
+        ],
+        "cach_phat_am": [
+          "Đặt đầu lưỡi ở giữa hai hàm răng, chạm nhẹ vào răng cửa hàm trên. Đẩy luồng hơi thoát ra ngoài qua khe hở giữa đầu lưỡi và răng cửa trên để tạo ra tiếng xì gió nhẹ, đồng thời dây thanh quản không rung (âm vô thanh).",
+          "Đặt đầu lưỡi ở giữa hai hàm răng tương tự như khi phát âm /θ/. Đẩy luồng hơi thoát ra ngoài đồng thời làm rung mạnh dây thanh quản để tạo thành âm rung (âm hữu thanh)."
+        ],
+        "meo_phat_am": [
+          "Đặt đầu lưỡi giữa hai hàm răng và thổi hơi nhẹ ra ngoài, không phát ra tiếng từ cổ họng.",
+          "Gần giống cách phát âm /θ/ nhưng phát ra tiếng rung từ cổ họng."
+        ],
+        "vi_du": [
+          "think, theatre",
+          "this, there"
+        ]
+      },
+      "examples": {
+        "/θ/": [
+          [
+            "theatre (nhà hát)",
+            "/ˈθɪətə/"
+          ],
+          [
+            "earth (trái đất)",
+            "/ɜːθ/"
+          ],
+          [
+            "anything (bất cứ thứ gì)",
+            "/ˈeniθɪŋ/"
+          ],
+          [
+            "both (cả hai)",
+            "/bəʊθ/"
+          ],
+          [
+            "through (xuyên qua)",
+            "/θruː/"
+          ]
+        ],
+        "/ð/": [
+          [
+            "there (ở đó)",
+            "/ðeə/"
+          ],
+          [
+            "weather (thời tiết)",
+            "/ˈweðə/"
+          ],
+          [
+            "them (họ)",
+            "/ðem/"
+          ],
+          [
+            "neither (cũng không)",
+            "/ˈnaɪðə/"
+          ],
+          [
+            "than (hơn)",
+            "/ðæn/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "breath",
+          "/breθ/ (hơi thở)",
+          "breathe",
+          "/briːð/ (thở)"
+        ],
+        [
+          "bath",
+          "/bɑːθ/ (bồn tắm)",
+          "bathe",
+          "/beɪð/ (tắm)"
+        ],
+        [
+          "cloth",
+          "/klɒθ/ (vải)",
+          "clothe",
+          "/kləʊð/ (mặc đồ)"
+        ],
+        [
+          "teeth",
+          "/tiːθ/ (răng – số nhiều)",
+          "teethe",
+          "/tiːð/ (mọc răng)"
+        ],
+        [
+          "thigh",
+          "/θaɪ/ (đùi)",
+          "thy",
+          "/ðaɪ/ (của bạn – từ cổ)"
+        ]
+      ],
+      "extra": [
+        "Cả hai âm /θ/ và /ð/ trong tiếng Anh đều được viết bằng cụm chữ cái \"th\".",
+        "/θ/ thường xuất hiện ở:",
+        "  • Đầu các từ mang nội dung (danh từ, động từ, tính từ) → theatre, through, thin, thank, think",
+        "  • Cuối các từ có tận cùng bằng \"th\" → earth, both, teeth, breath, bath (ngoại lệ: một số ít từ tận cùng bằng \"th\" nhưng phát âm là /ð/ → smooth)",
+        "/ð/ thường xuất hiện ở:",
+        "  • Đầu các từ chỉ định, đại từ, liên từ hoặc từ chức năng → there, them, than, this, that, they",
+        "  • Giữa hai nguyên âm trong từ → weather, neither, brother, together, father",
+        "  • Cuối các từ có tận cùng bằng \"the\" → breathe, bathe, clothe (và ngoại lệ đuôi \"th\" như smooth)"
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "any[th]ing",
+            "b": "ear[th]",
+            "c": "[th]ere",
+            "d": "[th]eatre"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "[th]em",
+            "b": "[th]rough",
+            "c": "wea[th]er",
+            "d": "nei[th]er"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "bo[th]",
+            "b": "[th]an",
+            "c": "[th]in",
+            "d": "[th]ink"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "[th]ank",
+            "b": "[th]ese",
+            "c": "[th]at",
+            "d": "[th]is"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "tee[th]",
+            "b": "mou[th]",
+            "c": "clo[th]e",
+            "d": "sou[th]"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "smoo[th]",
+            "b": "ba[th]e",
+            "c": "brea[th]",
+            "d": "brea[th]e"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "toge[th]er",
+            "b": "[th]under",
+            "c": "[th]ousand",
+            "d": "[th]irsty"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "bro[th]er",
+            "b": "[th]ird",
+            "c": "mo[th]er",
+            "d": "fa[th]er"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "ma[th]s",
+            "b": "au[th]or",
+            "c": "nor[th]",
+            "d": "al[th]ough"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "[th]ose",
+            "b": "fur[th]er",
+            "c": "[th]us",
+            "d": "[th]ief"
+          },
+          "answer": "d"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "channel",
+            "b": "viewer",
+            "c": "compete",
+            "d": "clever"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "programme",
+            "b": "prefer",
+            "c": "depend",
+            "d": "attract"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "funny",
+            "b": "weather",
+            "c": "boring",
+            "d": "cartoon"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "repeat",
+            "b": "connect",
+            "c": "enjoy",
+            "d": "talent"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "wonderful",
+            "b": "delicious",
+            "c": "popular",
+            "d": "comedy"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "computer",
+            "b": "character",
+            "c": "decorate",
+            "d": "animal"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "exciting",
+            "b": "expensive",
+            "c": "exercise",
+            "d": "important"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "dolphin",
+            "b": "childhood",
+            "c": "event",
+            "d": "wildlife"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "national",
+            "b": "stadium",
+            "c": "history",
+            "d": "volunteer"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "direction",
+            "b": "interview",
+            "c": "tradition",
+            "d": "instruction"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "They think that the weather there is healthy for their brother.",
+            "/ðeɪ θɪŋk ðət ðə ˈweðə ðeər ɪz ˈhelθi fə ðeə ˈbrʌðə/"
+          ],
+          [
+            "Both these brothers thanked their mother for the theatre tickets.",
+            "/bəʊθ ðiːz ˈbrʌðəz θæŋkt ðeə ˈmʌðə fə ðə ˈθɪətə ˈtɪkɪts/"
+          ],
+          [
+            "The author thought that this book was worth reading together.",
+            "/ðiː ˈɔːθə θɔːt ðət ðɪs bʊk wəz wɜːθ ˈriːdɪŋ təˈɡeðə/"
+          ],
+          [
+            "My father thinks that this path is smoother than that path.",
+            "/maɪ ˈfɑːðə θɪŋks ðət ðɪs pɑːθ ɪz ˈsmuːðə ðən ðæt pɑːθ/"
+          ],
+          [
+            "Three brothers walked through the northern forest on Thursday the third.",
+            "/θriː ˈbrʌðəz wɔːkt θruː ðə ˈnɔːðən ˈfɒrɪst ɒn ˈθɜːzdeɪ ðə θɜːd/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 8,
+      "title": "Sports and Games",
+      "book": "Book 2",
+      "pages": "55–57",
+      "topic_type": "vowel_pair",
+      "topic": "Vowel Sounds (Nguyên âm): /e/ và /æ/",
+      "comparison": {
+        "sounds": [
+          "/e/ (short vowel)",
+          "/æ/ (short vowel)"
+        ],
+        "loai_am": [
+          "Nguyên âm đơn ngắn",
+          "Nguyên âm đơn ngắn"
+        ],
+        "cach_phat_am": [
+          "Miệng mở vừa phải, hai môi hơi kéo nhẹ sang hai bên. Lưỡi nâng lên ở độ cao trung bình và đầu lưỡi chạm nhẹ vào chân răng cửa dưới. Luồng hơi thoát ra tự do và dây thanh quản rung lên để tạo ra âm ngắn, gọn và dứt khoát.",
+          "Miệng mở rộng hơn /e/, hàm dưới hạ thấp và môi mở rộng sang hai bên. Lưỡi đặt ở vị trí thấp trong khoang miệng và đầu lưỡi chạm chân răng cửa dưới. Luồng hơi thoát ra tự do, dây thanh quản rung tạo ra âm kết hợp giữa \"a\" và \"e\"."
+        ],
+        "meo_phat_am": [
+          "Gần giống âm \"e\" trong tiếng Việt nhưng phát âm ngắn, gọn và dứt khoát hơn.",
+          "Gần giống âm kết hợp giữa \"a\" và \"e\". Mở khẩu hình miệng nói âm \"a\" sau đó luyến qua âm \"e\"."
+        ],
+        "vi_du": [
+          "pen, bed",
+          "cat, bad"
+        ]
+      },
+      "examples": {
+        "/e/": [
+          [
+            "chess (cờ vua)",
+            "/tʃes/"
+          ],
+          [
+            "tennis (quần vợt)",
+            "/ˈtenɪs/"
+          ],
+          [
+            "exercise (bài tập thể dục)",
+            "/ˈeksəsaɪz/"
+          ],
+          [
+            "contest (cuộc thi)",
+            "/ˈkɒntest/"
+          ]
+        ],
+        "/æ/": [
+          [
+            "racket (vợt)",
+            "/ˈrækɪt/"
+          ],
+          [
+            "match (trận đấu)",
+            "/mætʃ/"
+          ],
+          [
+            "marathon (chạy marathon)",
+            "/ˈmærəθən/"
+          ],
+          [
+            "active (năng động)",
+            "/ˈæktɪv/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "bed",
+          "/bed/ (cái giường)",
+          "bad",
+          "/bæd/ (xấu)"
+        ],
+        [
+          "men",
+          "/men/ (đàn ông – số nhiều)",
+          "man",
+          "/mæn/ (đàn ông – số ít)"
+        ],
+        [
+          "said",
+          "/sed/ (đã nói)",
+          "sad",
+          "/sæd/ (buồn)"
+        ],
+        [
+          "head",
+          "/hed/ (đầu)",
+          "had",
+          "/hæd/ (đã có)"
+        ],
+        [
+          "met",
+          "/met/ (đã gặp)",
+          "mat",
+          "/mæt/ (tấm thảm)"
+        ]
+      ],
+      "extra": [
+        "/e/ thường được viết bằng:",
+        "  • Chữ \"e\" trong các từ ngắn hoặc âm tiết đóng → chess, tennis, contest, bed",
+        "  • Chữ \"ea\" → head, bread, weather",
+        "/æ/ thường được viết bằng:",
+        "  • Chữ \"a\" trong các từ ngắn hoặc âm tiết được nhấn trọng âm → racket, match, marathon, active, cat",
+        "Lưu ý sự khác biệt Anh – Anh (BrE) và Anh – Mỹ (AmE): một số từ chứa chữ \"a\" được phát âm là /ɑː/ trong BrE nhưng là /æ/ trong AmE:",
+        "  • fast: /fɑːst/ (BrE) – /fæst/ (AmE) – nhanh",
+        "  • dance: /dɑːns/ (BrE) – /dæns/ (AmE) – khiêu vũ, nhảy múa",
+        "  • ask: /ɑːsk/ (BrE) – /æsk/ (AmE) – hỏi, yêu cầu",
+        "  • class: /klɑːs/ (BrE) – /klæs/ (AmE) – lớp học",
+        "  • can't: /kɑːnt/ (BrE) – /kænt/ (AmE) – không thể",
+        "  Lưu ý: Chương trình học và các đề thi tiếng Anh cấp THCS và THPT hiện nay chủ yếu được xây dựng theo chuẩn Anh – Anh (BrE). Vì vậy, các em hãy ưu tiên áp dụng phát âm theo chuẩn Anh – Anh khi làm bài tập và bài kiểm tra ngữ âm."
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "ch[e]ss",
+            "b": "m[e]mber",
+            "c": "t[e]nnis",
+            "d": "s[e]cret"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "m[a]rathon",
+            "b": "f[a]st",
+            "c": "m[a]tch",
+            "d": "r[a]cket"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "h[ea]d",
+            "b": "t[ea]m",
+            "c": "h[ea]vy",
+            "d": "br[ea]d"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "ch[a]mpion",
+            "b": "p[a]ssenger",
+            "c": "f[a]mous",
+            "d": "[a]ctive"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "[e]xcellent",
+            "b": "[e]quipment",
+            "c": "[e]xercise",
+            "d": "[e]ffort"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "b[a]dminton",
+            "b": "tr[a]ffic",
+            "c": "f[a]ntastic",
+            "d": "b[a]ll"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "sw[ea]ter",
+            "b": "w[ea]ther",
+            "c": "cl[ea]n",
+            "d": "r[ea]dy"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "st[a]dium",
+            "b": "b[a]ck",
+            "c": "st[a]nd",
+            "d": "c[a]tch"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "th[e]se",
+            "b": "r[e]d",
+            "c": "b[e]d",
+            "d": "s[e]nd"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "fl[a]g",
+            "b": "b[a]g",
+            "c": "h[a]nd",
+            "d": "cl[a]ss"
+          },
+          "answer": "d"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "winner",
+            "b": "career",
+            "c": "racket",
+            "d": "tennis"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "cycling",
+            "b": "football",
+            "c": "goggles",
+            "d": "event"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "sporty",
+            "b": "award",
+            "c": "compete",
+            "d": "result"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "marathon",
+            "b": "badminton",
+            "c": "exercise",
+            "d": "equipment"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "stadium",
+            "b": "fantastic",
+            "c": "exhausted",
+            "d": "athletic"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "famous",
+            "b": "receive",
+            "c": "contest",
+            "d": "special"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "passenger",
+            "b": "champion",
+            "c": "exciting",
+            "d": "tournament"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "relax",
+            "b": "playground",
+            "c": "begin",
+            "d": "protect"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "history",
+            "b": "capital",
+            "c": "delicious",
+            "d": "popular"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "decide",
+            "b": "member",
+            "c": "swimming",
+            "d": "player"
+          },
+          "answer": "a"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "Ted's fat cat sat on the bed and emptied the red pan.",
+            "/tedz fæt kæt sæt ɒn ðə bed ənd ˈemptid ðə red pæn/"
+          ],
+          [
+            "The men with ten red rackets met the champion on the track.",
+            "/ðə men wɪð ten red ˈrækɪts met ðə ˈtʃæmpiən ɒn ðə træk/"
+          ],
+          [
+            "Ben sent ten bad matches to the best expert in the camp.",
+            "/ben sent ten bæd ˈmætʃɪz tə ðə best ˈekspɜːt ɪn ðə kæmp/"
+          ],
+          [
+            "Can seven clever men catch the black backpacker with extra bags?",
+            "/kən ˈsevn ˈklevə men kætʃ ðə blæk ˈbækpækə wɪð ˈekstrə bæɡz/"
+          ],
+          [
+            "That sad man left his heavy bag next to the red van.",
+            "/ðæt sæd mæn left hɪz ˈhevi bæɡ nekst tə ðə red væn/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 9,
+      "title": "Cities of the World",
+      "book": "Book 2",
+      "pages": "99–102",
+      "topic_type": "vowel_pair",
+      "topic": "Vowel Sounds (Nguyên âm): /aʊ/ và /əʊ/",
+      "comparison": {
+        "sounds": [
+          "/aʊ/ (diphthong)",
+          "/əʊ/ (diphthong)"
+        ],
+        "loai_am": [
+          "Nguyên âm đôi",
+          "Nguyên âm đôi"
+        ],
+        "cach_phat_am": [
+          "Bắt đầu bằng âm /a/ (khẩu hình miệng mở rộng, hàm hạ thấp, lưỡi nằm thấp) rồi lướt nhanh và mượt dần sang âm /ʊ/ (khẩu hình môi hơi tròn lại và đưa về phía trước, cuống lưỡi nâng cao). Luồng hơi thoát ra tự do và dây thanh quản rung liên tục.",
+          "Bắt đầu bằng âm /ə/ (khẩu hình miệng mở vừa phải, môi thả lỏng tự nhiên, lưỡi đặt ở vị trí trung tâm) rồi lướt nhanh và mượt dần sang âm /ʊ/ (khẩu hình môi hơi tròn lại, cuống lưỡi nâng cao). Luồng hơi thoát ra tự do và dây thanh quản rung liên tục."
+        ],
+        "meo_phat_am": [
+          "Gần giống âm \"ao\" trong tiếng Việt.",
+          "Gần giống âm \"âu\" trong tiếng Việt."
+        ],
+        "vi_du": [
+          "house, town",
+          "boat, coast"
+        ]
+      },
+      "examples": {
+        "/aʊ/": [
+          [
+            "house (ngôi nhà)",
+            "/haʊs/"
+          ],
+          [
+            "town (thị trấn)",
+            "/taʊn/"
+          ],
+          [
+            "tower (tòa tháp)",
+            "/ˈtaʊə/"
+          ],
+          [
+            "crowded (đông đúc)",
+            "/ˈkraʊdɪd/"
+          ],
+          [
+            "around (xung quanh)",
+            "/əˈraʊnd/"
+          ]
+        ],
+        "/əʊ/": [
+          [
+            "boat (con thuyền)",
+            "/bəʊt/"
+          ],
+          [
+            "postcard (bưu thiếp)",
+            "/ˈpəʊstkɑːd/"
+          ],
+          [
+            "coast (bờ biển)",
+            "/kəʊst/"
+          ],
+          [
+            "pagoda (ngôi chùa)",
+            "/pəˈɡəʊdə/"
+          ],
+          [
+            "snow (tuyết)",
+            "/snəʊ/"
+          ]
+        ]
+      },
+      "minimal_pairs": [
+        [
+          "now",
+          "/naʊ/ (bây giờ)",
+          "know",
+          "/nəʊ/ (biết)"
+        ],
+        [
+          "town",
+          "/taʊn/ (thị trấn)",
+          "tone",
+          "/təʊn/ (tông giọng)"
+        ],
+        [
+          "loud",
+          "/laʊd/ (to tiếng, ồn ào)",
+          "load",
+          "/ləʊd/ (chất tải, tải đồ)"
+        ],
+        [
+          "couch",
+          "/kaʊtʃ/ (ghế sô-pha)",
+          "coach",
+          "/kəʊtʃ/ (xe khách, huấn luyện viên)"
+        ],
+        [
+          "clown",
+          "/klaʊn/ (chú hề)",
+          "clone",
+          "/kləʊn/ (bản sao, nhân bản)"
+        ]
+      ],
+      "extra": [
+        "/aʊ/ thường được viết bằng:",
+        "  • Chữ \"ou\" → house, around, south, found, mouth",
+        "  • Chữ \"ow\" → town, tower, crowded, now, cow",
+        "/əʊ/ thường được viết bằng:",
+        "  • Chữ \"oa\" → boat, coast, road, coat",
+        "  • Chữ \"ow\" → snow, show, know, slow, window",
+        "  • Chữ \"o_e\" (o + phụ âm + e) → home, hope, phone, stone, close",
+        "  • Chữ \"o\" ở cuối từ hoặc trước các phụ âm -st, -ld → photo, pagoda, postcard, most, cold, old",
+        "Lưu ý về ký hiệu phiên âm Anh – Anh (BrE) và Anh – Mỹ (AmE): trong các từ điển chuẩn Anh – Mỹ, nguyên âm đôi /əʊ/ thường được ký hiệu là /oʊ/ (ví dụ: boat /boʊt/, snow /snoʊ/). Trong chương trình học và các kỳ thi tại Việt Nam, chuẩn phiên âm Anh – Anh /əʊ/ được sử dụng chính thức."
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "cr[ow]ded",
+            "b": "sn[ow]",
+            "c": "t[ow]er",
+            "d": "t[ow]n"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "sl[ow]",
+            "b": "kn[ow]",
+            "c": "sh[ow]",
+            "d": "n[ow]"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "ar[ou]nd",
+            "b": "sh[ou]lder",
+            "c": "m[ou]th",
+            "d": "h[ou]se"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "h[o]me",
+            "b": "p[o]stcard",
+            "c": "m[o]st",
+            "d": "c[o]st"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "fl[ow]er",
+            "b": "arr[ow]",
+            "c": "wind[ow]",
+            "d": "yell[ow]"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "s[ou]th",
+            "b": "c[ou]ch",
+            "c": "c[ou]ntry",
+            "d": "f[ou]nd"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "pian[o]",
+            "b": "phot[o]",
+            "c": "sh[o]p",
+            "d": "pag[o]da"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "gr[ou]p",
+            "b": "cl[ou]d",
+            "c": "sh[ou]t",
+            "d": "s[ou]nd"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "c[oa]st",
+            "b": "r[oa]d",
+            "c": "abr[oa]d",
+            "d": "b[oa]t"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "h[o]ld",
+            "b": "h[o]liday",
+            "c": "[o]ld",
+            "d": "c[o]ld"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "palace",
+            "b": "city",
+            "c": "landmark",
+            "d": "hotel"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "crowded",
+            "b": "famous",
+            "c": "friendly",
+            "d": "attract"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "around",
+            "b": "postcard",
+            "c": "visit",
+            "d": "modern"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "receive",
+            "b": "rainy",
+            "c": "ancient",
+            "d": "sunny"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "explore",
+            "b": "prepare",
+            "c": "weather",
+            "d": "compete"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "delicious",
+            "b": "capital",
+            "c": "pagoda",
+            "d": "exciting"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "interesting",
+            "b": "wonderful",
+            "c": "colourful",
+            "d": "expensive"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "monument",
+            "b": "passenger",
+            "c": "convenient",
+            "d": "holiday"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "natural",
+            "b": "historic",
+            "c": "beautiful",
+            "d": "popular"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "river",
+            "b": "building",
+            "c": "design",
+            "d": "temple"
+          },
+          "answer": "c"
+        }
+      ],
+      "exercise3": {
+        "title": "Read these tongue twisters aloud to practice distinguishing sounds.",
+        "items": [
+          [
+            "Joe rowed a slow boat around the crowded town.",
+            "/dʒəʊ rəʊd ə sləʊ bəʊt əˈraʊnd ðə ˈkraʊdɪd taʊn/"
+          ],
+          [
+            "The brown cow now shows its nose in the snow.",
+            "/ðə braʊn kaʊ naʊ ʃəʊz ɪts nəʊz ɪn ðə snəʊ/"
+          ],
+          [
+            "A loud clown knows how to post an old postcard.",
+            "/ə laʊd klaʊn nəʊz haʊ tə pəʊst ən əʊld ˈpəʊstkɑːd/"
+          ],
+          [
+            "The proud owl floats slowly around the coast town.",
+            "/ðə praʊd aʊl fləʊts ˈsləʊli əˈraʊnd ðə kəʊst taʊn/"
+          ],
+          [
+            "Shout loudly from the tower to the boats below!",
+            "/ʃaʊt ˈlaʊdli frəm ðə ˈtaʊə tə ðə bəʊts bɪˈləʊ/"
+          ]
+        ]
+      }
+    },
+    {
+      "unit": 10,
+      "title": "Our Houses in the Future",
+      "book": "Book 2",
+      "pages": "138–140",
+      "topic_type": "word_stress",
+      "topic": "Word Stress: Stress in Two-Syllable Words (Trọng âm từ có 2 âm tiết)",
+      "rules": [
+        "Đa số danh từ và tính từ hai âm tiết thường có trọng âm rơi vào âm tiết thứ nhất.",
+        "Đa số động từ hai âm tiết thường có trọng âm rơi vào âm tiết thứ hai."
+      ],
+      "stress_examples": [
+        [
+          "picture",
+          "Danh từ",
+          "/ˈpɪktʃə/",
+          "bức tranh"
+        ],
+        [
+          "robot",
+          "Danh từ",
+          "/ˈrəʊbɒt/",
+          "người máy, rô-bốt"
+        ],
+        [
+          "palace",
+          "Danh từ",
+          "/ˈpæləs/",
+          "cung điện"
+        ],
+        [
+          "kitchen",
+          "Danh từ",
+          "/ˈkɪtʃɪn/",
+          "nhà bếp"
+        ],
+        [
+          "modern",
+          "Tính từ",
+          "/ˈmɒdn/",
+          "hiện đại"
+        ],
+        [
+          "clever",
+          "Tính từ",
+          "/ˈklevə/",
+          "thông minh, khéo léo"
+        ],
+        [
+          "peaceful",
+          "Tính từ",
+          "/ˈpiːsfl/",
+          "yên bình, thanh bình"
+        ],
+        [
+          "wireless",
+          "Tính từ",
+          "/ˈwaɪələs/",
+          "không dây"
+        ],
+        [
+          "solar",
+          "Tính từ",
+          "/ˈsəʊlə/",
+          "thuộc mặt trời"
+        ],
+        [
+          "receive",
+          "Động từ",
+          "/rɪˈsiːv/",
+          "nhận"
+        ],
+        [
+          "protect",
+          "Động từ",
+          "/prəˈtekt/",
+          "bảo vệ"
+        ],
+        [
+          "prepare",
+          "Động từ",
+          "/prɪˈpeə/",
+          "chuẩn bị"
+        ],
+        [
+          "perform",
+          "Động từ",
+          "/pəˈfɔːm/",
+          "thực hiện, biểu diễn"
+        ]
+      ],
+      "extra": [
+        "Ngoại lệ với tính từ: một số ít tính từ 2 âm tiết có trọng âm rơi vào âm tiết thứ hai (thường bắt đầu bằng tiền tố a-): alone /əˈləʊn/ (cô đơn), afraid /əˈfreɪd/ (lo sợ), asleep /əˈsliːp/ (đang ngủ), alive /əˈlaɪv/ (còn sống).",
+        "Ngoại lệ với danh từ: một số danh từ 2 âm tiết có trọng âm rơi vào âm tiết thứ hai: machine /məˈʃiːn/ (máy móc), hotel /həʊˈtel/ (khách sạn), police /pəˈliːs/ (cảnh sát), advice /ədˈvaɪs/ (lời khuyên).",
+        "Ngoại lệ với động từ: một số động từ 2 âm tiết có trọng âm rơi vào âm tiết thứ nhất (thường có âm tiết thứ 2 là nguyên âm ngắn hoặc kết thúc bằng -en, -er, -el, -ish, -y…): listen /ˈlɪsn/ (lắng nghe), open /ˈəʊpən/ (mở), visit /ˈvɪzɪt/ (thăm quan), water /ˈwɔːtə/ (tưới nước), happen /ˈhæpən/ (xảy ra), answer /ˈɑːnsə/ (trả lời).",
+        "Danh từ ghép (Compound nouns): đa số danh từ ghép có 2 âm tiết có trọng âm rơi vào từ đầu tiên (âm tiết thứ nhất): bedroom /ˈbedruːm/ (bed + room), housework /ˈhaʊswɜːk/ (house + work)."
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "r[oo]m",
+            "b": "m[oo]n",
+            "c": "p[oo]l",
+            "d": "c[oo]ker"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "s[o]lar",
+            "b": "p[o]nd",
+            "c": "p[o]stcard",
+            "d": "r[o]bot"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "[i]sland",
+            "b": "v[i]llage",
+            "c": "w[i]reless",
+            "d": "l[i]ke"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "kit[ch]en",
+            "b": "[ch]ess",
+            "c": "ma[ch]ine",
+            "d": "tea[ch]er"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "mo[th]er",
+            "b": "clo[th]es",
+            "c": "ear[th]",
+            "d": "[th]ere"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "loc[a]tion",
+            "b": "sp[a]ce",
+            "c": "pl[a]te",
+            "d": "p[a]lace"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "h[ou]se",
+            "b": "m[ou]ntain",
+            "c": "ar[ou]nd",
+            "d": "c[ou]ntryside"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "watch[es]",
+            "b": "cloth[es]",
+            "c": "hous[es]",
+            "d": "dish[es]"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "gr[ea]t",
+            "b": "m[ea]l",
+            "c": "s[ea]",
+            "d": "cl[ea]n"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "f[u]ture",
+            "b": "c[u]pboard",
+            "c": "b[u]t",
+            "d": "f[u]n"
+          },
+          "answer": "a"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "robot",
+            "b": "machine",
+            "c": "picture",
+            "d": "bedroom"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "palace",
+            "b": "village",
+            "c": "cottage",
+            "d": "receive"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "protect",
+            "b": "mountain",
+            "c": "kitchen",
+            "d": "solar"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "enjoy",
+            "b": "modern",
+            "c": "perform",
+            "d": "prepare"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "hotel",
+            "b": "future",
+            "c": "housework",
+            "d": "garden"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "island",
+            "b": "police",
+            "c": "destroy",
+            "d": "advice"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "clever",
+            "b": "peaceful",
+            "c": "explore",
+            "d": "wireless"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "become",
+            "b": "decide",
+            "c": "forget",
+            "d": "water"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "beautiful",
+            "b": "favourite",
+            "c": "appliance",
+            "d": "interesting"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "location",
+            "b": "delicious",
+            "c": "energy",
+            "d": "computer"
+          },
+          "answer": "c"
+        }
+      ],
+      "exercise3": null
+    },
+    {
+      "unit": 11,
+      "title": "Our Greener World",
+      "book": "Book 2",
+      "pages": "180–181",
+      "topic_type": "rhythm",
+      "topic": "Rhythm in Sentences (Nhịp điệu trong câu)",
+      "rules": [
+        "Trong tiếng Anh, nhịp điệu câu (sentence rhythm) được tạo ra bởi sự kết hợp nhịp nhàng giữa các âm tiết được nhấn trọng âm (stressed syllables) và các âm tiết không được nhấn (unstressed syllables)."
+      ],
+      "word_classes": [
+        {
+          "loai": "Từ nội dung (Content words)",
+          "trong_am": "ĐƯỢC NHẤN MẠNH (đọc to, rõ ràng và kéo dài hơn)",
+          "bao_gom": [
+            "Danh từ: bottle, paper, rubbish, tree",
+            "Động từ chính: recycle, reuse, plant, clean",
+            "Tính từ: green, clean, reusable, dirty",
+            "Trạng từ: quickly, always, never",
+            "Từ để hỏi: what, where, how"
+          ]
+        },
+        {
+          "loai": "Từ chức năng (Function words)",
+          "trong_am": "KHÔNG NHẤN MẠNH (đọc lướt nhẹ, ngắn và phát âm dạng yếu)",
+          "bao_gom": [
+            "Mạo từ: a, an, the",
+            "Giới từ: in, on, at, for, to",
+            "Đại từ: I, you, we, they, them",
+            "Trợ động từ / To be: is, are, can, will",
+            "Liên từ: and, but, if, or"
+          ]
+        }
+      ],
+      "sentence_examples": [
+        [
+          "If you reduce plastic, you will save the Earth.",
+          "Nếu bạn giảm dùng đồ nhựa, bạn sẽ bảo vệ Trái Đất."
+        ],
+        [
+          "The children are collecting bottles in the park.",
+          "Trẻ em đang thu gom chai lọ trong công viên."
+        ],
+        [
+          "Planting trees will make our neighbourhood green.",
+          "Trồng cây xanh sẽ làm cho khu phố của chúng ta thêm xanh."
+        ],
+        [
+          "We can bring reusable bags to the market.",
+          "Chúng ta có thể mang túi tái sử dụng đi chợ."
+        ],
+        [
+          "Is it easy to recycle old paper?",
+          "Việc tái chế giấy cũ có dễ dàng không?"
+        ]
+      ],
+      "sentence_examples_note": "Trong sách, các âm tiết in đậm là phần được nhấn trọng âm tạo nên nhịp điệu đều đặn của câu (định dạng in đậm không giữ được khi trích xuất).",
+      "extra": [
+        "Dạng yếu của từ chức năng (Weak forms): khi nói tự nhiên theo nhịp điệu, các từ chức năng thường được phát âm ở dạng yếu (chuyển nguyên âm thành âm /ə/ hoặc /ɪ/):",
+        "  • to /tuː/ → /tə/;  for /fɔː/ → /fə/;  can /kæn/ → /kən/",
+        "  • and /ænd/ → /ənd/ hoặc /ən/;  of /ɒv/ → /əv/;  them /ðem/ → /ðəm/",
+        "Ngoại lệ khi nhấn mạnh (Emphasis / Contrast): khi người nói muốn làm nổi bật ý đối lập, đính chính thông tin hoặc bày tỏ cảm xúc mạnh mẽ, từ chức năng có thể được nhấn trọng âm:",
+        "  • I said put it ON the table, not UNder it! (Tôi bảo đặt TRÊN bàn, không phải DƯỚI gầm bàn!)"
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "pl[a]stic",
+            "b": "p[a]per",
+            "c": "s[a]ve",
+            "d": "st[a]tion"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "l[ea]f",
+            "b": "cl[ea]n",
+            "c": "h[ea]d",
+            "d": "t[ea]ch"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "b[o]ttle",
+            "b": "cl[o]thes",
+            "c": "dr[o]p",
+            "d": "sh[o]p"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "c[u]t",
+            "b": "r[u]bbish",
+            "c": "p[u]blic",
+            "d": "f[u]ture"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "[c]ity",
+            "b": "[c]ycle",
+            "c": "re[c]ycle",
+            "d": "[c]lean"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "[th]row",
+            "b": "[th]ing",
+            "c": "clo[th]es",
+            "d": "ear[th]"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "b[i]n",
+            "b": "t[i]me",
+            "c": "l[i]brary",
+            "d": "env[i]ronment"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "b[oo]k",
+            "b": "l[oo]k",
+            "c": "sch[oo]l",
+            "d": "g[oo]d"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "n[ow]",
+            "b": "gr[ow]",
+            "c": "t[ow]n",
+            "d": "fl[ow]er"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "reu[s]e",
+            "b": "de[s]k",
+            "c": "pla[s]tic",
+            "d": "ba[s]ket"
+          },
+          "answer": "a"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "bottle",
+            "b": "paper",
+            "c": "reduce",
+            "d": "rubbish"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "plastic",
+            "b": "super",
+            "c": "garden",
+            "d": "exchange"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "create",
+            "b": "protect",
+            "c": "warning",
+            "d": "pollute"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "market",
+            "b": "prevent",
+            "c": "picnic",
+            "d": "symbol"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "surround",
+            "b": "forest",
+            "c": "arrive",
+            "d": "destroy"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "reward",
+            "b": "clever",
+            "c": "river",
+            "d": "dirty"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "interview",
+            "b": "president",
+            "c": "article",
+            "d": "recycle"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "favourite",
+            "b": "creative",
+            "c": "container",
+            "d": "polluted"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "expensive",
+            "b": "battery",
+            "c": "general",
+            "d": "charity"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "activity",
+            "b": "environment",
+            "c": "supermarket",
+            "d": "reusable"
+          },
+          "answer": "c"
+        }
+      ],
+      "exercise3": null
+    },
+    {
+      "unit": 12,
+      "title": "Robots",
+      "book": "Book 2",
+      "pages": "220–222",
+      "topic_type": "intonation",
+      "topic": "Intonation: Falling Tone in Statements (Ngữ điệu xuống trong câu trần thuật)",
+      "rules": [
+        "Trong tiếng Anh, ngữ điệu xuống (falling tone ↘) là ngữ điệu phổ biến nhất, trong đó cao độ của giọng nói hạ thấp dần ở cuối câu.",
+        "Ngữ điệu xuống trong câu trần thuật giúp người nghe nhận biết rằng thông tin đã trọn vẹn, kết thúc và người nói đang thể hiện sự chắc chắn về điều mình phát biểu."
+      ],
+      "patterns": [
+        [
+          "Câu khẳng định (Affirmative statements)",
+          "Statement ↘",
+          "Khẳng định một sự thật, khả năng hoặc thông tin hoàn chỉnh."
+        ],
+        [
+          "Câu phủ định (Negative statements)",
+          "Statement (not / can't) ↘",
+          "Phủ định một hành động, sự việc hoặc giới hạn khả năng."
+        ]
+      ],
+      "sentence_examples": [
+        [
+          "Smart robots can help humans do the housework ↘.",
+          "Người máy thông minh có thể giúp con người làm việc nhà."
+        ],
+        [
+          "My father bought a modern robot last month ↘.",
+          "Bố tôi đã mua một chú người máy hiện đại vào tháng trước."
+        ],
+        [
+          "This worker robot can move very heavy things ↘.",
+          "Người máy công nhân này có thể di chuyển những vật rất nặng."
+        ],
+        [
+          "Doctor robots cannot understand all human feelings ↘.",
+          "Người máy bác sĩ không thể hiểu hết mọi cảm xúc của con người."
+        ],
+        [
+          "WB2 is the strongest machine in the exhibition ↘.",
+          "WB2 là cỗ máy khỏe nhất trong buổi triển lãm."
+        ]
+      ],
+      "extra": [
+        "Vị trí bắt đầu hạ giọng: ngữ điệu xuống thường bắt đầu rơi từ trọng âm của từ nội dung cuối cùng trong câu và hạ thấp hẳn ở âm tiết kết thúc câu.",
+        "So sánh với câu hỏi Yes/No:",
+        "  • Câu trần thuật (Statements): xuống giọng ở cuối câu (ví dụ: Robots can cook meals ↘.)",
+        "  • Câu hỏi Yes/No: lên giọng ở cuối câu (ví dụ: Can robots cook meals ↗?)",
+        "Các loại câu khác cũng dùng ngữ điệu xuống ↘: câu hỏi có từ để hỏi (Wh-questions), câu mệnh lệnh (Commands / Orders), câu cảm thán (Exclamations), mục cuối cùng trong liệt kê (Final list item)."
+      ],
+      "exercise1": [
+        {
+          "no": 1,
+          "options": {
+            "a": "str[o]ng",
+            "b": "d[o]ctor",
+            "c": "h[o]me",
+            "d": "h[o]spital"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "t[ea]cher",
+            "b": "m[ea]l",
+            "c": "h[ea]vy",
+            "d": "cl[ea]n"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "d[i]sh",
+            "b": "l[i]ke",
+            "c": "pr[i]ce",
+            "d": "l[i]fe"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "s[u]n",
+            "b": "[u]seful",
+            "c": "b[u]t",
+            "d": "m[u]ch"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "m[a]ke",
+            "b": "st[a]tion",
+            "c": "sp[a]ce",
+            "d": "sm[a]rt"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "[c]lean",
+            "b": "re[c]eive",
+            "c": "pri[c]e",
+            "d": "[c]ity"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "[th]ing",
+            "b": "[th]ese",
+            "c": "[th]ink",
+            "d": "mon[th]"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "m[oo]n",
+            "b": "l[oo]k",
+            "c": "r[oo]m",
+            "d": "f[oo]d"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "[ch]ore",
+            "b": "tea[ch]",
+            "c": "[ch]eap",
+            "d": "s[ch]ool"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "a[s]",
+            "b": "[s]pace",
+            "c": "[s]mart",
+            "d": "[s]mall"
+          },
+          "answer": "a"
+        }
+      ],
+      "exercise2": [
+        {
+          "no": 1,
+          "options": {
+            "a": "repair",
+            "b": "robot",
+            "c": "doctor",
+            "d": "worker"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 2,
+          "options": {
+            "a": "perform",
+            "b": "useful",
+            "c": "teacher",
+            "d": "heavy"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 3,
+          "options": {
+            "a": "express",
+            "b": "human",
+            "c": "agree",
+            "d": "complete"
+          },
+          "answer": "b"
+        },
+        {
+          "no": 4,
+          "options": {
+            "a": "washing",
+            "b": "garden",
+            "c": "machine",
+            "d": "planet"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 5,
+          "options": {
+            "a": "feeling",
+            "b": "destroy",
+            "c": "receive",
+            "d": "prevent"
+          },
+          "answer": "a"
+        },
+        {
+          "no": 6,
+          "options": {
+            "a": "quiet",
+            "b": "simple",
+            "c": "protect",
+            "d": "clever"
+          },
+          "answer": "c"
+        },
+        {
+          "no": 7,
+          "options": {
+            "a": "favourite",
+            "b": "hospital",
+            "c": "marvellous",
+            "d": "delicious"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 8,
+          "options": {
+            "a": "important",
+            "b": "invention",
+            "c": "expensive",
+            "d": "century"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 9,
+          "options": {
+            "a": "general",
+            "b": "difficult",
+            "c": "furniture",
+            "d": "assistant"
+          },
+          "answer": "d"
+        },
+        {
+          "no": 10,
+          "options": {
+            "a": "ability",
+            "b": "supermarket",
+            "c": "activity",
+            "d": "environment"
+          },
+          "answer": "b"
+        }
+      ],
+      "exercise3": {
+        "title": "Choose the correct intonation for each sentence then practise saying it.",
+        "type": "intonation_choice",
+        "options": {
+          "a": "Rising ↗",
+          "b": "Falling ↘"
+        },
+        "items": [
+          [
+            "Robots can help humans do the housework.",
+            "b"
+          ],
+          [
+            "Can your home robot cook meals?",
+            "a"
+          ],
+          [
+            "What can worker robots do in factories?",
+            "b"
+          ],
+          [
+            "Is that the biggest robot in the exhibition?",
+            "a"
+          ],
+          [
+            "Doctor robots cannot understand human emotions.",
+            "b"
+          ],
+          [
+            "Please put the dirty dishes into the sink.",
+            "b"
+          ],
+          [
+            "Will robots replace teachers in the future?",
+            "a"
+          ],
+          [
+            "My father bought a modern robot last week.",
+            "b"
+          ],
+          [
+            "Do you agree with his opinion about robots?",
+            "a"
+          ],
+          [
+            "WB2 is the strongest machine in the lab.",
+            "b"
+          ]
+        ]
+      }
+    }
+  ]
+} as const;
+
+export default gs6Pronunciation;
