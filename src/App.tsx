@@ -584,10 +584,6 @@ export default function App() {
           setIsCoverActive(false);
           setActiveTab('report');
         }}
-        onParentOpenReport={(studentId) => {
-          handleLoginStudent(studentId);
-          setActiveTab('report');
-        }}
       />
     );
   }

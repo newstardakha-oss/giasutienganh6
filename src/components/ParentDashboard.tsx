@@ -985,7 +985,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                 ? isAdmin
                   ? 'Trang Quản Trị Hệ Thống & Quản Lý Lớp Học'
                   : 'Trang Quản Lý Lớp Học Dành Riêng Cho Giáo Viên'
-                : 'Báo Cáo Tiến Độ Học Tập Dành Cho Phụ Huynh & Giáo Viên'}
+                : 'Báo Cáo Tiến Độ Học Tập Dành Cho Giáo Viên'}
             </span>
           </div>
           <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">

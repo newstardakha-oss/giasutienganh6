@@ -6,7 +6,6 @@ import {
   Sparkles,
   User,
   KeyRound,
-  Users,
   CheckCircle2,
   Lock,
   School,
@@ -20,8 +19,7 @@ import {
   Check,
   RotateCcw,
   ChevronDown,
-  AlertTriangle,
-  Link2
+  AlertTriangle
 } from 'lucide-react';
 import { AppDataSchema, StudentAccount, SchoolEntry } from '../types';
 import { INITIAL_PROGRESS } from '../data/sgkData';
@@ -47,10 +45,6 @@ import {
   getSchoolsForCommune,
   addSchoolToSystem,
   resetStudentPasswordWithRecoveryCode,
-  resetStudentPasswordByParentOrTeacher,
-  getLinkedStudentIdsForParent,
-  addLinkedStudentForParent,
-  removeLinkedStudentForParent,
   hasAdminAccount,
 } from '../services/storage';
 
@@ -70,7 +64,6 @@ interface LandingCoverScreenProps {
     communeName?: string
   ) => { success: boolean; error?: string };
   onOpenTeacherManagement: () => void;
-  onParentOpenReport?: (studentId: string) => void;
 }
 
 // ===== SEARCHABLE DROPDOWN COMPONENT =====
@@ -462,10 +455,9 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   onTeacherLogin,
   onTeacherRegister,
   onOpenTeacherManagement,
-  onParentOpenReport,
 }) => {
-  // 1. Top 3 role tabs: Học sinh, Giáo viên, Phụ huynh (equal height, unnumbered)
-  const [activeRole, setActiveRole] = useState<'student' | 'teacher' | 'parent'>('student');
+  // 1. Top 2 role tabs: Học sinh, Giáo viên (equal height, unnumbered)
+  const [activeRole, setActiveRole] = useState<'student' | 'teacher'>('student');
 
   // Check if any admin account exists in the system
   const hasAdmin = hasAdminAccount(appData);
@@ -540,20 +532,6 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
   const [teacherSchoolName, setTeacherSchoolName] = useState('');
   const [teacherErr, setTeacherErr] = useState('');
   const [teacherSuccess, setTeacherSuccess] = useState('');
-
-  // ===== PARENT LINK & RESET STATE =====
-  const [linkedStudentIds, setLinkedStudentIds] = useState<string[]>(() =>
-    getLinkedStudentIdsForParent()
-  );
-  const [parentLinkUsername, setParentLinkUsername] = useState('');
-  const [parentLinkSecret, setParentLinkSecret] = useState('');
-  const [showParentSecret, setShowParentSecret] = useState(false);
-  const [parentErr, setParentErr] = useState('');
-  const [parentSuccess, setParentSuccess] = useState('');
-  const [parentResetStudentId, setParentResetStudentId] = useState<string | null>(null);
-  const [parentNewPass, setParentNewPass] = useState('');
-  const [parentConfirmPass, setParentConfirmPass] = useState('');
-  const [showParentNewPass, setShowParentNewPass] = useState(false);
 
   const todayStr = getTodayDateString();
   const provinces = useMemo(() => getProvincesList().map((p) => p.name), []);
@@ -912,70 +890,6 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
     }
   };
 
-  // ===== HANDLER: PARENT LINK & PASSWORD RESET FOR CHILD =====
-  const linkedStudents = useMemo(
-    () => appData.students.filter((s) => linkedStudentIds.includes(s.id)),
-    [appData.students, linkedStudentIds]
-  );
-
-  const handleParentLinkSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setParentErr('');
-    setParentSuccess('');
-
-    const cleanUser = parentLinkUsername.trim().toLowerCase();
-    const secret = parentLinkSecret.trim();
-    if (!cleanUser || !secret) {
-      setParentErr('Vui lòng nhập Tên đăng nhập của con và Mật khẩu (hoặc Mã khôi phục 8 ký tự)!');
-      return;
-    }
-
-    const student = appData.students.find((s) => s.username.toLowerCase() === cleanUser);
-    if (!student) {
-      setParentErr(`Không tìm thấy tài khoản học sinh "${parentLinkUsername.trim()}".`);
-      return;
-    }
-
-    const isPassValid = verifyStudentPassword(student, secret);
-    const isRecoveryValid = verifyStudentRecoveryCode(student, secret);
-
-    if (!isPassValid && !isRecoveryValid) {
-      setParentErr('Mật khẩu hoặc Mã khôi phục của con chưa đúng!');
-      return;
-    }
-
-    const nextIds = addLinkedStudentForParent(student.id);
-    setLinkedStudentIds(nextIds);
-    setParentLinkUsername('');
-    setParentLinkSecret('');
-    setParentSuccess(`Đã liên kết thành công với tài khoản của em ${student.fullName} (${student.className})!`);
-  };
-
-  const handleParentResetChildPassword = (e: React.FormEvent) => {
-    e.preventDefault();
-    setParentErr('');
-    setParentSuccess('');
-    if (!parentResetStudentId) return;
-
-    if (parentNewPass.trim() !== parentConfirmPass.trim()) {
-      setParentErr('Mật khẩu mới và mật khẩu nhập lại không khớp!');
-      return;
-    }
-
-    const res = resetStudentPasswordByParentOrTeacher(appData, parentResetStudentId, parentNewPass);
-    if (!res.success) {
-      setParentErr(res.error || 'Không thể đặt lại mật khẩu cho con!');
-      return;
-    }
-
-    onUpdateAppData?.(() => res.data);
-    const child = appData.students.find((s) => s.id === parentResetStudentId);
-    setParentSuccess(`Đã đặt lại mật khẩu mới cho em ${child?.fullName || ''} thành công!`);
-    setParentResetStudentId(null);
-    setParentNewPass('');
-    setParentConfirmPass('');
-  };
-
   return (
     <div className="min-h-screen bg-[#f5f3ff] text-slate-900 flex flex-col justify-between font-['Be_Vietnam_Pro',sans-serif] relative overflow-x-hidden selection:bg-purple-200">
       {/* Top Brand Header */}
@@ -1025,8 +939,8 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
 
         {/* Auth Card */}
         <div className="w-full max-w-xl neu-card-purple p-5 sm:p-7 shadow-xl border-2 border-white relative">
-          {/* 1. 3 Role Choices: Học sinh, Giáo viên, Phụ huynh (Equal height, unnumbered) */}
-          <div className="grid grid-cols-3 gap-2.5 mb-6 items-stretch">
+          {/* 1. 2 Role Choices: Học sinh, Giáo viên (Equal height, unnumbered) */}
+          <div className="grid grid-cols-2 gap-2.5 mb-6 items-stretch">
             <button
               type="button"
               onClick={() => {
@@ -1058,22 +972,6 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
             >
               <ShieldCheck className="w-4 h-4 shrink-0" />
               <span>Giáo viên</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                setActiveRole('parent');
-                setParentErr('');
-              }}
-              className={`h-11 px-3 rounded-2xl font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap ${
-                activeRole === 'parent'
-                  ? 'neu-btn-success text-white shadow-md'
-                  : 'neu-btn text-slate-800 hover:text-emerald-700'
-              }`}
-            >
-              <Users className="w-4 h-4 shrink-0" />
-              <span>Phụ huynh</span>
             </button>
           </div>
 
@@ -1799,208 +1697,6 @@ export const LandingCoverScreen: React.FC<LandingCoverScreenProps> = ({
                 </div>
               )}
             </form>
-          )}
-
-          {/* ================= ROLE 3: PHỤ HUYNH ================= */}
-          {activeRole === 'parent' && (
-            <div className="space-y-4 animate-in fade-in duration-150">
-              <div className="border-b border-emerald-200 pb-2.5">
-                <h3 className="font-extrabold text-base sm:text-lg text-slate-900">
-                  Dành cho Phụ huynh
-                </h3>
-                <p className="text-xs text-slate-700 font-semibold">
-                  Liên kết tài khoản của con để theo dõi tiến độ học tập và hỗ trợ đặt lại mật khẩu khi con quên
-                </p>
-              </div>
-
-              {/* Danh sách tài khoản con đã liên kết */}
-              {linkedStudents.length > 0 && (
-                <div className="space-y-2.5">
-                  <span className="text-xs font-extrabold text-emerald-950 block">
-                    Tài khoản của con đã liên kết ({linkedStudents.length}):
-                  </span>
-                  {linkedStudents.map((child) => (
-                    <div
-                      key={child.id}
-                      className="p-3.5 rounded-2xl bg-white border-2 border-emerald-200 shadow-xs space-y-2.5"
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <div>
-                          <p className="font-extrabold text-sm text-slate-900">
-                            {child.fullName} <span className="text-emerald-800">({child.className})</span>
-                          </p>
-                          <p className="text-[11px] font-semibold text-slate-600">
-                            @{child.username} • {child.schoolName} ({child.communeName})
-                          </p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const next = removeLinkedStudentForParent(child.id);
-                            setLinkedStudentIds(next);
-                          }}
-                          className="text-[11px] font-bold text-slate-500 hover:text-rose-700 underline cursor-pointer"
-                        >
-                          Huỷ liên kết
-                        </button>
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            if (onParentOpenReport) {
-                              onParentOpenReport(child.id);
-                            } else {
-                              onLoginStudent(child.id);
-                            }
-                          }}
-                          className="flex-1 py-2 px-3 rounded-xl neu-btn-success text-white font-extrabold text-xs flex items-center justify-center gap-1.5 cursor-pointer"
-                        >
-                          <span>Xem tiến độ của con</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setParentResetStudentId(
-                              parentResetStudentId === child.id ? null : child.id
-                            );
-                            setParentErr('');
-                            setParentSuccess('');
-                          }}
-                          className="py-2 px-3 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-950 border border-amber-300 font-extrabold text-xs flex items-center justify-center gap-1.5 cursor-pointer"
-                        >
-                          <RotateCcw className="w-3.5 h-3.5" />
-                          <span>Đặt lại mật khẩu cho con</span>
-                        </button>
-                      </div>
-
-                      {parentResetStudentId === child.id && (
-                        <form
-                          onSubmit={handleParentResetChildPassword}
-                          className="p-3 rounded-xl bg-amber-50 border border-amber-200 space-y-2.5 animate-in fade-in duration-150"
-                        >
-                          <p className="text-xs font-extrabold text-amber-950">
-                            Đặt mật khẩu mới cho {child.fullName} (@{child.username}):
-                          </p>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            <div className="relative">
-                              <input
-                                type={showParentNewPass ? 'text' : 'password'}
-                                required
-                                value={parentNewPass}
-                                onChange={(e) => setParentNewPass(e.target.value)}
-                                placeholder="Mật khẩu mới (>= 6 ký tự)"
-                                className="w-full px-3 pr-8 py-2 rounded-xl bg-white border border-amber-300 text-xs font-extrabold text-slate-900 placeholder-slate-600"
-                              />
-                              <button
-                                type="button"
-                                onClick={() => setShowParentNewPass((v) => !v)}
-                                className="absolute right-2.5 top-2 text-slate-600 cursor-pointer"
-                              >
-                                {showParentNewPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                              </button>
-                            </div>
-                            <input
-                              type={showParentNewPass ? 'text' : 'password'}
-                              required
-                              value={parentConfirmPass}
-                              onChange={(e) => setParentConfirmPass(e.target.value)}
-                              placeholder="Nhập lại mật khẩu mới"
-                              className="w-full px-3 py-2 rounded-xl bg-white border border-amber-300 text-xs font-extrabold text-slate-900 placeholder-slate-600"
-                            />
-                          </div>
-                          <div className="flex justify-end gap-2">
-                            <button
-                              type="button"
-                              onClick={() => setParentResetStudentId(null)}
-                              className="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-200 cursor-pointer"
-                            >
-                              Huỷ
-                            </button>
-                            <button
-                              type="submit"
-                              className="px-3.5 py-1.5 rounded-lg bg-amber-700 hover:bg-amber-800 text-white font-extrabold text-xs cursor-pointer"
-                            >
-                              Lưu mật khẩu mới
-                            </button>
-                          </div>
-                        </form>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Form liên kết tài khoản con */}
-              <form onSubmit={handleParentLinkSubmit} className="space-y-3 pt-1">
-                <h4 className="text-xs font-extrabold text-slate-900 flex items-center gap-1.5">
-                  <Link2 className="w-4 h-4 text-emerald-700" />
-                  <span>Liên kết tài khoản của con:</span>
-                </h4>
-
-                <div>
-                  <label className="text-xs font-extrabold text-slate-800 block mb-1">
-                    Tên đăng nhập của con: *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={parentLinkUsername}
-                    onChange={(e) => setParentLinkUsername(e.target.value)}
-                    placeholder="Ví dụ: an_6a1"
-                    className="w-full px-3.5 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-900 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-extrabold text-slate-800 block mb-1">
-                    Mật khẩu hoặc Mã khôi phục 8 ký tự của con: *
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={showParentSecret ? 'text' : 'password'}
-                      required
-                      value={parentLinkSecret}
-                      onChange={(e) => setParentLinkSecret(e.target.value)}
-                      placeholder="Nhập mật khẩu hoặc mã khôi phục 8 ký tự"
-                      className="w-full px-3.5 pr-9 py-2.5 rounded-2xl neu-inset text-xs font-extrabold text-slate-900 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowParentSecret((v) => !v)}
-                      className="absolute right-3 top-2.5 text-slate-600 cursor-pointer"
-                    >
-                      {showParentSecret ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
-                  </div>
-                </div>
-
-                {parentErr && (
-                  <div className="p-3 rounded-2xl bg-rose-100 border border-rose-300 text-rose-900 text-xs font-extrabold flex items-center gap-2">
-                    <AlertTriangle className="w-4 h-4 text-rose-700 shrink-0" />
-                    <span>{parentErr}</span>
-                  </div>
-                )}
-
-                {parentSuccess && (
-                  <div className="p-3 rounded-2xl bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-extrabold flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
-                    <span>{parentSuccess}</span>
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  className="w-full py-3.5 rounded-2xl neu-btn-success text-white font-extrabold text-sm shadow-lg flex items-center justify-center gap-2 transition-all cursor-pointer hover:scale-[1.01]"
-                >
-                  <span>Liên kết tài khoản của con</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
-            </div>
           )}
         </div>
       </main>
