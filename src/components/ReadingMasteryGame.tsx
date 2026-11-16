@@ -1,1474 +1,2177 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   BookOpen,
-  Volume2,
-  Play,
-  Pause,
-  Square,
   Award,
-  Sparkles,
-  Zap,
   CheckCircle2,
   XCircle,
+  RotateCcw,
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  Layers,
+  ListChecks,
+  Sparkles,
+  ShieldAlert,
+  Check,
   HelpCircle,
-  MessageSquare,
-  CheckSquare,
-  Send
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { SgkUnit, StudySession } from '../types';
+import rawReadingData from '../data/gs6_reading_data.json';
+
+// ===== TYPES FOR GS6_READING_DATA.JSON =====
+export interface GappedTextPassage {
+  id: string;
+  type: 'gapped_text';
+  title: string;
+  instruction: string;
+  text: string;
+  options: Record<string, string>; // A, B, C, D
+  answers: Record<string, string>; // "1": "D", ...
+  review_notes?: string[];
+}
+
+export interface GuidedClozeBlank {
+  no: number;
+  options: Record<string, string>; // a, b, c, d
+  answer: string;
+}
+
+export interface GuidedClozePassage {
+  id: string;
+  type: 'guided_cloze';
+  title: string;
+  instruction: string;
+  text: string;
+  blanks: GuidedClozeBlank[];
+  review_notes?: string[];
+}
+
+export interface MultipleChoiceExercise {
+  no: number;
+  type: 'multiple_choice';
+  instruction: string;
+  items: Array<{
+    no: number;
+    question: string;
+    options: Record<string, string>;
+    answer: string;
+  }>;
+}
+
+export interface TrueFalseNotGivenExercise {
+  no: number;
+  type: 'true_false_not_given';
+  instruction: string;
+  items: Array<{
+    no: number;
+    statement: string;
+    answer: 'T' | 'F' | 'NG';
+  }>;
+}
+
+export interface SentenceCompletionExercise {
+  no: number;
+  type: 'sentence_completion';
+  instruction: string;
+  items: Array<{
+    no: number;
+    stem: string;
+    answer: string;
+  }>;
+}
+
+export interface ComprehensionQuestionsExercise {
+  no: number;
+  type: 'comprehension_questions';
+  instruction: string;
+  items: Array<{
+    no: number;
+    question: string;
+    sample_answer: string;
+  }>;
+}
+
+export interface MatchingExercise {
+  no: number;
+  type: 'matching';
+  instruction: string;
+  information: Array<{
+    no: number;
+    text: string;
+  }>;
+  descriptions: Record<string, string>; // A..E
+  answers: Record<string, string>; // "1": "E", ...
+}
+
+export interface WordBoxGapFillExercise {
+  no: number;
+  type: 'word_box_gap_fill';
+  instruction: string;
+  word_box: string[];
+  text: string;
+  answers: Record<string, string>; // "1": "school", ...
+}
+
+export type ReadingComprehensionExercise =
+  | MultipleChoiceExercise
+  | TrueFalseNotGivenExercise
+  | SentenceCompletionExercise
+  | ComprehensionQuestionsExercise
+  | MatchingExercise
+  | WordBoxGapFillExercise;
+
+export interface ReadingComprehensionPassage {
+  id: string;
+  type: 'reading_comprehension';
+  title: string;
+  text: string;
+  exercises: ReadingComprehensionExercise[];
+  review_notes?: string[];
+}
+
+export type ReadingPassageItem =
+  | GappedTextPassage
+  | GuidedClozePassage
+  | ReadingComprehensionPassage;
+
+export interface ReadingUnitData {
+  unit: number;
+  book: 1 | 2;
+  title: string;
+  source_pages_pdf?: string;
+  passages: ReadingPassageItem[];
+}
+
+export interface ReadingDatasetSchema {
+  meta: {
+    title: string;
+    source: string;
+    structure: string;
+    answer_policy: string;
+    blank_marker: string;
+    units_count: number;
+    passages_count: number;
+    answers_verified_against: string;
+  };
+  units: ReadingUnitData[];
+}
+
+const READING_DATASET = rawReadingData as unknown as ReadingDatasetSchema;
+
+// ===== PERSISTENT PROGRESS & DRAFT STORAGE =====
+export interface PassageDraftState {
+  // For gapped_text & guided_cloze: blankNo -> selected option key
+  blankAnswers?: Record<string, string>;
+  // For reading_comprehension:
+  mcq?: Record<string, string>; // itemNo -> a|b|c|d
+  tfng?: Record<string, string>; // itemNo -> T|F|NG
+  sentenceCompletion?: Record<string, string>; // itemNo -> typed string
+  comprehensionQuestions?: Record<string, string>; // itemNo -> typed full sentence
+  matching?: Record<string, string>; // infoNo -> A..E
+  wordBox?: Record<string, string>; // blankNo -> word
+}
+
+export interface PassageCompletionRecord {
+  passageId: string;
+  unitNumber: number;
+  bestScore: number;
+  lastScore: number;
+  maxScore: number;
+  attemptsCount: number;
+  exerciseBreakdown?: Record<number, { correct: number; total: number }>;
+  updatedAt: string;
+}
+
+export interface StudentReadingProgressStore {
+  completed: Record<string, PassageCompletionRecord>;
+  drafts: Record<string, PassageDraftState>;
+}
+
+function getStorageKey(studentId?: string | null): string {
+  return `gs6_reading_progress_v1_${studentId || 'guest'}`;
+}
+
+export function loadStudentReadingStore(studentId?: string | null): StudentReadingProgressStore {
+  if (typeof localStorage === 'undefined') {
+    return { completed: {}, drafts: {} };
+  }
+  try {
+    const raw = localStorage.getItem(getStorageKey(studentId));
+    if (!raw) return { completed: {}, drafts: {} };
+    const parsed = JSON.parse(raw);
+    return {
+      completed: parsed.completed || {},
+      drafts: parsed.drafts || {},
+    };
+  } catch {
+    return { completed: {}, drafts: {} };
+  }
+}
+
+export function saveStudentReadingStore(
+  studentId: string | null | undefined,
+  store: StudentReadingProgressStore
+) {
+  if (typeof localStorage === 'undefined') return;
+  try {
+    localStorage.setItem(getStorageKey(studentId), JSON.stringify(store));
+  } catch {
+    // ignore storage quota errors
+  }
+}
+
+/**
+ * Chuẩn hoá câu trả lời điền từ (sentence_completion):
+ * Không phân biệt hoa thường, bỏ khoảng trắng thừa và dấu chấm cuối câu.
+ */
+export function normalizeSentenceCompletionAnswer(raw: string): string {
+  return (raw || '')
+    .trim()
+    .replace(/\.+$/, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+export function getPassageMaxScore(passage: ReadingPassageItem): number {
+  if (passage.type === 'gapped_text') return Object.keys(passage.answers).length; // 4
+  if (passage.type === 'guided_cloze') return passage.blanks.length; // 6
+  // reading_comprehension: Ex1 (5) + Ex2 (5) + Ex3 (5) + Ex5 (5) + Ex6 (5) = 25 (Ex4 không tính điểm)
+  return 25;
+}
+
+const PASSAGE_TYPE_LABELS: Record<
+  ReadingPassageItem['type'],
+  { title: string; subtitle: string; badgeClass: string; maxPointsLabel: string }
+> = {
+  gapped_text: {
+    title: 'Phần 1: Gapped Text (Điền câu/cụm từ vào đoạn văn)',
+    subtitle: 'Chọn 4 phương án A–D khớp với 4 chỗ trống (mỗi phương án dùng đúng 1 lần)',
+    badgeClass: 'bg-indigo-50 text-indigo-900 border-indigo-200',
+    maxPointsLabel: '4 điểm / bài',
+  },
+  guided_cloze: {
+    title: 'Phần 2: Guided Cloze (Đọc điền từ trắc nghiệm)',
+    subtitle: 'Chọn đáp án đúng a, b, c hoặc d cho 6 chỗ trống trong đoạn văn',
+    badgeClass: 'bg-teal-50 text-teal-900 border-teal-200',
+    maxPointsLabel: '6 điểm / bài',
+  },
+  reading_comprehension: {
+    title: 'Phần 3: Reading Comprehension (Đọc hiểu chuyên sâu 6 dạng bài)',
+    subtitle: '5 dạng chấm tự động (25 điểm) + 1 dạng tự luận đối chiếu Đáp án mẫu',
+    badgeClass: 'bg-amber-50 text-amber-900 border-amber-200',
+    maxPointsLabel: '25 điểm / bài',
+  },
+};
+
+const EXERCISE_TITLES_VI: Record<ReadingComprehensionExercise['type'], string> = {
+  multiple_choice: 'Dạng 1: Trắc nghiệm (Multiple Choice – 5 điểm)',
+  true_false_not_given: 'Dạng 2: Đúng / Sai / Không có thông tin (T / F / NG – 5 điểm)',
+  sentence_completion: 'Dạng 3: Hoàn thành câu (Sentence Completion – 5 điểm)',
+  comprehension_questions: 'Dạng 4: Câu hỏi tự luận (Đối chiếu Đáp án mẫu – Không tính điểm)',
+  matching: 'Dạng 5: Nối thông tin (Matching A–E – 5 điểm)',
+  word_box_gap_fill: 'Dạng 6: Điền từ từ hộp từ (Word Box Gap Fill – 5 điểm)',
+};
 
 interface ReadingMasteryGameProps {
   units: SgkUnit[];
   initialUnitId?: string | null;
+  currentStudentId?: string | null;
+  isTeacherLoggedIn?: boolean;
   onSessionCompleted?: (session: StudySession) => void;
   onBackToPractice?: () => void;
 }
 
-export interface UnitReadingQuestion {
-  id: string;
-  type: 'MCQ' | 'True/False' | 'ShortAnswer';
-  question: string;
-  options?: string[]; // For MCQ and True/False
-  correct: string;
-  acceptableAnswers?: string[]; // For ShortAnswer
-  explanation: string;
-  quote: string;
-}
-
-export interface UnitReadingData {
-  unitId: string;
-  unitNumber: number;
-  title: string;
-  topicTitle: string;
-  fullTextFormatted: string;
-  passages: Array<{
-    id: string;
-    heading?: string;
-    text: string;
-  }>;
-  vocabList: Array<{
-    id: string;
-    word: string;
-    ipa: string;
-    meaning: string;
-    example: string;
-    dist: string[];
-  }>;
-  questions: UnitReadingQuestion[];
-}
-
-export const UNIT_READINGS: UnitReadingData[] = [
-  {
-    unitId: 'unit-1',
-    unitNumber: 1,
-    title: 'MY NEW SCHOOL',
-    topicTitle: 'Unit 1: My New School (Sunrise, An Son & Dream Schools)',
-    fullTextFormatted: `Sunrise is a boarding school in Sydney. Students study and live there. About 1,200 boys and girls go to Sunrise. It has students from all over Australia. They study subjects like maths, science and English.\n\nAn Son is a lower secondary school in Bac Giang. It has only 8 classes. There are mountains and green fields around the school. There is a computer room and a library. There is also a school garden and a playground.\n\nDream is an international school. Here students learn English with English-speaking teachers. In the afternoon, they join many interesting clubs. They play sports and games. Some students do paintings in the art club.`,
-    passages: [
-      {
-        id: 'u1-p1',
-        heading: '1. Sunrise Boarding School',
-        text: 'Sunrise is a boarding school in Sydney. Students study and live there. About 1,200 boys and girls go to Sunrise. It has students from all over Australia. They study subjects like maths, science and English.'
-      },
-      {
-        id: 'u1-p2',
-        heading: '2. An Son Lower Secondary School',
-        text: 'An Son is a lower secondary school in Bac Giang. It has only 8 classes. There are mountains and green fields around the school. There is a computer room and a library. There is also a school garden and a playground.'
-      },
-      {
-        id: 'u1-p3',
-        heading: '3. Dream International School',
-        text: 'Dream is an international school. Here students learn English with English-speaking teachers. In the afternoon, they join many interesting clubs. They play sports and games. Some students do paintings in the art club.'
-      }
-    ],
-    vocabList: [
-      { id: 'u1-v1', word: 'boarding school', ipa: '/ˈbɔː.dɪŋ ˌskuːl/', meaning: 'trường nội trú', example: 'Sunrise is a boarding school in Sydney.', dist: ['trường bán trú', 'trường quốc tế', 'trường tiểu học'] },
-      { id: 'u1-v2', word: 'lower secondary school', ipa: '/ˈləʊ.ər ˈsek.ən.dri ˌskuːl/', meaning: 'trường trung học cơ sở', example: 'An Son is a lower secondary school in Bac Giang.', dist: ['trường đại học', 'mầm non', 'trường nghề'] },
-      { id: 'u1-v3', word: 'international', ipa: '/ˌɪn.təˈnæʃ.ən.əl/', meaning: 'quốc tế', example: 'Dream is an international school.', dist: ['địa phương', 'nông thôn', 'tư thục'] },
-      { id: 'u1-v4', word: 'subject', ipa: '/ˈsʌb.dʒekt/', meaning: 'môn học', example: 'They study subjects like maths, science and English.', dist: ['dụng cụ', 'sân chơi', 'câu lạc bộ'] },
-      { id: 'u1-v5', word: 'playground', ipa: '/ˈpleɪ.ɡraʊnd/', meaning: 'sân chơi', example: 'There is also a school garden and a playground.', dist: ['thư viện', 'phòng máy tính', 'lớp học'] }
-    ],
-    questions: [
-      {
-        id: 'u1-q1',
-        type: 'MCQ',
-        question: 'Where is Sunrise boarding school located?',
-        options: ['In Sydney', 'In Bac Giang', 'In Ha Noi', 'In London'],
-        correct: 'In Sydney',
-        explanation: 'Sunrise là trường nội trú ở Sydney, Úc.',
-        quote: 'Sunrise is a boarding school in Sydney.'
-      },
-      {
-        id: 'u1-q2',
-        type: 'True/False',
-        question: 'An Son lower secondary school has 20 classes.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Trường An Sơn ở Bắc Giang chỉ có 8 lớp học (only 8 classes).',
-        quote: 'An Son is a lower secondary school in Bac Giang. It has only 8 classes.'
-      },
-      {
-        id: 'u1-q3',
-        type: 'True/False',
-        question: 'Sunrise is a boarding school where students study and live.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Trường nội trú Sunrise là nơi học sinh học tập và sinh sống tại đó.',
-        quote: 'Sunrise is a boarding school in Sydney. Students study and live there.'
-      },
-      {
-        id: 'u1-q4',
-        type: 'ShortAnswer',
-        question: 'What subjects do students at Sunrise study?',
-        correct: 'maths, science and English',
-        acceptableAnswers: ['maths', 'science', 'english', 'maths, science and english'],
-        explanation: 'Học sinh trường Sunrise học các môn toán, khoa học và tiếng Anh.',
-        quote: 'They study subjects like maths, science and English.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-2',
-    unitNumber: 2,
-    title: 'MY HOUSE',
-    topicTitle: 'Unit 2: My House (Crazy House Hotel in Da Lat)',
-    fullTextFormatted: `To: phong@webmail.com; mi@webmail.com\nSubject: A room at the Crazy House Hotel\n\nHi Phong and Mi,\nHow are you? I’m in Da Lat with my parents. We’re staying at the Crazy House Hotel. Wow! It really is crazy.\n\nThere are ten rooms in the hotel. There’s a Kangaroo Room, an Eagle Room, and even an Ant Room. I’m staying in the Tiger Room. It’s called the Tiger Room because there’s a big tiger on the wall.\n\nThe tiger is between the bathroom door and the window. The bed is next to the window, but the window is a strange shape. I put my bag under the bed. There’s a lamp, a wardrobe and a desk.\n\nYou should stay here when you visit Da Lat. It’s great.\n\nSee you soon!\nNick`,
-    passages: [
-      {
-        id: 'u2-p1',
-        heading: 'Email Header & Greeting',
-        text: 'To: phong@webmail.com; mi@webmail.com\nSubject: A room at the Crazy House Hotel\n\nHi Phong and Mi,\nHow are you? I’m in Da Lat with my parents. We’re staying at the Crazy House Hotel. Wow! It really is crazy.'
-      },
-      {
-        id: 'u2-p2',
-        heading: 'Hotel Rooms Description',
-        text: 'There are ten rooms in the hotel. There’s a Kangaroo Room, an Eagle Room, and even an Ant Room. I’m staying in the Tiger Room. It’s called the Tiger Room because there’s a big tiger on the wall.'
-      },
-      {
-        id: 'u2-p3',
-        heading: 'Furniture & Room Layout',
-        text: 'The tiger is between the bathroom door and the window. The bed is next to the window, but the window is a strange shape. I put my bag under the bed. There’s a lamp, a wardrobe and a desk.\nYou should stay here when you visit Da Lat. It’s great.\nSee you soon!\nNick'
-      }
-    ],
-    vocabList: [
-      { id: 'u2-v1', word: 'hotel', ipa: '/həʊˈtel/', meaning: 'khách sạn', example: 'We’re staying at the Crazy House Hotel.', dist: ['nhà riêng', 'bệnh viện', 'bưu điện'] },
-      { id: 'u2-v2', word: 'strange shape', ipa: '/streɪndʒ ʃeɪp/', meaning: 'hình dạng kỳ lạ', example: 'The window is a strange shape.', dist: ['hình tròn chuẩn', 'màu sắc đẹp', 'kích thước to'] },
-      { id: 'u2-v3', word: 'wardrobe', ipa: '/ˈwɔː.drəʊb/', meaning: 'tủ quần áo', example: 'There’s a lamp, a wardrobe and a desk.', dist: ['bàn ăn', 'ghế sofa', 'tủ lạnh'] },
-      { id: 'u2-v4', word: 'under the bed', ipa: '/ˈʌn.dər ðə bed/', meaning: 'dưới gầm giường', example: 'I put my bag under the bed.', dist: ['trên bàn', 'trong tủ', 'cạnh cửa'] }
-    ],
-    questions: [
-      {
-        id: 'u2-q1',
-        type: 'MCQ',
-        question: 'How many rooms are there in the Crazy House Hotel?',
-        options: ['Ten rooms', 'Eight rooms', 'Twelve rooms', 'Five rooms'],
-        correct: 'Ten rooms',
-        explanation: 'Khách sạn Crazy House có 10 phòng.',
-        quote: 'There are ten rooms in the hotel.'
-      },
-      {
-        id: 'u2-q2',
-        type: 'True/False',
-        question: 'Nick is staying in the Kangaroo Room.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Nick ở trong phòng con hổ (Tiger Room).',
-        quote: 'I’m staying in the Tiger Room.'
-      },
-      {
-        id: 'u2-q3',
-        type: 'True/False',
-        question: 'There is a big tiger on the wall in Nick’s room.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Có một con hổ lớn trên tường trong phòng Nick.',
-        quote: 'It’s called the Tiger Room because there’s a big tiger on the wall.'
-      },
-      {
-        id: 'u2-q4',
-        type: 'ShortAnswer',
-        question: 'Where did Nick put his bag in the room?',
-        correct: 'under the bed',
-        acceptableAnswers: ['under the bed', 'under bed'],
-        explanation: 'Nick đặt chiếc cặp của mình dưới gầm giường.',
-        quote: 'I put my bag under the bed.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-3',
-    unitNumber: 3,
-    title: 'MY FRIENDS',
-    topicTitle: 'Unit 3: My Friends (Superb Summer Camp)',
-    fullTextFormatted: `Friday 16th June\nTo: My parents <parents.nguyen@webmail.com>\nSubject: My first day at the Superb Summer Camp\n\nHi Mum and Dad,\nHere I am at the Superb Summer Camp. Mr Black asked us to write emails in English! Wow, everything here is in English!\n\nI have some new friends: Jimmy, Phong, and Nhung. They’re in the photo. Jimmy has blonde hair and blue eyes. He’s clever and creative. He likes taking photos. Phong is the tall boy. He’s sporty and plays basketball very well. Nhung has curly black hair. She’s kind. She shared her lunch with me today.\n\nWe’re having fun. Jimmy’s taking photos of me. Phong’s reading a comic book, and Nhung’s playing the violin. I must go now.\n\nPlease write soon.\nLove,\nNam`,
-    passages: [
-      {
-        id: 'u3-p1',
-        heading: 'Email Header & Greeting',
-        text: 'Friday 16th June\nTo: My parents <parents.nguyen@webmail.com>\nSubject: My first day at the Superb Summer Camp\n\nHi Mum and Dad,\nHere I am at the Superb Summer Camp. Mr Black asked us to write emails in English! Wow, everything here is in English!'
-      },
-      {
-        id: 'u3-p2',
-        heading: 'Describing New Friends',
-        text: 'I have some new friends: Jimmy, Phong, and Nhung. They’re in the photo. Jimmy has blonde hair and blue eyes. He’s clever and creative. He likes taking photos. Phong is the tall boy. He’s sporty and plays basketball very well. Nhung has curly black hair. She’s kind. She shared her lunch with me today.'
-      },
-      {
-        id: 'u3-p3',
-        heading: 'Current Activities & Sign-off',
-        text: 'We’re having fun. Jimmy’s taking photos of me. Phong’s reading a comic book, and Nhung’s playing the violin. I must go now.\nPlease write soon.\nLove,\nNam'
-      }
-    ],
-    vocabList: [
-      { id: 'u3-v1', word: 'blonde hair', ipa: '/blɒnd heər/', meaning: 'tóc vàng', example: 'Jimmy has blonde hair and blue eyes.', dist: ['tóc đen xoăn', 'tóc nâu ngắn', 'tóc đỏ'] },
-      { id: 'u3-v2', word: 'clever and creative', ipa: '/ˈklev.ər ænd kriˈeɪ.tɪv/', meaning: 'thông minh và sáng tạo', example: 'He’s clever and creative.', dist: ['nhút nhát và lười', 'thể thao', 'nghiêm túc'] },
-      { id: 'u3-v3', word: 'sporty', ipa: '/ˈspɔː.ti/', meaning: 'yêu thể thao / năng động', example: 'Phong is the tall boy. He’s sporty.', dist: ['khéo léo', 'tốt bụng', 'tóc vàng'] },
-      { id: 'u3-v4', word: 'curly black hair', ipa: '/ˈkɜː.li blæk heər/', meaning: 'tóc đen xoăn', example: 'Nhung has curly black hair.', dist: ['tóc vàng thẳng', 'tóc ngắn', 'tóc nâu'] }
-    ],
-    questions: [
-      {
-        id: 'u3-q1',
-        type: 'MCQ',
-        question: 'Who asked the students to write emails in English at the camp?',
-        options: ['Mr Black', 'Nam’s father', 'Phong', 'Jimmy'],
-        correct: 'Mr Black',
-        explanation: 'Thầy Black yêu cầu học sinh viết email bằng tiếng Anh.',
-        quote: 'Mr Black asked us to write emails in English!'
-      },
-      {
-        id: 'u3-q2',
-        type: 'True/False',
-        question: 'Jimmy has curly black hair.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Jimmy có mái tóc vàng và mắt màu xanh biển (blonde hair and blue eyes).',
-        quote: 'Jimmy has blonde hair and blue eyes.'
-      },
-      {
-        id: 'u3-q3',
-        type: 'True/False',
-        question: 'Nhung shared her lunch with Nam today.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Nhung tốt bụng đã chia sẻ bữa ăn trưa với Nam.',
-        quote: 'She’s kind. She shared her lunch with me today.'
-      },
-      {
-        id: 'u3-q4',
-        type: 'ShortAnswer',
-        question: 'What sport does Phong play very well?',
-        correct: 'basketball',
-        acceptableAnswers: ['basketball', 'plays basketball'],
-        explanation: 'Phong chơi môn bóng rổ rất giỏi.',
-        quote: 'He’s sporty and plays basketball very well.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-4',
-    unitNumber: 4,
-    title: 'MY NEIGHBOURHOOD',
-    topicTitle: 'Unit 4: My Neighbourhood (Suburbs of Da Nang)',
-    fullTextFormatted: `Friday, December 23rd ...\nMY NEIGHBOURHOOD\n\nI live in the suburbs of Da Nang City. There are many things I like about my neighbourhood.\n\nIt’s great for outdoor activities because it has beautiful parks, sandy beaches and fine weather. There’s almost everything I need here: shops, restaurants, and markets. The people here are friendlier, and the food is better than in other places.\n\nHowever, there are two things I dislike about it: there are many modern buildings and offices; and the streets are busy and crowded.\n\nPosted by Khang at 4:55 PM`,
-    passages: [
-      {
-        id: 'u4-p1',
-        heading: 'Likes About Neighbourhood',
-        text: 'Friday, December 23rd ...\nMY NEIGHBOURHOOD\n\nI live in the suburbs of Da Nang City. There are many things I like about my neighbourhood.\nIt’s great for outdoor activities because it has beautiful parks, sandy beaches and fine weather. There’s almost everything I need here: shops, restaurants, and markets. The people here are friendlier, and the food is better than in other places.'
-      },
-      {
-        id: 'u4-p2',
-        heading: 'Dislikes & Post Info',
-        text: 'However, there are two things I dislike about it: there are many modern buildings and offices; and the streets are busy and crowded.\n\nPosted by Khang at 4:55 PM'
-      }
-    ],
-    vocabList: [
-      { id: 'u4-v1', word: 'suburbs', ipa: '/ˈsʌb.ɜːbz/', meaning: 'vùng ngoại ô', example: 'I live in the suburbs of Da Nang City.', dist: ['trung tâm thành phố', 'bãi biển', 'công viên'] },
-      { id: 'u4-v2', word: 'sandy beaches', ipa: '/ˈsæn.di biːtʃɪz/', meaning: 'bãi biển cát mịn', example: 'It has beautiful parks and sandy beaches.', dist: ['ngọn núi cao', 'tòa nhà hiện đại', 'chợ đêm'] },
-      { id: 'u4-v3', word: 'busy and crowded', ipa: '/ˈbɪz.i ænd ˈkraʊ.dɪd/', meaning: 'đông đúc và nhộn nhịp', example: 'The streets are busy and crowded.', dist: ['vắng vẻ yên tĩnh', 'rộng rãi', 'sạch sẽ'] }
-    ],
-    questions: [
-      {
-        id: 'u4-q1',
-        type: 'MCQ',
-        question: 'Where does Khang live?',
-        options: [
-          'In the suburbs of Da Nang City',
-          'In the center of Da Lat',
-          'In a boarding school in Sydney',
-          'Near Ha Long Bay'
-        ],
-        correct: 'In the suburbs of Da Nang City',
-        explanation: 'Khang sống ở vùng ngoại ô thành phố Đà Nẵng.',
-        quote: 'I live in the suburbs of Da Nang City.'
-      },
-      {
-        id: 'u4-q2',
-        type: 'True/False',
-        question: 'Khang dislikes the beautiful parks and sandy beaches in his neighbourhood.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Khang rất thích các công viên đẹp và bãi biển cát mịn.',
-        quote: 'There are many things I like about my neighbourhood. It’s great for outdoor activities because it has beautiful parks, sandy beaches...'
-      },
-      {
-        id: 'u4-q3',
-        type: 'True/False',
-        question: 'The streets in Khang’s neighbourhood are busy and crowded.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Đường phố nơi Khang sống rất đông đúc và nhộn nhịp.',
-        quote: '...and the streets are busy and crowded.'
-      },
-      {
-        id: 'u4-q4',
-        type: 'ShortAnswer',
-        question: 'In which city does Khang live in the suburbs?',
-        correct: 'Da Nang',
-        acceptableAnswers: ['da nang', 'da nang city', 'danang'],
-        explanation: 'Khang sống ở ngoại ô thành phố Đà Nẵng.',
-        quote: 'I live in the suburbs of Da Nang City.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-5',
-    unitNumber: 5,
-    title: 'NATURAL WONDERS OF VIET NAM',
-    topicTitle: 'Unit 5: Natural Wonders of Viet Nam (Ha Long Bay & Mui Ne)',
-    fullTextFormatted: `Ha Long Bay is in Quang Ninh. It has many islands and caves. Tuan Chau, with its beautiful beaches, is a popular tourist attraction in Ha Long Bay. There you can enjoy great seafood. And you can join in exciting activities. Ha Long Bay is Viet Nam’s best natural wonder.\n\nMui Ne is popular for its amazing landscapes. The sand has different colours: white, yellow, red ... It’s like a desert here. You can ride a bike down the slopes. You can also fly kites, or have a picnic by the beach. The best time to visit the Mui Ne Sand Dunes is early morning or late afternoon. Remember to wear suncream and bring water.`,
-    passages: [
-      {
-        id: 'u5-p1',
-        heading: '1. Ha Long Bay',
-        text: 'Ha Long Bay is in Quang Ninh. It has many islands and caves. Tuan Chau, with its beautiful beaches, is a popular tourist attraction in Ha Long Bay. There you can enjoy great seafood. And you can join in exciting activities. Ha Long Bay is Viet Nam’s best natural wonder.'
-      },
-      {
-        id: 'u5-p2',
-        heading: '2. Mui Ne Sand Dunes',
-        text: 'Mui Ne is popular for its amazing landscapes. The sand has different colours: white, yellow, red ... It’s like a desert here. You can ride a bike down the slopes. You can also fly kites, or have a picnic by the beach. The best time to visit the Mui Ne Sand Dunes is early morning or late afternoon. Remember to wear suncream and bring water.'
-      }
-    ],
-    vocabList: [
-      { id: 'u5-v1', word: 'tourist attraction', ipa: '/ˈtʊə.rɪst əˈtræk.ʃən/', meaning: 'điểm thu hút du lịch', example: 'Tuan Chau is a popular tourist attraction.', dist: ['khu công nghiệp', 'trường học', 'bệnh viện'] },
-      { id: 'u5-v2', word: 'amazing landscapes', ipa: '/əˈmeɪ.zɪŋ ˈlænd.skeɪps/', meaning: 'danh thắng tuyệt vời', example: 'Mui Ne is popular for its amazing landscapes.', dist: ['món ăn ngon', 'khách sạn đẹp', 'thành phố lớn'] },
-      { id: 'u5-v3', word: 'suncream', ipa: '/ˈsʌn.kriːm/', meaning: 'kem chống nắng', example: 'Remember to wear suncream and bring water.', dist: ['nước ngọt', 'mũ bảo hiểm', 'xe đạp'] }
-    ],
-    questions: [
-      {
-        id: 'u5-q1',
-        type: 'MCQ',
-        question: 'Where is Ha Long Bay located?',
-        options: ['In Quang Ninh', 'In Da Nang', 'In Phan Thiet', 'In Bac Giang'],
-        correct: 'In Quang Ninh',
-        explanation: 'Vịnh Hạ Long nằm ở tỉnh Quảng Ninh.',
-        quote: 'Ha Long Bay is in Quang Ninh.'
-      },
-      {
-        id: 'u5-q2',
-        type: 'True/False',
-        question: 'The sand in Mui Ne only has one colour: white.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Cát ở Mũi Né có nhiều màu sắc khác nhau: trắng, vàng, đỏ...',
-        quote: 'The sand has different colours: white, yellow, red ...'
-      },
-      {
-        id: 'u5-q3',
-        type: 'True/False',
-        question: 'Ha Long Bay is Viet Nam’s best natural wonder.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Vịnh Hạ Long là kỳ quan thiên nhiên tuyệt vời nhất của Việt Nam.',
-        quote: 'Ha Long Bay is Viet Nam’s best natural wonder.'
-      },
-      {
-        id: 'u5-q4',
-        type: 'ShortAnswer',
-        question: 'What item should you wear to protect your skin when visiting Mui Ne Sand Dunes?',
-        correct: 'suncream',
-        acceptableAnswers: ['suncream', 'wear suncream'],
-        explanation: 'Bạn nên bôi kem chống nắng (suncream) để bảo vệ da.',
-        quote: 'Remember to wear suncream and bring water.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-6',
-    unitNumber: 6,
-    title: 'OUR TET HOLIDAY',
-    topicTitle: 'Unit 6: Our Tet Holiday (New Year Celebrations)',
-    fullTextFormatted: `A. Russ - the USA:\nI often go to Times Square with my parents to welcome the New Year. When the clock strikes midnight, colourful fireworks light up the sky. Everybody cheers and sings.\n\nB. Wu - China:\nOn New Year's Day, we dress beautifully and go to our grandparents' houses. We wish them Happy New Year and they give us lucky money. Then we go out and have a day full of fun.\n\nC. Mai - Viet Nam:\nI learn some customs about Tet from my parents. People give rice to wish for enough food and buy salt to wish for good luck. Dogs are lucky animals but cats are not. A cat's cry sounds like "poor" in Vietnamese.`,
-    passages: [
-      {
-        id: 'u6-p1',
-        heading: 'A. Russ - the USA',
-        text: 'I often go to Times Square with my parents to welcome the New Year. When the clock strikes midnight, colourful fireworks light up the sky. Everybody cheers and sings.'
-      },
-      {
-        id: 'u6-p2',
-        heading: 'B. Wu - China',
-        text: 'On New Year\'s Day, we dress beautifully and go to our grandparents\' houses. We wish them Happy New Year and they give us lucky money. Then we go out and have a day full of fun.'
-      },
-      {
-        id: 'u6-p3',
-        heading: 'C. Mai - Viet Nam',
-        text: 'I learn some customs about Tet from my parents. People give rice to wish for enough food and buy salt to wish for good luck. Dogs are lucky animals but cats are not. A cat\'s cry sounds like "poor" in Vietnamese.'
-      }
-    ],
-    vocabList: [
-      { id: 'u6-v1', word: 'fireworks', ipa: '/ˈfaɪə.wɜːks/', meaning: 'pháo hoa', example: 'Colourful fireworks light up the sky.', dist: ['đèn lồng', 'bánh chưng', 'tiền may mắn'] },
-      { id: 'u6-v2', word: 'lucky money', ipa: '/ˈlʌk.i ˌmʌn.i/', meaning: 'tiền lì xì', example: 'They give us lucky money.', dist: ['quà mừng', 'quần áo', 'đồ chơi'] },
-      { id: 'u6-v3', word: 'customs', ipa: '/ˈkʌs.təmz/', meaning: 'các phong tục tập quán', example: 'I learn some customs about Tet from my parents.', dist: ['môn học', 'luật lệ', 'trò chơi'] }
-    ],
-    questions: [
-      {
-        id: 'u6-q1',
-        type: 'MCQ',
-        question: 'Where does Russ go with his parents to welcome the New Year?',
-        options: ['Times Square', 'Ha Noi', 'Da Lat', 'Stockholm'],
-        correct: 'Times Square',
-        explanation: 'Russ cùng bố mẹ đến Quảng trường Thời Đại (Times Square) ở Mỹ đón năm mới.',
-        quote: 'I often go to Times Square with my parents to welcome the New Year.'
-      },
-      {
-        id: 'u6-q2',
-        type: 'True/False',
-        question: 'In Viet Nam, cats are considered lucky animals during Tet.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Ở Việt Nam chó mới là loài vật may mắn, còn mèo thì không.',
-        quote: 'Dogs are lucky animals but cats are not.'
-      },
-      {
-        id: 'u6-q3',
-        type: 'True/False',
-        question: 'Wu and his family visit their grandparents on New Year’s Day.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Wu và gia đình mặc đẹp và đến nhà ông bà chúc Tết.',
-        quote: 'On New Year\'s Day, we dress beautifully and go to our grandparents\' houses.'
-      },
-      {
-        id: 'u6-q4',
-        type: 'ShortAnswer',
-        question: 'What do Vietnamese people buy at Tet to wish for good luck?',
-        correct: 'salt',
-        acceptableAnswers: ['salt', 'buy salt'],
-        explanation: 'Người Việt mua muối đầu năm với ước nguyện cầu may mắn.',
-        quote: '...and buy salt to wish for good luck.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-7',
-    unitNumber: 7,
-    title: 'TELEVISION',
-    topicTitle: 'Unit 7: Television (TV Programme Guide)',
-    fullTextFormatted: `8.00 | Wildlife: Cuc Phuong Forest | Watch the colourful world of plants, flowers, and animals in their real life.\n9.00 | Comedy: The Fox Teacher | Have a lot of fun with a fox teacher and his students on their first day at school.\n10.30 | Sports: The Pig Race | Watch the cute pigs compete in the most exciting races. Who wins?\n11.00 | Game show: Children are Always Right | Join this game show today and try to answer interesting questions about pets.\n12.15 | Science: The Dolphins | Watch funny and interesting clips of intelligent dolphins in their natural life - the sea.`,
-    passages: [
-      {
-        id: 'u7-p1',
-        heading: '8.00 - Wildlife & 9.00 - Comedy',
-        text: '8.00 | Wildlife: Cuc Phuong Forest - Watch the colourful world of plants, flowers, and animals in their real life.\n9.00 | Comedy: The Fox Teacher - Have a lot of fun with a fox teacher and his students on their first day at school.'
-      },
-      {
-        id: 'u7-p2',
-        heading: '10.30 - Sports, 11.00 - Game show & 12.15 - Science',
-        text: '10.30 | Sports: The Pig Race - Watch the cute pigs compete in the most exciting races. Who wins?\n11.00 | Game show: Children are Always Right - Join this game show today and try to answer interesting questions about pets.\n12.15 | Science: The Dolphins - Watch funny and interesting clips of intelligent dolphins in their natural life - the sea.'
-      }
-    ],
-    vocabList: [
-      { id: 'u7-v1', word: 'wildlife', ipa: '/ˈwaɪld.laɪf/', meaning: 'thiên nhiên hoang dã', example: 'Wildlife: Cuc Phuong Forest.', dist: ['hài hước', 'thể thao', 'trò chơi'] },
-      { id: 'u7-v2', word: 'comedy', ipa: '/ˈkɒm.ə.di/', meaning: 'phim / chương trình hài', example: 'Comedy: The Fox Teacher.', dist: ['khoa học', 'tin tức', 'phim tài liệu'] },
-      { id: 'u7-v3', word: 'intelligent dolphins', ipa: '/ɪnˈtel.ɪ.dʒənt ˈdɒl.fɪnz/', meaning: 'những chú cá heo thông minh', example: 'Clips of intelligent dolphins in the sea.', dist: ['những chú heo đáng yêu', 'thầy giáo cáo', 'động vật hoang dã'] }
-    ],
-    questions: [
-      {
-        id: 'u7-q1',
-        type: 'MCQ',
-        question: 'What programme is on TV at 9.00?',
-        options: [
-          'Comedy: The Fox Teacher',
-          'Wildlife: Cuc Phuong Forest',
-          'Sports: The Pig Race',
-          'Science: The Dolphins'
-        ],
-        correct: 'Comedy: The Fox Teacher',
-        explanation: 'Lúc 9h00 là chương trình phim hài "The Fox Teacher".',
-        quote: '9.00 | Comedy: The Fox Teacher'
-      },
-      {
-        id: 'u7-q2',
-        type: 'True/False',
-        question: 'The Pig Race is a sports programme broadcasted at 10.30.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Chương trình "The Pig Race" là môn thể thao phát sóng lúc 10h30.',
-        quote: '10.30 | Sports: The Pig Race'
-      },
-      {
-        id: 'u7-q3',
-        type: 'True/False',
-        question: 'The Dolphins is a comedy show about cartoon animals.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! "The Dolphins" là một chương trình Khoa học (Science).',
-        quote: '12.15 | Science: The Dolphins'
-      },
-      {
-        id: 'u7-q4',
-        type: 'ShortAnswer',
-        question: 'What time is the Wildlife programme about Cuc Phuong Forest broadcasted?',
-        correct: '8.00',
-        acceptableAnswers: ['8.00', '8:00', '8'],
-        explanation: 'Chương trình Wildlife Cuc Phuong Forest phát sóng lúc 8h00.',
-        quote: '8.00 | Wildlife: Cuc Phuong Forest'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-8',
-    unitNumber: 8,
-    title: 'SPORTS AND GAMES',
-    topicTitle: 'Unit 8: Sports and Games (Pelé - Football Legend)',
-    fullTextFormatted: `The PE teacher is talking to her students about Pelé.\n\nTeacher: Today we’re going to talk about Pelé. Do you know him?\nNick: Yes, I think he’s the best footballer of all time.\nTeacher: Right. He was born in 1940 in Brazil. His father taught him to play football at a very young age.\nSusan: Oh. When did he begin his career in football?\nTeacher: At 15, when he started playing for Santos Football Club. In 1958, he won his first World Cup.\nNick: How many goals did he score in his career?\nTeacher: 1,281 goals in total, I think.\nNick and Susan: Wow! Amazing!\nTeacher: And he became "Football Player of the Century" in 1999.\nMichael: Surely Pelé's a national hero in Brazil.\nTeacher: Yes, and he's known around the world as "The King of Football".`,
-    passages: [
-      {
-        id: 'u8-p1',
-        heading: 'Part 1: Early Life & First World Cup',
-        text: 'The PE teacher is talking to her students about Pelé.\n\nTeacher: Today we’re going to talk about Pelé. Do you know him?\nNick: Yes, I think he’s the best footballer of all time.\nTeacher: Right. He was born in 1940 in Brazil. His father taught him to play football at a very young age.\nSusan: Oh. When did he begin his career in football?\nTeacher: At 15, when he started playing for Santos Football Club. In 1958, he won his first World Cup.'
-      },
-      {
-        id: 'u8-p2',
-        heading: 'Part 2: Goals Record & Titles',
-        text: 'Nick: How many goals did he score in his career?\nTeacher: 1,281 goals in total, I think.\nNick and Susan: Wow! Amazing!\nTeacher: And he became "Football Player of the Century" in 1999.\nMichael: Surely Pelé\'s a national hero in Brazil.\nTeacher: Yes, and he\'s known around the world as "The King of Football".'
-      }
-    ],
-    vocabList: [
-      { id: 'u8-v1', word: 'career', ipa: '/kəˈrɪər/', meaning: 'sự nghiệp', example: 'When did he begin his career in football?', dist: ['tuổi thơ', 'trận đấu', 'câu lạc bộ'] },
-      { id: 'u8-v2', word: 'score goals', ipa: '/skɔːr ɡəʊlz/', meaning: 'ghi bàn thắng', example: 'He scored 1,281 goals in total.', dist: ['bắt bóng', 'tập thể lực', 'truyền bóng'] },
-      { id: 'u8-v3', word: 'The King of Football', ipa: '/ðə kɪŋ əv ˈfʊt.bɔːl/', meaning: 'Vua Bóng Đá', example: 'He is known around the world as The King of Football.', dist: ['Cầu thủ trẻ nhất', 'Huấn luyện viên xuất sắc', 'Trọng tài quốc tế'] }
-    ],
-    questions: [
-      {
-        id: 'u8-q1',
-        type: 'MCQ',
-        question: 'When and where was Pelé born?',
-        options: [
-          'In 1940 in Brazil',
-          'In 1958 in Santos',
-          'In 1999 in Sydney',
-          'In 1950 in England'
-        ],
-        correct: 'In 1940 in Brazil',
-        explanation: 'Pelé sinh năm 1940 tại đất nước Brazil.',
-        quote: 'He was born in 1940 in Brazil.'
-      },
-      {
-        id: 'u8-q2',
-        type: 'True/False',
-        question: 'Pelé won his first World Cup in 1958.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Pelé vô địch World Cup đầu tiên vào năm 1958.',
-        quote: 'In 1958, he won his first World Cup.'
-      },
-      {
-        id: 'u8-q3',
-        type: 'True/False',
-        question: 'Pelé scored 500 goals in total during his career.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Tổng số bàn thắng Pelé đã ghi trong sự nghiệp là 1.281 bàn.',
-        quote: 'Teacher: 1,281 goals in total, I think.'
-      },
-      {
-        id: 'u8-q4',
-        type: 'ShortAnswer',
-        question: 'What famous title became Pelé in 1999?',
-        correct: 'Football Player of the Century',
-        acceptableAnswers: ['football player of the century', 'player of the century'],
-        explanation: 'Năm 1999, ông trở thành Cầu thủ bóng đá của thế kỷ.',
-        quote: 'And he became "Football Player of the Century" in 1999.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-9',
-    unitNumber: 9,
-    title: 'CITIES OF THE WORLD',
-    topicTitle: 'Unit 9: Cities of the World (Mai in Stockholm)',
-    fullTextFormatted: `September 6\n\nDear Grandpa and Grandma,\n\nStockholm is fantastic! Its weather is perfect, sunny all the time! Our hotel is good. It has a swimming pool and a gym. It offers delicious breakfast. Yesterday Mum, Dad and I rented three bikes and cycled to the Old Town. My parents wore their helmets and I wore mine. We visited the Royal Palace first. What a beautiful place! Mum loved it. She said, "Swedish art is amazing." After that, we had "fika", a coffee break, in a traditional café. Everything is so wonderful!\n\nWish you were here!\n\nLove,\nMai`,
-    passages: [
-      {
-        id: 'u9-p1',
-        heading: 'Letter to Grandparents from Stockholm',
-        text: 'September 6\n\nDear Grandpa and Grandma,\nStockholm is fantastic! Its weather is perfect, sunny all the time! Our hotel is good. It has a swimming pool and a gym. It offers delicious breakfast. Yesterday Mum, Dad and I rented three bikes and cycled to the Old Town. My parents wore their helmets and I wore mine. We visited the Royal Palace first. What a beautiful place! Mum loved it. She said, "Swedish art is amazing." After that, we had "fika", a coffee break, in a traditional café. Everything is so wonderful!\nWish you were here!\nLove,\nMai'
-      }
-    ],
-    vocabList: [
-      { id: 'u9-v1', word: 'fantastic weather', ipa: '/fænˈtæs.tɪk ˈweð.ər/', meaning: 'thời tiết tuyệt vời', example: 'Stockholm is fantastic! Weather is perfect.', dist: ['thời tiết mưa phùn', 'tuyết rơi lạnh', 'bão lớn'] },
-      { id: 'u9-v2', word: 'Royal Palace', ipa: '/ˈrɔɪ.əl ˈpæl.əs/', meaning: 'Cung điện Hoàng gia', example: 'We visited the Royal Palace first.', dist: ['Bảo tàng lịch sử', 'Công viên giải trí', 'Khách sạn 5 sao'] },
-      { id: 'u9-v3', word: 'fika', ipa: '/ˈfiː.kə/', meaning: 'giờ nghỉ uống cà phê (Thụy Điển)', example: 'After that, we had fika, a coffee break.', dist: ['món ăn tối', 'trò chơi đua xe', 'lễ hội âm nhạc'] }
-    ],
-    questions: [
-      {
-        id: 'u9-q1',
-        type: 'MCQ',
-        question: 'Which city is Mai writing her letter from?',
-        options: ['Stockholm', 'Sydney', 'Da Lat', 'Da Nang'],
-        correct: 'Stockholm',
-        explanation: 'Mai đang ở thành phố Stockholm (Thụy Điển) viết thư cho ông bà.',
-        quote: 'Stockholm is fantastic!'
-      },
-      {
-        id: 'u9-q2',
-        type: 'True/False',
-        question: 'Mai and her parents rented three bikes to cycle to the Old Town.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Cả nhà Mai đã thuê 3 chiếc xe đạp để đi đến Phố Cổ.',
-        quote: 'Yesterday Mum, Dad and I rented three bikes and cycled to the Old Town.'
-      },
-      {
-        id: 'u9-q3',
-        type: 'True/False',
-        question: 'The weather in Stockholm was rainy and stormy all the time.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Thời tiết ở Stockholm rất hoàn hảo, luôn có nắng.',
-        quote: 'Its weather is perfect, sunny all the time!'
-      },
-      {
-        id: 'u9-q4',
-        type: 'ShortAnswer',
-        question: 'What famous place did Mai’s family visit first in the Old Town?',
-        correct: 'Royal Palace',
-        acceptableAnswers: ['royal palace', 'the royal palace'],
-        explanation: 'Gia đình Mai đã ghé thăm Cung điện Hoàng gia (Royal Palace) đầu tiên.',
-        quote: 'We visited the Royal Palace first.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-10',
-    unitNumber: 10,
-    title: 'OUR HOUSES IN THE FUTURE',
-    topicTitle: 'Unit 10: Our Houses in the Future (House on an Island)',
-    fullTextFormatted: `My future house will be on an island. It will be surrounded by tall trees and the blue sea. There will be a swimming pool in front of the house. There will be a helicopter on the roof. I can fly to school in it.\n\nThere will be some robots in the house. They will help me to clean the floors, cook meals, wash clothes and water the flowers. They will also help me to feed the dogs and cats.\n\nThere will be a super smart TV. It will help me to send and receive emails, and contact my friends on other planets. It will also help me to buy food from the supermarket.`,
-    passages: [
-      {
-        id: 'u10-p1',
-        heading: 'Location & Outside House',
-        text: 'My future house will be on an island. It will be surrounded by tall trees and the blue sea. There will be a swimming pool in front of the house. There will be a helicopter on the roof. I can fly to school in it.'
-      },
-      {
-        id: 'u10-p2',
-        heading: 'Robots & Super Smart TV',
-        text: 'There will be some robots in the house. They will help me to clean the floors, cook meals, wash clothes and water the flowers. They will also help me to feed the dogs and cats.\nThere will be a super smart TV. It will help me to send and receive emails, and contact my friends on other planets. It will also help me to buy food from the supermarket.'
-      }
-    ],
-    vocabList: [
-      { id: 'u10-v1', word: 'island', ipa: '/ˈaɪ.lənd/', meaning: 'hòn đảo', example: 'My future house will be on an island.', dist: ['ngọn núi', 'thành phố', 'vùng ngoại ô'] },
-      { id: 'u10-v2', word: 'helicopter on the roof', ipa: '/ˈhel.ɪˌkɒp.tər ɒn ðə ruːf/', meaning: 'máy bay trực thăng trên mái nhà', example: 'There will be a helicopter on the roof.', dist: ['xe đạp trong sân', 'thuyền dưới biển', 'ô tô trong gara'] },
-      { id: 'u10-v3', word: 'super smart TV', ipa: '/ˈsuː.pər smɑːt ˌtiːˈviː/', meaning: 'tivi siêu thông minh', example: 'It will help me send and receive emails.', dist: ['máy tính cá nhân', 'điện thoại nắp gập', 'đài cassette'] }
-    ],
-    questions: [
-      {
-        id: 'u10-q1',
-        type: 'MCQ',
-        question: 'Where will the author’s future house be built?',
-        options: ['On an island', 'In the city center', 'Under the sea', 'In a forest'],
-        correct: 'On an island',
-        explanation: 'Ngôi nhà tương lai sẽ được xây trên một hòn đảo.',
-        quote: 'My future house will be on an island.'
-      },
-      {
-        id: 'u10-q2',
-        type: 'True/False',
-        question: 'There will be a helicopter on the roof of the future house.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Trên mái nhà sẽ có một chiếc máy bay trực thăng để đi học.',
-        quote: 'There will be a helicopter on the roof. I can fly to school in it.'
-      },
-      {
-        id: 'u10-q3',
-        type: 'True/False',
-        question: 'Robots will do all school homework for the author.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Robot trong nhà chỉ làm việc nhà như lau sàn, nấu ăn, giặt quần áo, tưới cây, cho thú cưng ăn.',
-        quote: 'They will help me to clean the floors, cook meals, wash clothes and water the flowers...'
-      },
-      {
-        id: 'u10-q4',
-        type: 'ShortAnswer',
-        question: 'What facility will be in front of the future house?',
-        correct: 'a swimming pool',
-        acceptableAnswers: ['swimming pool', 'a swimming pool'],
-        explanation: 'Phía trước ngôi nhà sẽ có một bể bơi.',
-        quote: 'There will be a swimming pool in front of the house.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-11',
-    unitNumber: 11,
-    title: 'OUR GREENER WORLD',
-    topicTitle: 'Unit 11: Our Greener World (Nam’s Tips for a Greener School)',
-    fullTextFormatted: `Reporter: Can you share with us some tips to make your school greener?\nNam: Sure. Firstly, we put recycling bins in every classroom.\nReporter: What about old books and uniforms?\nNam: We exchange them with our friends or give them to charity. We don't throw them away.\nReporter: Anything else?\nNam: We borrow books from the school library instead of buying new ones.\nReporter: Great! You can save much paper.\nNam: And there's another tip. We bring reusable water bottles to school.\nReporter: I see lots of trees in your school. Is planting trees a good tip?\nNam: Yeah. It makes our school greener.\nReporter: Thanks for sharing. Do you want to add anything?\nNam: Finally, we usually find creative ways to reuse old items before throwing them away.`,
-    passages: [
-      {
-        id: 'u11-p1',
-        heading: 'Interview Part 1: Bins & Books',
-        text: 'Reporter: Can you share with us some tips to make your school greener?\nNam: Sure. Firstly, we put recycling bins in every classroom.\nReporter: What about old books and uniforms?\nNam: We exchange them with our friends or give them to charity. We don\'t throw them away.'
-      },
-      {
-        id: 'u11-p2',
-        heading: 'Interview Part 2: Bottles & Reuse',
-        text: 'Reporter: Anything else?\nNam: We borrow books from the school library instead of buying new ones.\nReporter: Great! You can save much paper.\nNam: And there\'s another tip. We bring reusable water bottles to school.\nReporter: I see lots of trees in your school. Is planting trees a good tip?\nNam: Yeah. It makes our school greener.\nReporter: Thanks for sharing. Do you want to add anything?\nNam: Finally, we usually find creative ways to reuse old items before throwing them away.'
-      }
-    ],
-    vocabList: [
-      { id: 'u11-v1', word: 'recycling bins', ipa: '/ˌriːˈsaɪ.klɪŋ bɪnz/', meaning: 'thùng rác tái chế', example: 'We put recycling bins in every classroom.', dist: ['tủ sách', 'bàn học', 'chai nhựa'] },
-      { id: 'u11-v2', word: 'reusable water bottles', ipa: '/riːˈjuː.zə.bəl ˈwɔː.tər ˈbɒt.əlz/', meaning: 'chai nước dùng lại nhiều lần', example: 'We bring reusable water bottles to school.', dist: ['chai nhựa dùng 1 lần', 'cốc giấy', 'túi nilon'] },
-      { id: 'u11-v3', word: 'give to charity', ipa: '/ɡɪv tuː ˈtʃær.ə.ti/', meaning: 'quyên góp từ thiện', example: 'We exchange them or give them to charity.', dist: ['vứt vào thùng rác', 'đốt đi', 'bán đắt'] }
-    ],
-    questions: [
-      {
-        id: 'u11-q1',
-        type: 'MCQ',
-        question: 'Where do Nam and his classmates put recycling bins?',
-        options: [
-          'In every classroom',
-          'Only in the school yard',
-          'At the school gate',
-          'In the computer room'
-        ],
-        correct: 'In every classroom',
-        explanation: 'Các bạn đặt thùng rác tái chế trong mỗi phòng học.',
-        quote: '...we put recycling bins in every classroom.'
-      },
-      {
-        id: 'u11-q2',
-        type: 'True/False',
-        question: 'Nam and his friends throw old books away into the trash.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Các bạn đổi sách với bạn bè hoặc đem làm từ thiện chứ không vứt đi.',
-        quote: 'We exchange them with our friends or give them to charity. We don\'t throw them away.'
-      },
-      {
-        id: 'u11-q3',
-        type: 'True/False',
-        question: 'Bringing reusable water bottles helps make the school greener.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Mang theo bình nước tái sử dụng giúp hạn chế rác thải nhựa.',
-        quote: 'We bring reusable water bottles to school.'
-      },
-      {
-        id: 'u11-q4',
-        type: 'ShortAnswer',
-        question: 'What do students borrow from the school library to save paper?',
-        correct: 'books',
-        acceptableAnswers: ['books', 'old books'],
-        explanation: 'Học sinh mượn sách ở thư viện thay vì mua mới để tiết kiệm giấy.',
-        quote: 'We borrow books from the school library instead of buying new ones.'
-      }
-    ]
-  },
-  {
-    unitId: 'unit-12',
-    unitNumber: 12,
-    title: 'ROBOTS',
-    topicTitle: 'Unit 12: Robots (International Robot Show in Ha Noi)',
-    fullTextFormatted: `Today there is an international robot show in Ha Noi. People can see many types of robots there.\n\nHome robots are useful for housework. They can do most of the housework: cook meals, clean the house, do the washing, and iron clothes.\n\nTeacher robots are the best choice for children. They can help them to study. They can teach them English, literature, maths and other subjects. They can also help children to improve their English pronunciation.\n\nPeople are also interested in other types of robots at the show. Worker robots can build houses and move heavy things; doctor robots can look after sick people and space robots can build space stations on the Moon and on planets.`,
-    passages: [
-      {
-        id: 'u12-p1',
-        heading: '1. International Robot Show & Home Robots',
-        text: 'Today there is an international robot show in Ha Noi. People can see many types of robots there.\nHome robots are useful for housework. They can do most of the housework: cook meals, clean the house, do the washing, and iron clothes.'
-      },
-      {
-        id: 'u12-p2',
-        heading: '2. Teacher Robots & Special Robots',
-        text: 'Teacher robots are the best choice for children. They can help them to study. They can teach them English, literature, maths and other subjects. They can also help children to improve their English pronunciation.\nPeople are also interested in other types of robots at the show. Worker robots can build houses and move heavy things; doctor robots can look after sick people and space robots can build space stations on the Moon and on planets.'
-      }
-    ],
-    vocabList: [
-      { id: 'u12-v1', word: 'home robots', ipa: '/həʊm ˈrəʊ.bɒts/', meaning: 'robot gia đình / việc nhà', example: 'Home robots are useful for housework.', dist: ['robot công nhân', 'robot bác sĩ', 'robot vũ trụ'] },
-      { id: 'u12-v2', word: 'teacher robots', ipa: '/ˈtiː.tʃər ˈrəʊ.bɒts/', meaning: 'robot giáo viên', example: 'Teacher robots are the best choice for children.', dist: ['robot gia đình', 'robot xây dựng', 'bác sĩ'] },
-      { id: 'u12-v3', word: 'improve pronunciation', ipa: '/ɪmˈpruːv prəˌnʌn.siˈeɪ.ʃən/', meaning: 'cải thiện sự phát âm', example: 'They help children to improve English pronunciation.', dist: ['nấu ăn', 'xây nhà', 'chữa bệnh'] }
-    ],
-    questions: [
-      {
-        id: 'u12-q1',
-        type: 'MCQ',
-        question: 'Where is the international robot show taking place?',
-        options: ['In Ha Noi', 'In Sydney', 'In Da Nang', 'In Stockholm'],
-        correct: 'In Ha Noi',
-        explanation: 'Triển lãm robot quốc tế đang diễn ra tại Hà Nội.',
-        quote: 'Today there is an international robot show in Ha Noi.'
-      },
-      {
-        id: 'u12-q2',
-        type: 'True/False',
-        question: 'Home robots can build space stations on the Moon.',
-        options: ['True', 'False'],
-        correct: 'False',
-        explanation: 'Sai! Robot vũ trụ (space robots) mới làm nhiệm vụ xây trạm vũ trụ trên Mặt Trăng.',
-        quote: 'space robots can build space stations on the Moon and on planets.'
-      },
-      {
-        id: 'u12-q3',
-        type: 'True/False',
-        question: 'Teacher robots can help children improve their English pronunciation.',
-        options: ['True', 'False'],
-        correct: 'True',
-        explanation: 'Đúng! Robot giáo viên giúp các em học sinh cải thiện phát âm tiếng Anh.',
-        quote: 'They can also help children to improve their English pronunciation.'
-      },
-      {
-        id: 'u12-q4',
-        type: 'ShortAnswer',
-        question: 'Which type of robots can look after sick people in hospitals?',
-        correct: 'doctor robots',
-        acceptableAnswers: ['doctor robots', 'doctor robot'],
-        explanation: 'Robot bác sĩ (doctor robots) có thể chăm sóc bệnh nhân.',
-        quote: 'doctor robots can look after sick people...'
-      }
-    ]
-  }
-];
-
 export const ReadingMasteryGame: React.FC<ReadingMasteryGameProps> = ({
-  units,
   initialUnitId,
+  currentStudentId,
+  isTeacherLoggedIn = false,
   onSessionCompleted,
-  onBackToPractice,
 }) => {
-  const [selectedUnitIdx, setSelectedUnitIdx] = useState<number>(() => {
-    if (initialUnitId) {
-      const idx = UNIT_READINGS.findIndex((u) => u.unitId === initialUnitId);
-      if (idx !== -1) return idx;
-    }
-    return 0;
-  });
+  const datasetUnits = READING_DATASET.units;
 
-  React.useEffect(() => {
-    if (initialUnitId) {
-      const idx = UNIT_READINGS.findIndex((u) => u.unitId === initialUnitId);
-      if (idx !== -1) setSelectedUnitIdx(idx);
+  // Determine initial unit number (1..12) from initialUnitId (e.g. "unit-4" -> 4)
+  const initialUnitNumber = useMemo(() => {
+    if (!initialUnitId) return null;
+    const m = /^unit-(\d+)$/i.exec(initialUnitId.trim());
+    if (m) {
+      const n = Number(m[1]);
+      if (n >= 1 && n <= 12) return n;
     }
+    return null;
   }, [initialUnitId]);
-  const [activeSubTab, setActiveSubTab] = useState<'passage' | 'vocab' | 'quiz' | 'result'>('passage');
-  const [speechRate, setSpeechRate] = useState<number>(0.8);
-  const [currentPassageIdx, setCurrentPassageIdx] = useState<number>(-1);
-  const [isPlayingPassage, setIsPlayingPassage] = useState<boolean>(false);
 
-  // Quiz States
-  const [vocabAnswers, setVocabAnswers] = useState<Record<string, string>>({});
-  const [vocabScored, setVocabScored] = useState<Record<string, boolean>>({});
+  const [selectedBookFilter, setSelectedBookFilter] = useState<'all' | 1 | 2>('all');
+  const [selectedUnitNo, setSelectedUnitNo] = useState<number | null>(initialUnitNumber);
+  const [selectedPassageId, setSelectedPassageId] = useState<string | null>(null);
+  const [activeBlankFocus, setActiveBlankFocus] = useState<string | null>(null);
+  const [activeRcExNo, setActiveRcExNo] = useState<number | 'all'>(1);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [showAllTeacherNotesModal, setShowAllTeacherNotesModal] = useState<boolean>(false);
+  const [sessionStartTime, setSessionStartTime] = useState<number>(() => Date.now());
 
-  const [readingAnswers, setReadingAnswers] = useState<Record<string, string>>({});
-  const [readingScored, setReadingScored] = useState<Record<string, boolean>>({});
-  const [shortInputs, setShortInputs] = useState<Record<string, string>>({});
+  // Persistent student reading progress store
+  const [readingStore, setReadingStore] = useState<StudentReadingProgressStore>(() =>
+    loadStudentReadingStore(currentStudentId)
+  );
 
-  const [score, setScore] = useState<number>(0);
+  useEffect(() => {
+    setReadingStore(loadStudentReadingStore(currentStudentId));
+  }, [currentStudentId]);
 
-  const currentUnitData = UNIT_READINGS[selectedUnitIdx] || UNIT_READINGS[0];
+  useEffect(() => {
+    if (initialUnitNumber) {
+      setSelectedUnitNo(initialUnitNumber);
+      setSelectedPassageId(null);
+      setIsSubmitted(false);
+    }
+  }, [initialUnitNumber]);
 
-  // SpeechSynthesis helpers
-  const speakText = (text: string) => {
-    if (!('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.rate = speechRate;
-    u.lang = 'en-US';
-    window.speechSynthesis.speak(u);
-  };
+  const currentUnitObj = useMemo(
+    () => datasetUnits.find((u) => u.unit === selectedUnitNo) || null,
+    [datasetUnits, selectedUnitNo]
+  );
 
-  const handlePlayPassage = () => {
-    if (!('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    setIsPlayingPassage(true);
+  const currentPassage = useMemo(() => {
+    if (!currentUnitObj || !selectedPassageId) return null;
+    return currentUnitObj.passages.find((p) => p.id === selectedPassageId) || null;
+  }, [currentUnitObj, selectedPassageId]);
 
-    let idx = 0;
-    const playNext = () => {
-      if (idx >= currentUnitData.passages.length) {
-        setIsPlayingPassage(false);
-        setCurrentPassageIdx(-1);
-        return;
-      }
-      setCurrentPassageIdx(idx);
-      const u = new SpeechSynthesisUtterance(currentUnitData.passages[idx].text);
-      u.rate = speechRate;
-      u.lang = 'en-US';
-      u.onend = () => {
-        idx++;
-        playNext();
+  // Current draft for the active passage
+  const currentDraft: PassageDraftState = useMemo(() => {
+    if (!selectedPassageId) return {};
+    return readingStore.drafts[selectedPassageId] || {};
+  }, [readingStore.drafts, selectedPassageId]);
+
+  const updateDraft = (updater: (prev: PassageDraftState) => PassageDraftState) => {
+    if (!selectedPassageId || isSubmitted) return;
+    setReadingStore((prev) => {
+      const existing = prev.drafts[selectedPassageId] || {};
+      const nextDraft = updater(existing);
+      const nextStore: StudentReadingProgressStore = {
+        ...prev,
+        drafts: {
+          ...prev.drafts,
+          [selectedPassageId]: nextDraft,
+        },
       };
-      window.speechSynthesis.speak(u);
+      saveStudentReadingStore(currentStudentId, nextStore);
+      return nextStore;
+    });
+  };
+
+  // Helper to check if a draft has any user input
+  const hasAnyDraftInput = (passageId: string): boolean => {
+    const d = readingStore.drafts[passageId];
+    if (!d) return false;
+    return (
+      Object.keys(d.blankAnswers || {}).length > 0 ||
+      Object.keys(d.mcq || {}).length > 0 ||
+      Object.keys(d.tfng || {}).length > 0 ||
+      Object.values(d.sentenceCompletion || {}).some((v) => v.trim().length > 0) ||
+      Object.values(d.comprehensionQuestions || {}).some((v) => v.trim().length > 0) ||
+      Object.keys(d.matching || {}).length > 0 ||
+      Object.keys(d.wordBox || {}).length > 0
+    );
+  };
+
+  // Compute score and breakdown for currentPassage + currentDraft
+  const evaluation = useMemo(() => {
+    if (!currentPassage) return null;
+
+    if (currentPassage.type === 'gapped_text') {
+      const answers = currentPassage.answers;
+      let correct = 0;
+      const total = Object.keys(answers).length;
+      const byBlank: Record<string, { user: string; expected: string; isCorrect: boolean }> = {};
+      for (const [blankNo, expectedOpt] of Object.entries(answers)) {
+        const userOpt = currentDraft.blankAnswers?.[blankNo] || '';
+        const isCorrect = userOpt.toUpperCase() === expectedOpt.toUpperCase();
+        if (isCorrect) correct++;
+        byBlank[blankNo] = { user: userOpt, expected: expectedOpt, isCorrect };
+      }
+      return {
+        score: correct,
+        maxScore: total,
+        byBlank,
+        exerciseScores: {} as Record<number, { correct: number; total: number }>,
+      };
+    }
+
+    if (currentPassage.type === 'guided_cloze') {
+      let correct = 0;
+      const total = currentPassage.blanks.length;
+      const byBlank: Record<string, { user: string; expected: string; isCorrect: boolean }> = {};
+      for (const b of currentPassage.blanks) {
+        const key = String(b.no);
+        const userOpt = currentDraft.blankAnswers?.[key] || '';
+        const isCorrect = userOpt.toLowerCase() === b.answer.toLowerCase();
+        if (isCorrect) correct++;
+        byBlank[key] = { user: userOpt, expected: b.answer, isCorrect };
+      }
+      return {
+        score: correct,
+        maxScore: total,
+        byBlank,
+        exerciseScores: {} as Record<number, { correct: number; total: number }>,
+      };
+    }
+
+    // reading_comprehension
+    let totalScore = 0;
+    const totalMax = 25;
+    const exerciseScores: Record<number, { correct: number; total: number }> = {};
+
+    for (const ex of currentPassage.exercises) {
+      if (ex.type === 'multiple_choice') {
+        let c = 0;
+        for (const it of ex.items) {
+          const u = currentDraft.mcq?.[String(it.no)] || '';
+          if (u.toLowerCase() === it.answer.toLowerCase()) c++;
+        }
+        exerciseScores[ex.no] = { correct: c, total: ex.items.length };
+        totalScore += c;
+      } else if (ex.type === 'true_false_not_given') {
+        let c = 0;
+        for (const it of ex.items) {
+          const u = currentDraft.tfng?.[String(it.no)] || '';
+          if (u.toUpperCase() === it.answer.toUpperCase()) c++;
+        }
+        exerciseScores[ex.no] = { correct: c, total: ex.items.length };
+        totalScore += c;
+      } else if (ex.type === 'sentence_completion') {
+        let c = 0;
+        for (const it of ex.items) {
+          const u = currentDraft.sentenceCompletion?.[String(it.no)] || '';
+          if (
+            normalizeSentenceCompletionAnswer(u) ===
+            normalizeSentenceCompletionAnswer(it.answer)
+          ) {
+            c++;
+          }
+        }
+        exerciseScores[ex.no] = { correct: c, total: ex.items.length };
+        totalScore += c;
+      } else if (ex.type === 'comprehension_questions') {
+        // Ex4: Không chấm tự động, không tính điểm
+        exerciseScores[ex.no] = { correct: 0, total: 0 };
+      } else if (ex.type === 'matching') {
+        let c = 0;
+        for (const inf of ex.information) {
+          const k = String(inf.no);
+          const u = currentDraft.matching?.[k] || '';
+          const exp = ex.answers[k] || '';
+          if (u.toUpperCase() === exp.toUpperCase()) c++;
+        }
+        exerciseScores[ex.no] = { correct: c, total: ex.information.length };
+        totalScore += c;
+      } else if (ex.type === 'word_box_gap_fill') {
+        let c = 0;
+        const keys = Object.keys(ex.answers);
+        for (const k of keys) {
+          const u = (currentDraft.wordBox?.[k] || '').trim().toLowerCase();
+          const exp = (ex.answers[k] || '').trim().toLowerCase();
+          if (u && u === exp) c++;
+        }
+        exerciseScores[ex.no] = { correct: c, total: keys.length };
+        totalScore += c;
+      }
+    }
+
+    return {
+      score: totalScore,
+      maxScore: totalMax,
+      byBlank: {},
+      exerciseScores,
     };
+  }, [currentPassage, currentDraft]);
 
-    playNext();
-  };
+  // Submit handler
+  const handleSubmitPassage = () => {
+    if (!currentPassage || !currentUnitObj || !evaluation) return;
+    setIsSubmitted(true);
 
-  const handleStopPassage = () => {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
+    const score = evaluation.score;
+    const maxScore = evaluation.maxScore;
+    const pct = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+
+    if (pct >= 70 && typeof window !== 'undefined') {
+      try {
+        confetti({ particleCount: 55, spread: 60, origin: { y: 0.6 } });
+      } catch {
+        // ignore confetti error in headless env
+      }
     }
-    setIsPlayingPassage(false);
-    setCurrentPassageIdx(-1);
+
+    setReadingStore((prev) => {
+      const existing = prev.completed[currentPassage.id];
+      const nextRecord: PassageCompletionRecord = {
+        passageId: currentPassage.id,
+        unitNumber: currentUnitObj.unit,
+        bestScore: existing ? Math.max(existing.bestScore, score) : score,
+        lastScore: score,
+        maxScore,
+        attemptsCount: (existing?.attemptsCount || 0) + 1,
+        exerciseBreakdown: evaluation.exerciseScores,
+        updatedAt: new Date().toISOString(),
+      };
+      const nextStore: StudentReadingProgressStore = {
+        ...prev,
+        completed: {
+          ...prev.completed,
+          [currentPassage.id]: nextRecord,
+        },
+      };
+      saveStudentReadingStore(currentStudentId, nextStore);
+      return nextStore;
+    });
+
+    const elapsedSec = Math.max(
+      15,
+      Math.round((Date.now() - sessionStartTime) / 1000)
+    );
+    onSessionCompleted?.({
+      id: `reading-${currentPassage.id}-${Date.now()}`,
+      unitId: `unit-${currentUnitObj.unit}`,
+      unitTitle: `Unit ${currentUnitObj.unit}: ${currentUnitObj.title} (${currentPassage.title})`,
+      skill: 'Reading',
+      score: pct,
+      totalQuestions: maxScore,
+      correctAnswers: score,
+      timeSpentSeconds: elapsedSec,
+      date: new Date().toISOString(),
+      xpEarned: score * 5,
+    });
   };
 
-  const handleAnswerVocab = (vocabId: string, option: string, correct: string) => {
-    if (vocabAnswers[vocabId]) return;
+  // Retry handler: clears current draft answers, keeps bestScore in completed history
+  const handleRetryPassage = () => {
+    if (!selectedPassageId) return;
+    setIsSubmitted(false);
+    setSessionStartTime(Date.now());
+    setReadingStore((prev) => {
+      const nextDrafts = { ...prev.drafts };
+      delete nextDrafts[selectedPassageId];
+      const nextStore: StudentReadingProgressStore = {
+        ...prev,
+        drafts: nextDrafts,
+      };
+      saveStudentReadingStore(currentStudentId, nextStore);
+      return nextStore;
+    });
+  };
 
-    setVocabAnswers((prev) => ({ ...prev, [vocabId]: option }));
-
-    if (option === correct) {
-      setScore((s) => s + 10);
-      setVocabScored((prev) => ({ ...prev, [vocabId]: true }));
-      speakText('Correct!');
-    } else {
-      setVocabScored((prev) => ({ ...prev, [vocabId]: false }));
-      speakText('Not quite right.');
+  // All passages containing review_notes across 12 units (for teacher modal)
+  const allReviewNotesList = useMemo(() => {
+    const list: Array<{ unit: number; unitTitle: string; passageId: string; title: string; notes: string[] }> = [];
+    for (const u of datasetUnits) {
+      for (const p of u.passages) {
+        if (p.review_notes && p.review_notes.length > 0) {
+          list.push({
+            unit: u.unit,
+            unitTitle: u.title,
+            passageId: p.id,
+            title: p.title,
+            notes: p.review_notes,
+          });
+        }
+      }
     }
+    return list;
+  }, [datasetUnits]);
+
+  // Render inline text with {{n}} markers replaced by interactive blanks
+  const renderTextWithBlanks = (
+    rawText: string,
+    renderBlank: (blankNo: string) => React.ReactNode
+  ) => {
+    const paragraphs = rawText.split('\n');
+    return (
+      <div className="space-y-3 text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+        {paragraphs.map((para, pIdx) => {
+          const parts = para.split(/(\{\{\d+\}\})/g);
+          return (
+            <p key={pIdx} className="leading-8">
+              {parts.map((part, idx) => {
+                const m = /^\{\{(\d+)\}\}$/.exec(part);
+                if (!m) return <React.Fragment key={idx}>{part}</React.Fragment>;
+                return (
+                  <React.Fragment key={idx}>{renderBlank(m[1])}</React.Fragment>
+                );
+              })}
+            </p>
+          );
+        })}
+      </div>
+    );
   };
 
-  const handleAnswerReading = (q: UnitReadingQuestion, option: string) => {
-    if (readingAnswers[q.id]) return;
+  // ============================================================================
+  // VIEW 1: CHỌN UNIT 1–12 (BOOK 1: UNIT 1–6, BOOK 2: UNIT 7–12)
+  // ============================================================================
+  if (!selectedUnitNo || !currentUnitObj) {
+    const filteredUnits = datasetUnits.filter(
+      (u) => selectedBookFilter === 'all' || u.book === selectedBookFilter
+    );
 
-    setReadingAnswers((prev) => ({ ...prev, [q.id]: option }));
+    const totalCompletedPassages = Object.keys(readingStore.completed).length;
 
-    if (option === q.correct) {
-      setScore((s) => s + 10);
-      setReadingScored((prev) => ({ ...prev, [q.id]: true }));
-      speakText('Correct answer!');
-    } else {
-      setReadingScored((prev) => ({ ...prev, [q.id]: false }));
-      speakText('Try again!');
-    }
-  };
-
-  const handleSubmitShortAnswer = (q: UnitReadingQuestion) => {
-    const userInput = (shortInputs[q.id] || '').trim();
-    if (!userInput || readingAnswers[q.id]) return;
-
-    setReadingAnswers((prev) => ({ ...prev, [q.id]: userInput }));
-
-    const normUser = userInput.toLowerCase();
-    const normCorrect = q.correct.toLowerCase();
-    const acceptable = (q.acceptableAnswers || []).map((a) => a.toLowerCase());
-
-    const isMatch =
-      normUser === normCorrect ||
-      acceptable.includes(normUser) ||
-      normUser.includes(normCorrect) ||
-      acceptable.some((acc) => normUser.includes(acc));
-
-    if (isMatch) {
-      setScore((s) => s + 10);
-      setReadingScored((prev) => ({ ...prev, [q.id]: true }));
-      speakText('Great answer!');
-    } else {
-      setReadingScored((prev) => ({ ...prev, [q.id]: false }));
-      speakText('Keep learning!');
-    }
-  };
-
-  const handleFinishGame = () => {
-    setActiveSubTab('result');
-    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
-    if (onSessionCompleted) {
-      const correctCount =
-        Object.values(vocabScored).filter(Boolean).length +
-        Object.values(readingScored).filter(Boolean).length;
-      const totalQ = currentUnitData.vocabList.length + currentUnitData.questions.length;
-      const pct = Math.round((correctCount / totalQ) * 100);
-
-      onSessionCompleted({
-        id: `reading-game-${Date.now()}`,
-        unitId: currentUnitData.unitId,
-        unitTitle: `Reading: ${currentUnitData.title}`,
-        skill: 'Reading',
-        score: pct,
-        totalQuestions: totalQ,
-        correctAnswers: correctCount,
-        timeSpentSeconds: 300,
-        date: new Date().toISOString(),
-        xpEarned: score,
-      });
-    }
-  };
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Top Banner & Unit Selector (Unified Reading Color & BookOpen Icon) */}
-      <div className="skill-banner-reading p-6 text-white flex flex-col md:flex-row items-center justify-between gap-4">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 text-white text-xs font-extrabold mb-2">
-            <BookOpen className="w-4 h-4 text-white" />
-            <span>Đọc Hiểu Văn Bản • 12 Bài Đọc SGK + True/False</span>
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Header Banner */}
+        <div className="skill-banner-reading rounded-3xl p-5 sm:p-6 text-white shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="space-y-1.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-extrabold">
+              <BookOpen className="w-4 h-4" />
+              <span>Kỹ Năng Đọc Hiểu (D. READING • Global Success 6)</span>
+            </div>
+            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight">
+              Ngân Hàng Luyện Đọc Hiểu 12 Unit (108 Bài Đọc Chuẩn SGK)
+            </h1>
+            <p className="text-xs sm:text-sm text-white/95 font-medium">
+              Mỗi Unit gồm 9 bài: 3 bài Gapped Text • 3 bài Guided Cloze • 3 bài Reading Comprehension (6 dạng bài tập/bài)
+            </p>
           </div>
-          <h2 className="text-2xl font-extrabold text-white tracking-tight">
-            {currentUnitData.topicTitle}
-          </h2>
-          <p className="text-xs sm:text-sm text-white/95 font-medium mt-1">
-            Đọc bài văn chuẩn SGK, luyện nghe AI, trắc nghiệm MCQs, True/False & tự điền câu trả lời ngắn
-          </p>
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <div className="px-4 py-2.5 rounded-2xl bg-white/15 border border-white/25 text-center">
+              <span className="block text-[10px] font-extrabold uppercase text-white/80">
+                Tiến độ toàn khoá
+              </span>
+              <span className="text-base sm:text-lg font-extrabold text-white">
+                {totalCompletedPassages} / 108 bài
+              </span>
+            </div>
+
+            {isTeacherLoggedIn && (
+              <button
+                type="button"
+                onClick={() => setShowAllTeacherNotesModal(true)}
+                className="px-3.5 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs inline-flex items-center gap-1.5 shadow-xs cursor-pointer"
+              >
+                <ShieldAlert className="w-4 h-4" />
+                <span>Ghi chú Giáo viên ({allReviewNotesList.length})</span>
+              </button>
+            )}
+          </div>
         </div>
 
-        <div className="flex items-center gap-3 self-start md:self-auto flex-wrap">
-          {/* Select Unit 1 to 12 Dropdown */}
-          <div className="flex items-center gap-2 neu-card-blue p-2 border border-sky-300">
-            <span className="text-xs font-extrabold text-sky-800">Chọn Bài:</span>
-            <select
-              value={selectedUnitIdx}
-              onChange={(e) => {
-                setSelectedUnitIdx(Number(e.target.value));
-                setScore(0);
-                setVocabAnswers({});
-                setVocabScored({});
-                setReadingAnswers({});
-                setReadingScored({});
-                setShortInputs({});
-                setActiveSubTab('passage');
-              }}
-              className="bg-sky-50 text-sky-900 font-extrabold text-xs px-3 py-1.5 rounded-lg border border-sky-300 focus:outline-none"
+        {/* Bộ lọc Sách Tập 1 (Book 1) / Tập 2 (Book 2) */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setSelectedBookFilter('all')}
+              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                selectedBookFilter === 'all'
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-amber-50'
+              }`}
             >
-              {UNIT_READINGS.map((u, idx) => (
-                <option key={u.unitId} value={idx}>
-                  Unit {u.unitNumber}: {u.title}
+              Tất cả 12 Unit (108 bài)
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedBookFilter(1)}
+              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                selectedBookFilter === 1
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-amber-50'
+              }`}
+            >
+              📘 Book 1 – Tập 1 (Unit 1–6)
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedBookFilter(2)}
+              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                selectedBookFilter === 2
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : 'bg-white text-slate-700 border border-slate-200 hover:bg-amber-50'
+              }`}
+            >
+              📙 Book 2 – Tập 2 (Unit 7–12)
+            </button>
+          </div>
+        </div>
+
+        {/* Lưới 12 Unit */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredUnits.map((u) => {
+            const completedInUnit = u.passages.filter(
+              (p) => Boolean(readingStore.completed[p.id])
+            ).length;
+            const totalBestPoints = u.passages.reduce(
+              (sum, p) => sum + (readingStore.completed[p.id]?.bestScore || 0),
+              0
+            );
+            const totalMaxPoints = u.passages.reduce(
+              (sum, p) => sum + getPassageMaxScore(p),
+              0
+            ); // 3*4 + 3*6 + 3*25 = 105
+            const progressPct = Math.round((completedInUnit / u.passages.length) * 100);
+
+            return (
+              <button
+                key={u.unit}
+                type="button"
+                onClick={() => {
+                  setSelectedUnitNo(u.unit);
+                  setSelectedPassageId(null);
+                  setIsSubmitted(false);
+                }}
+                className="neu-card bg-white p-5 rounded-3xl border-2 border-slate-200 hover:border-amber-400 text-left transition-all flex flex-col justify-between gap-4 group cursor-pointer"
+              >
+                <div className="space-y-2 w-full">
+                  <div className="flex items-center justify-between gap-2">
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold border ${
+                        u.book === 1
+                          ? 'bg-sky-50 text-sky-900 border-sky-200'
+                          : 'bg-purple-50 text-purple-900 border-purple-200'
+                      }`}
+                    >
+                      Book {u.book} (Tập {u.book})
+                    </span>
+                    <span className="text-xs font-extrabold text-amber-800">
+                      Đã làm {completedInUnit}/9 bài
+                    </span>
+                  </div>
+
+                  <h2 className="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-amber-700 transition-colors">
+                    Unit {u.unit} – {u.title}
+                  </h2>
+
+                  <div className="flex flex-wrap gap-1.5 text-[11px] font-bold text-slate-600">
+                    <span className="px-2 py-0.5 rounded-lg bg-slate-100">3 Gapped Text</span>
+                    <span className="px-2 py-0.5 rounded-lg bg-slate-100">3 Guided Cloze</span>
+                    <span className="px-2 py-0.5 rounded-lg bg-slate-100">3 Comprehension</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2 w-full pt-2 border-t border-slate-100">
+                  <div className="flex items-center justify-between text-xs font-bold">
+                    <span className="text-slate-600">
+                      Điểm cao nhất: <strong className="text-slate-900">{totalBestPoints}/{totalMaxPoints}</strong>
+                    </span>
+                    <span className="text-amber-700 font-extrabold">Vào học →</span>
+                  </div>
+                  <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                    <div
+                      className="h-full bg-amber-500 rounded-full transition-all"
+                      style={{ width: `${progressPct}%` }}
+                    />
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Modal tổng hợp review_notes dành riêng cho Giáo viên */}
+        {isTeacherLoggedIn && showAllTeacherNotesModal && (
+          <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+            <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+              <div className="p-5 bg-amber-50 border-b border-amber-200 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <ShieldAlert className="w-5 h-5 text-amber-800 shrink-0" />
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900">
+                      Ghi Chú Thẩm Định Đề & Đáp Án Cho Giáo Viên (review_notes)
+                    </h3>
+                    <p className="text-xs text-amber-900">
+                      Chỉ hiển thị cho tài khoản Giáo viên / Quản trị viên (Ẩn hoàn toàn với học sinh)
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowAllTeacherNotesModal(false)}
+                  className="px-3 py-1.5 rounded-xl bg-white border border-amber-300 text-xs font-extrabold text-slate-700 cursor-pointer"
+                >
+                  Đóng
+                </button>
+              </div>
+              <div className="p-5 overflow-y-auto space-y-3 text-xs">
+                {allReviewNotesList.map((item) => (
+                  <div
+                    key={item.passageId}
+                    className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-extrabold text-indigo-900">
+                        Unit {item.unit} ({item.unitTitle}) • [{item.passageId}] {item.title}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowAllTeacherNotesModal(false);
+                          setSelectedUnitNo(item.unit);
+                          setSelectedPassageId(item.passageId);
+                          setIsSubmitted(false);
+                        }}
+                        className="text-indigo-700 font-extrabold hover:underline cursor-pointer"
+                      >
+                        Mở bài này →
+                      </button>
+                    </div>
+                    {item.notes.map((n, i) => (
+                      <p key={i} className="text-slate-700 leading-relaxed">
+                        • {n}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // ============================================================================
+  // VIEW 2: DANH SÁCH 9 BÀI ĐỌC TRONG 1 UNIT (NHÓM THEO 3 LOẠI)
+  // ============================================================================
+  if (!selectedPassageId || !currentPassage) {
+    const groups: Array<{
+      type: ReadingPassageItem['type'];
+      items: ReadingPassageItem[];
+    }> = [
+      {
+        type: 'gapped_text',
+        items: currentUnitObj.passages.filter((p) => p.type === 'gapped_text'),
+      },
+      {
+        type: 'guided_cloze',
+        items: currentUnitObj.passages.filter((p) => p.type === 'guided_cloze'),
+      },
+      {
+        type: 'reading_comprehension',
+        items: currentUnitObj.passages.filter((p) => p.type === 'reading_comprehension'),
+      },
+    ];
+
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Top Navigation */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 sm:p-5 rounded-3xl border border-slate-200 shadow-2xs">
+          <div className="space-y-1">
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedUnitNo(null);
+                setSelectedPassageId(null);
+              }}
+              className="inline-flex items-center gap-1.5 text-xs font-extrabold text-indigo-700 hover:underline cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span>Quay lại danh sách 12 Unit</span>
+            </button>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold">
+                Book {currentUnitObj.book} (Tập {currentUnitObj.book})
+              </span>
+              <h1 className="text-lg sm:text-2xl font-extrabold text-slate-900">
+                Unit {currentUnitObj.unit} – {currentUnitObj.title}
+              </h1>
+            </div>
+          </div>
+
+          {/* Chuyển nhanh Unit */}
+          <div className="flex items-center gap-2">
+            <select
+              value={currentUnitObj.unit}
+              onChange={(e) => {
+                setSelectedUnitNo(Number(e.target.value));
+                setSelectedPassageId(null);
+                setIsSubmitted(false);
+              }}
+              aria-label="Chọn nhanh Unit"
+              className="px-3 py-2 rounded-xl bg-slate-50 border border-slate-300 text-xs font-extrabold text-slate-900 cursor-pointer"
+            >
+              {datasetUnits.map((u) => (
+                <option key={u.unit} value={u.unit}>
+                  Unit {u.unit} – {u.title} (Book {u.book})
                 </option>
               ))}
             </select>
           </div>
+        </div>
 
-          <div className="px-4 py-2 rounded-2xl neu-card-yellow border-2 border-amber-300 text-center">
-            <span className="text-[10px] uppercase font-extrabold text-amber-700 block">Tổng Điểm ⚡</span>
-            <span className="text-xl font-extrabold text-amber-800">{score} XP</span>
-          </div>
+        {/* 3 Nhóm Bài Tập (Gapped Text 1-3, Guided Cloze 1-3, Reading Comprehension 1-3) */}
+        <div className="space-y-6">
+          {groups.map((grp) => {
+            const meta = PASSAGE_TYPE_LABELS[grp.type];
+            return (
+              <section
+                key={grp.type}
+                className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                  <div>
+                    <h2 className="text-base sm:text-lg font-extrabold text-slate-900">
+                      {meta.title}
+                    </h2>
+                    <p className="text-xs text-slate-600 font-medium mt-0.5">
+                      {meta.subtitle}
+                    </p>
+                  </div>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-extrabold border self-start sm:self-center whitespace-nowrap ${meta.badgeClass}`}
+                  >
+                    {meta.maxPointsLabel}
+                  </span>
+                </div>
 
-          {onBackToPractice && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {grp.items.map((passage, idx) => {
+                    const comp = readingStore.completed[passage.id];
+                    const hasDraft = hasAnyDraftInput(passage.id);
+                    const maxPts = getPassageMaxScore(passage);
+                    const typePrefix =
+                      grp.type === 'gapped_text'
+                        ? `Gapped Text ${idx + 1}`
+                        : grp.type === 'guided_cloze'
+                        ? `Guided Cloze ${idx + 1}`
+                        : `Reading Comprehension ${idx + 1}`;
+
+                    return (
+                      <button
+                        key={passage.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedPassageId(passage.id);
+                          setActiveBlankFocus(null);
+                          setActiveRcExNo(1);
+                          setIsSubmitted(false);
+                          setSessionStartTime(Date.now());
+                        }}
+                        className="p-4 rounded-2xl bg-slate-50 hover:bg-indigo-50/50 border-2 border-slate-200 hover:border-indigo-400 text-left transition-all flex flex-col justify-between gap-3 cursor-pointer group"
+                      >
+                        <div className="space-y-1.5">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-800">
+                              {typePrefix}
+                            </span>
+                            {comp ? (
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 text-[11px] font-extrabold">
+                                <CheckCircle2 className="w-3 h-3" />
+                                <span>
+                                  Đã làm • {comp.bestScore}/{comp.maxScore} điểm
+                                </span>
+                              </span>
+                            ) : hasDraft ? (
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-extrabold">
+                                <span>Đang làm dở</span>
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-bold">
+                                <span>Chưa làm</span>
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 className="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-indigo-800">
+                            {passage.title}
+                          </h3>
+
+                          {isTeacherLoggedIn &&
+                            passage.review_notes &&
+                            passage.review_notes.length > 0 && (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-100 border border-amber-300 text-amber-950 text-[10px] font-extrabold">
+                                <ShieldAlert className="w-3 h-3" />
+                                <span>Có ghi chú GV (review_notes)</span>
+                              </span>
+                            )}
+                        </div>
+
+                        <div className="flex items-center justify-between pt-2 border-t border-slate-200/70 text-xs font-extrabold text-indigo-700">
+                          <span>Thang điểm: {maxPts} câu</span>
+                          <span>Làm bài →</span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // ============================================================================
+  // VIEW 3: MÀN HÌNH LÀM BÀI ĐỌC (GAPPED TEXT / GUIDED CLOZE / READING COMPREHENSION)
+  // ============================================================================
+  const savedCompletion = readingStore.completed[currentPassage.id];
+  const currentUnitPassages = currentUnitObj.passages;
+  const currentPassageIndex = currentUnitPassages.findIndex(
+    (p) => p.id === currentPassage.id
+  );
+  const prevPassage =
+    currentPassageIndex > 0 ? currentUnitPassages[currentPassageIndex - 1] : null;
+  const nextPassage =
+    currentPassageIndex >= 0 && currentPassageIndex < currentUnitPassages.length - 1
+      ? currentUnitPassages[currentPassageIndex + 1]
+      : null;
+
+  return (
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-5 space-y-5">
+      {/* Thanh điều hướng bài đọc */}
+      <div className="bg-white rounded-3xl p-4 sm:p-5 border border-slate-200 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2 flex-wrap">
             <button
-              onClick={onBackToPractice}
-              className="px-4 py-2.5 rounded-2xl neu-btn text-slate-700 font-extrabold text-xs transition-all cursor-pointer hover:scale-105"
+              type="button"
+              onClick={() => {
+                setSelectedPassageId(null);
+                setIsSubmitted(false);
+              }}
+              className="inline-flex items-center gap-1 text-xs font-extrabold text-indigo-700 hover:underline cursor-pointer"
             >
-              Quay Lại Kho Bài Tập ↩️
+              <ChevronLeft className="w-4 h-4" />
+              <span>Unit {currentUnitObj.unit} – {currentUnitObj.title} (9 bài)</span>
+            </button>
+            <span className="text-slate-300">•</span>
+            <span className="text-xs font-bold text-slate-600">
+              Bài {currentPassageIndex + 1}/9
+            </span>
+          </div>
+          <h1 className="text-lg sm:text-xl font-extrabold text-slate-900">
+            {currentPassage.title}
+          </h1>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2 shrink-0">
+          {savedCompletion && (
+            <span className="px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-extrabold">
+              🏆 Điểm cao nhất: {savedCompletion.bestScore}/{savedCompletion.maxScore}
+            </span>
+          )}
+
+          {!isSubmitted ? (
+            <button
+              type="button"
+              onClick={handleSubmitPassage}
+              className="px-5 py-2.5 rounded-2xl bg-indigo-700 hover:bg-indigo-800 text-white font-extrabold text-xs sm:text-sm inline-flex items-center gap-1.5 shadow-sm cursor-pointer"
+            >
+              <CheckCircle2 className="w-4 h-4" />
+              <span>Nộp bài</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleRetryPassage}
+              className="px-4 py-2.5 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-xs sm:text-sm inline-flex items-center gap-1.5 shadow-sm cursor-pointer"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Làm lại</span>
             </button>
           )}
         </div>
       </div>
 
-      {/* Sub Tabs Neumorphic */}
-      <div className="flex items-center gap-2 neu-card p-2.5 overflow-x-auto border border-white/60">
-        <button
-          onClick={() => setActiveSubTab('passage')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
-            activeSubTab === 'passage'
-              ? 'neu-btn-primary text-white shadow-md'
-              : 'neu-btn text-slate-600 hover:text-blue-600'
-          }`}
-        >
-          📖 1. Bài Đọc & Audio AI
-        </button>
+      {/* Khung review_notes CHỈ HIỂN THỊ CHO GIÁO VIÊN / ADMIN */}
+      {isTeacherLoggedIn &&
+        currentPassage.review_notes &&
+        currentPassage.review_notes.length > 0 && (
+          <div className="p-4 rounded-2xl bg-amber-50 border-2 border-amber-300 space-y-1.5">
+            <div className="flex items-center gap-2 text-xs font-extrabold text-amber-950 uppercase">
+              <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0" />
+              <span>Ghi chú dành riêng cho Giáo viên (review_notes – Học sinh không nhìn thấy)</span>
+            </div>
+            {currentPassage.review_notes.map((note, idx) => (
+              <p key={idx} className="text-xs font-semibold text-amber-900 leading-relaxed">
+                • {note}
+              </p>
+            ))}
+          </div>
+        )}
 
-        <button
-          onClick={() => setActiveSubTab('vocab')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
-            activeSubTab === 'vocab'
-              ? 'neu-btn-primary text-white shadow-md'
-              : 'neu-btn text-slate-600 hover:text-blue-600'
-          }`}
-        >
-          🔤 2. Từ Vựng Trọng Tâm ({currentUnitData.vocabList.length} Từ)
-        </button>
+      {/* Khung Kết Quả Chấm Điểm sau khi bấm Nộp Bài */}
+      {isSubmitted && evaluation && (
+        <div className="bg-gradient-to-r from-indigo-950 via-indigo-900 to-slate-900 text-white rounded-3xl p-5 sm:p-6 shadow-md space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-14 h-14 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-black text-lg shrink-0">
+                {evaluation.score}/{evaluation.maxScore}
+              </div>
+              <div>
+                <span className="text-xs font-extrabold uppercase tracking-wider text-amber-300 block">
+                  Kết Quả Chấm Bài
+                </span>
+                <h2 className="text-lg sm:text-xl font-extrabold">
+                  Đúng {evaluation.score} / {evaluation.maxScore} câu tính điểm (
+                  {Math.round((evaluation.score / evaluation.maxScore) * 100)}%)
+                </h2>
+                {savedCompletion && (
+                  <p className="text-xs text-indigo-200 font-semibold mt-0.5">
+                    Lịch sử điểm cao nhất của bài này: {savedCompletion.bestScore}/
+                    {savedCompletion.maxScore} điểm ({savedCompletion.attemptsCount} lần làm)
+                  </p>
+                )}
+              </div>
+            </div>
 
-        <button
-          onClick={() => setActiveSubTab('quiz')}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
-            activeSubTab === 'quiz'
-              ? 'neu-btn-primary text-white shadow-md'
-              : 'neu-btn text-slate-600 hover:text-blue-600'
-          }`}
-        >
-          ❓ 3. Đọc Hiểu & True/False ({currentUnitData.questions.length} Câu)
-        </button>
-
-        <button
-          onClick={() => {
-            setActiveSubTab('result');
-            handleFinishGame();
-          }}
-          className={`flex-1 py-2.5 px-4 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap cursor-pointer ${
-            activeSubTab === 'result'
-              ? 'neu-btn-success text-white shadow-md'
-              : 'neu-btn text-slate-600 hover:text-emerald-600'
-          }`}
-        >
-          🏆 4. Báo Cáo Kết Quả
-        </button>
-      </div>
-
-      {/* SUB TAB 1: PASSAGE & AUDIO */}
-      {activeSubTab === 'passage' && (
-        <div className="bg-white rounded-2xl p-6 shadow-2xs border border-slate-200 space-y-5">
-          {/* Audio Toolbar */}
-          <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200 flex-wrap gap-3">
-            <div className="flex items-center gap-2">
-              {!isPlayingPassage ? (
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={handleRetryPassage}
+                className="px-4 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs inline-flex items-center gap-1.5 cursor-pointer"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span>Làm lại bài này</span>
+              </button>
+              {nextPassage && (
                 <button
-                  onClick={handlePlayPassage}
-                  className="px-4 py-2 rounded-xl bg-[#4A90E2] hover:bg-blue-600 text-white font-bold text-xs shadow-2xs flex items-center gap-2 transition-all cursor-pointer"
+                  type="button"
+                  onClick={() => {
+                    setSelectedPassageId(nextPassage.id);
+                    setActiveBlankFocus(null);
+                    setActiveRcExNo(1);
+                    setIsSubmitted(false);
+                    setSessionStartTime(Date.now());
+                  }}
+                  className="px-4 py-2.5 rounded-2xl bg-white/15 hover:bg-white/25 text-white border border-white/30 font-extrabold text-xs inline-flex items-center gap-1 cursor-pointer"
                 >
-                  <Play className="w-4 h-4" /> Nghe Đọc Toàn Bài AI
-                </button>
-              ) : (
-                <button
-                  onClick={handleStopPassage}
-                  className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-2xs flex items-center gap-2 transition-all cursor-pointer"
-                >
-                  <Square className="w-4 h-4" /> Dừng Đọc
+                  <span>Bài tiếp theo</span>
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               )}
             </div>
+          </div>
 
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-              <span>Tốc độ đọc:</span>
-              {[0.6, 0.8, 1.0].map((rate) => (
-                <button
-                  key={rate}
-                  onClick={() => setSpeechRate(rate)}
-                  className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
-                    speechRate === rate
-                      ? 'bg-blue-100 border-blue-400 text-blue-800'
-                      : 'bg-white border-slate-200 text-slate-600'
-                  }`}
-                >
-                  {rate}x
-                </button>
+          {/* Điểm riêng từng dạng bài tập (với Reading Comprehension) */}
+          {currentPassage.type === 'reading_comprehension' && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2 border-t border-white/15 text-xs">
+              {currentPassage.exercises.map((ex) => {
+                const st = evaluation.exerciseScores[ex.no];
+                const isSelfCheck = ex.type === 'comprehension_questions';
+                return (
+                  <div
+                    key={ex.no}
+                    className="p-2.5 rounded-xl bg-white/10 border border-white/15 space-y-0.5"
+                  >
+                    <span className="text-[10px] font-bold text-indigo-200 block">
+                      Bài {ex.no} ({ex.type === 'multiple_choice'
+                        ? 'Trắc nghiệm'
+                        : ex.type === 'true_false_not_given'
+                        ? 'T/F/NG'
+                        : ex.type === 'sentence_completion'
+                        ? 'Điền câu'
+                        : ex.type === 'comprehension_questions'
+                        ? 'Tự luận'
+                        : ex.type === 'matching'
+                        ? 'Nối A–E'
+                        : 'Hộp từ'})
+                    </span>
+                    <span className="font-extrabold text-white block">
+                      {isSelfCheck
+                        ? 'Đối chiếu mẫu'
+                        : `${st?.correct || 0} / ${st?.total || 5} điểm`}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ========================================================================
+          LOẠI 1: GAPPED TEXT (4 chỗ trống, 4 phương án A-D dùng đúng 1 lần)
+         ======================================================================== */}
+      {currentPassage.type === 'gapped_text' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          {/* Đoạn văn có {{1}}..{{4}} */}
+          <div className="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4">
+            <div className="p-3.5 rounded-2xl bg-indigo-50 border border-indigo-200 text-xs font-bold text-indigo-950">
+              📋 <strong>Yêu cầu:</strong> {currentPassage.instruction}
+            </div>
+
+            {renderTextWithBlanks(currentPassage.text, (blankNo) => {
+              const userChoice = currentDraft.blankAnswers?.[blankNo] || '';
+              const expectedChoice = currentPassage.answers[blankNo];
+              const isCorrect =
+                isSubmitted && userChoice.toUpperCase() === expectedChoice.toUpperCase();
+              const isWrong = isSubmitted && !isCorrect;
+              const isFocused = activeBlankFocus === blankNo;
+
+              return (
+                <span className="inline-flex items-center gap-1 mx-1 align-baseline">
+                  <select
+                    aria-label={`Chỗ trống (${blankNo})`}
+                    value={userChoice}
+                    disabled={isSubmitted}
+                    onFocus={() => setActiveBlankFocus(blankNo)}
+                    onChange={(e) => {
+                      const chosenOpt = e.target.value;
+                      setActiveBlankFocus(blankNo);
+                      updateDraft((prev) => {
+                        const nextBlanks = { ...(prev.blankAnswers || {}) };
+                        // Đảm bảo mỗi phương án A-D chỉ dùng 1 lần: nếu ô khác đang giữ chosenOpt thì giải phóng ô đó
+                        if (chosenOpt) {
+                          for (const [k, v] of Object.entries(nextBlanks)) {
+                            if (k !== blankNo && v === chosenOpt) {
+                              delete nextBlanks[k];
+                            }
+                          }
+                          nextBlanks[blankNo] = chosenOpt;
+                        } else {
+                          delete nextBlanks[blankNo];
+                        }
+                        return { ...prev, blankAnswers: nextBlanks };
+                      });
+                    }}
+                    className={`px-2.5 py-1 rounded-xl font-extrabold text-xs sm:text-sm border-2 transition-all cursor-pointer ${
+                      isCorrect
+                        ? 'bg-emerald-50 border-emerald-500 text-emerald-900'
+                        : isWrong
+                        ? 'bg-rose-50 border-rose-500 text-rose-900'
+                        : isFocused
+                        ? 'bg-indigo-50 border-indigo-600 text-indigo-950 ring-2 ring-indigo-300'
+                        : userChoice
+                        ? 'bg-indigo-50 border-indigo-400 text-indigo-900'
+                        : 'bg-amber-50 border-amber-400 text-slate-800'
+                    }`}
+                  >
+                    <option value="">({blankNo}) Chọn A–D...</option>
+                    {Object.entries(currentPassage.options).map(([optKey, optText]) => {
+                      const usedByBlank = Object.entries(
+                        currentDraft.blankAnswers || {}
+                      ).find(([bNo, val]) => bNo !== blankNo && val === optKey)?.[0];
+                      return (
+                        <option key={optKey} value={optKey}>
+                          ({blankNo}) {optKey}. {optText}
+                          {usedByBlank ? ` [Đã dùng ở (${usedByBlank})]` : ''}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  {isSubmitted && (
+                    <span
+                      className={`text-xs font-extrabold px-2 py-0.5 rounded-lg ${
+                        isCorrect
+                          ? 'bg-emerald-100 text-emerald-900'
+                          : 'bg-rose-100 text-rose-900'
+                      }`}
+                    >
+                      {isCorrect ? `✓ Đúng (${expectedChoice})` : `✗ Đáp án: ${expectedChoice}`}
+                    </span>
+                  )}
+                </span>
+              );
+            })}
+          </div>
+
+          {/* Cột phải: Bảng 4 phương án A-D & chọn nhanh trên điện thoại */}
+          <div className="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="text-sm sm:text-base font-extrabold text-slate-900">
+                Các phương án A – D (Mỗi phương án dùng 1 lần)
+              </h3>
+              <span className="text-[11px] font-bold text-indigo-700">
+                Đang chọn ô: ({activeBlankFocus || '1'})
+              </span>
+            </div>
+
+            {/* Chọn ô trống 1..4 để gán nhanh bằng 1 chạm */}
+            <div className="grid grid-cols-4 gap-2">
+              {Object.keys(currentPassage.answers).map((bNo) => {
+                const currentVal = currentDraft.blankAnswers?.[bNo] || '';
+                const expVal = currentPassage.answers[bNo];
+                const isCorr = isSubmitted && currentVal === expVal;
+                const isWrg = isSubmitted && !isCorr;
+                const active = (activeBlankFocus || '1') === bNo;
+                return (
+                  <button
+                    key={bNo}
+                    type="button"
+                    onClick={() => setActiveBlankFocus(bNo)}
+                    className={`py-2 px-2 rounded-xl text-xs font-extrabold border-2 transition-all cursor-pointer ${
+                      isCorr
+                        ? 'bg-emerald-50 border-emerald-500 text-emerald-900'
+                        : isWrg
+                        ? 'bg-rose-50 border-rose-500 text-rose-900'
+                        : active
+                        ? 'bg-indigo-700 border-indigo-700 text-white shadow-xs'
+                        : 'bg-slate-50 border-slate-200 text-slate-800'
+                    }`}
+                  >
+                    Ô ({bNo}): {currentVal || '?'}
+                    {isWrg && ` → ${expVal}`}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Danh sách 4 thẻ A, B, C, D */}
+            <div className="space-y-2.5">
+              {Object.entries(currentPassage.options).map(([optKey, optText]) => {
+                const usedInBlank = Object.entries(currentDraft.blankAnswers || {}).find(
+                  ([, val]) => val === optKey
+                )?.[0];
+                const targetBlank = activeBlankFocus || '1';
+
+                return (
+                  <button
+                    key={optKey}
+                    type="button"
+                    disabled={isSubmitted}
+                    onClick={() => {
+                      updateDraft((prev) => {
+                        const nextBlanks = { ...(prev.blankAnswers || {}) };
+                        // Nếu phương án này đang dùng ở chính targetBlank -> bỏ chọn
+                        if (nextBlanks[targetBlank] === optKey) {
+                          delete nextBlanks[targetBlank];
+                        } else {
+                          // Giải phóng nếu đang dùng ở ô khác
+                          for (const [k, v] of Object.entries(nextBlanks)) {
+                            if (v === optKey) delete nextBlanks[k];
+                          }
+                          nextBlanks[targetBlank] = optKey;
+                        }
+                        return { ...prev, blankAnswers: nextBlanks };
+                      });
+                    }}
+                    className={`w-full p-3.5 rounded-2xl border-2 text-left transition-all flex items-start justify-between gap-3 cursor-pointer ${
+                      usedInBlank
+                        ? 'bg-slate-100/80 border-slate-300 text-slate-500 opacity-75'
+                        : 'bg-white border-slate-200 hover:border-indigo-400 text-slate-900'
+                    }`}
+                  >
+                    <div className="flex items-start gap-2.5">
+                      <span className="w-7 h-7 rounded-xl bg-indigo-100 text-indigo-900 font-extrabold text-xs flex items-center justify-center shrink-0">
+                        {optKey}
+                      </span>
+                      <span className="text-xs sm:text-sm font-bold leading-relaxed">
+                        {optText}
+                      </span>
+                    </div>
+                    {usedInBlank && (
+                      <span className="px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-900 font-extrabold text-[11px] shrink-0">
+                        Đã dùng ở ({usedInBlank})
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================
+          LOẠI 2: GUIDED CLOZE (6 chỗ trống, mỗi chỗ 4 lựa chọn a-d)
+         ======================================================================== */}
+      {currentPassage.type === 'guided_cloze' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          {/* Đoạn văn có {{1}}..{{6}} */}
+          <div className="lg:col-span-7 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4">
+            <div className="p-3.5 rounded-2xl bg-teal-50 border border-teal-200 text-xs font-bold text-teal-950">
+              📋 <strong>Yêu cầu:</strong> {currentPassage.instruction}
+            </div>
+
+            {renderTextWithBlanks(currentPassage.text, (blankNo) => {
+              const blankObj = currentPassage.blanks.find(
+                (b) => String(b.no) === String(blankNo)
+              );
+              if (!blankObj) return <span>({blankNo})</span>;
+
+              const userChoice = currentDraft.blankAnswers?.[blankNo] || '';
+              const expectedChoice = blankObj.answer;
+              const isCorrect =
+                isSubmitted && userChoice.toLowerCase() === expectedChoice.toLowerCase();
+              const isWrong = isSubmitted && !isCorrect;
+
+              return (
+                <span className="inline-flex items-center gap-1 mx-1 align-baseline">
+                  <select
+                    aria-label={`Chỗ trống (${blankNo})`}
+                    value={userChoice}
+                    disabled={isSubmitted}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      updateDraft((prev) => ({
+                        ...prev,
+                        blankAnswers: {
+                          ...(prev.blankAnswers || {}),
+                          [blankNo]: val,
+                        },
+                      }));
+                    }}
+                    className={`px-2.5 py-1 rounded-xl font-extrabold text-xs sm:text-sm border-2 transition-all cursor-pointer ${
+                      isCorrect
+                        ? 'bg-emerald-50 border-emerald-500 text-emerald-900'
+                        : isWrong
+                        ? 'bg-rose-50 border-rose-500 text-rose-900'
+                        : userChoice
+                        ? 'bg-teal-50 border-teal-500 text-teal-950'
+                        : 'bg-amber-50 border-amber-400 text-slate-800'
+                    }`}
+                  >
+                    <option value="">({blankNo}) Chọn...</option>
+                    {Object.entries(blankObj.options).map(([k, text]) => (
+                      <option key={k} value={k}>
+                        ({blankNo}) {k}. {text}
+                      </option>
+                    ))}
+                  </select>
+
+                  {isSubmitted && (
+                    <span
+                      className={`text-xs font-extrabold px-2 py-0.5 rounded-lg ${
+                        isCorrect
+                          ? 'bg-emerald-100 text-emerald-900'
+                          : 'bg-rose-100 text-rose-900'
+                      }`}
+                    >
+                      {isCorrect
+                        ? `✓ ${expectedChoice}. ${blankObj.options[expectedChoice]}`
+                        : `✗ Đúng: ${expectedChoice}. ${blankObj.options[expectedChoice]}`}
+                    </span>
+                  )}
+                </span>
+              );
+            })}
+          </div>
+
+          {/* Cột phải: Bảng nút chọn nhanh 6 câu (a, b, c, d) */}
+          <div className="lg:col-span-5 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-3">
+            <h3 className="text-sm sm:text-base font-extrabold text-slate-900">
+              Bảng chọn nhanh đáp án (1 – 6)
+            </h3>
+            <div className="space-y-3">
+              {currentPassage.blanks.map((b) => {
+                const key = String(b.no);
+                const userChoice = currentDraft.blankAnswers?.[key] || '';
+                const isCorr =
+                  isSubmitted && userChoice.toLowerCase() === b.answer.toLowerCase();
+                const isWrg = isSubmitted && !isCorr;
+
+                return (
+                  <div
+                    key={b.no}
+                    className={`p-3 rounded-2xl border-2 space-y-2 ${
+                      isCorr
+                        ? 'bg-emerald-50/50 border-emerald-300'
+                        : isWrg
+                        ? 'bg-rose-50/50 border-rose-300'
+                        : 'bg-slate-50 border-slate-200'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-xs font-extrabold">
+                      <span className="text-slate-900">Chỗ trống ({b.no})</span>
+                      {isSubmitted && (
+                        <span className={isCorr ? 'text-emerald-800' : 'text-rose-800'}>
+                          {isCorr
+                            ? `✓ Đúng (${b.answer.toUpperCase()})`
+                            : `✗ Đáp án đúng: ${b.answer.toUpperCase()}. ${b.options[b.answer]}`}
+                        </span>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      {Object.entries(b.options).map(([optKey, optLabel]) => {
+                        const selected = userChoice.toLowerCase() === optKey.toLowerCase();
+                        const isExpected =
+                          isSubmitted && b.answer.toLowerCase() === optKey.toLowerCase();
+                        return (
+                          <button
+                            key={optKey}
+                            type="button"
+                            disabled={isSubmitted}
+                            onClick={() => {
+                              updateDraft((prev) => ({
+                                ...prev,
+                                blankAnswers: {
+                                  ...(prev.blankAnswers || {}),
+                                  [key]: optKey,
+                                },
+                              }));
+                            }}
+                            className={`px-3 py-2 rounded-xl text-xs font-bold text-left border transition-all cursor-pointer flex items-center gap-1.5 ${
+                              isSubmitted && isExpected
+                                ? 'bg-emerald-600 text-white border-emerald-600 font-extrabold'
+                                : isSubmitted && selected && !isExpected
+                                ? 'bg-rose-600 text-white border-rose-600'
+                                : selected
+                                ? 'bg-teal-700 text-white border-teal-700 font-extrabold'
+                                : 'bg-white text-slate-800 border-slate-200 hover:border-teal-400'
+                            }`}
+                          >
+                            <span className="uppercase font-extrabold">{optKey}.</span>
+                            <span className="truncate">{optLabel}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================================
+          LOẠI 3: READING COMPREHENSION (1 Bài đọc cố định + 6 Dạng bài tập)
+         ======================================================================== */}
+      {currentPassage.type === 'reading_comprehension' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+          {/* Cột trái (hoặc khung trên cố định trên điện thoại): Đoạn văn */}
+          <div className="lg:col-span-5 lg:sticky lg:top-24 bg-white rounded-3xl p-5 sm:p-6 border-2 border-amber-200 shadow-2xs space-y-3 max-h-[42vh] lg:max-h-[78vh] overflow-y-auto">
+            <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2.5">
+              <span className="inline-flex items-center gap-1.5 text-xs font-extrabold text-amber-900 uppercase">
+                <FileText className="w-4 h-4 text-amber-700" />
+                <span>Văn Bản Bài Đọc (Reading Passage)</span>
+              </span>
+              <span className="text-[11px] font-bold text-slate-500">Cuộn để đọc</span>
+            </div>
+            <div className="space-y-3 text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+              {currentPassage.text.split('\n').map((line, i) => (
+                <p key={i} className="leading-7">
+                  {line}
+                </p>
               ))}
             </div>
           </div>
 
-          {/* Passage Text Blocks */}
-          <div className="space-y-4">
-            {currentUnitData.passages.map((p, pIdx) => (
-              <div
-                key={p.id}
-                onClick={() => speakText(p.text)}
-                className={`p-5 rounded-2xl border transition-all cursor-pointer ${
-                  currentPassageIdx === pIdx
-                    ? 'bg-amber-50 border-amber-300 ring-2 ring-amber-300/30'
-                    : 'bg-slate-50/70 border-slate-200 hover:bg-blue-50/50'
+          {/* Cột phải: 6 Dạng bài tập theo từng Tab hoặc xem tất cả */}
+          <div className="lg:col-span-7 space-y-4">
+            {/* Thanh chọn Tab Bài 1..6 */}
+            <div className="bg-white rounded-2xl p-2 border border-slate-200 flex items-center gap-1.5 overflow-x-auto">
+              {currentPassage.exercises.map((ex) => {
+                const active = activeRcExNo === ex.no;
+                const sc = evaluation?.exerciseScores[ex.no];
+                return (
+                  <button
+                    key={ex.no}
+                    type="button"
+                    onClick={() => setActiveRcExNo(ex.no)}
+                    className={`px-3 py-2 rounded-xl text-xs font-extrabold whitespace-nowrap transition-all cursor-pointer ${
+                      active
+                        ? 'bg-indigo-700 text-white shadow-xs'
+                        : 'bg-slate-50 text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span>Bài {ex.no}</span>
+                    {isSubmitted && ex.type !== 'comprehension_questions' && sc && (
+                      <span className="ml-1.5 px-1.5 py-0.5 rounded bg-white/20 text-[10px]">
+                        {sc.correct}/{sc.total}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+              <button
+                type="button"
+                onClick={() => setActiveRcExNo('all')}
+                className={`px-3 py-2 rounded-xl text-xs font-extrabold whitespace-nowrap transition-all cursor-pointer ${
+                  activeRcExNo === 'all'
+                    ? 'bg-indigo-700 text-white shadow-xs'
+                    : 'bg-slate-50 text-slate-700 hover:bg-slate-100'
                 }`}
               >
-                {p.heading && (
-                  <h4 className="font-extrabold text-sm text-[#4A90E2] mb-1.5 uppercase tracking-wider">
-                    {p.heading}
-                  </h4>
-                )}
-                <p className="text-sm leading-relaxed text-slate-800 whitespace-pre-line font-medium">
-                  {p.text}
-                </p>
-                <span className="text-[10px] text-slate-400 font-semibold mt-2 inline-block">
-                  🔊 Nhấp vào đoạn để nghe AI đọc đoạn này
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+                Hiện tất cả (1–6)
+              </button>
+            </div>
 
-      {/* SUB TAB 2: VOCABULARY */}
-      {activeSubTab === 'vocab' && (
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {currentUnitData.vocabList.map((v) => {
-              const isAnswered = Boolean(vocabAnswers[v.id]);
+            {/* Danh sách các bài tập hiển thị */}
+            {currentPassage.exercises
+              .filter((ex) => activeRcExNo === 'all' || ex.no === activeRcExNo)
+              .map((ex) => {
+                const exScore = evaluation?.exerciseScores[ex.no];
 
-              return (
-                <div
-                  key={v.id}
-                  className="bg-white rounded-2xl p-4 shadow-2xs border border-slate-200 space-y-3"
-                >
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                    <div>
-                      <span className="text-lg font-bold text-[#4A90E2]">{v.word}</span>
-                      <span className="text-xs text-amber-600 italic block">{v.ipa}</span>
-                    </div>
-                    <button
-                      onClick={() => speakText(v.word)}
-                      className="p-2 rounded-xl bg-blue-50 text-[#4A90E2] hover:bg-blue-100 transition-all cursor-pointer"
-                    >
-                      <Volume2 className="w-4 h-4" />
-                    </button>
-                  </div>
-
-                  <p className="text-xs font-semibold text-slate-700">Nghĩa: {v.meaning}</p>
-                  <p className="text-[11px] text-slate-500 italic">"{v.example}"</p>
-
-                  {/* Options */}
-                  <div className="space-y-1.5 pt-2">
-                    <span className="text-[10px] font-bold text-slate-400 block uppercase">
-                      Chọn nghĩa đúng của từ:
-                    </span>
-                    {[v.meaning, ...v.dist].sort().map((opt, idx) => {
-                      const isSelected = vocabAnswers[v.id] === opt;
-                      return (
-                        <button
-                          key={idx}
-                          disabled={isAnswered}
-                          onClick={() => handleAnswerVocab(v.id, opt, v.meaning)}
-                          className={`w-full text-left text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all ${
-                            isAnswered
-                              ? opt === v.meaning
-                                ? 'bg-emerald-100 border-emerald-400 text-emerald-900'
-                                : isSelected
-                                ? 'bg-rose-100 border-rose-400 text-rose-900'
-                                : 'bg-slate-50 border-slate-200 text-slate-500'
-                              : 'bg-slate-50 hover:bg-blue-50 border-slate-200 text-slate-800'
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* SUB TAB 3: READING QUIZ (MCQ, True/False, Short Answer) */}
-      {activeSubTab === 'quiz' && (
-        <div className="space-y-4">
-          {currentUnitData.questions.map((q, qIdx) => {
-            const isAnswered = Boolean(readingAnswers[q.id]);
-            const isCorrect = readingScored[q.id];
-
-            return (
-              <div
-                key={q.id}
-                className="bg-white rounded-2xl p-5 shadow-2xs border border-slate-200 space-y-3"
-              >
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-xs font-bold text-[#4A90E2] flex items-center gap-1.5">
-                    {q.type === 'True/False' && <CheckSquare className="w-3.5 h-3.5 text-amber-500" />}
-                    {q.type === 'ShortAnswer' && <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />}
-                    {q.type === 'MCQ' && <HelpCircle className="w-3.5 h-3.5 text-blue-500" />}
-                    Câu {qIdx + 1}/{currentUnitData.questions.length} • Dạng bài: {q.type === 'True/False' ? 'Đúng hay Sai (True/False)' : q.type === 'ShortAnswer' ? 'Trả Lời Câu Hỏi (Short Answer)' : 'Trắc Nghiệm (MCQ)'}
-                  </span>
-                  <button
-                    onClick={() => speakText(q.question)}
-                    className="text-xs text-slate-500 hover:text-[#4A90E2] flex items-center gap-1 font-semibold cursor-pointer"
+                return (
+                  <div
+                    key={ex.no}
+                    className="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-2xs space-y-4"
                   >
-                    <Volume2 className="w-3.5 h-3.5" /> Nghe câu hỏi
-                  </button>
-                </div>
-
-                <p className="text-sm font-bold text-slate-900">{q.question}</p>
-
-                {/* DẠNG 1: MCQ (A, B, C, D) */}
-                {q.type === 'MCQ' && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    {(q.options || []).map((opt, optIdx) => {
-                      const isSelected = readingAnswers[q.id] === opt;
-                      return (
-                        <button
-                          key={optIdx}
-                          disabled={isAnswered}
-                          onClick={() => handleAnswerReading(q, opt)}
-                          className={`text-left text-xs font-semibold p-3 rounded-xl border transition-all ${
-                            isAnswered
-                              ? opt === q.correct
-                                ? 'bg-emerald-100 border-emerald-400 text-emerald-900'
-                                : isSelected
-                                ? 'bg-rose-100 border-rose-400 text-rose-900'
-                                : 'bg-slate-50 border-slate-200 text-slate-500'
-                              : 'bg-slate-50 hover:bg-blue-50 border-slate-200 text-slate-800'
-                          }`}
-                        >
-                          <span className="font-bold mr-1.5">{String.fromCharCode(65 + optIdx)}.</span>
-                          {opt}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {/* DẠNG 2: TRUE / FALSE */}
-                {q.type === 'True/False' && (
-                  <div className="flex items-center gap-3 max-w-md">
-                    {['True', 'False'].map((tfVal) => {
-                      const isSelected = readingAnswers[q.id] === tfVal;
-                      return (
-                        <button
-                          key={tfVal}
-                          disabled={isAnswered}
-                          onClick={() => handleAnswerReading(q, tfVal)}
-                          className={`flex-1 py-3 px-4 rounded-xl border text-xs font-extrabold transition-all cursor-pointer text-center ${
-                            isAnswered
-                              ? tfVal === q.correct
-                                ? 'bg-emerald-500 text-white border-emerald-600 shadow-sm'
-                                : isSelected
-                                ? 'bg-rose-500 text-white border-rose-600 shadow-sm'
-                                : 'bg-slate-100 border-slate-200 text-slate-400'
-                              : tfVal === 'True'
-                              ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border-emerald-200'
-                              : 'bg-rose-50 hover:bg-rose-100 text-rose-800 border-rose-200'
-                          }`}
-                        >
-                          {tfVal === 'True' ? '✅ TRUE (Đúng)' : '❌ FALSE (Sai)'}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {/* DẠNG 3: SHORT ANSWER (Tự điền câu trả lời) */}
-                {q.type === 'ShortAnswer' && (
-                  <div className="space-y-2">
-                    {!isAnswered ? (
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="text"
-                          value={shortInputs[q.id] || ''}
-                          onChange={(e) =>
-                            setShortInputs((prev) => ({ ...prev, [q.id]: e.target.value }))
-                          }
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter') handleSubmitShortAnswer(q);
-                          }}
-                          placeholder="Nhập câu trả lời bằng tiếng Anh..."
-                          className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold focus:outline-none focus:border-[#4A90E2]"
-                        />
-                        <button
-                          onClick={() => handleSubmitShortAnswer(q)}
-                          className="px-4 py-2.5 rounded-xl bg-[#4A90E2] hover:bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer shadow-2xs"
-                        >
-                          <Send className="w-3.5 h-3.5" /> Nộp Bài
-                        </button>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                      <div>
+                        <span className="text-xs font-extrabold text-indigo-700 uppercase block">
+                          {EXERCISE_TITLES_VI[ex.type]}
+                        </span>
+                        <p className="text-xs text-slate-600 font-semibold mt-0.5">
+                          {ex.instruction}
+                        </p>
                       </div>
-                    ) : (
-                      <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700">
-                        <span>Câu trả lời của bạn: </span>
-                        <span className="font-bold text-slate-900">"{readingAnswers[q.id]}"</span>
+                      {isSubmitted && (
+                        <span className="px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-950 text-xs font-extrabold self-start sm:self-center whitespace-nowrap">
+                          {ex.type === 'comprehension_questions'
+                            ? 'Tự đối chiếu Đáp án mẫu'
+                            : `Điểm phần này: ${exScore?.correct || 0} / ${exScore?.total || 5}`}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* 1. MULTIPLE CHOICE */}
+                    {ex.type === 'multiple_choice' && (
+                      <div className="space-y-4">
+                        {ex.items.map((item) => {
+                          const key = String(item.no);
+                          const userVal = currentDraft.mcq?.[key] || '';
+                          const isCorr =
+                            isSubmitted &&
+                            userVal.toLowerCase() === item.answer.toLowerCase();
+                          const isWrg = isSubmitted && !isCorr;
+
+                          return (
+                            <div
+                              key={item.no}
+                              className={`p-4 rounded-2xl border-2 space-y-2.5 ${
+                                isCorr
+                                  ? 'bg-emerald-50/50 border-emerald-300'
+                                  : isWrg
+                                  ? 'bg-rose-50/50 border-rose-300'
+                                  : 'bg-slate-50 border-slate-200'
+                              }`}
+                            >
+                              <p className="text-xs sm:text-sm font-extrabold text-slate-900">
+                                {item.no}. {item.question}
+                              </p>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {Object.entries(item.options).map(([optKey, optText]) => {
+                                  const selected =
+                                    userVal.toLowerCase() === optKey.toLowerCase();
+                                  const isExpected =
+                                    isSubmitted &&
+                                    item.answer.toLowerCase() === optKey.toLowerCase();
+
+                                  return (
+                                    <button
+                                      key={optKey}
+                                      type="button"
+                                      disabled={isSubmitted}
+                                      onClick={() =>
+                                        updateDraft((prev) => ({
+                                          ...prev,
+                                          mcq: { ...(prev.mcq || {}), [key]: optKey },
+                                        }))
+                                      }
+                                      className={`p-2.5 rounded-xl border text-left text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
+                                        isSubmitted && isExpected
+                                          ? 'bg-emerald-600 text-white border-emerald-600 font-extrabold'
+                                          : isSubmitted && selected && !isExpected
+                                          ? 'bg-rose-600 text-white border-rose-600'
+                                          : selected
+                                          ? 'bg-indigo-700 text-white border-indigo-700 font-extrabold'
+                                          : 'bg-white text-slate-800 border-slate-200 hover:border-indigo-400'
+                                      }`}
+                                    >
+                                      <span className="uppercase font-extrabold">
+                                        {optKey}.
+                                      </span>
+                                      <span>{optText}</span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                              {isSubmitted && (
+                                <p
+                                  className={`text-xs font-extrabold ${
+                                    isCorr ? 'text-emerald-800' : 'text-rose-800'
+                                  }`}
+                                >
+                                  {isCorr
+                                    ? '✓ Chính xác! (+1 điểm)'
+                                    : `✗ Chưa đúng. Đáp án đúng: ${item.answer.toUpperCase()}. ${
+                                        item.options[item.answer]
+                                      }`}
+                                </p>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* 2. TRUE / FALSE / NOT GIVEN */}
+                    {ex.type === 'true_false_not_given' && (
+                      <div className="space-y-3">
+                        {ex.items.map((item) => {
+                          const key = String(item.no);
+                          const userVal = currentDraft.tfng?.[key] || '';
+                          const isCorr =
+                            isSubmitted &&
+                            userVal.toUpperCase() === item.answer.toUpperCase();
+                          const isWrg = isSubmitted && !isCorr;
+
+                          return (
+                            <div
+                              key={item.no}
+                              className={`p-3.5 rounded-2xl border-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                                isCorr
+                                  ? 'bg-emerald-50/50 border-emerald-300'
+                                  : isWrg
+                                  ? 'bg-rose-50/50 border-rose-300'
+                                  : 'bg-slate-50 border-slate-200'
+                              }`}
+                            >
+                              <div className="space-y-1">
+                                <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                  <strong>{item.no}.</strong> {item.statement}
+                                </p>
+                                {isSubmitted && (
+                                  <p
+                                    className={`text-xs font-extrabold ${
+                                      isCorr ? 'text-emerald-800' : 'text-rose-800'
+                                    }`}
+                                  >
+                                    {isCorr
+                                      ? `✓ Chính xác (${item.answer})`
+                                      : `✗ Đáp án đúng: ${item.answer}`}
+                                  </p>
+                                )}
+                              </div>
+
+                              <div className="flex items-center gap-1.5 shrink-0">
+                                {(['T', 'F', 'NG'] as const).map((choice) => {
+                                  const selected = userVal === choice;
+                                  const isExp = isSubmitted && item.answer === choice;
+                                  return (
+                                    <button
+                                      key={choice}
+                                      type="button"
+                                      disabled={isSubmitted}
+                                      onClick={() =>
+                                        updateDraft((prev) => ({
+                                          ...prev,
+                                          tfng: { ...(prev.tfng || {}), [key]: choice },
+                                        }))
+                                      }
+                                      className={`px-3 py-1.5 rounded-xl text-xs font-extrabold border transition-all cursor-pointer ${
+                                        isSubmitted && isExp
+                                          ? 'bg-emerald-600 text-white border-emerald-600'
+                                          : isSubmitted && selected && !isExp
+                                          ? 'bg-rose-600 text-white border-rose-600'
+                                          : selected
+                                          ? 'bg-indigo-700 text-white border-indigo-700'
+                                          : 'bg-white text-slate-700 border-slate-300 hover:border-indigo-400'
+                                      }`}
+                                    >
+                                      {choice}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* 3. SENTENCE COMPLETION */}
+                    {ex.type === 'sentence_completion' && (
+                      <div className="space-y-3">
+                        {ex.items.map((item) => {
+                          const key = String(item.no);
+                          const userVal = currentDraft.sentenceCompletion?.[key] || '';
+                          const isCorr =
+                            isSubmitted &&
+                            normalizeSentenceCompletionAnswer(userVal) ===
+                              normalizeSentenceCompletionAnswer(item.answer);
+                          const isWrg = isSubmitted && !isCorr;
+
+                          return (
+                            <div
+                              key={item.no}
+                              className={`p-3.5 rounded-2xl border-2 space-y-2 ${
+                                isCorr
+                                  ? 'bg-emerald-50/50 border-emerald-300'
+                                  : isWrg
+                                  ? 'bg-rose-50/50 border-rose-300'
+                                  : 'bg-slate-50 border-slate-200'
+                              }`}
+                            >
+                              <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                <strong>{item.no}.</strong> {item.stem}
+                              </p>
+                              <input
+                                type="text"
+                                disabled={isSubmitted}
+                                value={userVal}
+                                onChange={(e) =>
+                                  updateDraft((prev) => ({
+                                    ...prev,
+                                    sentenceCompletion: {
+                                      ...(prev.sentenceCompletion || {}),
+                                      [key]: e.target.value,
+                                    },
+                                  }))
+                                }
+                                placeholder="Gõ từ/cụm từ còn thiếu..."
+                                className="w-full px-3.5 py-2 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm font-extrabold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                              />
+                              {isSubmitted && (
+                                <p
+                                  className={`text-xs font-extrabold ${
+                                    isCorr ? 'text-emerald-800' : 'text-rose-800'
+                                  }`}
+                                >
+                                  {isCorr
+                                    ? '✓ Chính xác! (+1 điểm)'
+                                    : `✗ Đáp án đúng: "${item.answer}"`}
+                                </p>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* 4. COMPREHENSION QUESTIONS (Tự luận - Không chấm tự động, hiện Đáp án mẫu sau khi nộp) */}
+                    {ex.type === 'comprehension_questions' && (
+                      <div className="space-y-3">
+                        <div className="p-3 rounded-xl bg-sky-50 border border-sky-200 text-xs text-sky-950 font-semibold">
+                          💡 <strong>Lưu ý:</strong> Phần tự luận không tính điểm tự động. Em hãy viết câu trả lời đầy đủ, sau khi bấm <strong>Nộp bài</strong> hệ thống sẽ hiện <strong>Đáp án mẫu</strong> (từ Sách Giáo Viên) để em tự đối chiếu (em có thể diễn đạt khác miễn đúng ý).
+                        </div>
+                        {ex.items.map((item) => {
+                          const key = String(item.no);
+                          const userVal =
+                            currentDraft.comprehensionQuestions?.[key] || '';
+
+                          return (
+                            <div
+                              key={item.no}
+                              className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2"
+                            >
+                              <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                <strong>{item.no}.</strong> {item.question}
+                              </p>
+                              <textarea
+                                rows={2}
+                                disabled={isSubmitted}
+                                value={userVal}
+                                onChange={(e) =>
+                                  updateDraft((prev) => ({
+                                    ...prev,
+                                    comprehensionQuestions: {
+                                      ...(prev.comprehensionQuestions || {}),
+                                      [key]: e.target.value,
+                                    },
+                                  }))
+                                }
+                                placeholder="Viết câu trả lời đầy đủ bằng tiếng Anh..."
+                                className="w-full p-2.5 rounded-xl bg-white border border-slate-300 text-xs sm:text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                              />
+                              {isSubmitted && (
+                                <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-xs space-y-1">
+                                  <span className="inline-block px-2 py-0.5 rounded bg-emerald-700 text-white font-extrabold text-[10px] uppercase">
+                                    Đáp án mẫu
+                                  </span>
+                                  <p className="font-extrabold text-emerald-950 text-xs sm:text-sm">
+                                    {item.sample_answer}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* 5. MATCHING (Nối 1-5 với A-E, không trùng) */}
+                    {ex.type === 'matching' && (
+                      <div className="space-y-4">
+                        {/* Bảng mô tả A-E */}
+                        <div className="p-3.5 rounded-2xl bg-indigo-50/70 border border-indigo-200 space-y-1.5">
+                          <span className="text-xs font-extrabold text-indigo-950 block">
+                            Các mô tả (Descriptions A – E):
+                          </span>
+                          {Object.entries(ex.descriptions).map(([dKey, dText]) => {
+                            const usedByNo = Object.entries(
+                              currentDraft.matching || {}
+                            ).find(([, v]) => v === dKey)?.[0];
+                            return (
+                              <div
+                                key={dKey}
+                                className={`text-xs flex items-center justify-between gap-2 p-1.5 rounded-lg ${
+                                  usedByNo
+                                    ? 'text-slate-400 line-through'
+                                    : 'text-slate-800 font-semibold'
+                                }`}
+                              >
+                                <span>
+                                  <strong className="text-indigo-900">{dKey}.</strong>{' '}
+                                  {dText}
+                                </span>
+                                {usedByNo && (
+                                  <span className="text-[10px] font-bold text-indigo-700 no-underline">
+                                    (Đã ghép với #{usedByNo})
+                                  </span>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* 5 Dòng thông tin 1-5 */}
+                        <div className="space-y-2.5">
+                          {ex.information.map((inf) => {
+                            const key = String(inf.no);
+                            const userChoice = currentDraft.matching?.[key] || '';
+                            const expectedChoice = ex.answers[key];
+                            const isCorr =
+                              isSubmitted &&
+                              userChoice.toUpperCase() === expectedChoice.toUpperCase();
+                            const isWrg = isSubmitted && !isCorr;
+
+                            return (
+                              <div
+                                key={inf.no}
+                                className={`p-3 rounded-2xl border-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 ${
+                                  isCorr
+                                    ? 'bg-emerald-50/50 border-emerald-300'
+                                    : isWrg
+                                    ? 'bg-rose-50/50 border-rose-300'
+                                    : 'bg-slate-50 border-slate-200'
+                                }`}
+                              >
+                                <div className="text-xs sm:text-sm font-bold text-slate-900">
+                                  <strong>{inf.no}.</strong> {inf.text}
+                                  {isSubmitted && (
+                                    <span
+                                      className={`ml-2 text-xs font-extrabold ${
+                                        isCorr ? 'text-emerald-800' : 'text-rose-800'
+                                      }`}
+                                    >
+                                      {isCorr
+                                        ? `✓ Đúng (${expectedChoice})`
+                                        : `✗ Đáp án đúng: ${expectedChoice}. ${ex.descriptions[expectedChoice]}`}
+                                    </span>
+                                  )}
+                                </div>
+
+                                <div className="flex items-center gap-1.5 shrink-0">
+                                  {Object.keys(ex.descriptions).map((letter) => {
+                                    const selected = userChoice === letter;
+                                    const usedElsewhere = Object.entries(
+                                      currentDraft.matching || {}
+                                    ).some(([k, v]) => k !== key && v === letter);
+                                    const isExp =
+                                      isSubmitted && expectedChoice === letter;
+
+                                    return (
+                                      <button
+                                        key={letter}
+                                        type="button"
+                                        disabled={isSubmitted}
+                                        onClick={() => {
+                                          updateDraft((prev) => {
+                                            const nextMap = { ...(prev.matching || {}) };
+                                            if (nextMap[key] === letter) {
+                                              delete nextMap[key];
+                                            } else {
+                                              for (const [k, v] of Object.entries(
+                                                nextMap
+                                              )) {
+                                                if (v === letter) delete nextMap[k];
+                                              }
+                                              nextMap[key] = letter;
+                                            }
+                                            return { ...prev, matching: nextMap };
+                                          });
+                                        }}
+                                        className={`w-8 h-8 rounded-xl text-xs font-extrabold border transition-all cursor-pointer ${
+                                          isSubmitted && isExp
+                                            ? 'bg-emerald-600 text-white border-emerald-600'
+                                            : isSubmitted && selected && !isExp
+                                            ? 'bg-rose-600 text-white border-rose-600'
+                                            : selected
+                                            ? 'bg-indigo-700 text-white border-indigo-700'
+                                            : usedElsewhere
+                                            ? 'bg-slate-100 text-slate-400 border-slate-200'
+                                            : 'bg-white text-slate-800 border-slate-300 hover:border-indigo-400'
+                                        }`}
+                                      >
+                                        {letter}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 6. WORD BOX GAP FILL (Chọn từ trong hộp 8 từ cho 5 chỗ trống {{1}}..{{5}}) */}
+                    {ex.type === 'word_box_gap_fill' && (
+                      <div className="space-y-4">
+                        {/* Hộp từ (Word Box) */}
+                        <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 space-y-2">
+                          <span className="text-xs font-extrabold text-amber-950 block">
+                            Hộp từ (Word Box – Có từ gây nhiễu):
+                          </span>
+                          <div className="flex flex-wrap gap-2">
+                            {ex.word_box.map((word) => {
+                              const usedInNo = Object.entries(
+                                currentDraft.wordBox || {}
+                              ).find(
+                                ([, w]) => w.trim().toLowerCase() === word.trim().toLowerCase()
+                              )?.[0];
+                              return (
+                                <span
+                                  key={word}
+                                  className={`px-3 py-1 rounded-xl text-xs font-extrabold border ${
+                                    usedInNo
+                                      ? 'bg-slate-100 text-slate-400 border-slate-200 line-through'
+                                      : 'bg-white text-slate-900 border-amber-300 shadow-2xs'
+                                  }`}
+                                >
+                                  {word}
+                                  {usedInNo ? ` (#${usedInNo})` : ''}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* Đoạn tóm tắt có {{1}}..{{5}} */}
+                        <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                          {renderTextWithBlanks(ex.text, (blankNo) => {
+                            const userWord = currentDraft.wordBox?.[blankNo] || '';
+                            const expectedWord = ex.answers[blankNo] || '';
+                            const isCorr =
+                              isSubmitted &&
+                              userWord.trim().toLowerCase() ===
+                                expectedWord.trim().toLowerCase();
+                            const isWrg = isSubmitted && !isCorr;
+
+                            return (
+                              <span className="inline-flex items-center gap-1 mx-1 align-baseline">
+                                <select
+                                  aria-label={`Ô trống (${blankNo})`}
+                                  value={userWord}
+                                  disabled={isSubmitted}
+                                  onChange={(e) => {
+                                    const chosen = e.target.value;
+                                    updateDraft((prev) => {
+                                      const nextWb = { ...(prev.wordBox || {}) };
+                                      if (chosen) {
+                                        for (const [k, v] of Object.entries(nextWb)) {
+                                          if (
+                                            k !== blankNo &&
+                                            v.trim().toLowerCase() ===
+                                              chosen.trim().toLowerCase()
+                                          ) {
+                                            delete nextWb[k];
+                                          }
+                                        }
+                                        nextWb[blankNo] = chosen;
+                                      } else {
+                                        delete nextWb[blankNo];
+                                      }
+                                      return { ...prev, wordBox: nextWb };
+                                    });
+                                  }}
+                                  className={`px-2.5 py-1 rounded-xl font-extrabold text-xs sm:text-sm border-2 transition-all cursor-pointer ${
+                                    isCorr
+                                      ? 'bg-emerald-50 border-emerald-500 text-emerald-900'
+                                      : isWrg
+                                      ? 'bg-rose-50 border-rose-500 text-rose-900'
+                                      : userWord
+                                      ? 'bg-indigo-50 border-indigo-400 text-indigo-950'
+                                      : 'bg-white border-amber-400 text-slate-800'
+                                  }`}
+                                >
+                                  <option value="">({blankNo}) Chọn từ...</option>
+                                  {ex.word_box.map((w) => (
+                                    <option key={w} value={w}>
+                                      ({blankNo}) {w}
+                                    </option>
+                                  ))}
+                                </select>
+                                {isSubmitted && (
+                                  <span
+                                    className={`text-xs font-extrabold px-2 py-0.5 rounded-lg ${
+                                      isCorr
+                                        ? 'bg-emerald-100 text-emerald-900'
+                                        : 'bg-rose-100 text-rose-900'
+                                    }`}
+                                  >
+                                    {isCorr ? '✓' : `✗ Đúng: ${expectedWord}`}
+                                  </span>
+                                )}
+                              </span>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
                   </div>
-                )}
-
-                {/* GIẢI THÍCH KHI ĐÃ TRẢ LỜI */}
-                {isAnswered && (
-                  <div
-                    className={`p-3 rounded-xl text-xs space-y-1 ${
-                      isCorrect
-                        ? 'bg-emerald-50 border border-emerald-200 text-emerald-900'
-                        : 'bg-rose-50 border border-rose-200 text-rose-900'
-                    }`}
-                  >
-                    <p className="font-bold">
-                      {isCorrect ? '✅ Chính xác! +10 XP' : `❌ Chưa chính xác! Đáp án chuẩn là: "${q.correct}"`}
-                    </p>
-                    <p className="text-[11px] text-slate-600">💡 {q.explanation}</p>
-                    <p className="text-[11px] italic text-slate-500">📌 Trích dẫn: "{q.quote}"</p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                );
+              })}
+          </div>
         </div>
       )}
 
-      {/* SUB TAB 4: RESULT REPORT */}
-      {activeSubTab === 'result' && (
-        <div className="bg-white rounded-2xl p-6 shadow-2xs border border-slate-200 text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-amber-100 text-[#FF9500] flex items-center justify-center mx-auto">
-            <Award className="w-8 h-8" />
-          </div>
+      {/* Footer Điều hướng Bài trước / Nộp bài / Bài tiếp theo */}
+      <div className="bg-white rounded-3xl p-4 border border-slate-200 flex items-center justify-between gap-3">
+        {prevPassage ? (
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedPassageId(prevPassage.id);
+              setActiveBlankFocus(null);
+              setActiveRcExNo(1);
+              setIsSubmitted(false);
+              setSessionStartTime(Date.now());
+            }}
+            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs inline-flex items-center gap-1 cursor-pointer"
+          >
+            <ChevronLeft className="w-4 h-4" />
+            <span>Bài trước</span>
+          </button>
+        ) : (
+          <div />
+        )}
 
-          <div>
-            <h3 className="text-xl font-extrabold text-slate-900">
-              Kết Quả Bài Đọc: {currentUnitData.title}
-            </h3>
-            <p className="text-xs text-slate-500 mt-1">
-              Bạn đã tích lũy được <span className="font-extrabold text-[#FF9500]">{score} XP</span>!
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
-            <div className="p-3 bg-blue-50 rounded-xl border border-blue-200">
-              <span className="text-[10px] font-bold text-slate-400 uppercase block">Từ Vựng Đã Đúng</span>
-              <span className="text-xl font-extrabold text-[#4A90E2]">
-                {Object.values(vocabScored).filter(Boolean).length}/{currentUnitData.vocabList.length}
-              </span>
-            </div>
-
-            <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
-              <span className="text-[10px] font-bold text-slate-400 uppercase block">Đọc Hiểu Đã Đúng</span>
-              <span className="text-xl font-extrabold text-emerald-600">
-                {Object.values(readingScored).filter(Boolean).length}/{currentUnitData.questions.length}
-              </span>
-            </div>
-
-            <div className="p-3 bg-amber-50 rounded-xl border border-amber-200">
-              <span className="text-[10px] font-bold text-slate-400 uppercase block">Tổng XP Đạt Được</span>
-              <span className="text-xl font-extrabold text-[#FF9500]">{score} XP</span>
-            </div>
-
-            <div className="p-3 bg-purple-50 rounded-xl border border-purple-200">
-              <span className="text-[10px] font-bold text-slate-400 uppercase block">Xếp Loại</span>
-              <span className="text-xl font-extrabold text-purple-700">
-                {score >= 60 ? 'Xuất Sắc' : score >= 40 ? 'Giỏi' : 'Khá'}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center gap-2">
+          {!isSubmitted ? (
             <button
-              onClick={() => {
-                setScore(0);
-                setVocabAnswers({});
-                setVocabScored({});
-                setReadingAnswers({});
-                setReadingScored({});
-                setShortInputs({});
-                setActiveSubTab('passage');
-              }}
-              className="px-5 py-2.5 rounded-xl bg-[#4A90E2] hover:bg-blue-600 text-white font-bold text-xs transition-all cursor-pointer"
+              type="button"
+              onClick={handleSubmitPassage}
+              className="px-6 py-2.5 rounded-2xl bg-indigo-700 hover:bg-indigo-800 text-white font-extrabold text-xs sm:text-sm inline-flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
-              Luyện Lại Bài Này
+              <CheckCircle2 className="w-4 h-4" />
+              <span>Nộp bài & Chấm điểm</span>
             </button>
+          ) : (
+            <button
+              type="button"
+              onClick={handleRetryPassage}
+              className="px-5 py-2.5 rounded-2xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-xs sm:text-sm inline-flex items-center gap-1.5 cursor-pointer"
+            >
+              <RotateCcw className="w-4 h-4" />
+              <span>Làm lại</span>
+            </button>
+          )}
 
-            {selectedUnitIdx < UNIT_READINGS.length - 1 && (
-              <button
-                onClick={() => {
-                  setSelectedUnitIdx((idx) => idx + 1);
-                  setScore(0);
-                  setVocabAnswers({});
-                  setVocabScored({});
-                  setReadingAnswers({});
-                  setReadingScored({});
-                  setShortInputs({});
-                  setActiveSubTab('passage');
-                }}
-                className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all cursor-pointer"
-              >
-                Chuyển Bài Tiếp Theo (Unit {selectedUnitIdx + 2}) ➔
-              </button>
-            )}
-          </div>
+          {nextPassage && (
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedPassageId(nextPassage.id);
+                setActiveBlankFocus(null);
+                setActiveRcExNo(1);
+                setIsSubmitted(false);
+                setSessionStartTime(Date.now());
+              }}
+              className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-extrabold text-xs inline-flex items-center gap-1 cursor-pointer"
+            >
+              <span>Bài tiếp</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

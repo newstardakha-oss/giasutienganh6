@@ -484,6 +484,22 @@ export const Header: React.FC<HeaderProps> = ({
                   />
                   <span className="whitespace-nowrap">Xem Học Liệu Ngữ Pháp 6</span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('reading-game')}
+                  className={`flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs lg:text-sm font-extrabold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
+                    activeTab === 'reading-game'
+                      ? 'nav-active-reading shadow-md'
+                      : 'neu-btn text-slate-800 hover:text-indigo-800'
+                  }`}
+                >
+                  <BookOpen
+                    className={`w-4 h-4 shrink-0 ${
+                      activeTab === 'reading-game' ? 'text-white' : 'nav-icon-reading'
+                    }`}
+                  />
+                  <span className="whitespace-nowrap">Học Liệu Đọc Hiểu 6 (Reading)</span>
+                </button>
               </>
             ) : (
               DESKTOP_NAV_ITEMS.map((item) => {

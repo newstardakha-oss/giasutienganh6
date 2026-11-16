@@ -799,6 +799,8 @@ export default function App() {
           <ReadingMasteryGame
             units={appData.units}
             initialUnitId={selectedSkillUnitId}
+            currentStudentId={appData.currentStudentId}
+            isTeacherLoggedIn={appData.isTeacherLoggedIn}
             onSessionCompleted={handleSessionCompleted}
             onBackToPractice={() => setActiveTab('practice')}
           />
