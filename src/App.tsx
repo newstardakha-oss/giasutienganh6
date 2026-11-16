@@ -45,6 +45,11 @@ import {
   isStudentPracticeLocked,
   loadAllTestRounds,
 } from './services/researchTests';
+import {
+  useRealtimeSync,
+  establishServerSession,
+  syncEntityToServer,
+} from './services/realtimeSync';
 
 export default function App() {
   const [appData, setAppData] = useState<AppDataSchema>(() => loadAppData());
@@ -60,6 +65,15 @@ export default function App() {
   const [isGrammarExerciseActive, setIsGrammarExerciseActive] = useState<boolean>(false);
   const [activeExamRound, setActiveExamRound] = useState<FirestoreTestRoundDoc | null>(null);
   const [researchTick, setResearchTick] = useState<number>(0);
+
+  // Realtime SSE + BroadcastChannel + Storage listener
+  const { connectionState: realtimeStatus, lastSyncedAt } = useRealtimeSync({
+    enabled: true,
+    actorId: appData.isTeacherLoggedIn ? appData.currentTeacherId : appData.currentStudentId,
+    isTeacher: Boolean(appData.isTeacherLoggedIn && appData.currentTeacherId),
+    appData,
+    onServerStateSynced: setAppData,
+  });
 
   useEffect(() => {
     const onResearchUpdate = () => setResearchTick((t) => t + 1);
@@ -153,15 +167,20 @@ export default function App() {
   };
 
   const handleRegisterStudent = (newStudent: StudentAccount) => {
-    setAppData((prev) => ({
-      ...prev,
-      isTeacherLoggedIn: false,
-      currentTeacherId: null,
-      students: [newStudent, ...prev.students],
-      currentStudentId: newStudent.id,
-      progress: newStudent.progress,
-      sessions: newStudent.sessions,
-    }));
+    setAppData((prev) => {
+      const next = {
+        ...prev,
+        isTeacherLoggedIn: false,
+        currentTeacherId: null,
+        students: [newStudent, ...prev.students],
+        currentStudentId: newStudent.id,
+        progress: newStudent.progress,
+        sessions: newStudent.sessions,
+      };
+      syncEntityToServer('student', newStudent, next).catch(() => {});
+      return next;
+    });
+    establishServerSession('student', newStudent.id).catch(() => {});
     setActiveTab('home');
     setIsCoverActive(false);
   };
@@ -178,16 +197,20 @@ export default function App() {
   const handleTeacherLogin = (email: string, password: string): boolean => {
     const teacher = authenticateTeacher(appData, email, password);
     if (teacher) {
-      setAppData((prev) => ({
-        ...prev,
-        isTeacherLoggedIn: true,
-        currentTeacherId: teacher.id,
-        teachers: prev.teachers.map((t) =>
-          t.id === teacher.id
-            ? { ...t, lastLoginAt: new Date().toISOString() }
-            : t
-        ),
-      }));
+      setAppData((prev) => {
+        const next = {
+          ...prev,
+          isTeacherLoggedIn: true,
+          currentTeacherId: teacher.id,
+          teachers: prev.teachers.map((t) =>
+            t.id === teacher.id
+              ? { ...t, lastLoginAt: new Date().toISOString() }
+              : t
+          ),
+        };
+        establishServerSession('teacher', teacher.id, next).catch(() => {});
+        return next;
+      });
       setIsCoverActive(false);
       setActiveTab('report');
       return true;
@@ -217,11 +240,17 @@ export default function App() {
     if (result.success) {
       // Find the newly registered teacher
       const newTeacher = result.data.teachers.find((t) => t.email.toLowerCase() === email.toLowerCase());
-      setAppData({
+      const nextData = {
         ...result.data,
         isTeacherLoggedIn: true,
         currentTeacherId: newTeacher?.id || null,
-      });
+      };
+      setAppData(nextData);
+      if (newTeacher) {
+        syncEntityToServer('teacher', newTeacher, nextData)
+          .then(() => establishServerSession('teacher', newTeacher.id, nextData))
+          .catch(() => {});
+      }
       setIsCoverActive(false);
       setActiveTab('report');
     }
@@ -269,11 +298,22 @@ export default function App() {
     setAppData((prev) => updateTeacherClasses(prev, teacherId, classes));
   };
 
-  const handleUpdateTeacherProfile = (updates: { fullName?: string; schoolName?: string; newPassword?: string; oldPassword?: string }): { success: boolean; error?: string } => {
+  const handleUpdateTeacherProfile = (updates: {
+    fullName?: string;
+    provinceName?: string;
+    communeName?: string;
+    schoolName?: string;
+    newPassword?: string;
+    oldPassword?: string;
+  }): { success: boolean; error?: string } => {
     if (!appData.currentTeacherId) return { success: false, error: 'Chưa đăng nhập!' };
     const result = updateTeacherProfile(appData, appData.currentTeacherId, updates);
     if (result.success) {
       setAppData(result.data);
+      const updatedTeacher = result.data.teachers.find((t) => t.id === appData.currentTeacherId);
+      if (updatedTeacher) {
+        syncEntityToServer('teacher', updatedTeacher, result.data).catch(() => {});
+      }
     }
     return { success: result.success, error: result.error };
   };
@@ -284,14 +324,25 @@ export default function App() {
 
   // ===== STUDENT MANAGEMENT HANDLERS (By Teacher) =====
   const handleAddStudentByTeacher = (newStudent: StudentAccount) => {
-    setAppData((prev) => ({
-      ...prev,
-      students: [newStudent, ...prev.students],
-    }));
+    setAppData((prev) => {
+      const next = {
+        ...prev,
+        students: [newStudent, ...prev.students],
+      };
+      syncEntityToServer('student', newStudent, next).catch(() => {});
+      return next;
+    });
   };
 
   const handleUpdateStudentByTeacher = (studentId: string, updatedFields: Partial<StudentAccount>) => {
-    setAppData((prev) => updateStudentByTeacher(prev, studentId, updatedFields));
+    setAppData((prev) => {
+      const next = updateStudentByTeacher(prev, studentId, updatedFields);
+      const updatedSt = next.students.find((s) => s.id === studentId);
+      if (updatedSt) {
+        syncEntityToServer('student', updatedSt, next).catch(() => {});
+      }
+      return next;
+    });
   };
 
   const handleDeleteStudentByTeacher = (studentId: string) => {
@@ -807,6 +858,9 @@ export default function App() {
             onAddCustomClass={handleAddCustomClass}
             onChangeClassUnit={handleChangeClassUnit}
             onUpdateMasteryThresholds={handleUpdateMasteryThresholds}
+            onUpdateAppData={setAppData}
+            realtimeStatus={realtimeStatus}
+            lastSyncedAt={lastSyncedAt}
           />
         )}
       </main>

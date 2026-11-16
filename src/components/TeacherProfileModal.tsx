@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { TeacherAccount } from '../types';
-import { X, Save, User, Mail, School, Lock, Key, Shield, BookOpen } from 'lucide-react';
+import { X, Save, User, Mail, School, Lock, Key, Shield, BookOpen, MapPin } from 'lucide-react';
+import {
+  getProvincesList,
+  getCommunesWithCodesForProvince,
+  getCanonicalSchoolsDirectory,
+} from '../services/storage';
 
 interface TeacherProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
   teacher: TeacherAccount;
-  onUpdateProfile: (updates: { fullName?: string; schoolName?: string; newPassword?: string; oldPassword?: string }) => { success: boolean; error?: string };
+  onUpdateProfile: (updates: {
+    fullName?: string;
+    provinceName?: string;
+    communeName?: string;
+    schoolName?: string;
+    newPassword?: string;
+    oldPassword?: string;
+  }) => { success: boolean; error?: string };
 }
 
 export const TeacherProfileModal: React.FC<TeacherProfileModalProps> = ({
@@ -15,14 +27,31 @@ export const TeacherProfileModal: React.FC<TeacherProfileModalProps> = ({
   teacher,
   onUpdateProfile,
 }) => {
+  const provinces = useMemo(() => getProvincesList(), []);
   const [fullName, setFullName] = useState(teacher.fullName);
-  const [schoolName, setSchoolName] = useState(teacher.schoolName);
+  const [provinceName, setProvinceName] = useState(teacher.provinceName || 'Tỉnh Quảng Ngãi');
+  const [communeName, setCommuneName] = useState(teacher.communeName || 'Xã Đăk Hà');
+  const [schoolName, setSchoolName] = useState(teacher.schoolName || 'THCS Chu Văn An');
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [showPasswordSection, setShowPasswordSection] = useState(false);
+
+  const communes = useMemo(
+    () => getCommunesWithCodesForProvince({}, provinceName),
+    [provinceName]
+  );
+
+  const canonicalSchools = useMemo(() => {
+    const all = getCanonicalSchoolsDirectory({});
+    return all.filter(
+      (s) =>
+        s.provinceName.toLowerCase() === provinceName.trim().toLowerCase() &&
+        s.communeName.toLowerCase() === communeName.trim().toLowerCase()
+    );
+  }, [provinceName, communeName]);
 
   if (!isOpen) return null;
 
@@ -33,6 +62,8 @@ export const TeacherProfileModal: React.FC<TeacherProfileModalProps> = ({
 
     const updates: any = {};
     if (fullName.trim() !== teacher.fullName) updates.fullName = fullName.trim();
+    if (provinceName.trim() !== (teacher.provinceName || '')) updates.provinceName = provinceName.trim();
+    if (communeName.trim() !== (teacher.communeName || '')) updates.communeName = communeName.trim();
     if (schoolName.trim() !== teacher.schoolName) updates.schoolName = schoolName.trim();
 
     if (showPasswordSection && newPassword) {
@@ -109,20 +140,29 @@ export const TeacherProfileModal: React.FC<TeacherProfileModalProps> = ({
             </div>
           </div>
 
-          {/* Managed Classes (read-only) */}
+          {/* Managed Classes (read-only — Admin-only assignment) */}
           <div className="bg-blue-50 rounded-xl p-3 border border-blue-200">
-            <div className="flex items-center gap-2 text-xs text-blue-600 font-bold mb-1.5">
-              <BookOpen className="w-3.5 h-3.5" /> Lớp phụ trách
+            <div className="flex items-center justify-between gap-2 text-xs text-blue-700 font-bold mb-1.5">
+              <span className="flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5" /> Lớp phụ trách (Do Admin phân quyền)
+              </span>
+              {teacher.schoolId && (
+                <code className="text-[10px] px-2 py-0.5 rounded bg-white border border-blue-200 text-blue-900">
+                  {teacher.schoolId}
+                </code>
+              )}
             </div>
             <div className="flex flex-wrap gap-1.5">
               {teacher.managedClasses.length > 0 ? (
                 teacher.managedClasses.map((cls) => (
                   <span key={cls} className="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 text-xs font-bold border border-blue-200">
-                    {cls}
+                    Lớp {cls}
                   </span>
                 ))
               ) : (
-                <span className="text-xs text-blue-500 italic">Chưa được phân lớp (liên hệ Admin)</span>
+                <span className="text-xs text-blue-600 italic">
+                  Chưa được phân lớp (Chỉ Admin mới có quyền gán lớp phụ trách)
+                </span>
               )}
             </div>
           </div>
@@ -153,17 +193,66 @@ export const TeacherProfileModal: React.FC<TeacherProfileModalProps> = ({
             />
           </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="flex items-center gap-1.5 text-xs text-slate-600 font-bold mb-1.5">
+                <MapPin className="w-3.5 h-3.5" /> Tỉnh / Thành phố
+              </label>
+              <select
+                value={provinceName}
+                onChange={(e) => {
+                  const nextProv = e.target.value;
+                  setProvinceName(nextProv);
+                  const nextCommunes = getCommunesWithCodesForProvince({}, nextProv);
+                  setCommuneName(nextCommunes[0]?.name || '');
+                }}
+                className="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-bold bg-white text-slate-900"
+              >
+                {provinces.map((p) => (
+                  <option key={p.code} value={p.name}>
+                    [{p.code}] {p.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="flex items-center gap-1.5 text-xs text-slate-600 font-bold mb-1.5">
+                <MapPin className="w-3.5 h-3.5" /> Xã / Phường
+              </label>
+              <select
+                value={communeName}
+                onChange={(e) => setCommuneName(e.target.value)}
+                className="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-bold bg-white text-slate-900"
+              >
+                {communes.map((c) => (
+                  <option key={c.code} value={c.name}>
+                    [{c.code}] {c.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div>
             <label className="flex items-center gap-2 text-xs text-slate-600 font-bold mb-1.5">
-              <School className="w-3.5 h-3.5" /> Trường
+              <School className="w-3.5 h-3.5" /> Trường THCS (theo danh mục mã chuẩn)
             </label>
             <input
               type="text"
+              list="canonical-profile-schools"
               value={schoolName}
               onChange={(e) => setSchoolName(e.target.value)}
               className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none transition-all"
-              placeholder="Nhập tên trường..."
+              placeholder="Chọn hoặc nhập tên trường..."
             />
+            <datalist id="canonical-profile-schools">
+              {canonicalSchools.map((s) => (
+                <option key={s.schoolId} value={s.schoolName}>
+                  {s.schoolId}
+                </option>
+              ))}
+            </datalist>
           </div>
 
           {/* Password Change Section */}

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppDataSchema } from '../types';
 import {
   Shield, Users, Key, Copy, Trash2, CheckCircle2, XCircle, Crown, Edit3, Plus, Check,
-  BarChart3, GraduationCap, PlusCircle
+  BarChart3, GraduationCap, PlusCircle, Radio
 } from 'lucide-react';
+import { getTeacherStudents, normalizeClassName } from '../services/storage';
+import { assignTeacherManagedClassesApi } from '../services/realtimeSync';
 
 interface TeacherManagementPanelProps {
   appData: AppDataSchema;
@@ -14,6 +16,8 @@ interface TeacherManagementPanelProps {
   onDeleteTeacher: (teacherId: string) => void;
   onUpdateTeacherClasses: (teacherId: string, classes: string[]) => void;
   onAddCustomClass?: (className: string) => void;
+  realtimeStatus?: 'connected' | 'reconnecting' | 'offline';
+  lastSyncedAt?: string | null;
 }
 
 export const TeacherManagementPanel: React.FC<TeacherManagementPanelProps> = ({
@@ -24,17 +28,36 @@ export const TeacherManagementPanel: React.FC<TeacherManagementPanelProps> = ({
   onReactivateTeacher,
   onDeleteTeacher,
   onUpdateTeacherClasses,
-  onAddCustomClass
+  onAddCustomClass,
+  realtimeStatus = 'connected',
+  lastSyncedAt = null,
 }) => {
   const [activeTab, setActiveTab] = useState<'teachers' | 'codes' | 'stats'>('teachers');
-  
-  // Dynamic class list from appData
+  const [realtimePulse, setRealtimePulse] = useState<number>(0);
+
+  // Lắng nghe thay đổi thời gian thực từ storage, BroadcastChannel & SSE
+  useEffect(() => {
+    const onRealtimeChange = () => setRealtimePulse((p) => p + 1);
+    window.addEventListener('storage', onRealtimeChange);
+    window.addEventListener('giasu-realtime-update', onRealtimeChange);
+    return () => {
+      window.removeEventListener('storage', onRealtimeChange);
+      window.removeEventListener('giasu-realtime-update', onRealtimeChange);
+    };
+  }, []);
+  void realtimePulse;
+
+  // Dynamic normalized class list from appData
   const allClasses = (() => {
-    const classSet = new Set<string>(['Lớp 6A1', 'Lớp 6A2', 'Lớp 6A3', 'Lớp 6A4', 'Lớp 6A5', 'Lớp 6A6']);
-    (appData.customClasses || []).forEach((c) => classSet.add(c));
-    appData.teachers.forEach((t) => t.managedClasses.forEach((c) => classSet.add(c)));
-    appData.students.forEach((s) => { if (s.className) classSet.add(s.className); });
-    return Array.from(classSet).sort();
+    const classSet = new Set<string>(['6A1', '6A2', '6A3', '6A4', '6A5', '6A6']);
+    (appData.customClasses || []).forEach((c) => classSet.add(normalizeClassName(c)));
+    appData.teachers.forEach((t) =>
+      (t.managedClasses || []).forEach((c) => classSet.add(normalizeClassName(c)))
+    );
+    appData.students.forEach((s) => {
+      if (s.className) classSet.add(normalizeClassName(s.className));
+    });
+    return Array.from(classSet).filter(Boolean).sort();
   })();
   const [editingClassesFor, setEditingClassesFor] = useState<string | null>(null);
   const [tempClasses, setTempClasses] = useState<string[]>([]);
@@ -52,17 +75,19 @@ export const TeacherManagementPanel: React.FC<TeacherManagementPanelProps> = ({
   const usedCodes = appData.activationCodes.filter(c => c.isUsed).length;
   const unusedCodes = appData.activationCodes.filter(c => !c.isUsed).length;
   
-  // Students per class
+  // Students per class (normalized)
   const studentsPerClass: Record<string, number> = {};
   appData.students.forEach((s) => {
-    studentsPerClass[s.className] = (studentsPerClass[s.className] || 0) + 1;
+    const normCls = normalizeClassName(s.className);
+    if (normCls) {
+      studentsPerClass[normCls] = (studentsPerClass[normCls] || 0) + 1;
+    }
   });
   
-  // Students per teacher
+  // Students per teacher (using strict RLS schoolId + managedClasses)
   const getTeacherStudentCount = (teacher: typeof appData.teachers[0]): number => {
     if (teacher.role === 'admin') return totalStudents;
-    if (teacher.managedClasses.length === 0) return 0;
-    return appData.students.filter(s => teacher.managedClasses.includes(s.className)).length;
+    return getTeacherStudents(appData, teacher.id).length;
   };
 
   const handleCopyCode = (code: string) => {
@@ -72,20 +97,24 @@ export const TeacherManagementPanel: React.FC<TeacherManagementPanelProps> = ({
   };
 
   const handleToggleClass = (cls: string, currentSelected: string[], setFn: (val: string[]) => void) => {
-    if (currentSelected.includes(cls)) {
-      setFn(currentSelected.filter(c => c !== cls));
+    const norm = normalizeClassName(cls);
+    const normalizedList = currentSelected.map((c) => normalizeClassName(c));
+    if (normalizedList.includes(norm)) {
+      setFn(normalizedList.filter(c => c !== norm));
     } else {
-      setFn([...currentSelected, cls]);
+      setFn([...normalizedList, norm]);
     }
   };
 
   const handleSaveClasses = (teacherId: string) => {
-    onUpdateTeacherClasses(teacherId, tempClasses);
+    const normalized = tempClasses.map((c) => normalizeClassName(c)).filter(Boolean);
+    onUpdateTeacherClasses(teacherId, normalized);
+    assignTeacherManagedClassesApi(teacherId, normalized).catch(() => {});
     setEditingClassesFor(null);
   };
 
   const startEditingClasses = (teacherId: string, classes: string[]) => {
-    setTempClasses([...classes]);
+    setTempClasses((classes || []).map((c) => normalizeClassName(c)));
     setEditingClassesFor(teacherId);
   };
 
@@ -113,12 +142,33 @@ export const TeacherManagementPanel: React.FC<TeacherManagementPanelProps> = ({
       <div className="bg-white rounded-2xl p-6 shadow-2xs border border-slate-200 neu-card-purple">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
           <div>
-            <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
-              <Shield className="w-6 h-6 text-purple-600" />
-              Quản Trị Hệ Thống Giáo Viên
-            </h2>
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
+                <Shield className="w-6 h-6 text-purple-600" />
+                Quản Trị Hệ Thống Giáo Viên
+              </h2>
+              <span
+                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-extrabold border ${
+                  realtimeStatus === 'connected'
+                    ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                    : realtimeStatus === 'reconnecting'
+                    ? 'bg-amber-50 text-amber-800 border-amber-200'
+                    : 'bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+              >
+                <Radio className="w-3.5 h-3.5" />
+                <span>
+                  {realtimeStatus === 'connected'
+                    ? `Realtime SSE (Rev #${appData.revision || 1})`
+                    : realtimeStatus === 'reconnecting'
+                    ? 'Đang kết nối lại SSE...'
+                    : 'Đồng bộ cục bộ'}
+                </span>
+                {lastSyncedAt && <span>• {lastSyncedAt}</span>}
+              </span>
+            </div>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Phân quyền và quản lý danh sách giáo viên, mã kích hoạt đăng ký
+              Phân quyền và quản lý danh sách giáo viên (Chỉ Admin được gán lớp phụ trách `managedClasses`, mọi lần gán đều ghi AuditLog)
             </p>
           </div>
           <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-xl">
@@ -339,6 +389,67 @@ export const TeacherManagementPanel: React.FC<TeacherManagementPanelProps> = ({
                 </tbody>
               </table>
             </div>
+          </div>
+
+          {/* Nhật ký gán lớp phụ trách (ASSIGN_MANAGED_CLASSES AuditLog) */}
+          <div className="bg-white rounded-2xl p-5 shadow-2xs border border-slate-200 space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                <Shield className="w-4 h-4 text-indigo-700" />
+                <span>Nhật Ký Phân Công Lớp Phụ Trách (ASSIGN_MANAGED_CLASSES)</span>
+              </h3>
+              <span className="text-[11px] font-bold text-slate-500">
+                Lưu tối đa 90 ngày • Không lưu PII thừa
+              </span>
+            </div>
+            {(() => {
+              const classLogs = (appData.auditLogs || [])
+                .filter((l) => l.action === 'ASSIGN_MANAGED_CLASSES')
+                .slice(0, 8);
+              if (classLogs.length === 0) {
+                return (
+                  <p className="text-xs text-slate-500 italic">
+                    Chưa có nhật ký phân công lớp phụ trách nào.
+                  </p>
+                );
+              }
+              return (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse text-xs">
+                    <thead>
+                      <tr className="bg-slate-50 border-b border-slate-200 text-[10px] font-extrabold text-slate-500 uppercase">
+                        <th className="py-2 px-3">Thời Gian</th>
+                        <th className="py-2 px-3">Mã Admin</th>
+                        <th className="py-2 px-3">Mã Giáo Viên</th>
+                        <th className="py-2 px-3">Trước Khi Gán</th>
+                        <th className="py-2 px-3">Sau Khi Gán</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {classLogs.map((log) => (
+                        <tr key={log.id}>
+                          <td className="py-2 px-3 font-semibold text-slate-600">
+                            {new Date(log.timestamp).toLocaleString('vi-VN')}
+                          </td>
+                          <td className="py-2 px-3 font-mono text-[11px] text-slate-700">
+                            {log.actorId}
+                          </td>
+                          <td className="py-2 px-3 font-mono text-[11px] text-indigo-800 font-bold">
+                            {log.targetIds.join(', ')}
+                          </td>
+                          <td className="py-2 px-3 text-slate-600">
+                            {(log.beforeSnapshot[0]?.managedClasses || []).join(', ') || '(Trống)'}
+                          </td>
+                          <td className="py-2 px-3 font-extrabold text-emerald-800">
+                            {(log.afterSnapshot[0]?.managedClasses || []).join(', ') || '(Trống)'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            })()}
           </div>
         </div>
       )}

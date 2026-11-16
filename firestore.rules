@@ -27,36 +27,56 @@ service cloud.firestore {
       );
     }
 
+    function isManagedClassTeacher(schoolId, className) {
+      return isTeacher() && (
+        getTeacherData().role == 'admin' ||
+        (
+          getTeacherData().schoolId == schoolId &&
+          getTeacherData().managedClasses is list &&
+          className in getTeacherData().managedClasses
+        )
+      );
+    }
+
     function isOwnerStudent(studentId) {
       return isSignedIn() && request.auth.uid == studentId;
     }
 
     // ===== 1. COLLECTION: students =====
-    // Họ tên học sinh chỉ nằm trong collection students, không lưu trong attempts
+    // Giáo viên chỉ đọc/sửa được học sinh thuộc cùng schoolId VÀ nằm trong managedClasses
     match /students/{studentId} {
       allow read: if isOwnerStudent(studentId) ||
-                     isSameSchoolTeacher(resource.data.schoolId);
-      allow create: if isOwnerStudent(studentId) || isSameSchoolTeacher(request.resource.data.schoolId);
-      allow update: if isOwnerStudent(studentId) || isSameSchoolTeacher(resource.data.schoolId);
-      allow delete: if isSameSchoolTeacher(resource.data.schoolId);
+                     isManagedClassTeacher(resource.data.schoolId, resource.data.className);
+      allow create: if isOwnerStudent(studentId) ||
+                       isManagedClassTeacher(request.resource.data.schoolId, request.resource.data.className);
+      allow update: if isOwnerStudent(studentId) ||
+                       isManagedClassTeacher(resource.data.schoolId, resource.data.className);
+      allow delete: if isAdmin() ||
+                       isManagedClassTeacher(resource.data.schoolId, resource.data.className);
     }
 
     // ===== 2. COLLECTION: teachers =====
+    // Chỉ Admin mới được gán/thay đổi role hoặc managedClasses
     match /teachers/{teacherId} {
       allow read: if isSignedIn() && (request.auth.uid == teacherId || isAdmin());
-      allow create: if isSignedIn() && request.auth.uid == teacherId;
-      allow update: if isSignedIn() && (request.auth.uid == teacherId || isAdmin());
+      allow create: if isSignedIn() && request.auth.uid == teacherId &&
+                       (!('managedClasses' in request.resource.data) || request.resource.data.managedClasses.size() == 0);
+      allow update: if isAdmin() || (
+        isSignedIn() &&
+        request.auth.uid == teacherId &&
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'managedClasses'])
+      );
       allow delete: if isAdmin();
     }
 
     // ===== 3. COLLECTION: attempts =====
-    // - Giáo viên chỉ đọc attempts của học sinh cùng trường (schoolId khớp với trường của GV).
+    // - Giáo viên chỉ đọc attempts của học sinh thuộc lớp phụ trách (schoolId + managedClasses).
     // - Học sinh chỉ được ghi (create) attempts của chính mình.
     // - Không ai (kể cả học sinh) được sửa (update) hay xoá (delete) attempts đã ghi.
     // - Không cho phép ghi trường fullName / studentName vào document attempts.
     match /attempts/{attemptId} {
       allow read: if isOwnerStudent(resource.data.studentId) ||
-                     isSameSchoolTeacher(resource.data.schoolId);
+                     isManagedClassTeacher(resource.data.schoolId, resource.data.className);
 
       allow create: if isOwnerStudent(request.resource.data.studentId)
         && !('fullName' in request.resource.data)
@@ -96,7 +116,7 @@ service cloud.firestore {
     // Tổng hợp sẵn theo ngày cho từng học sinh (docId: {studentId}_{YYYY-MM-DD})
     match /dailyStats/{statId} {
       allow read: if isOwnerStudent(resource.data.studentId) ||
-                     isSameSchoolTeacher(resource.data.schoolId);
+                     isManagedClassTeacher(resource.data.schoolId, resource.data.className);
 
       allow create, update: if isOwnerStudent(request.resource.data.studentId)
         && !('fullName' in request.resource.data)
@@ -109,6 +129,18 @@ service cloud.firestore {
         && request.resource.data.correctAttempts is number
         && request.resource.data.accuracyRate is number;
 
+      allow delete: if false;
+    }
+
+    // ===== 4b. COLLECTION: auditLogs =====
+    // Không lưu PII thừa (fullName, password), có expiresAt (TTL 90 ngày)
+    match /auditLogs/{logId} {
+      allow read: if isAdmin() || (isTeacher() && resource.data.actorId == request.auth.uid);
+      allow create: if isAdmin()
+        && !('fullName' in request.resource.data)
+        && !('password' in request.resource.data)
+        && request.resource.data.expiresAt is string;
+      allow update: if isAdmin();
       allow delete: if false;
     }
 

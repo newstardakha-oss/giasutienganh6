@@ -13,6 +13,7 @@ import {
   getFormById,
   getStudentSanitizedTestForm,
 } from './src/services/researchTests';
+import { registerManagementRoutes } from './src/services/serverManageStore';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json({ limit: '10mb' }));
+registerManagementRoutes(app);
 
 const DEFAULT_MODELS = [
   'gemini-2.5-flash',

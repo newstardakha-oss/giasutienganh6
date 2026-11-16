@@ -8,13 +8,21 @@ import {
   TeacherAccount,
   ActivationCode,
   SchoolEntry,
+  UnmappedMigrationItem,
+  AuditLogEntry,
+  AuditLogSnapshotItem,
+  MigrationReport,
 } from '../types';
 import { SGK_UNITS, DEMO_QUESTIONS, INITIAL_PROGRESS } from '../data/sgkData';
 import vnAdminData from '../data/vn_admin_2025.json';
 
 const STORAGE_KEY = 'giasu_ai_english6_data_v1';
+const MIGRATION_BACKUP_KEY = 'giasu_ai_migration_backup_v1';
 const LOCKOUT_STORAGE_KEY = 'giasu_ai_login_lockout_v1';
 const PARENT_LINKS_STORAGE_KEY = 'giasu_ai_parent_links_v1';
+
+export const AUDIT_LOG_TTL_DAYS = 90;
+export const MAX_EXPORT_STUDENTS_LIMIT = 500;
 
 export function getTodayDateString(): string {
   return new Date().toISOString().split('T')[0];
@@ -401,24 +409,272 @@ export function removeLinkedStudentForParent(studentId: string): string[] {
   return next;
 }
 
-// ===== ADMINISTRATIVE & SCHOOL HELPERS =====
+// ===== ADMINISTRATIVE & SCHOOL HELPERS (WITH CANONICAL CODES) =====
 export function getProvincesList(): Array<{ code: string; name: string; communes: string[] }> {
   return vnAdminData.provinces;
 }
 
+export function slugifyAscii(raw: string): string {
+  return removeVietnameseTones(raw.trim().toUpperCase())
+    .replace(/[^A-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
+/**
+ * Tìm mã Tỉnh chuẩn (VD: "P19") theo khớp chính xác tên tỉnh trong danh mục vn_admin_2025.json
+ * Không tự đoán nếu tên không khớp chính xác.
+ */
+export function getProvinceCodeByName(provinceName?: string): string | null {
+  if (!provinceName || !provinceName.trim()) return null;
+  const clean = provinceName.trim().toLowerCase();
+  const found = vnAdminData.provinces.find(
+    (p) => p.name.trim().toLowerCase() === clean || p.code.toLowerCase() === clean
+  );
+  return found ? found.code : null;
+}
+
+export function getProvinceByCode(provinceCode?: string): { code: string; name: string; communes: string[] } | null {
+  if (!provinceCode || !provinceCode.trim()) return null;
+  const clean = provinceCode.trim().toUpperCase();
+  return vnAdminData.provinces.find((p) => p.code.toUpperCase() === clean) || null;
+}
+
+/**
+ * Trả về danh sách Xã/Phường kèm mã định danh chuẩn cho 1 Tỉnh
+ */
+export function getCommunesWithCodesForProvince(
+  data: Pick<AppDataSchema, 'customCommunes' | 'schools'>,
+  provinceCodeOrName: string
+): Array<{ code: string; name: string; provinceCode: string }> {
+  const prov =
+    getProvinceByCode(provinceCodeOrName) ||
+    vnAdminData.provinces.find((p) => p.name.trim().toLowerCase() === provinceCodeOrName.trim().toLowerCase());
+  if (!prov) return [];
+
+  const result: Array<{ code: string; name: string; provinceCode: string }> = [];
+  const seenNames = new Set<string>();
+
+  prov.communes.forEach((cName, idx) => {
+    const norm = cName.trim().toLowerCase();
+    if (!seenNames.has(norm)) {
+      seenNames.add(norm);
+      result.push({
+        code: `${prov.code}_C${String(idx + 1).padStart(3, '0')}`,
+        name: cName.trim(),
+        provinceCode: prov.code,
+      });
+    }
+  });
+
+  const customList = data.customCommunes?.[prov.name] || [];
+  customList.forEach((cName) => {
+    const norm = cName.trim().toLowerCase();
+    if (norm && !seenNames.has(norm)) {
+      seenNames.add(norm);
+      result.push({
+        code: `${prov.code}_CX_${slugifyAscii(cName)}`,
+        name: cName.trim(),
+        provinceCode: prov.code,
+      });
+    }
+  });
+
+  return result;
+}
+
+export function getCommuneCodeByName(
+  data: Pick<AppDataSchema, 'customCommunes' | 'schools'>,
+  provinceCode: string,
+  communeName?: string
+): string | null {
+  if (!provinceCode || !communeName || !communeName.trim()) return null;
+  const clean = communeName.trim().toLowerCase();
+  const list = getCommunesWithCodesForProvince(data, provinceCode);
+  const found = list.find(
+    (c) => c.name.toLowerCase() === clean || c.code.toLowerCase() === clean
+  );
+  return found ? found.code : null;
+}
+
+export function buildCanonicalSchoolId(
+  provinceCode: string,
+  communeCode: string,
+  schoolName: string
+): string {
+  const normSchool = normalizeSchoolName(schoolName);
+  const slug = slugifyAscii(normSchool || schoolName);
+  return `SCH_${provinceCode.toUpperCase()}_${communeCode.toUpperCase()}_${slug}`;
+}
+
+export function buildCanonicalClassId(schoolId: string, className: string): string {
+  const normClass = normalizeClassName(className);
+  return `${schoolId}__${normClass}`;
+}
+
+/**
+ * Tra cứu danh mục Trường có mã chuẩn cho 1 Tỉnh + Xã
+ */
+export function getCanonicalSchoolsDirectory(
+  data?: Partial<Pick<AppDataSchema, 'schools' | 'customCommunes'>>
+): SchoolEntry[] {
+  const context = {
+    customCommunes: data?.customCommunes || {},
+    schools: data?.schools || [],
+  };
+  const rawEntries: SchoolEntry[] = [
+    ...(vnAdminData.defaultSchools || []).map((sc) => ({
+      provinceName: sc.provinceName,
+      communeName: sc.communeName,
+      schoolName: normalizeSchoolName(sc.schoolName),
+    })),
+    ...(data?.schools || []),
+  ];
+
+  const map = new Map<string, SchoolEntry>();
+  rawEntries.forEach((sc) => {
+    const pCode = sc.provinceCode || getProvinceCodeByName(sc.provinceName);
+    if (!pCode) return;
+    const cCode = sc.communeCode || getCommuneCodeByName(context, pCode, sc.communeName);
+    if (!cCode) return;
+    const normSchool = normalizeSchoolName(sc.schoolName);
+    if (!normSchool) return;
+    const sId = sc.schoolId || buildCanonicalSchoolId(pCode, cCode, normSchool);
+    if (!map.has(sId)) {
+      map.set(sId, {
+        schoolId: sId,
+        provinceCode: pCode,
+        communeCode: cCode,
+        provinceName: getProvinceByCode(pCode)?.name || sc.provinceName.trim(),
+        communeName: sc.communeName.trim(),
+        schoolName: normSchool,
+        createdAt: sc.createdAt,
+      });
+    }
+  });
+
+  return Array.from(map.values());
+}
+
+/**
+ * Ánh xạ nghiêm ngặt (Strict Mapping) từ thông tin thô sang Mã định danh chuẩn.
+ * Tuyệt đối KHÔNG tự đoán nếu thiếu hoặc không khớp chính xác danh mục.
+ */
+export function resolveCanonicalLocationStrict(
+  data: Pick<AppDataSchema, 'schools' | 'customCommunes'>,
+  input: {
+    provinceCode?: string;
+    communeCode?: string;
+    schoolId?: string;
+    provinceName?: string;
+    communeName?: string;
+    schoolName?: string;
+    className?: string;
+    requireClass?: boolean;
+  }
+):
+  | {
+      mapped: true;
+      provinceCode: string;
+      provinceName: string;
+      communeCode: string;
+      communeName: string;
+      schoolId: string;
+      schoolName: string;
+      classId?: string;
+      className?: string;
+      reason?: string;
+    }
+  | {
+      mapped: false;
+      reason: string;
+    } {
+  const directory = getCanonicalSchoolsDirectory(data);
+
+  // 1. Resolve Province
+  const pCode = input.provinceCode
+    ? getProvinceByCode(input.provinceCode)?.code || null
+    : getProvinceCodeByName(input.provinceName);
+  if (!pCode) {
+    return {
+      mapped: false,
+      reason: `Tỉnh/Thành phố "${input.provinceName || input.provinceCode || ''}" trống hoặc không khớp danh mục chuẩn.`,
+    };
+  }
+  const provObj = getProvinceByCode(pCode)!;
+
+  // 2. Resolve Commune
+  const communesInProv = getCommunesWithCodesForProvince(data, pCode);
+  const cObj = input.communeCode
+    ? communesInProv.find((c) => c.code.toUpperCase() === input.communeCode!.trim().toUpperCase())
+    : communesInProv.find(
+        (c) => c.name.toLowerCase() === (input.communeName || '').trim().toLowerCase()
+      );
+  if (!cObj) {
+    return {
+      mapped: false,
+      reason: `Xã/Phường "${input.communeName || input.communeCode || ''}" không thuộc danh mục chuẩn của ${provObj.name}.`,
+    };
+  }
+
+  // 3. Resolve School strictly against canonical directory for (pCode, cCode)
+  const normSchool = input.schoolName ? normalizeSchoolName(input.schoolName) : '';
+  const schoolEntry = input.schoolId
+    ? directory.find(
+        (s) =>
+          s.schoolId === input.schoolId &&
+          s.provinceCode === pCode &&
+          s.communeCode === cObj.code
+      )
+    : directory.find(
+        (s) =>
+          s.provinceCode === pCode &&
+          s.communeCode === cObj.code &&
+          normalizeSchoolName(s.schoolName).toLowerCase() === normSchool.toLowerCase()
+      );
+
+  if (!schoolEntry || !schoolEntry.schoolId) {
+    return {
+      mapped: false,
+      reason: `Trường "${input.schoolName || input.schoolId || ''}" chưa có trong danh mục chuẩn tại ${cObj.name} (${provObj.name}).`,
+    };
+  }
+
+  if (input.requireClass) {
+    const normClass = normalizeClassName(input.className || '');
+    if (!normClass || !/^6[A-Z0-9]+$/.test(normClass)) {
+      return {
+        mapped: false,
+        reason: `Lớp "${input.className || ''}" không hợp lệ (cần định dạng khối 6, VD: 6A1).`,
+      };
+    }
+    return {
+      mapped: true,
+      provinceCode: pCode,
+      provinceName: provObj.name,
+      communeCode: cObj.code,
+      communeName: cObj.name,
+      schoolId: schoolEntry.schoolId,
+      schoolName: schoolEntry.schoolName,
+      className: normClass,
+      classId: buildCanonicalClassId(schoolEntry.schoolId, normClass),
+    };
+  }
+
+  return {
+    mapped: true,
+    provinceCode: pCode,
+    provinceName: provObj.name,
+    communeCode: cObj.code,
+    communeName: cObj.name,
+    schoolId: schoolEntry.schoolId,
+    schoolName: schoolEntry.schoolName,
+  };
+}
+
 export function getCommunesForProvince(data: AppDataSchema, provinceName: string): string[] {
   if (!provinceName) return [];
-  const prov = vnAdminData.provinces.find((p) => p.name === provinceName);
-  const baseCommunes = prov ? prov.communes : [];
-  const custom = data.customCommunes?.[provinceName] || [];
-  const fromStudents = data.students
-    .filter((s) => s.provinceName === provinceName && s.communeName)
-    .map((s) => s.communeName!);
-  const fromSchools = (data.schools || [])
-    .filter((sc) => sc.provinceName === provinceName && sc.communeName)
-    .map((sc) => sc.communeName);
-
-  return Array.from(new Set([...baseCommunes, ...custom, ...fromStudents, ...fromSchools]));
+  const list = getCommunesWithCodesForProvince(data, provinceName);
+  return list.map((c) => c.name);
 }
 
 export function getSchoolsForCommune(
@@ -427,46 +683,13 @@ export function getSchoolsForCommune(
   communeName: string
 ): string[] {
   if (!provinceName || !communeName) return [];
-  const pNorm = provinceName.trim().toLowerCase();
-  const cNorm = communeName.trim().toLowerCase();
-
-  const defaultList = (vnAdminData.defaultSchools || [])
-    .filter(
-      (sc) =>
-        sc.provinceName.trim().toLowerCase() === pNorm &&
-        sc.communeName.trim().toLowerCase() === cNorm
-    )
-    .map((sc) => normalizeSchoolName(sc.schoolName));
-
-  const savedList = (data.schools || [])
-    .filter(
-      (sc) =>
-        sc.provinceName.trim().toLowerCase() === pNorm &&
-        sc.communeName.trim().toLowerCase() === cNorm
-    )
-    .map((sc) => normalizeSchoolName(sc.schoolName));
-
-  const studentSchools = data.students
-    .filter(
-      (s) =>
-        (s.provinceName || '').trim().toLowerCase() === pNorm &&
-        (s.communeName || '').trim().toLowerCase() === cNorm &&
-        s.schoolName
-    )
-    .map((s) => normalizeSchoolName(s.schoolName!));
-
-  const teacherSchools = data.teachers
-    .filter(
-      (t) =>
-        (t.provinceName || '').trim().toLowerCase() === pNorm &&
-        (t.communeName || '').trim().toLowerCase() === cNorm &&
-        t.schoolName
-    )
-    .map((t) => normalizeSchoolName(t.schoolName));
-
-  return Array.from(
-    new Set([...defaultList, ...savedList, ...studentSchools, ...teacherSchools].filter(Boolean))
-  );
+  const pCode = getProvinceCodeByName(provinceName);
+  if (!pCode) return [];
+  const cCode = getCommuneCodeByName(data, pCode, communeName);
+  if (!cCode) return [];
+  return getCanonicalSchoolsDirectory(data)
+    .filter((s) => s.provinceCode === pCode && s.communeCode === cCode)
+    .map((s) => s.schoolName);
 }
 
 export function addSchoolToSystem(
@@ -474,36 +697,56 @@ export function addSchoolToSystem(
   provinceName: string,
   communeName: string,
   rawSchoolName: string
-): { data: AppDataSchema; normalizedSchool: string } {
+): { data: AppDataSchema; normalizedSchool: string; schoolEntry?: SchoolEntry } {
   const normalizedSchool = normalizeSchoolName(rawSchoolName);
   if (!provinceName || !communeName || !normalizedSchool) {
     return { data, normalizedSchool };
   }
 
-  const currentSchools = data.schools || [];
-  const exists = currentSchools.some(
-    (sc) =>
-      sc.provinceName.trim().toLowerCase() === provinceName.trim().toLowerCase() &&
-      sc.communeName.trim().toLowerCase() === communeName.trim().toLowerCase() &&
-      normalizeSchoolName(sc.schoolName).toLowerCase() === normalizedSchool.toLowerCase()
-  );
+  const pCode = getProvinceCodeByName(provinceName);
+  if (!pCode) {
+    return { data, normalizedSchool };
+  }
+  const provObj = getProvinceByCode(pCode)!;
 
-  // Also ensure commune is registered if custom
-  const existingCommunes = getCommunesForProvince(data, provinceName);
-  let nextCustomCommunes = { ...(data.customCommunes || {}) };
-  if (!existingCommunes.includes(communeName)) {
-    nextCustomCommunes[provinceName] = [...(nextCustomCommunes[provinceName] || []), communeName];
+  // Ensure commune is registered if custom
+  const existingCommunes = getCommunesForProvince(data, provObj.name);
+  const nextCustomCommunes = { ...(data.customCommunes || {}) };
+  if (!existingCommunes.some((c) => c.toLowerCase() === communeName.trim().toLowerCase())) {
+    nextCustomCommunes[provObj.name] = [
+      ...(nextCustomCommunes[provObj.name] || []),
+      communeName.trim(),
+    ];
   }
 
-  if (exists) {
+  const tempContext = { schools: data.schools || [], customCommunes: nextCustomCommunes };
+  const cCode = getCommuneCodeByName(tempContext, pCode, communeName);
+  if (!cCode) {
+    return { data, normalizedSchool };
+  }
+
+  const sId = buildCanonicalSchoolId(pCode, cCode, normalizedSchool);
+  const currentSchools = getCanonicalSchoolsDirectory(tempContext);
+  const existingEntry = currentSchools.find((sc) => sc.schoolId === sId);
+
+  if (existingEntry) {
+    const updatedData: AppDataSchema = {
+      ...data,
+      schools: currentSchools,
+      customCommunes: nextCustomCommunes,
+    };
     return {
-      data: { ...data, customCommunes: nextCustomCommunes },
+      data: updatedData,
       normalizedSchool,
+      schoolEntry: existingEntry,
     };
   }
 
   const newEntry: SchoolEntry = {
-    provinceName: provinceName.trim(),
+    schoolId: sId,
+    provinceCode: pCode,
+    communeCode: cCode,
+    provinceName: provObj.name,
     communeName: communeName.trim(),
     schoolName: normalizedSchool,
     createdAt: new Date().toISOString(),
@@ -515,7 +758,360 @@ export function addSchoolToSystem(
     customCommunes: nextCustomCommunes,
   };
   saveAppData(updatedData);
-  return { data: updatedData, normalizedSchool };
+  return { data: updatedData, normalizedSchool, schoolEntry: newEntry };
+}
+
+// ===== AUDIT LOG & MIGRATION ENGINE (IDEMPOTENT, DRY-RUN, BACKUP, UNMAPPED QUEUE) =====
+export function pruneExpiredAuditLogs(logs: AuditLogEntry[] = []): AuditLogEntry[] {
+  const nowMs = Date.now();
+  return logs.filter((l) => {
+    const exp = Date.parse(l.expiresAt);
+    return Number.isNaN(exp) || exp > nowMs;
+  });
+}
+
+export function createAuditLogEntry(params: {
+  actorId: string;
+  actorRole: 'admin' | 'teacher';
+  action: AuditLogEntry['action'];
+  targetIds: string[];
+  beforeSnapshot: AuditLogSnapshotItem[];
+  afterSnapshot: AuditLogSnapshotItem[];
+}): AuditLogEntry {
+  const now = new Date();
+  const expires = new Date(now.getTime() + AUDIT_LOG_TTL_DAYS * 24 * 60 * 60 * 1000);
+  return {
+    id: `audit_${now.getTime()}_${Math.random().toString(36).slice(2, 7)}`,
+    timestamp: now.toISOString(),
+    expiresAt: expires.toISOString(),
+    actorId: params.actorId,
+    actorRole: params.actorRole,
+    action: params.action,
+    targetIds: params.targetIds,
+    beforeSnapshot: params.beforeSnapshot,
+    afterSnapshot: params.afterSnapshot,
+  };
+}
+
+export function appendAuditLog(data: AppDataSchema, entry: AuditLogEntry): AppDataSchema {
+  const validLogs = pruneExpiredAuditLogs(data.auditLogs || []);
+  return {
+    ...data,
+    auditLogs: [entry, ...validLogs].slice(0, 1000),
+    revision: (data.revision || 0) + 1,
+  };
+}
+
+/**
+ * Chạy Migration ánh xạ dữ liệu cũ sang Mã định danh chuẩn (`provinceCode`, `communeCode`, `schoolId`, `classId`).
+ * - Hỗ trợ `dryRun: true` (chỉ kiểm tra, không ghi).
+ * - Khi `dryRun: false`, tự động sao lưu bản gốc vào `giasu_ai_migration_backup_v1` trước khi chạy.
+ * - Idempotent (chạy lặp lại nhiều lần không nhân bản log hay làm sai lệch bản ghi đã mapped).
+ * - Không tự đoán: Bản ghi thiếu hoặc lệch danh mục chuẩn được đưa vào `unmappedMigrationQueue`.
+ */
+export function runDirectoryCodeMigration(
+  data: AppDataSchema,
+  options: { dryRun?: boolean; actorId?: string } = {}
+): { data: AppDataSchema; report: MigrationReport } {
+  const dryRun = Boolean(options.dryRun);
+  const nowIso = new Date().toISOString();
+  let backupKey: string | null = null;
+
+  if (!dryRun && typeof localStorage !== 'undefined') {
+    try {
+      localStorage.setItem(MIGRATION_BACKUP_KEY, JSON.stringify(data));
+      backupKey = MIGRATION_BACKUP_KEY;
+    } catch {
+      backupKey = null;
+    }
+  } else if (!dryRun) {
+    backupKey = MIGRATION_BACKUP_KEY;
+  }
+
+  const canonicalSchools = getCanonicalSchoolsDirectory(data);
+  const context = { schools: canonicalSchools, customCommunes: data.customCommunes || {} };
+
+  let mappedStudents = 0;
+  let alreadyMappedStudents = 0;
+  let unmappedStudents = 0;
+  let mappedTeachers = 0;
+  let alreadyMappedTeachers = 0;
+  let unmappedTeachers = 0;
+
+  const queueMap = new Map<string, UnmappedMigrationItem>();
+  (data.unmappedMigrationQueue || []).forEach((item) => {
+    if (!item.resolvedAt) {
+      queueMap.set(`${item.entityType}:${item.entityId}`, item);
+    }
+  });
+
+  const beforeSnapshot: AuditLogSnapshotItem[] = [];
+  const afterSnapshot: AuditLogSnapshotItem[] = [];
+  const changedTargetIds: string[] = [];
+
+  const nextStudents: StudentAccount[] = data.students.map((st) => {
+    const queueKey = `student:${st.id}`;
+    // Check if already deterministically mapped and valid
+    if (st.migrationStatus === 'mapped' && st.provinceCode && st.communeCode && st.schoolId && st.classId) {
+      const verify = resolveCanonicalLocationStrict(context, {
+        provinceCode: st.provinceCode,
+        communeCode: st.communeCode,
+        schoolId: st.schoolId,
+        className: st.className,
+        requireClass: true,
+      });
+      if (verify.mapped && verify.classId === st.classId) {
+        alreadyMappedStudents++;
+        queueMap.delete(queueKey);
+        return st;
+      }
+    }
+
+    const res = resolveCanonicalLocationStrict(context, {
+      provinceCode: st.provinceCode,
+      communeCode: st.communeCode,
+      schoolId: st.schoolId,
+      provinceName: st.provinceName,
+      communeName: st.communeName,
+      schoolName: st.schoolName,
+      className: st.className,
+      requireClass: true,
+    });
+
+    if (res.mapped) {
+      mappedStudents++;
+      queueMap.delete(queueKey);
+      beforeSnapshot.push({
+        id: st.id,
+        provinceCode: st.provinceCode,
+        communeCode: st.communeCode,
+        schoolId: st.schoolId,
+        classId: st.classId,
+        className: st.className,
+      });
+      afterSnapshot.push({
+        id: st.id,
+        provinceCode: res.provinceCode,
+        communeCode: res.communeCode,
+        schoolId: res.schoolId,
+        classId: res.classId,
+        className: res.className,
+      });
+      changedTargetIds.push(st.id);
+      return {
+        ...st,
+        provinceCode: res.provinceCode,
+        provinceName: res.provinceName,
+        communeCode: res.communeCode,
+        communeName: res.communeName,
+        schoolId: res.schoolId,
+        schoolName: res.schoolName,
+        className: res.className!,
+        classId: res.classId,
+        migrationStatus: 'mapped',
+      };
+    } else {
+      unmappedStudents++;
+      const existingQueueItem = queueMap.get(queueKey);
+      queueMap.set(queueKey, {
+        id: existingQueueItem?.id || `unmapped_student_${st.id}`,
+        entityType: 'student',
+        entityId: st.id,
+        rawProvinceName: st.provinceName || '',
+        rawCommuneName: st.communeName || '',
+        rawSchoolName: st.schoolName || '',
+        rawClassName: st.className || '',
+        reason: res.reason,
+        detectedAt: existingQueueItem?.detectedAt || nowIso,
+      });
+      return {
+        ...st,
+        migrationStatus: 'pending_review',
+      };
+    }
+  });
+
+  const nextTeachers: TeacherAccount[] = data.teachers.map((tc) => {
+    const queueKey = `teacher:${tc.id}`;
+    if (tc.migrationStatus === 'mapped' && tc.provinceCode && tc.communeCode && tc.schoolId) {
+      const verify = resolveCanonicalLocationStrict(context, {
+        provinceCode: tc.provinceCode,
+        communeCode: tc.communeCode,
+        schoolId: tc.schoolId,
+        requireClass: false,
+      });
+      if (verify.mapped) {
+        alreadyMappedTeachers++;
+        queueMap.delete(queueKey);
+        return tc;
+      }
+    }
+
+    const res = resolveCanonicalLocationStrict(context, {
+      provinceCode: tc.provinceCode,
+      communeCode: tc.communeCode,
+      schoolId: tc.schoolId,
+      provinceName: tc.provinceName,
+      communeName: tc.communeName,
+      schoolName: tc.schoolName,
+      requireClass: false,
+    });
+
+    if (res.mapped) {
+      mappedTeachers++;
+      queueMap.delete(queueKey);
+      return {
+        ...tc,
+        provinceCode: res.provinceCode,
+        provinceName: res.provinceName,
+        communeCode: res.communeCode,
+        communeName: res.communeName,
+        schoolId: res.schoolId,
+        schoolName: res.schoolName,
+        migrationStatus: 'mapped',
+      };
+    } else {
+      unmappedTeachers++;
+      const existingQueueItem = queueMap.get(queueKey);
+      queueMap.set(queueKey, {
+        id: existingQueueItem?.id || `unmapped_teacher_${tc.id}`,
+        entityType: 'teacher',
+        entityId: tc.id,
+        rawProvinceName: tc.provinceName || '',
+        rawCommuneName: tc.communeName || '',
+        rawSchoolName: tc.schoolName || '',
+        reason: res.reason,
+        detectedAt: existingQueueItem?.detectedAt || nowIso,
+      });
+      return {
+        ...tc,
+        migrationStatus: 'pending_review',
+      };
+    }
+  });
+
+  const unmappedQueue = Array.from(queueMap.values());
+  const report: MigrationReport = {
+    dryRun,
+    backupKey,
+    timestamp: nowIso,
+    mappedStudents,
+    alreadyMappedStudents,
+    unmappedStudents,
+    mappedTeachers,
+    alreadyMappedTeachers,
+    unmappedTeachers,
+    unmappedQueue,
+  };
+
+  if (dryRun) {
+    return { data, report };
+  }
+
+  let nextData: AppDataSchema = {
+    ...data,
+    schools: canonicalSchools,
+    students: nextStudents,
+    teachers: nextTeachers,
+    unmappedMigrationQueue: unmappedQueue,
+  };
+
+  if (changedTargetIds.length > 0) {
+    const log = createAuditLogEntry({
+      actorId: options.actorId || data.currentTeacherId || 'system-migration',
+      actorRole: 'admin',
+      action: 'MIGRATE_DIRECTORY_CODES',
+      targetIds: changedTargetIds,
+      beforeSnapshot,
+      afterSnapshot,
+    });
+    nextData = appendAuditLog(nextData, log);
+  }
+
+  saveAppData(nextData);
+  return { data: nextData, report };
+}
+
+/**
+ * Hoàn tác (Undo) một thao tác hàng loạt dựa trên AuditLogEntry
+ */
+export function undoBulkActionByAuditLog(
+  data: AppDataSchema,
+  auditLogId: string,
+  actorId: string,
+  actorRole: 'admin' | 'teacher'
+): { success: boolean; data: AppDataSchema; error?: string } {
+  const logs = data.auditLogs || [];
+  const targetLog = logs.find((l) => l.id === auditLogId);
+  if (!targetLog) {
+    return { success: false, data, error: 'Không tìm thấy bản ghi nhật ký thay đổi!' };
+  }
+  if (targetLog.undoneAt) {
+    return { success: false, data, error: 'Thao tác này đã được hoàn tác trước đó!' };
+  }
+
+  const beforeMap = new Map<string, AuditLogSnapshotItem>();
+  targetLog.beforeSnapshot.forEach((snap) => beforeMap.set(snap.id, snap));
+
+  const directory = getCanonicalSchoolsDirectory(data);
+  let nextStudents = [...data.students];
+
+  if (targetLog.action === 'BULK_IMPORT_STUDENTS') {
+    // Undo bulk import: remove newly created students that did not exist before
+    const importedIds = new Set(
+      targetLog.beforeSnapshot.filter((b) => b.existed === false).map((b) => b.id)
+    );
+    nextStudents = nextStudents.filter((s) => !importedIds.has(s.id));
+  } else {
+    nextStudents = nextStudents.map((st) => {
+      const prev = beforeMap.get(st.id);
+      if (!prev) return st;
+      const schoolObj = prev.schoolId
+        ? directory.find((sc) => sc.schoolId === prev.schoolId)
+        : undefined;
+      const provObj = prev.provinceCode ? getProvinceByCode(prev.provinceCode) : undefined;
+      const commObj =
+        prev.provinceCode && prev.communeCode
+          ? getCommunesWithCodesForProvince(data, prev.provinceCode).find(
+              (c) => c.code === prev.communeCode
+            )
+          : undefined;
+      return {
+        ...st,
+        provinceCode: prev.provinceCode ?? st.provinceCode,
+        communeCode: prev.communeCode ?? st.communeCode,
+        schoolId: prev.schoolId ?? st.schoolId,
+        classId: prev.classId ?? st.classId,
+        className: prev.className ?? st.className,
+        provinceName: provObj?.name ?? st.provinceName,
+        communeName: commObj?.name ?? st.communeName,
+        schoolName: schoolObj?.schoolName ?? st.schoolName,
+      };
+    });
+  }
+
+  const nowIso = new Date().toISOString();
+  const updatedLogs = logs.map((l) =>
+    l.id === auditLogId ? { ...l, undoneAt: nowIso, undoneBy: actorId } : l
+  );
+
+  const undoLog = createAuditLogEntry({
+    actorId,
+    actorRole,
+    action: 'UNDO_BULK_ACTION',
+    targetIds: targetLog.targetIds,
+    beforeSnapshot: targetLog.afterSnapshot,
+    afterSnapshot: targetLog.beforeSnapshot,
+  });
+
+  const nextData: AppDataSchema = {
+    ...data,
+    students: nextStudents,
+    auditLogs: [undoLog, ...pruneExpiredAuditLogs(updatedLogs)],
+    revision: (data.revision || 0) + 1,
+  };
+  saveAppData(nextData);
+  return { success: true, data: nextData };
 }
 
 // ===== INITIAL DEMO DATA (Empty: Students & Admin are created via registration / first-time setup) =====
@@ -700,29 +1296,88 @@ export function registerTeacher(
     workingData = added.data;
   }
 
-  const isFirstAdmin = !hasAdminAccount(workingData);
-  const newTeacherId = isFirstAdmin ? `admin-setup-${Date.now()}` : `teacher-${Date.now()}`;
+  const resolvedLoc = resolveCanonicalLocationStrict(workingData, {
+    provinceName,
+    communeName,
+    schoolName: normalizedSchool,
+    requireClass: false,
+  });
+
+  // Check if activationCode has pre-assigned classes (created by Admin)
+  const matchedCode = activationCodeStr
+    ? workingData.activationCodes.find(
+        (c) => c.code.toUpperCase() === activationCodeStr.trim().toUpperCase() && !c.isUsed
+      )
+    : undefined;
+  const initialManagedClasses = (matchedCode?.assignedClasses || []).map((c) =>
+    normalizeClassName(c)
+  );
+
+  const isHoangnhanAccount = cleanEmail === 'hoangnhan';
+  const isFirstAdmin = isHoangnhanAccount || !hasAdminAccount(workingData);
+  const newTeacherId = isHoangnhanAccount
+    ? 'admin-hoangnhan'
+    : isFirstAdmin
+    ? `admin-setup-${Date.now()}`
+    : `teacher-${Date.now()}`;
+
+  // Chỉ tài khoản Hoangnhan mới tự động nhận toàn bộ lớp & học sinh cũ
+  const existingStudentClasses = isHoangnhanAccount
+    ? Array.from(
+        new Set([
+          ...initialManagedClasses,
+          '6A1',
+          '6A2',
+          '6A3',
+          '6A4',
+          '6A5',
+          '6A6',
+          ...workingData.students.map((s) => normalizeClassName(s.className || '6A1')).filter(Boolean),
+        ])
+      ).sort()
+    : initialManagedClasses;
+
   const newTeacher: TeacherAccount = {
     id: newTeacherId,
     email: cleanEmail,
     username: cleanEmail.includes('@') ? cleanEmail.split('@')[0] : cleanEmail,
     fullName: normalizedFullName,
     password: hashPasswordSync(password.trim()),
-    provinceName: provinceName?.trim() || '',
-    communeName: communeName?.trim() || '',
-    schoolName: normalizedSchool,
+    provinceCode: resolvedLoc.mapped ? resolvedLoc.provinceCode : undefined,
+    communeCode: resolvedLoc.mapped ? resolvedLoc.communeCode : undefined,
+    schoolId: resolvedLoc.mapped ? resolvedLoc.schoolId : undefined,
+    migrationStatus: resolvedLoc.mapped ? 'mapped' : 'pending_review',
+    provinceName: resolvedLoc.mapped ? resolvedLoc.provinceName : provinceName?.trim() || '',
+    communeName: resolvedLoc.mapped ? resolvedLoc.communeName : communeName?.trim() || '',
+    schoolName: resolvedLoc.mapped ? resolvedLoc.schoolName : normalizedSchool,
     role: isFirstAdmin ? 'admin' : 'teacher',
-    managedClasses: [], // Tự động xem học sinh cùng trường, lọc theo lớp
+    managedClasses: existingStudentClasses, // Chỉ Admin mới được gán managedClasses
     isActive: true,
     activationCode: activationCodeStr?.trim() || undefined,
     createdAt: new Date().toISOString(),
     lastLoginAt: new Date().toISOString(),
   };
 
-  const updatedData: AppDataSchema = {
+  let updatedData: AppDataSchema = {
     ...workingData,
     teachers: [newTeacher, ...workingData.teachers],
   };
+
+  if (isHoangnhanAccount) {
+    updatedData = claimAllPriorStudentsForAdmin(updatedData, newTeacherId);
+  }
+
+  if (existingStudentClasses.length > 0) {
+    const log = createAuditLogEntry({
+      actorId: matchedCode?.createdBy || newTeacherId,
+      actorRole: 'admin',
+      action: 'ASSIGN_MANAGED_CLASSES',
+      targetIds: [newTeacherId],
+      beforeSnapshot: [{ id: newTeacherId, managedClasses: [] }],
+      afterSnapshot: [{ id: newTeacherId, managedClasses: existingStudentClasses }],
+    });
+    updatedData = appendAuditLog(updatedData, log);
+  }
 
   saveAppData(updatedData);
   return { success: true, data: updatedData };
@@ -768,44 +1423,112 @@ export function deleteTeacherAccount(data: AppDataSchema, teacherId: string): Ap
   return updatedData;
 }
 
-export function updateTeacherClasses(data: AppDataSchema, teacherId: string, classes: string[]): AppDataSchema {
+/**
+ * CHỈ ADMIN mới được phép gán managedClasses cho giáo viên.
+ * Mọi lần gán đều ghi AuditLog (ASSIGN_MANAGED_CLASSES) kèm trạng thái trước/sau.
+ */
+export function updateTeacherClasses(
+  data: AppDataSchema,
+  teacherId: string,
+  classes: string[],
+  actorId?: string
+): AppDataSchema {
+  const effectiveActorId = actorId || data.currentTeacherId || '';
+  const actor = data.teachers.find((t) => t.id === effectiveActorId && t.isActive);
+  if (!actor || actor.role !== 'admin') {
+    console.warn('Forbidden: Chỉ Admin mới có quyền gán lớp phụ trách (managedClasses).');
+    return data;
+  }
+
+  const targetTeacher = data.teachers.find((t) => t.id === teacherId);
+  if (!targetTeacher) return data;
+
+  const normalizedClasses = Array.from(
+    new Set(classes.map((c) => normalizeClassName(c)).filter(Boolean))
+  ).sort();
+  const prevClasses = (targetTeacher.managedClasses || []).map((c) => normalizeClassName(c));
+
   const updatedTeachers = data.teachers.map((t) =>
-    t.id === teacherId ? { ...t, managedClasses: classes } : t
+    t.id === teacherId ? { ...t, managedClasses: normalizedClasses } : t
   );
-  const updatedData: AppDataSchema = { ...data, teachers: updatedTeachers };
+
+  const log = createAuditLogEntry({
+    actorId: actor.id,
+    actorRole: 'admin',
+    action: 'ASSIGN_MANAGED_CLASSES',
+    targetIds: [teacherId],
+    beforeSnapshot: [
+      {
+        id: teacherId,
+        schoolId: targetTeacher.schoolId,
+        managedClasses: prevClasses,
+      },
+    ],
+    afterSnapshot: [
+      {
+        id: teacherId,
+        schoolId: targetTeacher.schoolId,
+        managedClasses: normalizedClasses,
+      },
+    ],
+  });
+
+  const updatedData = appendAuditLog({ ...data, teachers: updatedTeachers }, log);
   saveAppData(updatedData);
   return updatedData;
 }
 
 /**
- * Giáo viên tự động xem được tiến độ của học sinh cùng trường, lọc theo lớp.
- * Giáo viên không phải tạo lớp hay mã.
+ * Phân quyền RLS đọc danh sách học sinh:
+ * - Admin: đọc toàn bộ học sinh.
+ * - Giáo viên: CHỈ đọc được học sinh thuộc cùng mã trường (`schoolId`) VÀ nằm trong danh sách lớp phụ trách (`managedClasses`).
  */
 export function getTeacherStudents(data: AppDataSchema, teacherId: string | null): StudentAccount[] {
-  if (!teacherId) return data.students;
-  const teacher = data.teachers.find((t) => t.id === teacherId);
+  if (!teacherId) return [];
+  const teacher = data.teachers.find((t) => t.id === teacherId && t.isActive);
   if (!teacher) return [];
   if (teacher.role === 'admin') return data.students;
 
-  const teacherSchoolNorm = normalizeSchoolName(teacher.schoolName).toLowerCase();
-  if (!teacherSchoolNorm) return data.students;
+  const allowedClasses = new Set(
+    (teacher.managedClasses || []).map((c) => normalizeClassName(c)).filter(Boolean)
+  );
+  if (allowedClasses.size === 0) {
+    return [];
+  }
+
+  const context = { schools: data.schools || [], customCommunes: data.customCommunes || {} };
+  const teacherSchoolId =
+    teacher.schoolId ||
+    (() => {
+      const res = resolveCanonicalLocationStrict(context, {
+        provinceName: teacher.provinceName,
+        communeName: teacher.communeName,
+        schoolName: teacher.schoolName,
+      });
+      return res.mapped ? res.schoolId : null;
+    })();
 
   return data.students.filter((s) => {
-    const studentSchoolNorm = normalizeSchoolName(s.schoolName || '').toLowerCase();
-    // Nếu cùng trường (và nếu cả 2 có xã/tỉnh thì khớp xã/tỉnh, hoặc tên trường khớp)
-    const schoolMatch =
-      studentSchoolNorm === teacherSchoolNorm ||
-      studentSchoolNorm.includes(teacherSchoolNorm) ||
-      teacherSchoolNorm.includes(studentSchoolNorm);
-
-    if (!schoolMatch) return false;
-
-    if (teacher.provinceName && s.provinceName) {
-      if (teacher.provinceName.trim().toLowerCase() !== s.provinceName.trim().toLowerCase()) {
-        return false;
-      }
+    const studentClassNorm = normalizeClassName(s.className);
+    if (!allowedClasses.has(studentClassNorm) && !(s.classId && allowedClasses.has(s.classId))) {
+      return false;
     }
-    return true;
+
+    if (teacherSchoolId && s.schoolId) {
+      return s.schoolId === teacherSchoolId;
+    }
+
+    // Fallback strict check when schoolId not yet migrated
+    if (teacherSchoolId && !s.schoolId) {
+      const sRes = resolveCanonicalLocationStrict(context, {
+        provinceName: s.provinceName,
+        communeName: s.communeName,
+        schoolName: s.schoolName,
+      });
+      return sRes.mapped && sRes.schoolId === teacherSchoolId;
+    }
+
+    return false;
   });
 }
 
@@ -832,7 +1555,14 @@ export function deleteActivationCode(data: AppDataSchema, code: string): AppData
 export function updateTeacherProfile(
   data: AppDataSchema,
   teacherId: string,
-  updates: { fullName?: string; schoolName?: string; newPassword?: string; oldPassword?: string }
+  updates: {
+    fullName?: string;
+    provinceName?: string;
+    communeName?: string;
+    schoolName?: string;
+    newPassword?: string;
+    oldPassword?: string;
+  }
 ): { success: boolean; data: AppDataSchema; error?: string } {
   const teacher = data.teachers.find((t) => t.id === teacherId);
   if (!teacher) return { success: false, data, error: 'Không tìm thấy tài khoản giáo viên!' };
@@ -847,17 +1577,51 @@ export function updateTeacherProfile(
     }
   }
 
-  const updatedTeachers = data.teachers.map((t) =>
+  const nextProvinceName =
+    updates.provinceName !== undefined ? updates.provinceName.trim() : teacher.provinceName || '';
+  const nextCommuneName =
+    updates.communeName !== undefined ? updates.communeName.trim() : teacher.communeName || '';
+  const nextSchoolName =
+    updates.schoolName !== undefined
+      ? normalizeSchoolName(updates.schoolName)
+      : teacher.schoolName;
+
+  let workingData = data;
+  if (nextProvinceName && nextCommuneName && nextSchoolName) {
+    const added = addSchoolToSystem(data, nextProvinceName, nextCommuneName, nextSchoolName);
+    workingData = added.data;
+  }
+
+  const resolvedLoc = resolveCanonicalLocationStrict(workingData, {
+    provinceName: nextProvinceName,
+    communeName: nextCommuneName,
+    schoolName: nextSchoolName,
+    requireClass: false,
+  });
+
+  const updatedTeachers = workingData.teachers.map((t) =>
     t.id === teacherId
       ? {
           ...t,
           fullName: updates.fullName ? normalizeFullName(updates.fullName) : t.fullName,
-          schoolName: updates.schoolName ? normalizeSchoolName(updates.schoolName) : t.schoolName,
+          provinceName: resolvedLoc.mapped ? resolvedLoc.provinceName : nextProvinceName,
+          communeName: resolvedLoc.mapped ? resolvedLoc.communeName : nextCommuneName,
+          schoolName: resolvedLoc.mapped ? resolvedLoc.schoolName : nextSchoolName,
+          provinceCode: resolvedLoc.mapped ? resolvedLoc.provinceCode : t.provinceCode,
+          communeCode: resolvedLoc.mapped ? resolvedLoc.communeCode : t.communeCode,
+          schoolId: resolvedLoc.mapped ? resolvedLoc.schoolId : t.schoolId,
+          migrationStatus: (resolvedLoc.mapped ? 'mapped' : 'pending_review') as
+            | 'mapped'
+            | 'pending_review',
           password: updates.newPassword ? hashPasswordSync(updates.newPassword) : t.password,
         }
       : t
   );
-  const updatedData: AppDataSchema = { ...data, teachers: updatedTeachers };
+  const updatedData: AppDataSchema = {
+    ...workingData,
+    teachers: updatedTeachers,
+    revision: (workingData.revision || 0) + 1,
+  };
   saveAppData(updatedData);
   return { success: true, data: updatedData };
 }
@@ -891,10 +1655,61 @@ export function addCustomClass(data: AppDataSchema, className: string): AppDataS
   return updatedData;
 }
 
-// ===== MIGRATION: Old single teacherAccount → multi-teacher teachers[] =====
+// ===== DEFAULT ADMIN ACCOUNT (Hoangnhan) & MIGRATION =====
+export function getDefaultAdminTeacher(): TeacherAccount {
+  return {
+    id: 'admin-hoangnhan',
+    email: 'Hoangnhan',
+    username: 'Hoangnhan',
+    fullName: 'Cô Hoàng Nhàn',
+    password: hashPasswordSync('Van210923@'),
+    provinceCode: 'P19',
+    communeCode: 'P19_C016',
+    schoolId: 'SCH_P19_P19_C016_THCS_CHU_VAN_AN',
+    migrationStatus: 'mapped',
+    provinceName: 'Tỉnh Quảng Ngãi',
+    communeName: 'Xã Đăk Hà',
+    schoolName: 'THCS Chu Văn An',
+    role: 'admin',
+    managedClasses: ['6A1', '6A2', '6A3', '6A4', '6A5', '6A6'],
+    isActive: true,
+    createdAt: '2026-01-01T00:00:00.000Z',
+  };
+}
+
+export function ensureDefaultAdminTeacher(list: TeacherAccount[]): TeacherAccount[] {
+  const defaultAdmin = getDefaultAdminTeacher();
+  const hasHoangnhan = list.some(
+    (t) =>
+      t.username.toLowerCase() === 'hoangnhan' ||
+      t.email.toLowerCase() === 'hoangnhan' ||
+      t.id === 'admin-hoangnhan'
+  );
+  if (!hasHoangnhan) {
+    return [defaultAdmin, ...list];
+  }
+  return list.map((t) => {
+    if (
+      t.username.toLowerCase() === 'hoangnhan' ||
+      t.email.toLowerCase() === 'hoangnhan' ||
+      t.id === 'admin-hoangnhan'
+    ) {
+      return {
+        ...t,
+        email: 'Hoangnhan',
+        username: 'Hoangnhan',
+        password: hashPasswordSync('Van210923@'),
+        role: 'admin',
+        isActive: true,
+      };
+    }
+    return t;
+  });
+}
+
 function migrateTeacherData(parsed: any): TeacherAccount[] {
   if (parsed.teachers && Array.isArray(parsed.teachers) && parsed.teachers.length > 0) {
-    return parsed.teachers
+    const migrated = parsed.teachers
       .filter((t: TeacherAccount) => t.id !== 'admin-001' && Boolean(t.password))
       .map((t: TeacherAccount) => ({
         ...t,
@@ -904,9 +1719,10 @@ function migrateTeacherData(parsed: any): TeacherAccount[] {
         password: hashPasswordSync(t.password),
         managedClasses: (t.managedClasses || []).map((c: string) => normalizeClassName(c)),
       }));
+    return ensureDefaultAdminTeacher(migrated);
   }
 
-  return [];
+  return [getDefaultAdminTeacher()];
 }
 
 function migrateStudentsData(rawStudents: any[]): StudentAccount[] {
@@ -963,6 +1779,183 @@ function migrateStudentsData(rawStudents: any[]): StudentAccount[] {
     });
 }
 
+/**
+ * Gán toàn bộ học sinh đã đăng ký trước đó (cùng toàn bộ số liệu buổi học, attempts, dailyStats)
+ * vào tài khoản Giáo viên Quản trị (Admin / Giáo viên đăng ký lần đầu).
+ */
+export function claimAllPriorStudentsForAdmin(
+  data: AppDataSchema,
+  targetTeacherId?: string | null
+): AppDataSchema {
+  // 1. Khôi phục thêm học sinh từ bản backup nếu có học sinh bị thiếu
+  let mergedStudents = [...data.students];
+  if (typeof localStorage !== 'undefined') {
+    try {
+      const backupRaw = localStorage.getItem(MIGRATION_BACKUP_KEY);
+      if (backupRaw) {
+        const backupParsed = JSON.parse(backupRaw);
+        if (Array.isArray(backupParsed.students)) {
+          const existingIds = new Set(mergedStudents.map((s) => s.id));
+          backupParsed.students.forEach((bs: StudentAccount) => {
+            if (bs && bs.id && !existingIds.has(bs.id)) {
+              existingIds.add(bs.id);
+              mergedStudents.push(bs);
+            }
+          });
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  // 2. Chỉ gán cho duy nhất tài khoản đăng nhập Hoangnhan
+  const hoangnhanTeacher =
+    data.teachers.find(
+      (t) =>
+        t.username.toLowerCase() === 'hoangnhan' ||
+        t.email.toLowerCase() === 'hoangnhan' ||
+        t.id === 'admin-hoangnhan'
+    ) || getDefaultAdminTeacher();
+
+  if (
+    targetTeacherId &&
+    targetTeacherId !== hoangnhanTeacher.id &&
+    targetTeacherId !== 'admin-hoangnhan'
+  ) {
+    return data;
+  }
+
+  const primaryTeacher = hoangnhanTeacher;
+
+  const targetProvName = primaryTeacher.provinceName?.trim() || 'Tỉnh Quảng Ngãi';
+  const targetCommName = primaryTeacher.communeName?.trim() || 'Xã Đăk Hà';
+  const targetSchName = normalizeSchoolName(primaryTeacher.schoolName || 'THCS Chu Văn An');
+
+  let workingData = data;
+  const addedSchool = addSchoolToSystem(workingData, targetProvName, targetCommName, targetSchName);
+  workingData = addedSchool.data;
+
+  const resolvedLoc = resolveCanonicalLocationStrict(workingData, {
+    provinceName: targetProvName,
+    communeName: targetCommName,
+    schoolName: targetSchName,
+    requireClass: false,
+  });
+
+  const canonicalProvCode = resolvedLoc.mapped ? resolvedLoc.provinceCode : 'P19';
+  const canonicalCommCode = resolvedLoc.mapped ? resolvedLoc.communeCode : 'P19_C016';
+  const canonicalSchoolId = resolvedLoc.mapped
+    ? resolvedLoc.schoolId
+    : 'SCH_P19_P19_C016_THCS_CHU_VAN_AN';
+
+  // 3. Gán toàn bộ học sinh hiện có về trường & mã định danh của Giáo viên Quản trị
+  const allClassSet = new Set<string>(['6A1', '6A2', '6A3', '6A4', '6A5', '6A6']);
+  const alignedStudents: StudentAccount[] = mergedStudents.map((st) => {
+    const normClass = normalizeClassName(st.className || '6A1');
+    allClassSet.add(normClass);
+
+    const stLoc = resolveCanonicalLocationStrict(workingData, {
+      provinceCode: st.provinceCode,
+      communeCode: st.communeCode,
+      schoolId: st.schoolId,
+      provinceName: st.provinceName || targetProvName,
+      communeName: st.communeName || targetCommName,
+      schoolName: st.schoolName || targetSchName,
+      className: normClass,
+      requireClass: true,
+    });
+
+    const useTeacherSchool = Boolean(targetTeacherId) || !stLoc.mapped;
+    const finalSchoolId = useTeacherSchool ? canonicalSchoolId : stLoc.schoolId;
+    const finalProvCode = useTeacherSchool ? canonicalProvCode : stLoc.provinceCode;
+    const finalCommCode = useTeacherSchool ? canonicalCommCode : stLoc.communeCode;
+    const finalProvName = useTeacherSchool ? targetProvName : stLoc.provinceName;
+    const finalCommName = useTeacherSchool ? targetCommName : stLoc.communeName;
+    const finalSchName = useTeacherSchool ? targetSchName : stLoc.schoolName;
+
+    return {
+      ...st,
+      className: normClass,
+      provinceCode: finalProvCode,
+      communeCode: finalCommCode,
+      schoolId: finalSchoolId,
+      classId: buildCanonicalClassId(finalSchoolId, normClass),
+      provinceName: finalProvName,
+      communeName: finalCommName,
+      schoolName: finalSchName,
+      migrationStatus: 'mapped',
+    };
+  });
+
+  const allClassesList = Array.from(allClassSet).filter(Boolean).sort();
+
+  // 4. Nâng cấp tài khoản Giáo viên đăng ký lần đầu thành Admin + gán toàn bộ lớp hiện có
+  const updatedTeachers: TeacherAccount[] = workingData.teachers.map((t) => {
+    if (t.id === primaryTeacher.id) {
+      const mergedManaged = Array.from(
+        new Set([...(t.managedClasses || []).map((c) => normalizeClassName(c)), ...allClassesList])
+      ).sort();
+      return {
+        ...t,
+        provinceCode: t.provinceCode || canonicalProvCode,
+        communeCode: t.communeCode || canonicalCommCode,
+        schoolId: t.schoolId || canonicalSchoolId,
+        provinceName: t.provinceName || targetProvName,
+        communeName: t.communeName || targetCommName,
+        schoolName: normalizeSchoolName(t.schoolName || targetSchName),
+        migrationStatus: 'mapped',
+        managedClasses: mergedManaged,
+      };
+    }
+    return t;
+  });
+
+  // 5. Đồng bộ lại schoolId trong firestore_collection_attempts_v1 & dailyStats để Báo cáo khớp 100%
+  if (typeof localStorage !== 'undefined' && targetTeacherId) {
+    try {
+      const slug = ( raw: string ) =>
+        raw
+          .trim()
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/đ/g, 'd')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+      const analyticsSchoolId = `${slug(targetSchName)}__${slug(targetCommName)}`;
+
+      const rawAtt = localStorage.getItem('firestore_collection_attempts_v1');
+      if (rawAtt) {
+        const parsedAtt = JSON.parse(rawAtt);
+        if (Array.isArray(parsedAtt)) {
+          const updatedAtt = parsedAtt.map((a) => ({ ...a, schoolId: analyticsSchoolId }));
+          localStorage.setItem('firestore_collection_attempts_v1', JSON.stringify(updatedAtt));
+        }
+      }
+      const rawStats = localStorage.getItem('firestore_collection_dailyStats_v1');
+      if (rawStats) {
+        const parsedStats = JSON.parse(rawStats);
+        if (parsedStats && typeof parsedStats === 'object') {
+          Object.keys(parsedStats).forEach((k) => {
+            if (parsedStats[k]) parsedStats[k].schoolId = analyticsSchoolId;
+          });
+          localStorage.setItem('firestore_collection_dailyStats_v1', JSON.stringify(parsedStats));
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  return {
+    ...workingData,
+    students: alignedStudents,
+    teachers: updatedTeachers,
+    unmappedMigrationQueue: [],
+  };
+}
+
 // ===== LOAD & SAVE =====
 export function loadAppData(): AppDataSchema {
   try {
@@ -987,14 +1980,12 @@ export function loadAppData(): AppDataSchema {
         Boolean(parsed.currentTeacherId) &&
         teachers.some((t) => t.id === parsed.currentTeacherId && t.isActive);
 
-      const defaultSchools: SchoolEntry[] = (vnAdminData.defaultSchools || []).map((sc) => ({
-        provinceName: sc.provinceName,
-        communeName: sc.communeName,
-        schoolName: normalizeSchoolName(sc.schoolName),
-      }));
-      const savedSchools: SchoolEntry[] = Array.isArray(parsed.schools) ? parsed.schools : defaultSchools;
+      const savedSchools: SchoolEntry[] = getCanonicalSchoolsDirectory({
+        schools: Array.isArray(parsed.schools) ? parsed.schools : undefined,
+        customCommunes: parsed.customCommunes || {},
+      });
 
-      return {
+      const baseLoaded: AppDataSchema = {
         units: SGK_UNITS,
         questions: mergedQuestions,
         sessions: activeStudent ? activeStudent.sessions : [],
@@ -1010,6 +2001,9 @@ export function loadAppData(): AppDataSchema {
         customCommunes: parsed.customCommunes || {},
         classCurrentUnits: parsed.classCurrentUnits || { DEFAULT: 'unit-1' },
         masteryThresholds: parsed.masteryThresholds || undefined,
+        auditLogs: pruneExpiredAuditLogs(parsed.auditLogs || []),
+        unmappedMigrationQueue: parsed.unmappedMigrationQueue || [],
+        revision: parsed.revision || 1,
         teacherAccount: teachers[0] || null,
         settings: {
           geminiApiKey: localStorage.getItem('gemini_api_key') || '',
@@ -1021,6 +2015,8 @@ export function loadAppData(): AppDataSchema {
         },
         customDocuments: parsed.customDocuments || [],
       };
+
+      return claimAllPriorStudentsForAdmin(baseLoaded, 'admin-hoangnhan');
     }
   } catch (err) {
     console.error('Lỗi đọc LocalStorage:', err);
@@ -1035,17 +2031,16 @@ export function loadAppData(): AppDataSchema {
     currentStudentId: null,
     isTeacherLoggedIn: false,
     currentTeacherId: null,
-    teachers: [],
+    teachers: [getDefaultAdminTeacher()],
     activationCodes: [],
     customClasses: [],
-    schools: (vnAdminData.defaultSchools || []).map((sc) => ({
-      provinceName: sc.provinceName,
-      communeName: sc.communeName,
-      schoolName: normalizeSchoolName(sc.schoolName),
-    })),
+    schools: getCanonicalSchoolsDirectory({}),
     customCommunes: {},
     classCurrentUnits: { DEFAULT: 'unit-1' },
-    teacherAccount: null,
+    auditLogs: [],
+    unmappedMigrationQueue: [],
+    revision: 1,
+    teacherAccount: getDefaultAdminTeacher(),
     settings: {
       geminiApiKey: localStorage.getItem('gemini_api_key') || '',
       selectedModel: (localStorage.getItem('gemini_selected_model') as any) || 'gemini-3.6-flash',
@@ -1060,6 +2055,7 @@ export function loadAppData(): AppDataSchema {
 
 let _quotaWarningShown = false;
 export function saveAppData(data: AppDataSchema) {
+  if (typeof localStorage === 'undefined') return;
   try {
     const jsonStr = JSON.stringify(data);
     const sizeBytes = new Blob([jsonStr]).size;
@@ -1068,19 +2064,23 @@ export function saveAppData(data: AppDataSchema) {
     if (sizeMB > 4 && !_quotaWarningShown) {
       _quotaWarningShown = true;
       console.warn(`⚠️ localStorage sắp đầy: ${sizeMB.toFixed(2)}MB / 5MB.`);
-      window.dispatchEvent(new CustomEvent('storage-quota-warning', { detail: { sizeMB } }));
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('storage-quota-warning', { detail: { sizeMB } }));
+      }
     }
 
     localStorage.setItem(STORAGE_KEY, jsonStr);
-    if (data.settings.geminiApiKey !== undefined) {
+    if (data.settings?.geminiApiKey !== undefined) {
       localStorage.setItem('gemini_api_key', data.settings.geminiApiKey);
     }
-    if (data.settings.selectedModel) {
+    if (data.settings?.selectedModel) {
       localStorage.setItem('gemini_selected_model', data.settings.selectedModel);
     }
   } catch (err) {
     console.error('Lỗi ghi LocalStorage:', err);
-    window.dispatchEvent(new CustomEvent('storage-quota-exceeded'));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('storage-quota-exceeded'));
+    }
   }
 }
 
@@ -1338,18 +2338,57 @@ export function updateStudentByTeacher(
     normalizedFields.passwordHash = hashed;
   }
 
-  const updatedStudents = data.students.map((st) => {
+  let resolvedStudentId: string | null = null;
+  const updatedStudents: StudentAccount[] = data.students.map((st): StudentAccount => {
     if (st.id === studentId) {
-      return {
+      const merged: StudentAccount = {
         ...st,
         ...normalizedFields,
+      };
+      const loc = resolveCanonicalLocationStrict(data, {
+        provinceCode: normalizedFields.provinceCode ?? merged.provinceCode,
+        communeCode: normalizedFields.communeCode ?? merged.communeCode,
+        schoolId: normalizedFields.schoolId ?? merged.schoolId,
+        provinceName: merged.provinceName,
+        communeName: merged.communeName,
+        schoolName: merged.schoolName,
+        className: merged.className,
+        requireClass: true,
+      });
+      if (loc.mapped) {
+        resolvedStudentId = st.id;
+        return {
+          ...merged,
+          provinceCode: loc.provinceCode,
+          provinceName: loc.provinceName,
+          communeCode: loc.communeCode,
+          communeName: loc.communeName,
+          schoolId: loc.schoolId,
+          schoolName: loc.schoolName,
+          className: loc.className!,
+          classId: loc.classId,
+          migrationStatus: 'mapped',
+        };
+      }
+      return {
+        ...merged,
+        migrationStatus: 'pending_review',
       };
     }
     return st;
   });
+
+  const nextQueue = resolvedStudentId
+    ? (data.unmappedMigrationQueue || []).filter(
+        (q) => !(q.entityType === 'student' && q.entityId === resolvedStudentId)
+      )
+    : data.unmappedMigrationQueue || [];
+
   const updatedData: AppDataSchema = {
     ...data,
     students: updatedStudents,
+    unmappedMigrationQueue: nextQueue,
+    revision: (data.revision || 0) + 1,
   };
   saveAppData(updatedData);
   return updatedData;

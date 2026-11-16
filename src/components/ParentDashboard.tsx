@@ -56,6 +56,12 @@ import {
   hashPasswordSync,
   generateRecoveryCode,
   suggestAvailableUsernames,
+  getProvincesList,
+  getCommunesWithCodesForProvince,
+  getCanonicalSchoolsDirectory,
+  resolveCanonicalLocationStrict,
+  claimAllPriorStudentsForAdmin,
+  saveAppData,
 } from '../services/storage';
 import {
   getMasteryThresholds,
@@ -73,6 +79,7 @@ import { loadClassGrammarStores } from '../grammar-g6/storage';
 import { TeacherManagementPanel } from './TeacherManagementPanel';
 import { TeacherAnalyticsReportSection } from './TeacherAnalyticsReportSection';
 import { TeacherPrePostTestSection } from './TeacherPrePostTestSection';
+import { TeacherBulkAndAuditSection } from './TeacherBulkAndAuditSection';
 
 interface ParentDashboardProps {
   appData: AppDataSchema;
@@ -93,6 +100,8 @@ interface ParentDashboardProps {
   onUpdateTeacherClasses?: (teacherId: string, classes: string[]) => void;
   onUpdateTeacherProfile?: (updates: {
     fullName?: string;
+    provinceName?: string;
+    communeName?: string;
     schoolName?: string;
     newPassword?: string;
     oldPassword?: string;
@@ -101,6 +110,9 @@ interface ParentDashboardProps {
   onAddCustomClass?: (className: string) => void;
   onChangeClassUnit?: (className: string, unitId: string) => void;
   onUpdateMasteryThresholds?: (nextThresholds: MasteryThresholdsOverride) => void;
+  onUpdateAppData?: React.Dispatch<React.SetStateAction<AppDataSchema>>;
+  realtimeStatus?: 'connected' | 'reconnecting' | 'offline';
+  lastSyncedAt?: string | null;
 }
 
 const CORE_SKILLS: {
@@ -161,18 +173,27 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
   onAddCustomClass,
   onChangeClassUnit,
   onUpdateMasteryThresholds,
+  onUpdateAppData,
+  realtimeStatus = 'connected',
+  lastSyncedAt = null,
 }) => {
   const { units, students, isTeacherLoggedIn } = appData;
 
   // Dashboard sub-tab: 'students' (default) or 'teachers' (admin only)
   const [dashboardTab, setDashboardTab] = useState<'students' | 'teachers'>('students');
 
-  // Class & Student Filter state
+  // Hierarchical Code Filters (ProvinceCode -> CommuneCode -> SchoolId -> Class) & Pagination
+  const [selectedProvinceCode, setSelectedProvinceCode] = useState<string>('all');
+  const [selectedCommuneCode, setSelectedCommuneCode] = useState<string>('all');
+  const [selectedSchoolId, setSelectedSchoolId] = useState<string>('all');
   const [selectedClassFilter, setSelectedClassFilter] = useState<string>('all');
   const [selectedStudentIdFilter, setSelectedStudentIdFilter] = useState<string>('all');
   const [studentSearchQuery, setStudentSearchQuery] = useState<string>('');
   const [newClassInput, setNewClassInput] = useState<string>('');
   const [showAddClassInput, setShowAddClassInput] = useState<boolean>(false);
+  const [studentPage, setStudentPage] = useState<number>(1);
+  const [studentPageSize] = useState<number>(10);
+  const [matrixPage, setMatrixPage] = useState<number>(1);
 
   // Teacher Student Management Modals State
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
@@ -189,11 +210,14 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     recoveryCode: string;
   } | null>(null);
 
-  // Form State for Add/Edit Student
+  // Form State for Add/Edit Student (Full 5 Registration Fields)
   const [formData, setFormData] = useState({
     username: '',
     fullName: '',
     className: '',
+    provinceName: currentTeacher?.provinceName || 'Tỉnh Quảng Ngãi',
+    communeName: currentTeacher?.communeName || 'Xã Đăk Hà',
+    schoolName: currentTeacher?.schoolName || 'THCS Chu Văn An',
     password: '',
     avatar: '👨‍🎓',
     dailyGoalMinutes: 20,
@@ -215,24 +239,59 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     };
   }, []);
 
-  // Filter students by same school (automatic for teacher) and by selected class
+  const provincesDirectory = useMemo(() => getProvincesList(), []);
+  const communesDirectory = useMemo(() => {
+    if (selectedProvinceCode === 'all') return [];
+    return getCommunesWithCodesForProvince(appData, selectedProvinceCode);
+  }, [appData, selectedProvinceCode]);
+  const schoolsDirectory = useMemo(() => {
+    const all = getCanonicalSchoolsDirectory(appData);
+    return all.filter((sc) => {
+      if (selectedProvinceCode !== 'all' && sc.provinceCode !== selectedProvinceCode) return false;
+      if (selectedCommuneCode !== 'all' && sc.communeCode !== selectedCommuneCode) return false;
+      return true;
+    });
+  }, [appData, selectedProvinceCode, selectedCommuneCode]);
+
+  // Filter students by RLS (Admin sees all; Teacher sees only assigned schoolId + managedClasses)
   const teacherStudents = useMemo(
-    () => getTeacherStudents(appData, appData.currentTeacherId),
-    [appData]
+    () =>
+      isTeacherLoggedIn
+        ? getTeacherStudents(appData, appData.currentTeacherId)
+        : appData.students,
+    [appData, isTeacherLoggedIn]
   );
 
+  // Filter by canonical codes (provinceCode -> communeCode -> schoolId)
+  const codeFilteredStudents = useMemo(() => {
+    return teacherStudents.filter((s) => {
+      if (isAdmin) {
+        if (selectedProvinceCode !== 'all' && s.provinceCode !== selectedProvinceCode) return false;
+        if (selectedCommuneCode !== 'all' && s.communeCode !== selectedCommuneCode) return false;
+        if (selectedSchoolId !== 'all' && s.schoolId !== selectedSchoolId) return false;
+      }
+      return true;
+    });
+  }, [teacherStudents, isAdmin, selectedProvinceCode, selectedCommuneCode, selectedSchoolId]);
+
   const availableClasses = useMemo(() => {
+    if (isTeacherLoggedIn && !isAdmin && currentTeacher) {
+      const assigned = (currentTeacher.managedClasses || [])
+        .map((c) => normalizeClassName(c))
+        .filter(Boolean);
+      return Array.from(new Set(assigned)).sort();
+    }
     const raw = getAvailableClasses(appData, appData.currentTeacherId);
     const normalized = Array.from(new Set(raw.map((c) => normalizeClassName(c))));
     return normalized.length > 0 ? normalized : ['6A1', '6A2'];
-  }, [appData]);
+  }, [appData, isTeacherLoggedIn, isAdmin, currentTeacher]);
 
   const classFilteredStudents = useMemo(() => {
-    if (selectedClassFilter === 'all') return teacherStudents;
-    return teacherStudents.filter(
+    if (selectedClassFilter === 'all') return codeFilteredStudents;
+    return codeFilteredStudents.filter(
       (s) => normalizeClassName(s.className) === normalizeClassName(selectedClassFilter)
     );
-  }, [teacherStudents, selectedClassFilter]);
+  }, [codeFilteredStudents, selectedClassFilter]);
 
   const searchedStudents = useMemo(() => {
     const q = studentSearchQuery.trim().toLowerCase();
@@ -241,9 +300,18 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
       (s) =>
         s.fullName.toLowerCase().includes(q) ||
         s.username.toLowerCase().includes(q) ||
-        normalizeClassName(s.className).toLowerCase().includes(q)
+        normalizeClassName(s.className).toLowerCase().includes(q) ||
+        (s.schoolId || '').toLowerCase().includes(q)
     );
   }, [classFilteredStudents, studentSearchQuery]);
+
+  // Paginated Slices
+  const studentTotalPages = Math.max(1, Math.ceil(searchedStudents.length / studentPageSize));
+  const paginatedStudents = useMemo(() => {
+    const safePage = Math.min(studentPage, studentTotalPages);
+    const start = (safePage - 1) * studentPageSize;
+    return searchedStudents.slice(start, start + studentPageSize);
+  }, [searchedStudents, studentPage, studentPageSize, studentTotalPages]);
 
   // Students targeted in the Progress Report & Mistake Book section (either entire class or 1 student)
   const reportTargetStudents = useMemo(() => {
@@ -639,11 +707,14 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     const defaultClass =
       selectedClassFilter !== 'all'
         ? normalizeClassName(selectedClassFilter)
-        : '';
+        : availableClasses[0] || '6A1';
     setFormData({
       username: '',
       fullName: '',
       className: defaultClass,
+      provinceName: currentTeacher?.provinceName || 'Tỉnh Quảng Ngãi',
+      communeName: currentTeacher?.communeName || 'Xã Đăk Hà',
+      schoolName: currentTeacher?.schoolName || 'THCS Chu Văn An',
       password: '',
       avatar: '👨‍🎓',
       dailyGoalMinutes: 20,
@@ -658,6 +729,9 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
       username: st.username,
       fullName: st.fullName,
       className: normalizeClassName(st.className),
+      provinceName: st.provinceName || currentTeacher?.provinceName || 'Tỉnh Quảng Ngãi',
+      communeName: st.communeName || currentTeacher?.communeName || 'Xã Đăk Hà',
+      schoolName: st.schoolName || currentTeacher?.schoolName || 'THCS Chu Văn An',
       password: '',
       avatar: st.avatar,
       dailyGoalMinutes: st.dailyGoalMinutes || 20,
@@ -674,10 +748,41 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
       return;
     }
 
+    // RLS check for non-admin teacher: can only assign to their managedClasses
+    if (!isAdmin && currentTeacher) {
+      const allowed = new Set(
+        (currentTeacher.managedClasses || []).map((c) => normalizeClassName(c))
+      );
+      if (!allowed.has(cleanClass)) {
+        setFormError(
+          `Giáo viên chỉ được quản lý học sinh thuộc lớp được phân công (${
+            Array.from(allowed).join(', ') || 'Chưa được phân lớp'
+          }).`
+        );
+        return;
+      }
+    }
+
+    const loc = resolveCanonicalLocationStrict(appData, {
+      provinceName: isAdmin ? formData.provinceName : currentTeacher?.provinceName || formData.provinceName,
+      communeName: isAdmin ? formData.communeName : currentTeacher?.communeName || formData.communeName,
+      schoolName: isAdmin ? formData.schoolName : currentTeacher?.schoolName || formData.schoolName,
+      className: cleanClass,
+      requireClass: true,
+    });
+
     if (editingStudent) {
       const updates: Partial<StudentAccount> = {
         fullName: cleanFullName,
         className: cleanClass,
+        provinceName: loc.mapped ? loc.provinceName : formData.provinceName,
+        communeName: loc.mapped ? loc.communeName : formData.communeName,
+        schoolName: loc.mapped ? loc.schoolName : formData.schoolName,
+        provinceCode: loc.mapped ? loc.provinceCode : undefined,
+        communeCode: loc.mapped ? loc.communeCode : undefined,
+        schoolId: loc.mapped ? loc.schoolId : undefined,
+        classId: loc.mapped ? loc.classId : undefined,
+        migrationStatus: loc.mapped ? 'mapped' : 'pending_review',
         avatar: formData.avatar,
         dailyGoalMinutes: Number(formData.dailyGoalMinutes) || 20,
       };
@@ -727,7 +832,6 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
 
     const hashedPassword = hashPasswordSync(rawPassword);
     const recoveryCode = generateRecoveryCode();
-    const todayStr = new Date().toISOString().split('T')[0];
 
     const newStudent: StudentAccount = {
       id: `student-${Date.now()}`,
@@ -735,9 +839,14 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
       fullName: cleanFullName,
       grade: 6,
       className: cleanClass,
-      provinceName: currentTeacher?.provinceName || '',
-      communeName: currentTeacher?.communeName || '',
-      schoolName: currentTeacher?.schoolName || '',
+      provinceCode: loc.mapped ? loc.provinceCode : undefined,
+      communeCode: loc.mapped ? loc.communeCode : undefined,
+      schoolId: loc.mapped ? loc.schoolId : undefined,
+      classId: loc.mapped ? loc.classId : undefined,
+      migrationStatus: loc.mapped ? 'mapped' : 'pending_review',
+      provinceName: loc.mapped ? loc.provinceName : formData.provinceName,
+      communeName: loc.mapped ? loc.communeName : formData.communeName,
+      schoolName: loc.mapped ? loc.schoolName : formData.schoolName,
       passwordHash: hashedPassword,
       recoveryCodeHash: hashPasswordSync(recoveryCode),
       parentConsent: true,
@@ -805,6 +914,42 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
     }
   };
 
+  const isHoangnhanAccount = Boolean(
+    currentTeacher &&
+      (currentTeacher.username.toLowerCase() === 'hoangnhan' ||
+        currentTeacher.email.toLowerCase() === 'hoangnhan' ||
+        currentTeacher.id === 'admin-hoangnhan')
+  );
+
+  // Chỉ tự động gán toàn bộ học sinh cũ vào duy nhất tài khoản đăng nhập Hoangnhan
+  useEffect(() => {
+    if (!isTeacherLoggedIn || !isHoangnhanAccount || !appData.currentTeacherId || !onUpdateAppData) {
+      return;
+    }
+    const hasUnlinked = appData.students.some(
+      (s) =>
+        !s.schoolId ||
+        (currentTeacher?.schoolId && s.schoolId !== currentTeacher.schoolId) ||
+        !(currentTeacher?.managedClasses || []).includes(normalizeClassName(s.className || '6A1'))
+    );
+    if (hasUnlinked) {
+      const claimed = claimAllPriorStudentsForAdmin(appData, appData.currentTeacherId);
+      saveAppData(claimed);
+      onUpdateAppData(claimed);
+    }
+  }, [isTeacherLoggedIn, isHoangnhanAccount, appData.currentTeacherId, appData.students.length]);
+
+  const handleManualClaimAllPriorStudents = () => {
+    if (!appData.currentTeacherId || !isHoangnhanAccount) return;
+    const claimed = claimAllPriorStudentsForAdmin(appData, appData.currentTeacherId);
+    saveAppData(claimed);
+    onUpdateAppData?.(claimed);
+    setResetSuccessBanner(
+      `✅ Đã gán toàn bộ ${claimed.students.length} học sinh (cùng toàn bộ lịch sử bài làm & báo cáo) vào tài khoản Hoangnhan!`
+    );
+    setTimeout(() => setResetSuccessBanner(''), 6000);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Banner Giáo Viên / Admin */}
@@ -835,6 +980,18 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
         </div>
 
         <div className="flex flex-wrap items-center gap-2 shrink-0">
+          {isTeacherLoggedIn && isHoangnhanAccount && (
+            <button
+              type="button"
+              onClick={handleManualClaimAllPriorStudents}
+              className="px-3.5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold text-xs transition-all inline-flex items-center gap-1.5 shadow-xs cursor-pointer whitespace-nowrap"
+              title="Gán toàn bộ học sinh đã đăng ký trước đó và số liệu bài làm vào tài khoản Hoangnhan"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Gán toàn bộ HS cũ ({appData.students.length}) vào TK Hoangnhan</span>
+            </button>
+          )}
+
           {isTeacherLoggedIn && onOpenTeacherProfile && (
             <button
               type="button"
@@ -921,6 +1078,8 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
           onDeleteTeacher={onDeleteTeacher || (() => {})}
           onUpdateTeacherClasses={onUpdateTeacherClasses || (() => {})}
           onAddCustomClass={onAddCustomClass}
+          realtimeStatus={realtimeStatus}
+          lastSyncedAt={lastSyncedAt}
         />
       )}
 
@@ -1217,24 +1376,96 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                 <h2 className="text-base sm:text-lg font-extrabold text-slate-900 flex items-center gap-2">
                   <Users className="w-5 h-5 text-emerald-700 shrink-0" />
                   <span>
-                    2. Quản Lý Lớp Học ({searchedStudents.length} học sinh)
+                    2. Quản Lý Lớp Học Theo Mã Định Danh ({searchedStudents.length} học sinh)
                   </span>
                 </h2>
                 <p className="text-xs text-slate-600 font-medium mt-0.5">
-                  Xem danh sách học sinh theo lớp, tạo tài khoản học sinh mới và đặt lại mật khẩu khi học sinh quên.
+                  {isAdmin
+                    ? 'Lọc theo mã chuẩn: Tỉnh (provinceCode) → Xã/Phường (communeCode) → Trường (schoolId) → Lớp (classId).'
+                    : `Phạm vi RLS: Trường ${currentTeacher?.schoolName || ''} (${
+                        currentTeacher?.schoolId || 'Chưa gán mã'
+                      }) • Lớp phụ trách: ${
+                        (currentTeacher?.managedClasses || []).join(', ') ||
+                        'Chưa được Admin phân lớp'
+                      }`}
                 </p>
               </div>
 
-              {/* Bộ lọc lớp, tìm kiếm, thêm lớp & nút Tạo tài khoản học sinh */}
+              {/* Bộ lọc phân cấp theo Mã định danh, tìm kiếm & nút Tạo tài khoản học sinh */}
               <div className="flex flex-wrap items-center gap-2">
+                {isAdmin && (
+                  <>
+                    {/* Mã Tỉnh */}
+                    <select
+                      value={selectedProvinceCode}
+                      onChange={(e) => {
+                        setSelectedProvinceCode(e.target.value);
+                        setSelectedCommuneCode('all');
+                        setSelectedSchoolId('all');
+                        setStudentPage(1);
+                      }}
+                      aria-label="Lọc theo mã Tỉnh"
+                      className="px-2.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-extrabold text-slate-800 cursor-pointer"
+                    >
+                      <option value="all">Tất cả Tỉnh (Mã P*)</option>
+                      {provincesDirectory.map((p) => (
+                        <option key={p.code} value={p.code}>
+                          [{p.code}] {p.name}
+                        </option>
+                      ))}
+                    </select>
+
+                    {/* Mã Xã/Phường */}
+                    <select
+                      value={selectedCommuneCode}
+                      onChange={(e) => {
+                        setSelectedCommuneCode(e.target.value);
+                        setSelectedSchoolId('all');
+                        setStudentPage(1);
+                      }}
+                      disabled={selectedProvinceCode === 'all'}
+                      aria-label="Lọc theo mã Xã/Phường"
+                      className="px-2.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-extrabold text-slate-800 cursor-pointer disabled:opacity-50"
+                    >
+                      <option value="all">Tất cả Xã/Phường</option>
+                      {communesDirectory.map((c) => (
+                        <option key={c.code} value={c.code}>
+                          [{c.code}] {c.name}
+                        </option>
+                      ))}
+                    </select>
+
+                    {/* Mã Trường */}
+                    <select
+                      value={selectedSchoolId}
+                      onChange={(e) => {
+                        setSelectedSchoolId(e.target.value);
+                        setStudentPage(1);
+                      }}
+                      aria-label="Lọc theo mã Trường"
+                      className="px-2.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-extrabold text-indigo-900 cursor-pointer max-w-[230px]"
+                    >
+                      <option value="all">Tất cả Trường (schoolId)</option>
+                      {schoolsDirectory.map((sc) => (
+                        <option key={sc.schoolId} value={sc.schoolId}>
+                          {sc.schoolName} ({sc.schoolId})
+                        </option>
+                      ))}
+                    </select>
+                  </>
+                )}
+
                 {/* Tìm kiếm học sinh */}
                 <div className="relative">
                   <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={studentSearchQuery}
-                    onChange={(e) => setStudentSearchQuery(e.target.value)}
-                    placeholder="Tìm tên hoặc @username..."
+                    onChange={(e) => {
+                      setStudentSearchQuery(e.target.value);
+                      setStudentPage(1);
+                    }}
+                    placeholder="Tìm tên, @username, mã..."
                     className="pl-8 pr-3 py-1.5 rounded-xl border border-slate-300 bg-slate-50 text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>
@@ -1248,10 +1479,11 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                     onChange={(e) => {
                       setSelectedClassFilter(e.target.value);
                       setSelectedStudentIdFilter('all');
+                      setStudentPage(1);
                     }}
                     className="bg-transparent font-extrabold text-indigo-800 outline-none cursor-pointer"
                   >
-                    <option value="all">Tất cả ({teacherStudents.length})</option>
+                    <option value="all">Tất cả ({codeFilteredStudents.length})</option>
                     {availableClasses.map((cls) => (
                       <option key={cls} value={cls}>
                         Lớp {cls}
@@ -1329,18 +1561,30 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-xs">
-                  {searchedStudents.length === 0 ? (
+                  {paginatedStudents.length === 0 ? (
                     <tr>
                       <td
                         colSpan={isTeacherLoggedIn ? 7 : 6}
                         className="py-8 text-center text-slate-500 font-semibold"
                       >
-                        Chưa có học sinh nào trong danh sách lọc hiện tại. Bấm{' '}
-                        <strong>"+ Tạo Tài Khoản Học Sinh"</strong> để thêm mới.
+                        {isTeacherLoggedIn &&
+                        !isAdmin &&
+                        (!currentTeacher?.managedClasses ||
+                          currentTeacher.managedClasses.length === 0) ? (
+                          <span>
+                            Tài khoản Giáo viên của bạn hiện chưa được Admin phân công lớp phụ trách (
+                            <code>managedClasses</code>). Vui lòng liên hệ Admin để được cấp quyền đọc học sinh theo lớp.
+                          </span>
+                        ) : (
+                          <span>
+                            Chưa có học sinh nào trong danh sách lọc hiện tại. Bấm{' '}
+                            <strong>"+ Tạo Tài Khoản Học Sinh"</strong> để thêm mới.
+                          </span>
+                        )}
                       </td>
                     </tr>
                   ) : (
-                    searchedStudents.map((st) => {
+                    paginatedStudents.map((st) => {
                       const todayStr = new Date().toISOString().split('T')[0];
                       const todayLog = st.dailyLogs?.[todayStr];
                       const todayMins = Math.round((todayLog?.timeSpentSeconds || 0) / 60);
@@ -1385,8 +1629,17 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                               {st.schoolName || 'THCS Chu Văn An'}
                             </span>
                             <span className="block text-[10px] text-slate-500">
-                              {st.communeName || 'Xã Đăk Hà'}
+                              {st.communeName || 'Xã Đăk Hà'} • {st.provinceName || 'Tỉnh Quảng Ngãi'}
                             </span>
+                            {st.schoolId ? (
+                              <code className="inline-block mt-0.5 px-1.5 py-0.2 rounded bg-slate-100 border border-slate-200 text-[9px] font-mono text-indigo-800">
+                                {st.schoolId}
+                              </code>
+                            ) : (
+                              <span className="inline-block mt-0.5 px-1.5 py-0.2 rounded bg-amber-50 border border-amber-200 text-[9px] font-bold text-amber-800">
+                                Chờ ánh xạ mã
+                              </span>
+                            )}
                           </td>
                           <td className="py-3.5 px-3">
                             <span className="font-extrabold text-slate-900 block whitespace-nowrap">
@@ -1486,7 +1739,56 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                 </tbody>
               </table>
             </div>
+
+            {/* Thanh phân trang danh sách học sinh (Indexed Pagination) */}
+            {searchedStudents.length > 0 && (
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-3 border-t border-slate-100 text-xs">
+                <span className="font-bold text-slate-600">
+                  Hiển thị {(Math.min(studentPage, studentTotalPages) - 1) * studentPageSize + 1}–
+                  {Math.min(
+                    searchedStudents.length,
+                    Math.min(studentPage, studentTotalPages) * studentPageSize
+                  )}{' '}
+                  trên tổng số <strong>{searchedStudents.length}</strong> học sinh (Chỉ mục:{' '}
+                  <code>idx_schoolId_className</code>)
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    disabled={studentPage <= 1}
+                    onClick={() => setStudentPage((p) => Math.max(1, p - 1))}
+                    className="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 font-extrabold text-slate-700 disabled:opacity-40 cursor-pointer"
+                  >
+                    ← Trước
+                  </button>
+                  <span className="px-3 py-1.5 rounded-xl bg-indigo-50 text-indigo-900 font-extrabold border border-indigo-200">
+                    Trang {Math.min(studentPage, studentTotalPages)} / {studentTotalPages}
+                  </span>
+                  <button
+                    type="button"
+                    disabled={studentPage >= studentTotalPages}
+                    onClick={() => setStudentPage((p) => Math.min(studentTotalPages, p + 1))}
+                    className="px-3 py-1.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 font-extrabold text-slate-700 disabled:opacity-40 cursor-pointer"
+                  >
+                    Sau →
+                  </button>
+                </div>
+              </div>
+            )}
           </section>
+
+          {/* =====================================================================
+              PHẦN 2B: CHUYỂN LỚP / CHUẨN HOÁ / NHẬP HÀNG LOẠT, MIGRATION & AUDIT LOG
+             ===================================================================== */}
+          {isTeacherLoggedIn && (
+            <TeacherBulkAndAuditSection
+              appData={appData}
+              currentTeacher={currentTeacher}
+              isAdmin={isAdmin}
+              filteredStudents={searchedStudents}
+              onUpdateAppData={onUpdateAppData}
+            />
+          )}
 
           {/* =====================================================================
               PHẦN 3: BÁO CÁO TIẾN ĐỘ THEO LỚP / HỌC SINH / KỸ NĂNG
@@ -1966,6 +2268,81 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
                         className="w-full px-3 py-2.5 text-xs font-bold rounded-xl border border-slate-300 bg-slate-50 text-slate-900 disabled:opacity-60"
                       />
                     </div>
+                  </div>
+
+                  {/* 3 trường Đơn vị hành chính & Trường học (Tỉnh, Xã/phường, Trường) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs font-extrabold text-slate-800 block mb-1">
+                        Tỉnh / Thành phố:
+                      </label>
+                      <select
+                        value={formData.provinceName}
+                        disabled={!isAdmin}
+                        onChange={(e) => {
+                          const nextProv = e.target.value;
+                          const nextComms = getCommunesWithCodesForProvince(appData, nextProv);
+                          setFormData({
+                            ...formData,
+                            provinceName: nextProv,
+                            communeName: nextComms[0]?.name || '',
+                          });
+                        }}
+                        className="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 bg-slate-50 text-slate-900 disabled:opacity-60"
+                      >
+                        {provincesDirectory.map((p) => (
+                          <option key={p.code} value={p.name}>
+                            [{p.code}] {p.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="text-xs font-extrabold text-slate-800 block mb-1">
+                        Xã / Phường:
+                      </label>
+                      <select
+                        value={formData.communeName}
+                        disabled={!isAdmin}
+                        onChange={(e) =>
+                          setFormData({ ...formData, communeName: e.target.value })
+                        }
+                        className="w-full px-3 py-2 text-xs font-bold rounded-xl border border-slate-300 bg-slate-50 text-slate-900 disabled:opacity-60"
+                      >
+                        {getCommunesWithCodesForProvince(appData, formData.provinceName).map(
+                          (c) => (
+                            <option key={c.code} value={c.name}>
+                              [{c.code}] {c.name}
+                            </option>
+                          )
+                        )}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-extrabold text-slate-800 block mb-1">
+                      Trường THCS (theo danh mục mã chuẩn):
+                    </label>
+                    <input
+                      type="text"
+                      list="modal-canonical-schools"
+                      disabled={!isAdmin}
+                      value={formData.schoolName}
+                      onChange={(e) =>
+                        setFormData({ ...formData, schoolName: e.target.value })
+                      }
+                      className="w-full px-3.5 py-2 text-xs font-bold rounded-xl border border-slate-300 bg-slate-50 text-slate-900 disabled:opacity-60"
+                      required
+                    />
+                    <datalist id="modal-canonical-schools">
+                      {getCanonicalSchoolsDirectory(appData).map((sc) => (
+                        <option key={sc.schoolId} value={sc.schoolName}>
+                          {sc.schoolId}
+                        </option>
+                      ))}
+                    </datalist>
                   </div>
 
                   <div>

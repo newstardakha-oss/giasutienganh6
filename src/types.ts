@@ -153,10 +153,72 @@ export interface DailyStudyLog {
 }
 
 export interface SchoolEntry {
+  schoolId?: string; // Mã định danh trường chuẩn (VD: "SCH_P19_C001_CVA")
+  provinceCode?: string; // Mã định danh tỉnh (VD: "P19")
+  communeCode?: string; // Mã định danh xã/phường (VD: "P19_C001")
   provinceName: string;
   communeName: string;
   schoolName: string;
   createdAt?: string;
+}
+
+export interface UnmappedMigrationItem {
+  id: string;
+  entityType: 'student' | 'teacher';
+  entityId: string;
+  rawProvinceName?: string;
+  rawCommuneName?: string;
+  rawSchoolName?: string;
+  rawClassName?: string;
+  reason: string;
+  detectedAt: string;
+  resolvedAt?: string;
+  resolvedBy?: string;
+}
+
+export interface AuditLogSnapshotItem {
+  id: string;
+  provinceCode?: string;
+  communeCode?: string;
+  schoolId?: string;
+  classId?: string;
+  className?: string;
+  managedClasses?: string[];
+  existed?: boolean;
+}
+
+export interface AuditLogEntry {
+  id: string;
+  timestamp: string;
+  expiresAt: string; // Thời hạn lưu log (TTL 90 ngày)
+  actorId: string;
+  actorRole: 'admin' | 'teacher';
+  action:
+    | 'BULK_TRANSFER_CLASS'
+    | 'BULK_NORMALIZE_SCHOOL'
+    | 'BULK_IMPORT_STUDENTS'
+    | 'ASSIGN_MANAGED_CLASSES'
+    | 'MIGRATE_DIRECTORY_CODES'
+    | 'UNDO_BULK_ACTION'
+    | 'EXPORT_STUDENTS';
+  targetIds: string[]; // Chỉ lưu ID định danh, không lưu PII thừa (họ tên, mật khẩu)
+  beforeSnapshot: AuditLogSnapshotItem[];
+  afterSnapshot: AuditLogSnapshotItem[];
+  undoneAt?: string;
+  undoneBy?: string;
+}
+
+export interface MigrationReport {
+  dryRun: boolean;
+  backupKey: string | null;
+  timestamp: string;
+  mappedStudents: number;
+  alreadyMappedStudents: number;
+  unmappedStudents: number;
+  mappedTeachers: number;
+  alreadyMappedTeachers: number;
+  unmappedTeachers: number;
+  unmappedQueue: UnmappedMigrationItem[];
 }
 
 export interface StudentAccount {
@@ -165,6 +227,11 @@ export interface StudentAccount {
   fullName: string; // e.g., "Nguyễn Văn An"
   grade?: number; // e.g., 6
   className: string; // Normalized e.g., "6A1"
+  provinceCode?: string; // Mã tỉnh chuẩn (VD: "P19")
+  communeCode?: string; // Mã xã/phường chuẩn (VD: "P19_C001")
+  schoolId?: string; // Mã trường chuẩn (VD: "SCH_P19_C001_THCS_CHU_VAN_AN")
+  classId?: string; // Mã lớp chuẩn gắn với trường (VD: "SCH_P19_C001_THCS_CHU_VAN_AN__6A1")
+  migrationStatus?: 'mapped' | 'pending_review';
   provinceName?: string; // Tỉnh/Thành phố (34 tỉnh/thành từ 1/7/2025)
   communeName?: string; // Xã/Phường (e.g., "Xã Đăk Hà")
   schoolName?: string; // Trường THCS (e.g., "THCS Chu Văn An")
@@ -188,11 +255,15 @@ export interface TeacherAccount {
   username: string; // Tên hiển thị ngắn
   fullName: string; // Họ tên đầy đủ
   password: string; // Mật khẩu đã mã hoá (hash)
+  provinceCode?: string; // Mã tỉnh chuẩn
+  communeCode?: string; // Mã xã/phường chuẩn
+  schoolId?: string; // Mã trường chuẩn
+  migrationStatus?: 'mapped' | 'pending_review';
   provinceName?: string; // Tỉnh/Thành phố
   communeName?: string; // Xã/Phường
   schoolName: string; // Trường THCS chuẩn hoá (e.g., "THCS Chu Văn An")
   role: 'admin' | 'teacher'; // Phân quyền
-  managedClasses: string[]; // Lớp được phân công (tự động lấy từ học sinh cùng trường nếu rỗng)
+  managedClasses: string[]; // Lớp được Admin phân công (chỉ Admin mới được gán)
   isActive: boolean; // Trạng thái kích hoạt
   activationCode?: string; // Mã đã dùng khi đăng ký (tuỳ chọn)
   createdAt: string; // Ngày tạo tài khoản
@@ -232,8 +303,11 @@ export interface AppDataSchema {
   customClasses?: string[]; // Danh sách lớp tùy chỉnh do Admin thêm
   schools?: SchoolEntry[]; // Danh sách trường học đã có trong hệ thống theo Tỉnh/Xã
   customCommunes?: Record<string, string[]>; // Xã/phường bổ sung theo Tỉnh
-  classCurrentUnits?: Record<string, string>; // Unit đang học trên lớp do giáo viên chọn (key: className hoặc "DEFAULT" -> value: unitId)
+  classCurrentUnits?: Record<string, string>; // Unit đang học trên lớp do giáo viên chọn (key: classId/className hoặc "DEFAULT" -> value: unitId)
   masteryThresholds?: MasteryThresholdsOverride; // Ngưỡng mức độ Tốt/Khá/Đạt/Cần cố gắng do giáo viên cấu hình
+  auditLogs?: AuditLogEntry[]; // Nhật ký thay đổi có hỗ trợ hoàn tác (Undo) và TTL
+  unmappedMigrationQueue?: UnmappedMigrationItem[]; // Hàng chờ xử lý các bản ghi chưa ánh xạ được mã định danh
+  revision?: number; // Số thứ tự phiên bản dữ liệu phục vụ đồng bộ SSE
   teacherAccount?: TeacherAccount | null; // DEPRECATED — kept for migration compatibility
   settings: AppSettings;
   customDocuments: Array<{
